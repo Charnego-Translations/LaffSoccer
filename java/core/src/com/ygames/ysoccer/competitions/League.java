@@ -190,10 +190,11 @@ public class League extends Competition implements Json.Serializable {
         int awayGoals = Match.generateGoals(awayTeam, homeTeam, false);
 
         match.setResult(homeGoals, awayGoals, Match.ResultType.AFTER_90_MINUTES);
-        addMatchToTable(match);
 
         generateScorers(homeTeam, homeGoals);
         generateScorers(awayTeam, awayGoals);
+
+        matchCompleted();
     }
 
     private void addMatchToTable(Match match) {

@@ -1,7 +1,9 @@
 package com.ygames.ysoccer.screens;
 
+import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.ygames.ysoccer.competitions.Cup;
 import com.ygames.ysoccer.framework.Assets;
+import com.ygames.ysoccer.framework.EMath;
 import com.ygames.ysoccer.framework.Font;
 import com.ygames.ysoccer.framework.GLGame;
 import com.ygames.ysoccer.framework.GLScreen;
@@ -11,7 +13,6 @@ import com.ygames.ysoccer.gui.Label;
 import com.ygames.ysoccer.gui.Widget;
 import com.ygames.ysoccer.match.Match;
 import com.ygames.ysoccer.match.Team;
-import com.ygames.ysoccer.framework.EMath;
 
 import java.util.ArrayList;
 
@@ -39,7 +40,7 @@ class PlayCup extends GLScreen {
 
         background = game.stateBackground;
 
-        Font font10green = new Font(10, 13, 17, 12,16, new RgbPair(0xFCFCFC, 0x21E337));
+        Font font10green = new Font(10, 13, 17, 12, 16, new RgbPair(0xFCFCFC, 0x21E337));
         font10green.load();
 
         Widget w;
@@ -185,7 +186,7 @@ class PlayCup extends GLScreen {
                 Widget viewResultButton = new ViewResultButton();
                 widgets.add(viewResultButton);
 
-                if (cup.bothComputers() || cup.userPrefersResult) {
+                if (cup.bothComputers() || cup.viewResult) {
                     setSelectedWidget(viewResultButton);
                 } else {
                     setSelectedWidget(playMatchButton);
@@ -260,7 +261,16 @@ class PlayCup extends GLScreen {
 
         @Override
         public void onFire1Down() {
-            cup.userPrefersResult = false;
+            playViewMatch();
+        }
+
+        @Override
+        public void onFire1Hold() {
+            playViewMatch();
+        }
+        
+        public void playViewMatch() {
+            cup.viewResult = false;
 
             Team homeTeam = cup.getTeam(HOME);
             Team awayTeam = cup.getTeam(AWAY);
@@ -369,19 +379,49 @@ class PlayCup extends GLScreen {
 
         @Override
         public void onFire1Hold() {
-            if (cup.bothComputers()) {
-                viewResult();
-            }
+            viewResult();
         }
 
         private void viewResult() {
-            if (!cup.bothComputers()) {
-                cup.userPrefersResult = true;
+            if (cup.bothComputers()) {
+                cup.generateResult();
+                game.setScreen(new PlayCup(game));
+            } else {
+                cup.viewResult = true;
+
+                Team homeTeam = cup.getTeam(HOME);
+                Team awayTeam = cup.getTeam(AWAY);
+
+                Match match = cup.getMatch();
+                match.setTeam(HOME, homeTeam);
+                match.setTeam(AWAY, awayTeam);
+
+                // reset input devices
+                game.inputDevices.setAvailability(true);
+                homeTeam.setInputDevice(null);
+                homeTeam.releaseNonAiInputDevices();
+                awayTeam.setInputDevice(null);
+                awayTeam.releaseNonAiInputDevices();
+
+                // choose the menu to set
+                if (homeTeam.controlMode != COMPUTER) {
+                    if (lastFireInputDevice != null) {
+                        homeTeam.setInputDevice(lastFireInputDevice);
+                    }
+                    navigation.competition = cup;
+                    navigation.team = homeTeam;
+                    game.setScreen(new SetTeam(game));
+                } else if (awayTeam.controlMode != COMPUTER) {
+                    if (lastFireInputDevice != null) {
+                        awayTeam.setInputDevice(lastFireInputDevice);
+                    }
+                    navigation.competition = cup;
+                    navigation.team = awayTeam;
+                    game.setScreen(new SetTeam(game));
+                } else {
+                    throw new GdxRuntimeException("This should not happen");
+                }
             }
-
-            cup.generateResult();
-
-            game.setScreen(new PlayCup(game));
         }
     }
 

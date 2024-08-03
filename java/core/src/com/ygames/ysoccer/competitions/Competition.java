@@ -52,7 +52,7 @@ public abstract class Competition {
     public Pitch.Type pitchType;
     public int substitutions;
     public int benchSize;
-    public boolean userPrefersResult;
+    public boolean viewResult;
     public int currentRound;
     public int currentMatch;
 
@@ -95,7 +95,7 @@ public abstract class Competition {
         }
         substitutions = jsonData.getInt("substitutions", 3);
         benchSize = jsonData.getInt("benchSize", 5);
-        userPrefersResult = jsonData.getBoolean("userPrefersResult", false);
+        viewResult = jsonData.getBoolean("viewResult", false);
         currentRound = jsonData.getInt("currentRound", 0);
         currentMatch = jsonData.getInt("currentMatch", 0);
 
@@ -146,7 +146,7 @@ public abstract class Competition {
         }
         json.writeValue("substitutions", substitutions);
         json.writeValue("benchSize", benchSize);
-        json.writeValue("userPrefersResult", userPrefersResult);
+        json.writeValue("viewResult", viewResult);
         json.writeValue("currentRound", currentRound);
         json.writeValue("currentMatch", currentMatch);
         json.writeValue("teams", teams, Team[].class, Team.class);
@@ -208,7 +208,7 @@ public abstract class Competition {
     }
 
     public void restart() {
-        userPrefersResult = false;
+        viewResult = false;
         scorers.clear();
         sanctions.clear();
     }
@@ -477,9 +477,12 @@ public abstract class Competition {
     }
 
     private void updateSanctionsList() {
-        Map<Player, Referee.PenaltyCard> penaltyCards = getMatch().getReferee().getPenaltyCards();
-        for (Map.Entry<Player, Referee.PenaltyCard> entry : penaltyCards.entrySet()) {
-            updatePlayerSanctions(entry.getKey(), entry.getValue());
+        Referee referee = getMatch().getReferee();
+        if (referee != null) {
+            Map<Player, Referee.PenaltyCard> penaltyCards = referee.getPenaltyCards();
+            for (Map.Entry<Player, Referee.PenaltyCard> entry : penaltyCards.entrySet()) {
+                updatePlayerSanctions(entry.getKey(), entry.getValue());
+            }
         }
     }
 

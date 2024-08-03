@@ -1,5 +1,6 @@
 package com.ygames.ysoccer.screens;
 
+import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.ygames.ysoccer.competitions.TableRow;
 import com.ygames.ysoccer.competitions.tournament.Tournament;
 import com.ygames.ysoccer.competitions.tournament.groups.Group;
@@ -366,7 +367,7 @@ class PlayTournament extends GLScreen {
                 Widget viewResultButton = new ViewResultButton();
                 widgets.add(viewResultButton);
 
-                if (tournament.bothComputers() || tournament.userPrefersResult) {
+                if (tournament.bothComputers() || tournament.viewResult) {
                     setSelectedWidget(viewResultButton);
                 } else {
                     setSelectedWidget(playMatchButton);
@@ -441,7 +442,16 @@ class PlayTournament extends GLScreen {
 
         @Override
         public void onFire1Down() {
-            tournament.userPrefersResult = false;
+            playViewMatch();
+        }
+
+        @Override
+        public void onFire1Hold() {
+            playViewMatch();
+        }
+
+        public void playViewMatch() {
+            tournament.viewResult = false;
 
             Team homeTeam = tournament.getTeam(HOME);
             Team awayTeam = tournament.getTeam(AWAY);
@@ -525,19 +535,48 @@ class PlayTournament extends GLScreen {
 
         @Override
         public void onFire1Hold() {
-            if (tournament.bothComputers()) {
-                viewResult();
-            }
+            viewResult();
         }
 
         private void viewResult() {
-            if (!tournament.bothComputers()) {
-                tournament.userPrefersResult = true;
+            if (tournament.bothComputers()) {
+                tournament.generateResult();
+                game.setScreen(new PlayTournament(game));
+            } else {
+                tournament.viewResult = true;
+                Team homeTeam = tournament.getTeam(HOME);
+                Team awayTeam = tournament.getTeam(AWAY);
+
+                Match match = tournament.getMatch();
+                match.setTeam(HOME, homeTeam);
+                match.setTeam(AWAY, awayTeam);
+
+                // reset input devices
+                game.inputDevices.setAvailability(true);
+                homeTeam.setInputDevice(null);
+                homeTeam.releaseNonAiInputDevices();
+                awayTeam.setInputDevice(null);
+                awayTeam.releaseNonAiInputDevices();
+
+                // choose the menu to set
+                if (homeTeam.controlMode != COMPUTER) {
+                    if (lastFireInputDevice != null) {
+                        homeTeam.setInputDevice(lastFireInputDevice);
+                    }
+                    navigation.competition = tournament;
+                    navigation.team = homeTeam;
+                    game.setScreen(new SetTeam(game));
+                } else if (awayTeam.controlMode != COMPUTER) {
+                    if (lastFireInputDevice != null) {
+                        awayTeam.setInputDevice(lastFireInputDevice);
+                    }
+                    navigation.competition = tournament;
+                    navigation.team = awayTeam;
+                    game.setScreen(new SetTeam(game));
+                } else {
+                    throw new GdxRuntimeException("This should not happen");
+                }
             }
-
-            tournament.generateResult();
-
-            game.setScreen(new PlayTournament(game));
         }
     }
 

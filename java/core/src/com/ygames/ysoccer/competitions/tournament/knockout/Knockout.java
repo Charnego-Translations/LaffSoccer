@@ -272,6 +272,8 @@ public class Knockout extends Round implements Json.Serializable {
             } while (homeGoals == awayGoals);
             match.setResult(homeGoals, awayGoals, AFTER_PENALTIES);
         }
+
+        tournament.matchCompleted();
     }
 
     // decide if extra time have to be played depending on current result, leg's type and settings

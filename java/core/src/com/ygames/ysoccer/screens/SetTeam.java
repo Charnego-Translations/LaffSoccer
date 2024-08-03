@@ -2,7 +2,9 @@ package com.ygames.ysoccer.screens;
 
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
-import com.ygames.ysoccer.competitions.Competition;
+import com.ygames.ysoccer.competitions.Cup;
+import com.ygames.ysoccer.competitions.League;
+import com.ygames.ysoccer.competitions.tournament.Tournament;
 import com.ygames.ysoccer.framework.Assets;
 import com.ygames.ysoccer.framework.Font;
 import com.ygames.ysoccer.framework.GLGame;
@@ -95,9 +97,11 @@ class SetTeam extends GLScreen {
         // players
         for (int pos = 0; pos < Const.FULL_TEAM; pos++) {
 
-            w = new PlayerInputDeviceButton(pos);
-            playerButtons.add(w);
-            widgets.add(w);
+            if (!game.competition.viewResult) {
+                w = new PlayerInputDeviceButton(pos);
+                playerButtons.add(w);
+                widgets.add(w);
+            }
 
             w = new PlayerSanctions(pos);
             playerButtons.add(w);
@@ -164,12 +168,17 @@ class SetTeam extends GLScreen {
         w = new OpponentTeamButton();
         widgets.add(w);
 
-        w = new TeamInputDeviceButton();
-        teamInputDeviceButton = w;
-        widgets.add(w);
+        if (game.competition.viewResult) {
+            w = new CoachLabel();
+            widgets.add(w);
+        } else {
+            w = new TeamInputDeviceButton();
+            teamInputDeviceButton = w;
+            widgets.add(w);
 
-        w = new ControlModeButton();
-        widgets.add(w);
+            w = new ControlModeButton();
+            widgets.add(w);
+        }
 
         w = new EditTacticsButton();
         widgets.add(w);
@@ -191,6 +200,10 @@ class SetTeam extends GLScreen {
 
         w = new ExitButton();
         widgets.add(w);
+
+        if (ownTeam.hasUnavailablePlayers()) {
+            setSelectedWidget(w);
+        }
     }
 
     private class PlayerInputDeviceButton extends Button {
@@ -700,6 +713,13 @@ class SetTeam extends GLScreen {
         }
     }
 
+    private class CoachLabel extends Label {
+        CoachLabel() {
+            setGeometry(game.gui.WIDTH / 2 + 140, 586, 155, 40);
+            setText(gettext("CONTROL MODE.COACH") + ":", CENTER, font10);
+        }
+    }
+
     private class CoachNameLabel extends Label {
 
         CoachNameLabel() {
@@ -750,7 +770,7 @@ class SetTeam extends GLScreen {
 
         PlayMatchButton() {
             setGeometry(game.gui.WIDTH / 2 + 140, game.gui.HEIGHT - 30 - 42, 240, 42);
-            setText(gettext("PLAY MATCH"), CENTER, font14);
+            setText(gettext(game.competition.viewResult ? "VIEW RESULT" : "PLAY MATCH"), CENTER, font14);
         }
 
         @Override
@@ -775,7 +795,26 @@ class SetTeam extends GLScreen {
                 navigation.team = navigation.competition.getMatch().team[AWAY];
                 game.setScreen(new SetTeam(game));
             } else {
-                game.setScreen(new MatchSetup(game));
+                if (game.competition.viewResult) {
+                    switch (navigation.competition.type) {
+                        case LEAGUE:
+                            ((League) game.competition).generateResult();
+                            game.setScreen(new PlayLeague(game));
+                            break;
+
+                        case CUP:
+                            ((Cup) game.competition).generateResult();
+                            game.setScreen(new PlayCup(game));
+                            break;
+
+                        case TOURNAMENT:
+                            ((Tournament) game.competition).generateResult();
+                            game.setScreen(new PlayTournament(game));
+                            break;
+                    }
+                } else {
+                    game.setScreen(new MatchSetup(game));
+                }
             }
         }
     }
