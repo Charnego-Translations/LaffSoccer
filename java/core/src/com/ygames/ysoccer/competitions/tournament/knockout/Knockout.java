@@ -182,7 +182,7 @@ public class Knockout extends Round implements Json.Serializable {
 
     @Override
     public boolean isEnded() {
-        return currentLeg == legs.size() - 1 && !getLeg().hasReplays();
+        return (currentLeg == legs.size() - 1) && !getLeg().haveMatchesLeft();
     }
 
     @Override
@@ -666,7 +666,7 @@ public class Knockout extends Round implements Json.Serializable {
 
     @Override
     public Team getFinalWinner() {
-        if (isEnded()) {
+        if (tournament.isEnded()) {
             return getMatchWinner();
         }
         return null;

@@ -103,7 +103,7 @@ public class Leg {
         return qualifiedTeams;
     }
 
-    boolean hasReplays() {
+    boolean haveMatchesLeft() {
         return getQualifiedTeams().size() < matches.size();
     }
 
