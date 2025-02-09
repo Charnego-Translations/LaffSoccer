@@ -437,10 +437,10 @@ public class Assets {
         }
 
         int e = EMath.floor(Math.log10(p));
-        double div = Math.pow(10, e - 1);
+        double div = Math.pow(10, e - 2);
         p = EMath.floor(p / div);
 
-        int mul = e - 1 - 3 * e3;
+        int mul = e - 2 - 3 * e3;
         if (mul >= 0) {
             p *= (int) (Math.pow(10, mul));
         } else {

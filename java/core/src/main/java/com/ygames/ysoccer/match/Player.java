@@ -35,32 +35,32 @@ public class Player implements Json.Serializable {
     public enum Skill {PASSING, SHOOTING, HEADING, TACKLING, CONTROL, SPEED, FINISHING}
 
     private static final String[] roleLabels = {
-            "ROLES.GOALKEEPER",
-            "ROLES.RIGHT_BACK",
-            "ROLES.LEFT_BACK",
-            "ROLES.DEFENDER",
-            "ROLES.RIGHT_WINGER",
-            "ROLES.LEFT_WINGER",
-            "ROLES.MIDFIELDER",
-            "ROLES.ATTACKER"
+        "ROLES.GOALKEEPER",
+        "ROLES.RIGHT_BACK",
+        "ROLES.LEFT_BACK",
+        "ROLES.DEFENDER",
+        "ROLES.RIGHT_WINGER",
+        "ROLES.LEFT_WINGER",
+        "ROLES.MIDFIELDER",
+        "ROLES.ATTACKER"
     };
 
     private static final String[] skillLabels = {
-            "SKILLS.PASSING",
-            "SKILLS.SHOOTING",
-            "SKILLS.HEADING",
-            "SKILLS.TACKLING",
-            "SKILLS.CONTROL",
-            "SKILLS.SPEED",
-            "SKILLS.FINISHING"
+        "SKILLS.PASSING",
+        "SKILLS.SHOOTING",
+        "SKILLS.HEADING",
+        "SKILLS.TACKLING",
+        "SKILLS.CONTROL",
+        "SKILLS.SPEED",
+        "SKILLS.FINISHING"
     };
 
     private static final int[] stars = {
-            0, 0, 0, 0, 1, 1, 1, 2, 2, 2,
-            2, 3, 3, 3, 3, 3, 4, 4, 4, 4,
-            4, 4, 5, 5, 5, 5, 5, 5, 5, 6,
-            6, 6, 6, 6, 7, 7, 7, 7, 7, 7,
-            8, 8, 8, 8, 8, 8, 8, 9, 9, 9,
+        0, 0, 0, 0, 1, 1, 1, 2, 2, 2,
+        2, 3, 3, 3, 3, 3, 4, 4, 4, 4,
+        4, 4, 5, 5, 5, 5, 5, 5, 5, 6,
+        6, 6, 6, 6, 7, 7, 7, 7, 7, 7,
+        8, 8, 8, 8, 8, 8, 8, 9, 9, 9,
     };
 
     enum KeeperCollision {NONE, REBOUND, CATCH, DEFLECT}
@@ -438,8 +438,8 @@ public class Player implements Json.Serializable {
                     float ballVy = ball.v * EMath.sin(ballAxy);
 
                     ballVx = Math.signum(EMath.cos(a))
-                            * (0.2f * Math.abs(ballVx) + 0.55f * Math.abs(ballVy))
-                            + Math.min(100, v) * EMath.cos(a);
+                        * (0.2f * Math.abs(ballVx) + 0.55f * Math.abs(ballVy))
+                        + Math.min(100, v) * EMath.cos(a);
                     ballVy = -EMath.rand(5, 20) * 0.01f * ballVy;
 
                     ball.v = (float) Math.sqrt(ballVx * ballVx + ballVy * ballVy);
@@ -474,8 +474,8 @@ public class Player implements Json.Serializable {
                     ballVy = ball.v * EMath.sin(ballAxy);
 
                     ballVx = Math.signum(EMath.cos(a))
-                            * (0.5f * Math.abs(ballVx) + 0.25f * Math.abs(ballVy))
-                            + Math.min(100, v) * EMath.cos(a);
+                        * (0.5f * Math.abs(ballVx) + 0.25f * Math.abs(ballVy))
+                        + Math.min(100, v) * EMath.cos(a);
                     ballVy = 0.7f * ballVy;
 
                     ball.v = (float) Math.sqrt(ballVx * ballVx + ballVy * ballVy);
@@ -726,10 +726,10 @@ public class Player implements Json.Serializable {
             case LEFT_BACK:
             case MIDFIELDER:
                 return skills.tackling
-                        + skills.heading
-                        + skills.passing
-                        + skills.speed
-                        + skills.control;
+                    + skills.heading
+                    + skills.passing
+                    + skills.speed
+                    + skills.control;
 
             default:
                 return 0;
@@ -743,10 +743,10 @@ public class Player implements Json.Serializable {
             case MIDFIELDER:
             case ATTACKER:
                 return skills.heading
-                        + skills.finishing
-                        + skills.speed
-                        + skills.shooting
-                        + skills.control;
+                    + skills.finishing
+                    + skills.speed
+                    + skills.shooting
+                    + skills.control;
             default:
                 return 0;
         }
@@ -900,12 +900,12 @@ public class Player implements Json.Serializable {
             return value;
         } else {
             return skills.passing
-                    + skills.shooting
-                    + skills.heading
-                    + skills.tackling
-                    + skills.control
-                    + skills.speed
-                    + skills.finishing;
+                + skills.shooting
+                + skills.heading
+                + skills.tackling
+                + skills.control
+                + skills.speed
+                + skills.finishing;
         }
     }
 
@@ -913,11 +913,15 @@ public class Player implements Json.Serializable {
         return stars[getValue()];
     }
 
-    public String getPrice(double maxPlayerPrice) {
-        if (getValue() == 49) {
-            return Assets.moneyFormat(maxPlayerPrice) + "+";
-        } else {
-            return Assets.moneyFormat(maxPlayerPrice / (float) Math.pow(1.2, 48 - getValue()));
+    public String getPrice(double priceFactor) {
+        String price = Assets.moneyFormat(priceFactor * Const.playerPrices[getValue()]);
+        switch (getValue()) {
+            case 0:
+                return price + "-";
+            case 49:
+                return price + "+";
+            default:
+                return price;
         }
     }
 
@@ -1019,12 +1023,12 @@ public class Player implements Json.Serializable {
 
             float plyDistance = EMath.dist(x, y, ply.x, ply.y);
             float plyAngle = ((EMath.aTan2(ply.y + 5 * EMath.sin(ply.a) - y,
-                    ply.x + 5 * EMath.cos(ply.a) - x) - a + 540.0f) % 360.0f) - 180.0f;
+                ply.x + 5 * EMath.cos(ply.a) - x) - a + 540.0f) % 360.0f) - 180.0f;
             float plyDelta = plyDistance * EMath.sin(plyAngle);
 
             if (Math.abs(plyAngle) < maxAngle && plyDistance > minDistance
-                    && plyDistance < maxDistance
-                    && Math.abs(plyDelta) < Math.abs(passingDelta)) {
+                && plyDistance < maxDistance
+                && Math.abs(plyDelta) < Math.abs(passingDelta)) {
                 passingMate = ply;
                 passingMateAngleCorrection = plyAngle;
                 passingDelta = plyDelta;

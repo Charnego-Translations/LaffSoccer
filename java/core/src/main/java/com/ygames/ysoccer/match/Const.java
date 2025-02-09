@@ -23,47 +23,47 @@ public class Const {
     static final int BALL_PREDICTION = 2 * SECOND / GLGame.SUBFRAMES;
 
     static int[][] goalsProbability = new int[][]{
-            {1000, 0, 0, 0, 0, 0, 0},
-            {870, 100, 25, 4, 1, 0, 0},
-            {730, 210, 50, 7, 2, 1, 0},
-            {510, 320, 140, 20, 6, 4, 0},
-            {390, 370, 180, 40, 10, 7, 3},
-            {220, 410, 190, 150, 15, 10, 5},
-            {130, 390, 240, 200, 18, 15, 7},
-            {40, 300, 380, 230, 25, 15, 10},
-            {20, 220, 240, 220, 120, 100, 80},
-            {10, 150, 190, 190, 170, 150, 140},
-            {0, 100, 150, 200, 200, 200, 150}
+        {1000, 0, 0, 0, 0, 0, 0},
+        {870, 100, 25, 4, 1, 0, 0},
+        {730, 210, 50, 7, 2, 1, 0},
+        {510, 320, 140, 20, 6, 4, 0},
+        {390, 370, 180, 40, 10, 7, 3},
+        {220, 410, 190, 150, 15, 10, 5},
+        {130, 390, 240, 200, 18, 15, 7},
+        {40, 300, 380, 230, 25, 15, 10},
+        {20, 220, 240, 220, 120, 100, 80},
+        {10, 150, 190, 190, 170, 150, 140},
+        {0, 100, 150, 200, 200, 200, 150}
     };
 
     public static String[] associations = new String[]{
-            "AFG", "AIA", "ALB", "ALG", "AND", "ANG", "ARG", "ARM",
-            "ARU", "ASA", "ATG", "AUS", "AUT", "AZE", "BAH", "BAN",
-            "BDI", "BEL", "BEN", "BER", "BFA", "BHR", "BHU", "BIH",
-            "BLR", "BLZ", "BOL", "BOT", "BRA", "BRB", "BRU", "BUL",
-            "CAM", "CAN", "CAY", "CGO", "CHA", "CHI", "CHN", "CIV",
-            "CMR", "COD", "COK", "COL", "COM", "CPV", "CRC", "CRO",
-            "CTA", "CUB", "CUS", "CUW", "CYP", "CZE", "DEN", "DJI",
-            "DMA", "DOM", "ECU", "EGY", "ENG", "EQG", "ERI", "ESP",
-            "EST", "ETH", "FIJ", "FIN", "FRA", "FRO", "GAB", "GAM",
-            "GEO", "GER", "GHA", "GNB", "GRE", "GRN", "GUA", "GUI",
-            "GUM", "GUY", "HAI", "HKG", "HON", "HUN", "IDN", "IND",
-            "IRL", "IRN", "IRQ", "ISL", "ISR", "ITA", "JAM", "JOR",
-            "JPN", "KAZ", "KEN", "KGZ", "KOR", "KSA", "KUW", "LAO",
-            "LBR", "LBY", "LCA", "LES", "LIB", "LIE", "LTU", "LUX",
-            "LVA", "MAC", "MAD", "MAR", "MAS", "MDA", "MDV", "MEX",
-            "MGL", "MKD", "MLI", "MLT", "MNE", "MOZ", "MRI", "MSR",
-            "MTN", "MWI", "MYA", "NAM", "NCA", "NCL", "NED", "NEP",
-            "NGA", "NIG", "NIR", "NOR", "NZL", "OMA", "PAK", "PAN",
-            "PAR", "PER", "PHI", "PLE", "PNG", "POL", "POR", "PRK",
-            "PUR", "QAT", "ROU", "RSA", "RUS", "RWA", "SAM", "SCO",
-            "SDN", "SEN", "SEY", "SIN", "SKN", "SLE", "SLV", "SMR",
-            "SOL", "SOM", "SRB", "SRI", "SSD", "STP", "SUI", "SUR",
-            "SVK", "SVN", "SWE", "SWZ", "SYR", "TAH", "TAN", "TCA",
-            "TGA", "THA", "TJK", "TKM", "TLS", "TOG", "TPE", "TRI",
-            "TUN", "TUR", "UAE", "UGA", "UKR", "URU", "USA", "UZB",
-            "VAN", "VEN", "VGB", "VIE", "VIN", "VIR", "WAL", "YEM",
-            "ZAM", "ZIM"
+        "AFG", "AIA", "ALB", "ALG", "AND", "ANG", "ARG", "ARM",
+        "ARU", "ASA", "ATG", "AUS", "AUT", "AZE", "BAH", "BAN",
+        "BDI", "BEL", "BEN", "BER", "BFA", "BHR", "BHU", "BIH",
+        "BLR", "BLZ", "BOL", "BOT", "BRA", "BRB", "BRU", "BUL",
+        "CAM", "CAN", "CAY", "CGO", "CHA", "CHI", "CHN", "CIV",
+        "CMR", "COD", "COK", "COL", "COM", "CPV", "CRC", "CRO",
+        "CTA", "CUB", "CUS", "CUW", "CYP", "CZE", "DEN", "DJI",
+        "DMA", "DOM", "ECU", "EGY", "ENG", "EQG", "ERI", "ESP",
+        "EST", "ETH", "FIJ", "FIN", "FRA", "FRO", "GAB", "GAM",
+        "GEO", "GER", "GHA", "GNB", "GRE", "GRN", "GUA", "GUI",
+        "GUM", "GUY", "HAI", "HKG", "HON", "HUN", "IDN", "IND",
+        "IRL", "IRN", "IRQ", "ISL", "ISR", "ITA", "JAM", "JOR",
+        "JPN", "KAZ", "KEN", "KGZ", "KOR", "KSA", "KUW", "LAO",
+        "LBR", "LBY", "LCA", "LES", "LIB", "LIE", "LTU", "LUX",
+        "LVA", "MAC", "MAD", "MAR", "MAS", "MDA", "MDV", "MEX",
+        "MGL", "MKD", "MLI", "MLT", "MNE", "MOZ", "MRI", "MSR",
+        "MTN", "MWI", "MYA", "NAM", "NCA", "NCL", "NED", "NEP",
+        "NGA", "NIG", "NIR", "NOR", "NZL", "OMA", "PAK", "PAN",
+        "PAR", "PER", "PHI", "PLE", "PNG", "POL", "POR", "PRK",
+        "PUR", "QAT", "ROU", "RSA", "RUS", "RWA", "SAM", "SCO",
+        "SDN", "SEN", "SEY", "SIN", "SKN", "SLE", "SLV", "SMR",
+        "SOL", "SOM", "SRB", "SRI", "SSD", "STP", "SUI", "SUR",
+        "SVK", "SVN", "SWE", "SWZ", "SYR", "TAH", "TAN", "TCA",
+        "TGA", "THA", "TJK", "TKM", "TLS", "TOG", "TPE", "TRI",
+        "TUN", "TUR", "UAE", "UGA", "UKR", "URU", "USA", "UZB",
+        "VAN", "VEN", "VGB", "VIE", "VIN", "VIR", "WAL", "YEM",
+        "ZAM", "ZIM"
     };
 
     // teams
@@ -131,24 +131,24 @@ public class Const {
 
     static boolean isInsidePenaltyArea(float x, float y, int ySide) {
         return Math.abs(x) < (PENALTY_AREA_W / 2)
-                && EMath.isIn(y,
-                ySide * (GOAL_LINE - PENALTY_AREA_H),
-                ySide * GOAL_LINE
+            && EMath.isIn(y,
+            ySide * (GOAL_LINE - PENALTY_AREA_H),
+            ySide * GOAL_LINE
         );
     }
 
     static boolean isInsideGoalArea(float x, float y, int ySide) {
         return Math.abs(x) < (GOAL_AREA_W / 2)
-                && EMath.isIn(y,
-                ySide * (GOAL_LINE - GOAL_AREA_H),
-                ySide * GOAL_LINE
+            && EMath.isIn(y,
+            ySide * (GOAL_LINE - GOAL_AREA_H),
+            ySide * GOAL_LINE
         );
     }
 
     static boolean isInsideDirectShotArea(float x, float y, int ySide) {
         return ySide * y < GOAL_LINE
-                && (EMath.dist(x, ySide * y, -POST_X, GOAL_LINE) < DIRECT_SHOT_DISTANCE
-                || EMath.dist(x, ySide * y, POST_X, GOAL_LINE) < DIRECT_SHOT_DISTANCE);
+            && (EMath.dist(x, ySide * y, -POST_X, GOAL_LINE) < DIRECT_SHOT_DISTANCE
+            || EMath.dist(x, ySide * y, POST_X, GOAL_LINE) < DIRECT_SHOT_DISTANCE);
     }
 
     static boolean seesTheGoal(float x, float y, float a) {
@@ -171,7 +171,15 @@ public class Const {
 
     static boolean isInsideGoal(float x, float y) {
         return Math.abs(x) < POST_X
-                && Math.abs(y) > GOAL_LINE
-                && Math.abs(y) < GOAL_LINE + GOAL_DEPTH;
+            && Math.abs(y) > GOAL_LINE
+            && Math.abs(y) < GOAL_LINE + GOAL_DEPTH;
     }
-}
+
+    public static int[] playerPrices = new int[]{
+        25, 25, 30, 40, 50, 65, 75, 85, 100, 110,
+        130, 150, 160, 180, 200, 250, 300, 350, 450, 500,
+        550, 600, 650, 700, 750, 800, 850, 950, 1000, 1100,
+        1300, 1500, 1600, 1800, 1900, 2000, 2250, 2750, 3000, 3500,
+        4500, 5000, 6000, 7000, 8000, 9000, 10000, 12000, 15000, 15000
+    };
+};

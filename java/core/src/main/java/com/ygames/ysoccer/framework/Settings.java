@@ -30,7 +30,7 @@ public class Settings {
     public int matchLength;
     public int benchSize;
     public boolean useFlags;
-    public double maxPlayerValue;
+    public double playerPriceFactor;
     public String currency;
     public int weatherMaxStrength;
     public int zoom;
@@ -76,8 +76,8 @@ public class Settings {
         musicMode = preferences.getInteger("musicMode", MenuMusic.ALL);
         musicVolume = preferences.getInteger("musicVolume", 40);
         useFlags = preferences.getBoolean("useFlags", true);
-        maxPlayerValue = preferences.getInteger("maxPlayerValueM", 2)
-                * Math.pow(10, preferences.getInteger("maxPlayerValueE", 8));
+        playerPriceFactor = preferences.getInteger("playerPriceFactorM", 1)
+                * Math.pow(10, preferences.getInteger("playerPriceFactorE", 3));
         currency = preferences.getString("currency", "€");
 
         // match
@@ -123,10 +123,10 @@ public class Settings {
         preferences.putInteger("musicMode", musicMode);
         preferences.putInteger("musicVolume", musicVolume);
         preferences.putBoolean("useFlags", useFlags);
-        int e = (int) Math.log10(maxPlayerValue);
-        int m = (int) (maxPlayerValue / Math.pow(10, e));
-        preferences.putInteger("maxPlayerValueM", m);
-        preferences.putInteger("maxPlayerValueE", e);
+        int e = (int) Math.log10(playerPriceFactor);
+        int m = (int) (playerPriceFactor / Math.pow(10, e));
+        preferences.putInteger("playerPriceFactorM", m);
+        preferences.putInteger("playerPriceFactorE", e);
         preferences.putString("currency", currency);
 
         // match

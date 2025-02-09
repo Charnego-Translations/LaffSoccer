@@ -629,7 +629,7 @@ class EditPlayers extends GLScreen {
         public void refresh() {
             Player player = team.playerAtPosition(pos);
             if (player != null) {
-                setText(game.settings.currency + " " + player.getPrice(game.settings.maxPlayerValue));
+                setText(game.settings.currency + " " + player.getPrice(game.settings.playerPriceFactor));
                 setActive(player.role == Player.Role.GOALKEEPER);
             } else {
                 setText("");

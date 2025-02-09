@@ -3,13 +3,14 @@ package com.ygames.ysoccer.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.ygames.ysoccer.framework.Assets;
+import com.ygames.ysoccer.framework.EMath;
 import com.ygames.ysoccer.framework.GLGame;
 import com.ygames.ysoccer.framework.GLScreen;
 import com.ygames.ysoccer.framework.MenuMusic;
 import com.ygames.ysoccer.gui.Button;
 import com.ygames.ysoccer.gui.ToggleButton;
 import com.ygames.ysoccer.gui.Widget;
-import com.ygames.ysoccer.framework.EMath;
+import com.ygames.ysoccer.match.Const;
 
 import static com.ygames.ysoccer.framework.Assets.font14;
 import static com.ygames.ysoccer.framework.Assets.gettext;
@@ -432,7 +433,7 @@ class GameOptions extends GLScreen {
 
         @Override
         public void refresh() {
-            setText(Assets.moneyFormat(game.settings.maxPlayerValue));
+            setText(Assets.moneyFormat(game.settings.playerPriceFactor * (Const.playerPrices[49])));
         }
 
         @Override
@@ -456,10 +457,10 @@ class GameOptions extends GLScreen {
         }
 
         private void updateMaxPlayerValue(int direction) {
-            int e = (int) Math.log10(game.settings.maxPlayerValue);
-            int m = (int) (game.settings.maxPlayerValue / Math.pow(10, e));
+            int e = (int) Math.log10(game.settings.playerPriceFactor);
+            int m = (int) (game.settings.playerPriceFactor / Math.pow(10, e));
             if (direction == 1) {
-                if (e < 11 || m < 5) {
+                if (e < 7 || m < 5) {
                     switch (m) {
                         case 1:
                             m = 2;
@@ -476,7 +477,7 @@ class GameOptions extends GLScreen {
                     }
                 }
             } else if (direction == -1) {
-                if (e > 4 || m > 1) {
+                if (e > 0 || m > 1) {
                     switch (m) {
                         case 5:
                             m = 2;
@@ -493,7 +494,7 @@ class GameOptions extends GLScreen {
                     }
                 }
             }
-            game.settings.maxPlayerValue = m * Math.pow(10, e);
+            game.settings.playerPriceFactor = m * Math.pow(10, e);
             setDirty(true);
         }
     }
