@@ -97,7 +97,7 @@ class SetTeam extends GLScreen {
         // players
         for (int pos = 0; pos < Const.FULL_TEAM; pos++) {
 
-            if (!game.competition.viewResult) {
+            if (game.competition == null || !game.competition.viewResult) {
                 w = new PlayerInputDeviceButton(pos);
                 playerButtons.add(w);
                 widgets.add(w);
@@ -168,7 +168,7 @@ class SetTeam extends GLScreen {
         w = new OpponentTeamButton();
         widgets.add(w);
 
-        if (game.competition.viewResult) {
+        if (game.competition != null && game.competition.viewResult) {
             w = new CoachLabel();
             widgets.add(w);
         } else {
@@ -770,7 +770,7 @@ class SetTeam extends GLScreen {
 
         PlayMatchButton() {
             setGeometry(game.gui.WIDTH / 2 + 140, game.gui.HEIGHT - 30 - 42, 240, 42);
-            setText(gettext(game.competition.viewResult ? "VIEW RESULT" : "PLAY MATCH"), CENTER, font14);
+            setText(gettext((game.competition != null && game.competition.viewResult) ? "VIEW RESULT" : "PLAY MATCH"), CENTER, font14);
         }
 
         @Override
