@@ -795,7 +795,7 @@ class SetTeam extends GLScreen {
                 navigation.team = navigation.competition.getMatch().team[AWAY];
                 game.setScreen(new SetTeam(game));
             } else {
-                if (game.competition.viewResult) {
+                if (game.competition != null && game.competition.viewResult) {
                     switch (navigation.competition.type) {
                         case LEAGUE:
                             ((League) game.competition).generateResult();
