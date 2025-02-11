@@ -49,6 +49,7 @@ class ExportTeams extends GLScreen {
 
     private Config exportConfig;
     private KitStyle[] kitStyles;
+    private PlayerCountry[] playerCountries;
     private int exportConfigIndex;
     private FileHandle exportFolder;
     private int exportedTeams;
@@ -65,6 +66,7 @@ class ExportTeams extends GLScreen {
 
         exportFolder = Gdx.files.local("data/export");
         kitStyles = json.fromJson(KitStyle[].class, Gdx.files.local("data/config/kit_styles.json").readString("UTF-8"));
+        playerCountries = json.fromJson(PlayerCountry[].class, Gdx.files.local("data/config/player_countries.json").readString("UTF-8"));
 
         Widget w;
 
@@ -411,10 +413,12 @@ class ExportTeams extends GLScreen {
     }
 
     private int getPlayerNationalityIndex(String nationality) {
-        for (int i = 0; i < ImportTeams.playerCountryCodes.length; i++) {
-            if (ImportTeams.playerCountryCodes[i].equals(nationality)) return i;
+        int index = 0;
+        for (PlayerCountry playerCountry : playerCountries) {
+            index = playerCountry.index;
+            if (playerCountry.name.equals(nationality)) break;
         }
-        return 0;
+        return index; // not found: return last index
     }
 
     private int getHairColorIndex(Hair.Color color) {
@@ -464,6 +468,11 @@ class ExportTeams extends GLScreen {
     }
 
     private static class KitStyle {
+        String name;
+        int index;
+    }
+
+    private static class PlayerCountry {
         String name;
         int index;
     }
