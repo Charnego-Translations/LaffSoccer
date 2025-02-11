@@ -44,7 +44,7 @@ class Warranty extends GLScreen {
                 "",
                 "Press any key to return"
         };
-        w = new TextBox(font, Arrays.asList(lines), game.gui.WIDTH / 2, 120);
+        w = new TextBox(font, Arrays.asList(lines), game.gui.WIDTH / 4, 120, game.gui.WIDTH / 2);
         widgets.add(w);
     }
 

@@ -35,7 +35,7 @@ public class Intro extends GLScreen {
                 "",
                 "Press any key or button to continue"
         };
-        w = new TextBox(font, Arrays.asList(lines), game.gui.WIDTH / 2, 270);
+        w = new TextBox(font, Arrays.asList(lines), game.gui.WIDTH / 4, 270, game.gui.WIDTH / 2);
         widgets.add(w);
     }
 

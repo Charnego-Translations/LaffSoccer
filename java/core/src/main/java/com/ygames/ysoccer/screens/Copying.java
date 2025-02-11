@@ -231,11 +231,11 @@ class Copying extends GLScreen {
         };
         license = Arrays.asList(lines);
 
-        textBox = new TextBox(font, license.subList(pageSize * page, pageSize * (page + 1)), game.gui.WIDTH / 2, 120);
+        textBox = new TextBox(font, license.subList(pageSize * page, pageSize * (page + 1)), game.gui.WIDTH / 4, 120, game.gui.WIDTH / 2);
         widgets.add(textBox);
 
         String[] line = {"Press PAGE UP / PAGE DOWN to scroll, other keys to return"};
-        Widget w = new TextBox(font, Arrays.asList(line), game.gui.WIDTH / 2, 650);
+        Widget w = new TextBox(font, Arrays.asList(line), game.gui.WIDTH / 4, 650, game.gui.WIDTH / 2);
         widgets.add(w);
     }
 

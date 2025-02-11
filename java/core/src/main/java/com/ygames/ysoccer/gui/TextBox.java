@@ -13,12 +13,14 @@ public class TextBox extends Widget {
     public List<String> lines;
     private int top;
     private int centerX;
+    private int targetWidth;
 
-    public TextBox(BitmapFont font, List<String> lines, int centerX, int top) {
+    public TextBox(BitmapFont font, List<String> lines, int centerX, int top, int targetWidth) {
         this.font = font;
         this.lines = lines;
         this.top = top;
         this.centerX = centerX;
+        this.targetWidth = targetWidth;
     }
 
     @Override
@@ -26,7 +28,7 @@ public class TextBox extends Widget {
         batch.begin();
         int y = top;
         for (String line : lines) {
-            font.draw(batch, line, centerX, y, 0, Align.center, true);
+            font.draw(batch, line, centerX, y, targetWidth, Align.center, true);
             y += 22;
         }
         batch.end();
