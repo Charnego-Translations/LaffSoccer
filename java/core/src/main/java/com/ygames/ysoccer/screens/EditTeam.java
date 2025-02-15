@@ -3,6 +3,7 @@ package com.ygames.ysoccer.screens;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
 import com.ygames.ysoccer.framework.Assets;
+import com.ygames.ysoccer.framework.EMath;
 import com.ygames.ysoccer.framework.GLColor;
 import com.ygames.ysoccer.framework.GLGame;
 import com.ygames.ysoccer.framework.GLScreen;
@@ -16,7 +17,6 @@ import com.ygames.ysoccer.match.Kit;
 import com.ygames.ysoccer.match.Player;
 import com.ygames.ysoccer.match.Tactics;
 import com.ygames.ysoccer.match.Team;
-import com.ygames.ysoccer.framework.EMath;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -48,6 +48,7 @@ class EditTeam extends GLScreen {
 
     private Picture teamImage;
     private Widget kitWidget;
+    private Widget shirtLabel;
     private Widget newKitButton;
     private Widget deleteKitButton;
     private Widget resetButton;
@@ -135,7 +136,8 @@ class EditTeam extends GLScreen {
         widgets.add(w);
 
         int y = 418;
-        w = new KitFieldLabel("KITS.SHIRT", 528, y);
+        w = new ShirtLabel(528, y);
+        shirtLabel = w;
         widgets.add(w);
 
         y += 25;
@@ -513,6 +515,7 @@ class EditTeam extends GLScreen {
         public void onFire1Down() {
             selectedKit = kitIndex;
             kitWidget.setDirty(true);
+            shirtLabel.setDirty(true);
             updateKitSelectionButtons();
             updateKitEditButtons();
         }
@@ -596,8 +599,26 @@ class EditTeam extends GLScreen {
             team.kits.get(selectedKit).style = Assets.kits.get(kitIndex);
             setDirty(true);
             kitWidget.setDirty(true);
+            shirtLabel.setDirty(true);
             teamImage.setDirty(true);
             setModifiedFlag();
+        }
+    }
+
+    private class ShirtLabel extends Button {
+
+        ShirtLabel(int x, int y) {
+            setGeometry(x, y, 175, 23);
+            setColors(0x808080, 0xC0C0C0, 0x404040);
+            setText(gettext("KITS.SHIRT"), CENTER, font10);
+            setActive(false);
+            setImagePosition(150, 4);
+            setAddShadow(true);
+        }
+
+        @Override
+        public void refresh() {
+            textureRegion = team.loadMiniKit(selectedKit);
         }
     }
 
@@ -670,6 +691,7 @@ class EditTeam extends GLScreen {
             }
             updateKitEditButtons();
             kitWidget.setDirty(true);
+            shirtLabel.setDirty(true);
             teamImage.setDirty(true);
             setModifiedFlag();
         }
@@ -748,6 +770,7 @@ class EditTeam extends GLScreen {
             }
             updateKitEditButtons();
             kitWidget.setDirty(true);
+            shirtLabel.setDirty(true);
             teamImage.setDirty(true);
             setModifiedFlag();
         }
@@ -959,6 +982,7 @@ class EditTeam extends GLScreen {
 
             selectedKit = team.kits.size() - 1;
             kitWidget.setDirty(true);
+            shirtLabel.setDirty(true);
             updateKitSelectionButtons();
             updateKitEditButtons();
             setDirty(true);
@@ -995,6 +1019,7 @@ class EditTeam extends GLScreen {
             if (selectedKit >= team.kits.size() - 1) {
                 selectedKit = team.kits.size() - 1;
                 kitWidget.setDirty(true);
+                shirtLabel.setDirty(true);
             }
             updateKitSelectionButtons();
             updateKitEditButtons();

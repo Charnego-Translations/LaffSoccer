@@ -886,6 +886,10 @@ public class Team implements Json.Serializable {
         return kits.get(index).loadImage();
     }
 
+    public TextureRegion loadMiniKit(int index) {
+        return kits.get(index).loadMiniImage();
+    }
+
     public int controlModeColor() {
         return controlModeColors[controlMode.ordinal()];
     }
