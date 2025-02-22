@@ -12,6 +12,8 @@ public class Gui {
     public int originX;
     public int originY;
 
+    public static float zoom;
+
     public TextureRegion logo;
     public final TextureRegion[] lightIcons = new TextureRegion[2];
     public final TextureRegion[] pitchIcons = new TextureRegion[9];
@@ -22,7 +24,7 @@ public class Gui {
     public void resize(int width, int height) {
         float wZoom = (float) width / WIDTH;
         float hZoom = (float) height / HEIGHT;
-        float zoom = Math.min(wZoom, hZoom);
+        zoom = Math.min(wZoom, hZoom);
         screenWidth = (int) (width / zoom);
         screenHeight = (int) (height / zoom);
         originX = (screenWidth - WIDTH) / 2;
@@ -67,5 +69,9 @@ public class Gui {
         penaltyCards[1].flip(false, true);
         penaltyCards[2] = new TextureRegion(region, 20, 0, 14, 14);
         penaltyCards[2].flip(false, true);
+    }
+
+    public static boolean zoomIsInteger() {
+        return Float.compare(zoom, (int) zoom) == 0;
     }
 }

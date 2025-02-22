@@ -16,6 +16,7 @@ import com.ygames.ysoccer.competitions.League;
 import com.ygames.ysoccer.competitions.tournament.Tournament;
 import com.ygames.ysoccer.competitions.tournament.groups.Groups;
 import com.ygames.ysoccer.competitions.tournament.knockout.Knockout;
+import com.ygames.ysoccer.gui.Gui;
 import com.ygames.ysoccer.match.Const;
 import com.ygames.ysoccer.match.CrowdRenderer;
 import com.ygames.ysoccer.match.Hair;
@@ -773,6 +774,9 @@ public class Assets {
 
     public static TextureRegion loadTextureRegion(String internalPath, List<RgbPair> rgbPairs) {
         Texture texture = Assets.loadTexture(internalPath, rgbPairs);
+        if (!Gui.zoomIsInteger()) {
+            texture.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+        }
         TextureRegion textureRegion = new TextureRegion(texture);
         textureRegion.flip(false, true);
         return textureRegion;

@@ -13,6 +13,7 @@ import com.ygames.ysoccer.framework.GLGame;
 import com.ygames.ysoccer.framework.InputDevice;
 import com.ygames.ysoccer.framework.RgbPair;
 import com.ygames.ysoccer.framework.TeamList;
+import com.ygames.ysoccer.gui.Gui;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -837,6 +838,9 @@ public class Team implements Json.Serializable {
                 FileHandle customLogo = Assets.teamsRootFolder.child(logoPath);
                 if (customLogo.exists()) {
                     Texture texture = new Texture(customLogo);
+                    if (!Gui.zoomIsInteger()) {
+                        texture.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+                    }
                     image = new TextureRegion(texture);
                     image.flip(false, true);
                 } else {
@@ -855,6 +859,9 @@ public class Team implements Json.Serializable {
                 }
                 if (file.exists()) {
                     Texture texture = new Texture(file);
+                    if (!Gui.zoomIsInteger()) {
+                        texture.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+                    }
                     image = new TextureRegion(texture);
                     image.flip(false, true);
                 }
