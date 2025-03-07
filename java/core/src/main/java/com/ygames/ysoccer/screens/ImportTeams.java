@@ -55,7 +55,7 @@ class ImportTeams extends GLScreen {
     static String[] playerCountryCodes = {
             "ALB", "AUT", "BEL", "BUL", "CRO", "CYP", "CZE", "DEN", "ENG", "EST",
             "FRO", "FIN", "FRA", "GER", "GRE", "HUN", "ISL", "ISR", "ITA", "LVA",
-            "LTU", "LUX", "MLT", "NED", "NIR", "NOR", "POL", "POR", "ROM", "RUS",
+            "LTU", "LUX", "MLT", "NED", "NIR", "NOR", "POL", "POR", "ROU", "RUS",
             "SMR", "SCO", "SVN", "SWE", "TUR", "UKR", "WAL", "SBM", "BLR", "SVK",
             "ESP", "ARM", "BIH", "AZE", "GEO", "SUI", "IRL", "MKD", "TKM", "LIE",
             "MDA", "CRC", "SLV", "GUA", "HON", "BAH", "MEX", "PAN", "USA", "BHR",
