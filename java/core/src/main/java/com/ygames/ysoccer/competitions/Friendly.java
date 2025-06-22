@@ -3,7 +3,9 @@ package com.ygames.ysoccer.competitions;
 import com.ygames.ysoccer.framework.Assets;
 import com.ygames.ysoccer.match.Match;
 import com.ygames.ysoccer.match.MatchSettings;
-import com.ygames.ysoccer.match.Team;
+
+import static com.ygames.ysoccer.match.Match.AWAY;
+import static com.ygames.ysoccer.match.Match.HOME;
 
 public class Friendly extends Competition {
 
@@ -13,6 +15,8 @@ public class Friendly extends Competition {
         super(Type.FRIENDLY);
         name = Assets.strings.get("FRIENDLY");
         match = new Match();
+        match.teams[HOME] = 0;
+        match.teams[AWAY] = 1;
         numberOfTeams = 2;
         weather = Competition.Weather.BY_PITCH_TYPE;
     }

@@ -436,6 +436,7 @@ class SelectTeams extends GLScreen {
             game.teamList.removeNullValues();
             switch (navigation.competition.type) {
                 case FRIENDLY:
+                    navigation.competition.start(game.teamList);
                     Team homeTeam = game.teamList.get(HOME);
                     Team awayTeam = game.teamList.get(AWAY);
 
