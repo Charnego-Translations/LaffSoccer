@@ -1,11 +1,27 @@
 package com.ygames.ysoccer.server;
 
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Gdx;
+import com.esotericsoftware.kryonet.Server;
+import com.esotericsoftware.minlog.Log;
+import com.ygames.ysoccer.framework.Settings;
+
+import java.io.IOException;
+
+import static com.esotericsoftware.minlog.Log.LEVEL_TRACE;
 
 public class ServerGame extends Game {
     @Override
     public void create() {
-        Gdx.app.log(this.getClass().getName(), "started");
+        Settings settings = new Settings();
+        Log.set(LEVEL_TRACE);
+        Server server = new Server();
+        try {
+            server.bind(Settings.portTCP, Settings.portUDP);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        server.start();
+
+        setScreen(new ServerScreen(server));
     }
 }

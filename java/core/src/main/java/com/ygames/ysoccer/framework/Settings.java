@@ -43,6 +43,10 @@ public class Settings {
     private String keyboardConfigs;
     private String joystickConfigs;
 
+    // network
+    public static int portTCP;
+    public static int portUDP;
+
     // development
     public static boolean development;
 
@@ -62,7 +66,7 @@ public class Settings {
     public static boolean showPlayerState;
     public static boolean showPlayerAiState;
 
-    Settings() {
+    public Settings() {
         preferences = Gdx.app.getPreferences(APP_NAME + VERSION);
 
         json = new Json();
@@ -77,7 +81,7 @@ public class Settings {
         musicVolume = preferences.getInteger("musicVolume", 40);
         useFlags = preferences.getBoolean("useFlags", true);
         playerPriceFactor = preferences.getInteger("playerPriceFactorM", 1)
-                * Math.pow(10, preferences.getInteger("playerPriceFactorE", 3));
+            * Math.pow(10, preferences.getInteger("playerPriceFactorE", 3));
         currency = preferences.getString("currency", "€");
 
         // match
@@ -94,6 +98,10 @@ public class Settings {
         keyboardConfigs = preferences.getString("keyboardConfigs", defaultKeyboardConfigs());
         joystickConfigs = preferences.getString("joystickConfigs", "[]");
 
+        // (network)
+        portTCP = preferences.getInteger("portTCP", 54555);
+        portUDP = preferences.getInteger("portUDP", 54777);
+
         // development
         development = preferences.getBoolean("development", false);
 
@@ -109,8 +117,8 @@ public class Settings {
         showBallZones = preferences.getBoolean("showBallZones", false);
         showBallPredictions = preferences.getBoolean("showBallPredictions", false);
         showPlayerNumber = preferences.getBoolean("showPlayerNumber", false);
-        showBestDefender= preferences.getBoolean("showBestDefender", false);
-        showFrameDistance= preferences.getBoolean("showFrameDistance", false);
+        showBestDefender = preferences.getBoolean("showBestDefender", false);
+        showFrameDistance = preferences.getBoolean("showFrameDistance", false);
         showPlayerState = preferences.getBoolean("showPlayerState", false);
         showPlayerAiState = preferences.getBoolean("showPlayerAiState", false);
     }
@@ -142,6 +150,10 @@ public class Settings {
         // controls
         preferences.putString("keyboardConfigs", keyboardConfigs);
         preferences.putString("joystickConfigs", joystickConfigs);
+
+        // network
+        preferences.putInteger("portTCP", portTCP);
+        preferences.putInteger("portUDP", portUDP);
 
         // development
         preferences.putBoolean("development", development);
