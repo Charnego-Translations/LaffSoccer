@@ -16,7 +16,7 @@ public class ServerGame extends Game {
         Log.set(LEVEL_TRACE);
         Server server = new Server();
         try {
-            server.bind(Settings.portTCP, Settings.portUDP);
+            server.bind(Settings.tcpPort, Settings.udpPort);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

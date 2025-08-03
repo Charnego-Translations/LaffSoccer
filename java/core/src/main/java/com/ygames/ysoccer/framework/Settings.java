@@ -44,8 +44,9 @@ public class Settings {
     private String joystickConfigs;
 
     // network
-    public static int portTCP;
-    public static int portUDP;
+    public static String serverAddress;
+    public static int tcpPort;
+    public static int udpPort;
 
     // development
     public static boolean development;
@@ -99,8 +100,9 @@ public class Settings {
         joystickConfigs = preferences.getString("joystickConfigs", "[]");
 
         // (network)
-        portTCP = preferences.getInteger("portTCP", 54555);
-        portUDP = preferences.getInteger("portUDP", 54777);
+        serverAddress = preferences.getString("serverAddress", "127.0.0.1");
+        tcpPort = preferences.getInteger("tcpPort", 54555);
+        udpPort = preferences.getInteger("udpPort", 54777);
 
         // development
         development = preferences.getBoolean("development", false);
@@ -152,8 +154,9 @@ public class Settings {
         preferences.putString("joystickConfigs", joystickConfigs);
 
         // network
-        preferences.putInteger("portTCP", portTCP);
-        preferences.putInteger("portUDP", portUDP);
+        preferences.putString("serverAddress", serverAddress);
+        preferences.putInteger("tcpPort", tcpPort);
+        preferences.putInteger("udpPort", udpPort);
 
         // development
         preferences.putBoolean("development", development);

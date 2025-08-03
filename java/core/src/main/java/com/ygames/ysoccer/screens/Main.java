@@ -3,7 +3,6 @@ package com.ygames.ysoccer.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.ygames.ysoccer.framework.Assets;
 import com.ygames.ysoccer.framework.GLGame;
 import com.ygames.ysoccer.framework.GLScreen;
@@ -70,6 +69,11 @@ public class Main extends GLScreen {
 
         w = new TrainingButton();
         widgets.add(w);
+
+        if (Settings.development) {
+            w = new OnlineMatchButton();
+            widgets.add(w);
+        }
 
         int y = 510;
         if (game.hasCompetition()) {
@@ -250,6 +254,20 @@ public class Main extends GLScreen {
             game.setState(TRAINING, null);
             navigation.competition = null;
             game.setScreen(new SelectFolder(game));
+        }
+    }
+
+    private class OnlineMatchButton extends Button {
+
+        OnlineMatchButton() {
+            setColor(0x1A5581);
+            setGeometry(game.gui.WIDTH / 2 + 45, 450, 350, 36);
+            setText(gettext("ONLINE MATCH"), CENTER, font14);
+        }
+
+        @Override
+        protected void onFire1Down() {
+            game.setScreen(new OnlineMatchConnect(game));
         }
     }
 
