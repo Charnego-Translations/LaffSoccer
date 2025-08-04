@@ -3,6 +3,8 @@ package com.ygames.ysoccer.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.esotericsoftware.kryonet.Client;
+import com.esotericsoftware.kryonet.Connection;
+import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.minlog.Log;
 import com.ygames.ysoccer.framework.Font;
 import com.ygames.ysoccer.framework.GLGame;
@@ -35,6 +37,13 @@ public class OnlineMatchConnect extends GLScreen {
         Log.set(LEVEL_TRACE);
         client = new Client();
         client.start();
+        client.addListener(new Listener() {
+
+            public void connected(Connection connection) {
+                Gdx.app.log("client", "connected to " + connection.getRemoteAddressTCP());
+                game.setScreen(new OnlineMatch(game));
+            }
+        });
 
         font10yellow = new Font(10, 13, 17, 12, 16, new RgbPair(0xFCFCFC, 0xFCFC00));
         font10yellow.load();
@@ -173,7 +182,6 @@ public class OnlineMatchConnect extends GLScreen {
             } catch (IOException e) {
                 errorLabel.setText(e.getMessage().toUpperCase());
             }
-            //game.setScreen(new OnlineMatchScreen(game));
         }
     }
 
