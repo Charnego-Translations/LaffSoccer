@@ -2,13 +2,21 @@ package com.ygames.ysoccer.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.esotericsoftware.kryonet.Client;
+import com.esotericsoftware.minlog.Log;
+import com.ygames.ysoccer.framework.Font;
 import com.ygames.ysoccer.framework.GLGame;
 import com.ygames.ysoccer.framework.GLScreen;
+import com.ygames.ysoccer.framework.RgbPair;
 import com.ygames.ysoccer.framework.Settings;
 import com.ygames.ysoccer.gui.Button;
 import com.ygames.ysoccer.gui.InputButton;
+import com.ygames.ysoccer.gui.Label;
 import com.ygames.ysoccer.gui.Widget;
 
+import java.io.IOException;
+
+import static com.esotericsoftware.minlog.Log.LEVEL_TRACE;
 import static com.ygames.ysoccer.framework.Assets.font14;
 import static com.ygames.ysoccer.framework.Assets.gettext;
 import static com.ygames.ysoccer.framework.Font.Align.CENTER;
@@ -16,9 +24,20 @@ import static java.lang.Integer.parseInt;
 
 public class OnlineMatchConnect extends GLScreen {
 
+    private final Client client;
+    private final Font font10yellow;
+    private final Label errorLabel;
+
     public OnlineMatchConnect(GLGame game) {
         super(game);
         background = new Texture("images/backgrounds/menu_network.jpg");
+
+        Log.set(LEVEL_TRACE);
+        client = new Client();
+        client.start();
+
+        font10yellow = new Font(10, 13, 17, 12, 16, new RgbPair(0xFCFCFC, 0xFCFC00));
+        font10yellow.load();
 
         Widget w;
 
@@ -42,6 +61,9 @@ public class OnlineMatchConnect extends GLScreen {
 
         w = new UdpPortButton();
         widgets.add(w);
+
+        errorLabel = new ErrorLabel();
+        widgets.add(errorLabel);
 
         w = new ConnectButton();
         widgets.add(w);
@@ -127,6 +149,13 @@ public class OnlineMatchConnect extends GLScreen {
         }
     }
 
+    private class ErrorLabel extends Label {
+        ErrorLabel() {
+            setGeometry(game.gui.WIDTH / 2 - 360, 550, 720, 26);
+            setText("", CENTER, font10yellow);
+        }
+    }
+
     private class ConnectButton extends Button {
 
         ConnectButton() {
@@ -138,6 +167,12 @@ public class OnlineMatchConnect extends GLScreen {
         @Override
         public void onFire1Down() {
             game.settings.save();
+            try {
+                errorLabel.setText("");
+                client.connect(5000, Settings.serverAddress, Settings.tcpPort, Settings.udpPort);
+            } catch (IOException e) {
+                errorLabel.setText(e.getMessage().toUpperCase());
+            }
             //game.setScreen(new OnlineMatchScreen(game));
         }
     }
@@ -157,6 +192,7 @@ public class OnlineMatchConnect extends GLScreen {
 
         @Override
         public void onFire1Down() {
+            client.stop();
             game.settings.save();
             game.setScreen(new Main(game));
         }
