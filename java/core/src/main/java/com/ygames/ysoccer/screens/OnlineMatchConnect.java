@@ -141,6 +141,7 @@ public class OnlineMatchConnect extends GLScreen {
             setGeometry(game.gui.WIDTH / 2 + 10, 200, 440, 40);
             setText(Settings.tcpPort, CENTER, font14);
             setEntryLimit(5);
+            setInputFilter("[0-9]");
         }
 
         @Override
@@ -166,6 +167,7 @@ public class OnlineMatchConnect extends GLScreen {
             setGeometry(game.gui.WIDTH / 2 + 10, 250, 440, 40);
             setText(Settings.udpPort, CENTER, font14);
             setEntryLimit(5);
+            setInputFilter("[0-9]");
         }
 
         @Override
@@ -192,16 +194,12 @@ public class OnlineMatchConnect extends GLScreen {
         @Override
         public void onFire1Down() {
             game.settings.save();
-            new Thread("Connect") {
-                public void run() {
-                    try {
-                        errorLabel.setText("");
-                        client.connect(5000, Settings.serverAddress, Settings.tcpPort, Settings.udpPort);
-                    } catch (IOException e) {
-                        errorLabel.setText(e.getMessage().toUpperCase());
-                    }
-                }
-            }.start();
+            try {
+                errorLabel.setText("");
+                client.connect(5000, Settings.serverAddress, Settings.tcpPort, Settings.udpPort);
+            } catch (IOException e) {
+                errorLabel.setText(e.getMessage().toUpperCase());
+            }
         }
     }
 
