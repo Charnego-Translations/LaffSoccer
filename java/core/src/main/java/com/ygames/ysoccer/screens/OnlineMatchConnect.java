@@ -16,6 +16,7 @@ import com.ygames.ysoccer.gui.InputButton;
 import com.ygames.ysoccer.gui.Label;
 import com.ygames.ysoccer.gui.Widget;
 import com.ygames.ysoccer.network.Network;
+import com.ygames.ysoccer.network.dto.MatchSettingsDto;
 
 import java.io.IOException;
 
@@ -51,6 +52,13 @@ public class OnlineMatchConnect extends GLScreen {
                 Gdx.app.postRunnable(() -> {
                     game.setScreen(onlineMatchScreen);
                 });
+            }
+
+            public void received(Connection connection, Object object) {
+                if (object instanceof MatchSettingsDto) {
+                    MatchSettingsDto dto = (MatchSettingsDto) object;
+                    Gdx.app.log("Match settings received", "time: " + dto.time + ", pitch type: " + dto.pitchType);
+                }
             }
         });
 

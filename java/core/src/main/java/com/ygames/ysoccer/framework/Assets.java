@@ -46,7 +46,7 @@ import java.util.Random;
 
 public class Assets {
 
-    public static Random random;
+    public static Random random = new Random(System.currentTimeMillis());
     static Cursor customCursor;
     static Cursor hiddenCursor;
     public static I18NBundle strings;
@@ -203,7 +203,6 @@ public class Assets {
     }
 
     public static void load(Settings settings) {
-        random = new Random(System.currentTimeMillis());
         customCursor = Gdx.graphics.newCursor(new Pixmap(Gdx.files.internal("images/arrow.png")), 0, 0);
         hiddenCursor = Gdx.graphics.newCursor(new Pixmap(1, 1, Pixmap.Format.RGBA8888), 0, 0);
         loadLocales();

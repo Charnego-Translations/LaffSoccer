@@ -1,10 +1,16 @@
 package com.ygames.ysoccer.server;
 
 import com.badlogic.gdx.Game;
+import com.esotericsoftware.kryonet.Connection;
+import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.kryonet.Server;
 import com.esotericsoftware.minlog.Log;
+import com.ygames.ysoccer.competitions.Friendly;
+import com.ygames.ysoccer.framework.Assets;
 import com.ygames.ysoccer.framework.Settings;
+import com.ygames.ysoccer.match.MatchSettings;
 import com.ygames.ysoccer.network.Network;
+import com.ygames.ysoccer.network.dto.MatchSettingsDto;
 
 import java.io.IOException;
 
@@ -17,6 +23,16 @@ public class ServerGame extends Game {
         Log.set(LEVEL_TRACE);
         Server server = new Server();
         Network.register(server);
+
+        Assets.loadStrings(settings);
+        MatchSettings matchSettings = new MatchSettings(new Friendly(), settings);
+        matchSettings.setup();
+
+        server.addListener(new Listener() {
+            public void connected(Connection connection) {
+                server.sendToTCP(connection.getID(), MatchSettingsDto.toDto(matchSettings));
+            }
+        });
 
         try {
             server.bind(Settings.tcpPort, Settings.udpPort);
