@@ -30,18 +30,25 @@ public class OnlineMatchConnect extends GLScreen {
     private final Font font10yellow;
     private final Label errorLabel;
 
+    private final GLScreen onlineMatchScreen;
+
     public OnlineMatchConnect(GLGame game) {
         super(game);
         background = new Texture("images/backgrounds/menu_network.jpg");
 
         Log.set(LEVEL_TRACE);
         client = new Client();
+
+        onlineMatchScreen = new OnlineMatch(game, client);
+
         client.start();
         client.addListener(new Listener() {
 
             public void connected(Connection connection) {
                 Gdx.app.log("client", "connected to " + connection.getRemoteAddressTCP());
-                game.setScreen(new OnlineMatch(game));
+                Gdx.app.postRunnable(() -> {
+                    game.setScreen(onlineMatchScreen);
+                });
             }
         });
 
@@ -154,7 +161,6 @@ public class OnlineMatchConnect extends GLScreen {
         @Override
         public void onChanged() {
             Settings.udpPort = parseInt(text);
-            Gdx.app.log("udpPort", Settings.udpPort + "");
         }
     }
 
@@ -176,12 +182,16 @@ public class OnlineMatchConnect extends GLScreen {
         @Override
         public void onFire1Down() {
             game.settings.save();
-            try {
-                errorLabel.setText("");
-                client.connect(5000, Settings.serverAddress, Settings.tcpPort, Settings.udpPort);
-            } catch (IOException e) {
-                errorLabel.setText(e.getMessage().toUpperCase());
-            }
+            new Thread("Connect") {
+                public void run() {
+                    try {
+                        errorLabel.setText("");
+                        client.connect(5000, Settings.serverAddress, Settings.tcpPort, Settings.udpPort);
+                    } catch (IOException e) {
+                        errorLabel.setText(e.getMessage().toUpperCase());
+                    }
+                }
+            }.start();
         }
     }
 
