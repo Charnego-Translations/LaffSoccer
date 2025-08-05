@@ -4,6 +4,7 @@ import com.badlogic.gdx.Game;
 import com.esotericsoftware.kryonet.Server;
 import com.esotericsoftware.minlog.Log;
 import com.ygames.ysoccer.framework.Settings;
+import com.ygames.ysoccer.network.Network;
 
 import java.io.IOException;
 
@@ -15,6 +16,8 @@ public class ServerGame extends Game {
         Settings settings = new Settings();
         Log.set(LEVEL_TRACE);
         Server server = new Server();
+        Network.register(server);
+
         try {
             server.bind(Settings.tcpPort, Settings.udpPort);
         } catch (IOException e) {

@@ -15,6 +15,7 @@ import com.ygames.ysoccer.gui.Button;
 import com.ygames.ysoccer.gui.InputButton;
 import com.ygames.ysoccer.gui.Label;
 import com.ygames.ysoccer.gui.Widget;
+import com.ygames.ysoccer.network.Network;
 
 import java.io.IOException;
 
@@ -38,6 +39,7 @@ public class OnlineMatchConnect extends GLScreen {
 
         Log.set(LEVEL_TRACE);
         client = new Client();
+        Network.register(client);
 
         onlineMatchScreen = new OnlineMatch(game, client);
 
