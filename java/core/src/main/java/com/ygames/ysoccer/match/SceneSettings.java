@@ -10,9 +10,9 @@ public class SceneSettings {
     public enum Time {DAY, NIGHT}
 
     public Time time;
-    public Grass grass;
+    public Grass grass = new Grass();
     public Pitch.Type pitchType;
-    public Wind wind;
+    public Wind wind = new Wind();;
     public int sky; // Sky.CLEAR, Sky.CLOUDY
 
     int weatherEffect; // Weather.WIND, Weather.RAIN, Weather.SNOW, Weather.FOG
@@ -25,18 +25,19 @@ public class SceneSettings {
     public int zoom;
     float shadowAlpha;
 
+    public SceneSettings() {
+    }
+
     public SceneSettings(Settings gameSettings) {
         this.zoom = gameSettings.zoom;
         this.fullScreen = gameSettings.fullScreen;
 
         this.time = randomTime();
-        this.grass = new Grass();
         this.pitchType = Pitch.random();
         this.weatherMaxStrength = gameSettings.weatherMaxStrength;
         for (int i = EMath.rand(0, 2 + 4 * weatherMaxStrength); i >= 0; i--) {
             rotateWeather();
         }
-        this.wind = new Wind();
     }
 
     public void rotateTime(int direction) {

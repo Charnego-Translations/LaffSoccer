@@ -14,6 +14,9 @@ public class MatchSettings extends SceneSettings {
     public boolean radar;
     boolean crowdChants;
 
+    public MatchSettings() {
+    }
+
     public MatchSettings(Competition competition, Settings gameSettings) {
         super(gameSettings);
 

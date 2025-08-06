@@ -32,7 +32,7 @@ public class OnlineMatchConnect extends GLScreen {
     private final Font font10yellow;
     private final Label errorLabel;
 
-    private final GLScreen onlineMatchScreen;
+    private final OnlineMatch onlineMatchScreen;
 
     public OnlineMatchConnect(GLGame game) {
         super(game);
@@ -47,17 +47,13 @@ public class OnlineMatchConnect extends GLScreen {
         client.start();
         client.addListener(new Listener() {
 
-            public void connected(Connection connection) {
-                Gdx.app.log("client", "connected to " + connection.getRemoteAddressTCP());
-                Gdx.app.postRunnable(() -> {
-                    game.setScreen(onlineMatchScreen);
-                });
-            }
-
             public void received(Connection connection, Object object) {
                 if (object instanceof MatchSettingsDto) {
-                    MatchSettingsDto dto = (MatchSettingsDto) object;
-                    Gdx.app.log("Match settings received", "time: " + dto.time + ", pitch type: " + dto.pitchType);
+                    Gdx.app.postRunnable(() -> {
+                        MatchSettingsDto dto = (MatchSettingsDto) object;
+                        onlineMatchScreen.setup(dto);
+                        game.setScreen(onlineMatchScreen);
+                    });
                 }
             }
         });
