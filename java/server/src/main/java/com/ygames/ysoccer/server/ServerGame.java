@@ -11,6 +11,7 @@ import com.ygames.ysoccer.framework.Settings;
 import com.ygames.ysoccer.match.MatchSettings;
 import com.ygames.ysoccer.network.Network;
 import com.ygames.ysoccer.network.dto.MatchSettingsDto;
+import com.ygames.ysoccer.network.dto.MatchSetupDto;
 
 import java.io.IOException;
 
@@ -30,7 +31,8 @@ public class ServerGame extends Game {
 
         server.addListener(new Listener() {
             public void connected(Connection connection) {
-                server.sendToTCP(connection.getID(), MatchSettingsDto.toDto(matchSettings));
+                MatchSetupDto matchSetupDto = MatchSetupDto.toDto(matchSettings);
+                server.sendToTCP(connection.getID(), matchSetupDto);
             }
         });
 

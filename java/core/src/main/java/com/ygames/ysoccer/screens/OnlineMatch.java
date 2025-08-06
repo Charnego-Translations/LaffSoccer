@@ -8,6 +8,7 @@ import com.ygames.ysoccer.framework.GLGame;
 import com.ygames.ysoccer.framework.GLScreen;
 import com.ygames.ysoccer.match.MatchSettings;
 import com.ygames.ysoccer.network.dto.MatchSettingsDto;
+import com.ygames.ysoccer.network.dto.MatchSetupDto;
 
 import static com.badlogic.gdx.Gdx.gl;
 
@@ -21,8 +22,8 @@ public class OnlineMatch extends GLScreen {
         usesMouse = false;
     }
 
-    public void setup(MatchSettingsDto dto) {
-        matchSettings = MatchSettingsDto.fromDto(dto);
+    public void setup(MatchSetupDto matchSetupDto) {
+        matchSettings = MatchSettingsDto.fromDto(matchSetupDto.matchSettingsDto);
         matchSettings.setup();
         Assets.loadStadium(matchSettings);
         game.disableMouse();
