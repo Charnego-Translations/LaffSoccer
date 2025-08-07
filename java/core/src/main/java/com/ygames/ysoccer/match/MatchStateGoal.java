@@ -73,7 +73,7 @@ class MatchStateGoal extends MatchState {
 
         match.setPointOfInterest(match.ball.x, match.ball.y);
 
-        sceneRenderer.actionCamera.setLimited(true, true);
+        match.actionCamera.setLimited(true, true);
     }
 
     @Override
@@ -117,20 +117,20 @@ class MatchStateGoal extends MatchState {
                     setCameraMode();
                 }
             } else {
-                sceneRenderer.actionCamera.setTarget(goal.player.x, goal.player.y);
+                match.actionCamera.setTarget(goal.player.x, goal.player.y);
             }
-            sceneRenderer.actionCamera.update();
+            match.actionCamera.update();
             timeLeft -= GLGame.SUBFRAME_DURATION;
         }
     }
 
     private void setCameraMode() {
         if (followBall) {
-            sceneRenderer.actionCamera
+            match.actionCamera
                     .setMode(FOLLOW_BALL)
                     .setSpeed(NORMAL);
         } else {
-            sceneRenderer.actionCamera
+            match.actionCamera
                     .setMode(REACH_TARGET)
                     .setSpeed(FAST);
         }
@@ -152,7 +152,7 @@ class MatchStateGoal extends MatchState {
             } else {
                 match.ball.setPosition(0, 0, 0);
                 match.ball.updatePrediction();
-                sceneRenderer.actionCamera.setOffset(0, 0);
+                match.actionCamera.setOffset(0, 0);
 
                 return newAction(NEW_FOREGROUND, STATE_STARTING_POSITIONS);
             }

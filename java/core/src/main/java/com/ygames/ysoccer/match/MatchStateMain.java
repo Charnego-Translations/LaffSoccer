@@ -60,7 +60,7 @@ class MatchStateMain extends MatchState {
     void onResume() {
         super.onResume();
 
-        sceneRenderer.actionCamera
+        match.actionCamera
                 .setMode(FOLLOW_BALL)
                 .setSpeed(NORMAL);
     }
@@ -275,7 +275,7 @@ class MatchStateMain extends MatchState {
 
             sceneRenderer.save();
 
-            sceneRenderer.actionCamera.update();
+            match.actionCamera.update();
 
             timeLeft -= GLGame.SUBFRAME_DURATION;
         }

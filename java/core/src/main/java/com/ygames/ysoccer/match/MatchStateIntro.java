@@ -66,14 +66,14 @@ class MatchStateIntro extends MatchState {
                 stillCamera = false;
                 setCameraMode();
             }
-            sceneRenderer.actionCamera.update();
+            match.actionCamera.update();
 
             timeLeft -= GLGame.SUBFRAME_DURATION;
         }
     }
 
     private void setCameraMode() {
-        sceneRenderer.actionCamera.setMode(stillCamera ? STILL : FOLLOW_BALL);
+        match.actionCamera.setMode(stillCamera ? STILL : FOLLOW_BALL);
     }
 
     @Override

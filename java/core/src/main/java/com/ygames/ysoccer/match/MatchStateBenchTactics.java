@@ -29,7 +29,7 @@ class MatchStateBenchTactics extends MatchState {
 
         benchStatus = getFsm().benchStatus;
         benchStatus.selectedTactics = benchStatus.team.tactics;
-        sceneRenderer.actionCamera.setMode(STILL);
+        match.actionCamera.setMode(STILL);
     }
 
     @Override
@@ -50,7 +50,7 @@ class MatchStateBenchTactics extends MatchState {
 
             sceneRenderer.save();
 
-            sceneRenderer.actionCamera.update();
+            match.actionCamera.update();
 
             timeLeft -= GLGame.SUBFRAME_DURATION;
         }

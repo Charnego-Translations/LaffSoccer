@@ -36,15 +36,14 @@ public class MatchRenderer extends SceneRenderer {
         this.shapeRenderer = glGraphics.shapeRenderer;
         this.camera = glGraphics.camera;
         this.ball = match.ball;
-        actionCamera = new ActionCamera(ball);
 
         resize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), scene.settings.zoom);
 
-        actionCamera.x = 0.5f * (Const.PITCH_W - screenWidth / (zoom / 100.0f));
-        actionCamera.y = 0;
+        match.actionCamera.x = 0.5f * (Const.PITCH_W - screenWidth / (zoom / 100.0f));
+        match.actionCamera.y = 0;
         for (int i = 0; i < Const.REPLAY_SUBFRAMES; i++) {
-            vCameraX[i] = Math.round(actionCamera.x);
-            vCameraY[i] = Math.round(actionCamera.y);
+            vCameraX[i] = Math.round(match.actionCamera.x);
+            vCameraY[i] = Math.round(match.actionCamera.y);
         }
 
         ballSprite = new BallSprite(glGraphics, getMatch().ball);
@@ -169,7 +168,7 @@ public class MatchRenderer extends SceneRenderer {
         }
 
         if (Settings.showDevelopmentInfo) {
-            Assets.font10.draw(batch, "CAMERA MODE: " + actionCamera.getMode() + ", SPEED: " + actionCamera.getSpeed(), guiWidth / 2, 22, Font.Align.CENTER);
+            Assets.font10.draw(batch, "CAMERA MODE: " + getMatch().actionCamera.getMode() + ", SPEED: " + getMatch().actionCamera.getSpeed(), guiWidth / 2, 22, Font.Align.CENTER);
         }
 
         // clock
@@ -1134,7 +1133,7 @@ public class MatchRenderer extends SceneRenderer {
         ball.save(scene.subframe);
         getMatch().team[HOME].save(scene.subframe);
         getMatch().team[AWAY].save(scene.subframe);
-        vCameraX[scene.subframe] = Math.round(actionCamera.x);
-        vCameraY[scene.subframe] = Math.round(actionCamera.y);
+        vCameraX[scene.subframe] = Math.round(scene.actionCamera.x);
+        vCameraY[scene.subframe] = Math.round(scene.actionCamera.y);
     }
 }

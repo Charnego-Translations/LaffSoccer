@@ -39,7 +39,7 @@ class MatchStateThrowInStop extends MatchState {
     void onResume() {
         match.setPointOfInterest(getFsm().throwInPosition);
 
-        sceneRenderer.actionCamera
+        match.actionCamera
                 .setMode(FOLLOW_BALL)
                 .setSpeed(NORMAL)
                 .setLimited(true, true);
@@ -66,7 +66,7 @@ class MatchStateThrowInStop extends MatchState {
 
             sceneRenderer.save();
 
-            sceneRenderer.actionCamera.update();
+            match.actionCamera.update();
 
             timeLeft -= GLGame.SUBFRAME_DURATION;
         }

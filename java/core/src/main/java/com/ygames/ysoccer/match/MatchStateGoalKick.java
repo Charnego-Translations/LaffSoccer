@@ -33,7 +33,7 @@ class MatchStateGoalKick extends MatchState {
     void onResume() {
         super.onResume();
 
-        sceneRenderer.actionCamera
+        match.actionCamera
                 .setMode(FOLLOW_BALL)
                 .setOffset(-30 * match.ball.xSide, -30 * match.ball.ySide)
                 .setSpeed(FAST)
@@ -76,7 +76,7 @@ class MatchStateGoalKick extends MatchState {
 
             sceneRenderer.save();
 
-            sceneRenderer.actionCamera.update();
+            match.actionCamera.update();
 
             timeLeft -= GLGame.SUBFRAME_DURATION;
         }

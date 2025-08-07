@@ -48,7 +48,7 @@ class MatchStateRedCard extends MatchState {
     void onResume() {
         match.setPointOfInterest(match.foul.position);
 
-        sceneRenderer.actionCamera
+        match.actionCamera
                 .setMode(REACH_TARGET)
                 .setTarget(match.foul.player.x, match.foul.player.y)
                 .setSpeed(NORMAL)
@@ -86,7 +86,7 @@ class MatchStateRedCard extends MatchState {
 
             sceneRenderer.save();
 
-            sceneRenderer.actionCamera.update();
+            match.actionCamera.update();
 
             timeLeft -= GLGame.SUBFRAME_DURATION;
         }

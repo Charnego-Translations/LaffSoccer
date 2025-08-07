@@ -18,8 +18,6 @@ import java.util.List;
 import java.util.TreeMap;
 
 import static com.ygames.ysoccer.framework.Assets.gettext;
-import static com.ygames.ysoccer.framework.Font.Align.CENTER;
-import static com.ygames.ysoccer.framework.GLGame.SUBFRAMES_PER_SECOND;
 import static com.ygames.ysoccer.match.Const.BALL_R;
 import static com.ygames.ysoccer.match.Const.CROSSBAR_H;
 import static com.ygames.ysoccer.match.Const.GOAL_LINE;
@@ -52,8 +50,6 @@ public abstract class SceneRenderer {
     int light;
     final int guiWidth = 1280;
     int guiHeight;
-
-    public ActionCamera actionCamera;
     final int[] vCameraX = new int[Const.REPLAY_SUBFRAMES];
     final int[] vCameraY = new int[Const.REPLAY_SUBFRAMES];
 
@@ -82,7 +78,7 @@ public abstract class SceneRenderer {
         float zoomMax = width / (VISIBLE_FIELD_WIDTH_MIN * 2 * Const.TOUCH_LINE);
         zoom = 20 * (int) (5.0f * Math.min(Math.max(0.01f * newZoom * zoomOpt, zoomMin), zoomMax));
 
-        actionCamera.setScreenParameters(screenWidth, screenHeight, zoom);
+        scene.actionCamera.setScreenParameters(screenWidth, screenHeight, zoom);
 
         guiHeight = guiWidth * height / width;
     }
@@ -192,9 +188,9 @@ public abstract class SceneRenderer {
         int subframe = scene.subframe;
         int TILE_WIDTH = 256;
         int fogX = -Const.CENTER_X + vCameraX[subframe] - 2 * TILE_WIDTH
-                + ((Const.CENTER_X - vCameraX[subframe]) % TILE_WIDTH + 2 * TILE_WIDTH) % TILE_WIDTH;
+            + ((Const.CENTER_X - vCameraX[subframe]) % TILE_WIDTH + 2 * TILE_WIDTH) % TILE_WIDTH;
         int fogY = -Const.CENTER_Y + vCameraY[subframe] - 2 * TILE_WIDTH
-                + ((Const.CENTER_Y - vCameraY[subframe]) % TILE_WIDTH + 2 * TILE_WIDTH) % TILE_WIDTH;
+            + ((Const.CENTER_Y - vCameraY[subframe]) % TILE_WIDTH + 2 * TILE_WIDTH) % TILE_WIDTH;
         int x = fogX;
         while (x < (fogX + screenWidth + 2 * TILE_WIDTH)) {
             int y = fogY;
@@ -346,8 +342,8 @@ public abstract class SceneRenderer {
     void redrawBallOverTopGoal(BallSprite ballSprite) {
         Data d = ball.data[scene.subframe];
         if (EMath.isIn(d.x, -POST_X, POST_X)
-                && d.y < -GOAL_LINE
-                && d.z > (CROSSBAR_H - (Math.abs(d.y) - GOAL_LINE) / 3f)) {
+            && d.y < -GOAL_LINE
+            && d.z > (CROSSBAR_H - (Math.abs(d.y) - GOAL_LINE) / 3f)) {
             ballSprite.draw(scene.subframe);
         }
     }
@@ -355,7 +351,7 @@ public abstract class SceneRenderer {
     void redrawBallOverBottomGoal(BallSprite ballSprite) {
         Data d = ball.data[scene.subframe];
         if (EMath.isIn(d.x, -POST_X - BALL_R, POST_X + BALL_R)
-                && (d.y >= GOAL_LINE + 21 || (d.y > GOAL_LINE && d.z > (CROSSBAR_H - (Math.abs(d.y) - GOAL_LINE) / 3f)))) {
+            && (d.y >= GOAL_LINE + 21 || (d.y > GOAL_LINE && d.z > (CROSSBAR_H - (Math.abs(d.y) - GOAL_LINE) / 3f)))) {
             ballSprite.draw(scene.subframe);
         }
     }

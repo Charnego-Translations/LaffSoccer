@@ -36,7 +36,7 @@ class MatchStateBenchFormation extends MatchState {
         super.entryActions();
 
         benchStatus = getFsm().benchStatus;
-        sceneRenderer.actionCamera.setMode(STILL);
+        match.actionCamera.setMode(STILL);
     }
 
     @Override
@@ -57,7 +57,7 @@ class MatchStateBenchFormation extends MatchState {
 
             sceneRenderer.save();
 
-            sceneRenderer.actionCamera.update();
+            match.actionCamera.update();
 
             timeLeft -= GLGame.SUBFRAME_DURATION;
         }

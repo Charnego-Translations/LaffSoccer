@@ -22,15 +22,14 @@ public class TrainingRenderer extends SceneRenderer {
         this.shapeRenderer = glGraphics.shapeRenderer;
         this.camera = glGraphics.camera;
         this.ball = training.ball;
-        actionCamera = new ActionCamera(ball);
 
         resize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), scene.settings.zoom);
 
-        actionCamera.x = 0.5f * (Const.PITCH_W - screenWidth / (zoom / 100.0f));
-        actionCamera.y = 0.5f * (Const.PITCH_H - screenHeight / (zoom / 100.0f));
+        scene.actionCamera.x = 0.5f * (Const.PITCH_W - screenWidth / (zoom / 100.0f));
+        scene.actionCamera.y = 0.5f * (Const.PITCH_H - screenHeight / (zoom / 100.0f));
         for (int i = 0; i < Const.REPLAY_SUBFRAMES; i++) {
-            vCameraX[i] = Math.round(actionCamera.x);
-            vCameraY[i] = Math.round(actionCamera.y);
+            vCameraX[i] = Math.round(scene.actionCamera.x);
+            vCameraY[i] = Math.round(scene.actionCamera.y);
         }
 
         ballSprite = new BallSprite(glGraphics, training.ball);
@@ -230,7 +229,7 @@ public class TrainingRenderer extends SceneRenderer {
         ball.save(scene.subframe);
         getTraining().team[HOME].save(scene.subframe);
         getTraining().team[AWAY].save(scene.subframe);
-        vCameraX[scene.subframe] = Math.round(actionCamera.x);
-        vCameraY[scene.subframe] = Math.round(actionCamera.y);
+        vCameraX[scene.subframe] = Math.round(scene.actionCamera.x);
+        vCameraY[scene.subframe] = Math.round(scene.actionCamera.y);
     }
 }

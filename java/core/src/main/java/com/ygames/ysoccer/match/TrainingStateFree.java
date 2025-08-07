@@ -49,7 +49,7 @@ class TrainingStateFree extends TrainingState {
 
         lastTrained = team[HOME].lineup.get(0);
 
-        sceneRenderer.actionCamera
+        training.actionCamera
                 .setMode(FOLLOW_BALL)
                 .setSpeed(NORMAL)
                 .setLimited(true, true);
@@ -107,7 +107,7 @@ class TrainingStateFree extends TrainingState {
 
             sceneRenderer.save();
 
-            sceneRenderer.actionCamera.update();
+            training.actionCamera.update();
 
             timeLeft -= GLGame.SUBFRAME_DURATION;
         }

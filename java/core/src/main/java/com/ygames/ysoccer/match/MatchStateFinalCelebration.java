@@ -48,7 +48,7 @@ class MatchStateFinalCelebration extends MatchState {
         positionLineups();
         match.setPointOfInterest(0, side * GOAL_LINE);
 
-        sceneRenderer.actionCamera
+        match.actionCamera
                 .setMode(ActionCamera.Mode.REACH_TARGET)
                 .setTarget(0, side * GOAL_LINE / 2f)
                 .setSpeed(NORMAL)
@@ -72,7 +72,7 @@ class MatchStateFinalCelebration extends MatchState {
                 case POSITIONING:
                     if (readyToCelebrate()) {
                         winner.setLineupState(STATE_FINAL_CELEBRATION);
-                        sceneRenderer.actionCamera.setTarget(0, side * GOAL_LINE);
+                        match.actionCamera.setTarget(0, side * GOAL_LINE);
                         step = Step.CELEBRATING;
                         Assets.Sounds.celebration.play(Assets.Sounds.volume / 100f);
                     }
@@ -91,7 +91,7 @@ class MatchStateFinalCelebration extends MatchState {
 
             sceneRenderer.save();
 
-            sceneRenderer.actionCamera.update();
+            match.actionCamera.update();
 
             timeLeft -= GLGame.SUBFRAME_DURATION;
         }

@@ -40,7 +40,7 @@ class MatchStatePenaltiesKick extends MatchState {
         match.penalty.kicker.setTarget(0, match.penalty.side * (Const.PENALTY_SPOT_Y - 7));
         match.penalty.kicker.setState(STATE_REACH_TARGET);
 
-        sceneRenderer.actionCamera.setMode(STILL);
+        match.actionCamera.setMode(STILL);
     }
 
     @Override
@@ -71,7 +71,7 @@ class MatchStatePenaltiesKick extends MatchState {
 
             sceneRenderer.save();
 
-            sceneRenderer.actionCamera.update();
+            match.actionCamera.update();
 
             timeLeft -= GLGame.SUBFRAME_DURATION;
         }

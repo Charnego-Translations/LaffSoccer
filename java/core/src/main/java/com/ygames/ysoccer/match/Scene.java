@@ -12,6 +12,8 @@ abstract class Scene {
 
     Vector2 pointOfInterest;
 
+    ActionCamera actionCamera;
+
     SceneRenderer getRenderer() {
         return fsm.getSceneRenderer();
     }

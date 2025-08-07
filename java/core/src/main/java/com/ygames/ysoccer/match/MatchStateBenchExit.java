@@ -37,7 +37,7 @@ class MatchStateBenchExit extends MatchState {
             }
         }
 
-        sceneRenderer.actionCamera
+        match.actionCamera
                 .setMode(REACH_TARGET)
                 .setTarget(getFsm().benchStatus.oldTarget)
                 .setSpeed(WARP);
@@ -61,7 +61,7 @@ class MatchStateBenchExit extends MatchState {
 
             sceneRenderer.save();
 
-            sceneRenderer.actionCamera.update();
+            match.actionCamera.update();
 
             timeLeft -= GLGame.SUBFRAME_DURATION;
         }
@@ -70,7 +70,7 @@ class MatchStateBenchExit extends MatchState {
     @Override
     SceneFsm.Action[] checkConditions() {
 
-        if (sceneRenderer.actionCamera.getTargetDistance() < 1) {
+        if (match.actionCamera.getTargetDistance() < 1) {
             return newAction(RESTORE_FOREGROUND);
         }
 

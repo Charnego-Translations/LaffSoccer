@@ -27,7 +27,7 @@ class MatchStateBenchEnter extends MatchState {
     void entryActions() {
         super.entryActions();
 
-        getFsm().benchStatus.oldTarget.set(sceneRenderer.actionCamera.getCurrentTarget());
+        getFsm().benchStatus.oldTarget.set(match.actionCamera.getCurrentTarget());
 
         getFsm().benchStatus.selectedPosition = -1;
         getFsm().benchStatus.substPosition = -1;
@@ -42,7 +42,7 @@ class MatchStateBenchEnter extends MatchState {
             }
         }
 
-        sceneRenderer.actionCamera
+        match.actionCamera
                 .setMode(REACH_TARGET)
                 .setTarget(getFsm().benchStatus.targetX, getFsm().benchStatus.targetY)
                 .setLimited(false, true)
@@ -65,7 +65,7 @@ class MatchStateBenchEnter extends MatchState {
 
             sceneRenderer.save();
 
-            sceneRenderer.actionCamera.update();
+            match.actionCamera.update();
 
             timeLeft -= GLGame.SUBFRAME_DURATION;
         }
@@ -74,7 +74,7 @@ class MatchStateBenchEnter extends MatchState {
     @Override
     SceneFsm.Action[] checkConditions() {
 
-        if (sceneRenderer.actionCamera.getTargetDistance() < 1) {
+        if (match.actionCamera.getTargetDistance() < 1) {
             Coach coach = getFsm().benchStatus.team.coach;
             coach.status = Coach.Status.STAND;
             return newAction(NEW_FOREGROUND, STATE_BENCH_SUBSTITUTIONS);

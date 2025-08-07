@@ -61,6 +61,7 @@ public class Training extends Scene {
             team[t].setSide(1 - 2 * t);
         }
 
+        actionCamera = new ActionCamera(ball);
         fsm = new TrainingFsm(this);
         pointOfInterest = new Vector2();
     }
