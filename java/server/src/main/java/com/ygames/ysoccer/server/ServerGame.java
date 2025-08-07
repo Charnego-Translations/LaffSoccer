@@ -8,9 +8,9 @@ import com.esotericsoftware.minlog.Log;
 import com.ygames.ysoccer.competitions.Friendly;
 import com.ygames.ysoccer.framework.Assets;
 import com.ygames.ysoccer.framework.Settings;
+import com.ygames.ysoccer.match.Match;
 import com.ygames.ysoccer.match.MatchSettings;
 import com.ygames.ysoccer.network.Network;
-import com.ygames.ysoccer.network.dto.MatchSettingsDto;
 import com.ygames.ysoccer.network.dto.MatchSetupDto;
 
 import java.io.IOException;
@@ -26,12 +26,15 @@ public class ServerGame extends Game {
         Network.register(server);
 
         Assets.loadStrings(settings);
-        MatchSettings matchSettings = new MatchSettings(new Friendly(), settings);
+        Friendly friendly = new Friendly();
+        MatchSettings matchSettings = new MatchSettings(friendly, settings);
         matchSettings.setup();
+
+        Match match = friendly.getMatch();
 
         server.addListener(new Listener() {
             public void connected(Connection connection) {
-                MatchSetupDto matchSetupDto = MatchSetupDto.toDto(matchSettings);
+                MatchSetupDto matchSetupDto = MatchSetupDto.toDto(matchSettings, match);
                 server.sendToTCP(connection.getID(), matchSetupDto);
             }
         });

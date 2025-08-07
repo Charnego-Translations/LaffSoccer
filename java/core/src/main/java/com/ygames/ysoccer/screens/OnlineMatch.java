@@ -6,7 +6,9 @@ import com.esotericsoftware.kryonet.Client;
 import com.ygames.ysoccer.framework.Assets;
 import com.ygames.ysoccer.framework.GLGame;
 import com.ygames.ysoccer.framework.GLScreen;
+import com.ygames.ysoccer.match.Match;
 import com.ygames.ysoccer.match.MatchSettings;
+import com.ygames.ysoccer.network.dto.MatchDto;
 import com.ygames.ysoccer.network.dto.MatchSettingsDto;
 import com.ygames.ysoccer.network.dto.MatchSetupDto;
 
@@ -15,6 +17,7 @@ import static com.badlogic.gdx.Gdx.gl;
 public class OnlineMatch extends GLScreen {
 
     MatchSettings matchSettings;
+    Match match;
     int zoom = 100;
 
     public OnlineMatch(GLGame game, Client client) {
@@ -25,6 +28,7 @@ public class OnlineMatch extends GLScreen {
     public void setup(MatchSetupDto matchSetupDto) {
         matchSettings = MatchSettingsDto.fromDto(matchSetupDto.matchSettingsDto);
         matchSettings.setup();
+        match = MatchDto.fromDto(matchSetupDto.matchDto);
         Assets.loadStadium(matchSettings);
         game.disableMouse();
     }
