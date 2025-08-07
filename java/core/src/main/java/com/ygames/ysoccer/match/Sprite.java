@@ -5,7 +5,7 @@ import com.ygames.ysoccer.framework.GLGraphics;
 
 import java.util.Comparator;
 
-class Sprite {
+abstract class Sprite {
 
     GLGraphics glGraphics;
 
