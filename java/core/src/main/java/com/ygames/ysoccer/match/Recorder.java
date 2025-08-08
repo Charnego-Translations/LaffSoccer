@@ -28,7 +28,7 @@ class Recorder {
         return Math.min(recorded, MAX_RECORDS);
     }
 
-    void saveHighlight(SceneRenderer sceneRenderer) {
+    void saveHighlight() {
 
         int recordSize = (4 + 10 * (match.team[HOME].lineup.size() + match.team[AWAY].lineup.size()) + 2) * 2 * Const.REPLAY_SUBFRAMES;
 
@@ -66,8 +66,8 @@ class Recorder {
             }
 
             // camera
-            record[index++] = (short) sceneRenderer.vCameraX[match.subframe];
-            record[index++] = (short) sceneRenderer.vCameraY[match.subframe];
+            record[index++] = (short) match.vCameraX[match.subframe];
+            record[index++] = (short) match.vCameraY[match.subframe];
 
             match.subframe = (match.subframe + GLGame.SUBFRAMES / 2) % Const.REPLAY_SUBFRAMES;
         }
@@ -133,8 +133,8 @@ class Recorder {
             }
 
             // camera
-            sceneRenderer.vCameraX[match.subframe] = record[offset++];
-            sceneRenderer.vCameraY[match.subframe] = record[offset++];
+            match.vCameraX[match.subframe] = record[offset++];
+            match.vCameraY[match.subframe] = record[offset++];
 
             match.subframe = (match.subframe + GLGame.SUBFRAMES / 2) % Const.REPLAY_SUBFRAMES;
         }

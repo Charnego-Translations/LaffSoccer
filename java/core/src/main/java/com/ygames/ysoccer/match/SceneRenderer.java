@@ -50,9 +50,6 @@ public abstract class SceneRenderer {
     int light;
     final int guiWidth = 1280;
     int guiHeight;
-    final int[] vCameraX = new int[Const.REPLAY_SUBFRAMES];
-    final int[] vCameraY = new int[Const.REPLAY_SUBFRAMES];
-
     Ball ball;
 
     final List<Sprite> allSprites = new ArrayList<>();
@@ -187,10 +184,10 @@ public abstract class SceneRenderer {
 
         int subframe = scene.subframe;
         int TILE_WIDTH = 256;
-        int fogX = -Const.CENTER_X + vCameraX[subframe] - 2 * TILE_WIDTH
-            + ((Const.CENTER_X - vCameraX[subframe]) % TILE_WIDTH + 2 * TILE_WIDTH) % TILE_WIDTH;
-        int fogY = -Const.CENTER_Y + vCameraY[subframe] - 2 * TILE_WIDTH
-            + ((Const.CENTER_Y - vCameraY[subframe]) % TILE_WIDTH + 2 * TILE_WIDTH) % TILE_WIDTH;
+        int fogX = -Const.CENTER_X + scene.vCameraX[subframe] - 2 * TILE_WIDTH
+            + ((Const.CENTER_X - scene.vCameraX[subframe]) % TILE_WIDTH + 2 * TILE_WIDTH) % TILE_WIDTH;
+        int fogY = -Const.CENTER_Y + scene.vCameraY[subframe] - 2 * TILE_WIDTH
+            + ((Const.CENTER_Y - scene.vCameraY[subframe]) % TILE_WIDTH + 2 * TILE_WIDTH) % TILE_WIDTH;
         int x = fogX;
         while (x < (fogX + screenWidth + 2 * TILE_WIDTH)) {
             int y = fogY;

@@ -42,8 +42,8 @@ public class MatchRenderer extends SceneRenderer {
         match.actionCamera.x = 0.5f * (Const.PITCH_W - screenWidth / (zoom / 100.0f));
         match.actionCamera.y = 0;
         for (int i = 0; i < Const.REPLAY_SUBFRAMES; i++) {
-            vCameraX[i] = Math.round(match.actionCamera.x);
-            vCameraY[i] = Math.round(match.actionCamera.y);
+            match.vCameraX[i] = Math.round(match.actionCamera.x);
+            match.vCameraY[i] = Math.round(match.actionCamera.y);
         }
 
         ballSprite = new BallSprite(glGraphics, getMatch().ball);
@@ -85,7 +85,7 @@ public class MatchRenderer extends SceneRenderer {
         gl.glEnable(GL20.GL_BLEND);
         gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         camera.setToOrtho(true, Gdx.graphics.getWidth() * 100f / zoom, Gdx.graphics.getHeight() * 100f / zoom);
-        camera.translate(-Const.CENTER_X + vCameraX[scene.subframe], -Const.CENTER_Y + vCameraY[scene.subframe], 0);
+        camera.translate(-Const.CENTER_X + scene.vCameraX[scene.subframe], -Const.CENTER_Y + scene.vCameraY[scene.subframe], 0);
         camera.update();
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
@@ -1133,7 +1133,7 @@ public class MatchRenderer extends SceneRenderer {
         ball.save(scene.subframe);
         getMatch().team[HOME].save(scene.subframe);
         getMatch().team[AWAY].save(scene.subframe);
-        vCameraX[scene.subframe] = Math.round(scene.actionCamera.x);
-        vCameraY[scene.subframe] = Math.round(scene.actionCamera.y);
+        scene.vCameraX[scene.subframe] = Math.round(scene.actionCamera.x);
+        scene.vCameraY[scene.subframe] = Math.round(scene.actionCamera.y);
     }
 }

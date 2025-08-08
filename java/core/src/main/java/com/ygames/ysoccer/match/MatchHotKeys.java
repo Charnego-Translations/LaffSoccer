@@ -104,7 +104,7 @@ class MatchHotKeys extends SceneHotKeys {
         }
 
         if (Gdx.input.isKeyPressed(SPACE) && !keyRecordAction) {
-            getMatch().recorder.saveHighlight(scene.getRenderer());
+            getMatch().recorder.saveHighlight();
 
             message = gettext("ACTION RECORDED");
             messageTimer = 60;

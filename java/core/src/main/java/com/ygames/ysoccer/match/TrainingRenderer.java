@@ -28,8 +28,8 @@ public class TrainingRenderer extends SceneRenderer {
         scene.actionCamera.x = 0.5f * (Const.PITCH_W - screenWidth / (zoom / 100.0f));
         scene.actionCamera.y = 0.5f * (Const.PITCH_H - screenHeight / (zoom / 100.0f));
         for (int i = 0; i < Const.REPLAY_SUBFRAMES; i++) {
-            vCameraX[i] = Math.round(scene.actionCamera.x);
-            vCameraY[i] = Math.round(scene.actionCamera.y);
+            scene.vCameraX[i] = Math.round(scene.actionCamera.x);
+            scene.vCameraY[i] = Math.round(scene.actionCamera.y);
         }
 
         ballSprite = new BallSprite(glGraphics, training.ball);
@@ -70,7 +70,7 @@ public class TrainingRenderer extends SceneRenderer {
         gl.glEnable(GL20.GL_BLEND);
         gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         camera.setToOrtho(true, Gdx.graphics.getWidth() * 100f / zoom, Gdx.graphics.getHeight() * 100f / zoom);
-        camera.translate(-Const.CENTER_X + vCameraX[scene.subframe], -Const.CENTER_Y + vCameraY[scene.subframe], 0);
+        camera.translate(-Const.CENTER_X + scene.vCameraX[scene.subframe], -Const.CENTER_Y + scene.vCameraY[scene.subframe], 0);
         camera.update();
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
@@ -216,7 +216,7 @@ public class TrainingRenderer extends SceneRenderer {
                 for (int i = 0; i < len; i++) {
                     Player player = getTraining().team[t].lineup.get(i);
                     if ((player.inputDevice != player.ai && player.isVisible)
-                            || (Settings.development && Settings.showPlayerNumber)) {
+                        || (Settings.development && Settings.showPlayerNumber)) {
                         drawPlayerNumber(player);
                     }
                 }
@@ -229,7 +229,7 @@ public class TrainingRenderer extends SceneRenderer {
         ball.save(scene.subframe);
         getTraining().team[HOME].save(scene.subframe);
         getTraining().team[AWAY].save(scene.subframe);
-        vCameraX[scene.subframe] = Math.round(scene.actionCamera.x);
-        vCameraY[scene.subframe] = Math.round(scene.actionCamera.y);
+        scene.vCameraX[scene.subframe] = Math.round(scene.actionCamera.x);
+        scene.vCameraY[scene.subframe] = Math.round(scene.actionCamera.y);
     }
 }

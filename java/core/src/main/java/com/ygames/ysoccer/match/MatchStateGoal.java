@@ -142,7 +142,7 @@ class MatchStateGoal extends MatchState {
                 && (timer > 3 * SECOND)) {
 
             if (!recordingDone) {
-                match.recorder.saveHighlight(sceneRenderer);
+                match.recorder.saveHighlight();
                 recordingDone = true;
             }
 

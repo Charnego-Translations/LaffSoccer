@@ -14,9 +14,8 @@ abstract class Scene {
 
     ActionCamera actionCamera;
 
-    SceneRenderer getRenderer() {
-        return fsm.getSceneRenderer();
-    }
+    final int[] vCameraX = new int[Const.REPLAY_SUBFRAMES];
+    final int[] vCameraY = new int[Const.REPLAY_SUBFRAMES];
 
     public void start() {
         fsm.start();
