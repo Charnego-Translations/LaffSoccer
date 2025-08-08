@@ -109,7 +109,7 @@ class MatchStateGoal extends MatchState {
 
             match.nextSubframe();
 
-            sceneRenderer.save();
+            match.save();
 
             if (followBall) {
                 if (match.ball.v == 0 && match.ball.vz == 0) {

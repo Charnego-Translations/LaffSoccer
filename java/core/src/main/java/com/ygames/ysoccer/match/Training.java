@@ -146,4 +146,13 @@ public class Training extends Scene {
 
         listener.quitTraining();
     }
+
+    @Override
+    void save() {
+        ball.save(subframe);
+        team[HOME].save(subframe);
+        team[AWAY].save(subframe);
+        vCameraX[subframe] = Math.round(actionCamera.x);
+        vCameraY[subframe] = Math.round(actionCamera.y);
+    }
 }

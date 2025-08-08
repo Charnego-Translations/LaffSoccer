@@ -686,4 +686,13 @@ public class Match extends Scene implements Json.Serializable {
     public Referee getReferee() {
         return referee;
     }
+
+    @Override
+    void save() {
+        ball.save(subframe);
+        team[HOME].save(subframe);
+        team[AWAY].save(subframe);
+        vCameraX[subframe] = Math.round(actionCamera.x);
+        vCameraY[subframe] = Math.round(actionCamera.y);
+    }
 }

@@ -64,7 +64,7 @@ class MatchStateThrowInStop extends MatchState {
 
             match.nextSubframe();
 
-            sceneRenderer.save();
+            match.save();
 
             match.actionCamera.update();
 

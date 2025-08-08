@@ -80,8 +80,6 @@ public abstract class SceneRenderer {
         guiHeight = guiWidth * height / width;
     }
 
-    abstract void save();
-
     void renderSprites() {
 
         drawShadows();

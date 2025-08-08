@@ -223,13 +223,4 @@ public class TrainingRenderer extends SceneRenderer {
             }
         }
     }
-
-    @Override
-    void save() {
-        ball.save(scene.subframe);
-        getTraining().team[HOME].save(scene.subframe);
-        getTraining().team[AWAY].save(scene.subframe);
-        scene.vCameraX[scene.subframe] = Math.round(scene.actionCamera.x);
-        scene.vCameraY[scene.subframe] = Math.round(scene.actionCamera.y);
-    }
 }

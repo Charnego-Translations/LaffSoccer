@@ -60,7 +60,7 @@ class MatchStateIntro extends MatchState {
 
             match.nextSubframe();
 
-            sceneRenderer.save();
+            match.save();
 
             if (stillCamera && timer > SECOND) {
                 stillCamera = false;

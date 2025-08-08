@@ -55,4 +55,6 @@ abstract class Scene {
     abstract public void setBallOwner(Player player, boolean updateGoalOwner);
 
     abstract void quit();
+
+    abstract void save();
 }

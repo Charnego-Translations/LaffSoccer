@@ -1127,13 +1127,4 @@ public class MatchRenderer extends SceneRenderer {
             Assets.font6.draw(batch, "" + (char) 15, d.x + 1, d.y - 40, CENTER);
         }
     }
-
-    @Override
-    void save() {
-        ball.save(scene.subframe);
-        getMatch().team[HOME].save(scene.subframe);
-        getMatch().team[AWAY].save(scene.subframe);
-        scene.vCameraX[scene.subframe] = Math.round(scene.actionCamera.x);
-        scene.vCameraY[scene.subframe] = Math.round(scene.actionCamera.y);
-    }
 }

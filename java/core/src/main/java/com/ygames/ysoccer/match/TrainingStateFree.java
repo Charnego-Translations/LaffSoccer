@@ -105,7 +105,7 @@ class TrainingStateFree extends TrainingState {
 
             training.nextSubframe();
 
-            sceneRenderer.save();
+            training.save();
 
             training.actionCamera.update();
 
