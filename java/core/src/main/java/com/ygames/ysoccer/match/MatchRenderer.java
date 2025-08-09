@@ -229,6 +229,10 @@ public class MatchRenderer extends SceneRenderer {
             drawTacticsSwitch();
         }
 
+        if (matchState.displayHelp) {
+            drawHelp(getMatch().getFsm().getHotKeys().keyMap);
+        }
+
         // additional state-specific render
         MatchState matchState = getMatch().getFsm().getState();
         if (matchState != null) {

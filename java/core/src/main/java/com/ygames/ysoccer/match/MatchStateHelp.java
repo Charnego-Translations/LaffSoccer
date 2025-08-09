@@ -15,6 +15,8 @@ class MatchStateHelp extends MatchState {
     MatchStateHelp(MatchFsm fsm) {
         super(fsm);
 
+        displayHelp = true;
+
         checkReplayKey = false;
         checkPauseKey = false;
         checkHelpKey = false;
@@ -61,12 +63,6 @@ class MatchStateHelp extends MatchState {
         }
 
         return checkCommonConditions();
-    }
-
-    @Override
-    void render() {
-        super.render();
-        sceneRenderer.drawHelp(match.getFsm().getHotKeys().keyMap);
     }
 
     private void useHoldStateDisplayFlags() {

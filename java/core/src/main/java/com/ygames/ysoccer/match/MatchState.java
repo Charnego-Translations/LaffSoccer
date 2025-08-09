@@ -31,6 +31,7 @@ abstract class MatchState extends SceneState {
     boolean displayBenchPlayers;
     boolean displayBenchFormation;
     boolean displayTacticsSwitch;
+    boolean displayHelp;
 
     boolean checkReplayKey = true;
     boolean checkPauseKey = true;
