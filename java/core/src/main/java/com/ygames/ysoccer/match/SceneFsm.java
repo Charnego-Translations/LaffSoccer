@@ -104,11 +104,11 @@ abstract class SceneFsm {
 
         // fade in/out
         if (currentAction != null && currentAction.type == FADE_OUT) {
-            sceneRenderer.light = 8 * (currentAction.timer - 1);
+            scene.settings.light = 8 * (currentAction.timer - 1);
             doUpdate = false;
         }
         if (currentAction != null && currentAction.type == FADE_IN) {
-            sceneRenderer.light = 255 - 8 * (currentAction.timer - 1);
+            scene.settings.light = 255 - 8 * (currentAction.timer - 1);
             doUpdate = false;
         }
 

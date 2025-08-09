@@ -23,6 +23,7 @@ public class SceneSettings {
 
     boolean fullScreen;
     public int zoom;
+    int light;
     float shadowAlpha;
 
     public SceneSettings() {

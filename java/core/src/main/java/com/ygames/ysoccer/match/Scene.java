@@ -30,7 +30,7 @@ abstract class Scene {
     }
 
     public void render() {
-        game.glGraphics.light = fsm.getSceneRenderer().light;
+        game.glGraphics.light = settings.light;
         fsm.getSceneRenderer().render();
     }
 
