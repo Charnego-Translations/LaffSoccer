@@ -5,6 +5,7 @@ import com.ygames.ysoccer.framework.GLGame;
 import static com.ygames.ysoccer.match.ActionCamera.Mode.REACH_TARGET;
 import static com.ygames.ysoccer.match.ActionCamera.Speed.WARP;
 import static com.ygames.ysoccer.match.Const.TEAM_SIZE;
+import static com.ygames.ysoccer.match.Const.TOUCH_LINE;
 import static com.ygames.ysoccer.match.Match.AWAY;
 import static com.ygames.ysoccer.match.Match.HOME;
 import static com.ygames.ysoccer.match.MatchFsm.STATE_BENCH_EXIT;
@@ -44,7 +45,7 @@ class MatchStateBenchEnter extends MatchState {
 
         match.actionCamera
                 .setMode(REACH_TARGET)
-                .setTarget(getFsm().benchStatus.targetX, getFsm().benchStatus.targetY)
+                .setTarget(-0.55f * TOUCH_LINE, -20)
                 .setLimited(false, true)
                 .setSpeed(WARP);
     }

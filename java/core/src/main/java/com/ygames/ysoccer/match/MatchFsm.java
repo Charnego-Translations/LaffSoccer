@@ -67,8 +67,6 @@ public class MatchFsm extends SceneFsm {
         setSceneRenderer(new MatchRenderer(match.game.glGraphics, match));
 
         benchStatus = new BenchStatus();
-        benchStatus.targetX = -TOUCH_LINE - 140 + getSceneRenderer().screenWidth / (2 * getSceneRenderer().zoom / 100f);
-        benchStatus.targetY = -20;
         throwInPosition = new Vector2();
 
         STATE_BENCH_ENTER = addState(new MatchStateBenchEnter(this));
@@ -133,11 +131,9 @@ public class MatchFsm extends SceneFsm {
         return (Match) getScene();
     }
 
-    class BenchStatus {
+    static class BenchStatus {
         Team team;
         InputDevice inputDevice;
-        float targetX;
-        float targetY;
         final Vector2 oldTarget = new Vector2();
         int selectedPosition;
         int substPosition = -1;
