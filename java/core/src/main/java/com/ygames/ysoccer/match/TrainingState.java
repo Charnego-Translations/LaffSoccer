@@ -6,6 +6,7 @@ abstract class TrainingState extends SceneState {
 
     boolean displayControlledPlayer;
     boolean displayPause;
+    boolean displayReplayGui;
     boolean displayReplayControls;
 
     // convenience references
@@ -13,6 +14,7 @@ abstract class TrainingState extends SceneState {
     final Team[] team;
     final Ball ball;
     InputDevice inputDevice;
+    int replayPosition;
 
     TrainingState(TrainingFsm trainingFsm) {
         super(trainingFsm);

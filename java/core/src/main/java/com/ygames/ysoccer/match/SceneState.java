@@ -66,7 +66,4 @@ abstract class SceneState {
     boolean checkId(int id) {
         return (this.id == id);
     }
-
-    void render() {
-    }
 }

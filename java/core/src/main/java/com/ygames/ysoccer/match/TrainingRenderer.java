@@ -2,8 +2,10 @@ package com.ygames.ysoccer.match;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.ygames.ysoccer.framework.Assets;
 import com.ygames.ysoccer.framework.Font;
+import com.ygames.ysoccer.framework.GLGame;
 import com.ygames.ysoccer.framework.GLGraphics;
 import com.ygames.ysoccer.framework.Settings;
 
@@ -146,16 +148,34 @@ public class TrainingRenderer extends SceneRenderer {
             Assets.font10.draw(batch, gettext("PAUSE"), guiWidth / 2, 22, Font.Align.CENTER);
         }
 
+        if (trainingState.displayReplayGui) {
+            int f = Math.round(1f * scene.subframe / GLGame.SUBFRAMES) % 32;
+            if (f < 16) {
+                Assets.font10.draw(batch, gettext("ACTION REPLAY"), 30, 22, Font.Align.LEFT);
+            }
+            if (Settings.showDevelopmentInfo) {
+                Assets.font10.draw(batch, "FRAME: " + (scene.subframe / 8) + " / " + Const.REPLAY_FRAMES, 30, 42, Font.Align.LEFT);
+                Assets.font10.draw(batch, "SUBFRAME: " + scene.subframe + " / " + Const.REPLAY_SUBFRAMES, 30, 62, Font.Align.LEFT);
+            }
+
+            float a = trainingState.replayPosition * 360f / Const.REPLAY_SUBFRAMES;
+
+            batch.end();
+            shapeRenderer.setProjectionMatrix(camera.combined);
+            shapeRenderer.setAutoShapeType(true);
+            shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+            shapeRenderer.setColor(0x242424, guiAlpha);
+            shapeRenderer.arc(20, 32, 6, 270 + a, 360 - a);
+            shapeRenderer.setColor(0xFF0000, guiAlpha);
+            shapeRenderer.arc(18, 30, 6, 270 + a, 360 - a);
+            shapeRenderer.end();
+            batch.begin();
+        }
+
         if (trainingState.displayReplayControls) {
             int frameX = 1 + trainingState.inputDevice.x1;
             int frameY = 1 + trainingState.inputDevice.y1;
             batch.draw(Assets.replaySpeed[frameX][frameY], guiWidth - 50, guiHeight - 50);
-        }
-
-        // additional state-specific render
-        TrainingState trainingState = getTraining().getFsm().getState();
-        if (trainingState != null) {
-            trainingState.render();
         }
 
         batch.end();
