@@ -10,6 +10,7 @@ import com.ygames.ysoccer.framework.GLGraphics;
 import com.ygames.ysoccer.framework.Settings;
 
 import static com.badlogic.gdx.Gdx.gl;
+import static com.ygames.ysoccer.framework.Assets.gettext;
 import static com.ygames.ysoccer.framework.Font.Align.CENTER;
 import static com.ygames.ysoccer.match.Const.BALL_ZONE_DX;
 import static com.ygames.ysoccer.match.Const.BALL_ZONE_DY;
@@ -231,6 +232,10 @@ public class MatchRenderer extends SceneRenderer {
 
         if (matchState.displayHelp) {
             drawHelp(getMatch().getFsm().getHotKeys().keyMap);
+        }
+
+        if (matchState.displayPause) {
+            Assets.font10.draw(batch, gettext("PAUSE"), guiWidth / 2, 22, Font.Align.CENTER);
         }
 
         // additional state-specific render

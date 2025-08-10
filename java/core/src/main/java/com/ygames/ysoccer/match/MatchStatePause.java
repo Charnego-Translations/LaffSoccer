@@ -20,6 +20,8 @@ class MatchStatePause extends MatchState {
     MatchStatePause(MatchFsm fsm) {
         super(fsm);
 
+        displayPause = true;
+
         checkReplayKey = false;
         checkPauseKey = false;
         checkHelpKey = false;
@@ -71,12 +73,6 @@ class MatchStatePause extends MatchState {
         }
 
         return checkCommonConditions();
-    }
-
-    @Override
-    void render() {
-        super.render();
-        Assets.font10.draw(sceneRenderer.batch, gettext("PAUSE"), sceneRenderer.guiWidth / 2, 22, Font.Align.CENTER);
     }
 
     private void useHoldStateDisplayFlags() {
