@@ -57,6 +57,7 @@ class MatchStateHighlights extends MatchState {
         position = 0;
 
         inputDevice = null;
+        displayReplayControls = false;
 
         match.recorder.loadHighlight();
     }
@@ -150,8 +151,9 @@ class MatchStateHighlights extends MatchState {
             Assets.font10.draw(sceneRenderer.batch, "SUBFRAME: " + match.subframe + " / " + Const.REPLAY_SUBFRAMES, 30, 62, Font.Align.LEFT);
         }
 
-        sceneRenderer.batch.end();
         float a = position * 360f / Const.REPLAY_SUBFRAMES;
+
+        sceneRenderer.batch.end();
         GLShapeRenderer shapeRenderer = sceneRenderer.shapeRenderer;
         shapeRenderer.setProjectionMatrix(sceneRenderer.camera.combined);
         shapeRenderer.setAutoShapeType(true);

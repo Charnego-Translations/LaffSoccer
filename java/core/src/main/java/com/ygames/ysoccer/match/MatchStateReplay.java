@@ -22,10 +22,11 @@ class MatchStateReplay extends MatchState {
     private boolean slowMotion;
     private boolean keySlow;
     private boolean keyPause;
-    private int position;
 
     MatchStateReplay(MatchFsm fsm) {
         super(fsm);
+
+        displayReplayGui = true;
 
         displayWindVane = true;
         displayControlledPlayer = Settings.development;
@@ -50,9 +51,10 @@ class MatchStateReplay extends MatchState {
         keyPause = Gdx.input.isKeyPressed(Input.Keys.P);
 
         // position of current frame in the replay vector
-        position = 0;
+        replayPosition = 0;
 
         inputDevice = null;
+        displayReplayControls = false;
     }
 
     @Override
@@ -102,9 +104,9 @@ class MatchStateReplay extends MatchState {
 
         // set position
         if (!paused) {
-            position = EMath.slide(position, 1, Const.REPLAY_SUBFRAMES, speed);
+            replayPosition = EMath.slide(replayPosition, 1, Const.REPLAY_SUBFRAMES, speed);
 
-            match.subframe = (subframe0 + position) % Const.REPLAY_SUBFRAMES;
+            match.subframe = (subframe0 + replayPosition) % Const.REPLAY_SUBFRAMES;
         }
 
         displayPause = paused;
@@ -122,7 +124,7 @@ class MatchStateReplay extends MatchState {
         }
 
         // quit on last position
-        if ((position == Const.REPLAY_SUBFRAMES) && (inputDevice == null)) {
+        if ((replayPosition == Const.REPLAY_SUBFRAMES) && (inputDevice == null)) {
             return quitAction();
         }
 
@@ -131,38 +133,10 @@ class MatchStateReplay extends MatchState {
 
     private SceneFsm.Action[] quitAction() {
         // if final frame is different from starting frame then fade out
-        if (position != Const.REPLAY_SUBFRAMES) {
+        if (replayPosition != Const.REPLAY_SUBFRAMES) {
             return newFadedAction(RESTORE_FOREGROUND);
         } else {
             return newAction(RESTORE_FOREGROUND);
         }
-    }
-
-    @Override
-    void render() {
-        super.render();
-
-        int f = Math.round(1f * match.subframe / GLGame.SUBFRAMES) % 32;
-        if (f < 16) {
-            Assets.font10.draw(sceneRenderer.batch, gettext("ACTION REPLAY"), 30, 22, Font.Align.LEFT);
-        }
-        if (Settings.showDevelopmentInfo) {
-            Assets.font10.draw(sceneRenderer.batch, "FRAME: " + (match.subframe / 8) + " / " + Const.REPLAY_FRAMES, 30, 42, Font.Align.LEFT);
-            Assets.font10.draw(sceneRenderer.batch, "SUBFRAME: " + match.subframe + " / " + Const.REPLAY_SUBFRAMES, 30, 62, Font.Align.LEFT);
-        }
-
-        float a = position * 360f / Const.REPLAY_SUBFRAMES;
-
-        sceneRenderer.batch.end();
-        GLShapeRenderer shapeRenderer = sceneRenderer.shapeRenderer;
-        shapeRenderer.setProjectionMatrix(sceneRenderer.camera.combined);
-        shapeRenderer.setAutoShapeType(true);
-        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-        shapeRenderer.setColor(0x242424, guiAlpha);
-        shapeRenderer.arc(20, 32, 6, 270 + a, 360 - a);
-        shapeRenderer.setColor(0xFF0000, guiAlpha);
-        shapeRenderer.arc(18, 30, 6, 270 + a, 360 - a);
-        shapeRenderer.end();
-        sceneRenderer.batch.begin();
     }
 }
