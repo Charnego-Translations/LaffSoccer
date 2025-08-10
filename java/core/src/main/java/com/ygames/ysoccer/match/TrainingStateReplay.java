@@ -23,7 +23,6 @@ class TrainingStateReplay extends TrainingState {
     private boolean keySlow;
     private boolean keyPause;
     private int position;
-    private InputDevice inputDevice;
 
     TrainingStateReplay(TrainingFsm fsm) {
         super(fsm);
@@ -48,6 +47,7 @@ class TrainingStateReplay extends TrainingState {
         position = 0;
 
         inputDevice = null;
+        displayReplayControls = false;
     }
 
     @Override
@@ -102,6 +102,7 @@ class TrainingStateReplay extends TrainingState {
         }
 
         displayPause = paused;
+        displayReplayControls = inputDevice != null;
     }
 
     @Override
@@ -162,11 +163,5 @@ class TrainingStateReplay extends TrainingState {
         shapeRenderer.arc(18, 30, 6, 270 + a, 360 - a);
         shapeRenderer.end();
         sceneRenderer.batch.begin();
-
-        if (inputDevice != null) {
-            int frameX = 1 + inputDevice.x1;
-            int frameY = 1 + inputDevice.y1;
-            sceneRenderer.batch.draw(Assets.replaySpeed[frameX][frameY], sceneRenderer.guiWidth - 50, sceneRenderer.guiHeight - 50);
-        }
     }
 }

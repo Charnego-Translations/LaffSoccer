@@ -146,6 +146,12 @@ public class TrainingRenderer extends SceneRenderer {
             Assets.font10.draw(batch, gettext("PAUSE"), guiWidth / 2, 22, Font.Align.CENTER);
         }
 
+        if (trainingState.displayReplayControls) {
+            int frameX = 1 + trainingState.inputDevice.x1;
+            int frameY = 1 + trainingState.inputDevice.y1;
+            batch.draw(Assets.replaySpeed[frameX][frameY], guiWidth - 50, guiHeight - 50);
+        }
+
         // additional state-specific render
         TrainingState trainingState = getTraining().getFsm().getState();
         if (trainingState != null) {
