@@ -13,6 +13,7 @@ abstract class Scene {
     Vector2 pointOfInterest;
 
     ActionCamera actionCamera;
+    int light;
 
     final int[] vCameraX = new int[Const.REPLAY_SUBFRAMES];
     final int[] vCameraY = new int[Const.REPLAY_SUBFRAMES];
@@ -30,7 +31,7 @@ abstract class Scene {
     }
 
     public void render() {
-        game.glGraphics.light = settings.light;
+        game.glGraphics.light = light;
         fsm.getSceneRenderer().render();
     }
 

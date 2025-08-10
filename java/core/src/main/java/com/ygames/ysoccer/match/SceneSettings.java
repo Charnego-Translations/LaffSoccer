@@ -12,7 +12,7 @@ public class SceneSettings {
     public Time time;
     public Grass grass = new Grass();
     public Pitch.Type pitchType;
-    public Wind wind = new Wind();;
+    public Wind wind = new Wind();
     public int sky; // Sky.CLEAR, Sky.CLOUDY
 
     int weatherEffect; // Weather.WIND, Weather.RAIN, Weather.SNOW, Weather.FOG
@@ -23,7 +23,6 @@ public class SceneSettings {
 
     boolean fullScreen;
     public int zoom;
-    int light;
     float shadowAlpha;
 
     public SceneSettings() {
@@ -91,10 +90,10 @@ public class SceneSettings {
 
     public boolean useOrangeBall() {
         return (pitchType == Pitch.Type.SNOWED) ||
-                (pitchType == Pitch.Type.WHITE) ||
-                ((pitchType == Pitch.Type.FROZEN)
-                        && (weatherEffect == Weather.SNOW)
-                        && (weatherStrength > Weather.Strength.NONE));
+            (pitchType == Pitch.Type.WHITE) ||
+            ((pitchType == Pitch.Type.FROZEN)
+                && (weatherEffect == Weather.SNOW)
+                && (weatherStrength > Weather.Strength.NONE));
     }
 
     public static String getTimeLabel(Time time) {

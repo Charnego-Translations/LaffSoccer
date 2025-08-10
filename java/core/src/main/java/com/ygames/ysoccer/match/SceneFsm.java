@@ -104,22 +104,22 @@ abstract class SceneFsm {
 
         // fade in/out
         if (currentAction != null && currentAction.type == FADE_OUT) {
-            scene.settings.light = 8 * (currentAction.timer - 1);
+            scene.light = 8 * (currentAction.timer - 1);
             doUpdate = false;
         }
         if (currentAction != null && currentAction.type == FADE_IN) {
-            scene.settings.light = 255 - 8 * (currentAction.timer - 1);
+            scene.light = 255 - 8 * (currentAction.timer - 1);
             doUpdate = false;
         }
 
         // update current state
         if (currentState != null && doUpdate) {
             if (currentAction != null
-                    && (currentAction.type == NEW_FOREGROUND || currentAction.type == RESTORE_FOREGROUND)) {
+                && (currentAction.type == NEW_FOREGROUND || currentAction.type == RESTORE_FOREGROUND)) {
                 currentState.onResume();
             }
             if (currentAction != null
-                    && (currentAction.type == HOLD_FOREGROUND)) {
+                && (currentAction.type == HOLD_FOREGROUND)) {
                 holdState.onPause();
             }
             currentState.doActions(deltaTime);
@@ -213,9 +213,9 @@ abstract class SceneFsm {
 
     Action[] newFadedAction(ActionType type, int stateId) {
         return new Action[]{
-                new Action(FADE_OUT),
-                new Action(type, stateId),
-                new Action(FADE_IN)
+            new Action(FADE_OUT),
+            new Action(type, stateId),
+            new Action(FADE_IN)
         };
     }
 }
