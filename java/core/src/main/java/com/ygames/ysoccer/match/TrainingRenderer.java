@@ -26,7 +26,7 @@ public class TrainingRenderer extends SceneRenderer {
         this.camera = glGraphics.camera;
         this.ball = training.ball;
 
-        resize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), scene.settings.zoom);
+        resize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
         scene.actionCamera.x = 0.5f * (Const.PITCH_W - screenWidth / (zoom / 100.0f));
         scene.actionCamera.y = 0.5f * (Const.PITCH_H - screenHeight / (zoom / 100.0f));

@@ -38,7 +38,7 @@ public class MatchRenderer extends SceneRenderer {
         this.camera = glGraphics.camera;
         this.ball = match.ball;
 
-        resize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), scene.settings.zoom);
+        resize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
         match.actionCamera.x = 0.5f * (Const.PITCH_W - screenWidth / (zoom / 100.0f));
         match.actionCamera.y = 0;

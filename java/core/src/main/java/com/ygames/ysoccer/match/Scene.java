@@ -36,7 +36,7 @@ abstract class Scene {
     }
 
     public void resize(int width, int height) {
-        fsm.getSceneRenderer().resize(width, height, settings.zoom);
+        fsm.getSceneRenderer().resize(width, height);
     }
 
     void setPointOfInterest(float x, float y) {

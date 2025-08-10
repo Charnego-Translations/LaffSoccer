@@ -66,13 +66,13 @@ public abstract class SceneRenderer {
 
     abstract public void render();
 
-    void resize(int width, int height, int newZoom) {
+    void resize(int width, int height) {
         screenWidth = width;
         screenHeight = height;
         float zoomMin = width / (VISIBLE_FIELD_WIDTH_MAX * 2 * Const.TOUCH_LINE);
         float zoomOpt = width / (VISIBLE_FIELD_WIDTH_OPT * 2 * Const.TOUCH_LINE);
         float zoomMax = width / (VISIBLE_FIELD_WIDTH_MIN * 2 * Const.TOUCH_LINE);
-        zoom = 20 * (int) (5.0f * Math.min(Math.max(0.01f * newZoom * zoomOpt, zoomMin), zoomMax));
+        zoom = 20 * (int) (5.0f * Math.min(Math.max(0.01f * scene.settings.zoom * zoomOpt, zoomMin), zoomMax));
 
         scene.actionCamera.setScreenParameters(screenWidth, screenHeight, zoom);
 
