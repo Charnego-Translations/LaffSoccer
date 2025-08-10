@@ -3,6 +3,7 @@ package com.ygames.ysoccer.match;
 abstract class TrainingState extends SceneState {
 
     boolean displayControlledPlayer;
+    boolean displayPause;
 
     // convenience references
     final Training training;

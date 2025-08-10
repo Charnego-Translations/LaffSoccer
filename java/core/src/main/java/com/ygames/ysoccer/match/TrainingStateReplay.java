@@ -100,6 +100,8 @@ class TrainingStateReplay extends TrainingState {
 
             training.subframe = (subframe0 + position) % Const.REPLAY_SUBFRAMES;
         }
+
+        displayPause = paused;
     }
 
     @Override
@@ -165,10 +167,6 @@ class TrainingStateReplay extends TrainingState {
             int frameX = 1 + inputDevice.x1;
             int frameY = 1 + inputDevice.y1;
             sceneRenderer.batch.draw(Assets.replaySpeed[frameX][frameY], sceneRenderer.guiWidth - 50, sceneRenderer.guiHeight - 50);
-        }
-
-        if (paused) {
-            Assets.font10.draw(sceneRenderer.batch, gettext("PAUSE"), sceneRenderer.guiWidth / 2, 22, Font.Align.CENTER);
         }
     }
 }

@@ -8,6 +8,7 @@ import com.ygames.ysoccer.framework.GLGraphics;
 import com.ygames.ysoccer.framework.Settings;
 
 import static com.badlogic.gdx.Gdx.gl;
+import static com.ygames.ysoccer.framework.Assets.gettext;
 import static com.ygames.ysoccer.match.Match.AWAY;
 import static com.ygames.ysoccer.match.Match.HOME;
 
@@ -139,6 +140,10 @@ public class TrainingRenderer extends SceneRenderer {
         if (getTraining().fsm.getHotKeys().messageTimer > 0) {
             batch.setColor(0xFFFFFF, guiAlpha);
             Assets.font10.draw(batch, getTraining().fsm.getHotKeys().message, guiWidth / 2, 1, Font.Align.CENTER);
+        }
+
+        if (trainingState.displayPause) {
+            Assets.font10.draw(batch, gettext("PAUSE"), guiWidth / 2, 22, Font.Align.CENTER);
         }
 
         // additional state-specific render
