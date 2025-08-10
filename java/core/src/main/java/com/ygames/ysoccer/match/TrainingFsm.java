@@ -31,8 +31,4 @@ public class TrainingFsm extends SceneFsm {
     public Training getTraining() {
         return (Training) getScene();
     }
-
-    TrainingRenderer getRenderer() {
-        return (TrainingRenderer) getSceneRenderer();
-    }
 }

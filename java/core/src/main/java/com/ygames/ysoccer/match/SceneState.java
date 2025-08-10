@@ -6,12 +6,10 @@ abstract class SceneState {
 
     private int id;
     final SceneFsm fsm;
-    SceneRenderer sceneRenderer;
     int timer;
 
     SceneState(SceneFsm fsm) {
         this.fsm = fsm;
-        this.sceneRenderer = fsm.getSceneRenderer();
     }
 
     public int getId() {
