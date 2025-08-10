@@ -23,7 +23,6 @@ class MatchStateReplay extends MatchState {
     private boolean keySlow;
     private boolean keyPause;
     private int position;
-    private InputDevice inputDevice;
 
     MatchStateReplay(MatchFsm fsm) {
         super(fsm);
@@ -94,7 +93,7 @@ class MatchStateReplay extends MatchState {
         // set speed
         int speed;
         if (inputDevice != null) {
-            speed = 12 * inputDevice.x1 - 2 * inputDevice.y1 + 8 * Math.abs(inputDevice.x1) * inputDevice.y1;
+            speed = 12 * inputDevice.x1 - 4 * inputDevice.y1 + 8 * Math.abs(inputDevice.x1) * inputDevice.y1;
         } else if (slowMotion) {
             speed = GLGame.SUBFRAMES / 2;
         } else {
@@ -107,6 +106,9 @@ class MatchStateReplay extends MatchState {
 
             match.subframe = (subframe0 + position) % Const.REPLAY_SUBFRAMES;
         }
+
+        displayPause = paused;
+        displayReplayControls = inputDevice != null;
     }
 
     @Override
@@ -162,15 +164,5 @@ class MatchStateReplay extends MatchState {
         shapeRenderer.arc(18, 30, 6, 270 + a, 360 - a);
         shapeRenderer.end();
         sceneRenderer.batch.begin();
-
-        if (inputDevice != null) {
-            int frameX = 1 + inputDevice.x1;
-            int frameY = 1 + inputDevice.y1;
-            sceneRenderer.batch.draw(Assets.replaySpeed[frameX][frameY], sceneRenderer.guiWidth - 50, sceneRenderer.guiHeight - 50);
-        }
-
-        if (paused) {
-            Assets.font10.draw(sceneRenderer.batch, gettext("PAUSE"), sceneRenderer.guiWidth / 2, 22, Font.Align.CENTER);
-        }
     }
 }

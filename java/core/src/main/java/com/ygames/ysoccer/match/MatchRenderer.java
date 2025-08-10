@@ -19,7 +19,6 @@ import static com.ygames.ysoccer.match.Const.TEAM_SIZE;
 import static com.ygames.ysoccer.match.Match.AWAY;
 import static com.ygames.ysoccer.match.Match.HOME;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_BENCH_SITTING;
-import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_OUTSIDE;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_RED_CARD;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_SENT_OFF;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_SUBSTITUTED;
@@ -236,6 +235,12 @@ public class MatchRenderer extends SceneRenderer {
 
         if (matchState.displayPause) {
             Assets.font10.draw(batch, gettext("PAUSE"), guiWidth / 2, 22, Font.Align.CENTER);
+        }
+
+        if (matchState.displayReplayControls) {
+            int frameX = 1 + matchState.inputDevice.x1;
+            int frameY = 1 + matchState.inputDevice.y1;
+            batch.draw(Assets.replaySpeed[frameX][frameY], guiWidth - 50, guiHeight - 50);
         }
 
         // additional state-specific render

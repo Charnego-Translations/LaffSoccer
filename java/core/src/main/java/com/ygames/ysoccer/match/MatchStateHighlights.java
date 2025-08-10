@@ -26,7 +26,6 @@ class MatchStateHighlights extends MatchState {
     private boolean keySlow;
     private boolean keyPause;
     private int position;
-    private InputDevice inputDevice;
 
     MatchStateHighlights(MatchFsm fsm) {
         super(fsm);
@@ -59,7 +58,7 @@ class MatchStateHighlights extends MatchState {
 
         inputDevice = null;
 
-        match.recorder.loadHighlight(sceneRenderer);
+        match.recorder.loadHighlight();
     }
 
     @Override
@@ -67,7 +66,7 @@ class MatchStateHighlights extends MatchState {
         super.doActions(deltaTime);
 
         // toggle pause
-        if (Gdx.input.isKeyPressed(Input.Keys.P) && !keyPause) {
+        if (inputDevice == null && Gdx.input.isKeyPressed(Input.Keys.P) && !keyPause) {
             paused = !paused;
         }
         keyPause = Gdx.input.isKeyPressed(Input.Keys.P);
@@ -83,6 +82,7 @@ class MatchStateHighlights extends MatchState {
             for (InputDevice d : match.game.inputDevices) {
                 if (d.fire2Down()) {
                     inputDevice = d;
+                    paused = false;
                 }
             }
         } else {
@@ -107,6 +107,9 @@ class MatchStateHighlights extends MatchState {
 
             match.subframe = (subframe0 + position) % Const.REPLAY_SUBFRAMES;
         }
+
+        displayPause = paused;
+        displayReplayControls = inputDevice != null;
     }
 
     @Override
@@ -159,15 +162,5 @@ class MatchStateHighlights extends MatchState {
         shapeRenderer.arc(18, 30, 6, 270 + a, 360 - a);
         shapeRenderer.end();
         sceneRenderer.batch.begin();
-
-        if (inputDevice != null) {
-            int frameX = 1 + inputDevice.x1;
-            int frameY = 1 + inputDevice.y1;
-            sceneRenderer.batch.draw(Assets.replaySpeed[frameX][frameY], sceneRenderer.guiWidth - 50, sceneRenderer.guiHeight - 50);
-        }
-
-        if (paused) {
-            Assets.font10.draw(sceneRenderer.batch, gettext("PAUSE"), sceneRenderer.guiWidth / 2, 22, Font.Align.CENTER);
-        }
     }
 }

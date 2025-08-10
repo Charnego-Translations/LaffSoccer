@@ -33,6 +33,7 @@ abstract class MatchState extends SceneState {
     boolean displayTacticsSwitch;
     boolean displayHelp;
     boolean displayPause;
+    boolean displayReplayControls;
 
     boolean checkReplayKey = true;
     boolean checkPauseKey = true;
@@ -41,6 +42,7 @@ abstract class MatchState extends SceneState {
 
     final Match match;
     final Ball ball;
+    InputDevice inputDevice;
 
     MatchState(MatchFsm matchFsm) {
         super(matchFsm);

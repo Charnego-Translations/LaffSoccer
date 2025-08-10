@@ -82,7 +82,7 @@ class Recorder {
         recorded += 1;
     }
 
-    void loadHighlight(SceneRenderer sceneRenderer) {
+    void loadHighlight() {
 
         // copy highlights data into objects
         int index = current;
