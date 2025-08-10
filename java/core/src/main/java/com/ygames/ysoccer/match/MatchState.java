@@ -35,6 +35,7 @@ abstract class MatchState extends SceneState {
     boolean displayPause;
     boolean displayReplayGui;
     boolean displayReplayControls;
+    boolean displayHighlightsGui;
 
     boolean checkReplayKey = true;
     boolean checkPauseKey = true;

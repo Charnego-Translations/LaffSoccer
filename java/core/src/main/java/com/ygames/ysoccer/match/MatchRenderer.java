@@ -262,17 +262,38 @@ public class MatchRenderer extends SceneRenderer {
             batch.begin();
         }
 
+        if (matchState.displayHighlightsGui) {
+            int f = Math.round(1f * scene.subframe / GLGame.SUBFRAMES) % 32;
+            if (
+                //showCurrentRecord &&
+                f < 16) {
+                Assets.font10.draw(batch, (getMatch().recorder.getCurrent() + 1) + "/" + getMatch().recorder.getRecorded(), 30, 22, Font.Align.LEFT);
+            }
+            if (Settings.showDevelopmentInfo) {
+                Assets.font10.draw(batch, "FRAME: " + (scene.subframe / 8) + " / " + Const.REPLAY_FRAMES, 30, 42, Font.Align.LEFT);
+                Assets.font10.draw(batch, "SUBFRAME: " + scene.subframe + " / " + Const.REPLAY_SUBFRAMES, 30, 62, Font.Align.LEFT);
+            }
+
+            float a = matchState.replayPosition * 360f / Const.REPLAY_SUBFRAMES;
+
+            batch.end();
+            shapeRenderer.setProjectionMatrix(camera.combined);
+            shapeRenderer.setAutoShapeType(true);
+            shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+            shapeRenderer.setColor(0x242424, guiAlpha);
+            shapeRenderer.arc(20, 32, 6, 270 + a, 360 - a);
+            shapeRenderer.setColor(0xFF0000, guiAlpha);
+            shapeRenderer.arc(18, 30, 6, 270 + a, 360 - a);
+            shapeRenderer.end();
+            batch.begin();
+        }
+
         if (matchState.displayReplayControls) {
             int frameX = 1 + matchState.inputDevice.x1;
             int frameY = 1 + matchState.inputDevice.y1;
             batch.draw(Assets.replaySpeed[frameX][frameY], guiWidth - 50, guiHeight - 50);
         }
 
-        // additional state-specific render
-        MatchState matchState = getMatch().getFsm().getState();
-        if (matchState != null) {
-            matchState.render();
-        }
         batch.end();
     }
 

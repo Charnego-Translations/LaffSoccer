@@ -2,30 +2,21 @@ package com.ygames.ysoccer.match;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.ygames.ysoccer.framework.Assets;
 import com.ygames.ysoccer.framework.EMath;
-import com.ygames.ysoccer.framework.Font;
 import com.ygames.ysoccer.framework.GLGame;
-import com.ygames.ysoccer.framework.GLShapeRenderer;
 import com.ygames.ysoccer.framework.InputDevice;
-import com.ygames.ysoccer.framework.Settings;
 
-import static com.ygames.ysoccer.framework.Assets.gettext;
 import static com.ygames.ysoccer.match.MatchFsm.STATE_END;
 import static com.ygames.ysoccer.match.MatchFsm.STATE_HIGHLIGHTS;
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.NEW_FOREGROUND;
-import static com.ygames.ysoccer.match.SceneRenderer.guiAlpha;
 
 class MatchStateHighlights extends MatchState {
 
     private int subframe0;
     private boolean paused;
-    private boolean showCurrentRecord;
     private boolean slowMotion;
     private boolean keySlow;
     private boolean keyPause;
-    private int position;
 
     MatchStateHighlights(MatchFsm fsm) {
         super(fsm);
@@ -46,7 +37,6 @@ class MatchStateHighlights extends MatchState {
         subframe0 = match.subframe;
 
         paused = false;
-        showCurrentRecord = true;
         slowMotion = false;
 
         // control keys
@@ -54,9 +44,10 @@ class MatchStateHighlights extends MatchState {
         keyPause = Gdx.input.isKeyPressed(Input.Keys.P);
 
         // position of current frame in the highlights vector
-        position = 0;
+        replayPosition = 0;
 
         inputDevice = null;
+        displayHighlightsGui = true;
         displayReplayControls = false;
 
         match.recorder.loadHighlight();
@@ -104,9 +95,9 @@ class MatchStateHighlights extends MatchState {
 
         // set position
         if (!paused) {
-            position = EMath.slide(position, GLGame.SUBFRAMES / 2, Const.REPLAY_SUBFRAMES, speed);
+            replayPosition = EMath.slide(replayPosition, GLGame.SUBFRAMES / 2, Const.REPLAY_SUBFRAMES, speed);
 
-            match.subframe = (subframe0 + position) % Const.REPLAY_SUBFRAMES;
+            match.subframe = (subframe0 + replayPosition) % Const.REPLAY_SUBFRAMES;
         }
 
         displayPause = paused;
@@ -119,15 +110,15 @@ class MatchStateHighlights extends MatchState {
         // quit on fire button
         for (InputDevice d : match.game.inputDevices) {
             if (d.fire1Down()) {
-                showCurrentRecord = false;
+                displayHighlightsGui = false;
                 return newFadedAction(NEW_FOREGROUND, STATE_END);
             }
         }
 
         // quit on finish
-        if (position == Const.REPLAY_SUBFRAMES) {
+        if (replayPosition == Const.REPLAY_SUBFRAMES) {
             match.recorder.nextHighlight();
-            showCurrentRecord = false;
+            displayHighlightsGui = false;
             if (match.recorder.hasEnded()) {
                 return newFadedAction(NEW_FOREGROUND, STATE_END);
             } else {
@@ -136,33 +127,5 @@ class MatchStateHighlights extends MatchState {
         }
 
         return checkCommonConditions();
-    }
-
-    @Override
-    void render() {
-        super.render();
-
-        int f = Math.round(1f * match.subframe / GLGame.SUBFRAMES) % 32;
-        if (showCurrentRecord && f < 16) {
-            Assets.font10.draw(sceneRenderer.batch, (match.recorder.getCurrent() + 1) + "/" + match.recorder.getRecorded(), 30, 22, Font.Align.LEFT);
-        }
-        if (Settings.showDevelopmentInfo) {
-            Assets.font10.draw(sceneRenderer.batch, "FRAME: " + (match.subframe / 8) + " / " + Const.REPLAY_FRAMES, 30, 42, Font.Align.LEFT);
-            Assets.font10.draw(sceneRenderer.batch, "SUBFRAME: " + match.subframe + " / " + Const.REPLAY_SUBFRAMES, 30, 62, Font.Align.LEFT);
-        }
-
-        float a = position * 360f / Const.REPLAY_SUBFRAMES;
-
-        sceneRenderer.batch.end();
-        GLShapeRenderer shapeRenderer = sceneRenderer.shapeRenderer;
-        shapeRenderer.setProjectionMatrix(sceneRenderer.camera.combined);
-        shapeRenderer.setAutoShapeType(true);
-        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-        shapeRenderer.setColor(0x242424, guiAlpha);
-        shapeRenderer.arc(20, 32, 6, 270 + a, 360 - a);
-        shapeRenderer.setColor(0xFF0000, guiAlpha);
-        shapeRenderer.arc(18, 30, 6, 270 + a, 360 - a);
-        shapeRenderer.end();
-        sceneRenderer.batch.begin();
     }
 }
