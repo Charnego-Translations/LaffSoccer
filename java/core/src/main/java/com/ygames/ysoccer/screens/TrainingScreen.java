@@ -9,6 +9,7 @@ import com.ygames.ysoccer.framework.Settings;
 import com.ygames.ysoccer.match.Player;
 import com.ygames.ysoccer.match.Training;
 import com.ygames.ysoccer.match.TrainingConsoleCommandExecutor;
+import com.ygames.ysoccer.match.TrainingHotKeys;
 
 import static com.ygames.ysoccer.match.Match.AWAY;
 import static com.ygames.ysoccer.match.Match.HOME;
@@ -24,8 +25,10 @@ class TrainingScreen extends GLScreen {
 
     TrainingScreen(GLGame game, Training training) {
         super(game);
-
         this.training = training;
+
+        training.getFsm().setHotKeys(new TrainingHotKeys(training));
+
         usesMouse = false;
 
         started = false;

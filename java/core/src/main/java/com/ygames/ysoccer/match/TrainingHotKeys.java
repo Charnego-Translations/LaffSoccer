@@ -1,8 +1,8 @@
 package com.ygames.ysoccer.match;
 
-class TrainingHotKeys extends SceneHotKeys {
+public class TrainingHotKeys extends SceneHotKeys {
 
-    TrainingHotKeys(Training training) {
+    public TrainingHotKeys(Training training) {
         super(training);
     }
 }
