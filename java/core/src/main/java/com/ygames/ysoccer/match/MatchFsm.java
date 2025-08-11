@@ -63,7 +63,6 @@ public class MatchFsm extends SceneFsm {
     MatchFsm(Match match) {
         super(match);
 
-        setHotKeys(new MatchHotKeys(match));
         setSceneRenderer(new MatchRenderer(match.game.glGraphics, match));
 
         benchStatus = new BenchStatus();

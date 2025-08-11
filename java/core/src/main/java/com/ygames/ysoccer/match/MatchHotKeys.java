@@ -12,7 +12,7 @@ import static com.badlogic.gdx.Input.Keys.SPACE;
 import static com.ygames.ysoccer.framework.Assets.gettext;
 import static com.ygames.ysoccer.framework.InputDevice.keyDescription;
 
-class MatchHotKeys extends SceneHotKeys {
+public class MatchHotKeys extends SceneHotKeys {
 
     private boolean keyCommentary;
     private boolean keyCrowdChants;
@@ -20,7 +20,7 @@ class MatchHotKeys extends SceneHotKeys {
     private boolean keyRadar;
     private boolean keyRecordAction;
 
-    MatchHotKeys(Match match) {
+    public MatchHotKeys(Match match) {
         super(match);
 
         String[] matchCommentary = {keyDescription(F4), gettext("HELP.MATCH COMMENTARY")};

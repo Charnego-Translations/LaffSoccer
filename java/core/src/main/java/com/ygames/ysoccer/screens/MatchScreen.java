@@ -10,6 +10,7 @@ import com.ygames.ysoccer.framework.GLScreen;
 import com.ygames.ysoccer.framework.Settings;
 import com.ygames.ysoccer.match.Match;
 import com.ygames.ysoccer.match.MatchConsoleCommandExecutor;
+import com.ygames.ysoccer.match.MatchHotKeys;
 import com.ygames.ysoccer.match.Player;
 
 import java.util.Locale;
@@ -29,6 +30,8 @@ class MatchScreen extends GLScreen {
     MatchScreen(GLGame game, Match match) {
         super(game);
         this.match = match;
+
+        match.getFsm().setHotKeys(new MatchHotKeys(match));
 
         playMenuMusic = false;
         usesMouse = false;

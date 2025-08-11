@@ -87,7 +87,7 @@ abstract class SceneFsm {
         return hotKeys;
     }
 
-    void setHotKeys(SceneHotKeys hotKeys) {
+    public void setHotKeys(SceneHotKeys hotKeys) {
         this.hotKeys = hotKeys;
     }
 
