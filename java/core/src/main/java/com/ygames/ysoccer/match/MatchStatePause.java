@@ -61,7 +61,7 @@ class MatchStatePause extends MatchState {
         }
 
         // resume on fire button
-        for (InputDevice d : match.game.inputDevices) {
+        for (InputDevice d : fsm.inputDevices) {
             if (d.fire1Down()) {
                 return newAction(RESTORE_FOREGROUND);
             }

@@ -68,7 +68,7 @@ class TrainingStateReplay extends TrainingState {
 
         // set/unset controlling device
         if (inputDevice == null) {
-            for (InputDevice d : training.game.inputDevices) {
+            for (InputDevice d : fsm.inputDevices) {
                 if (d.fire2Down()) {
                     inputDevice = d;
                     paused = false;
@@ -110,7 +110,7 @@ class TrainingStateReplay extends TrainingState {
         }
 
         // quit on fire button
-        for (InputDevice d : training.game.inputDevices) {
+        for (InputDevice d : fsm.inputDevices) {
             if (d.fire1Down()) {
                 return quitAction();
             }

@@ -1,5 +1,7 @@
 package com.ygames.ysoccer.match;
 
+import com.ygames.ysoccer.framework.InputDeviceList;
+
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.FADE_IN;
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.NEW_FOREGROUND;
 
@@ -8,8 +10,8 @@ public class TrainingFsm extends SceneFsm {
     private static int STATE_FREE;
     static int STATE_REPLAY;
 
-    TrainingFsm(Training training) {
-        super(training);
+    TrainingFsm(Training training, InputDeviceList inputDevices) {
+        super(training, inputDevices);
 
         STATE_FREE = addState(new TrainingStateFree(this));
         STATE_REPLAY = addState(new TrainingStateReplay(this));

@@ -2,8 +2,8 @@ package com.ygames.ysoccer.match;
 
 import com.badlogic.gdx.math.Vector2;
 import com.ygames.ysoccer.framework.InputDevice;
+import com.ygames.ysoccer.framework.InputDeviceList;
 
-import static com.ygames.ysoccer.match.Const.TOUCH_LINE;
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.FADE_IN;
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.NEW_FOREGROUND;
 
@@ -60,8 +60,8 @@ public class MatchFsm extends SceneFsm {
     static int STATE_THROW_IN_STOP;
     static int STATE_YELLOW_CARD;
 
-    MatchFsm(Match match) {
-        super(match);
+    MatchFsm(Match match, InputDeviceList inputDevices) {
+        super(match, inputDevices);
 
         benchStatus = new BenchStatus();
         throwInPosition = new Vector2();

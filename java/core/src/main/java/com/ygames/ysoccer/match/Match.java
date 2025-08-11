@@ -138,7 +138,7 @@ public class Match extends Scene implements Json.Serializable {
         }
 
         actionCamera = new ActionCamera(ball);
-        fsm = new MatchFsm(this);
+        fsm = new MatchFsm(this, game.inputDevices);
 
         team[HOME].setSide(1 - 2 * Assets.random.nextInt(2)); // -1 = up, 1 = down
         team[AWAY].setSide(-team[HOME].side);

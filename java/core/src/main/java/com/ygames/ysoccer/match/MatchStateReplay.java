@@ -80,7 +80,7 @@ class MatchStateReplay extends MatchState {
 
         // set/unset controlling device
         if (inputDevice == null) {
-            for (InputDevice d : match.game.inputDevices) {
+            for (InputDevice d : fsm.inputDevices) {
                 if (d.fire2Down()) {
                     inputDevice = d;
                     paused = false;
@@ -117,7 +117,7 @@ class MatchStateReplay extends MatchState {
     SceneFsm.Action[] checkConditions() {
 
         // quit on fire button
-        for (InputDevice d : match.game.inputDevices) {
+        for (InputDevice d : fsm.inputDevices) {
             if (d.fire1Down()) {
                 return quitAction();
             }

@@ -1,6 +1,7 @@
 package com.ygames.ysoccer.match;
 
 import com.badlogic.gdx.Gdx;
+import com.ygames.ysoccer.framework.InputDeviceList;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -52,9 +53,11 @@ abstract class SceneFsm {
 
     private final ArrayDeque<Action> actions;
     private Action currentAction;
+    final InputDeviceList inputDevices;
 
-    SceneFsm(Scene scene) {
+    SceneFsm(Scene scene, InputDeviceList inputDevices) {
         this.scene = scene;
+        this.inputDevices = inputDevices;
         states = new ArrayList<>();
         actions = new ArrayDeque<>();
     }

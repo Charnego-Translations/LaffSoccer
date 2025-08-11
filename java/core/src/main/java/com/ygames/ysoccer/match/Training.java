@@ -62,7 +62,7 @@ public class Training extends Scene {
         }
 
         actionCamera = new ActionCamera(ball);
-        fsm = new TrainingFsm(this);
+        fsm = new TrainingFsm(this, game.inputDevices);
         pointOfInterest = new Vector2();
     }
 
