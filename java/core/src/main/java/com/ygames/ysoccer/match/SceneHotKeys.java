@@ -3,6 +3,7 @@ package com.ygames.ysoccer.match;
 import com.badlogic.gdx.Gdx;
 import com.ygames.ysoccer.framework.Assets;
 import com.ygames.ysoccer.framework.EMath;
+import com.ygames.ysoccer.framework.GLGame;
 import com.ygames.ysoccer.framework.Settings;
 
 import java.util.TreeMap;
@@ -78,7 +79,7 @@ abstract class SceneHotKeys {
 
         if (Gdx.input.isKeyPressed(F6) && !keyScreenMode) {
             scene.settings.fullScreen = !scene.settings.fullScreen;
-            scene.game.setScreenMode(scene.settings.fullScreen);
+            GLGame.setScreenMode(scene.settings.fullScreen);
 
             if (scene.settings.fullScreen) {
                 message = gettext("SCREEN MODE.FULL SCREEN");

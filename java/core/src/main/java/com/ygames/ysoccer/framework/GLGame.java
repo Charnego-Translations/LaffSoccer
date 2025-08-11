@@ -117,13 +117,13 @@ public class GLGame extends Game {
         }
     }
 
-    public void setScreenMode(boolean fullScreen) {
+    public static void setScreenMode(boolean fullScreen) {
         if (fullScreen) {
             if (!Gdx.graphics.isFullscreen()) {
                 Gdx.graphics.setFullscreenMode(Gdx.graphics.getDisplayMode());
             }
         } else if (Gdx.graphics.isFullscreen()) {
-            Gdx.graphics.setWindowedMode(gui.WIDTH, gui.HEIGHT);
+            Gdx.graphics.setWindowedMode(Gui.WIDTH, Gui.HEIGHT);
         }
     }
 
