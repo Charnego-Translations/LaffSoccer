@@ -34,7 +34,6 @@ abstract class SceneState {
 
             timeLeft -= GLGame.SUBFRAME_DURATION;
         }
-        fsm.getHotKeys().update();
     }
 
     SceneFsm.Action[] newAction(SceneFsm.ActionType type, int stateId) {

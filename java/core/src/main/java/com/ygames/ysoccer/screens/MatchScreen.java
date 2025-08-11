@@ -34,7 +34,6 @@ class MatchScreen extends GLScreen {
         this.match = match;
 
         matchRenderer = new MatchRenderer(game.glGraphics, match);
-        match.getFsm().setHotKeys(new MatchHotKeys(match, matchRenderer));
 
         playMenuMusic = false;
         usesMouse = false;
@@ -71,6 +70,7 @@ class MatchScreen extends GLScreen {
 
         if (!matchPaused) {
             match.update(deltaTime);
+            matchRenderer.update();
         }
 
         if (!matchEnded) {

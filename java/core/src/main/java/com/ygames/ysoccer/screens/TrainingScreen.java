@@ -30,7 +30,6 @@ class TrainingScreen extends GLScreen {
         this.training = training;
 
         trainingRenderer = new TrainingRenderer(game.glGraphics, training);
-        training.getFsm().setHotKeys(new TrainingHotKeys(training, trainingRenderer));
 
         usesMouse = false;
 
@@ -66,6 +65,7 @@ class TrainingScreen extends GLScreen {
 
         if (!paused) {
             training.update(deltaTime);
+            trainingRenderer.update();
         }
 
         if (!ended) {

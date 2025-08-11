@@ -53,6 +53,8 @@ public abstract class SceneRenderer {
     int guiHeight;
     Ball ball;
 
+    SceneHotKeys hotKeys;
+
     final List<Sprite> allSprites = new ArrayList<>();
     final Sprite.SpriteComparator spriteComparator = new Sprite.SpriteComparator();
     CornerFlagSprite[] cornerFlagSprites;
@@ -382,5 +384,9 @@ public abstract class SceneRenderer {
 
     void drawPlayerNumberAndName(Player player) {
         Assets.font10.draw(batch, player.number + " " + player.shirtName, 10, 2, Font.Align.LEFT);
+    }
+
+    public void update() {
+        hotKeys.update();
     }
 }

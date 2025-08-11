@@ -35,6 +35,8 @@ public class MatchRenderer extends SceneRenderer {
         super(glGraphics, match);
         this.ball = match.ball;
 
+        this.hotKeys = new MatchHotKeys(match, this);
+
         resize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
         match.actionCamera.x = 0.5f * (Const.PITCH_W - screenWidth / (zoom / 100.0f));
@@ -202,9 +204,9 @@ public class MatchRenderer extends SceneRenderer {
         }
 
         // messages
-        if (getMatch().fsm.getHotKeys().messageTimer > 0) {
+        if (hotKeys.messageTimer > 0) {
             batch.setColor(0xFFFFFF, guiAlpha);
-            Assets.font10.draw(batch, getMatch().fsm.getHotKeys().message, guiWidth / 2, 1, Font.Align.CENTER);
+            Assets.font10.draw(batch, hotKeys.message, guiWidth / 2, 1, Font.Align.CENTER);
         }
 
         // statistics
@@ -230,7 +232,7 @@ public class MatchRenderer extends SceneRenderer {
         }
 
         if (matchState.displayHelp) {
-            drawHelp(getMatch().getFsm().getHotKeys().keyMap);
+            drawHelp(hotKeys.keyMap);
         }
 
         if (matchState.displayPause) {

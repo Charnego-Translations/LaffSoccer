@@ -53,8 +53,6 @@ abstract class SceneFsm {
     private final ArrayDeque<Action> actions;
     private Action currentAction;
 
-    private SceneHotKeys hotKeys;
-
     SceneFsm(Scene scene) {
         this.scene = scene;
         states = new ArrayList<>();
@@ -79,14 +77,6 @@ abstract class SceneFsm {
 
     SceneState getHoldState() {
         return holdState;
-    }
-
-    SceneHotKeys getHotKeys() {
-        return hotKeys;
-    }
-
-    public void setHotKeys(SceneHotKeys hotKeys) {
-        this.hotKeys = hotKeys;
     }
 
     void think(float deltaTime) {

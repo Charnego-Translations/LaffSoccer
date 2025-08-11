@@ -23,6 +23,8 @@ public class TrainingRenderer extends SceneRenderer {
         super(glGraphics, training);
         this.ball = training.ball;
 
+        hotKeys = new TrainingHotKeys(training, this);
+
         resize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
         scene.actionCamera.x = 0.5f * (Const.PITCH_W - screenWidth / (zoom / 100.0f));
@@ -138,9 +140,9 @@ public class TrainingRenderer extends SceneRenderer {
         }
 
         // messages
-        if (getTraining().fsm.getHotKeys().messageTimer > 0) {
+        if (hotKeys.messageTimer > 0) {
             batch.setColor(0xFFFFFF, guiAlpha);
-            Assets.font10.draw(batch, getTraining().fsm.getHotKeys().message, guiWidth / 2, 1, Font.Align.CENTER);
+            Assets.font10.draw(batch, hotKeys.message, guiWidth / 2, 1, Font.Align.CENTER);
         }
 
         if (trainingState.displayPause) {
