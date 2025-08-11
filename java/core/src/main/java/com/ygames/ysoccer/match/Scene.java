@@ -30,15 +30,6 @@ abstract class Scene {
         subframe = (subframe + 1) % Const.REPLAY_SUBFRAMES;
     }
 
-    public void render() {
-        game.glGraphics.light = light;
-        fsm.getSceneRenderer().render();
-    }
-
-    public void resize(int width, int height) {
-        fsm.getSceneRenderer().resize(width, height);
-    }
-
     void setPointOfInterest(float x, float y) {
         pointOfInterest.set(x, y);
     }

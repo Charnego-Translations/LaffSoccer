@@ -63,8 +63,6 @@ public class MatchFsm extends SceneFsm {
     MatchFsm(Match match) {
         super(match);
 
-        setSceneRenderer(new MatchRenderer(match.game.glGraphics, match));
-
         benchStatus = new BenchStatus();
         throwInPosition = new Vector2();
 

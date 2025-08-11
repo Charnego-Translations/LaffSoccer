@@ -21,6 +21,7 @@ import static com.ygames.ysoccer.framework.InputDevice.keyDescription;
 abstract class SceneHotKeys {
 
     final Scene scene;
+    final SceneRenderer sceneRenderer;
 
     String message;
     long messageTimer;
@@ -34,8 +35,9 @@ abstract class SceneHotKeys {
 
     final TreeMap<Integer, String[]> keyMap = new TreeMap<>();
 
-    SceneHotKeys(Scene scene) {
+    SceneHotKeys(Scene scene, SceneRenderer sceneRenderer) {
         this.scene = scene;
+        this.sceneRenderer = sceneRenderer;
 
         String[] keySoundInfo = {keyDescription(F2) + "-" + keyDescription(F3), gettext("HELP.SOUND FX VOLUME")};
         keyMap.put(2, keySoundInfo);
@@ -89,7 +91,7 @@ abstract class SceneHotKeys {
 
         if (Gdx.input.isKeyPressed(F7) && !keyZoomIn) {
             scene.settings.zoom = EMath.slide(scene.settings.zoom, SceneRenderer.zoomMin(), SceneRenderer.zoomMax(), +5);
-            scene.resize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+            sceneRenderer.resize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
             message = gettext("ZOOM") + " " + scene.settings.zoom + "%";
 
@@ -98,7 +100,7 @@ abstract class SceneHotKeys {
 
         if (Gdx.input.isKeyPressed(F8) && !keyZoomOut) {
             scene.settings.zoom = EMath.slide(scene.settings.zoom, SceneRenderer.zoomMin(), SceneRenderer.zoomMax(), -5);
-            scene.resize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+            sceneRenderer.resize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
             message = gettext("ZOOM") + " " + scene.settings.zoom + "%";
 

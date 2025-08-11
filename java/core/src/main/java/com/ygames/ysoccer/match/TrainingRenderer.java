@@ -19,7 +19,7 @@ public class TrainingRenderer extends SceneRenderer {
     private TrainingState trainingState;
     private final BallSprite ballSprite;
 
-    TrainingRenderer(GLGraphics glGraphics, Training training) {
+    public TrainingRenderer(GLGraphics glGraphics, Training training) {
         super(training);
         this.batch = glGraphics.batch;
         this.shapeRenderer = glGraphics.shapeRenderer;
@@ -69,6 +69,8 @@ public class TrainingRenderer extends SceneRenderer {
 
     public void render() {
         trainingState = getTraining().getFsm().getState();
+
+        scene.game.glGraphics.light = scene.light;
 
         gl.glEnable(GL20.GL_BLEND);
         gl.glClear(GL20.GL_COLOR_BUFFER_BIT);

@@ -53,8 +53,6 @@ abstract class SceneFsm {
     private final ArrayDeque<Action> actions;
     private Action currentAction;
 
-    private SceneRenderer sceneRenderer;
-
     private SceneHotKeys hotKeys;
 
     SceneFsm(Scene scene) {
@@ -89,14 +87,6 @@ abstract class SceneFsm {
 
     public void setHotKeys(SceneHotKeys hotKeys) {
         this.hotKeys = hotKeys;
-    }
-
-    SceneRenderer getSceneRenderer() {
-        return sceneRenderer;
-    }
-
-    void setSceneRenderer(SceneRenderer sceneRenderer) {
-        this.sceneRenderer = sceneRenderer;
     }
 
     void think(float deltaTime) {

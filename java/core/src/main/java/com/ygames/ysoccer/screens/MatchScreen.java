@@ -11,6 +11,7 @@ import com.ygames.ysoccer.framework.Settings;
 import com.ygames.ysoccer.match.Match;
 import com.ygames.ysoccer.match.MatchConsoleCommandExecutor;
 import com.ygames.ysoccer.match.MatchHotKeys;
+import com.ygames.ysoccer.match.MatchRenderer;
 import com.ygames.ysoccer.match.Player;
 
 import java.util.Locale;
@@ -21,6 +22,7 @@ import static com.ygames.ysoccer.match.Match.HOME;
 class MatchScreen extends GLScreen {
 
     private final Match match;
+    private final MatchRenderer matchRenderer;
     private boolean matchStarted;
     private boolean matchPaused;
     private boolean matchEnded;
@@ -31,7 +33,8 @@ class MatchScreen extends GLScreen {
         super(game);
         this.match = match;
 
-        match.getFsm().setHotKeys(new MatchHotKeys(match));
+        matchRenderer = new MatchRenderer(game.glGraphics, match);
+        match.getFsm().setHotKeys(new MatchHotKeys(match, matchRenderer));
 
         playMenuMusic = false;
         usesMouse = false;
@@ -71,7 +74,7 @@ class MatchScreen extends GLScreen {
         }
 
         if (!matchEnded) {
-            match.render();
+            matchRenderer.render();
         }
 
         if (!matchEnded && Settings.development) {
@@ -90,7 +93,7 @@ class MatchScreen extends GLScreen {
     public void resize(int width, int height) {
         super.resize(width, height);
 
-        match.resize(width, height);
+        matchRenderer.resize(width, height);
 
         if (Settings.development) {
             console.refresh();

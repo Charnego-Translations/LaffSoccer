@@ -31,7 +31,7 @@ public class MatchRenderer extends SceneRenderer {
     private MatchState matchState;
     private final BallSprite ballSprite;
 
-    MatchRenderer(GLGraphics glGraphics, Match match) {
+    public MatchRenderer(GLGraphics glGraphics, Match match) {
         super(match);
         this.batch = glGraphics.batch;
         this.shapeRenderer = glGraphics.shapeRenderer;
@@ -82,6 +82,8 @@ public class MatchRenderer extends SceneRenderer {
 
     public void render() {
         matchState = getMatch().getFsm().getState();
+
+        scene.game.glGraphics.light = scene.light;
 
         gl.glEnable(GL20.GL_BLEND);
         gl.glClear(GL20.GL_COLOR_BUFFER_BIT);

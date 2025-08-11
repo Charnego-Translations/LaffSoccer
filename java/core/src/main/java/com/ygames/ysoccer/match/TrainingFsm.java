@@ -11,8 +11,6 @@ public class TrainingFsm extends SceneFsm {
     TrainingFsm(Training training) {
         super(training);
 
-        setSceneRenderer(new TrainingRenderer(training.game.glGraphics, training));
-
         STATE_FREE = addState(new TrainingStateFree(this));
         STATE_REPLAY = addState(new TrainingStateReplay(this));
     }

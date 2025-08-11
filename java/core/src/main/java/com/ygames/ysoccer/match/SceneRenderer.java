@@ -66,7 +66,7 @@ public abstract class SceneRenderer {
 
     abstract public void render();
 
-    void resize(int width, int height) {
+    public void resize(int width, int height) {
         screenWidth = width;
         screenHeight = height;
         float zoomMin = width / (VISIBLE_FIELD_WIDTH_MAX * 2 * Const.TOUCH_LINE);

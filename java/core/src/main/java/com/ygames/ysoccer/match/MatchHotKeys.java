@@ -20,8 +20,8 @@ public class MatchHotKeys extends SceneHotKeys {
     private boolean keyRadar;
     private boolean keyRecordAction;
 
-    public MatchHotKeys(Match match) {
-        super(match);
+    public MatchHotKeys(Match match, MatchRenderer matchRenderer) {
+        super(match, matchRenderer);
 
         String[] matchCommentary = {keyDescription(F4), gettext("HELP.MATCH COMMENTARY")};
         keyMap.put(4, matchCommentary);

@@ -10,6 +10,7 @@ import com.ygames.ysoccer.match.Player;
 import com.ygames.ysoccer.match.Training;
 import com.ygames.ysoccer.match.TrainingConsoleCommandExecutor;
 import com.ygames.ysoccer.match.TrainingHotKeys;
+import com.ygames.ysoccer.match.TrainingRenderer;
 
 import static com.ygames.ysoccer.match.Match.AWAY;
 import static com.ygames.ysoccer.match.Match.HOME;
@@ -17,6 +18,7 @@ import static com.ygames.ysoccer.match.Match.HOME;
 class TrainingScreen extends GLScreen {
 
     private final Training training;
+    private final TrainingRenderer trainingRenderer;
     private boolean started;
     private boolean paused;
     private boolean ended;
@@ -27,7 +29,8 @@ class TrainingScreen extends GLScreen {
         super(game);
         this.training = training;
 
-        training.getFsm().setHotKeys(new TrainingHotKeys(training));
+        trainingRenderer = new TrainingRenderer(game.glGraphics, training);
+        training.getFsm().setHotKeys(new TrainingHotKeys(training, trainingRenderer));
 
         usesMouse = false;
 
@@ -66,7 +69,7 @@ class TrainingScreen extends GLScreen {
         }
 
         if (!ended) {
-            training.render();
+            trainingRenderer.render();
         }
 
         if (Settings.development) {
@@ -79,7 +82,7 @@ class TrainingScreen extends GLScreen {
     public void resize(int width, int height) {
         super.resize(width, height);
 
-        training.resize(width, height);
+        trainingRenderer.resize(width, height);
 
         if (Settings.development) {
             console.refresh();
