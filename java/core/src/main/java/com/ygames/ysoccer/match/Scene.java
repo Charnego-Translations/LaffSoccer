@@ -3,7 +3,7 @@ package com.ygames.ysoccer.match;
 import com.badlogic.gdx.math.Vector2;
 import com.ygames.ysoccer.framework.GLGame;
 
-abstract class Scene {
+public abstract class Scene {
 
     protected GLGame game;
     protected SceneFsm fsm;
@@ -13,7 +13,7 @@ abstract class Scene {
     Vector2 pointOfInterest;
 
     ActionCamera actionCamera;
-    int light;
+    public int light;
 
     final int[] vCameraX = new int[Const.REPLAY_SUBFRAMES];
     final int[] vCameraY = new int[Const.REPLAY_SUBFRAMES];

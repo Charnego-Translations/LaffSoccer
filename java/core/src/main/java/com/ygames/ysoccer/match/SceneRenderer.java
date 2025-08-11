@@ -9,6 +9,7 @@ import com.ygames.ysoccer.framework.Assets;
 import com.ygames.ysoccer.framework.EMath;
 import com.ygames.ysoccer.framework.Font;
 import com.ygames.ysoccer.framework.GLGame;
+import com.ygames.ysoccer.framework.GLGraphics;
 import com.ygames.ysoccer.framework.GLShapeRenderer;
 import com.ygames.ysoccer.framework.GLSpriteBatch;
 
@@ -41,9 +42,10 @@ public abstract class SceneRenderer {
     static final float guiAlpha = 0.9f;
 
     final Scene scene;
-    GLSpriteBatch batch;
-    protected GLShapeRenderer shapeRenderer;
-    OrthographicCamera camera;
+    final GLGraphics glGraphics;
+    final GLSpriteBatch batch;
+    final protected GLShapeRenderer shapeRenderer;
+    final OrthographicCamera camera;
     int screenWidth;
     int screenHeight;
     int zoom;
@@ -60,8 +62,13 @@ public abstract class SceneRenderer {
     private final int modX = (int) Math.ceil(Const.PITCH_W / ((float) modW));
     private final int modY = (int) Math.ceil(Const.PITCH_H / ((float) modH));
 
-    protected SceneRenderer(Scene scene) {
+    protected SceneRenderer(GLGraphics glGraphics, Scene scene) {
+        this.glGraphics = glGraphics;
         this.scene = scene;
+
+        this.batch = glGraphics.batch;
+        this.shapeRenderer = glGraphics.shapeRenderer;
+        this.camera = glGraphics.camera;
     }
 
     abstract public void render();

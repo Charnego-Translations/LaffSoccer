@@ -32,10 +32,7 @@ public class MatchRenderer extends SceneRenderer {
     private final BallSprite ballSprite;
 
     public MatchRenderer(GLGraphics glGraphics, Match match) {
-        super(match);
-        this.batch = glGraphics.batch;
-        this.shapeRenderer = glGraphics.shapeRenderer;
-        this.camera = glGraphics.camera;
+        super(glGraphics, match);
         this.ball = match.ball;
 
         resize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
@@ -83,7 +80,7 @@ public class MatchRenderer extends SceneRenderer {
     public void render() {
         matchState = getMatch().getFsm().getState();
 
-        scene.game.glGraphics.light = scene.light;
+        glGraphics.light = scene.light;
 
         gl.glEnable(GL20.GL_BLEND);
         gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
