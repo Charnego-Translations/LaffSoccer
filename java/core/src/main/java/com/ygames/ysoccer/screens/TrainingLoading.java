@@ -29,7 +29,7 @@ class TrainingLoading extends GLScreen {
         sceneSettings.setup();
 
         training = new Training(trainingTeam);
-        training.init(game, sceneSettings);
+        training.init(game.inputDevices, sceneSettings);
         assignInputDevices();
 
         game.disableMouse();

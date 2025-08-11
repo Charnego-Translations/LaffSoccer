@@ -26,7 +26,7 @@ class MatchLoading extends GLScreen {
         matchSettings.setup();
 
         match = competition.getMatch();
-        match.init(game, matchSettings, competition);
+        match.init(game.inputDevices, matchSettings, competition);
 
         game.disableMouse();
 

@@ -1,12 +1,10 @@
 package com.ygames.ysoccer.match;
 
 import com.badlogic.gdx.math.Vector2;
-import com.ygames.ysoccer.framework.GLGame;
 
 public abstract class Scene {
 
-    protected GLGame game;
-    protected SceneFsm fsm;
+    SceneFsm fsm;
     protected int subframe;
     protected SceneSettings settings;
 

@@ -6,7 +6,7 @@ import com.badlogic.gdx.utils.JsonValue;
 import com.ygames.ysoccer.competitions.Competition;
 import com.ygames.ysoccer.framework.Assets;
 import com.ygames.ysoccer.framework.EMath;
-import com.ygames.ysoccer.framework.GLGame;
+import com.ygames.ysoccer.framework.InputDeviceList;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -123,8 +123,7 @@ public class Match extends Scene implements Json.Serializable {
         this.team[side].index = side;
     }
 
-    public void init(GLGame game, MatchSettings matchSettings, Competition competition) {
-        this.game = game;
+    public void init(InputDeviceList inputDevices, MatchSettings matchSettings, Competition competition) {
         this.settings = matchSettings;
         this.competition = competition;
 
@@ -138,7 +137,7 @@ public class Match extends Scene implements Json.Serializable {
         }
 
         actionCamera = new ActionCamera(ball);
-        fsm = new MatchFsm(this, game.inputDevices);
+        fsm = new MatchFsm(this, inputDevices);
 
         team[HOME].setSide(1 - 2 * Assets.random.nextInt(2)); // -1 = up, 1 = down
         team[AWAY].setSide(-team[HOME].side);
@@ -593,7 +592,7 @@ public class Match extends Scene implements Json.Serializable {
         }
         // ball going toward the goals
         if ((Math.abs(ball.y) > (GOAL_LINE / 4f))
-                && (Math.abs(ball.y) > Math.abs(ball.y0))) {
+            && (Math.abs(ball.y) > Math.abs(ball.y0))) {
             return false;
         }
         return true;
@@ -653,12 +652,12 @@ public class Match extends Scene implements Json.Serializable {
 
         public boolean isPenalty() {
             return (Math.abs(position.x) < Const.PENALTY_AREA_W / 2f)
-                    &&
-                    EMath.isIn(
-                            position.y,
-                            player.team.side * (Const.GOAL_LINE - Const.PENALTY_AREA_H),
-                            player.team.side * Const.GOAL_LINE
-                    );
+                &&
+                EMath.isIn(
+                    position.y,
+                    player.team.side * (Const.GOAL_LINE - Const.PENALTY_AREA_H),
+                    player.team.side * Const.GOAL_LINE
+                );
         }
 
         boolean isDirectShot() {
@@ -667,9 +666,9 @@ public class Match extends Scene implements Json.Serializable {
 
         boolean isNearOwnGoal() {
             return Math.abs(ball.x) < (GOAL_AREA_W / 2f + 50)
-                    && EMath.isIn(ball.y,
-                    -player.team.side * (GOAL_LINE - GOAL_AREA_H - 50),
-                    -player.team.side * GOAL_LINE
+                && EMath.isIn(ball.y,
+                -player.team.side * (GOAL_LINE - GOAL_AREA_H - 50),
+                -player.team.side * GOAL_LINE
             );
         }
     }

@@ -3,7 +3,7 @@ package com.ygames.ysoccer.match;
 import com.badlogic.gdx.math.Vector2;
 import com.ygames.ysoccer.framework.Assets;
 import com.ygames.ysoccer.framework.EMath;
-import com.ygames.ysoccer.framework.GLGame;
+import com.ygames.ysoccer.framework.InputDeviceList;
 
 import static com.ygames.ysoccer.match.Const.BALL_PREDICTION;
 import static com.ygames.ysoccer.match.Const.BALL_R;
@@ -49,8 +49,7 @@ public class Training extends Scene {
         }
     }
 
-    public void init(GLGame game, SceneSettings sceneSettings) {
-        this.game = game;
+    public void init(InputDeviceList inputDevices, SceneSettings sceneSettings) {
         this.settings = sceneSettings;
 
         ball = new Ball(sceneSettings);
@@ -62,7 +61,7 @@ public class Training extends Scene {
         }
 
         actionCamera = new ActionCamera(ball);
-        fsm = new TrainingFsm(this, game.inputDevices);
+        fsm = new TrainingFsm(this, inputDevices);
         pointOfInterest = new Vector2();
     }
 
