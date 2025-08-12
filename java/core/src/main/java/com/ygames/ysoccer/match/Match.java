@@ -110,6 +110,8 @@ public class Match extends Scene implements Json.Serializable {
 
     Recorder recorder;
 
+    public int rank; // 0 to 9
+
     public Match() {
         team = new Team[2];
     }
@@ -171,6 +173,8 @@ public class Match extends Scene implements Json.Serializable {
 
         recorder = new Recorder(this);
         pointOfInterest = new Vector2();
+
+        calculateRank();
     }
 
     void createPenalty(Player player, Player keeper, int side) {
@@ -631,10 +635,11 @@ public class Match extends Scene implements Json.Serializable {
         listener.quitMatch(getFsm().matchCompleted);
     }
 
-    // returns an integer from 0 to 9
-    int getRank() {
-        int matchRank = (int) ((team[HOME].getRank() + 2 * team[AWAY].getRank()) / 3);
-        return (competition.type == Competition.Type.FRIENDLY) ? matchRank : (matchRank + 1);
+    void calculateRank() {
+        rank = (int) ((team[HOME].getRank() + 2 * team[AWAY].getRank()) / 3);
+        if (competition.type != Competition.Type.FRIENDLY) {
+            rank += 1;
+        }
     }
 
     void newTackle(Player player, Player opponent, float strength, float angleDiff) {

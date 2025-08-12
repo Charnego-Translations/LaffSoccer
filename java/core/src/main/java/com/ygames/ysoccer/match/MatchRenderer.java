@@ -46,14 +46,14 @@ public class MatchRenderer extends SceneRenderer {
             match.vCameraY[i] = Math.round(match.actionCamera.y);
         }
 
-        ballSprite = new BallSprite(glGraphics, getMatch().ball);
+        ballSprite = new BallSprite(glGraphics, match.ball);
         allSprites.add(ballSprite);
         for (int t = HOME; t <= AWAY; t++) {
-            CoachSprite coachSprite = new CoachSprite(glGraphics, getMatch().team[t].coach);
+            CoachSprite coachSprite = new CoachSprite(glGraphics, match.team[t].coach);
             allSprites.add(coachSprite);
-            int len = getMatch().team[t].lineup.size();
+            int len = match.team[t].lineup.size();
             for (int i = 0; i < len; i++) {
-                PlayerSprite playerSprite = new PlayerSprite(glGraphics, getMatch().team[t].lineup.get(i));
+                PlayerSprite playerSprite = new PlayerSprite(glGraphics, match.team[t].lineup.get(i));
                 allSprites.add(playerSprite);
             }
         }
@@ -72,7 +72,7 @@ public class MatchRenderer extends SceneRenderer {
         allSprites.add(new GoalTopA(glGraphics));
         allSprites.add(new GoalTopB(glGraphics));
 
-        Assets.crowdRenderer.setMaxRank(getMatch().getRank());
+        Assets.crowdRenderer.setMaxRank(match.rank);
     }
 
     private Match getMatch() {
