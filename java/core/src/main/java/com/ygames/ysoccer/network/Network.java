@@ -8,6 +8,7 @@ import com.ygames.ysoccer.network.dto.BallDto;
 import com.ygames.ysoccer.network.dto.MatchDto;
 import com.ygames.ysoccer.network.dto.MatchSettingsDto;
 import com.ygames.ysoccer.network.dto.MatchSetupDto;
+import com.ygames.ysoccer.network.dto.PlayerDto;
 import com.ygames.ysoccer.network.dto.TeamDto;
 
 public class Network {
@@ -17,6 +18,7 @@ public class Network {
         kryo.register(Pitch.Type.class);
         kryo.register(MatchSettingsDto.class);
         kryo.register(BallDto.class);
+        kryo.register(PlayerDto.class);
         kryo.register(TeamDto.class);
         kryo.register(TeamDto[].class);
         kryo.register(MatchSetupDto.class);
