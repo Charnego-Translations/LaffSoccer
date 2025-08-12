@@ -7,6 +7,7 @@ import com.ygames.ysoccer.network.dto.mappers.MatchSettingsMapper;
 public class MatchDto {
     MatchSettingsDto matchSettingsDto;
     BallDto ballDto;
+    TeamDto[] teamDto;
 
     public MatchDto() {
     }
