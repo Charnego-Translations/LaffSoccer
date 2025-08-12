@@ -11,9 +11,12 @@ import com.ygames.ysoccer.network.dto.MatchSetupDto;
 import com.ygames.ysoccer.network.dto.PlayerDto;
 import com.ygames.ysoccer.network.dto.TeamDto;
 
+import java.util.ArrayList;
+
 public class Network {
     static public void register(EndPoint endPoint) {
         Kryo kryo = endPoint.getKryo();
+        kryo.register(ArrayList.class);
         kryo.register(SceneSettings.Time.class);
         kryo.register(Pitch.Type.class);
         kryo.register(MatchSettingsDto.class);
