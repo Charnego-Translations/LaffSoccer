@@ -1,4 +1,4 @@
-package com.ygames.ysoccer.network.dto.mappers;
+package com.ygames.ysoccer.network.mappers;
 
 import com.ygames.ysoccer.match.Ball;
 import com.ygames.ysoccer.match.SceneSettings;
@@ -8,17 +8,17 @@ public class BallMapper {
 
     public static BallDto toDto(Ball ball) {
         BallDto ballDto = new BallDto();
-        ballDto.setX(ball.getX());
-        ballDto.setY(ball.getY());
-        ballDto.setZ(ball.getZ());
+        ballDto.x = ball.getX();
+        ballDto.y = ball.getY();
+        ballDto.z = ball.getZ();
         return ballDto;
     }
 
     public static Ball fromDto(BallDto ballDto, SceneSettings sceneSettings) {
         Ball ball = new Ball(sceneSettings);
-        ball.setX(ballDto.getX());
-        ball.setY(ballDto.getY());
-        ball.setZ(ballDto.getZ());
+        ball.setX(ballDto.x);
+        ball.setY(ballDto.y);
+        ball.setZ(ballDto.z);
         return ball;
     }
 }

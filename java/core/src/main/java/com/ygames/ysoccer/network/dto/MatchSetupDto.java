@@ -1,7 +1,7 @@
 package com.ygames.ysoccer.network.dto;
 
 import com.ygames.ysoccer.match.Match;
-import com.ygames.ysoccer.network.dto.mappers.MatchMapper;
+import com.ygames.ysoccer.network.mappers.MatchMapper;
 
 public class MatchSetupDto {
 

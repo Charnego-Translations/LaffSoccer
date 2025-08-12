@@ -1,4 +1,4 @@
-package com.ygames.ysoccer.network.dto.mappers;
+package com.ygames.ysoccer.network.mappers;
 
 import com.ygames.ysoccer.match.MatchSettings;
 import com.ygames.ysoccer.network.dto.MatchSettingsDto;
