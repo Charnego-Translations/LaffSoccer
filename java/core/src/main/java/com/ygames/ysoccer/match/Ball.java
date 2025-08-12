@@ -77,7 +77,7 @@ public class Ball {
         return x;
     }
 
-    void setX(float x) {
+    public void setX(float x) {
         this.x = x;
         xSide = EMath.sgn(x);
     }
@@ -86,7 +86,7 @@ public class Ball {
         return y;
     }
 
-    void setY(float y) {
+    public void setY(float y) {
         this.y = y;
         ySide = EMath.sgn(y);
     }
@@ -95,7 +95,7 @@ public class Ball {
         return z;
     }
 
-    void setZ(float z) {
+    public void setZ(float z) {
         this.z = z;
     }
 

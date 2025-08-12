@@ -50,6 +50,8 @@ public class Settings {
 
     // development
     public static boolean development;
+    public static String serverHomeTeam;
+    public static String serverAwayTeam;
 
     // (logs)
     public static int logLevel;
@@ -106,6 +108,8 @@ public class Settings {
 
         // development
         development = preferences.getBoolean("development", false);
+        serverHomeTeam = preferences.getString("serverHomeTeam", "data/teams/1964-65/CLUB_TEAMS/EUROPE/ITALY/team.inter_milan.json");
+        serverAwayTeam = preferences.getString("serverAwayTeam", "data/teams/1964-65/CLUB_TEAMS/EUROPE/ITALY/team.juventus.json");
 
         // (logs)
         logLevel = preferences.getInteger("logLevel", Application.LOG_INFO);
@@ -160,6 +164,8 @@ public class Settings {
 
         // development
         preferences.putBoolean("development", development);
+        preferences.putString("serverHomeTeam", serverHomeTeam);
+        preferences.putString("serverAwayTeam", serverAwayTeam);
 
         // (logs)
         preferences.putInteger("logLevel", logLevel);

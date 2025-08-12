@@ -15,6 +15,10 @@ public class BallMapper {
     }
 
     public static Ball fromDto(BallDto ballDto, SceneSettings sceneSettings) {
-        return new Ball(sceneSettings);
+        Ball ball = new Ball(sceneSettings);
+        ball.setX(ballDto.getX());
+        ball.setY(ballDto.getY());
+        ball.setZ(ballDto.getZ());
+        return ball;
     }
 }

@@ -1,6 +1,8 @@
 package com.ygames.ysoccer.server;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.kryonet.Server;
@@ -30,13 +32,19 @@ public class ServerGame extends Game {
         Network.register(server);
 
         Assets.loadStrings(settings);
+        Assets.loadJson();
+
         Friendly friendly = new Friendly();
         MatchSettings matchSettings = new MatchSettings(friendly, settings);
         matchSettings.setup();
 
         Match match = friendly.getMatch();
-        match.setTeam(HOME, new Team());
-        match.setTeam(AWAY, new Team());
+        FileHandle homeFileHandle = Gdx.files.local(Settings.serverHomeTeam);
+        FileHandle awayFileHandle = Gdx.files.local(Settings.serverAwayTeam);
+        Team homeTeam = Assets.json.fromJson(Team.class, homeFileHandle.readString("UTF-8"));
+        Team awayTeam = Assets.json.fromJson(Team.class, awayFileHandle.readString("UTF-8"));
+        match.setTeam(HOME, homeTeam);
+        match.setTeam(AWAY, awayTeam);
         match.init(new InputDeviceList(), matchSettings, friendly);
 
         server.addListener(new Listener() {

@@ -18,6 +18,7 @@ public class Network {
         kryo.register(MatchSettingsDto.class);
         kryo.register(BallDto.class);
         kryo.register(TeamDto.class);
+        kryo.register(TeamDto[].class);
         kryo.register(MatchSetupDto.class);
         kryo.register(MatchDto.class);
     }
