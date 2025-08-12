@@ -118,6 +118,10 @@ public class Match extends Scene implements Json.Serializable {
         return (MatchSettings) settings;
     }
 
+    public void setSettings(MatchSettings settings) {
+        this.settings = settings;
+    }
+
     public void setTeam(int side, Team team) {
         this.team[side] = team;
         this.team[side].index = side;

@@ -1,16 +1,19 @@
 package com.ygames.ysoccer.network.dto;
 
 import com.ygames.ysoccer.match.Match;
+import com.ygames.ysoccer.network.dto.mappers.MatchSettingsMapper;
 
 public class MatchDto {
+    MatchSettingsDto matchSettingsDto;
+
     public MatchDto() {
     }
 
-    public static MatchDto toDto(Match match) {
-        return new MatchDto();
+    public MatchDto(Match match) {
+        this.matchSettingsDto = MatchSettingsMapper.toDto(match.getSettings());
     }
 
-    public static Match fromDto(MatchDto matchDto) {
-        return new Match();
+    public MatchSettingsDto getMatchSettingsDto() {
+        return matchSettingsDto;
     }
 }

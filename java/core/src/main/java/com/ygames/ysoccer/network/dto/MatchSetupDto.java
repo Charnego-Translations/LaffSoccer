@@ -1,8 +1,7 @@
 package com.ygames.ysoccer.network.dto;
 
 import com.ygames.ysoccer.match.Match;
-import com.ygames.ysoccer.match.MatchSettings;
-import com.ygames.ysoccer.network.dto.mappers.MatchSettingsMapper;
+import com.ygames.ysoccer.network.dto.mappers.MatchMapper;
 
 public class MatchSetupDto {
 
@@ -12,15 +11,11 @@ public class MatchSetupDto {
     public MatchSetupDto() {
     }
 
-    public MatchSetupDto(MatchSettingsDto matchSettingsDto, MatchDto matchDto) {
-        this.matchSettingsDto = matchSettingsDto;
+    public MatchSetupDto(MatchDto matchDto) {
         this.matchDto = matchDto;
     }
 
-    public static MatchSetupDto toDto(MatchSettings matchSettings, Match match) {
-        return new MatchSetupDto(
-            MatchSettingsMapper.toDto(matchSettings),
-            MatchDto.toDto(match)
-        );
+    public static MatchSetupDto toDto(Match match) {
+        return new MatchSetupDto(MatchMapper.toDto(match));
     }
 }

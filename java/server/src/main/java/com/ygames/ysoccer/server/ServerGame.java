@@ -7,15 +7,19 @@ import com.esotericsoftware.kryonet.Server;
 import com.esotericsoftware.minlog.Log;
 import com.ygames.ysoccer.competitions.Friendly;
 import com.ygames.ysoccer.framework.Assets;
+import com.ygames.ysoccer.framework.InputDeviceList;
 import com.ygames.ysoccer.framework.Settings;
 import com.ygames.ysoccer.match.Match;
 import com.ygames.ysoccer.match.MatchSettings;
+import com.ygames.ysoccer.match.Team;
 import com.ygames.ysoccer.network.Network;
 import com.ygames.ysoccer.network.dto.MatchSetupDto;
 
 import java.io.IOException;
 
 import static com.esotericsoftware.minlog.Log.LEVEL_TRACE;
+import static com.ygames.ysoccer.match.Match.AWAY;
+import static com.ygames.ysoccer.match.Match.HOME;
 
 public class ServerGame extends Game {
     @Override
@@ -31,10 +35,13 @@ public class ServerGame extends Game {
         matchSettings.setup();
 
         Match match = friendly.getMatch();
+        match.setTeam(HOME, new Team());
+        match.setTeam(AWAY, new Team());
+        match.init(new InputDeviceList(), matchSettings, friendly);
 
         server.addListener(new Listener() {
             public void connected(Connection connection) {
-                MatchSetupDto matchSetupDto = MatchSetupDto.toDto(matchSettings, match);
+                MatchSetupDto matchSetupDto = MatchSetupDto.toDto(match);
                 server.sendToTCP(connection.getID(), matchSetupDto);
             }
         });
@@ -46,6 +53,6 @@ public class ServerGame extends Game {
         }
         server.start();
 
-        setScreen(new ServerScreen(server));
+        setScreen(new ServerScreen(server, match));
     }
 }
