@@ -6,7 +6,7 @@ import java.util.List;
 
 public class TeamDto {
     public String name;
-    public List<Kit> kits;
+    public List<KitDto> kits;
     public List<PlayerDto> lineup;
 
     public TeamDto() {
