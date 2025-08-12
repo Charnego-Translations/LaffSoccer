@@ -229,14 +229,7 @@ public class Assets {
         tacticsFolder = Gdx.files.local("data/tactics");
         savesFolder = Gdx.files.local("data/saves/competitions/");
         saveGame = savesFolder.child("savegame.json");
-        json = new Json();
-        json.addClassTag("CUP", Cup.class);
-        json.addClassTag("LEAGUE", League.class);
-        json.addClassTag("TOURNAMENT", Tournament.class);
-        json.addClassTag("GROUPS", Groups.class);
-        json.addClassTag("KNOCKOUT", Knockout.class);
-        json.setOutputType(JsonWriter.OutputType.json);
-        json.setUsePrototypes(false);
+        loadJson();
         loadCalendars();
 
         favouritesFile = teamsRootFolder.child("favourites.json");
@@ -275,6 +268,17 @@ public class Assets {
         loadBench();
         Sounds.load();
         Commentary.load();
+    }
+
+    public static void loadJson() {
+        json = new Json();
+        json.addClassTag("CUP", Cup.class);
+        json.addClassTag("LEAGUE", League.class);
+        json.addClassTag("TOURNAMENT", Tournament.class);
+        json.addClassTag("GROUPS", Groups.class);
+        json.addClassTag("KNOCKOUT", Knockout.class);
+        json.setOutputType(JsonWriter.OutputType.json);
+        json.setUsePrototypes(false);
     }
 
     private static void loadLocales() {
