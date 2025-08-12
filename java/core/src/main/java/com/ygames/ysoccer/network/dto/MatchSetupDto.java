@@ -5,7 +5,6 @@ import com.ygames.ysoccer.network.dto.mappers.MatchMapper;
 
 public class MatchSetupDto {
 
-    public MatchSettingsDto matchSettingsDto;
     public MatchDto matchDto;
 
     public MatchSetupDto() {

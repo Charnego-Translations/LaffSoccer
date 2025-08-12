@@ -19,7 +19,7 @@ import static com.ygames.ysoccer.match.Const.POST_R;
 import static com.ygames.ysoccer.match.Const.POST_X;
 import static com.ygames.ysoccer.match.Const.TOUCH_LINE;
 
-class Ball {
+public class Ball {
 
     // motion & graphics
     float x;
@@ -59,7 +59,7 @@ class Ball {
 
     private final SceneSettings sceneSettings;
 
-    Ball(SceneSettings sceneSettings) {
+    public Ball(SceneSettings sceneSettings) {
         this.sceneSettings = sceneSettings;
 
         for (int frm = 0; frm < Const.BALL_PREDICTION; frm++) {
@@ -73,14 +73,26 @@ class Ball {
         }
     }
 
+    public float getX() {
+        return x;
+    }
+
     void setX(float x) {
         this.x = x;
         xSide = EMath.sgn(x);
     }
 
+    public float getY() {
+        return y;
+    }
+
     void setY(float y) {
         this.y = y;
         ySide = EMath.sgn(y);
+    }
+
+    public float getZ() {
+        return z;
     }
 
     void setZ(float z) {

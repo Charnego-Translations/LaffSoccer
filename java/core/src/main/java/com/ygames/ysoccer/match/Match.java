@@ -39,6 +39,10 @@ import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_SUBSTITUTED;
 
 public class Match extends Scene implements Json.Serializable {
 
+    public void setActionCamera(ActionCamera actionCamera) {
+        this.actionCamera = actionCamera;
+    }
+
     public enum ResultType {AFTER_90_MINUTES, AFTER_EXTRA_TIME, AFTER_PENALTIES}
 
     public interface MatchListener {
@@ -120,6 +124,14 @@ public class Match extends Scene implements Json.Serializable {
 
     public void setSettings(MatchSettings settings) {
         this.settings = settings;
+    }
+
+    public Ball getBall() {
+        return ball;
+    }
+
+    public void setBall(Ball ball) {
+        this.ball = ball;
     }
 
     public void setTeam(int side, Team team) {
