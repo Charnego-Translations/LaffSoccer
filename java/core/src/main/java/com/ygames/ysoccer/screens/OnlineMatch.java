@@ -8,7 +8,7 @@ import com.ygames.ysoccer.framework.GLGame;
 import com.ygames.ysoccer.framework.GLScreen;
 import com.ygames.ysoccer.match.Match;
 import com.ygames.ysoccer.network.dto.MatchSetupDto;
-import com.ygames.ysoccer.network.dto.mappers.MatchMapper;
+import com.ygames.ysoccer.network.mappers.MatchMapper;
 
 import static com.badlogic.gdx.Gdx.gl;
 
