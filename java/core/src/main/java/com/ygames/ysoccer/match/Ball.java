@@ -44,8 +44,8 @@ public class Ball {
     final Vector3[] predictionL = new Vector3[Const.BALL_PREDICTION];
     final Vector3[] prediction = new Vector3[Const.BALL_PREDICTION];
     final Vector3[] predictionR = new Vector3[Const.BALL_PREDICTION];
-    final Data[] data = new Data[Const.REPLAY_SUBFRAMES];
-    public Data currentData = new Data();
+    final FrameData[] data = new FrameData[Const.REPLAY_SUBFRAMES];
+    public FrameData currentData = new FrameData();
 
     // tactics
     int zoneX;
@@ -70,7 +70,7 @@ public class Ball {
         }
 
         for (int i = 0; i < data.length; i++) {
-            data[i] = new Data();
+            data[i] = new FrameData();
         }
     }
 

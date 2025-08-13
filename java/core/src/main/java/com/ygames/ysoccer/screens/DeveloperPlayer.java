@@ -14,7 +14,7 @@ import com.ygames.ysoccer.framework.GLScreen;
 import com.ygames.ysoccer.gui.Button;
 import com.ygames.ysoccer.gui.InputButton;
 import com.ygames.ysoccer.gui.Widget;
-import com.ygames.ysoccer.match.Data;
+import com.ygames.ysoccer.match.FrameData;
 import com.ygames.ysoccer.match.Hair;
 import com.ygames.ysoccer.match.Kit;
 import com.ygames.ysoccer.match.Player;
@@ -91,7 +91,7 @@ class DeveloperPlayer extends GLScreen {
         firstRow = 0;
         player.team = team;
         player.isVisible = true;
-        player.data[0] = new Data();
+        player.data[0] = new FrameData();
         player.save(0);
         player.skinColor = Skin.Color.PINK;
         player.hairColor = Hair.Color.BLACK;
@@ -374,7 +374,7 @@ class DeveloperPlayer extends GLScreen {
         batch.end();
 
         // origin
-        Data d = player.data[0];
+        FrameData d = player.data[0];
         shapeRenderer.setProjectionMatrix(camera.combined);
         shapeRenderer.setAutoShapeType(true);
         shapeRenderer.begin();
@@ -386,7 +386,7 @@ class DeveloperPlayer extends GLScreen {
     private void drawPlayerShadow() {
         if (shadows != Shadows.NONE) {
             for (int s = 0; s < (shadows == Shadows.NIGHT ? 4 : 1); s++) {
-                Data d = player.data[0];
+                FrameData d = player.data[0];
                 if (d.isVisible) {
                     Integer[] origin = Assets.playerOrigins[d.fmy][d.fmx];
                     float mX = (s == 0 || s == 3) ? 0.65f : -0.65f;

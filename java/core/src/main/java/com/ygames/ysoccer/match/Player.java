@@ -100,8 +100,8 @@ public class Player implements Json.Serializable {
     public boolean isVisible;
     boolean isActive;
 
-    public final Data[] data = new Data[Const.REPLAY_SUBFRAMES];
-    public Data currentData = new Data();
+    public final FrameData[] data = new FrameData[Const.REPLAY_SUBFRAMES];
+    public FrameData currentData = new FrameData();
 
     public float x;
     public float y;
@@ -176,7 +176,7 @@ public class Player implements Json.Serializable {
         isVisible = true;
         isActive = true;
         for (int i = 0; i < data.length; i++) {
-            data[i] = new Data();
+            data[i] = new FrameData();
         }
     }
 
@@ -187,7 +187,7 @@ public class Player implements Json.Serializable {
         isVisible = true;
         isActive = true;
         for (int i = 0; i < data.length; i++) {
-            data[i] = new Data();
+            data[i] = new FrameData();
         }
     }
 

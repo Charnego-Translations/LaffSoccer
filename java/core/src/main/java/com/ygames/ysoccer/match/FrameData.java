@@ -1,6 +1,6 @@
 package com.ygames.ysoccer.match;
 
-public class Data {
+public class FrameData {
     public int x;
     public int y;
     public int z;
@@ -13,10 +13,10 @@ public class Data {
     public int playerState;
     public int playerAiState;
 
-    public Data() {
+    public FrameData() {
     }
 
-    public Data(int x, int y, int z, int fmx, int fmy, boolean isVisible, boolean isHumanControlled, boolean isBestDefender, int frameDistance, int playerState, int playerAiState) {
+    public FrameData(int x, int y, int z, int fmx, int fmy, boolean isVisible, boolean isHumanControlled, boolean isBestDefender, int frameDistance, int playerState, int playerAiState) {
         this.x = x;
         this.y = y;
         this.z = z;

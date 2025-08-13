@@ -13,7 +13,7 @@ import com.ygames.ysoccer.gui.Button;
 import com.ygames.ysoccer.gui.Picture;
 import com.ygames.ysoccer.gui.Piece;
 import com.ygames.ysoccer.gui.Widget;
-import com.ygames.ysoccer.match.Data;
+import com.ygames.ysoccer.match.FrameData;
 import com.ygames.ysoccer.match.Player;
 import com.ygames.ysoccer.match.PlayerSprite;
 import com.ygames.ysoccer.match.Tactics;
@@ -68,7 +68,7 @@ class EditTactics extends GLScreen {
 
         for (int ply = 0; ply < team.players.size(); ply++) {
             Player player = team.players.get(ply);
-            player.data[0] = new Data();
+            player.data[0] = new FrameData();
             player.isVisible = true;
             if (player.role == Player.Role.GOALKEEPER) {
                 Assets.loadKeeper(player);
@@ -362,7 +362,7 @@ class EditTactics extends GLScreen {
 
                 player.save(0);
 
-                Data d = player.data[0];
+                FrameData d = player.data[0];
                 Integer[] origin = Assets.playerOrigins[d.fmy][d.fmx];
                 float mX = 0.65f;
                 float mY = 0.46f;

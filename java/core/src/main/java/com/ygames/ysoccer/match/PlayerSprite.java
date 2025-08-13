@@ -17,7 +17,7 @@ public class PlayerSprite extends Sprite {
 
     @Override
     public void draw(int subframe) {
-        Data d = player.currentData;
+        FrameData d = player.currentData;
         if (!d.isVisible) {
             return;
         }

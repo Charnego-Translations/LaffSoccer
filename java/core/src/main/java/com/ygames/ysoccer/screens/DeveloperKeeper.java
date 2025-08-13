@@ -11,7 +11,7 @@ import com.ygames.ysoccer.framework.GLGame;
 import com.ygames.ysoccer.framework.GLScreen;
 import com.ygames.ysoccer.gui.Button;
 import com.ygames.ysoccer.gui.Widget;
-import com.ygames.ysoccer.match.Data;
+import com.ygames.ysoccer.match.FrameData;
 import com.ygames.ysoccer.match.Hair;
 import com.ygames.ysoccer.match.Player;
 import com.ygames.ysoccer.match.PlayerSprite;
@@ -80,7 +80,7 @@ class DeveloperKeeper extends GLScreen {
         player.team = team;
         player.role = Player.Role.GOALKEEPER;
         player.isVisible = true;
-        player.data[0] = new Data();
+        player.data[0] = new FrameData();
         player.save(0);
         player.skinColor = Skin.Color.PINK;
         player.hairColor = Hair.Color.BLACK;
@@ -319,7 +319,7 @@ class DeveloperKeeper extends GLScreen {
         batch.end();
 
         // origin
-        Data d = player.data[0];
+        FrameData d = player.data[0];
         shapeRenderer.setProjectionMatrix(camera.combined);
         shapeRenderer.setAutoShapeType(true);
         shapeRenderer.begin();
@@ -331,7 +331,7 @@ class DeveloperKeeper extends GLScreen {
     private void drawKeeperShadow() {
         if (shadows != Shadows.NONE) {
             for (int s = 0; s < (shadows == Shadows.NIGHT ? 4 : 1); s++) {
-                Data d = player.data[0];
+                FrameData d = player.data[0];
                 if (d.isVisible) {
                     Integer[] origin = Assets.keeperOrigins[d.fmy][d.fmx];
                     float mX = (s == 0 || s == 3) ? 0.65f : -0.65f;

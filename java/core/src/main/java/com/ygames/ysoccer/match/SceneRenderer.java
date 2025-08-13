@@ -14,7 +14,6 @@ import com.ygames.ysoccer.framework.GLShapeRenderer;
 import com.ygames.ysoccer.framework.GLSpriteBatch;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.TreeMap;
 
@@ -102,7 +101,7 @@ public abstract class SceneRenderer {
     abstract void drawShadows();
 
     void drawBallShadow(Ball ball, boolean redrawing) {
-        Data d = ball.currentData;
+        FrameData d = ball.currentData;
         for (int i = 0; i < (scene.settings.time == MatchSettings.Time.NIGHT ? 4 : 1); i++) {
             float oX = (i == 0 || i == 3) ? -1 : -5;
             float mX = (i == 0 || i == 3) ? 0.65f : -0.65f;
@@ -342,7 +341,7 @@ public abstract class SceneRenderer {
     }
 
     void redrawBallOverTopGoal(BallSprite ballSprite) {
-        Data d = ball.currentData;
+        FrameData d = ball.currentData;
         if (EMath.isIn(d.x, -POST_X, POST_X)
             && d.y < -GOAL_LINE
             && d.z > (CROSSBAR_H - (Math.abs(d.y) - GOAL_LINE) / 3f)) {
@@ -351,7 +350,7 @@ public abstract class SceneRenderer {
     }
 
     void redrawBallOverBottomGoal(BallSprite ballSprite) {
-        Data d = ball.currentData;
+        FrameData d = ball.currentData;
         if (EMath.isIn(d.x, -POST_X - BALL_R, POST_X + BALL_R)
             && (d.y >= GOAL_LINE + 21 || (d.y > GOAL_LINE && d.z > (CROSSBAR_H - (Math.abs(d.y) - GOAL_LINE) / 3f)))) {
             ballSprite.draw(scene.subframe);
@@ -359,7 +358,7 @@ public abstract class SceneRenderer {
     }
 
     void drawPlayerNumber(Player player) {
-        Data d = player.currentData;
+        FrameData d = player.currentData;
 
         int f0 = player.number % 10;
         int f1 = (player.number - f0) / 10 % 10;

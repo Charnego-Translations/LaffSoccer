@@ -39,7 +39,7 @@ class Recorder {
         for (int i = 1; i <= 2 * Const.REPLAY_SUBFRAMES; i++) {
 
             // ball
-            Data ballData = match.ball.data[match.subframe];
+            FrameData ballData = match.ball.data[match.subframe];
             record[index++] = (short) ballData.x;
             record[index++] = (short) ballData.y;
             record[index++] = (short) ballData.z;
@@ -51,7 +51,7 @@ class Recorder {
                 for (int pos = 0; pos < len; pos++) {
                     // using 'players' because order in 'lineup' may change during the match
                     Player player = match.team[t].players.get(pos);
-                    Data playerData = player.data[match.subframe];
+                    FrameData playerData = player.data[match.subframe];
                     record[index++] = (short) playerData.x;
                     record[index++] = (short) playerData.y;
                     record[index++] = (short) playerData.fmx;
@@ -106,7 +106,7 @@ class Recorder {
         for (int j = 1; j <= 2 * Const.REPLAY_SUBFRAMES; j++) {
 
             // ball
-            Data ballData = match.ball.data[match.subframe];
+            FrameData ballData = match.ball.data[match.subframe];
             ballData.x = record[offset++];
             ballData.y = record[offset++];
             ballData.z = record[offset++];
@@ -118,7 +118,7 @@ class Recorder {
                 for (int pos = 0; pos < len; pos++) {
                     // using 'players' because order in 'lineup' may change during the match
                     Player player = match.team[t].players.get(pos);
-                    Data playerData = player.data[match.subframe];
+                    FrameData playerData = player.data[match.subframe];
                     playerData.x = record[offset++];
                     playerData.y = record[offset++];
                     playerData.fmx = record[offset++];

@@ -338,7 +338,7 @@ public class MatchRenderer extends SceneRenderer {
         for (int t = HOME; t <= AWAY; t++) {
             for (Player player : getMatch().team[t].lineup) {
                 if (player.role == Player.Role.GOALKEEPER) {
-                    Data d = player.currentData;
+                    FrameData d = player.currentData;
                     if (d.isVisible) {
                         Integer[] origin = Assets.keeperOrigins[d.fmy][d.fmx];
                         batch.draw(Assets.keeperShadow[d.fmx][d.fmy][0], d.x - origin[0] + 0.65f * d.z, d.y - origin[1] + 0.46f * d.z);
@@ -358,7 +358,7 @@ public class MatchRenderer extends SceneRenderer {
             for (int t = HOME; t <= AWAY; t++) {
                 for (Player player : getMatch().team[t].lineup) {
                     if (player.role != Player.Role.GOALKEEPER) {
-                        Data d = player.currentData;
+                        FrameData d = player.currentData;
                         if (d.isVisible) {
                             Integer[] origin = Assets.playerOrigins[d.fmy][d.fmx];
                             float mX = (i == 0 || i == 3) ? 0.65f : -0.65f;
@@ -379,7 +379,7 @@ public class MatchRenderer extends SceneRenderer {
                 int len = getMatch().team[t].lineup.size();
                 for (int i = 0; i < len; i++) {
                     Player player = getMatch().team[t].lineup.get(i);
-                    Data d = player.currentData;
+                    FrameData d = player.currentData;
                     if (d.isVisible) {
                         if (d.isHumanControlled) {
                             drawPlayerNumber(player);
@@ -571,7 +571,7 @@ public class MatchRenderer extends SceneRenderer {
                 if (player.checkState(STATE_BENCH_SITTING)) {
                     continue;
                 }
-                Data d = player.currentData;
+                FrameData d = player.currentData;
                 if (d.isVisible) {
                     int dx = RX + RW / 2 + d.x / 8;
                     int dy = RY + RH / 2 + d.y / 8;
@@ -603,7 +603,7 @@ public class MatchRenderer extends SceneRenderer {
                     if (player.checkState(STATE_BENCH_SITTING)) {
                         continue;
                     }
-                    Data d = player.currentData;
+                    FrameData d = player.currentData;
                     if ((d.isVisible) && (player.inputDevice != player.ai)) {
                         int dx = RX + RW / 2 + d.x / 8 + 1;
                         int dy = RY + RH / 2 + d.y / 8 - 10;
@@ -1173,14 +1173,14 @@ public class MatchRenderer extends SceneRenderer {
     }
 
     void drawYellowCard(Player player) {
-        Data d = player.currentData;
+        FrameData d = player.currentData;
         if ((matchState.timer % (SECOND / 2)) > SECOND / 4) {
             Assets.font6.draw(batch, "" + (char) 14, d.x + 1, d.y - 40, CENTER);
         }
     }
 
     void drawRedCard(Player player) {
-        Data d = player.currentData;
+        FrameData d = player.currentData;
         if ((matchState.timer % (SECOND / 2)) > SECOND / 4) {
             Assets.font6.draw(batch, "" + (char) 15, d.x + 1, d.y - 40, CENTER);
         }
