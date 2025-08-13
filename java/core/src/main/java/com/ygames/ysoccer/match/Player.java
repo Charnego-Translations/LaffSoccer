@@ -101,6 +101,7 @@ public class Player implements Json.Serializable {
     boolean isActive;
 
     public final Data[] data = new Data[Const.REPLAY_SUBFRAMES];
+    public Data currentData;
 
     public float x;
     public float y;
@@ -527,6 +528,10 @@ public class Player implements Json.Serializable {
         data[subframe].frameDistance = frameDistance;
         data[subframe].playerState = fsm == null ? -1 : fsm.state.id;
         data[subframe].playerAiState = (inputDevice == ai) ? ai.fsm.state.id : -1;
+    }
+
+    void updateCurrentData(int subframe) {
+        currentData = data[subframe];
     }
 
     float targetDistance() {

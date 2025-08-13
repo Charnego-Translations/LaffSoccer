@@ -16,7 +16,7 @@ class BallSprite extends Sprite {
 
     @Override
     public void draw(int subframe) {
-        Data d = ball.data[subframe];
+        Data d = ball.currentData;
         glGraphics.batch.draw(Assets.ball[d.fmx], d.x - Const.BALL_R, d.y - d.z - 2 - Const.BALL_R);
 
         if (Settings.showDevelopmentInfo) {
@@ -25,6 +25,6 @@ class BallSprite extends Sprite {
     }
 
     public int getY(int subframe) {
-        return ball.data[subframe].y;
+        return ball.currentData.y;
     }
 }

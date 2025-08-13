@@ -225,6 +225,13 @@ public class Team implements Json.Serializable {
         }
     }
 
+    void updateCurrentData(int subframe) {
+        int len = lineup.size();
+        for (int i = 0; i < len; i++) {
+            lineup.get(i).updateCurrentData(subframe);
+        }
+    }
+
     void findNearest() {
         findNearest(TEAM_SIZE);
     }
@@ -272,7 +279,7 @@ public class Team implements Json.Serializable {
 
                 float playerGoalDistance = EMath.dist(player.x, player.y, 0, Const.GOAL_LINE * side);
                 if ((playerGoalDistance < 0.95f * ballToGoalDistance)
-                        && (player.ballDistance < minBallDistance)) {
+                    && (player.ballDistance < minBallDistance)) {
                     newBestDefender = player;
                     minBallDistance = player.ballDistance;
                 }
@@ -364,15 +371,15 @@ public class Team implements Json.Serializable {
         // set targets
         float barrierAngle = EMath.angle(match.foul.position.x, match.foul.position.y, Math.signum(match.foul.position.x) * POST_X / 2f, side * GOAL_LINE);
         Vector2 barrierCenter = new Vector2(1, 1)
-                .setLength(FREE_KICK_DISTANCE + Const.PLAYER_W / 2f)
-                .setAngle(barrierAngle)
-                .add(match.foul.position.x, match.foul.position.y);
+            .setLength(FREE_KICK_DISTANCE + Const.PLAYER_W / 2f)
+            .setAngle(barrierAngle)
+            .add(match.foul.position.x, match.foul.position.y);
         for (int i = 0; i < barrier.size(); i++) {
             float offset = i - (barrier.size() - 1) / 2f;
             Vector2 barrierPosition = new Vector2(1, 1)
-                    .setLength(Math.abs(offset) * PLAYER_W)
-                    .setAngle(barrierAngle + 90 * Math.signum(offset))
-                    .add(barrierCenter);
+                .setLength(Math.abs(offset) * PLAYER_W)
+                .setAngle(barrierAngle + 90 * Math.signum(offset))
+                .add(barrierCenter);
             barrier.get(i).setTarget(barrierPosition.x, barrierPosition.y);
         }
     }
@@ -632,7 +639,7 @@ public class Team implements Json.Serializable {
         if (controlled == null) return true;
 
         return bestDefender != controlled
-                && bestDefender.frameDistance < BALL_PREDICTION;
+            && bestDefender.frameDistance < BALL_PREDICTION;
     }
 
     InputDevice fire1Down() {

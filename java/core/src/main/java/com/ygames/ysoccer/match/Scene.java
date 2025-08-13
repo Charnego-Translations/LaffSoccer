@@ -1,5 +1,6 @@
 package com.ygames.ysoccer.match;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 
 public abstract class Scene {
@@ -47,4 +48,6 @@ public abstract class Scene {
     abstract void quit();
 
     abstract void save();
+
+    protected abstract void updateCurrentData();
 }

@@ -206,7 +206,7 @@ public class TrainingRenderer extends SceneRenderer {
         for (int t = HOME; t <= AWAY; t++) {
             for (Player player : getTraining().team[t].lineup) {
                 if (player.role == Player.Role.GOALKEEPER) {
-                    Data d = player.data[scene.subframe];
+                    Data d = player.currentData;
                     if (d.isVisible) {
                         Integer[] origin = Assets.keeperOrigins[d.fmy][d.fmx];
                         batch.draw(Assets.keeperShadow[d.fmx][d.fmy][0], d.x - origin[0] + 0.65f * d.z, d.y - origin[1] + 0.46f * d.z);
@@ -226,7 +226,7 @@ public class TrainingRenderer extends SceneRenderer {
             for (int t = HOME; t <= AWAY; t++) {
                 for (Player player : getTraining().team[t].lineup) {
                     if (player.role != Player.Role.GOALKEEPER) {
-                        Data d = player.data[scene.subframe];
+                        Data d = player.currentData;
                         if (d.isVisible) {
                             Integer[] origin = Assets.playerOrigins[d.fmy][d.fmx];
                             float mX = (i == 0 || i == 3) ? 0.65f : -0.65f;

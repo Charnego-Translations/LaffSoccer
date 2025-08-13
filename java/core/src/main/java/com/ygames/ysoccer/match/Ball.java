@@ -45,6 +45,7 @@ public class Ball {
     final Vector3[] prediction = new Vector3[Const.BALL_PREDICTION];
     final Vector3[] predictionR = new Vector3[Const.BALL_PREDICTION];
     final Data[] data = new Data[Const.REPLAY_SUBFRAMES];
+    public Data currentData;
 
     // tactics
     int zoneX;
@@ -312,10 +313,10 @@ public class Ball {
 
         // top corners
         if ((ySide * y < GOAL_LINE)
-                && (EMath.dist(y0, z0, ySide * GOAL_LINE, CROSSBAR_H) > 6)
-                && (EMath.dist(y, z, ySide * GOAL_LINE, CROSSBAR_H) <= 6)
-                && ((EMath.dist(x, y, -POST_X, ySide * (GOAL_LINE + 1)) <= 6)
-                || (EMath.dist(x, y, POST_X, ySide * (GOAL_LINE + 1)) <= 6))) {
+            && (EMath.dist(y0, z0, ySide * GOAL_LINE, CROSSBAR_H) > 6)
+            && (EMath.dist(y, z, ySide * GOAL_LINE, CROSSBAR_H) <= 6)
+            && ((EMath.dist(x, y, -POST_X, ySide * (GOAL_LINE + 1)) <= 6)
+            || (EMath.dist(x, y, POST_X, ySide * (GOAL_LINE + 1)) <= 6))) {
 
             // real ball x-y angle (when spinning, it is different from ball.a)
             float ballAxy = EMath.aTan2(y - y0, x - x0);
@@ -335,8 +336,8 @@ public class Ball {
 
         // crossbar
         else if ((EMath.dist(y0, z0, ySide * GOAL_LINE, CROSSBAR_H) > 5)
-                && (EMath.dist(y, z, ySide * GOAL_LINE, CROSSBAR_H) <= 5)
-                && (-(POST_X + POST_R) < x && x < (POST_X + POST_R))) {
+            && (EMath.dist(y, z, ySide * GOAL_LINE, CROSSBAR_H) <= 5)
+            && (-(POST_X + POST_R) < x && x < (POST_X + POST_R))) {
 
             // cartesian coordinates
             // real ball x-y angle (when spinning, it is different from ball.a)
@@ -375,8 +376,8 @@ public class Ball {
 
         // posts
         else if ((EMath.dist(x0, y0, xSide * POST_X, ySide * (GOAL_LINE + 1)) > 5)
-                && (EMath.dist(x, y, xSide * POST_X, ySide * (GOAL_LINE + 1)) <= 5)
-                && (z <= (CROSSBAR_H + POST_R))) {
+            && (EMath.dist(x, y, xSide * POST_X, ySide * (GOAL_LINE + 1)) <= 5)
+            && (z <= (CROSSBAR_H + POST_R))) {
 
             // real ball x-y angle (when spinning, it is different from ball.a)
             float ballAxy = EMath.aTan2(y - y0, x - x0);
@@ -410,8 +411,8 @@ public class Ball {
     void collisionFlagPosts() {
 
         if ((EMath.dist(Math.abs(x), Math.abs(y), TOUCH_LINE, GOAL_LINE) <= BALL_R + 1)
-                && (EMath.dist(Math.abs(x0), Math.abs(y0), TOUCH_LINE, GOAL_LINE) > BALL_R + 1)
-                && (z <= FLAGPOST_H)) {
+            && (EMath.dist(Math.abs(x0), Math.abs(y0), TOUCH_LINE, GOAL_LINE) > BALL_R + 1)
+            && (z <= FLAGPOST_H)) {
 
             // real ball x-y angle (when spinning, it is different from ball.a)
             float ballAxy = EMath.aTan2(y - y0, x - x0);
@@ -581,8 +582,8 @@ public class Ball {
     void collisionJumpers() {
 
         if ((EMath.dist(Math.abs(x), Math.abs(y), JUMPER_X, JUMPER_Y) <= BALL_R + 1)
-                && (EMath.dist(Math.abs(x0), Math.abs(y0), JUMPER_X, JUMPER_Y) > BALL_R + 1)
-                && (z < JUMPER_H)) {
+            && (EMath.dist(Math.abs(x0), Math.abs(y0), JUMPER_X, JUMPER_Y) > BALL_R + 1)
+            && (z < JUMPER_H)) {
 
             // real ball x-y angle (when spinning, it is different from ball.a)
             float ballAxy = EMath.aTan2(y - y0, x - x0);
@@ -625,6 +626,10 @@ public class Ball {
         data[subframe].y = Math.round(y);
         data[subframe].z = Math.round(z);
         data[subframe].fmx = (int) Math.floor(f);
+    }
+
+    public void updateCurrentData(int subframe) {
+        currentData = data[subframe];
     }
 
     boolean isInsideDirectShotArea(int ySide) {

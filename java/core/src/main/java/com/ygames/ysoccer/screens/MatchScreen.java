@@ -70,6 +70,7 @@ class MatchScreen extends GLScreen {
 
         if (!matchPaused) {
             match.update(deltaTime);
+            match.updateCurrentData();
             matchRenderer.update();
         }
 

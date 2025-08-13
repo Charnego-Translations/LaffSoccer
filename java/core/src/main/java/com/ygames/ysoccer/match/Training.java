@@ -154,4 +154,11 @@ public class Training extends Scene {
         vCameraX[subframe] = Math.round(actionCamera.x);
         vCameraY[subframe] = Math.round(actionCamera.y);
     }
+
+    @Override
+    public void updateCurrentData() {
+        ball.updateCurrentData(subframe);
+        team[HOME].updateCurrentData(subframe);
+        team[AWAY].updateCurrentData(subframe);
+    }
 }

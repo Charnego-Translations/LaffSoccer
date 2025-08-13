@@ -65,6 +65,7 @@ class TrainingScreen extends GLScreen {
 
         if (!paused) {
             training.update(deltaTime);
+            training.updateCurrentData();
             trainingRenderer.update();
         }
 
