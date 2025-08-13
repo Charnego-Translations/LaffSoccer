@@ -24,7 +24,7 @@ class BallSprite extends Sprite {
         }
     }
 
-    public int getY(int subframe) {
+    public int getY() {
         return ball.currentData.y;
     }
 }

@@ -22,21 +22,15 @@ abstract class Sprite {
         glGraphics.batch.draw(textureRegion, x, y - z);
     }
 
-    public int getY(int subframe) {
+    public int getY() {
         return y;
     }
 
     static class SpriteComparator implements Comparator<Sprite> {
 
-        private int subframe;
-
-        public void setSubframe(int subframe) {
-            this.subframe = subframe;
-        }
-
         @Override
         public int compare(Sprite sprite1, Sprite sprite2) {
-            return sprite1.getY(subframe) - sprite2.getY(subframe);
+            return sprite1.getY() - sprite2.getY();
         }
     }
 }

@@ -92,8 +92,7 @@ public abstract class SceneRenderer {
 
         drawShadows();
 
-        spriteComparator.setSubframe(scene.subframe);
-        Collections.sort(allSprites, spriteComparator);
+        allSprites.sort(spriteComparator);
 
         for (Sprite sprite : allSprites) {
             sprite.draw(scene.subframe);

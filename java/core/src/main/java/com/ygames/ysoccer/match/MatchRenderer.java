@@ -555,9 +555,6 @@ public class MatchRenderer extends SceneRenderer {
         shapeRenderer.rect(RX + 1, RY + RH - 1, RW - 2, 1);
         shapeRenderer.rect(RX + RW - 1, RY, 1, RH);
 
-        // prepare y-sorted list
-        spriteComparator.setSubframe(scene.subframe);
-
         // shirt colors
         int[] shirt1 = new int[2];
         int[] shirt2 = new int[2];

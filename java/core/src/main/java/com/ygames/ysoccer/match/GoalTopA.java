@@ -17,7 +17,7 @@ class GoalTopA extends Sprite {
     }
 
     @Override
-    public int getY(int subframe) {
+    public int getY() {
         return -GOAL_LINE;
     }
 }

@@ -74,7 +74,7 @@ public class PlayerSprite extends Sprite {
     }
 
     @Override
-    public int getY(int subframe) {
+    public int getY() {
         return player.currentData.y;
     }
 }

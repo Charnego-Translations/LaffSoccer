@@ -19,7 +19,7 @@ class JumperSprite extends Sprite {
     }
 
     @Override
-    public int getY(int subframe) {
+    public int getY() {
         return y + JUMPER_H;
     }
 }
