@@ -7,4 +7,9 @@ public class PlayerDto {
 
     public PlayerDto() {
     }
+
+    public PlayerDto(String name, DataDto currentDataDto) {
+        this.name = name;
+        this.currentDataDto = currentDataDto;
+    }
 }

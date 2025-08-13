@@ -101,7 +101,7 @@ public class Player implements Json.Serializable {
     boolean isActive;
 
     public final Data[] data = new Data[Const.REPLAY_SUBFRAMES];
-    public Data currentData;
+    public Data currentData = new Data();
 
     public float x;
     public float y;

@@ -10,6 +10,9 @@ public class DataDto {
     public boolean isVisible;
     public boolean isHumanControlled;
 
+    public DataDto() {
+    }
+
     public DataDto(int x, int y, int z, int fmx, int fmy, boolean isVisible, boolean isHumanControlled) {
         this.x = x;
         this.y = y;

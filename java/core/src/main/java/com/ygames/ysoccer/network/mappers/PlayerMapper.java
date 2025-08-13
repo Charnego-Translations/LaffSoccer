@@ -6,14 +6,13 @@ import com.ygames.ysoccer.network.dto.PlayerDto;
 public class PlayerMapper {
 
     public static PlayerDto toDto(Player player) {
-        PlayerDto playerDto = new PlayerDto();
-        playerDto.name = player.name;
-        return playerDto;
+        return new PlayerDto(player.name, DataMapper.toDto(player.currentData));
     }
 
     public static Player fromDto(PlayerDto playerDto) {
         Player player = new Player();
         player.name = playerDto.name;
+        player.currentData = DataMapper.fromDto(playerDto.currentDataDto);
         return player;
     }
 }

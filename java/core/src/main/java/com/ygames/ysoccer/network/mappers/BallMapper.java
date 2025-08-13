@@ -11,6 +11,7 @@ public class BallMapper {
         ballDto.x = ball.getX();
         ballDto.y = ball.getY();
         ballDto.z = ball.getZ();
+        ballDto.currentDataDto = DataMapper.toDto(ball.currentData);
         return ballDto;
     }
 
@@ -19,6 +20,7 @@ public class BallMapper {
         ball.setX(ballDto.x);
         ball.setY(ballDto.y);
         ball.setZ(ballDto.z);
+        ball.currentData = DataMapper.fromDto(ballDto.currentDataDto);
         return ball;
     }
 }

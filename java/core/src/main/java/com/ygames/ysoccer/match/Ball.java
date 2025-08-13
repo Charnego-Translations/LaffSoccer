@@ -45,7 +45,7 @@ public class Ball {
     final Vector3[] prediction = new Vector3[Const.BALL_PREDICTION];
     final Vector3[] predictionR = new Vector3[Const.BALL_PREDICTION];
     final Data[] data = new Data[Const.REPLAY_SUBFRAMES];
-    public Data currentData;
+    public Data currentData = new Data();
 
     // tactics
     int zoneX;
