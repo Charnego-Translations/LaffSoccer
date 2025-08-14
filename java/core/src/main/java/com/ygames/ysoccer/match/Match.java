@@ -37,7 +37,7 @@ import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_SENT_OFF;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_STAND_RUN;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_SUBSTITUTED;
 
-public class Match extends Scene implements Json.Serializable {
+public class Match extends Scene<MatchFsm> implements Json.Serializable {
 
     public void setActionCamera(ActionCamera actionCamera) {
         this.actionCamera = actionCamera;
@@ -114,10 +114,6 @@ public class Match extends Scene implements Json.Serializable {
 
     public Match() {
         team = new Team[2];
-    }
-
-    public MatchFsm getFsm() {
-        return (MatchFsm) fsm;
     }
 
     public MatchSettings getSettings() {

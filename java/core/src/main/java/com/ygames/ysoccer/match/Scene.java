@@ -1,11 +1,10 @@
 package com.ygames.ysoccer.match;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 
-public abstract class Scene {
+public abstract class Scene<FsmT extends SceneFsm<?>> {
 
-    SceneFsm fsm;
+    FsmT fsm;
     protected int subframe;
     protected SceneSettings settings;
 
@@ -16,6 +15,10 @@ public abstract class Scene {
 
     final int[] vCameraX = new int[Const.REPLAY_SUBFRAMES];
     final int[] vCameraY = new int[Const.REPLAY_SUBFRAMES];
+
+    public FsmT getFsm() {
+        return fsm;
+    }
 
     public void start() {
         fsm.start();

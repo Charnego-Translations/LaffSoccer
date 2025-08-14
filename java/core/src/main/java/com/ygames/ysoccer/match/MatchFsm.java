@@ -7,7 +7,7 @@ import com.ygames.ysoccer.framework.InputDeviceList;
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.FADE_IN;
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.NEW_FOREGROUND;
 
-public class MatchFsm extends SceneFsm {
+public class MatchFsm extends SceneFsm<Match> {
 
     boolean matchCompleted;
 
@@ -116,7 +116,7 @@ public class MatchFsm extends SceneFsm {
         pushAction(FADE_IN);
     }
 
-    public MatchState getState() {
+    MatchState getState() {
         return (MatchState) super.getState();
     }
 

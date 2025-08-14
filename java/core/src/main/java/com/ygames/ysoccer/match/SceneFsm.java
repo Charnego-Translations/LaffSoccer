@@ -13,7 +13,7 @@ import static com.ygames.ysoccer.match.SceneFsm.ActionType.HOLD_FOREGROUND;
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.NEW_FOREGROUND;
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.RESTORE_FOREGROUND;
 
-abstract class SceneFsm {
+abstract class SceneFsm<SceneT extends Scene<?>> {
 
     enum ActionType {
         NONE,
@@ -24,7 +24,7 @@ abstract class SceneFsm {
         RESTORE_FOREGROUND
     }
 
-    class Action {
+    static class Action {
         final ActionType type;
         final int stateId;
         int timer;
@@ -45,7 +45,7 @@ abstract class SceneFsm {
         }
     }
 
-    private final Scene scene;
+    private final SceneT scene;
 
     private final List<SceneState> states;
     private SceneState currentState;
@@ -55,14 +55,14 @@ abstract class SceneFsm {
     private Action currentAction;
     final InputDeviceList inputDevices;
 
-    SceneFsm(Scene scene, InputDeviceList inputDevices) {
+    SceneFsm(SceneT scene, InputDeviceList inputDevices) {
         this.scene = scene;
         this.inputDevices = inputDevices;
         states = new ArrayList<>();
         actions = new ArrayDeque<>();
     }
 
-    Scene getScene() {
+    SceneT getScene() {
         return scene;
     }
 

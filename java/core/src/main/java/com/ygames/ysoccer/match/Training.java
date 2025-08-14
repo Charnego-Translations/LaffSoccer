@@ -13,7 +13,7 @@ import static com.ygames.ysoccer.match.Player.Role.GOALKEEPER;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_IDLE;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_STAND_RUN;
 
-public class Training extends Scene {
+public class Training extends Scene<TrainingFsm> {
 
     public interface TrainingListener {
         void quitTraining();
@@ -63,10 +63,6 @@ public class Training extends Scene {
         actionCamera = new ActionCamera(ball);
         fsm = new TrainingFsm(this, inputDevices);
         pointOfInterest = new Vector2();
-    }
-
-    public TrainingFsm getFsm() {
-        return (TrainingFsm) fsm;
     }
 
     void updateBall() {
