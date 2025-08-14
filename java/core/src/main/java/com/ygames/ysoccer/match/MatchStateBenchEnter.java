@@ -28,10 +28,10 @@ class MatchStateBenchEnter extends MatchState {
     void entryActions() {
         super.entryActions();
 
-        getFsm().benchStatus.oldTarget.set(match.actionCamera.getCurrentTarget());
+        fsm.benchStatus.oldTarget.set(match.actionCamera.getCurrentTarget());
 
-        getFsm().benchStatus.selectedPosition = -1;
-        getFsm().benchStatus.substPosition = -1;
+        fsm.benchStatus.selectedPosition = -1;
+        fsm.benchStatus.substPosition = -1;
 
         for (int t = HOME; t <= AWAY; t++) {
             for (int i = 0; i < TEAM_SIZE; i++) {
@@ -76,12 +76,12 @@ class MatchStateBenchEnter extends MatchState {
     SceneFsm.Action[] checkConditions() {
 
         if (match.actionCamera.getTargetDistance() < 1) {
-            Coach coach = getFsm().benchStatus.team.coach;
+            Coach coach = fsm.benchStatus.team.coach;
             coach.status = Coach.Status.STAND;
             return newAction(NEW_FOREGROUND, STATE_BENCH_SUBSTITUTIONS);
         }
 
-        if (getFsm().benchStatus.inputDevice.xReleased()) {
+        if (fsm.benchStatus.inputDevice.xReleased()) {
             return newAction(NEW_FOREGROUND, STATE_BENCH_EXIT);
         }
 

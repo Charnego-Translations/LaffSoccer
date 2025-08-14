@@ -7,7 +7,7 @@ import com.ygames.ysoccer.framework.InputDeviceList;
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.FADE_IN;
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.NEW_FOREGROUND;
 
-public class MatchFsm extends SceneFsm<Match> {
+public class MatchFsm extends SceneFsm<Match, MatchState> {
 
     boolean matchCompleted;
 
@@ -114,18 +114,6 @@ public class MatchFsm extends SceneFsm<Match> {
     public void start() {
         pushAction(NEW_FOREGROUND, STATE_INTRO);
         pushAction(FADE_IN);
-    }
-
-    MatchState getState() {
-        return (MatchState) super.getState();
-    }
-
-    MatchState getHoldState() {
-        return (MatchState) super.getHoldState();
-    }
-
-    public Match getMatch() {
-        return (Match) getScene();
     }
 
     static class BenchStatus {

@@ -29,7 +29,7 @@ class MatchStateThrowInStop extends MatchState {
 
         Assets.Sounds.whistle.play(Assets.Sounds.volume / 100f);
 
-        getFsm().throwInPosition.set(match.ball.xSide * Const.TOUCH_LINE, match.ball.y);
+        fsm.throwInPosition.set(match.ball.xSide * Const.TOUCH_LINE, match.ball.y);
 
         match.resetAutomaticInputDevices();
         match.setPlayersState(STATE_REACH_TARGET, null);
@@ -37,7 +37,7 @@ class MatchStateThrowInStop extends MatchState {
 
     @Override
     void onResume() {
-        match.setPointOfInterest(getFsm().throwInPosition);
+        match.setPointOfInterest(fsm.throwInPosition);
 
         match.actionCamera
                 .setMode(FOLLOW_BALL)
@@ -75,7 +75,7 @@ class MatchStateThrowInStop extends MatchState {
     @Override
     SceneFsm.Action[] checkConditions() {
         if (!move) {
-            match.ball.setPosition(getFsm().throwInPosition);
+            match.ball.setPosition(fsm.throwInPosition);
             match.ball.updatePrediction();
 
             return newAction(NEW_FOREGROUND, STATE_THROW_IN);

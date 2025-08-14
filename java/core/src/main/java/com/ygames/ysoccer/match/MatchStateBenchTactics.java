@@ -27,7 +27,7 @@ class MatchStateBenchTactics extends MatchState {
     void entryActions() {
         super.entryActions();
 
-        benchStatus = getFsm().benchStatus;
+        benchStatus = fsm.benchStatus;
         benchStatus.selectedTactics = benchStatus.team.tactics;
         match.actionCamera.setMode(STILL);
     }

@@ -13,7 +13,7 @@ import static com.ygames.ysoccer.match.SceneFsm.ActionType.HOLD_FOREGROUND;
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.NEW_FOREGROUND;
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.RESTORE_FOREGROUND;
 
-abstract class SceneFsm<SceneT extends Scene<?>> {
+abstract class SceneFsm<SceneT extends Scene<?>, SceneStateT extends SceneState<?>> {
 
     enum ActionType {
         NONE,
@@ -47,9 +47,9 @@ abstract class SceneFsm<SceneT extends Scene<?>> {
 
     private final SceneT scene;
 
-    private final List<SceneState> states;
-    private SceneState currentState;
-    private SceneState holdState;
+    private final List<SceneStateT> states;
+    private SceneStateT currentState;
+    private SceneStateT holdState;
 
     private final ArrayDeque<Action> actions;
     private Action currentAction;
@@ -66,11 +66,11 @@ abstract class SceneFsm<SceneT extends Scene<?>> {
         return scene;
     }
 
-    SceneState getState() {
+    SceneStateT getState() {
         return currentState;
     }
 
-    int addState(SceneState state) {
+    int addState(SceneStateT state) {
         states.add(state);
         state.setId(states.size());
         return state.getId();
@@ -78,7 +78,7 @@ abstract class SceneFsm<SceneT extends Scene<?>> {
 
     public abstract void start();
 
-    SceneState getHoldState() {
+    SceneStateT getHoldState() {
         return holdState;
     }
 
@@ -171,9 +171,9 @@ abstract class SceneFsm<SceneT extends Scene<?>> {
         }
     }
 
-    private SceneState searchState(int id) {
+    private SceneStateT searchState(int id) {
         for (int i = 0; i < states.size(); i++) {
-            SceneState s = states.get(i);
+            SceneStateT s = states.get(i);
             if (s.checkId(id)) {
                 s.entryActions();
                 return s;

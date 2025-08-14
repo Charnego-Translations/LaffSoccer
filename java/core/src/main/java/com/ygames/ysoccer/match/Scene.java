@@ -2,7 +2,7 @@ package com.ygames.ysoccer.match;
 
 import com.badlogic.gdx.math.Vector2;
 
-public abstract class Scene<FsmT extends SceneFsm<?>> {
+public abstract class Scene<FsmT extends SceneFsm<?, ?>> {
 
     FsmT fsm;
     protected int subframe;

@@ -126,7 +126,7 @@ class MatchStatePenaltiesEnd extends MatchState {
 
                 if (haveWinner()) {
                     match.setResult(match.penaltiesScore(HOME), match.penaltiesScore(AWAY), Match.ResultType.AFTER_PENALTIES);
-                    getFsm().matchCompleted = true;
+                    fsm.matchCompleted = true;
 
                     if (match.competition.getFinalWinner() != null) {
                         return newAction(NEW_FOREGROUND, STATE_FINAL_CELEBRATION);

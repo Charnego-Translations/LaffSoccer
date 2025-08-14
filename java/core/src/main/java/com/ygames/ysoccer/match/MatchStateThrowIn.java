@@ -33,9 +33,9 @@ class MatchStateThrowIn extends MatchState {
 
         isThrowingIn = false;
 
-        getFsm().throwInTeam.updateFrameDistance();
-        getFsm().throwInTeam.findNearest();
-        throwInPlayer = getFsm().throwInTeam.near1;
+        fsm.throwInTeam.updateFrameDistance();
+        fsm.throwInTeam.findNearest();
+        throwInPlayer = fsm.throwInTeam.near1;
 
         throwInPlayer.setTarget(match.ball.x, match.ball.y);
         throwInPlayer.setState(STATE_REACH_TARGET);
@@ -52,7 +52,7 @@ class MatchStateThrowIn extends MatchState {
 
         match.updateTeamTactics();
 
-        match.ball.setPosition(getFsm().throwInPosition);
+        match.ball.setPosition(fsm.throwInPosition);
         match.ball.updatePrediction();
     }
 

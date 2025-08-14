@@ -30,7 +30,7 @@ class MatchStateFullTimeStop extends MatchState {
         super.entryActions();
 
         match.clock = match.length;
-        getFsm().matchCompleted = true;
+        fsm.matchCompleted = true;
 
         Assets.Sounds.end.play(Assets.Sounds.volume / 100f);
 

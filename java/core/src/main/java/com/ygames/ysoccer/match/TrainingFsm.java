@@ -5,7 +5,7 @@ import com.ygames.ysoccer.framework.InputDeviceList;
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.FADE_IN;
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.NEW_FOREGROUND;
 
-public class TrainingFsm extends SceneFsm<Training> {
+public class TrainingFsm extends SceneFsm<Training, TrainingState> {
 
     private static int STATE_FREE;
     static int STATE_REPLAY;
@@ -21,13 +21,5 @@ public class TrainingFsm extends SceneFsm<Training> {
     public void start() {
         pushAction(NEW_FOREGROUND, STATE_FREE);
         pushAction(FADE_IN);
-    }
-
-    TrainingState getState() {
-        return (TrainingState) super.getState();
-    }
-
-    public Training getTraining() {
-        return (Training) getScene();
     }
 }

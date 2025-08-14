@@ -25,13 +25,13 @@ class MatchStateBenchExit extends MatchState {
     void entryActions() {
         super.entryActions();
 
-        Coach coach = getFsm().benchStatus.team.coach;
+        Coach coach = fsm.benchStatus.team.coach;
         coach.status = Coach.Status.BENCH;
 
         // reset positions
-        int substitutes = min(match.getSettings().benchSize, getFsm().benchStatus.team.lineup.size() - TEAM_SIZE);
+        int substitutes = min(match.getSettings().benchSize, fsm.benchStatus.team.lineup.size() - TEAM_SIZE);
         for (int i = 0; i < substitutes; i++) {
-            Player player = getFsm().benchStatus.team.lineup.get(TEAM_SIZE + i);
+            Player player = fsm.benchStatus.team.lineup.get(TEAM_SIZE + i);
             if (!player.getState().checkId(STATE_SUBSTITUTED)) {
                 player.setState(STATE_BENCH_SITTING);
             }
@@ -39,7 +39,7 @@ class MatchStateBenchExit extends MatchState {
 
         match.actionCamera
                 .setMode(REACH_TARGET)
-                .setTarget(getFsm().benchStatus.oldTarget)
+                .setTarget(fsm.benchStatus.oldTarget)
                 .setSpeed(WARP);
     }
 

@@ -133,14 +133,14 @@ class MatchStateMain extends MatchState {
                     // corner/goal-kick
                     if (match.ball.ownerLast.team == match.team[defendingTeam]) {
                         event = Event.CORNER;
-                        getFsm().cornerKickTeam = match.team[1 - match.ball.ownerLast.team.index];
+                        fsm.cornerKickTeam = match.team[1 - match.ball.ownerLast.team.index];
                         return;
                     } else {
                         if (EMath.isIn(match.ball.x, -Const.GOAL_AREA_W / 2f, Const.GOAL_AREA_W / 2f)) {
                             match.stats[attackingTeam].overallShots += 1;
                         }
                         event = Event.GOAL_KICK;
-                        getFsm().goalKickTeam = match.team[1 - match.ball.ownerLast.team.index];
+                        fsm.goalKickTeam = match.team[1 - match.ball.ownerLast.team.index];
                         return;
                     }
                 }
@@ -149,7 +149,7 @@ class MatchStateMain extends MatchState {
             // throw-ins
             if (Math.abs(match.ball.x) > (Const.TOUCH_LINE + Const.BALL_R)) {
                 event = Event.THROW_IN;
-                getFsm().throwInTeam = match.team[1 - match.ball.ownerLast.team.index];
+                fsm.throwInTeam = match.team[1 - match.ball.ownerLast.team.index];
                 return;
             }
 

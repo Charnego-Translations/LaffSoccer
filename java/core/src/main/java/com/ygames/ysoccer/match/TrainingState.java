@@ -2,7 +2,7 @@ package com.ygames.ysoccer.match;
 
 import com.ygames.ysoccer.framework.InputDevice;
 
-abstract class TrainingState extends SceneState {
+abstract class TrainingState extends SceneState<TrainingFsm> {
 
     boolean displayControlledPlayer;
     boolean displayPause;
@@ -19,13 +19,9 @@ abstract class TrainingState extends SceneState {
     TrainingState(TrainingFsm trainingFsm) {
         super(trainingFsm);
 
-        this.training = trainingFsm.getTraining();
+        this.training = trainingFsm.getScene();
         this.team = training.team;
         this.ball = training.ball;
-    }
-
-    SceneFsm.Action[] newFadedAction(SceneFsm.ActionType type, int stateId) {
-        return fsm.newFadedAction(type, stateId);
     }
 
     void quitTraining() {

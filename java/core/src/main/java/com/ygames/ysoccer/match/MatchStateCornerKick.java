@@ -50,9 +50,9 @@ class MatchStateCornerKick extends MatchState {
 
         isKicking = false;
 
-        getFsm().cornerKickTeam.updateFrameDistance();
-        getFsm().cornerKickTeam.findNearest();
-        cornerKickPlayer = getFsm().cornerKickTeam.near1;
+        fsm.cornerKickTeam.updateFrameDistance();
+        fsm.cornerKickTeam.findNearest();
+        cornerKickPlayer = fsm.cornerKickTeam.near1;
 
         cornerKickPlayer.setTarget(match.ball.x + 7 * match.ball.xSide, match.ball.y);
         cornerKickPlayer.setState(STATE_REACH_TARGET);

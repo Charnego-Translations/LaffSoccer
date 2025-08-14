@@ -30,7 +30,7 @@ class MatchStateIntro extends MatchState {
 
         stillCamera = true;
         match.clock = 0;
-        getFsm().matchCompleted = false;
+        fsm.matchCompleted = false;
         match.setIntroPositions();
         match.resetData();
 

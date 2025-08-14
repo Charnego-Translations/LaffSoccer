@@ -2,13 +2,13 @@ package com.ygames.ysoccer.match;
 
 import com.ygames.ysoccer.framework.GLGame;
 
-abstract class SceneState {
+abstract class SceneState<SceneFsmT extends SceneFsm<?, ?>> {
 
     private int id;
-    final SceneFsm fsm;
+    final SceneFsmT fsm;
     int timer;
 
-    SceneState(SceneFsm fsm) {
+    SceneState(SceneFsmT fsm) {
         this.fsm = fsm;
     }
 

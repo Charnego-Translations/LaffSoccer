@@ -34,7 +34,7 @@ class MatchStateBenchSubstitutions extends MatchState {
     void entryActions() {
         super.entryActions();
 
-        benchStatus = getFsm().benchStatus;
+        benchStatus = fsm.benchStatus;
         match.actionCamera.setMode(STILL);
     }
 

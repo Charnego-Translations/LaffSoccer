@@ -15,7 +15,7 @@ import static com.ygames.ysoccer.match.MatchFsm.STATE_PAUSE;
 import static com.ygames.ysoccer.match.MatchFsm.STATE_REPLAY;
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.HOLD_FOREGROUND;
 
-abstract class MatchState extends SceneState {
+abstract class MatchState extends SceneState<MatchFsm> {
 
     boolean displayControlledPlayer;
     boolean displayBallOwner;
@@ -50,12 +50,8 @@ abstract class MatchState extends SceneState {
     MatchState(MatchFsm matchFsm) {
         super(matchFsm);
 
-        this.match = matchFsm.getMatch();
+        this.match = matchFsm.getScene();
         this.ball = match.ball;
-    }
-
-    MatchFsm getFsm() {
-        return (MatchFsm) fsm;
     }
 
     SceneFsm.Action[] checkCommonConditions() {
@@ -76,8 +72,8 @@ abstract class MatchState extends SceneState {
             for (int t = HOME; t <= AWAY; t++) {
                 InputDevice inputDevice = match.team[t].fire2Down();
                 if (inputDevice != null) {
-                    getFsm().benchStatus.team = match.team[t];
-                    getFsm().benchStatus.inputDevice = inputDevice;
+                    fsm.benchStatus.team = match.team[t];
+                    fsm.benchStatus.inputDevice = inputDevice;
                     return newAction(HOLD_FOREGROUND, STATE_BENCH_ENTER);
                 }
             }
