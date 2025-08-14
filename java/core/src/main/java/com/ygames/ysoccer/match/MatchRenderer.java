@@ -80,7 +80,7 @@ public class MatchRenderer extends SceneRenderer {
     }
 
     public void render() {
-        matchState = getMatch().getFsm().getState();
+        matchState = getMatch().getState();
 
         glGraphics.light = scene.light;
 

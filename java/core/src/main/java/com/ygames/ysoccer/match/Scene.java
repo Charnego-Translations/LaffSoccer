@@ -2,9 +2,10 @@ package com.ygames.ysoccer.match;
 
 import com.badlogic.gdx.math.Vector2;
 
-public abstract class Scene<FsmT extends SceneFsm<?, ?>> {
+public abstract class Scene<FsmT extends SceneFsm<?, SceneStateT>, SceneStateT extends SceneState<?>> {
 
     FsmT fsm;
+    public SceneStateT state;
     protected int subframe;
     protected SceneSettings settings;
 
@@ -18,6 +19,10 @@ public abstract class Scene<FsmT extends SceneFsm<?, ?>> {
 
     public FsmT getFsm() {
         return fsm;
+    }
+
+    public SceneStateT getState() {
+        return state;
     }
 
     public void start() {

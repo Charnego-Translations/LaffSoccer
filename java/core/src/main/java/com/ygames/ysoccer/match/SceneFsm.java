@@ -13,7 +13,7 @@ import static com.ygames.ysoccer.match.SceneFsm.ActionType.HOLD_FOREGROUND;
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.NEW_FOREGROUND;
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.RESTORE_FOREGROUND;
 
-abstract class SceneFsm<SceneT extends Scene<?>, SceneStateT extends SceneState<?>> {
+abstract class SceneFsm<SceneT extends Scene<?, SceneStateT>, SceneStateT extends SceneState<?>> {
 
     enum ActionType {
         NONE,
@@ -48,7 +48,6 @@ abstract class SceneFsm<SceneT extends Scene<?>, SceneStateT extends SceneState<
     private final SceneT scene;
 
     private final List<SceneStateT> states;
-    private SceneStateT currentState;
     private SceneStateT holdState;
 
     private final ArrayDeque<Action> actions;
@@ -64,10 +63,6 @@ abstract class SceneFsm<SceneT extends Scene<?>, SceneStateT extends SceneState<
 
     SceneT getScene() {
         return scene;
-    }
-
-    SceneStateT getState() {
-        return currentState;
     }
 
     int addState(SceneStateT state) {
@@ -96,18 +91,18 @@ abstract class SceneFsm<SceneT extends Scene<?>, SceneStateT extends SceneState<
         }
 
         // update current state
-        if (currentState != null && doUpdate) {
+        if (scene.state != null && doUpdate) {
             if (currentAction != null
                 && (currentAction.type == NEW_FOREGROUND || currentAction.type == RESTORE_FOREGROUND)) {
-                currentState.onResume();
+                scene.state.onResume();
             }
             if (currentAction != null
                 && (currentAction.type == HOLD_FOREGROUND)) {
                 holdState.onPause();
             }
-            currentState.doActions(deltaTime);
+            scene.state.doActions(deltaTime);
 
-            Action[] newActions = currentState.checkConditions();
+            Action[] newActions = scene.state.checkConditions();
             if (newActions != null) {
                 for (Action action : newActions) {
                     actions.offer(action);
@@ -149,22 +144,22 @@ abstract class SceneFsm<SceneT extends Scene<?>, SceneStateT extends SceneState<
                 break;
 
             case NEW_FOREGROUND:
-                if (currentState != null) {
-                    currentState.exitActions();
+                if (scene.state != null) {
+                    scene.state.exitActions();
                 }
-                currentState = searchState(currentAction.stateId);
-                Gdx.app.debug("NEW_FOREGROUND", currentState == null ? "null" : currentState.getClass().getSimpleName());
+                scene.state = searchState(currentAction.stateId);
+                Gdx.app.debug("NEW_FOREGROUND", scene.state == null ? "null" : scene.state.getClass().getSimpleName());
                 break;
 
             case HOLD_FOREGROUND:
-                holdState = currentState;
-                currentState = searchState(currentAction.stateId);
-                Gdx.app.debug("HOLD_FOREGROUND", currentState == null ? "null" : currentState.getClass().getSimpleName());
+                holdState = scene.state;
+                scene.state = searchState(currentAction.stateId);
+                Gdx.app.debug("HOLD_FOREGROUND", scene.state == null ? "null" : scene.state.getClass().getSimpleName());
                 break;
 
             case RESTORE_FOREGROUND:
-                currentState.exitActions();
-                currentState = holdState;
+                scene.state.exitActions();
+                scene.state = holdState;
                 holdState = null;
                 break;
 

@@ -67,7 +67,7 @@ public class TrainingRenderer extends SceneRenderer {
     }
 
     public void render() {
-        trainingState = getTraining().getFsm().getState();
+        trainingState = getTraining().getState();
 
         glGraphics.light = scene.light;
 
