@@ -14,7 +14,7 @@ import static com.ygames.ysoccer.framework.Assets.gettext;
 import static com.ygames.ysoccer.match.Match.AWAY;
 import static com.ygames.ysoccer.match.Match.HOME;
 
-public class TrainingRenderer extends SceneRenderer {
+public class TrainingRenderer extends SceneRenderer<Training> {
 
     private TrainingState trainingState;
     private final BallSprite ballSprite;
@@ -62,12 +62,8 @@ public class TrainingRenderer extends SceneRenderer {
         allSprites.add(new GoalTopB(glGraphics));
     }
 
-    private Training getTraining() {
-        return (Training) scene;
-    }
-
     public void render() {
-        trainingState = getTraining().getState();
+        trainingState = scene.getState();
 
         glGraphics.light = scene.light;
 
@@ -87,13 +83,13 @@ public class TrainingRenderer extends SceneRenderer {
 
         renderSprites();
 
-        redrawBallShadowsOverGoals(getTraining().ball);
+        redrawBallShadowsOverGoals(scene.ball);
         redrawBallOverTopGoal(ballSprite);
 
         // redraw bottom goal
         batch.draw(Assets.goalBottom, Const.GOAL_BTM_X, Const.GOAL_BTM_Y, 146, 56, 0, 0, 146, 56, false, true);
 
-        redrawBallShadowsOverGoals(getTraining().ball);
+        redrawBallShadowsOverGoals(scene.ball);
         redrawBallOverBottomGoal(ballSprite);
 
         if (scene.settings.weatherStrength != Weather.Strength.NONE) {
@@ -130,8 +126,8 @@ public class TrainingRenderer extends SceneRenderer {
         batch.setColor(0xFFFFFF, guiAlpha);
 
         // ball owner
-        if (getTraining().ball.owner != null) {
-            drawPlayerNumberAndName(getTraining().ball.owner);
+        if (scene.ball.owner != null) {
+            drawPlayerNumberAndName(scene.ball.owner);
         }
 
         // wind vane
@@ -196,7 +192,7 @@ public class TrainingRenderer extends SceneRenderer {
     protected void drawShadows() {
         batch.setColor(0xFFFFFF, scene.settings.shadowAlpha);
 
-        drawBallShadow(getTraining().ball, false);
+        drawBallShadow(scene.ball, false);
 
         for (int i = 0; i < 4; i++) {
             cornerFlagSprites[i].drawShadow(scene.subframe, batch);
@@ -204,7 +200,7 @@ public class TrainingRenderer extends SceneRenderer {
 
         // keepers
         for (int t = HOME; t <= AWAY; t++) {
-            for (Player player : getTraining().team[t].lineup) {
+            for (Player player : scene.team[t].lineup) {
                 if (player.role == Player.Role.GOALKEEPER) {
                     FrameData d = player.currentData;
                     if (d.isVisible) {
@@ -224,7 +220,7 @@ public class TrainingRenderer extends SceneRenderer {
         // players
         for (int i = 0; i < (scene.settings.time == MatchSettings.Time.NIGHT ? 4 : 1); i++) {
             for (int t = HOME; t <= AWAY; t++) {
-                for (Player player : getTraining().team[t].lineup) {
+                for (Player player : scene.team[t].lineup) {
                     if (player.role != Player.Role.GOALKEEPER) {
                         FrameData d = player.currentData;
                         if (d.isVisible) {
@@ -243,10 +239,10 @@ public class TrainingRenderer extends SceneRenderer {
 
     private void drawControlledPlayersNumbers() {
         for (int t = Match.HOME; t <= Match.AWAY; t++) {
-            if (getTraining().team[t] != null) {
-                int len = getTraining().team[t].lineup.size();
+            if (scene.team[t] != null) {
+                int len = scene.team[t].lineup.size();
                 for (int i = 0; i < len; i++) {
-                    Player player = getTraining().team[t].lineup.get(i);
+                    Player player = scene.team[t].lineup.get(i);
                     if ((player.inputDevice != player.ai && player.isVisible)
                         || (Settings.development && Settings.showPlayerNumber)) {
                         drawPlayerNumber(player);

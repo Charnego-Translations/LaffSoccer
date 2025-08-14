@@ -24,7 +24,7 @@ import static com.ygames.ysoccer.match.Const.GOAL_LINE;
 import static com.ygames.ysoccer.match.Const.POST_X;
 import static com.ygames.ysoccer.match.Const.isInsideGoal;
 
-public abstract class SceneRenderer {
+public abstract class SceneRenderer<SceneT extends Scene<?, ?>> {
 
     private static final float VISIBLE_FIELD_WIDTH_MAX = 1.0f;
     private static final float VISIBLE_FIELD_WIDTH_OPT = 0.75f;
@@ -40,7 +40,7 @@ public abstract class SceneRenderer {
 
     static final float guiAlpha = 0.9f;
 
-    final Scene scene;
+    final SceneT scene;
     final GLGraphics glGraphics;
     final GLSpriteBatch batch;
     final protected GLShapeRenderer shapeRenderer;
@@ -63,7 +63,7 @@ public abstract class SceneRenderer {
     private final int modX = (int) Math.ceil(Const.PITCH_W / ((float) modW));
     private final int modY = (int) Math.ceil(Const.PITCH_H / ((float) modH));
 
-    protected SceneRenderer(GLGraphics glGraphics, Scene scene) {
+    protected SceneRenderer(GLGraphics glGraphics, SceneT scene) {
         this.glGraphics = glGraphics;
         this.scene = scene;
 
