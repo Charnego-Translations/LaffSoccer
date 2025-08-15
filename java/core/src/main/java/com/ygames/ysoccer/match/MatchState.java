@@ -42,7 +42,6 @@ abstract class MatchState extends SceneState<MatchFsm, Match> {
     boolean checkHelpKey = true;
     boolean checkBenchCall = true;
 
-    final Match match;
     final Ball ball;
     InputDevice inputDevice;
     int replayPosition;
@@ -50,8 +49,7 @@ abstract class MatchState extends SceneState<MatchFsm, Match> {
     MatchState(MatchFsm matchFsm) {
         super(matchFsm);
 
-        this.match = matchFsm.getScene();
-        this.ball = match.ball;
+        this.ball = scene.ball;
     }
 
     SceneFsm.Action[] checkCommonConditions() {
@@ -70,9 +68,9 @@ abstract class MatchState extends SceneState<MatchFsm, Match> {
 
         if (checkBenchCall) {
             for (int t = HOME; t <= AWAY; t++) {
-                InputDevice inputDevice = match.team[t].fire2Down();
+                InputDevice inputDevice = scene.team[t].fire2Down();
                 if (inputDevice != null) {
-                    fsm.benchStatus.team = match.team[t];
+                    fsm.benchStatus.team = scene.team[t];
                     fsm.benchStatus.inputDevice = inputDevice;
                     return newAction(HOLD_FOREGROUND, STATE_BENCH_ENTER);
                 }
@@ -88,6 +86,6 @@ abstract class MatchState extends SceneState<MatchFsm, Match> {
     }
 
     void quitMatch() {
-        match.quit();
+        scene.quit();
     }
 }

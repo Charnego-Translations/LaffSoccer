@@ -2,18 +2,12 @@ package com.ygames.ysoccer.match;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.ygames.ysoccer.framework.Assets;
 import com.ygames.ysoccer.framework.EMath;
-import com.ygames.ysoccer.framework.Font;
 import com.ygames.ysoccer.framework.GLGame;
-import com.ygames.ysoccer.framework.GLShapeRenderer;
 import com.ygames.ysoccer.framework.InputDevice;
 import com.ygames.ysoccer.framework.Settings;
 
-import static com.ygames.ysoccer.framework.Assets.gettext;
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.RESTORE_FOREGROUND;
-import static com.ygames.ysoccer.match.SceneRenderer.guiAlpha;
 
 class MatchStateReplay extends MatchState {
 
@@ -41,7 +35,7 @@ class MatchStateReplay extends MatchState {
     void entryActions() {
         super.entryActions();
 
-        subframe0 = match.subframe;
+        subframe0 = scene.subframe;
 
         paused = false;
         slowMotion = false;
@@ -59,7 +53,7 @@ class MatchStateReplay extends MatchState {
 
     @Override
     void exitActions() {
-        match.subframe = subframe0;
+        scene.subframe = subframe0;
     }
 
     @Override
@@ -106,7 +100,7 @@ class MatchStateReplay extends MatchState {
         if (!paused) {
             replayPosition = EMath.slide(replayPosition, 1, Const.REPLAY_SUBFRAMES, speed);
 
-            match.subframe = (subframe0 + replayPosition) % Const.REPLAY_SUBFRAMES;
+            scene.subframe = (subframe0 + replayPosition) % Const.REPLAY_SUBFRAMES;
         }
 
         displayPause = paused;

@@ -37,10 +37,10 @@ class MatchStateThrowIn extends MatchState {
         fsm.throwInTeam.findNearest();
         throwInPlayer = fsm.throwInTeam.near1;
 
-        throwInPlayer.setTarget(match.ball.x, match.ball.y);
+        throwInPlayer.setTarget(scene.ball.x, scene.ball.y);
         throwInPlayer.setState(STATE_REACH_TARGET);
 
-        match.actionCamera
+        scene.actionCamera
                 .setMode(FOLLOW_BALL)
                 .setSpeed(FAST)
                 .setLimited(true, true);
@@ -50,10 +50,10 @@ class MatchStateThrowIn extends MatchState {
     void onPause() {
         super.onPause();
 
-        match.updateTeamTactics();
+        scene.updateTeamTactics();
 
-        match.ball.setPosition(fsm.throwInPosition);
-        match.ball.updatePrediction();
+        scene.ball.setPosition(fsm.throwInPosition);
+        scene.ball.updatePrediction();
     }
 
     @Override
@@ -64,20 +64,20 @@ class MatchStateThrowIn extends MatchState {
         float timeLeft = deltaTime;
         while (timeLeft >= GLGame.SUBFRAME_DURATION) {
 
-            if (match.subframe % GLGame.SUBFRAMES == 0) {
-                match.updateAi();
+            if (scene.subframe % GLGame.SUBFRAMES == 0) {
+                scene.updateAi();
             }
 
-            match.updateBall();
-            match.ball.inFieldKeep();
+            scene.updateBall();
+            scene.ball.inFieldKeep();
 
-            move = match.updatePlayers(true);
+            move = scene.updatePlayers(true);
 
-            match.nextSubframe();
+            scene.nextSubframe();
 
-            match.save();
+            scene.save();
 
-            match.actionCamera.update();
+            scene.actionCamera.update();
 
             timeLeft -= GLGame.SUBFRAME_DURATION;
         }
@@ -96,8 +96,8 @@ class MatchStateThrowIn extends MatchState {
 
     @Override
     SceneFsm.Action[] checkConditions() {
-        if (Math.abs(match.ball.x) < Const.TOUCH_LINE) {
-            match.setPlayersState(STATE_STAND_RUN, throwInPlayer);
+        if (Math.abs(scene.ball.x) < Const.TOUCH_LINE) {
+            scene.setPlayersState(STATE_STAND_RUN, throwInPlayer);
             return newAction(NEW_FOREGROUND, STATE_MAIN);
         }
 

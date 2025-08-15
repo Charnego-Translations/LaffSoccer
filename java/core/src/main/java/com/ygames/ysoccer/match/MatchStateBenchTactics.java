@@ -29,7 +29,7 @@ class MatchStateBenchTactics extends MatchState {
 
         benchStatus = fsm.benchStatus;
         benchStatus.selectedTactics = benchStatus.team.tactics;
-        match.actionCamera.setMode(STILL);
+        scene.actionCamera.setMode(STILL);
     }
 
     @Override
@@ -39,18 +39,18 @@ class MatchStateBenchTactics extends MatchState {
         float timeLeft = deltaTime;
         while (timeLeft >= GLGame.SUBFRAME_DURATION) {
 
-            match.updateBall();
-            match.ball.inFieldKeep();
+            scene.updateBall();
+            scene.ball.inFieldKeep();
 
-            match.updatePlayers(true);
+            scene.updatePlayers(true);
 
-            match.updateCoaches();
+            scene.updateCoaches();
 
-            match.nextSubframe();
+            scene.nextSubframe();
 
-            match.save();
+            scene.save();
 
-            match.actionCamera.update();
+            scene.actionCamera.update();
 
             timeLeft -= GLGame.SUBFRAME_DURATION;
         }

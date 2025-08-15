@@ -34,29 +34,29 @@ class MatchStatePenalties extends MatchState {
         super.entryActions();
 
         // swap penalty kicking team
-        match.penaltyKickingTeam = 1 - match.penaltyKickingTeam;
-        match.team[match.penaltyKickingTeam].setSide(1);
-        match.team[1 - match.penaltyKickingTeam].setSide(-1);
+        scene.penaltyKickingTeam = 1 - scene.penaltyKickingTeam;
+        scene.team[scene.penaltyKickingTeam].setSide(1);
+        scene.team[1 - scene.penaltyKickingTeam].setSide(-1);
 
         // add another round
-        if (match.penaltiesLeft(HOME) == 0 && match.penaltiesLeft(AWAY) == 0) {
-            match.addPenalties(1);
+        if (scene.penaltiesLeft(HOME) == 0 && scene.penaltiesLeft(AWAY) == 0) {
+            scene.addPenalties(1);
         }
 
-        match.nextPenalty();
+        scene.nextPenalty();
 
-        match.setPointOfInterest(0, match.penalty.side * PENALTY_SPOT_Y);
+        scene.setPointOfInterest(0, scene.penalty.side * PENALTY_SPOT_Y);
 
         setPlayersTargetPositions();
-        match.penalty.kicker.setTarget(-40 * match.penalty.side, match.penalty.side * (PENALTY_SPOT_Y - 45));
-        match.penalty.keeper.setTarget(0, match.penalty.side * (GOAL_LINE - 4));
+        scene.penalty.kicker.setTarget(-40 * scene.penalty.side, scene.penalty.side * (PENALTY_SPOT_Y - 45));
+        scene.penalty.keeper.setTarget(0, scene.penalty.side * (GOAL_LINE - 4));
     }
 
     @Override
     void onResume() {
         super.onResume();
 
-        match.actionCamera
+        scene.actionCamera
                 .setMode(FOLLOW_BALL)
                 .setSpeed(NORMAL);
     }
@@ -68,13 +68,13 @@ class MatchStatePenalties extends MatchState {
         float timeLeft = deltaTime;
         while (timeLeft >= GLGame.SUBFRAME_DURATION) {
 
-            move = match.updatePlayers(false);
+            move = scene.updatePlayers(false);
 
-            match.nextSubframe();
+            scene.nextSubframe();
 
-            match.save();
+            scene.save();
 
-            match.actionCamera.update();
+            scene.actionCamera.update();
 
             timeLeft -= GLGame.SUBFRAME_DURATION;
         }
@@ -83,7 +83,7 @@ class MatchStatePenalties extends MatchState {
     @Override
     SceneFsm.Action[] checkConditions() {
         if (!move) {
-            match.penalty.keeper.setState(STATE_KEEPER_PENALTY_POSITIONING);
+            scene.penalty.keeper.setState(STATE_KEEPER_PENALTY_POSITIONING);
             return newAction(NEW_FOREGROUND, STATE_PENALTIES_KICK);
         }
 
@@ -93,7 +93,7 @@ class MatchStatePenalties extends MatchState {
     private void setPlayersTargetPositions() {
 
         for (int t = HOME; t <= AWAY; t++) {
-            Team team = match.team[t];
+            Team team = scene.team[t];
             int len = team.lineup.size();
             for (int i = 0; i < len; i++) {
                 Player player = team.lineupAtPosition(i);

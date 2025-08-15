@@ -29,7 +29,7 @@ class TrainingStateReplay extends TrainingState {
     void entryActions() {
         super.entryActions();
 
-        subframe0 = training.subframe;
+        subframe0 = scene.subframe;
 
         paused = false;
         slowMotion = false;
@@ -47,7 +47,7 @@ class TrainingStateReplay extends TrainingState {
 
     @Override
     void exitActions() {
-        training.subframe = subframe0;
+        scene.subframe = subframe0;
     }
 
     @Override
@@ -94,7 +94,7 @@ class TrainingStateReplay extends TrainingState {
         if (!paused) {
             replayPosition = EMath.slide(replayPosition, 1, Const.REPLAY_SUBFRAMES, speed);
 
-            training.subframe = (subframe0 + replayPosition) % Const.REPLAY_SUBFRAMES;
+            scene.subframe = (subframe0 + replayPosition) % Const.REPLAY_SUBFRAMES;
         }
 
         displayPause = paused;

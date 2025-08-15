@@ -28,15 +28,15 @@ class MatchStateExtraTimeStop extends MatchState {
 
         Assets.Sounds.end.play(Assets.Sounds.volume / 100f);
 
-        match.resetAutomaticInputDevices();
-        match.setPlayersState(STATE_IDLE, null);
+        scene.resetAutomaticInputDevices();
+        scene.setPlayersState(STATE_IDLE, null);
     }
 
     @Override
     void onResume() {
         super.onResume();
 
-        match.actionCamera
+        scene.actionCamera
                 .setMode(FOLLOW_BALL)
                 .setSpeed(NORMAL);
     }
@@ -48,20 +48,20 @@ class MatchStateExtraTimeStop extends MatchState {
         float timeLeft = deltaTime;
         while (timeLeft >= GLGame.SUBFRAME_DURATION) {
 
-            if (match.subframe % GLGame.SUBFRAMES == 0) {
-                match.updateAi();
+            if (scene.subframe % GLGame.SUBFRAMES == 0) {
+                scene.updateAi();
             }
 
-            match.updateBall();
-            match.ball.inFieldKeep();
+            scene.updateBall();
+            scene.ball.inFieldKeep();
 
-            match.updatePlayers(true);
+            scene.updatePlayers(true);
 
-            match.nextSubframe();
+            scene.nextSubframe();
 
-            match.save();
+            scene.save();
 
-            match.actionCamera.update();
+            scene.actionCamera.update();
 
             timeLeft -= GLGame.SUBFRAME_DURATION;
         }
@@ -70,21 +70,21 @@ class MatchStateExtraTimeStop extends MatchState {
     @Override
     SceneFsm.Action[] checkConditions() {
         if (timer > 3 * SECOND) {
-            match.ball.setPosition(0, 0, 0);
-            match.ball.updatePrediction();
+            scene.ball.setPosition(0, 0, 0);
+            scene.ball.updatePrediction();
 
-            match.actionCamera.setOffset(0, 0);
+            scene.actionCamera.setOffset(0, 0);
 
             // redo coin toss
-            match.coinToss = Assets.random.nextInt(2); // 0 = home begins, 1 = away begins
-            match.kickOffTeam = match.coinToss;
+            scene.coinToss = Assets.random.nextInt(2); // 0 = home begins, 1 = away begins
+            scene.kickOffTeam = scene.coinToss;
 
             // reassign teams sides
-            match.team[HOME].setSide(1 - 2 * Assets.random.nextInt(2)); // -1 = up, 1 = down
-            match.team[AWAY].setSide(-match.team[HOME].side);
+            scene.team[HOME].setSide(1 - 2 * Assets.random.nextInt(2)); // -1 = up, 1 = down
+            scene.team[AWAY].setSide(-scene.team[HOME].side);
 
-            match.period = Match.Period.FIRST_EXTRA_TIME;
-            match.clock = match.length;
+            scene.period = Match.Period.FIRST_EXTRA_TIME;
+            scene.clock = scene.length;
 
             return newAction(NEW_FOREGROUND, STATE_STARTING_POSITIONS);
         }

@@ -32,12 +32,12 @@ class MatchStateKeeperStop extends MatchState {
     void entryActions() {
         super.entryActions();
 
-        keeper = match.ball.holder;
-        keeperTeam = match.team[keeper.team.index];
-        opponentTeam = match.team[1 - keeper.team.index];
+        keeper = scene.ball.holder;
+        keeperTeam = scene.team[keeper.team.index];
+        opponentTeam = scene.team[1 - keeper.team.index];
 
-        match.stats[opponentTeam.index].overallShots += 1;
-        match.stats[opponentTeam.index].centeredShots += 1;
+        scene.stats[opponentTeam.index].overallShots += 1;
+        scene.stats[opponentTeam.index].centeredShots += 1;
 
         keeperTeam.assignAutomaticInputDevices(keeper);
         opponentTeam.assignAutomaticInputDevices(null);
@@ -48,14 +48,14 @@ class MatchStateKeeperStop extends MatchState {
         keeperTeam.updateTactics(true);
         opponentTeam.updateTactics(true);
 
-        match.setPointOfInterest(keeper.x, keeper.y);
+        scene.setPointOfInterest(keeper.x, keeper.y);
     }
 
     @Override
     void onResume() {
         super.onResume();
 
-        match.actionCamera
+        scene.actionCamera
                 .setMode(FOLLOW_BALL)
                 .setSpeed(NORMAL);
     }
@@ -68,21 +68,21 @@ class MatchStateKeeperStop extends MatchState {
 
         while (timeLeft > GLGame.SUBFRAME_DURATION) {
 
-            if (match.subframe % GLGame.SUBFRAMES == 0) {
-                match.ball.updatePrediction();
-                match.updateFrameDistance();
-                match.updateAi();
+            if (scene.subframe % GLGame.SUBFRAMES == 0) {
+                scene.ball.updatePrediction();
+                scene.updateFrameDistance();
+                scene.updateAi();
             }
 
-            match.updateBall();
-            match.updatePlayers(true);
-            match.findNearest();
+            scene.updateBall();
+            scene.updatePlayers(true);
+            scene.findNearest();
 
-            match.nextSubframe();
+            scene.nextSubframe();
 
-            match.save();
+            scene.save();
 
-            match.actionCamera.update();
+            scene.actionCamera.update();
 
             timeLeft -= GLGame.SUBFRAME_DURATION;
         }

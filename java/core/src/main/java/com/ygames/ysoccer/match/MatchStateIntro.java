@@ -29,10 +29,10 @@ class MatchStateIntro extends MatchState {
         super.entryActions();
 
         stillCamera = true;
-        match.clock = 0;
+        scene.clock = 0;
         fsm.matchCompleted = false;
-        match.setIntroPositions();
-        match.resetData();
+        scene.setIntroPositions();
+        scene.resetData();
 
         Assets.Sounds.introId = Assets.Sounds.intro.play(Assets.Sounds.volume / 100f);
         Assets.Sounds.crowdId = Assets.Sounds.crowd.play(Assets.Sounds.volume / 100f);
@@ -50,37 +50,37 @@ class MatchStateIntro extends MatchState {
     void doActions(float deltaTime) {
         super.doActions(deltaTime);
 
-        match.enterPlayers(timer - 1, enterDelay);
+        scene.enterPlayers(timer - 1, enterDelay);
 
         float timeLeft = deltaTime;
         while (timeLeft >= GLGame.SUBFRAME_DURATION) {
 
-            match.updatePlayers(false);
-            match.playersPhoto();
+            scene.updatePlayers(false);
+            scene.playersPhoto();
 
-            match.nextSubframe();
+            scene.nextSubframe();
 
-            match.save();
+            scene.save();
 
             if (stillCamera && timer > SECOND) {
                 stillCamera = false;
                 setCameraMode();
             }
-            match.actionCamera.update();
+            scene.actionCamera.update();
 
             timeLeft -= GLGame.SUBFRAME_DURATION;
         }
     }
 
     private void setCameraMode() {
-        match.actionCamera.setMode(stillCamera ? STILL : FOLLOW_BALL);
+        scene.actionCamera.setMode(stillCamera ? STILL : FOLLOW_BALL);
     }
 
     @Override
     SceneFsm.Action[] checkConditions() {
-        if (match.enterPlayersFinished(timer, enterDelay)) {
-            if ((match.team[HOME].fire1Down() != null)
-                    || (match.team[AWAY].fire1Down() != null)
+        if (scene.enterPlayersFinished(timer, enterDelay)) {
+            if ((scene.team[HOME].fire1Down() != null)
+                    || (scene.team[AWAY].fire1Down() != null)
                     || (timer >= 5 * SECOND)) {
                 return newAction(NEW_FOREGROUND, STATE_STARTING_POSITIONS);
             }

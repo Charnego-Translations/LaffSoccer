@@ -27,22 +27,22 @@ class MatchStateEndPositions extends MatchState {
     void entryActions() {
         super.entryActions();
 
-        displayScore = (match.period != PENALTIES);
-        displayPenaltiesScore = (match.period == PENALTIES);
+        displayScore = (scene.period != PENALTIES);
+        displayPenaltiesScore = (scene.period == PENALTIES);
 
-        match.period = Match.Period.UNDEFINED;
+        scene.period = Match.Period.UNDEFINED;
 
-        match.ball.setPosition(0, 0, 0);
-        match.ball.updatePrediction();
+        scene.ball.setPosition(0, 0, 0);
+        scene.ball.updatePrediction();
 
-        match.actionCamera
+        scene.actionCamera
                 .setMode(REACH_TARGET)
                 .setTarget(0, 0)
                 .setOffset(0, 0)
                 .setSpeed(FAST);
 
-        match.setLineupTarget(Const.TOUCH_LINE + 80, 0);
-        match.setLineupState(STATE_OUTSIDE);
+        scene.setLineupTarget(Const.TOUCH_LINE + 80, 0);
+        scene.setLineupState(STATE_OUTSIDE);
     }
 
     @Override
@@ -52,17 +52,17 @@ class MatchStateEndPositions extends MatchState {
         float timeLeft = deltaTime;
         while (timeLeft >= GLGame.SUBFRAME_DURATION) {
 
-            if (match.subframe % GLGame.SUBFRAMES == 0) {
-                match.updateAi();
+            if (scene.subframe % GLGame.SUBFRAMES == 0) {
+                scene.updateAi();
             }
 
-            move = match.updatePlayers(false);
+            move = scene.updatePlayers(false);
 
-            match.nextSubframe();
+            scene.nextSubframe();
 
-            match.save();
+            scene.save();
 
-            match.actionCamera.update();
+            scene.actionCamera.update();
 
             timeLeft -= GLGame.SUBFRAME_DURATION;
         }
@@ -71,8 +71,8 @@ class MatchStateEndPositions extends MatchState {
     @Override
     SceneFsm.Action[] checkConditions() {
         if (!move) {
-            if (match.recorder.hasHighlights()) {
-                match.recorder.restart();
+            if (scene.recorder.hasHighlights()) {
+                scene.recorder.restart();
                 return newFadedAction(NEW_FOREGROUND, STATE_HIGHLIGHTS);
             } else {
                 return newAction(NEW_FOREGROUND, STATE_END);

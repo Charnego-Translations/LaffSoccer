@@ -36,7 +36,7 @@ class MatchStateFreeKickStop extends MatchState {
 
         Assets.Sounds.whistle.play(Assets.Sounds.volume / 100f);
 
-        if (match.settings.commentary) {
+        if (scene.settings.commentary) {
             int size = Assets.Commentary.foul.size();
             if (size > 0) {
                 Assets.Commentary.foul.get(Assets.random.nextInt(size)).play(Assets.Sounds.volume / 100f);
@@ -45,16 +45,16 @@ class MatchStateFreeKickStop extends MatchState {
 
         // set the player targets relative to foul zone
         // even before moving the ball itself
-        ball.updateZone(match.foul.position.x, match.foul.position.y);
-        match.updateTeamTactics();
-        match.foul.player.team.keepTargetDistanceFrom(match.foul.position);
-        if (match.foul.isDirectShot()) {
-            match.foul.player.team.setFreeKickBarrier();
+        ball.updateZone(scene.foul.position.x, scene.foul.position.y);
+        scene.updateTeamTactics();
+        scene.foul.player.team.keepTargetDistanceFrom(scene.foul.position);
+        if (scene.foul.isDirectShot()) {
+            scene.foul.player.team.setFreeKickBarrier();
         }
-        match.team[HOME].lineup.get(0).setTarget(0, match.team[HOME].side * (Const.GOAL_LINE - 8));
-        match.team[AWAY].lineup.get(0).setTarget(0, match.team[AWAY].side * (Const.GOAL_LINE - 8));
+        scene.team[HOME].lineup.get(0).setTarget(0, scene.team[HOME].side * (Const.GOAL_LINE - 8));
+        scene.team[AWAY].lineup.get(0).setTarget(0, scene.team[AWAY].side * (Const.GOAL_LINE - 8));
 
-        match.resetAutomaticInputDevices();
+        scene.resetAutomaticInputDevices();
 
         allPlayersReachingTarget = false;
         playersReachingTarget.clear();
@@ -62,9 +62,9 @@ class MatchStateFreeKickStop extends MatchState {
 
     @Override
     void onResume() {
-        match.setPointOfInterest(match.foul.position);
+        scene.setPointOfInterest(scene.foul.position);
 
-        match.actionCamera.setMode(STILL);
+        scene.actionCamera.setMode(STILL);
     }
 
     @Override
@@ -74,13 +74,13 @@ class MatchStateFreeKickStop extends MatchState {
         float timeLeft = deltaTime;
         while (timeLeft >= GLGame.SUBFRAME_DURATION) {
 
-            if (match.subframe % GLGame.SUBFRAMES == 0) {
-                match.updateAi();
+            if (scene.subframe % GLGame.SUBFRAMES == 0) {
+                scene.updateAi();
 
                 allPlayersReachingTarget = true;
                 for (int t = HOME; t <= AWAY; t++) {
                     for (int i = 0; i < TEAM_SIZE; i++) {
-                        Player player = match.team[t].lineup.get(i);
+                        Player player = scene.team[t].lineup.get(i);
 
                         // wait for tackle and down states to finish
                         if (player.checkState(STATE_TACKLE) || player.checkState(STATE_DOWN)) {
@@ -93,7 +93,7 @@ class MatchStateFreeKickStop extends MatchState {
                 }
             }
 
-            match.updateBall();
+            scene.updateBall();
             ball.inFieldKeep();
             ball.collisionFlagPosts();
             ball.collisionGoal();
@@ -101,13 +101,13 @@ class MatchStateFreeKickStop extends MatchState {
             ball.collisionNet();
             ball.collisionNetOut();
 
-            match.updatePlayers(true);
+            scene.updatePlayers(true);
 
-            match.nextSubframe();
+            scene.nextSubframe();
 
-            match.save();
+            scene.save();
 
-            match.actionCamera.update();
+            scene.actionCamera.update();
 
             timeLeft -= GLGame.SUBFRAME_DURATION;
         }
@@ -116,7 +116,7 @@ class MatchStateFreeKickStop extends MatchState {
     @Override
     SceneFsm.Action[] checkConditions() {
         if (allPlayersReachingTarget) {
-            ball.setPosition(match.foul.position.x, match.foul.position.y, 0);
+            ball.setPosition(scene.foul.position.x, scene.foul.position.y, 0);
             ball.updatePrediction();
 
             return newAction(NEW_FOREGROUND, STATE_FREE_KICK);

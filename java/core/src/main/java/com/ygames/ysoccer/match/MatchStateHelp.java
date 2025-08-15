@@ -66,7 +66,7 @@ class MatchStateHelp extends MatchState {
     }
 
     private void useHoldStateDisplayFlags() {
-        MatchState holdState = match.getFsm().getHoldState();
+        MatchState holdState = scene.getFsm().getHoldState();
 
         displayTime = holdState.displayTime;
         displayWindVane = holdState.displayWindVane;

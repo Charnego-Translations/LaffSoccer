@@ -39,16 +39,16 @@ class MatchStatePenaltiesEnd extends MatchState {
 
         goalLineCrossed = false;
         isGoal = false;
-        keeper = match.team[1 - match.penaltyKickingTeam].lineupAtPosition(0);
+        keeper = scene.team[1 - scene.penaltyKickingTeam].lineupAtPosition(0);
 
-        match.resetAutomaticInputDevices();
+        scene.resetAutomaticInputDevices();
     }
 
     @Override
     void onResume() {
         super.onResume();
 
-        match.actionCamera.setMode(STILL);
+        scene.actionCamera.setMode(STILL);
     }
 
     @Override
@@ -58,52 +58,52 @@ class MatchStatePenaltiesEnd extends MatchState {
         float timeLeft = deltaTime;
         while (timeLeft >= GLGame.SUBFRAME_DURATION) {
 
-            if (match.subframe % GLGame.SUBFRAMES == 0) {
-                match.updateAi();
-                match.updateFrameDistance();
+            if (scene.subframe % GLGame.SUBFRAMES == 0) {
+                scene.updateAi();
+                scene.updateFrameDistance();
             }
 
-            match.updateBall();
+            scene.updateBall();
             if (!goalLineCrossed && !isGoal
-                    && match.ball.y * match.ball.ySide >= (Const.GOAL_LINE + Const.BALL_R)
-                    && EMath.isIn(match.ball.x, -Const.POST_X, Const.POST_X)
-                    && (match.ball.z <= Const.CROSSBAR_H)) {
+                    && scene.ball.y * scene.ball.ySide >= (Const.GOAL_LINE + Const.BALL_R)
+                    && EMath.isIn(scene.ball.x, -Const.POST_X, Const.POST_X)
+                    && (scene.ball.z <= Const.CROSSBAR_H)) {
                 isGoal = true;
                 Assets.Sounds.homeGoal.play(Assets.Sounds.volume / 100f);
             }
 
-            if (match.ball.y * match.ball.ySide >= (Const.GOAL_LINE + Const.BALL_R)) {
+            if (scene.ball.y * scene.ball.ySide >= (Const.GOAL_LINE + Const.BALL_R)) {
                 goalLineCrossed = true;
             }
 
             // if ball crosses the goal line or comes back, keeper has nothing more to do
-            if (goalLineCrossed || EMath.sin(match.ball.a) > 0) {
+            if (goalLineCrossed || EMath.sin(scene.ball.a) > 0) {
                 if (keeper.checkState(STATE_KEEPER_POSITIONING)) {
                     keeper.setState(STATE_IDLE);
                 }
             }
 
             // if keeper catches the ball, has nothing more to do
-            if (match.ball.holder == keeper) {
+            if (scene.ball.holder == keeper) {
                 if (keeper.checkState(STATE_KEEPER_KICK_ANGLE)) {
                     keeper.setState(STATE_IDLE);
                 }
             }
 
-            match.ball.collisionGoal();
-            match.ball.collisionNet();
+            scene.ball.collisionGoal();
+            scene.ball.collisionNet();
 
-            match.updatePlayers(true);
+            scene.updatePlayers(true);
 
-            if ((match.subframe % GLGame.VIRTUAL_REFRESH_RATE) == 0) {
-                match.ball.updatePrediction();
+            if ((scene.subframe % GLGame.VIRTUAL_REFRESH_RATE) == 0) {
+                scene.ball.updatePrediction();
             }
 
-            match.nextSubframe();
+            scene.nextSubframe();
 
-            match.save();
+            scene.save();
 
-            match.actionCamera.update();
+            scene.actionCamera.update();
 
             timeLeft -= GLGame.SUBFRAME_DURATION;
         }
@@ -112,23 +112,23 @@ class MatchStatePenaltiesEnd extends MatchState {
     @Override
     SceneFsm.Action[] checkConditions() {
 
-        if ((match.ball.v == 0) && (match.ball.vz == 0)) {
+        if ((scene.ball.v == 0) && (scene.ball.vz == 0)) {
             if (isGoal) {
-                match.penalty.setState(SCORED);
+                scene.penalty.setState(SCORED);
             } else {
-                match.penalty.setState(MISSED);
+                scene.penalty.setState(MISSED);
             }
 
             if (timer > 3 * SECOND) {
 
-                match.ball.setPosition(0, -Const.PENALTY_SPOT_Y, 0);
-                match.ball.updatePrediction();
+                scene.ball.setPosition(0, -Const.PENALTY_SPOT_Y, 0);
+                scene.ball.updatePrediction();
 
                 if (haveWinner()) {
-                    match.setResult(match.penaltiesScore(HOME), match.penaltiesScore(AWAY), Match.ResultType.AFTER_PENALTIES);
+                    scene.setResult(scene.penaltiesScore(HOME), scene.penaltiesScore(AWAY), Match.ResultType.AFTER_PENALTIES);
                     fsm.matchCompleted = true;
 
-                    if (match.competition.getFinalWinner() != null) {
+                    if (scene.competition.getFinalWinner() != null) {
                         return newAction(NEW_FOREGROUND, STATE_FINAL_CELEBRATION);
                     } else {
                         return newAction(NEW_FOREGROUND, STATE_END_POSITIONS);
@@ -144,14 +144,14 @@ class MatchStatePenaltiesEnd extends MatchState {
 
     private boolean haveWinner() {
         // 1) home team cannot be reached
-        if (match.penaltiesScore(HOME) > match.penaltiesPotentialScore(AWAY)) return true;
+        if (scene.penaltiesScore(HOME) > scene.penaltiesPotentialScore(AWAY)) return true;
 
         // 2) away team cannot be reached
-        if (match.penaltiesScore(AWAY) > match.penaltiesPotentialScore(HOME)) return true;
+        if (scene.penaltiesScore(AWAY) > scene.penaltiesPotentialScore(HOME)) return true;
 
         // 3) all penalties have been kicked and score is not the same
-        return match.penaltiesLeft(HOME) == 0
-                && match.penaltiesLeft(AWAY) == 0
-                && match.penaltiesScore(HOME) != match.penaltiesScore(AWAY);
+        return scene.penaltiesLeft(HOME) == 0
+                && scene.penaltiesLeft(AWAY) == 0
+                && scene.penaltiesScore(HOME) != scene.penaltiesScore(AWAY);
     }
 }

@@ -10,7 +10,6 @@ abstract class TrainingState extends SceneState<TrainingFsm, Training> {
     boolean displayReplayControls;
 
     // convenience references
-    final Training training;
     final Team[] team;
     final Ball ball;
     InputDevice inputDevice;
@@ -19,12 +18,11 @@ abstract class TrainingState extends SceneState<TrainingFsm, Training> {
     TrainingState(TrainingFsm trainingFsm) {
         super(trainingFsm);
 
-        this.training = trainingFsm.getScene();
-        this.team = training.team;
-        this.ball = training.ball;
+        this.team = scene.team;
+        this.ball = scene.ball;
     }
 
     void quitTraining() {
-        training.quit();
+        scene.quit();
     }
 }

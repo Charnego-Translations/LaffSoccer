@@ -35,7 +35,7 @@ class MatchStateBenchSubstitutions extends MatchState {
         super.entryActions();
 
         benchStatus = fsm.benchStatus;
-        match.actionCamera.setMode(STILL);
+        scene.actionCamera.setMode(STILL);
     }
 
     @Override
@@ -45,28 +45,28 @@ class MatchStateBenchSubstitutions extends MatchState {
         float timeLeft = deltaTime;
         while (timeLeft >= GLGame.SUBFRAME_DURATION) {
 
-            match.updateBall();
-            match.ball.inFieldKeep();
+            scene.updateBall();
+            scene.ball.inFieldKeep();
 
-            match.updatePlayers(true);
+            scene.updatePlayers(true);
 
-            match.updateCoaches();
+            scene.updateCoaches();
 
-            match.nextSubframe();
+            scene.nextSubframe();
 
-            match.save();
+            scene.save();
 
-            match.actionCamera.update();
+            scene.actionCamera.update();
 
             timeLeft -= GLGame.SUBFRAME_DURATION;
         }
 
         // move selection
         if (benchStatus.inputDevice.yMoved()) {
-            int substitutes = min(match.getSettings().benchSize, benchStatus.team.lineup.size() - TEAM_SIZE);
+            int substitutes = min(scene.getSettings().benchSize, benchStatus.team.lineup.size() - TEAM_SIZE);
 
             // if remaining substitutions
-            if (benchStatus.team.substitutionsCount < match.getSettings().substitutions) {
+            if (benchStatus.team.substitutionsCount < scene.getSettings().substitutions) {
                 benchStatus.selectedPosition = EMath.rotate(benchStatus.selectedPosition, -1, substitutes - 1, benchStatus.inputDevice.y1);
             }
 

@@ -24,20 +24,20 @@ class MatchStateHalfTimePositions extends MatchState {
     void entryActions() {
         super.entryActions();
 
-        match.ball.setPosition(0, 0, 0);
-        match.ball.updatePrediction();
+        scene.ball.setPosition(0, 0, 0);
+        scene.ball.updatePrediction();
 
-        match.actionCamera
+        scene.actionCamera
                 .setMode(REACH_TARGET)
                 .setTarget(0, 0)
                 .setOffset(0, 0)
                 .setSpeed(FAST);
 
-        match.period = Match.Period.UNDEFINED;
-        match.clock = match.length * 45f / 90f;
+        scene.period = Match.Period.UNDEFINED;
+        scene.clock = scene.length * 45f / 90f;
 
-        match.setPlayersTarget(Const.TOUCH_LINE + 80, 0);
-        match.setPlayersState(STATE_OUTSIDE, null);
+        scene.setPlayersTarget(Const.TOUCH_LINE + 80, 0);
+        scene.setPlayersState(STATE_OUTSIDE, null);
     }
 
     @Override
@@ -47,17 +47,17 @@ class MatchStateHalfTimePositions extends MatchState {
         float timeLeft = deltaTime;
         while (timeLeft >= GLGame.SUBFRAME_DURATION) {
 
-            if (match.subframe % GLGame.SUBFRAMES == 0) {
-                match.updateAi();
+            if (scene.subframe % GLGame.SUBFRAMES == 0) {
+                scene.updateAi();
             }
 
-            move = match.updatePlayers(false);
+            move = scene.updatePlayers(false);
 
-            match.nextSubframe();
+            scene.nextSubframe();
 
-            match.save();
+            scene.save();
 
-            match.actionCamera.update();
+            scene.actionCamera.update();
 
             timeLeft -= GLGame.SUBFRAME_DURATION;
         }

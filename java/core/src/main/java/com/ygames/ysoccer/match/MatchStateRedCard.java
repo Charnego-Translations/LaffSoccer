@@ -41,16 +41,16 @@ class MatchStateRedCard extends MatchState {
 
         booked = false;
 
-        match.resetAutomaticInputDevices();
+        scene.resetAutomaticInputDevices();
     }
 
     @Override
     void onResume() {
-        match.setPointOfInterest(match.foul.position);
+        scene.setPointOfInterest(scene.foul.position);
 
-        match.actionCamera
+        scene.actionCamera
                 .setMode(REACH_TARGET)
-                .setTarget(match.foul.player.x, match.foul.player.y)
+                .setTarget(scene.foul.player.x, scene.foul.player.y)
                 .setSpeed(NORMAL)
                 .setLimited(true, true);
     }
@@ -62,31 +62,31 @@ class MatchStateRedCard extends MatchState {
         setPlayerStates();
 
         if (!booked && timer > SECOND) {
-            match.foul.player.setState(STATE_RED_CARD);
+            scene.foul.player.setState(STATE_RED_CARD);
             booked = true;
         }
 
         float timeLeft = deltaTime;
         while (timeLeft >= GLGame.SUBFRAME_DURATION) {
 
-            if (match.subframe % GLGame.SUBFRAMES == 0) {
-                match.updateAi();
+            if (scene.subframe % GLGame.SUBFRAMES == 0) {
+                scene.updateAi();
             }
 
-            match.updateBall();
-            match.ball.inFieldKeep();
-            match.ball.collisionGoal();
-            match.ball.collisionJumpers();
-            match.ball.collisionNetOut();
-            match.ball.collisionNet();
+            scene.updateBall();
+            scene.ball.inFieldKeep();
+            scene.ball.collisionGoal();
+            scene.ball.collisionJumpers();
+            scene.ball.collisionNetOut();
+            scene.ball.collisionNet();
 
-            match.updatePlayers(true);
+            scene.updatePlayers(true);
 
-            match.nextSubframe();
+            scene.nextSubframe();
 
-            match.save();
+            scene.save();
 
-            match.actionCamera.update();
+            scene.actionCamera.update();
 
             timeLeft -= GLGame.SUBFRAME_DURATION;
         }
@@ -94,9 +94,9 @@ class MatchStateRedCard extends MatchState {
 
     @Override
     SceneFsm.Action[] checkConditions() {
-        if (booked && match.foul.player.checkState(STATE_IDLE)) {
-            match.foul.player.setState(STATE_SENT_OFF);
-            if (match.foul.isPenalty()) {
+        if (booked && scene.foul.player.checkState(STATE_IDLE)) {
+            scene.foul.player.setState(STATE_SENT_OFF);
+            if (scene.foul.isPenalty()) {
                 return newAction(NEW_FOREGROUND, STATE_PENALTY_KICK_STOP);
             } else {
                 return newAction(NEW_FOREGROUND, STATE_FREE_KICK_STOP);
@@ -108,7 +108,7 @@ class MatchStateRedCard extends MatchState {
     private void setPlayerStates() {
         for (int t = HOME; t <= AWAY; t++) {
             for (int i = 0; i < TEAM_SIZE; i++) {
-                Player player = match.team[t].lineup.get(i);
+                Player player = scene.team[t].lineup.get(i);
                 PlayerState playerState = player.getState();
                 if (playerState.checkId(STATE_STAND_RUN) || playerState.checkId(STATE_KEEPER_POSITIONING)) {
                     player.tx = player.x;

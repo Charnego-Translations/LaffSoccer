@@ -34,7 +34,7 @@ class MatchStateHighlights extends MatchState {
         super.entryActions();
 
         // store initial frame
-        subframe0 = match.subframe;
+        subframe0 = scene.subframe;
 
         paused = false;
         slowMotion = false;
@@ -50,7 +50,7 @@ class MatchStateHighlights extends MatchState {
         displayHighlightsGui = true;
         displayReplayControls = false;
 
-        match.recorder.loadHighlight();
+        scene.recorder.loadHighlight();
     }
 
     @Override
@@ -97,7 +97,7 @@ class MatchStateHighlights extends MatchState {
         if (!paused) {
             replayPosition = EMath.slide(replayPosition, GLGame.SUBFRAMES / 2, Const.REPLAY_SUBFRAMES, speed);
 
-            match.subframe = (subframe0 + replayPosition) % Const.REPLAY_SUBFRAMES;
+            scene.subframe = (subframe0 + replayPosition) % Const.REPLAY_SUBFRAMES;
         }
 
         displayPause = paused;
@@ -117,9 +117,9 @@ class MatchStateHighlights extends MatchState {
 
         // quit on finish
         if (replayPosition == Const.REPLAY_SUBFRAMES) {
-            match.recorder.nextHighlight();
+            scene.recorder.nextHighlight();
             displayHighlightsGui = false;
-            if (match.recorder.hasEnded()) {
+            if (scene.recorder.hasEnded()) {
                 return newFadedAction(NEW_FOREGROUND, STATE_END);
             } else {
                 return newFadedAction(NEW_FOREGROUND, STATE_HIGHLIGHTS);

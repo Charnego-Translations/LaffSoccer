@@ -29,9 +29,9 @@ class MatchStateEnd extends MatchState {
     void entryActions() {
         super.entryActions();
 
-        match.period = Match.Period.UNDEFINED;
+        scene.period = Match.Period.UNDEFINED;
 
-        match.actionCamera
+        scene.actionCamera
                 .setMode(REACH_TARGET)
                 .setTarget(0, 0)
                 .setSpeed(NORMAL);
@@ -44,11 +44,11 @@ class MatchStateEnd extends MatchState {
         float timeLeft = deltaTime;
         while (timeLeft >= GLGame.SUBFRAME_DURATION) {
 
-            match.nextSubframe();
+            scene.nextSubframe();
 
-            match.save();
+            scene.save();
 
-            match.actionCamera.update();
+            scene.actionCamera.update();
 
             timeLeft -= GLGame.SUBFRAME_DURATION;
         }
@@ -56,13 +56,13 @@ class MatchStateEnd extends MatchState {
 
     @Override
     SceneFsm.Action[] checkConditions() {
-        if (Gdx.input.isKeyPressed(Input.Keys.H) && match.recorder.hasHighlights()) {
-            match.recorder.restart();
+        if (Gdx.input.isKeyPressed(Input.Keys.H) && scene.recorder.hasHighlights()) {
+            scene.recorder.restart();
             return newFadedAction(NEW_FOREGROUND, STATE_HIGHLIGHTS);
         }
 
-        if (match.team[HOME].fire1Up() != null
-                || match.team[AWAY].fire1Up() != null
+        if (scene.team[HOME].fire1Up() != null
+                || scene.team[AWAY].fire1Up() != null
                 || timer > 20 * SECOND) {
             quitMatch();
             return null;

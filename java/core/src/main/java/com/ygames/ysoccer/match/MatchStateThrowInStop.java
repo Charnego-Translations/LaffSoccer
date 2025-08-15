@@ -29,17 +29,17 @@ class MatchStateThrowInStop extends MatchState {
 
         Assets.Sounds.whistle.play(Assets.Sounds.volume / 100f);
 
-        fsm.throwInPosition.set(match.ball.xSide * Const.TOUCH_LINE, match.ball.y);
+        fsm.throwInPosition.set(scene.ball.xSide * Const.TOUCH_LINE, scene.ball.y);
 
-        match.resetAutomaticInputDevices();
-        match.setPlayersState(STATE_REACH_TARGET, null);
+        scene.resetAutomaticInputDevices();
+        scene.setPlayersState(STATE_REACH_TARGET, null);
     }
 
     @Override
     void onResume() {
-        match.setPointOfInterest(fsm.throwInPosition);
+        scene.setPointOfInterest(fsm.throwInPosition);
 
-        match.actionCamera
+        scene.actionCamera
                 .setMode(FOLLOW_BALL)
                 .setSpeed(NORMAL)
                 .setLimited(true, true);
@@ -52,21 +52,21 @@ class MatchStateThrowInStop extends MatchState {
         float timeLeft = deltaTime;
         while (timeLeft >= GLGame.SUBFRAME_DURATION) {
 
-            if (match.subframe % GLGame.SUBFRAMES == 0) {
-                match.updateAi();
+            if (scene.subframe % GLGame.SUBFRAMES == 0) {
+                scene.updateAi();
             }
 
-            match.updateBall();
-            match.ball.inFieldKeep();
+            scene.updateBall();
+            scene.ball.inFieldKeep();
 
-            move = match.updatePlayers(true);
-            match.updateTeamTactics();
+            move = scene.updatePlayers(true);
+            scene.updateTeamTactics();
 
-            match.nextSubframe();
+            scene.nextSubframe();
 
-            match.save();
+            scene.save();
 
-            match.actionCamera.update();
+            scene.actionCamera.update();
 
             timeLeft -= GLGame.SUBFRAME_DURATION;
         }
@@ -75,8 +75,8 @@ class MatchStateThrowInStop extends MatchState {
     @Override
     SceneFsm.Action[] checkConditions() {
         if (!move) {
-            match.ball.setPosition(fsm.throwInPosition);
-            match.ball.updatePrediction();
+            scene.ball.setPosition(fsm.throwInPosition);
+            scene.ball.updatePrediction();
 
             return newAction(NEW_FOREGROUND, STATE_THROW_IN);
         }

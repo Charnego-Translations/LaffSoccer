@@ -26,15 +26,15 @@ class MatchStatePenaltiesStop extends MatchState {
 
         Assets.Sounds.end.play(Assets.Sounds.volume / 100f);
 
-        match.resetAutomaticInputDevices();
-        match.setPlayersState(STATE_IDLE, null);
+        scene.resetAutomaticInputDevices();
+        scene.setPlayersState(STATE_IDLE, null);
     }
 
     @Override
     void onResume() {
         super.onResume();
 
-        match.actionCamera
+        scene.actionCamera
                 .setMode(FOLLOW_BALL)
                 .setSpeed(NORMAL);
     }
@@ -46,20 +46,20 @@ class MatchStatePenaltiesStop extends MatchState {
         float timeLeft = deltaTime;
         while (timeLeft >= GLGame.SUBFRAME_DURATION) {
 
-            if (match.subframe % GLGame.SUBFRAMES == 0) {
-                match.updateAi();
+            if (scene.subframe % GLGame.SUBFRAMES == 0) {
+                scene.updateAi();
             }
 
-            match.updateBall();
-            match.ball.inFieldKeep();
+            scene.updateBall();
+            scene.ball.inFieldKeep();
 
-            match.updatePlayers(false);
+            scene.updatePlayers(false);
 
-            match.nextSubframe();
+            scene.nextSubframe();
 
-            match.save();
+            scene.save();
 
-            match.actionCamera.update();
+            scene.actionCamera.update();
 
             timeLeft -= GLGame.SUBFRAME_DURATION;
         }
@@ -68,16 +68,16 @@ class MatchStatePenaltiesStop extends MatchState {
     @Override
     SceneFsm.Action[] checkConditions() {
         if (timer > 3 * SECOND) {
-            match.ball.setPosition(0, -Const.PENALTY_SPOT_Y, 0);
-            match.ball.updatePrediction();
+            scene.ball.setPosition(0, -Const.PENALTY_SPOT_Y, 0);
+            scene.ball.updatePrediction();
 
-            match.actionCamera.setOffset(0, 0);
+            scene.actionCamera.setOffset(0, 0);
 
-            match.penaltyKickingTeam = Assets.random.nextInt(2);
+            scene.penaltyKickingTeam = Assets.random.nextInt(2);
 
-            match.period = Match.Period.PENALTIES;
+            scene.period = Match.Period.PENALTIES;
 
-            match.addPenalties(5);
+            scene.addPenalties(5);
 
             return newAction(NEW_FOREGROUND, STATE_PENALTIES);
         }

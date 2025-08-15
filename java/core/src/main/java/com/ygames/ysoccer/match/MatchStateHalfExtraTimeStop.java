@@ -26,15 +26,15 @@ class MatchStateHalfExtraTimeStop extends MatchState {
 
         Assets.Sounds.end.play(Assets.Sounds.volume / 100f);
 
-        match.resetAutomaticInputDevices();
-        match.setPlayersState(STATE_IDLE, null);
+        scene.resetAutomaticInputDevices();
+        scene.setPlayersState(STATE_IDLE, null);
     }
 
     @Override
     void onResume() {
         super.onResume();
 
-        match.actionCamera
+        scene.actionCamera
                 .setMode(FOLLOW_BALL)
                 .setSpeed(NORMAL);
     }
@@ -46,20 +46,20 @@ class MatchStateHalfExtraTimeStop extends MatchState {
         float timeLeft = deltaTime;
         while (timeLeft >= GLGame.SUBFRAME_DURATION) {
 
-            if (match.subframe % GLGame.SUBFRAMES == 0) {
-                match.updateAi();
+            if (scene.subframe % GLGame.SUBFRAMES == 0) {
+                scene.updateAi();
             }
 
-            match.updateBall();
-            match.ball.inFieldKeep();
+            scene.updateBall();
+            scene.ball.inFieldKeep();
 
-            match.updatePlayers(true);
+            scene.updatePlayers(true);
 
-            match.nextSubframe();
+            scene.nextSubframe();
 
-            match.save();
+            scene.save();
 
-            match.actionCamera.update();
+            scene.actionCamera.update();
 
             timeLeft -= GLGame.SUBFRAME_DURATION;
         }
@@ -68,17 +68,17 @@ class MatchStateHalfExtraTimeStop extends MatchState {
     @Override
     SceneFsm.Action[] checkConditions() {
         if (timer > 3 * SECOND) {
-            match.ball.setPosition(0, 0, 0);
-            match.ball.updatePrediction();
+            scene.ball.setPosition(0, 0, 0);
+            scene.ball.updatePrediction();
 
-            match.actionCamera.setOffset(0, 0);
+            scene.actionCamera.setOffset(0, 0);
 
-            match.swapTeamSides();
+            scene.swapTeamSides();
 
-            match.kickOffTeam = 1 - match.coinToss;
+            scene.kickOffTeam = 1 - scene.coinToss;
 
-            match.period = Match.Period.SECOND_EXTRA_TIME;
-            match.clock = match.length * 105f / 90f;
+            scene.period = Match.Period.SECOND_EXTRA_TIME;
+            scene.clock = scene.length * 105f / 90f;
 
             return newAction(NEW_FOREGROUND, STATE_STARTING_POSITIONS);
         }

@@ -45,37 +45,37 @@ class MatchStatePenaltyKickStop extends MatchState {
 
         Assets.Sounds.whistle.play(Assets.Sounds.volume / 100f);
 
-        if (match.settings.commentary) {
+        if (scene.settings.commentary) {
             int size = Assets.Commentary.penalty.size();
             if (size > 0) {
                 Assets.Commentary.penalty.get(Assets.random.nextInt(size)).play(Assets.Sounds.volume / 100f);
             }
         }
 
-        Player penaltyKicker = match.foul.opponent.team.lastOfLineup();
-        Player penaltyKeeper = match.foul.player.team.lineupAtPosition(0);
-        match.foul = null;
-        match.createPenalty(penaltyKicker, penaltyKeeper, match.ball.ySide);
+        Player penaltyKicker = scene.foul.opponent.team.lastOfLineup();
+        Player penaltyKeeper = scene.foul.player.team.lineupAtPosition(0);
+        scene.foul = null;
+        scene.createPenalty(penaltyKicker, penaltyKeeper, scene.ball.ySide);
 
 
         // set the player targets relative to penalty
         // even before moving the ball itself
-        match.ball.updateZone(0, match.penalty.side * PENALTY_SPOT_Y);
-        match.updateTeamTactics();
-        match.team[HOME].lineup.get(0).setTarget(0, match.team[HOME].side * (Const.GOAL_LINE - 8));
-        match.team[AWAY].lineup.get(0).setTarget(0, match.team[AWAY].side * (Const.GOAL_LINE - 8));
+        scene.ball.updateZone(0, scene.penalty.side * PENALTY_SPOT_Y);
+        scene.updateTeamTactics();
+        scene.team[HOME].lineup.get(0).setTarget(0, scene.team[HOME].side * (Const.GOAL_LINE - 8));
+        scene.team[AWAY].lineup.get(0).setTarget(0, scene.team[AWAY].side * (Const.GOAL_LINE - 8));
         for (int t = HOME; t <= AWAY; t++) {
             for (int i = 1; i < TEAM_SIZE; i++) {
-                Player player = match.team[t].lineup.get(i);
+                Player player = scene.team[t].lineup.get(i);
                 player.tx = player.tx >= 0 ? Math.max(player.tx, 100) : -Math.max(-player.tx, 100);
                 player.ty = Math.signum(player.ty) * Math.min(Math.abs(player.ty), Const.GOAL_LINE - Const.PENALTY_AREA_H - 4);
             }
         }
 
-        penaltyKicker.setTarget(-40 * match.ball.ySide, match.penalty.side * (PENALTY_SPOT_Y - 45));
-        penaltyKickPosition.set(0, match.penalty.side * PENALTY_SPOT_Y);
+        penaltyKicker.setTarget(-40 * scene.ball.ySide, scene.penalty.side * (PENALTY_SPOT_Y - 45));
+        penaltyKickPosition.set(0, scene.penalty.side * PENALTY_SPOT_Y);
 
-        match.resetAutomaticInputDevices();
+        scene.resetAutomaticInputDevices();
 
         allPlayersReachingTarget = false;
         playersReachingTarget.clear();
@@ -83,13 +83,13 @@ class MatchStatePenaltyKickStop extends MatchState {
 
     @Override
     void onResume() {
-        match.actionCamera
+        scene.actionCamera
                 .setMode(REACH_TARGET)
                 .setTarget(penaltyKickPosition.x, penaltyKickPosition.y)
                 .setSpeed(NORMAL)
                 .setLimited(true, true);
 
-        match.setPointOfInterest(penaltyKickPosition);
+        scene.setPointOfInterest(penaltyKickPosition);
     }
 
     @Override
@@ -99,7 +99,7 @@ class MatchStatePenaltyKickStop extends MatchState {
         allPlayersReachingTarget = true;
         for (int t = HOME; t <= AWAY; t++) {
             for (int i = 0; i < TEAM_SIZE; i++) {
-                Player player = match.team[t].lineup.get(i);
+                Player player = scene.team[t].lineup.get(i);
 
                 // wait for tackle and down states to finish
                 if (player.checkState(STATE_TACKLE) || player.checkState(STATE_DOWN)) {
@@ -114,24 +114,24 @@ class MatchStatePenaltyKickStop extends MatchState {
         float timeLeft = deltaTime;
         while (timeLeft >= GLGame.SUBFRAME_DURATION) {
 
-            if (match.subframe % GLGame.SUBFRAMES == 0) {
-                match.updateAi();
+            if (scene.subframe % GLGame.SUBFRAMES == 0) {
+                scene.updateAi();
             }
 
-            match.updateBall();
-            match.ball.inFieldKeep();
-            match.ball.collisionGoal();
-            match.ball.collisionJumpers();
-            match.ball.collisionNetOut();
-            match.ball.collisionNet();
+            scene.updateBall();
+            scene.ball.inFieldKeep();
+            scene.ball.collisionGoal();
+            scene.ball.collisionJumpers();
+            scene.ball.collisionNetOut();
+            scene.ball.collisionNet();
 
-            move = match.updatePlayers(true);
+            move = scene.updatePlayers(true);
 
-            match.nextSubframe();
+            scene.nextSubframe();
 
-            match.save();
+            scene.save();
 
-            match.actionCamera.update();
+            scene.actionCamera.update();
 
             timeLeft -= GLGame.SUBFRAME_DURATION;
         }
@@ -140,9 +140,9 @@ class MatchStatePenaltyKickStop extends MatchState {
     @Override
     SceneFsm.Action[] checkConditions() {
         if (allPlayersReachingTarget && !move) {
-            match.penalty.keeper.setState(STATE_KEEPER_PENALTY_POSITIONING);
-            match.ball.setPosition(penaltyKickPosition.x, penaltyKickPosition.y, 0);
-            match.ball.updatePrediction();
+            scene.penalty.keeper.setState(STATE_KEEPER_PENALTY_POSITIONING);
+            scene.ball.setPosition(penaltyKickPosition.x, penaltyKickPosition.y, 0);
+            scene.ball.updatePrediction();
 
             return newAction(NEW_FOREGROUND, STATE_PENALTY_KICK);
         }

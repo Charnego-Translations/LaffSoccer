@@ -24,14 +24,14 @@ class MatchStateStartingPositions extends MatchState {
     void entryActions() {
         super.entryActions();
 
-        match.setStartingPositions();
-        match.setPlayersState(STATE_REACH_TARGET, null);
-        match.setPointOfInterest(match.ball.x, match.ball.y);
+        scene.setStartingPositions();
+        scene.setPlayersState(STATE_REACH_TARGET, null);
+        scene.setPointOfInterest(scene.ball.x, scene.ball.y);
     }
 
     @Override
     void onResume() {
-        match.actionCamera
+        scene.actionCamera
                 .setMode(FOLLOW_BALL)
                 .setSpeed(FAST)
                 .setLimited(true, true);
@@ -44,13 +44,13 @@ class MatchStateStartingPositions extends MatchState {
         float timeLeft = deltaTime;
         while (timeLeft >= GLGame.SUBFRAME_DURATION) {
 
-            move = match.updatePlayers(false);
+            move = scene.updatePlayers(false);
 
-            match.nextSubframe();
+            scene.nextSubframe();
 
-            match.save();
+            scene.save();
 
-            match.actionCamera.update();
+            scene.actionCamera.update();
 
             timeLeft -= GLGame.SUBFRAME_DURATION;
         }

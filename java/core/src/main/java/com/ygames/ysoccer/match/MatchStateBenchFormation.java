@@ -36,7 +36,7 @@ class MatchStateBenchFormation extends MatchState {
         super.entryActions();
 
         benchStatus = fsm.benchStatus;
-        match.actionCamera.setMode(STILL);
+        scene.actionCamera.setMode(STILL);
     }
 
     @Override
@@ -46,18 +46,18 @@ class MatchStateBenchFormation extends MatchState {
         float timeLeft = deltaTime;
         while (timeLeft >= GLGame.SUBFRAME_DURATION) {
 
-            match.updateBall();
-            match.ball.inFieldKeep();
+            scene.updateBall();
+            scene.ball.inFieldKeep();
 
-            match.updatePlayers(true);
+            scene.updatePlayers(true);
 
-            match.updateCoaches();
+            scene.updateCoaches();
 
-            match.nextSubframe();
+            scene.nextSubframe();
 
-            match.save();
+            scene.save();
 
-            match.actionCamera.update();
+            scene.actionCamera.update();
 
             timeLeft -= GLGame.SUBFRAME_DURATION;
         }
@@ -124,7 +124,7 @@ class MatchStateBenchFormation extends MatchState {
 
                             benchStatus.substPosition = -1;
 
-                            if (match.settings.commentary) {
+                            if (scene.settings.commentary) {
                                 int size = Assets.Commentary.playerSubstitution.size();
                                 if (size > 0) {
                                     Assets.Commentary.playerSubstitution.get(Assets.random.nextInt(size)).play(Assets.Sounds.volume / 100f);
@@ -153,7 +153,7 @@ class MatchStateBenchFormation extends MatchState {
 
                         benchStatus.swapPosition = -1;
 
-                        if (match.settings.commentary) {
+                        if (scene.settings.commentary) {
                             int size = Assets.Commentary.playerSwap.size();
                             if (size > 0) {
                                 Assets.Commentary.playerSwap.get(Assets.random.nextInt(size)).play(Assets.Sounds.volume / 100f);

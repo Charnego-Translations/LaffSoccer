@@ -42,13 +42,13 @@ class MatchStateFinalCelebration extends MatchState {
     void entryActions() {
         super.entryActions();
 
-        winner = match.competition.getFinalWinner();
-        side = (winner == match.team[HOME]) ? -1 : 1;
-        runnerUp = match.competition.getFinalRunnerUp();
+        winner = scene.competition.getFinalWinner();
+        side = (winner == scene.team[HOME]) ? -1 : 1;
+        runnerUp = scene.competition.getFinalRunnerUp();
         positionLineups();
-        match.setPointOfInterest(0, side * GOAL_LINE);
+        scene.setPointOfInterest(0, side * GOAL_LINE);
 
-        match.actionCamera
+        scene.actionCamera
                 .setMode(ActionCamera.Mode.REACH_TARGET)
                 .setTarget(0, side * GOAL_LINE / 2f)
                 .setSpeed(NORMAL)
@@ -62,17 +62,17 @@ class MatchStateFinalCelebration extends MatchState {
         float timeLeft = deltaTime;
         while (timeLeft >= GLGame.SUBFRAME_DURATION) {
 
-            if (match.subframe % GLGame.SUBFRAMES == 0) {
-                match.updateAi();
+            if (scene.subframe % GLGame.SUBFRAMES == 0) {
+                scene.updateAi();
             }
 
-            boolean move = match.updatePlayers(false);
+            boolean move = scene.updatePlayers(false);
 
             switch (step) {
                 case POSITIONING:
                     if (readyToCelebrate()) {
                         winner.setLineupState(STATE_FINAL_CELEBRATION);
-                        match.actionCamera.setTarget(0, side * GOAL_LINE);
+                        scene.actionCamera.setTarget(0, side * GOAL_LINE);
                         step = Step.CELEBRATING;
                         Assets.Sounds.celebration.play(Assets.Sounds.volume / 100f);
                     }
@@ -87,11 +87,11 @@ class MatchStateFinalCelebration extends MatchState {
             }
 
 
-            match.nextSubframe();
+            scene.nextSubframe();
 
-            match.save();
+            scene.save();
 
-            match.actionCamera.update();
+            scene.actionCamera.update();
 
             timeLeft -= GLGame.SUBFRAME_DURATION;
         }

@@ -29,33 +29,33 @@ class MatchStateCornerStop extends MatchState {
     void entryActions() {
         super.entryActions();
 
-        if (match.team[HOME].side == -match.ball.ySide) {
-            match.stats[HOME].cornersWon += 1;
+        if (scene.team[HOME].side == -scene.ball.ySide) {
+            scene.stats[HOME].cornersWon += 1;
         } else {
-            match.stats[AWAY].cornersWon += 1;
+            scene.stats[AWAY].cornersWon += 1;
         }
 
         Assets.Sounds.whistle.play(Assets.Sounds.volume / 100f);
 
-        cornerPosition.set((Const.TOUCH_LINE - 12) * match.ball.xSide, (Const.GOAL_LINE - 12) * match.ball.ySide);
+        cornerPosition.set((Const.TOUCH_LINE - 12) * scene.ball.xSide, (Const.GOAL_LINE - 12) * scene.ball.ySide);
 
         // set the player targets relative to corner zone
         // even before moving the ball itself
-        match.ball.updateZone(cornerPosition.x, cornerPosition.y);
-        match.updateTeamTactics();
-        match.team[HOME].lineup.get(0).setTarget(0, match.team[HOME].side * (Const.GOAL_LINE - 8));
-        match.team[AWAY].lineup.get(0).setTarget(0, match.team[AWAY].side * (Const.GOAL_LINE - 8));
+        scene.ball.updateZone(cornerPosition.x, cornerPosition.y);
+        scene.updateTeamTactics();
+        scene.team[HOME].lineup.get(0).setTarget(0, scene.team[HOME].side * (Const.GOAL_LINE - 8));
+        scene.team[AWAY].lineup.get(0).setTarget(0, scene.team[AWAY].side * (Const.GOAL_LINE - 8));
 
-        match.resetAutomaticInputDevices();
+        scene.resetAutomaticInputDevices();
 
-        match.setPlayersState(STATE_REACH_TARGET, null);
+        scene.setPlayersState(STATE_REACH_TARGET, null);
     }
 
     @Override
     void onResume() {
-        match.setPointOfInterest(cornerPosition);
+        scene.setPointOfInterest(cornerPosition);
 
-        match.actionCamera
+        scene.actionCamera
                 .setMode(FOLLOW_BALL)
                 .setSpeed(NORMAL)
                 .setLimited(true, true);
@@ -68,23 +68,23 @@ class MatchStateCornerStop extends MatchState {
         float timeLeft = deltaTime;
         while (timeLeft >= GLGame.SUBFRAME_DURATION) {
 
-            if (match.subframe % GLGame.SUBFRAMES == 0) {
-                match.updateAi();
+            if (scene.subframe % GLGame.SUBFRAMES == 0) {
+                scene.updateAi();
             }
 
-            match.updateBall();
-            match.ball.inFieldKeep();
-            match.ball.collisionGoal();
-            match.ball.collisionJumpers();
-            match.ball.collisionNetOut();
+            scene.updateBall();
+            scene.ball.inFieldKeep();
+            scene.ball.collisionGoal();
+            scene.ball.collisionJumpers();
+            scene.ball.collisionNetOut();
 
-            match.updatePlayers(true);
+            scene.updatePlayers(true);
 
-            match.nextSubframe();
+            scene.nextSubframe();
 
-            match.save();
+            scene.save();
 
-            match.actionCamera.update();
+            scene.actionCamera.update();
 
             timeLeft -= GLGame.SUBFRAME_DURATION;
         }
@@ -92,9 +92,9 @@ class MatchStateCornerStop extends MatchState {
 
     @Override
     SceneFsm.Action[] checkConditions() {
-        if ((match.ball.v < 5) && (match.ball.vz < 5)) {
-            match.ball.setPosition(cornerPosition);
-            match.ball.updatePrediction();
+        if ((scene.ball.v < 5) && (scene.ball.vz < 5)) {
+            scene.ball.setPosition(cornerPosition);
+            scene.ball.updatePrediction();
 
             return newAction(NEW_FOREGROUND, STATE_CORNER_KICK);
         }

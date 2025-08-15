@@ -60,7 +60,7 @@ class MatchStateMain extends MatchState {
     void onResume() {
         super.onResume();
 
-        match.actionCamera
+        scene.actionCamera
                 .setMode(FOLLOW_BALL)
                 .setSpeed(NORMAL);
     }
@@ -72,128 +72,128 @@ class MatchStateMain extends MatchState {
         float timeLeft = deltaTime;
         while (timeLeft >= GLGame.SUBFRAME_DURATION) {
 
-            if (match.subframe % GLGame.SUBFRAMES == 0) {
-                match.updateAi();
+            if (scene.subframe % GLGame.SUBFRAMES == 0) {
+                scene.updateAi();
 
                 // crowd chants
-                if (match.clock >= match.nextChant) {
-                    if (match.chantSwitch) {
-                        match.chantSwitch = false;
-                        match.nextChant = match.clock + (6 + Assets.random.nextInt(6)) * 1000;
+                if (scene.clock >= scene.nextChant) {
+                    if (scene.chantSwitch) {
+                        scene.chantSwitch = false;
+                        scene.nextChant = scene.clock + (6 + Assets.random.nextInt(6)) * 1000;
                     } else {
-                        Assets.Sounds.chant.play(match.getSettings().crowdChants ? Assets.Sounds.volume / 100f : 0);
-                        match.chantSwitch = true;
-                        match.nextChant = match.clock + 8000;
+                        Assets.Sounds.chant.play(scene.getSettings().crowdChants ? Assets.Sounds.volume / 100f : 0);
+                        scene.chantSwitch = true;
+                        scene.nextChant = scene.clock + 8000;
                     }
                 }
 
-                match.clock += 1000.0f / GLGame.VIRTUAL_REFRESH_RATE;
+                scene.clock += 1000.0f / GLGame.VIRTUAL_REFRESH_RATE;
 
-                match.updateFrameDistance();
+                scene.updateFrameDistance();
 
-                if (match.ball.owner != null) {
-                    match.stats[match.ball.owner.team.index].ballPossession += 1;
+                if (scene.ball.owner != null) {
+                    scene.stats[scene.ball.owner.team.index].ballPossession += 1;
                 }
             }
 
-            match.updateBall();
+            scene.updateBall();
 
-            int attackingTeam = match.attackingTeam();
+            int attackingTeam = scene.attackingTeam();
             int defendingTeam = 1 - attackingTeam;
 
-            if (match.ball.holder != null) {
+            if (scene.ball.holder != null) {
                 event = Event.KEEPER_STOP;
                 return;
             }
 
-            match.ball.collisionFlagPosts();
+            scene.ball.collisionFlagPosts();
 
-            if (match.ball.collisionGoal()) {
-                float elapsed = match.clock - match.lastGoalCollisionTime;
+            if (scene.ball.collisionGoal()) {
+                float elapsed = scene.clock - scene.lastGoalCollisionTime;
                 if (elapsed > 100) {
-                    match.stats[attackingTeam].overallShots += 1;
-                    match.stats[attackingTeam].centeredShots += 1;
-                    match.lastGoalCollisionTime = match.clock;
+                    scene.stats[attackingTeam].overallShots += 1;
+                    scene.stats[attackingTeam].centeredShots += 1;
+                    scene.lastGoalCollisionTime = scene.clock;
                 }
             }
 
             // goal/corner/goal-kick
-            if (match.ball.y * match.ball.ySide >= (Const.GOAL_LINE + Const.BALL_R)) {
+            if (scene.ball.y * scene.ball.ySide >= (Const.GOAL_LINE + Const.BALL_R)) {
                 // goal
-                if (EMath.isIn(match.ball.x, -Const.POST_X, Const.POST_X)
-                        && (match.ball.z <= Const.CROSSBAR_H)) {
-                    match.stats[attackingTeam].goals += 1;
-                    match.stats[attackingTeam].overallShots += 1;
-                    match.stats[attackingTeam].centeredShots += 1;
-                    match.addGoal(attackingTeam);
+                if (EMath.isIn(scene.ball.x, -Const.POST_X, Const.POST_X)
+                        && (scene.ball.z <= Const.CROSSBAR_H)) {
+                    scene.stats[attackingTeam].goals += 1;
+                    scene.stats[attackingTeam].overallShots += 1;
+                    scene.stats[attackingTeam].centeredShots += 1;
+                    scene.addGoal(attackingTeam);
 
                     event = Event.GOAL;
                     return;
                 } else {
                     // corner/goal-kick
-                    if (match.ball.ownerLast.team == match.team[defendingTeam]) {
+                    if (scene.ball.ownerLast.team == scene.team[defendingTeam]) {
                         event = Event.CORNER;
-                        fsm.cornerKickTeam = match.team[1 - match.ball.ownerLast.team.index];
+                        fsm.cornerKickTeam = scene.team[1 - scene.ball.ownerLast.team.index];
                         return;
                     } else {
-                        if (EMath.isIn(match.ball.x, -Const.GOAL_AREA_W / 2f, Const.GOAL_AREA_W / 2f)) {
-                            match.stats[attackingTeam].overallShots += 1;
+                        if (EMath.isIn(scene.ball.x, -Const.GOAL_AREA_W / 2f, Const.GOAL_AREA_W / 2f)) {
+                            scene.stats[attackingTeam].overallShots += 1;
                         }
                         event = Event.GOAL_KICK;
-                        fsm.goalKickTeam = match.team[1 - match.ball.ownerLast.team.index];
+                        fsm.goalKickTeam = scene.team[1 - scene.ball.ownerLast.team.index];
                         return;
                     }
                 }
             }
 
             // throw-ins
-            if (Math.abs(match.ball.x) > (Const.TOUCH_LINE + Const.BALL_R)) {
+            if (Math.abs(scene.ball.x) > (Const.TOUCH_LINE + Const.BALL_R)) {
                 event = Event.THROW_IN;
-                fsm.throwInTeam = match.team[1 - match.ball.ownerLast.team.index];
+                fsm.throwInTeam = scene.team[1 - scene.ball.ownerLast.team.index];
                 return;
             }
 
             // colliding tackles and fouls
-            if (match.tackle == null) {
+            if (scene.tackle == null) {
 
                 for (int t = HOME; t <= AWAY; t++) {
 
                     // for each tackling player
                     for (int i = 0; i < TEAM_SIZE; i++) {
-                        Player player = match.team[t].lineup.get(i);
+                        Player player = scene.team[t].lineup.get(i);
                         if (player != null && player.checkState(STATE_TACKLE) && player.v > 50) {
 
                             // search near opponents
-                            Team opponentTeam = match.team[1 - player.team.index];
+                            Team opponentTeam = scene.team[1 - player.team.index];
                             Player opponent = opponentTeam.searchPlayerTackledBy(player);
 
                             if (opponent != null && !opponent.checkState(STATE_DOWN)) {
                                 float strength = (4f + player.v / 260f) / 5f;
                                 float angleDiff = EMath.angleDiff(player.a, opponent.a);
-                                match.newTackle(player, opponent, strength, angleDiff);
+                                scene.newTackle(player, opponent, strength, angleDiff);
                                 Gdx.app.debug(player.shirtName, "tackles on " + opponent.shirtName + " at speed: " + player.v + " (strength = " + strength + ") and angle: " + angleDiff);
                             }
                         }
                     }
                 }
             } else {
-                if (EMath.dist(match.tackle.player.x, match.tackle.player.y, match.tackle.opponent.x, match.tackle.opponent.y) >= 8) {
+                if (EMath.dist(scene.tackle.player.x, scene.tackle.player.y, scene.tackle.opponent.x, scene.tackle.opponent.y) >= 8) {
 
                     // tackle is finished, eventually generate a foul
-                    Player player = match.tackle.player;
-                    Player opponent = match.tackle.opponent;
-                    float angleDiff = match.tackle.angleDiff;
+                    Player player = scene.tackle.player;
+                    Player opponent = scene.tackle.opponent;
+                    float angleDiff = scene.tackle.angleDiff;
 
                     float hardness;
 
                     // back/side
                     if (angleDiff < 112.5f) {
-                        hardness = match.tackle.strength * (0.7f + 0.01f * player.skills.tackling - 0.01f * opponent.skills.control);
+                        hardness = scene.tackle.strength * (0.7f + 0.01f * player.skills.tackling - 0.01f * opponent.skills.control);
                     }
 
                     // front
                     else {
-                        hardness = match.tackle.strength * (0.9f + 0.01f * player.skills.tackling - 0.01f * opponent.skills.control);
+                        hardness = scene.tackle.strength * (0.9f + 0.01f * player.skills.tackling - 0.01f * opponent.skills.control);
                     }
 
                     float unfairness;
@@ -219,63 +219,63 @@ class MatchStateMain extends MatchState {
                         opponent.setState(STATE_DOWN);
 
                         if (Assets.random.nextFloat() < unfairness) {
-                            match.newFoul(match.tackle.opponent.x, match.tackle.opponent.y, hardness, unfairness);
-                            Gdx.app.debug(player.shirtName, "tackle on " + opponent.shirtName + " is a foul at: " + match.tackle.opponent.x + ", " + match.tackle.opponent.y
-                                    + " direct shot: " + (match.foul.isDirectShot() ? "yes" : "no") + " yellow: " + match.foul.entailsYellowCard + " red: " + match.foul.entailsRedCard);
+                            scene.newFoul(scene.tackle.opponent.x, scene.tackle.opponent.y, hardness, unfairness);
+                            Gdx.app.debug(player.shirtName, "tackle on " + opponent.shirtName + " is a foul at: " + scene.tackle.opponent.x + ", " + scene.tackle.opponent.y
+                                    + " direct shot: " + (scene.foul.isDirectShot() ? "yes" : "no") + " yellow: " + scene.foul.entailsYellowCard + " red: " + scene.foul.entailsRedCard);
                         } else {
                             Gdx.app.debug(player.shirtName, "tackles on " + opponent.shirtName + " is probably not a foul");
                         }
                     } else {
                         Gdx.app.debug(opponent.shirtName, "avoids the tackle from " + player.shirtName);
                     }
-                    match.tackle = null;
+                    scene.tackle = null;
                 }
             }
 
-            if (match.foul != null) {
-                if (match.foul.entailsRedCard) {
-                    match.referee.addRedCard(match.foul.player);
-                    match.stats[match.foul.player.team.index].redCards++;
+            if (scene.foul != null) {
+                if (scene.foul.entailsRedCard) {
+                    scene.referee.addRedCard(scene.foul.player);
+                    scene.stats[scene.foul.player.team.index].redCards++;
 
                     event = Event.RED_CARD;
-                } else if (match.foul.entailsYellowCard) {
-                    match.referee.addYellowCard(match.foul.player);
-                    match.stats[match.foul.player.team.index].yellowCards++;
-                    if (match.referee.isSentOff(match.foul.player)) {
-                        match.stats[match.foul.player.team.index].redCards++;
+                } else if (scene.foul.entailsYellowCard) {
+                    scene.referee.addYellowCard(scene.foul.player);
+                    scene.stats[scene.foul.player.team.index].yellowCards++;
+                    if (scene.referee.isSentOff(scene.foul.player)) {
+                        scene.stats[scene.foul.player.team.index].redCards++;
                     }
 
                     event = Event.YELLOW_CARD;
-                } else if (match.foul.isPenalty()) {
+                } else if (scene.foul.isPenalty()) {
                     event = Event.PENALTY_KICK;
                 } else {
                     event = Event.FREE_KICK;
                 }
-                match.stats[match.foul.player.team.index].foulsConceded += 1;
+                scene.stats[scene.foul.player.team.index].foulsConceded += 1;
                 return;
             }
 
-            match.updatePlayers(true);
-            match.findNearest();
+            scene.updatePlayers(true);
+            scene.findNearest();
 
             for (int t = HOME; t <= AWAY; t++) {
-                if (match.team[t].usesAutomaticInputDevice()) {
-                    match.team[t].automaticInputDeviceSelection();
+                if (scene.team[t].usesAutomaticInputDevice()) {
+                    scene.team[t].automaticInputDeviceSelection();
                 }
             }
 
-            match.updateBallZone();
-            match.updateTeamTactics();
+            scene.updateBallZone();
+            scene.updateTeamTactics();
 
-            if ((match.subframe % GLGame.SUBFRAMES) == 0) {
-                match.ball.updatePrediction();
+            if ((scene.subframe % GLGame.SUBFRAMES) == 0) {
+                scene.ball.updatePrediction();
             }
 
-            match.nextSubframe();
+            scene.nextSubframe();
 
-            match.save();
+            scene.save();
 
-            match.actionCamera.update();
+            scene.actionCamera.update();
 
             timeLeft -= GLGame.SUBFRAME_DURATION;
         }
@@ -312,25 +312,25 @@ class MatchStateMain extends MatchState {
                 return newAction(NEW_FOREGROUND, STATE_PENALTY_KICK_STOP);
         }
 
-        switch (match.period) {
+        switch (scene.period) {
 
             case UNDEFINED:
                 break;
 
             case FIRST_HALF:
-                if ((match.clock > (match.length * 45f / 90f)) && match.periodIsTerminable()) {
+                if ((scene.clock > (scene.length * 45f / 90f)) && scene.periodIsTerminable()) {
                     return newAction(NEW_FOREGROUND, STATE_HALF_TIME_STOP);
                 }
                 break;
 
             case SECOND_HALF:
-                if ((match.clock > match.length) && match.periodIsTerminable()) {
+                if ((scene.clock > scene.length) && scene.periodIsTerminable()) {
 
-                    match.setResult(match.stats[HOME].goals, match.stats[AWAY].goals, Match.ResultType.AFTER_90_MINUTES);
+                    scene.setResult(scene.stats[HOME].goals, scene.stats[AWAY].goals, Match.ResultType.AFTER_90_MINUTES);
 
-                    if (match.competition.playExtraTime()) {
+                    if (scene.competition.playExtraTime()) {
                         return newAction(NEW_FOREGROUND, STATE_EXTRA_TIME_STOP);
-                    } else if (match.competition.playPenalties()) {
+                    } else if (scene.competition.playPenalties()) {
                         return newAction(NEW_FOREGROUND, STATE_PENALTIES_STOP);
                     } else {
                         return newAction(NEW_FOREGROUND, STATE_FULL_TIME_STOP);
@@ -339,17 +339,17 @@ class MatchStateMain extends MatchState {
                 break;
 
             case FIRST_EXTRA_TIME:
-                if ((match.clock > (match.length * 105f / 90f)) && match.periodIsTerminable()) {
+                if ((scene.clock > (scene.length * 105f / 90f)) && scene.periodIsTerminable()) {
                     return newAction(NEW_FOREGROUND, STATE_HALF_EXTRA_TIME_STOP);
                 }
                 break;
 
             case SECOND_EXTRA_TIME:
-                if ((match.clock > (match.length * 120f / 90f)) && match.periodIsTerminable()) {
+                if ((scene.clock > (scene.length * 120f / 90f)) && scene.periodIsTerminable()) {
 
-                    match.setResult(match.stats[HOME].goals, match.stats[AWAY].goals, Match.ResultType.AFTER_EXTRA_TIME);
+                    scene.setResult(scene.stats[HOME].goals, scene.stats[AWAY].goals, Match.ResultType.AFTER_EXTRA_TIME);
 
-                    if (match.competition.playPenalties()) {
+                    if (scene.competition.playPenalties()) {
                         return newAction(NEW_FOREGROUND, STATE_PENALTIES_STOP);
                     } else {
                         return newAction(NEW_FOREGROUND, STATE_FULL_EXTRA_TIME_STOP);

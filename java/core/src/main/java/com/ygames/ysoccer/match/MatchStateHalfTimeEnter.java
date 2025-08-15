@@ -26,14 +26,14 @@ class MatchStateHalfTimeEnter extends MatchState {
     void entryActions() {
         super.entryActions();
 
-        match.setStartingPositions();
+        scene.setStartingPositions();
     }
 
     @Override
     void onResume() {
         super.onResume();
 
-        match.actionCamera
+        scene.actionCamera
                 .setMode(FOLLOW_BALL)
                 .setSpeed(NORMAL);
     }
@@ -45,25 +45,25 @@ class MatchStateHalfTimeEnter extends MatchState {
         float timeLeft = deltaTime;
         while (timeLeft >= GLGame.SUBFRAME_DURATION) {
 
-            if (match.subframe % GLGame.SUBFRAMES == 0) {
-                match.updateAi();
+            if (scene.subframe % GLGame.SUBFRAMES == 0) {
+                scene.updateAi();
                 if ((enteringCounter % 4) == 0 && enteringCounter / 4 < Const.TEAM_SIZE) {
                     for (int t = HOME; t <= AWAY; t++) {
                         int i = enteringCounter / 4;
-                        Player player = match.team[t].lineup.get(i);
+                        Player player = scene.team[t].lineup.get(i);
                         player.setState(STATE_REACH_TARGET);
                     }
                 }
                 enteringCounter += 1;
             }
 
-            match.updatePlayers(false);
+            scene.updatePlayers(false);
 
-            match.nextSubframe();
+            scene.nextSubframe();
 
-            match.save();
+            scene.save();
 
-            match.actionCamera.update();
+            scene.actionCamera.update();
 
             timeLeft -= GLGame.SUBFRAME_DURATION;
         }

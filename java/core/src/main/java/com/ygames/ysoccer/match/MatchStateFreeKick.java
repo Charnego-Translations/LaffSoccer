@@ -37,13 +37,13 @@ class MatchStateFreeKick extends MatchState {
     void onResume() {
         super.onResume();
 
-        freeKickTeam = match.foul.opponent.team;
-        defendingTeam = match.foul.player.team;
+        freeKickTeam = scene.foul.opponent.team;
+        defendingTeam = scene.foul.player.team;
 
-        match.actionCamera
+        scene.actionCamera
                 .setMode(FOLLOW_BALL)
                 .setSpeed(FAST)
-                .setOffset(-30 * match.ball.xSide, -80 * freeKickTeam.side)
+                .setOffset(-30 * scene.ball.xSide, -80 * freeKickTeam.side)
                 .setLimited(true, true);
 
         isKicking = false;
@@ -52,9 +52,9 @@ class MatchStateFreeKick extends MatchState {
         freeKickTeam.findNearest();
         freeKickPlayer = freeKickTeam.near1;
 
-        float ballToGoal = EMath.roundBy(EMath.angle(match.ball.x, match.ball.y, 0, defendingTeam.side * GOAL_LINE), 45f);
-        freeKickPlayer.tx = match.ball.x - 7 * EMath.cos(ballToGoal);
-        freeKickPlayer.ty = match.ball.y - 7 * EMath.sin(ballToGoal);
+        float ballToGoal = EMath.roundBy(EMath.angle(scene.ball.x, scene.ball.y, 0, defendingTeam.side * GOAL_LINE), 45f);
+        freeKickPlayer.tx = scene.ball.x - 7 * EMath.cos(ballToGoal);
+        freeKickPlayer.ty = scene.ball.y - 7 * EMath.sin(ballToGoal);
         freeKickPlayer.setState(STATE_REACH_TARGET);
     }
 
@@ -66,18 +66,18 @@ class MatchStateFreeKick extends MatchState {
         float timeLeft = deltaTime;
         while (timeLeft >= GLGame.SUBFRAME_DURATION) {
 
-            if (match.subframe % GLGame.SUBFRAMES == 0) {
-                match.updateAi();
+            if (scene.subframe % GLGame.SUBFRAMES == 0) {
+                scene.updateAi();
             }
 
-            match.updateBall();
-            move = match.updatePlayers(true);
+            scene.updateBall();
+            move = scene.updatePlayers(true);
 
-            match.nextSubframe();
+            scene.nextSubframe();
 
-            match.save();
+            scene.save();
 
-            match.actionCamera.update();
+            scene.actionCamera.update();
 
             timeLeft -= GLGame.SUBFRAME_DURATION;
         }
@@ -101,7 +101,7 @@ class MatchStateFreeKick extends MatchState {
 
     @Override
     SceneFsm.Action[] checkConditions() {
-        if (match.ball.v > 0) {
+        if (scene.ball.v > 0) {
             freeKickTeam.setPlayersState(STATE_STAND_RUN, freeKickPlayer);
             for (int i = 0; i < TEAM_SIZE; i++) {
                 Player player = defendingTeam.lineup.get(i);
@@ -110,7 +110,7 @@ class MatchStateFreeKick extends MatchState {
                 }
             }
 
-            match.foul = null;
+            scene.foul = null;
             return newAction(NEW_FOREGROUND, STATE_MAIN);
         }
 

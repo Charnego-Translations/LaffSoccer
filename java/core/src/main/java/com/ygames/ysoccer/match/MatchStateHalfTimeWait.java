@@ -24,11 +24,11 @@ class MatchStateHalfTimeWait extends MatchState {
     void entryActions() {
         super.entryActions();
 
-        match.swapTeamSides();
+        scene.swapTeamSides();
 
-        match.kickOffTeam = 1 - match.coinToss;
+        scene.kickOffTeam = 1 - scene.coinToss;
 
-        match.actionCamera
+        scene.actionCamera
                 .setMode(REACH_TARGET)
                 .setSpeed(FAST)
                 .setTarget(0, 0);
@@ -41,11 +41,11 @@ class MatchStateHalfTimeWait extends MatchState {
         float timeLeft = deltaTime;
         while (timeLeft >= GLGame.SUBFRAME_DURATION) {
 
-            match.nextSubframe();
+            scene.nextSubframe();
 
-            match.save();
+            scene.save();
 
-            match.actionCamera.update();
+            scene.actionCamera.update();
 
             timeLeft -= GLGame.SUBFRAME_DURATION;
         }
@@ -53,10 +53,10 @@ class MatchStateHalfTimeWait extends MatchState {
 
     @Override
     SceneFsm.Action[] checkConditions() {
-        if (match.team[HOME].fire1Down() != null
-                || match.team[AWAY].fire1Down() != null
+        if (scene.team[HOME].fire1Down() != null
+                || scene.team[AWAY].fire1Down() != null
                 || (timer > 3 * SECOND)) {
-            match.period = Match.Period.SECOND_HALF;
+            scene.period = Match.Period.SECOND_HALF;
             return newAction(NEW_FOREGROUND, STATE_HALF_TIME_ENTER);
         }
 

@@ -44,12 +44,12 @@ class TrainingStateFree extends TrainingState {
         super.entryActions();
 
         setIntroPositions();
-        training.findNearest();
-        training.resetData();
+        scene.findNearest();
+        scene.resetData();
 
         lastTrained = team[HOME].lineup.get(0);
 
-        training.actionCamera
+        scene.actionCamera
                 .setMode(FOLLOW_BALL)
                 .setSpeed(NORMAL)
                 .setLimited(true, true);
@@ -62,14 +62,14 @@ class TrainingStateFree extends TrainingState {
         float timeLeft = deltaTime;
         while (timeLeft >= GLGame.SUBFRAME_DURATION) {
 
-            if (training.subframe % GLGame.SUBFRAMES == 0) {
-                training.updateFrameDistance();
+            if (scene.subframe % GLGame.SUBFRAMES == 0) {
+                scene.updateFrameDistance();
             }
 
-            training.updatePlayers(true);
-            training.updateStates();
-            training.findNearest();
-            training.updateBall();
+            scene.updatePlayers(true);
+            scene.updateStates();
+            scene.findNearest();
+            scene.updateBall();
 
             ball.collisionFlagPosts();
             ball.collisionGoal();
@@ -99,15 +99,15 @@ class TrainingStateFree extends TrainingState {
                 }
             }
 
-            if ((training.subframe % GLGame.VIRTUAL_REFRESH_RATE) == 0) {
-                training.ball.updatePrediction();
+            if ((scene.subframe % GLGame.VIRTUAL_REFRESH_RATE) == 0) {
+                scene.ball.updatePrediction();
             }
 
-            training.nextSubframe();
+            scene.nextSubframe();
 
-            training.save();
+            scene.save();
 
-            training.actionCamera.update();
+            scene.actionCamera.update();
 
             timeLeft -= GLGame.SUBFRAME_DURATION;
         }

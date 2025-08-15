@@ -30,7 +30,7 @@ class MatchStateCornerKick extends MatchState {
     @Override
     void entryActions() {
         super.entryActions();
-        if (match.settings.commentary) {
+        if (scene.settings.commentary) {
             int size = Assets.Commentary.cornerKick.size();
             if (size > 0) {
                 Assets.Commentary.cornerKick.get(Assets.random.nextInt(size)).play(Assets.Sounds.volume / 100f);
@@ -42,9 +42,9 @@ class MatchStateCornerKick extends MatchState {
     void onResume() {
         super.onResume();
 
-        match.actionCamera
+        scene.actionCamera
                 .setMode(FOLLOW_BALL)
-                .setOffset(-30 * match.ball.xSide, -30 * match.ball.ySide)
+                .setOffset(-30 * scene.ball.xSide, -30 * scene.ball.ySide)
                 .setSpeed(FAST)
                 .setLimited(true, true);
 
@@ -54,14 +54,14 @@ class MatchStateCornerKick extends MatchState {
         fsm.cornerKickTeam.findNearest();
         cornerKickPlayer = fsm.cornerKickTeam.near1;
 
-        cornerKickPlayer.setTarget(match.ball.x + 7 * match.ball.xSide, match.ball.y);
+        cornerKickPlayer.setTarget(scene.ball.x + 7 * scene.ball.xSide, scene.ball.y);
         cornerKickPlayer.setState(STATE_REACH_TARGET);
     }
 
     @Override
     void onPause() {
         super.onPause();
-        match.updateTeamTactics();
+        scene.updateTeamTactics();
     }
 
     @Override
@@ -72,20 +72,20 @@ class MatchStateCornerKick extends MatchState {
         float timeLeft = deltaTime;
         while (timeLeft >= GLGame.SUBFRAME_DURATION) {
 
-            if (match.subframe % GLGame.SUBFRAMES == 0) {
-                match.updateAi();
+            if (scene.subframe % GLGame.SUBFRAMES == 0) {
+                scene.updateAi();
             }
 
-            match.updateBall();
-            match.ball.inFieldKeep();
+            scene.updateBall();
+            scene.ball.inFieldKeep();
 
-            move = match.updatePlayers(true);
+            move = scene.updatePlayers(true);
 
-            match.nextSubframe();
+            scene.nextSubframe();
 
-            match.save();
+            scene.save();
 
-            match.actionCamera.update();
+            scene.actionCamera.update();
 
             timeLeft -= GLGame.SUBFRAME_DURATION;
         }
@@ -103,8 +103,8 @@ class MatchStateCornerKick extends MatchState {
 
     @Override
     SceneFsm.Action[] checkConditions() {
-        if (match.ball.v > 0) {
-            match.setPlayersState(STATE_STAND_RUN, cornerKickPlayer);
+        if (scene.ball.v > 0) {
+            scene.setPlayersState(STATE_STAND_RUN, cornerKickPlayer);
             return newAction(NEW_FOREGROUND, STATE_MAIN);
         }
 

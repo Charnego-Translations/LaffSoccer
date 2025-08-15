@@ -37,18 +37,18 @@ class MatchStateKickOff extends MatchState {
 
         Assets.Sounds.whistle.play(Assets.Sounds.volume / 100f);
 
-        Team kickOffTeam = match.team[match.kickOffTeam];
+        Team kickOffTeam = scene.team[scene.kickOffTeam];
         kickOffTeam.updateFrameDistance();
         kickOffTeam.findNearest();
         kickOffPlayer = kickOffTeam.near1;
-        kickOffPlayer.tx = match.ball.x - 7 * kickOffPlayer.team.side + 1;
-        kickOffPlayer.ty = match.ball.y + 1;
+        kickOffPlayer.tx = scene.ball.x - 7 * kickOffPlayer.team.side + 1;
+        kickOffPlayer.ty = scene.ball.y + 1;
 
         if (kickOffTeam.usesAutomaticInputDevice()) {
             kickOffPlayer.inputDevice = kickOffTeam.inputDevice;
         }
 
-        match.actionCamera
+        scene.actionCamera
                 .setMode(FOLLOW_BALL)
                 .setSpeed(FAST);
     }
@@ -56,7 +56,7 @@ class MatchStateKickOff extends MatchState {
     @Override
     void onPause() {
         super.onPause();
-        match.setStartingPositions();
+        scene.setStartingPositions();
         kickOffPlayer.setState(STATE_REACH_TARGET);
     }
 
@@ -68,21 +68,21 @@ class MatchStateKickOff extends MatchState {
         float timeLeft = deltaTime;
         while (timeLeft >= GLGame.SUBFRAME_DURATION) {
 
-            if (match.subframe % GLGame.SUBFRAMES == 0) {
-                match.ball.updatePrediction();
-                match.updateFrameDistance();
-                match.updateAi();
+            if (scene.subframe % GLGame.SUBFRAMES == 0) {
+                scene.ball.updatePrediction();
+                scene.updateFrameDistance();
+                scene.updateAi();
             }
 
-            match.updateBall();
-            move = match.updatePlayers(true);
-            match.findNearest();
+            scene.updateBall();
+            move = scene.updatePlayers(true);
+            scene.findNearest();
 
-            match.nextSubframe();
+            scene.nextSubframe();
 
-            match.save();
+            scene.save();
 
-            match.actionCamera.update();
+            scene.actionCamera.update();
 
             timeLeft -= GLGame.SUBFRAME_DURATION;
         }
@@ -95,10 +95,10 @@ class MatchStateKickOff extends MatchState {
 
     @Override
     SceneFsm.Action[] checkConditions() {
-        if (EMath.dist(match.ball.x, match.ball.y, 0, 0) > 10) {
+        if (EMath.dist(scene.ball.x, scene.ball.y, 0, 0) > 10) {
             for (int t = HOME; t <= AWAY; t++) {
                 for (int i = 0; i < Const.TEAM_SIZE; i++) {
-                    Player player = match.team[t].lineup.get(i);
+                    Player player = scene.team[t].lineup.get(i);
                     if (player != kickOffPlayer) {
                         player.setState(STATE_STAND_RUN);
                     }

@@ -29,15 +29,15 @@ class MatchStateFullExtraTimeStop extends MatchState {
     void entryActions() {
         super.entryActions();
 
-        match.clock = match.length * 120f / 90f;
+        scene.clock = scene.length * 120f / 90f;
         fsm.matchCompleted = true;
 
         Assets.Sounds.end.play(Assets.Sounds.volume / 100f);
 
-        match.resetAutomaticInputDevices();
-        match.setPlayersState(STATE_IDLE, null);
+        scene.resetAutomaticInputDevices();
+        scene.setPlayersState(STATE_IDLE, null);
 
-        Team winner = match.competition.getMatchWinner();
+        Team winner = scene.competition.getMatchWinner();
         if (winner != null) {
             for (int i = 1; i < TEAM_SIZE; i++) {
                 if (Assets.random.nextFloat() < 0.7f) {
@@ -52,7 +52,7 @@ class MatchStateFullExtraTimeStop extends MatchState {
     void onResume() {
         super.onResume();
 
-        match.actionCamera
+        scene.actionCamera
                 .setMode(FOLLOW_BALL)
                 .setSpeed(NORMAL);
     }
@@ -64,20 +64,20 @@ class MatchStateFullExtraTimeStop extends MatchState {
         float timeLeft = deltaTime;
         while (timeLeft >= GLGame.SUBFRAME_DURATION) {
 
-            if (match.subframe % GLGame.SUBFRAMES == 0) {
-                match.updateAi();
+            if (scene.subframe % GLGame.SUBFRAMES == 0) {
+                scene.updateAi();
             }
 
-            match.updateBall();
-            match.ball.inFieldKeep();
+            scene.updateBall();
+            scene.ball.inFieldKeep();
 
-            match.updatePlayers(false);
+            scene.updatePlayers(false);
 
-            match.nextSubframe();
+            scene.nextSubframe();
 
-            match.save();
+            scene.save();
 
-            match.actionCamera.update();
+            scene.actionCamera.update();
 
             timeLeft -= GLGame.SUBFRAME_DURATION;
         }
@@ -86,7 +86,7 @@ class MatchStateFullExtraTimeStop extends MatchState {
     @Override
     SceneFsm.Action[] checkConditions() {
         if (timer > 3 * SECOND) {
-            if (match.competition.getFinalWinner() != null) {
+            if (scene.competition.getFinalWinner() != null) {
                 return newAction(NEW_FOREGROUND, STATE_FINAL_CELEBRATION);
             } else {
                 return newAction(NEW_FOREGROUND, STATE_END_POSITIONS);

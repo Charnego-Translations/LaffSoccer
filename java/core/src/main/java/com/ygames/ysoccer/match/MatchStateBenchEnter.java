@@ -28,22 +28,22 @@ class MatchStateBenchEnter extends MatchState {
     void entryActions() {
         super.entryActions();
 
-        fsm.benchStatus.oldTarget.set(match.actionCamera.getCurrentTarget());
+        fsm.benchStatus.oldTarget.set(scene.actionCamera.getCurrentTarget());
 
         fsm.benchStatus.selectedPosition = -1;
         fsm.benchStatus.substPosition = -1;
 
         for (int t = HOME; t <= AWAY; t++) {
             for (int i = 0; i < TEAM_SIZE; i++) {
-                Player player = match.team[t].lineup.get(i);
-                if (match.team[t].usesAutomaticInputDevice()) {
+                Player player = scene.team[t].lineup.get(i);
+                if (scene.team[t].usesAutomaticInputDevice()) {
                     player.setInputDevice(player.ai);
                 }
                 player.setState(STATE_REACH_TARGET);
             }
         }
 
-        match.actionCamera
+        scene.actionCamera
                 .setMode(REACH_TARGET)
                 .setTarget(-0.55f * TOUCH_LINE, -20)
                 .setLimited(false, true)
@@ -57,16 +57,16 @@ class MatchStateBenchEnter extends MatchState {
         float timeLeft = deltaTime;
         while (timeLeft >= GLGame.SUBFRAME_DURATION) {
 
-            match.updateBall();
-            match.ball.inFieldKeep();
+            scene.updateBall();
+            scene.ball.inFieldKeep();
 
-            match.updatePlayers(true);
+            scene.updatePlayers(true);
 
-            match.nextSubframe();
+            scene.nextSubframe();
 
-            match.save();
+            scene.save();
 
-            match.actionCamera.update();
+            scene.actionCamera.update();
 
             timeLeft -= GLGame.SUBFRAME_DURATION;
         }
@@ -75,7 +75,7 @@ class MatchStateBenchEnter extends MatchState {
     @Override
     SceneFsm.Action[] checkConditions() {
 
-        if (match.actionCamera.getTargetDistance() < 1) {
+        if (scene.actionCamera.getTargetDistance() < 1) {
             Coach coach = fsm.benchStatus.team.coach;
             coach.status = Coach.Status.STAND;
             return newAction(NEW_FOREGROUND, STATE_BENCH_SUBSTITUTIONS);

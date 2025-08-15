@@ -29,7 +29,7 @@ class MatchStateBenchExit extends MatchState {
         coach.status = Coach.Status.BENCH;
 
         // reset positions
-        int substitutes = min(match.getSettings().benchSize, fsm.benchStatus.team.lineup.size() - TEAM_SIZE);
+        int substitutes = min(scene.getSettings().benchSize, fsm.benchStatus.team.lineup.size() - TEAM_SIZE);
         for (int i = 0; i < substitutes; i++) {
             Player player = fsm.benchStatus.team.lineup.get(TEAM_SIZE + i);
             if (!player.getState().checkId(STATE_SUBSTITUTED)) {
@@ -37,7 +37,7 @@ class MatchStateBenchExit extends MatchState {
             }
         }
 
-        match.actionCamera
+        scene.actionCamera
                 .setMode(REACH_TARGET)
                 .setTarget(fsm.benchStatus.oldTarget)
                 .setSpeed(WARP);
@@ -50,18 +50,18 @@ class MatchStateBenchExit extends MatchState {
         float timeLeft = deltaTime;
         while (timeLeft >= GLGame.SUBFRAME_DURATION) {
 
-            match.updateBall();
-            match.ball.inFieldKeep();
+            scene.updateBall();
+            scene.ball.inFieldKeep();
 
-            match.updatePlayers(true);
+            scene.updatePlayers(true);
 
-            match.updateCoaches();
+            scene.updateCoaches();
 
-            match.nextSubframe();
+            scene.nextSubframe();
 
-            match.save();
+            scene.save();
 
-            match.actionCamera.update();
+            scene.actionCamera.update();
 
             timeLeft -= GLGame.SUBFRAME_DURATION;
         }
@@ -70,7 +70,7 @@ class MatchStateBenchExit extends MatchState {
     @Override
     SceneFsm.Action[] checkConditions() {
 
-        if (match.actionCamera.getTargetDistance() < 1) {
+        if (scene.actionCamera.getTargetDistance() < 1) {
             return newAction(RESTORE_FOREGROUND);
         }
 

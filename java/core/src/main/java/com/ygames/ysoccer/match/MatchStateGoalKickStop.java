@@ -28,15 +28,15 @@ class MatchStateGoalKickStop extends MatchState {
 
         Assets.Sounds.whistle.play(Assets.Sounds.volume / 100f);
 
-        match.resetAutomaticInputDevices();
-        match.setPlayersState(STATE_REACH_TARGET, null);
+        scene.resetAutomaticInputDevices();
+        scene.setPlayersState(STATE_REACH_TARGET, null);
 
-        Team goalKickTeam = match.team[1 - match.ball.ownerLast.team.index];
+        Team goalKickTeam = scene.team[1 - scene.ball.ownerLast.team.index];
         Player goalKickKeeper = goalKickTeam.lineup.get(0);
-        goalKickKeeper.tx = match.ball.x / 4;
+        goalKickKeeper.tx = scene.ball.x / 4;
         goalKickKeeper.ty = goalKickTeam.side * (Const.GOAL_LINE - 8);
 
-        Team opponentTeam = match.team[1 - goalKickTeam.index];
+        Team opponentTeam = scene.team[1 - goalKickTeam.index];
         Player opponentKeeper = opponentTeam.lineup.get(0);
         opponentKeeper.tx = 0;
         opponentKeeper.ty = opponentTeam.side * (Const.GOAL_LINE - 8);
@@ -45,19 +45,19 @@ class MatchStateGoalKickStop extends MatchState {
         opponentTeam.updateTactics(true);
 
         goalKickPosition.set(
-                (Const.GOAL_AREA_W / 2f) * match.ball.xSide,
-                (Const.GOAL_LINE - Const.GOAL_AREA_H) * match.ball.ySide
+                (Const.GOAL_AREA_W / 2f) * scene.ball.xSide,
+                (Const.GOAL_LINE - Const.GOAL_AREA_H) * scene.ball.ySide
         );
     }
 
     @Override
     void onResume() {
-        match.actionCamera
+        scene.actionCamera
                 .setMode(FOLLOW_BALL)
                 .setSpeed(NORMAL)
                 .setLimited(true, true);
 
-        match.setPointOfInterest(goalKickPosition);
+        scene.setPointOfInterest(goalKickPosition);
     }
 
     @Override
@@ -67,23 +67,23 @@ class MatchStateGoalKickStop extends MatchState {
         float timeLeft = deltaTime;
         while (timeLeft >= GLGame.SUBFRAME_DURATION) {
 
-            if (match.subframe % GLGame.SUBFRAMES == 0) {
-                match.updateAi();
+            if (scene.subframe % GLGame.SUBFRAMES == 0) {
+                scene.updateAi();
             }
 
-            match.updateBall();
-            match.ball.inFieldKeep();
-            match.ball.collisionGoal();
-            match.ball.collisionJumpers();
-            match.ball.collisionNetOut();
+            scene.updateBall();
+            scene.ball.inFieldKeep();
+            scene.ball.collisionGoal();
+            scene.ball.collisionJumpers();
+            scene.ball.collisionNetOut();
 
-            match.updatePlayers(true);
+            scene.updatePlayers(true);
 
-            match.nextSubframe();
+            scene.nextSubframe();
 
-            match.save();
+            scene.save();
 
-            match.actionCamera.update();
+            scene.actionCamera.update();
 
             timeLeft -= GLGame.SUBFRAME_DURATION;
         }
@@ -91,9 +91,9 @@ class MatchStateGoalKickStop extends MatchState {
 
     @Override
     SceneFsm.Action[] checkConditions() {
-        if ((match.ball.v < 5) && (match.ball.vz < 5)) {
-            match.ball.setPosition(goalKickPosition.x, goalKickPosition.y, 0);
-            match.ball.updatePrediction();
+        if ((scene.ball.v < 5) && (scene.ball.vz < 5)) {
+            scene.ball.setPosition(goalKickPosition.x, goalKickPosition.y, 0);
+            scene.ball.updatePrediction();
 
             return newAction(NEW_FOREGROUND, STATE_GOAL_KICK);
         }

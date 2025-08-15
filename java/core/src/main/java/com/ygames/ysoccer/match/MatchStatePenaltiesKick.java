@@ -37,17 +37,17 @@ class MatchStatePenaltiesKick extends MatchState {
 
         isKicking = false;
 
-        match.penalty.kicker.setTarget(0, match.penalty.side * (Const.PENALTY_SPOT_Y - 7));
-        match.penalty.kicker.setState(STATE_REACH_TARGET);
+        scene.penalty.kicker.setTarget(0, scene.penalty.side * (Const.PENALTY_SPOT_Y - 7));
+        scene.penalty.kicker.setState(STATE_REACH_TARGET);
 
-        match.actionCamera.setMode(STILL);
+        scene.actionCamera.setMode(STILL);
     }
 
     @Override
     void onPause() {
         super.onPause();
 
-        match.penalty.kicker.setTarget(-40 * match.ball.ySide, match.penalty.side * (Const.PENALTY_SPOT_Y - 45));
+        scene.penalty.kicker.setTarget(-40 * scene.ball.ySide, scene.penalty.side * (Const.PENALTY_SPOT_Y - 45));
     }
 
     @Override
@@ -58,20 +58,20 @@ class MatchStatePenaltiesKick extends MatchState {
         float timeLeft = deltaTime;
         while (timeLeft >= GLGame.SUBFRAME_DURATION) {
 
-            if (match.subframe % GLGame.SUBFRAMES == 0) {
-                match.updateAi();
+            if (scene.subframe % GLGame.SUBFRAMES == 0) {
+                scene.updateAi();
             }
 
-            match.updateBall();
-            match.ball.inFieldKeep();
+            scene.updateBall();
+            scene.ball.inFieldKeep();
 
-            move = match.updatePlayers(true);
+            move = scene.updatePlayers(true);
 
-            match.nextSubframe();
+            scene.nextSubframe();
 
-            match.save();
+            scene.save();
 
-            match.actionCamera.update();
+            scene.actionCamera.update();
 
             timeLeft -= GLGame.SUBFRAME_DURATION;
         }
@@ -79,9 +79,9 @@ class MatchStatePenaltiesKick extends MatchState {
         if (!move && !isKicking) {
             Assets.Sounds.whistle.play(Assets.Sounds.volume / 100f);
 
-            match.penalty.kicker.setState(STATE_PENALTY_KICK_ANGLE);
-            if (match.penalty.kicker.team.usesAutomaticInputDevice()) {
-                match.penalty.kicker.inputDevice = match.penalty.kicker.team.inputDevice;
+            scene.penalty.kicker.setState(STATE_PENALTY_KICK_ANGLE);
+            if (scene.penalty.kicker.team.usesAutomaticInputDevice()) {
+                scene.penalty.kicker.inputDevice = scene.penalty.kicker.team.inputDevice;
             }
 
             isKicking = true;
@@ -90,8 +90,8 @@ class MatchStatePenaltiesKick extends MatchState {
 
     @Override
     SceneFsm.Action[] checkConditions() {
-        if (match.ball.v > 0) {
-            match.penalty.kicker.setState(STATE_IDLE);
+        if (scene.ball.v > 0) {
+            scene.penalty.kicker.setState(STATE_IDLE);
             return newAction(NEW_FOREGROUND, STATE_PENALTIES_END);
         }
 

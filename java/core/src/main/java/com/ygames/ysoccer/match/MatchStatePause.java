@@ -2,11 +2,8 @@ package com.ygames.ysoccer.match;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.ygames.ysoccer.framework.Assets;
-import com.ygames.ysoccer.framework.Font;
 import com.ygames.ysoccer.framework.InputDevice;
 
-import static com.ygames.ysoccer.framework.Assets.gettext;
 import static com.ygames.ysoccer.match.MatchFsm.STATE_REPLAY;
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.NEW_FOREGROUND;
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.RESTORE_FOREGROUND;
@@ -76,7 +73,7 @@ class MatchStatePause extends MatchState {
     }
 
     private void useHoldStateDisplayFlags() {
-        MatchState holdState = match.getFsm().getHoldState();
+        MatchState holdState = scene.getFsm().getHoldState();
 
         displayControlledPlayer = holdState.displayControlledPlayer;
         displayBallOwner = holdState.displayBallOwner;

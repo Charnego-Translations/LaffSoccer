@@ -33,16 +33,16 @@ class MatchStateGoalKick extends MatchState {
     void onResume() {
         super.onResume();
 
-        match.actionCamera
+        scene.actionCamera
                 .setMode(FOLLOW_BALL)
-                .setOffset(-30 * match.ball.xSide, -30 * match.ball.ySide)
+                .setOffset(-30 * scene.ball.xSide, -30 * scene.ball.ySide)
                 .setSpeed(FAST)
                 .setLimited(true, true);
 
         isKicking = false;
 
         goalKickPlayer = fsm.goalKickTeam.lineupAtPosition(0);
-        goalKickPlayer.setTarget(match.ball.x, match.ball.y + 6 * match.ball.ySide);
+        goalKickPlayer.setTarget(scene.ball.x, scene.ball.y + 6 * scene.ball.ySide);
         goalKickPlayer.setState(STATE_REACH_TARGET);
     }
 
@@ -50,9 +50,9 @@ class MatchStateGoalKick extends MatchState {
     void onPause() {
         super.onPause();
 
-        goalKickPlayer.setTarget(match.ball.x / 4, fsm.goalKickTeam.side * (GOAL_LINE - 8));
-        match.team[HOME].updateTactics(true);
-        match.team[AWAY].updateTactics(true);
+        goalKickPlayer.setTarget(scene.ball.x / 4, fsm.goalKickTeam.side * (GOAL_LINE - 8));
+        scene.team[HOME].updateTactics(true);
+        scene.team[AWAY].updateTactics(true);
     }
 
     @Override
@@ -63,20 +63,20 @@ class MatchStateGoalKick extends MatchState {
         float timeLeft = deltaTime;
         while (timeLeft >= GLGame.SUBFRAME_DURATION) {
 
-            if (match.subframe % GLGame.SUBFRAMES == 0) {
-                match.updateAi();
+            if (scene.subframe % GLGame.SUBFRAMES == 0) {
+                scene.updateAi();
             }
 
-            match.updateBall();
-            match.ball.inFieldKeep();
+            scene.updateBall();
+            scene.ball.inFieldKeep();
 
-            move = match.updatePlayers(true);
+            move = scene.updatePlayers(true);
 
-            match.nextSubframe();
+            scene.nextSubframe();
 
-            match.save();
+            scene.save();
 
-            match.actionCamera.update();
+            scene.actionCamera.update();
 
             timeLeft -= GLGame.SUBFRAME_DURATION;
         }
@@ -94,8 +94,8 @@ class MatchStateGoalKick extends MatchState {
 
     @Override
     SceneFsm.Action[] checkConditions() {
-        if (match.ball.v > 0) {
-            match.setPlayersState(STATE_STAND_RUN, goalKickPlayer);
+        if (scene.ball.v > 0) {
+            scene.setPlayersState(STATE_STAND_RUN, goalKickPlayer);
             return newAction(NEW_FOREGROUND, STATE_MAIN);
         }
 

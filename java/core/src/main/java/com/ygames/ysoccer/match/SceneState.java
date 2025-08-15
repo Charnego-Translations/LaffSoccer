@@ -6,10 +6,12 @@ abstract class SceneState<SceneFsmT extends SceneFsm<SceneT, ?>, SceneT extends 
 
     private int id;
     final SceneFsmT fsm;
+    final SceneT scene;
     int timer;
 
     SceneState(SceneFsmT fsm) {
         this.fsm = fsm;
+        this.scene = fsm.getScene();
     }
 
     public int getId() {
