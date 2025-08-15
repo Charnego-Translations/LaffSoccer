@@ -13,7 +13,7 @@ import static com.ygames.ysoccer.match.SceneFsm.ActionType.HOLD_FOREGROUND;
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.NEW_FOREGROUND;
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.RESTORE_FOREGROUND;
 
-abstract class SceneFsm<SceneT extends Scene<?, SceneStateT>, SceneStateT extends SceneState<?>> {
+abstract class SceneFsm<SceneT extends Scene<?, SceneStateT>, SceneStateT extends SceneState<?, SceneT>> {
 
     enum ActionType {
         NONE,

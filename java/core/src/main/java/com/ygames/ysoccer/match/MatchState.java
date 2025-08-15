@@ -15,7 +15,7 @@ import static com.ygames.ysoccer.match.MatchFsm.STATE_PAUSE;
 import static com.ygames.ysoccer.match.MatchFsm.STATE_REPLAY;
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.HOLD_FOREGROUND;
 
-abstract class MatchState extends SceneState<MatchFsm> {
+abstract class MatchState extends SceneState<MatchFsm, Match> {
 
     boolean displayControlledPlayer;
     boolean displayBallOwner;
