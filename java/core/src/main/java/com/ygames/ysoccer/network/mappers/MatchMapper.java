@@ -17,6 +17,7 @@ public class MatchMapper {
         matchDto.teamDto[HOME] = TeamMapper.toDto(match.team[HOME]);
         matchDto.teamDto[AWAY] = TeamMapper.toDto(match.team[AWAY]);
         matchDto.rank = match.rank;
+        matchDto.displayControlledPlayer = match.displayControlledPlayer;
         return matchDto;
     }
 
@@ -28,6 +29,7 @@ public class MatchMapper {
         match.setTeam(HOME, TeamMapper.fromDto(matchDto.teamDto[HOME]));
         match.setTeam(AWAY, TeamMapper.fromDto(matchDto.teamDto[AWAY]));
         match.rank = matchDto.rank;
+        match.displayControlledPlayer = matchDto.displayControlledPlayer;
         return match;
     }
 }
