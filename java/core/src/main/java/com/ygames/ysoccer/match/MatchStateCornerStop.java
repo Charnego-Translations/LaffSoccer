@@ -19,10 +19,15 @@ class MatchStateCornerStop extends MatchState {
     MatchStateCornerStop(MatchFsm fsm) {
         super(fsm);
 
-        displayControlledPlayer = true;
         displayTime = true;
         displayWindVane = true;
         displayRadar = true;
+    }
+
+    @Override
+    void setDisplayFlags() {
+        scene.clearDisplayFlags();
+        scene.displayControlledPlayer = true;
     }
 
     @Override
@@ -56,9 +61,9 @@ class MatchStateCornerStop extends MatchState {
         scene.setPointOfInterest(cornerPosition);
 
         scene.actionCamera
-                .setMode(FOLLOW_BALL)
-                .setSpeed(NORMAL)
-                .setLimited(true, true);
+            .setMode(FOLLOW_BALL)
+            .setSpeed(NORMAL)
+            .setLimited(true, true);
     }
 
     @Override

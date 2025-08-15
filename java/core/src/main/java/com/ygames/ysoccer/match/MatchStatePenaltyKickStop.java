@@ -29,7 +29,6 @@ class MatchStatePenaltyKickStop extends MatchState {
     MatchStatePenaltyKickStop(MatchFsm fsm) {
         super(fsm);
 
-        displayControlledPlayer = true;
         displayBallOwner = true;
         displayTime = true;
         displayWindVane = true;
@@ -37,6 +36,12 @@ class MatchStatePenaltyKickStop extends MatchState {
 
         playersReachingTarget = new ArrayList<>();
         penaltyKickPosition = new Vector2();
+    }
+
+    @Override
+    void setDisplayFlags() {
+        scene.clearDisplayFlags();
+        scene.displayControlledPlayer = true;
     }
 
     @Override
@@ -84,10 +89,10 @@ class MatchStatePenaltyKickStop extends MatchState {
     @Override
     void onResume() {
         scene.actionCamera
-                .setMode(REACH_TARGET)
-                .setTarget(penaltyKickPosition.x, penaltyKickPosition.y)
-                .setSpeed(NORMAL)
-                .setLimited(true, true);
+            .setMode(REACH_TARGET)
+            .setTarget(penaltyKickPosition.x, penaltyKickPosition.y)
+            .setSpeed(NORMAL)
+            .setLimited(true, true);
 
         scene.setPointOfInterest(penaltyKickPosition);
     }

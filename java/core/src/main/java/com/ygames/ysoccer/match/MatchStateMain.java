@@ -40,13 +40,18 @@ class MatchStateMain extends MatchState {
     MatchStateMain(MatchFsm fsm) {
         super(fsm);
 
-        displayControlledPlayer = true;
         displayBallOwner = true;
         displayTime = true;
         displayWindVane = true;
         displayRadar = true;
 
         checkBenchCall = false;
+    }
+
+    @Override
+    void setDisplayFlags() {
+        scene.clearDisplayFlags();
+        scene.displayControlledPlayer = true;
     }
 
     @Override
@@ -61,8 +66,8 @@ class MatchStateMain extends MatchState {
         super.onResume();
 
         scene.actionCamera
-                .setMode(FOLLOW_BALL)
-                .setSpeed(NORMAL);
+            .setMode(FOLLOW_BALL)
+            .setSpeed(NORMAL);
     }
 
     @Override
@@ -121,7 +126,7 @@ class MatchStateMain extends MatchState {
             if (scene.ball.y * scene.ball.ySide >= (Const.GOAL_LINE + Const.BALL_R)) {
                 // goal
                 if (EMath.isIn(scene.ball.x, -Const.POST_X, Const.POST_X)
-                        && (scene.ball.z <= Const.CROSSBAR_H)) {
+                    && (scene.ball.z <= Const.CROSSBAR_H)) {
                     scene.stats[attackingTeam].goals += 1;
                     scene.stats[attackingTeam].overallShots += 1;
                     scene.stats[attackingTeam].centeredShots += 1;
@@ -221,7 +226,7 @@ class MatchStateMain extends MatchState {
                         if (Assets.random.nextFloat() < unfairness) {
                             scene.newFoul(scene.tackle.opponent.x, scene.tackle.opponent.y, hardness, unfairness);
                             Gdx.app.debug(player.shirtName, "tackle on " + opponent.shirtName + " is a foul at: " + scene.tackle.opponent.x + ", " + scene.tackle.opponent.y
-                                    + " direct shot: " + (scene.foul.isDirectShot() ? "yes" : "no") + " yellow: " + scene.foul.entailsYellowCard + " red: " + scene.foul.entailsRedCard);
+                                + " direct shot: " + (scene.foul.isDirectShot() ? "yes" : "no") + " yellow: " + scene.foul.entailsYellowCard + " red: " + scene.foul.entailsRedCard);
                         } else {
                             Gdx.app.debug(player.shirtName, "tackles on " + opponent.shirtName + " is probably not a foul");
                         }

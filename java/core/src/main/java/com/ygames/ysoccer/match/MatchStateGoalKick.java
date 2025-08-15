@@ -21,7 +21,6 @@ class MatchStateGoalKick extends MatchState {
     MatchStateGoalKick(MatchFsm fsm) {
         super(fsm);
 
-        displayControlledPlayer = true;
         displayBallOwner = true;
         displayTime = true;
         displayWindVane = true;
@@ -30,14 +29,20 @@ class MatchStateGoalKick extends MatchState {
     }
 
     @Override
+    void setDisplayFlags() {
+        scene.clearDisplayFlags();
+        scene.displayControlledPlayer = true;
+    }
+
+    @Override
     void onResume() {
         super.onResume();
 
         scene.actionCamera
-                .setMode(FOLLOW_BALL)
-                .setOffset(-30 * scene.ball.xSide, -30 * scene.ball.ySide)
-                .setSpeed(FAST)
-                .setLimited(true, true);
+            .setMode(FOLLOW_BALL)
+            .setOffset(-30 * scene.ball.xSide, -30 * scene.ball.ySide)
+            .setSpeed(FAST)
+            .setLimited(true, true);
 
         isKicking = false;
 

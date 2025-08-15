@@ -25,6 +25,11 @@ class MatchStateBenchEnter extends MatchState {
     }
 
     @Override
+    void setDisplayFlags() {
+        scene.clearDisplayFlags();
+    }
+
+    @Override
     void entryActions() {
         super.entryActions();
 
@@ -44,10 +49,10 @@ class MatchStateBenchEnter extends MatchState {
         }
 
         scene.actionCamera
-                .setMode(REACH_TARGET)
-                .setTarget(-0.55f * TOUCH_LINE, -20)
-                .setLimited(false, true)
-                .setSpeed(WARP);
+            .setMode(REACH_TARGET)
+            .setTarget(-0.55f * TOUCH_LINE, -20)
+            .setLimited(false, true)
+            .setSpeed(WARP);
     }
 
     @Override

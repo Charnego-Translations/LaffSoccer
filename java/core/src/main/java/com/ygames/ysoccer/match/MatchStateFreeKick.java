@@ -25,12 +25,17 @@ class MatchStateFreeKick extends MatchState {
     MatchStateFreeKick(MatchFsm fsm) {
         super(fsm);
 
-        displayControlledPlayer = true;
         displayBallOwner = true;
         displayTime = true;
         displayWindVane = true;
         displayScore = true;
         displayRadar = true;
+    }
+
+    @Override
+    void setDisplayFlags() {
+        scene.clearDisplayFlags();
+        scene.displayControlledPlayer = true;
     }
 
     @Override
@@ -41,10 +46,10 @@ class MatchStateFreeKick extends MatchState {
         defendingTeam = scene.foul.player.team;
 
         scene.actionCamera
-                .setMode(FOLLOW_BALL)
-                .setSpeed(FAST)
-                .setOffset(-30 * scene.ball.xSide, -80 * freeKickTeam.side)
-                .setLimited(true, true);
+            .setMode(FOLLOW_BALL)
+            .setSpeed(FAST)
+            .setOffset(-30 * scene.ball.xSide, -80 * freeKickTeam.side)
+            .setLimited(true, true);
 
         isKicking = false;
 

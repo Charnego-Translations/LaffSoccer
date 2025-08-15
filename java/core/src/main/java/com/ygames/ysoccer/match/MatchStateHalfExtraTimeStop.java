@@ -21,6 +21,11 @@ class MatchStateHalfExtraTimeStop extends MatchState {
     }
 
     @Override
+    void setDisplayFlags() {
+        scene.clearDisplayFlags();
+    }
+
+    @Override
     void entryActions() {
         super.entryActions();
 

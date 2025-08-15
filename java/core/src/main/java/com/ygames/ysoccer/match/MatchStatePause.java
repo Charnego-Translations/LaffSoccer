@@ -75,7 +75,6 @@ class MatchStatePause extends MatchState {
     private void useHoldStateDisplayFlags() {
         MatchState holdState = scene.getFsm().getHoldState();
 
-        displayControlledPlayer = holdState.displayControlledPlayer;
         displayBallOwner = holdState.displayBallOwner;
         displayFoulMaker = holdState.displayFoulMaker;
         displayGoalScorer = holdState.displayGoalScorer;

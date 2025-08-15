@@ -17,11 +17,16 @@ class MatchStatePenaltiesKick extends MatchState {
     MatchStatePenaltiesKick(MatchFsm fsm) {
         super(fsm);
 
-        displayControlledPlayer = true;
         displayBallOwner = true;
         displayWindVane = true;
 
         checkBenchCall = false;
+    }
+
+    @Override
+    void setDisplayFlags() {
+        scene.clearDisplayFlags();
+        scene.displayControlledPlayer = true;
     }
 
     @Override

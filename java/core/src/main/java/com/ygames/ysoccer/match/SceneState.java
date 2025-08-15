@@ -24,6 +24,7 @@ abstract class SceneState<SceneFsmT extends SceneFsm<SceneT, ?>, SceneT extends 
 
     void entryActions() {
         timer = 0;
+        setDisplayFlags();
     }
 
     void exitActions() {
@@ -55,6 +56,7 @@ abstract class SceneState<SceneFsmT extends SceneFsm<SceneT, ?>, SceneT extends 
     }
 
     void onResume() {
+        setDisplayFlags();
     }
 
     void onPause() {
@@ -64,5 +66,8 @@ abstract class SceneState<SceneFsmT extends SceneFsm<SceneT, ?>, SceneT extends 
 
     boolean checkId(int id) {
         return (this.id == id);
+    }
+
+    void setDisplayFlags() {
     }
 }

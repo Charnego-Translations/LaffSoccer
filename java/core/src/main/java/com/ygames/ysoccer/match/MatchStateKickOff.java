@@ -21,12 +21,17 @@ class MatchStateKickOff extends MatchState {
     MatchStateKickOff(MatchFsm fsm) {
         super(fsm);
 
-        displayControlledPlayer = true;
         displayBallOwner = true;
         displayTime = true;
         displayWindVane = true;
         displayScore = true;
         displayRadar = true;
+    }
+
+    @Override
+    void setDisplayFlags() {
+        scene.clearDisplayFlags();
+        scene.displayControlledPlayer = true;
     }
 
     @Override
@@ -49,8 +54,8 @@ class MatchStateKickOff extends MatchState {
         }
 
         scene.actionCamera
-                .setMode(FOLLOW_BALL)
-                .setSpeed(FAST);
+            .setMode(FOLLOW_BALL)
+            .setSpeed(FAST);
     }
 
     @Override

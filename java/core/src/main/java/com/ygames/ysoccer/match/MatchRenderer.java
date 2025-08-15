@@ -127,7 +127,7 @@ public class MatchRenderer extends SceneRenderer<Match> {
             }
         }
 
-        if (matchState.displayControlledPlayer) {
+        if (scene.displayControlledPlayer) {
             drawControlledPlayersNumbers();
         }
 
@@ -592,7 +592,7 @@ public class MatchRenderer extends SceneRenderer<Match> {
         batch.setColor(0xFFFFFF, guiAlpha);
 
         // controlled players numbers
-        if (matchState.displayControlledPlayer) {
+        if (scene.displayControlledPlayer) {
             for (Sprite sprite : allSprites) {
                 if (sprite.getClass() == PlayerSprite.class) {
                     Player player = ((PlayerSprite) sprite).player;

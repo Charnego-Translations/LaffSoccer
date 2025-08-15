@@ -34,6 +34,11 @@ class MatchStatePenaltiesEnd extends MatchState {
     }
 
     @Override
+    void setDisplayFlags() {
+        scene.clearDisplayFlags();
+    }
+
+    @Override
     void entryActions() {
         super.entryActions();
 
@@ -65,9 +70,9 @@ class MatchStatePenaltiesEnd extends MatchState {
 
             scene.updateBall();
             if (!goalLineCrossed && !isGoal
-                    && scene.ball.y * scene.ball.ySide >= (Const.GOAL_LINE + Const.BALL_R)
-                    && EMath.isIn(scene.ball.x, -Const.POST_X, Const.POST_X)
-                    && (scene.ball.z <= Const.CROSSBAR_H)) {
+                && scene.ball.y * scene.ball.ySide >= (Const.GOAL_LINE + Const.BALL_R)
+                && EMath.isIn(scene.ball.x, -Const.POST_X, Const.POST_X)
+                && (scene.ball.z <= Const.CROSSBAR_H)) {
                 isGoal = true;
                 Assets.Sounds.homeGoal.play(Assets.Sounds.volume / 100f);
             }
@@ -151,7 +156,7 @@ class MatchStatePenaltiesEnd extends MatchState {
 
         // 3) all penalties have been kicked and score is not the same
         return scene.penaltiesLeft(HOME) == 0
-                && scene.penaltiesLeft(AWAY) == 0
-                && scene.penaltiesScore(HOME) != scene.penaltiesScore(AWAY);
+            && scene.penaltiesLeft(AWAY) == 0
+            && scene.penaltiesScore(HOME) != scene.penaltiesScore(AWAY);
     }
 }

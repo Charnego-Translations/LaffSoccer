@@ -24,6 +24,11 @@ class MatchStateEndPositions extends MatchState {
     }
 
     @Override
+    void setDisplayFlags() {
+        scene.clearDisplayFlags();
+    }
+
+    @Override
     void entryActions() {
         super.entryActions();
 
@@ -36,10 +41,10 @@ class MatchStateEndPositions extends MatchState {
         scene.ball.updatePrediction();
 
         scene.actionCamera
-                .setMode(REACH_TARGET)
-                .setTarget(0, 0)
-                .setOffset(0, 0)
-                .setSpeed(FAST);
+            .setMode(REACH_TARGET)
+            .setTarget(0, 0)
+            .setOffset(0, 0)
+            .setSpeed(FAST);
 
         scene.setLineupTarget(Const.TOUCH_LINE + 80, 0);
         scene.setLineupState(STATE_OUTSIDE);

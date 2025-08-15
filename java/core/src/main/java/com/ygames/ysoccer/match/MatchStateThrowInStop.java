@@ -16,11 +16,16 @@ class MatchStateThrowInStop extends MatchState {
     MatchStateThrowInStop(MatchFsm fsm) {
         super(fsm);
 
-        displayControlledPlayer = true;
         displayBallOwner = true;
         displayTime = true;
         displayWindVane = true;
         displayRadar = true;
+    }
+
+    @Override
+    void setDisplayFlags() {
+        scene.clearDisplayFlags();
+        scene.displayControlledPlayer = true;
     }
 
     @Override
@@ -40,9 +45,9 @@ class MatchStateThrowInStop extends MatchState {
         scene.setPointOfInterest(fsm.throwInPosition);
 
         scene.actionCamera
-                .setMode(FOLLOW_BALL)
-                .setSpeed(NORMAL)
-                .setLimited(true, true);
+            .setMode(FOLLOW_BALL)
+            .setSpeed(NORMAL)
+            .setLimited(true, true);
     }
 
     @Override

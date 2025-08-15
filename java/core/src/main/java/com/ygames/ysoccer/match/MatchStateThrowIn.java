@@ -19,12 +19,17 @@ class MatchStateThrowIn extends MatchState {
     MatchStateThrowIn(MatchFsm fsm) {
         super(fsm);
 
-        displayControlledPlayer = true;
         displayBallOwner = true;
         displayTime = true;
         displayWindVane = true;
         displayScore = true;
         displayRadar = true;
+    }
+
+    @Override
+    void setDisplayFlags() {
+        scene.clearDisplayFlags();
+        scene.displayControlledPlayer = true;
     }
 
     @Override
@@ -41,9 +46,9 @@ class MatchStateThrowIn extends MatchState {
         throwInPlayer.setState(STATE_REACH_TARGET);
 
         scene.actionCamera
-                .setMode(FOLLOW_BALL)
-                .setSpeed(FAST)
-                .setLimited(true, true);
+            .setMode(FOLLOW_BALL)
+            .setSpeed(FAST)
+            .setLimited(true, true);
     }
 
     @Override

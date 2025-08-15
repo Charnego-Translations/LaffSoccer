@@ -157,4 +157,8 @@ public class Training extends Scene<TrainingFsm, TrainingState> {
         team[HOME].updateCurrentData(subframe);
         team[AWAY].updateCurrentData(subframe);
     }
+
+    @Override
+    public void clearDisplayFlags() {
+    }
 }

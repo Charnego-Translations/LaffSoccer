@@ -19,13 +19,18 @@ class MatchStateKeeperStop extends MatchState {
     MatchStateKeeperStop(MatchFsm fsm) {
         super(fsm);
 
-        displayControlledPlayer = true;
         displayBallOwner = true;
         displayTime = true;
         displayWindVane = true;
         displayRadar = true;
 
         checkBenchCall = false;
+    }
+
+    @Override
+    void setDisplayFlags() {
+        scene.clearDisplayFlags();
+        scene.displayControlledPlayer = true;
     }
 
     @Override
@@ -56,8 +61,8 @@ class MatchStateKeeperStop extends MatchState {
         super.onResume();
 
         scene.actionCamera
-                .setMode(FOLLOW_BALL)
-                .setSpeed(NORMAL);
+            .setMode(FOLLOW_BALL)
+            .setSpeed(NORMAL);
     }
 
     @Override

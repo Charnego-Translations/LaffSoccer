@@ -58,4 +58,6 @@ public abstract class Scene<SceneFsmT extends SceneFsm<?, SceneStateT>, SceneSta
     abstract void save();
 
     protected abstract void updateCurrentData();
+
+    public abstract void clearDisplayFlags();
 }

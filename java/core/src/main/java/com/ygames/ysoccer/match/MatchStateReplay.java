@@ -23,12 +23,17 @@ class MatchStateReplay extends MatchState {
         displayReplayGui = true;
 
         displayWindVane = true;
-        displayControlledPlayer = Settings.development;
 
         checkReplayKey = false;
         checkPauseKey = false;
         checkHelpKey = false;
         checkBenchCall = false;
+    }
+
+    @Override
+    void setDisplayFlags() {
+        scene.clearDisplayFlags();
+        scene.displayControlledPlayer = Settings.development;
     }
 
     @Override

@@ -18,9 +18,14 @@ class MatchStatePenaltyKick extends MatchState {
     MatchStatePenaltyKick(MatchFsm fsm) {
         super(fsm);
 
-        displayControlledPlayer = true;
         displayBallOwner = true;
         displayWindVane = true;
+    }
+
+    @Override
+    void setDisplayFlags() {
+        scene.clearDisplayFlags();
+        scene.displayControlledPlayer = true;
     }
 
     @Override
@@ -41,9 +46,9 @@ class MatchStatePenaltyKick extends MatchState {
         scene.penalty.kicker.setState(STATE_REACH_TARGET);
 
         scene.actionCamera
-                .setMode(FOLLOW_BALL)
-                .setSpeed(FAST)
-                .setLimited(true, true);
+            .setMode(FOLLOW_BALL)
+            .setSpeed(FAST)
+            .setLimited(true, true);
     }
 
     @Override
