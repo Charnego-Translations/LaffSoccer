@@ -14,7 +14,7 @@ class CoachSprite extends Sprite {
 
     @Override
     public void draw(int subframe) {
-        glGraphics.batch.draw(Assets.coach[coach.team.index][coach.fmx], coach.x - 7, coach.y - 25);
+        glGraphics.batch.draw(Assets.coach[coach.teamIndex][coach.fmx], coach.x - 7, coach.y - 25);
     }
 }
 

@@ -117,7 +117,7 @@ public class Team implements Json.Serializable {
         stadium = jsonData.getString("stadium");
 
         coach = json.readValue("coach", Coach.class, jsonData);
-        coach.team = this;
+        coach.teamIndex = this.index;
 
         String tacticsCode = jsonData.getString("tactics");
         tactics = 0;

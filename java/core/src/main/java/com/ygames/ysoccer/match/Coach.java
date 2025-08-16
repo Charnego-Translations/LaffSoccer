@@ -12,7 +12,7 @@ public class Coach implements Json.Serializable {
     public String name;
     public String nationality;
     public Status status;
-    public Team team;
+    public int teamIndex;
     public int timer;
     public float x;
     public float y;
