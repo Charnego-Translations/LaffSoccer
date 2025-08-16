@@ -27,7 +27,6 @@ class MatchStateYellowCard extends MatchState {
         super(matchFsm);
 
         displayBallOwner = true;
-        displayFoulMaker = true;
         displayTime = true;
         displayWindVane = true;
         displayRadar = true;
@@ -36,6 +35,7 @@ class MatchStateYellowCard extends MatchState {
     @Override
     void setDisplayFlags() {
         scene.clearDisplayFlags();
+        scene.displayFoulMaker = true;
     }
 
     @Override

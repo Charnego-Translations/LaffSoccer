@@ -131,7 +131,7 @@ public class MatchRenderer extends SceneRenderer<Match> {
             drawControlledPlayersNumbers();
         }
 
-        if (matchState.displayFoulMaker) {
+        if (scene.displayFoulMaker) {
             Player player = scene.foul.player;
             if (player.checkState(STATE_RED_CARD)) {
                 drawRedCard(player);
@@ -161,7 +161,7 @@ public class MatchRenderer extends SceneRenderer<Match> {
         }
 
         // foul maker
-        if (matchState.displayFoulMaker) {
+        if (scene.displayFoulMaker) {
             drawPlayerNumberAndName(scene.foul.player);
         }
 

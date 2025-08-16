@@ -113,6 +113,7 @@ public class Match extends Scene<MatchFsm, MatchState> implements Json.Serializa
     public int rank; // 0 to 9
 
     public boolean displayControlledPlayer;
+    public boolean displayFoulMaker;
 
     public Match() {
         team = new Team[2];
@@ -724,5 +725,6 @@ public class Match extends Scene<MatchFsm, MatchState> implements Json.Serializa
     @Override
     public void clearDisplayFlags() {
         displayControlledPlayer = false;
+        displayFoulMaker = false;
     }
 }
