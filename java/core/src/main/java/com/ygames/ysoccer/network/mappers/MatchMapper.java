@@ -20,6 +20,7 @@ public class MatchMapper {
         matchDto.displayControlledPlayer = match.displayControlledPlayer;
         matchDto.displayFoulMaker = match.displayFoulMaker;
         matchDto.displayBallOwner = match.displayBallOwner;
+        matchDto.displayTime = match.displayTime;
         return matchDto;
     }
 
@@ -34,6 +35,7 @@ public class MatchMapper {
         match.displayControlledPlayer = matchDto.displayControlledPlayer;
         match.displayFoulMaker = matchDto.displayFoulMaker;
         match.displayBallOwner = matchDto.displayBallOwner;
+        match.displayTime = matchDto.displayTime;
         return match;
     }
 }

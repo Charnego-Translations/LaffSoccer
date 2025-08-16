@@ -8,6 +8,7 @@ public class MatchDto {
     public boolean displayControlledPlayer;
     public boolean displayFoulMaker;
     public boolean displayBallOwner;
+    public boolean displayTime;
 
     public MatchDto() {
     }
