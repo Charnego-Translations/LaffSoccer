@@ -115,6 +115,7 @@ public class Match extends Scene<MatchFsm, MatchState> implements Json.Serializa
     public boolean displayControlledPlayer;
     public boolean displayFoulMaker;
     public boolean displayBallOwner;
+    public boolean displayTime;
 
     public Match() {
         team = new Team[2];
@@ -728,5 +729,6 @@ public class Match extends Scene<MatchFsm, MatchState> implements Json.Serializa
         displayControlledPlayer = false;
         displayFoulMaker = false;
         displayBallOwner = false;
+        displayTime = false;
     }
 }

@@ -15,7 +15,6 @@ class MatchStateStartingPositions extends MatchState {
     MatchStateStartingPositions(MatchFsm fsm) {
         super(fsm);
 
-        displayTime = true;
         displayWindVane = true;
         displayRadar = true;
     }
@@ -23,6 +22,7 @@ class MatchStateStartingPositions extends MatchState {
     @Override
     void setDisplayFlags() {
         scene.clearDisplayFlags();
+        scene.displayTime = true;
     }
 
     @Override

@@ -21,7 +21,6 @@ class MatchStateKickOff extends MatchState {
     MatchStateKickOff(MatchFsm fsm) {
         super(fsm);
 
-        displayTime = true;
         displayWindVane = true;
         displayScore = true;
         displayRadar = true;
@@ -32,6 +31,7 @@ class MatchStateKickOff extends MatchState {
         scene.clearDisplayFlags();
         scene.displayControlledPlayer = true;
         scene.displayBallOwner = true;
+        scene.displayTime = true;
     }
 
     @Override

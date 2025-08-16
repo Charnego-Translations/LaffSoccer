@@ -18,7 +18,6 @@ class MatchStateFullTimeStop extends MatchState {
     MatchStateFullTimeStop(MatchFsm fsm) {
         super(fsm);
 
-        displayTime = true;
         displayWindVane = true;
         displayRadar = true;
 
@@ -28,6 +27,7 @@ class MatchStateFullTimeStop extends MatchState {
     @Override
     void setDisplayFlags() {
         scene.clearDisplayFlags();
+        scene.displayTime = true;
     }
 
     @Override

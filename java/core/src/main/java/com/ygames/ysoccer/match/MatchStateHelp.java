@@ -25,7 +25,9 @@ class MatchStateHelp extends MatchState {
 
     @Override
     void setDisplayFlags() {
-        scene.clearDisplayFlags();
+        scene.displayControlledPlayer = false;
+        scene.displayFoulMaker = false;
+        scene.displayBallOwner = false;
     }
 
     @Override
@@ -73,7 +75,6 @@ class MatchStateHelp extends MatchState {
     private void useHoldStateDisplayFlags() {
         MatchState holdState = scene.getFsm().getHoldState();
 
-        displayTime = holdState.displayTime;
         displayWindVane = holdState.displayWindVane;
     }
 }

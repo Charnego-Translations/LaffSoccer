@@ -24,6 +24,7 @@ class MatchStateBenchExit extends MatchState {
     @Override
     void setDisplayFlags() {
         scene.clearDisplayFlags();
+        scene.displayTime = true;
     }
 
     @Override

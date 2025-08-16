@@ -170,7 +170,7 @@ public class MatchRenderer extends SceneRenderer<Match> {
         }
 
         // clock
-        if (matchState.displayTime) {
+        if (scene.displayTime) {
             drawTime();
         }
 

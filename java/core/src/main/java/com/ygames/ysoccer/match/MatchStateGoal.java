@@ -28,7 +28,6 @@ class MatchStateGoal extends MatchState {
         super(fsm);
 
         displayGoalScorer = true;
-        displayTime = true;
         displayWindVane = true;
         displayRadar = true;
 
@@ -38,6 +37,7 @@ class MatchStateGoal extends MatchState {
     @Override
     void setDisplayFlags() {
         scene.clearDisplayFlags();
+        scene.displayTime = true;
     }
 
     @Override

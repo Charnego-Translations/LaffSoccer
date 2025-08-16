@@ -23,7 +23,6 @@ class MatchStateFreeKickStop extends MatchState {
     MatchStateFreeKickStop(MatchFsm fsm) {
         super(fsm);
 
-        displayTime = true;
         displayWindVane = true;
         displayRadar = true;
 
@@ -33,6 +32,7 @@ class MatchStateFreeKickStop extends MatchState {
     @Override
     void setDisplayFlags() {
         scene.clearDisplayFlags();
+        scene.displayTime = true;
     }
 
     @Override

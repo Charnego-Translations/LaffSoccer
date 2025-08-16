@@ -15,7 +15,6 @@ class MatchStateHalfTimePositions extends MatchState {
     MatchStateHalfTimePositions(MatchFsm fsm) {
         super(fsm);
 
-        displayTime = true;
         displayWindVane = true;
         displayStatistics = true;
     }
@@ -23,6 +22,7 @@ class MatchStateHalfTimePositions extends MatchState {
     @Override
     void setDisplayFlags() {
         scene.clearDisplayFlags();
+        scene.displayTime = true;
     }
 
     @Override
