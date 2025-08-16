@@ -19,6 +19,7 @@ public class MatchMapper {
         matchDto.rank = match.rank;
         matchDto.displayControlledPlayer = match.displayControlledPlayer;
         matchDto.displayFoulMaker = match.displayFoulMaker;
+        matchDto.displayBallOwner = match.displayBallOwner;
         return matchDto;
     }
 
@@ -32,6 +33,7 @@ public class MatchMapper {
         match.rank = matchDto.rank;
         match.displayControlledPlayer = matchDto.displayControlledPlayer;
         match.displayFoulMaker = matchDto.displayFoulMaker;
+        match.displayBallOwner = matchDto.displayBallOwner;
         return match;
     }
 }

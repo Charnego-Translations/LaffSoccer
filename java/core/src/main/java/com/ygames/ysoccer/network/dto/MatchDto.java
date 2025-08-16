@@ -7,6 +7,7 @@ public class MatchDto {
     public int rank;
     public boolean displayControlledPlayer;
     public boolean displayFoulMaker;
+    public boolean displayBallOwner;
 
     public MatchDto() {
     }
