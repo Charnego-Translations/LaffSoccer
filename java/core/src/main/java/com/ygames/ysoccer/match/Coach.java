@@ -22,6 +22,17 @@ public class Coach implements Json.Serializable {
         this.status = Status.BENCH;
     }
 
+    public Coach(String name, String nationality, Status status, int teamIndex, int timer, float x, float y, int fmx) {
+        this.name = name;
+        this.nationality = nationality;
+        this.status = status;
+        this.teamIndex = teamIndex;
+        this.timer = timer;
+        this.x = x;
+        this.y = y;
+        this.fmx = fmx;
+    }
+
     @Override
     public void read(Json json, JsonValue jsonData) {
         json.readFields(this, jsonData);

@@ -14,6 +14,7 @@ public class TeamMapper {
     public static TeamDto toDto(Team team) {
         TeamDto teamDto = new TeamDto();
         teamDto.name = team.name;
+        teamDto.coachDto = CoachMapper.toDto(team.coach);
         teamDto.kits = new ArrayList<>();
         for (Kit kit : team.kits) {
             teamDto.kits.add(KitMapper.toDto(kit));
@@ -28,6 +29,7 @@ public class TeamMapper {
     public static Team fromDto(TeamDto teamDto) {
         Team team = new Team();
         team.name = teamDto.name;
+        team.coach = CoachMapper.fromDto(teamDto.coachDto);
         for (KitDto kitDto : teamDto.kits) {
             team.kits.add(KitMapper.fromDto(kitDto));
         }
