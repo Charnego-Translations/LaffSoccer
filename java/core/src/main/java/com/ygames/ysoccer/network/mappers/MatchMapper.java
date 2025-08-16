@@ -18,6 +18,7 @@ public class MatchMapper {
         matchDto.teamDto[AWAY] = TeamMapper.toDto(match.team[AWAY]);
         matchDto.rank = match.rank;
         matchDto.displayControlledPlayer = match.displayControlledPlayer;
+        matchDto.displayFoulMaker = match.displayFoulMaker;
         return matchDto;
     }
 
@@ -30,6 +31,7 @@ public class MatchMapper {
         match.setTeam(AWAY, TeamMapper.fromDto(matchDto.teamDto[AWAY]));
         match.rank = matchDto.rank;
         match.displayControlledPlayer = matchDto.displayControlledPlayer;
+        match.displayFoulMaker = matchDto.displayFoulMaker;
         return match;
     }
 }
