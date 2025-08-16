@@ -29,7 +29,6 @@ class MatchStatePenaltyKickStop extends MatchState {
     MatchStatePenaltyKickStop(MatchFsm fsm) {
         super(fsm);
 
-        displayBallOwner = true;
         displayTime = true;
         displayWindVane = true;
         displayRadar = true;
@@ -42,6 +41,7 @@ class MatchStatePenaltyKickStop extends MatchState {
     void setDisplayFlags() {
         scene.clearDisplayFlags();
         scene.displayControlledPlayer = true;
+        scene.displayBallOwner = true;
     }
 
     @Override

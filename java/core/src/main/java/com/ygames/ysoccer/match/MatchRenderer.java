@@ -156,7 +156,7 @@ public class MatchRenderer extends SceneRenderer<Match> {
         batch.setColor(0xFFFFFF, guiAlpha);
 
         // ball owner
-        if (matchState.displayBallOwner && scene.ball.owner != null) {
+        if (scene.displayBallOwner && scene.ball.owner != null) {
             drawPlayerNumberAndName(scene.ball.owner);
         }
 

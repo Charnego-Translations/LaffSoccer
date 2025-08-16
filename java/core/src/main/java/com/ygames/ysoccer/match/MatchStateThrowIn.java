@@ -19,7 +19,6 @@ class MatchStateThrowIn extends MatchState {
     MatchStateThrowIn(MatchFsm fsm) {
         super(fsm);
 
-        displayBallOwner = true;
         displayTime = true;
         displayWindVane = true;
         displayScore = true;
@@ -30,6 +29,7 @@ class MatchStateThrowIn extends MatchState {
     void setDisplayFlags() {
         scene.clearDisplayFlags();
         scene.displayControlledPlayer = true;
+        scene.displayBallOwner = true;
     }
 
     @Override

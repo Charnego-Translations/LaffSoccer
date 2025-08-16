@@ -21,7 +21,6 @@ class MatchStateGoalKick extends MatchState {
     MatchStateGoalKick(MatchFsm fsm) {
         super(fsm);
 
-        displayBallOwner = true;
         displayTime = true;
         displayWindVane = true;
         displayScore = true;
@@ -32,6 +31,7 @@ class MatchStateGoalKick extends MatchState {
     void setDisplayFlags() {
         scene.clearDisplayFlags();
         scene.displayControlledPlayer = true;
+        scene.displayBallOwner = true;
     }
 
     @Override

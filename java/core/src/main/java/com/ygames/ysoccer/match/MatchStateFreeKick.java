@@ -25,7 +25,6 @@ class MatchStateFreeKick extends MatchState {
     MatchStateFreeKick(MatchFsm fsm) {
         super(fsm);
 
-        displayBallOwner = true;
         displayTime = true;
         displayWindVane = true;
         displayScore = true;
@@ -36,6 +35,7 @@ class MatchStateFreeKick extends MatchState {
     void setDisplayFlags() {
         scene.clearDisplayFlags();
         scene.displayControlledPlayer = true;
+        scene.displayBallOwner = true;
     }
 
     @Override

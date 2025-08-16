@@ -19,7 +19,6 @@ class MatchStateCornerKick extends MatchState {
     MatchStateCornerKick(MatchFsm fsm) {
         super(fsm);
 
-        displayBallOwner = true;
         displayTime = true;
         displayWindVane = true;
         displayScore = true;
@@ -30,6 +29,7 @@ class MatchStateCornerKick extends MatchState {
     void setDisplayFlags() {
         scene.clearDisplayFlags();
         scene.displayControlledPlayer = true;
+        scene.displayBallOwner = true;
     }
 
     @Override

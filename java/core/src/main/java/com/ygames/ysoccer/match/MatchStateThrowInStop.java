@@ -16,7 +16,6 @@ class MatchStateThrowInStop extends MatchState {
     MatchStateThrowInStop(MatchFsm fsm) {
         super(fsm);
 
-        displayBallOwner = true;
         displayTime = true;
         displayWindVane = true;
         displayRadar = true;
@@ -26,6 +25,7 @@ class MatchStateThrowInStop extends MatchState {
     void setDisplayFlags() {
         scene.clearDisplayFlags();
         scene.displayControlledPlayer = true;
+        scene.displayBallOwner = true;
     }
 
     @Override
