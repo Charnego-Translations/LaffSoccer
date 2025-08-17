@@ -22,6 +22,7 @@ public class MatchMapper {
         matchDto.displayBallOwner = match.displayBallOwner;
         matchDto.displayTime = match.displayTime;
         matchDto.displayRadar = match.displayRadar;
+        matchDto.displayWindVane = match.displayWindVane;
         return matchDto;
     }
 
@@ -38,6 +39,7 @@ public class MatchMapper {
         match.displayBallOwner = matchDto.displayBallOwner;
         match.displayTime = matchDto.displayTime;
         match.displayRadar = matchDto.displayRadar;
+        match.displayWindVane = matchDto.displayWindVane;
         return match;
     }
 }

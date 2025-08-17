@@ -10,6 +10,7 @@ public class MatchDto {
     public boolean displayBallOwner;
     public boolean displayTime;
     public boolean displayRadar;
+    public boolean displayWindVane;
 
     public MatchDto() {
     }
