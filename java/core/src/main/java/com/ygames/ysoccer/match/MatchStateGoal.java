@@ -29,7 +29,6 @@ class MatchStateGoal extends MatchState {
 
         displayGoalScorer = true;
         displayWindVane = true;
-        displayRadar = true;
 
         checkReplayKey = false;
     }
@@ -38,6 +37,7 @@ class MatchStateGoal extends MatchState {
     void setDisplayFlags() {
         scene.clearDisplayFlags();
         scene.displayTime = true;
+        scene.displayRadar = true;
     }
 
     @Override

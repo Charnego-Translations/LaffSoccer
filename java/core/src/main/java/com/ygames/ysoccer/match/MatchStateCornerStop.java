@@ -20,7 +20,6 @@ class MatchStateCornerStop extends MatchState {
         super(fsm);
 
         displayWindVane = true;
-        displayRadar = true;
     }
 
     @Override
@@ -28,6 +27,7 @@ class MatchStateCornerStop extends MatchState {
         scene.clearDisplayFlags();
         scene.displayControlledPlayer = true;
         scene.displayTime = true;
+        scene.displayRadar = true;
     }
 
     @Override

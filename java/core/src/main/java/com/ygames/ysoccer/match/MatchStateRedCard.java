@@ -27,7 +27,6 @@ class MatchStateRedCard extends MatchState {
         super(matchFsm);
 
         displayWindVane = true;
-        displayRadar = true;
     }
 
     @Override
@@ -36,6 +35,7 @@ class MatchStateRedCard extends MatchState {
         scene.displayFoulMaker = true;
         scene.displayBallOwner = true;
         scene.displayTime = true;
+        scene.displayRadar = true;
     }
 
     @Override

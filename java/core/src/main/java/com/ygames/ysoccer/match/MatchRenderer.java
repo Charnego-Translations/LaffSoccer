@@ -175,7 +175,7 @@ public class MatchRenderer extends SceneRenderer<Match> {
         }
 
         // radar
-        if (matchState.displayRadar && scene.getSettings().radar) {
+        if (scene.displayRadar && scene.getSettings().radar) {
             drawRadar();
         }
 

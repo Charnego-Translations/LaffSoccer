@@ -18,13 +18,13 @@ class MatchStateGoalKickStop extends MatchState {
         super(fsm);
 
         displayWindVane = true;
-        displayRadar = true;
     }
 
     @Override
     void setDisplayFlags() {
         scene.clearDisplayFlags();
         scene.displayTime = true;
+        scene.displayRadar = true;
     }
 
     @Override

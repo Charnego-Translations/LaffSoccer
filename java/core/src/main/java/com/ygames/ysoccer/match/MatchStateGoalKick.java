@@ -23,7 +23,6 @@ class MatchStateGoalKick extends MatchState {
 
         displayWindVane = true;
         displayScore = true;
-        displayRadar = true;
     }
 
     @Override
@@ -32,6 +31,7 @@ class MatchStateGoalKick extends MatchState {
         scene.displayControlledPlayer = true;
         scene.displayBallOwner = true;
         scene.displayTime = true;
+        scene.displayRadar = true;
     }
 
     @Override

@@ -81,7 +81,6 @@ class MatchStatePause extends MatchState {
         displayScore = holdState.displayScore;
         displayPenaltiesScore = holdState.displayPenaltiesScore;
         displayStatistics = holdState.displayStatistics;
-        displayRadar = holdState.displayRadar;
         displayBenchPlayers = holdState.displayBenchPlayers;
         displayBenchFormation = holdState.displayBenchFormation;
         displayTacticsSwitch = holdState.displayTacticsSwitch;

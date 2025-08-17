@@ -20,7 +20,6 @@ class MatchStateKeeperStop extends MatchState {
         super(fsm);
 
         displayWindVane = true;
-        displayRadar = true;
 
         checkBenchCall = false;
     }
@@ -31,6 +30,7 @@ class MatchStateKeeperStop extends MatchState {
         scene.displayControlledPlayer = true;
         scene.displayBallOwner = true;
         scene.displayTime = true;
+        scene.displayRadar = true;
     }
 
     @Override

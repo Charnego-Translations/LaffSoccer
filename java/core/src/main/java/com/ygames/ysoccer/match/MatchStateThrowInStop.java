@@ -17,7 +17,6 @@ class MatchStateThrowInStop extends MatchState {
         super(fsm);
 
         displayWindVane = true;
-        displayRadar = true;
     }
 
     @Override
@@ -26,6 +25,7 @@ class MatchStateThrowInStop extends MatchState {
         scene.displayControlledPlayer = true;
         scene.displayBallOwner = true;
         scene.displayTime = true;
+        scene.displayRadar = true;
     }
 
     @Override
