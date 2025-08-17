@@ -16,8 +16,6 @@ class MatchStateExtraTimeStop extends MatchState {
 
     MatchStateExtraTimeStop(MatchFsm fsm) {
         super(fsm);
-
-        displayWindVane = true;
     }
 
     @Override
@@ -25,6 +23,7 @@ class MatchStateExtraTimeStop extends MatchState {
         scene.clearDisplayFlags();
         scene.displayTime = true;
         scene.displayRadar = true;
+        scene.displayWindVane = true;
     }
 
     @Override

@@ -14,8 +14,6 @@ class MatchStateHalfTimeStop extends MatchState {
 
     MatchStateHalfTimeStop(MatchFsm fsm) {
         super(fsm);
-
-        displayWindVane = true;
     }
 
     @Override
@@ -23,6 +21,7 @@ class MatchStateHalfTimeStop extends MatchState {
         scene.clearDisplayFlags();
         scene.displayTime = true;
         scene.displayRadar = true;
+        scene.displayWindVane = true;
     }
 
     @Override

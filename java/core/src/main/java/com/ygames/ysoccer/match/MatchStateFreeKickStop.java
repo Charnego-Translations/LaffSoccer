@@ -23,8 +23,6 @@ class MatchStateFreeKickStop extends MatchState {
     MatchStateFreeKickStop(MatchFsm fsm) {
         super(fsm);
 
-        displayWindVane = true;
-
         playersReachingTarget = new ArrayList<>();
     }
 
@@ -33,6 +31,7 @@ class MatchStateFreeKickStop extends MatchState {
         scene.clearDisplayFlags();
         scene.displayTime = true;
         scene.displayRadar = true;
+        scene.displayWindVane = true;
     }
 
     @Override

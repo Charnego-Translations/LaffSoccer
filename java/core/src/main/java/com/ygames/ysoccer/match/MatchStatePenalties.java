@@ -23,7 +23,6 @@ class MatchStatePenalties extends MatchState {
     MatchStatePenalties(MatchFsm fsm) {
         super(fsm);
 
-        displayWindVane = true;
         displayPenaltiesScore = true;
 
         checkBenchCall = false;
@@ -32,6 +31,7 @@ class MatchStatePenalties extends MatchState {
     @Override
     void setDisplayFlags() {
         scene.clearDisplayFlags();
+        scene.displayWindVane = true;
     }
 
     @Override

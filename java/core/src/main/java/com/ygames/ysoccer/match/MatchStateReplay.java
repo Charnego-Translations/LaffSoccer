@@ -22,8 +22,6 @@ class MatchStateReplay extends MatchState {
 
         displayReplayGui = true;
 
-        displayWindVane = true;
-
         checkReplayKey = false;
         checkPauseKey = false;
         checkHelpKey = false;
@@ -34,6 +32,7 @@ class MatchStateReplay extends MatchState {
     void setDisplayFlags() {
         scene.clearDisplayFlags();
         scene.displayControlledPlayer = Settings.development;
+        scene.displayWindVane = true;
     }
 
     @Override

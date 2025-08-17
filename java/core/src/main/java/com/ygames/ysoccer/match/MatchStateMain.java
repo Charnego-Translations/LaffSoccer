@@ -40,8 +40,6 @@ class MatchStateMain extends MatchState {
     MatchStateMain(MatchFsm fsm) {
         super(fsm);
 
-        displayWindVane = true;
-
         checkBenchCall = false;
     }
 
@@ -52,6 +50,7 @@ class MatchStateMain extends MatchState {
         scene.displayBallOwner = true;
         scene.displayTime = true;
         scene.displayRadar = true;
+        scene.displayWindVane = true;
     }
 
     @Override

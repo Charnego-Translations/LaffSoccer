@@ -29,8 +29,6 @@ class MatchStatePenaltyKickStop extends MatchState {
     MatchStatePenaltyKickStop(MatchFsm fsm) {
         super(fsm);
 
-        displayWindVane = true;
-
         playersReachingTarget = new ArrayList<>();
         penaltyKickPosition = new Vector2();
     }
@@ -42,6 +40,7 @@ class MatchStatePenaltyKickStop extends MatchState {
         scene.displayBallOwner = true;
         scene.displayTime = true;
         scene.displayRadar = true;
+        scene.displayWindVane = true;
     }
 
     @Override

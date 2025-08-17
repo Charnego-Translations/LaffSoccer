@@ -34,7 +34,6 @@ class MatchStateHelp extends MatchState {
     void entryActions() {
         super.entryActions();
 
-        useHoldStateDisplayFlags();
         keyHelp = Gdx.input.isKeyPressed(Input.Keys.F1);
         waitingNoHelpKey = true;
         resume = false;
@@ -70,11 +69,5 @@ class MatchStateHelp extends MatchState {
         }
 
         return checkCommonConditions();
-    }
-
-    private void useHoldStateDisplayFlags() {
-        MatchState holdState = scene.getFsm().getHoldState();
-
-        displayWindVane = holdState.displayWindVane;
     }
 }

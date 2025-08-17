@@ -21,8 +21,6 @@ class MatchStateHighlights extends MatchState {
     MatchStateHighlights(MatchFsm fsm) {
         super(fsm);
 
-        displayWindVane = true;
-
         checkReplayKey = false;
         checkPauseKey = false;
         checkHelpKey = false;
@@ -32,6 +30,7 @@ class MatchStateHighlights extends MatchState {
     @Override
     void setDisplayFlags() {
         scene.clearDisplayFlags();
+        scene.displayWindVane = true;
     }
 
     @Override

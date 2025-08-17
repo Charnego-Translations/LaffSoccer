@@ -19,7 +19,6 @@ class MatchStateThrowIn extends MatchState {
     MatchStateThrowIn(MatchFsm fsm) {
         super(fsm);
 
-        displayWindVane = true;
         displayScore = true;
     }
 
@@ -30,6 +29,7 @@ class MatchStateThrowIn extends MatchState {
         scene.displayBallOwner = true;
         scene.displayTime = true;
         scene.displayRadar = true;
+        scene.displayWindVane = true;
     }
 
     @Override

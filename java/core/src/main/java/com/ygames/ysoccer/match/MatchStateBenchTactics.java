@@ -27,6 +27,7 @@ class MatchStateBenchTactics extends MatchState {
     void setDisplayFlags() {
         scene.clearDisplayFlags();
         scene.displayTime = true;
+        scene.displayWindVane = true;
     }
 
     @Override

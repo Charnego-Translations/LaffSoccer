@@ -14,8 +14,6 @@ class MatchStateStartingPositions extends MatchState {
 
     MatchStateStartingPositions(MatchFsm fsm) {
         super(fsm);
-
-        displayWindVane = true;
     }
 
     @Override
@@ -23,6 +21,7 @@ class MatchStateStartingPositions extends MatchState {
         scene.clearDisplayFlags();
         scene.displayTime = true;
         scene.displayRadar = true;
+        scene.displayWindVane = true;
     }
 
     @Override

@@ -16,8 +16,6 @@ class MatchStateHalfTimeEnter extends MatchState {
 
     MatchStateHalfTimeEnter(MatchFsm fsm) {
         super(fsm);
-
-        displayWindVane = true;
     }
 
     @Override
@@ -25,6 +23,7 @@ class MatchStateHalfTimeEnter extends MatchState {
         scene.clearDisplayFlags();
         scene.displayTime = true;
         scene.displayRadar = true;
+        scene.displayWindVane = true;
     }
 
     @Override

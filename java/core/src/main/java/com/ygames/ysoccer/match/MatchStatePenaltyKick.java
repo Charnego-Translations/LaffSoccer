@@ -17,8 +17,6 @@ class MatchStatePenaltyKick extends MatchState {
 
     MatchStatePenaltyKick(MatchFsm fsm) {
         super(fsm);
-
-        displayWindVane = true;
     }
 
     @Override
@@ -27,6 +25,7 @@ class MatchStatePenaltyKick extends MatchState {
         scene.displayControlledPlayer = true;
         scene.displayBallOwner = true;
         scene.displayTime = true;
+        scene.displayWindVane = true;
     }
 
     @Override

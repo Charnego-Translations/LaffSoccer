@@ -180,7 +180,7 @@ public class MatchRenderer extends SceneRenderer<Match> {
         }
 
         // wind vane
-        if (matchState.displayWindVane && (scene.settings.wind.speed > 0)) {
+        if (scene.displayWindVane && (scene.settings.wind.speed > 0)) {
             batch.draw(Assets.wind[scene.settings.wind.direction][scene.settings.wind.speed - 1], guiWidth - 50, 20);
         }
 

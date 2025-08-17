@@ -32,8 +32,6 @@ class MatchStateFinalCelebration extends MatchState {
     MatchStateFinalCelebration(MatchFsm fsm) {
         super(fsm);
 
-        displayWindVane = true;
-
         checkReplayKey = false;
         checkPauseKey = false;
     }

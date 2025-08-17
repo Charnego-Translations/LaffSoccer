@@ -15,14 +15,13 @@ class MatchStatePenaltiesStop extends MatchState {
     MatchStatePenaltiesStop(MatchFsm fsm) {
         super(fsm);
 
-        displayWindVane = true;
-
         checkBenchCall = false;
     }
 
     @Override
     void setDisplayFlags() {
         scene.clearDisplayFlags();
+        scene.displayWindVane = true;
     }
 
     @Override
