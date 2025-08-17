@@ -9,6 +9,7 @@ public class MatchDto {
     public boolean displayFoulMaker;
     public boolean displayBallOwner;
     public boolean displayTime;
+    public boolean displayRadar;
 
     public MatchDto() {
     }
