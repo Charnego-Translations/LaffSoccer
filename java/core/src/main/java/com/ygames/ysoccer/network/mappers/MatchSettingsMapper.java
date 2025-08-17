@@ -4,8 +4,9 @@ import com.ygames.ysoccer.match.MatchSettings;
 import com.ygames.ysoccer.network.dto.MatchSettingsDto;
 
 public class MatchSettingsMapper {
-    public static MatchSettingsDto toDto(MatchSettings matchSettings) {
-        return new MatchSettingsDto(matchSettings);
+
+    public static MatchSettingsDto toDto(MatchSettings settings) {
+        return new MatchSettingsDto(settings.time, settings.pitchType, settings.sky, settings.radar);
     }
 
     public static MatchSettings fromDto(MatchSettingsDto dto) {
@@ -13,6 +14,7 @@ public class MatchSettingsMapper {
         matchSettings.time = dto.time;
         matchSettings.pitchType = dto.pitchType;
         matchSettings.sky = dto.sky;
+        matchSettings.radar = dto.radar;
         return matchSettings;
     }
 }

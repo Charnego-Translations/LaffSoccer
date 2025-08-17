@@ -9,13 +9,15 @@ public class MatchSettingsDto {
     public SceneSettings.Time time;
     public Pitch.Type pitchType;
     public int sky;
+    public boolean radar;
 
     public MatchSettingsDto() {
     }
 
-    public MatchSettingsDto(MatchSettings matchSettings) {
-        this.time = matchSettings.time;
-        this.pitchType = matchSettings.pitchType;
-        this.sky = matchSettings.sky;
+    public MatchSettingsDto(SceneSettings.Time time, Pitch.Type pitchType, int sky, boolean radar) {
+        this.time = time;
+        this.pitchType = pitchType;
+        this.sky = sky;
+        this.radar = radar;
     }
 }
