@@ -23,6 +23,7 @@ public class MatchMapper {
         matchDto.displayTime = match.displayTime;
         matchDto.displayRadar = match.displayRadar;
         matchDto.displayWindVane = match.displayWindVane;
+        matchDto.displayRosters = match.displayRosters;
         return matchDto;
     }
 
@@ -40,6 +41,7 @@ public class MatchMapper {
         match.displayTime = matchDto.displayTime;
         match.displayRadar = matchDto.displayRadar;
         match.displayWindVane = matchDto.displayWindVane;
+        match.displayRosters = matchDto.displayRosters;
         return match;
     }
 }
