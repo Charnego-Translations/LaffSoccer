@@ -18,7 +18,6 @@ import static com.ygames.ysoccer.match.SceneFsm.ActionType.HOLD_FOREGROUND;
 abstract class MatchState extends SceneState<MatchFsm, Match> {
 
     boolean displayGoalScorer;
-    boolean displayRosters;
     boolean displayScore;
     boolean displayPenaltiesScore;
     boolean displayStatistics;

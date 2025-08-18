@@ -76,7 +76,6 @@ class MatchStatePause extends MatchState {
         MatchState holdState = scene.getFsm().getHoldState();
 
         displayGoalScorer = holdState.displayGoalScorer;
-        displayRosters = holdState.displayRosters;
         displayScore = holdState.displayScore;
         displayPenaltiesScore = holdState.displayPenaltiesScore;
         displayStatistics = holdState.displayStatistics;

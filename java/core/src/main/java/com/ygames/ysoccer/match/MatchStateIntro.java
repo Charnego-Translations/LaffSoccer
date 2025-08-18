@@ -19,9 +19,13 @@ class MatchStateIntro extends MatchState {
     MatchStateIntro(MatchFsm fsm) {
         super(fsm);
 
-        displayRosters = true;
-
         checkBenchCall = false;
+    }
+
+    @Override
+    void setDisplayFlags() {
+        scene.displayWindVane = true;
+        scene.displayRosters = true;
     }
 
     @Override

@@ -185,7 +185,7 @@ public class MatchRenderer extends SceneRenderer<Match> {
         }
 
         // rosters
-        if (matchState.displayRosters) {
+        if (scene.displayRosters) {
             drawRosters();
         }
 
