@@ -27,13 +27,13 @@ class MatchStateEndPositions extends MatchState {
     void setDisplayFlags() {
         scene.clearDisplayFlags();
         scene.displayTime = true;
+        scene.displayScore = (scene.period != PENALTIES);
     }
 
     @Override
     void entryActions() {
         super.entryActions();
 
-        displayScore = (scene.period != PENALTIES);
         displayPenaltiesScore = (scene.period == PENALTIES);
 
         scene.period = Match.Period.UNDEFINED;

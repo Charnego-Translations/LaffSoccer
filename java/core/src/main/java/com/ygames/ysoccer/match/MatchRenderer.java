@@ -190,7 +190,7 @@ public class MatchRenderer extends SceneRenderer<Match> {
         }
 
         // score
-        if (matchState.displayScore) {
+        if (scene.displayScore) {
             drawScore();
         }
 

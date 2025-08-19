@@ -28,6 +28,8 @@ class MatchStateHelp extends MatchState {
         scene.displayControlledPlayer = false;
         scene.displayFoulMaker = false;
         scene.displayBallOwner = false;
+        scene.displayRosters = false;
+        scene.displayScore = false;
     }
 
     @Override

@@ -24,8 +24,6 @@ class MatchStateFreeKick extends MatchState {
 
     MatchStateFreeKick(MatchFsm fsm) {
         super(fsm);
-
-        displayScore = true;
     }
 
     @Override
@@ -36,6 +34,7 @@ class MatchStateFreeKick extends MatchState {
         scene.displayTime = true;
         scene.displayRadar = true;
         scene.displayWindVane = true;
+        scene.displayScore = true;
     }
 
     @Override

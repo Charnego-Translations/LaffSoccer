@@ -18,8 +18,6 @@ class MatchStateCornerKick extends MatchState {
 
     MatchStateCornerKick(MatchFsm fsm) {
         super(fsm);
-
-        displayScore = true;
     }
 
     @Override
@@ -30,6 +28,7 @@ class MatchStateCornerKick extends MatchState {
         scene.displayTime = true;
         scene.displayRadar = true;
         scene.displayWindVane = true;
+        scene.displayScore = true;
     }
 
     @Override

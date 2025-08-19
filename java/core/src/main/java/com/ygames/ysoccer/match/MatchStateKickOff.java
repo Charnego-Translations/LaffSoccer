@@ -20,8 +20,6 @@ class MatchStateKickOff extends MatchState {
 
     MatchStateKickOff(MatchFsm fsm) {
         super(fsm);
-
-        displayScore = true;
     }
 
     @Override
@@ -32,6 +30,7 @@ class MatchStateKickOff extends MatchState {
         scene.displayTime = true;
         scene.displayRadar = true;
         scene.displayWindVane = true;
+        scene.displayScore = true;
     }
 
     @Override

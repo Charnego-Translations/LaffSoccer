@@ -26,13 +26,12 @@ class MatchStatePenaltyKick extends MatchState {
         scene.displayBallOwner = true;
         scene.displayTime = true;
         scene.displayWindVane = true;
+        scene.displayScore = true;
     }
 
     @Override
     void entryActions() {
         super.entryActions();
-
-        displayScore = true;
     }
 
     @Override
