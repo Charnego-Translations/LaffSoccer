@@ -12,6 +12,7 @@ public class MatchDto {
     public boolean displayRadar;
     public boolean displayWindVane;
     public boolean displayRosters;
+    public boolean displayScore;
 
     public MatchDto() {
     }
