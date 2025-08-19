@@ -66,6 +66,8 @@ class MatchStateFreeKickStop extends MatchState {
 
     @Override
     void onResume() {
+        super.onResume();
+
         scene.setPointOfInterest(scene.foul.position);
 
         scene.actionCamera.setMode(STILL);

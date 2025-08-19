@@ -87,6 +87,8 @@ class MatchStatePenaltyKickStop extends MatchState {
 
     @Override
     void onResume() {
+        super.onResume();
+
         scene.actionCamera
             .setMode(REACH_TARGET)
             .setTarget(penaltyKickPosition.x, penaltyKickPosition.y)

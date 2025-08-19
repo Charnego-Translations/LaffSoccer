@@ -56,6 +56,8 @@ class MatchStateGoalKickStop extends MatchState {
 
     @Override
     void onResume() {
+        super.onResume();
+
         scene.actionCamera
                 .setMode(FOLLOW_BALL)
                 .setSpeed(NORMAL)

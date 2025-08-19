@@ -50,6 +50,8 @@ class MatchStateYellowCard extends MatchState {
 
     @Override
     void onResume() {
+        super.onResume();
+
         scene.setPointOfInterest(scene.foul.position);
 
         scene.actionCamera

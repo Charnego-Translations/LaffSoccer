@@ -41,6 +41,8 @@ class MatchStateThrowInStop extends MatchState {
 
     @Override
     void onResume() {
+        super.onResume();
+
         scene.setPointOfInterest(fsm.throwInPosition);
 
         scene.actionCamera

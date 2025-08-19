@@ -58,6 +58,8 @@ class MatchStateCornerStop extends MatchState {
 
     @Override
     void onResume() {
+        super.onResume();
+
         scene.setPointOfInterest(cornerPosition);
 
         scene.actionCamera
