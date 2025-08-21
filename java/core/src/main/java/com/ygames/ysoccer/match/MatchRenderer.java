@@ -195,7 +195,7 @@ public class MatchRenderer extends SceneRenderer<Match> {
         }
 
         // penalties score
-        if (matchState.displayPenaltiesScore) {
+        if (scene.displayPenaltiesScore) {
             drawPenaltiesScore();
         }
 

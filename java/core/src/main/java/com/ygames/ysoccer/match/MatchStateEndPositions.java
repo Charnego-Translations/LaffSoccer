@@ -4,7 +4,6 @@ import com.ygames.ysoccer.framework.GLGame;
 
 import static com.ygames.ysoccer.match.ActionCamera.Mode.REACH_TARGET;
 import static com.ygames.ysoccer.match.ActionCamera.Speed.FAST;
-import static com.ygames.ysoccer.match.Match.Period.PENALTIES;
 import static com.ygames.ysoccer.match.MatchFsm.STATE_END;
 import static com.ygames.ysoccer.match.MatchFsm.STATE_HIGHLIGHTS;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_OUTSIDE;
@@ -27,14 +26,16 @@ class MatchStateEndPositions extends MatchState {
     void setDisplayFlags() {
         scene.clearDisplayFlags();
         scene.displayTime = true;
-        scene.displayScore = (scene.period != PENALTIES);
+        if (scene.resultAfterPenalties == null) {
+            scene.displayScore = true;
+        } else {
+            scene.displayPenaltiesScore = true;
+        }
     }
 
     @Override
     void entryActions() {
         super.entryActions();
-
-        displayPenaltiesScore = (scene.period == PENALTIES);
 
         scene.period = Match.Period.UNDEFINED;
 
