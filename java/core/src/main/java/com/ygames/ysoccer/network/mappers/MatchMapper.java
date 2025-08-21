@@ -25,6 +25,7 @@ public class MatchMapper {
         matchDto.displayWindVane = match.displayWindVane;
         matchDto.displayRosters = match.displayRosters;
         matchDto.displayScore = match.displayScore;
+        matchDto.displayPenaltiesScore = match.displayPenaltiesScore;
         return matchDto;
     }
 
@@ -44,6 +45,7 @@ public class MatchMapper {
         match.displayWindVane = matchDto.displayWindVane;
         match.displayRosters = matchDto.displayRosters;
         match.displayScore = matchDto.displayScore;
+        match.displayPenaltiesScore = matchDto.displayPenaltiesScore;
         return match;
     }
 }
