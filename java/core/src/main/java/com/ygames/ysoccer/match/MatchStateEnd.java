@@ -17,8 +17,6 @@ class MatchStateEnd extends MatchState {
     MatchStateEnd(MatchFsm fsm) {
         super(fsm);
 
-        displayStatistics = true;
-
         checkReplayKey = false;
         checkPauseKey = false;
         checkHelpKey = false;
@@ -28,6 +26,7 @@ class MatchStateEnd extends MatchState {
     @Override
     void setDisplayFlags() {
         scene.clearDisplayFlags();
+        scene.displayStatistics = true;
     }
 
     @Override

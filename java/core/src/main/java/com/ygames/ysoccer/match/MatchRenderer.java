@@ -206,7 +206,7 @@ public class MatchRenderer extends SceneRenderer<Match> {
         }
 
         // statistics
-        if (matchState.displayStatistics) {
+        if (scene.displayStatistics) {
             drawStatistics();
         }
 

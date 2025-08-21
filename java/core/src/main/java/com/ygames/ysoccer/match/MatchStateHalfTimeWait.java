@@ -14,8 +14,6 @@ class MatchStateHalfTimeWait extends MatchState {
 
     MatchStateHalfTimeWait(MatchFsm fsm) {
         super(fsm);
-
-        displayStatistics = true;
     }
 
     @Override
@@ -23,6 +21,7 @@ class MatchStateHalfTimeWait extends MatchState {
         scene.clearDisplayFlags();
         scene.displayTime = true;
         scene.displayWindVane = true;
+        scene.displayStatistics = true;
     }
 
     @Override
