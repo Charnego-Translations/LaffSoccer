@@ -215,7 +215,7 @@ public class MatchRenderer extends SceneRenderer<Match> {
             drawPlayerNumberAndName(scene.ball.goalOwner);
         }
 
-        if (matchState.displayBenchPlayers) {
+        if (scene.displayBenchPlayers) {
             drawBenchPlayers();
         }
 

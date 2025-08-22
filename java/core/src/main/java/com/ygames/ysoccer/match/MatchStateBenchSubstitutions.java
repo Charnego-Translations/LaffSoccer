@@ -22,8 +22,6 @@ class MatchStateBenchSubstitutions extends MatchState {
     MatchStateBenchSubstitutions(MatchFsm fsm) {
         super(fsm);
 
-        displayBenchPlayers = true;
-
         checkReplayKey = false;
         checkPauseKey = false;
         checkHelpKey = false;
@@ -35,6 +33,7 @@ class MatchStateBenchSubstitutions extends MatchState {
         scene.clearDisplayFlags();
         scene.displayTime = true;
         scene.displayWindVane = true;
+        scene.displayBenchPlayers = true;
     }
 
     @Override

@@ -123,6 +123,7 @@ public class Match extends Scene<MatchFsm, MatchState> implements Json.Serializa
     public boolean displayPenaltiesScore;
     public boolean displayStatistics;
     public boolean displayGoalScorer;
+    public boolean displayBenchPlayers;
 
     public Match() {
         team = new Team[2];
@@ -744,5 +745,6 @@ public class Match extends Scene<MatchFsm, MatchState> implements Json.Serializa
         displayPenaltiesScore = false;
         displayStatistics = false;
         displayGoalScorer = false;
+        displayBenchPlayers = false;
     }
 }
