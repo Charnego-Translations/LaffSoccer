@@ -24,7 +24,6 @@ abstract class SceneState<SceneFsmT extends SceneFsm<SceneT, ?>, SceneT extends 
 
     void entryActions() {
         timer = 0;
-        setDisplayFlags();
     }
 
     void exitActions() {

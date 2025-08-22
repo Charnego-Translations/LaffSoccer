@@ -98,6 +98,7 @@ abstract class SceneFsm<SceneT extends Scene<?, SceneStateT>, SceneStateT extend
             }
             if (currentAction != null
                 && (currentAction.type == HOLD_FOREGROUND)) {
+                scene.state.onResume();
                 holdState.onPause();
             }
             scene.state.doActions(deltaTime);
