@@ -28,6 +28,7 @@ public class MatchMapper {
         matchDto.displayPenaltiesScore = match.displayPenaltiesScore;
         matchDto.displayStatistics = match.displayStatistics;
         matchDto.displayGoalScorer = match.displayGoalScorer;
+        matchDto.displayBenchPlayers = match.displayBenchPlayers;
         return matchDto;
     }
 
@@ -50,6 +51,7 @@ public class MatchMapper {
         match.displayPenaltiesScore = matchDto.displayPenaltiesScore;
         match.displayStatistics = matchDto.displayStatistics;
         match.displayGoalScorer = matchDto.displayGoalScorer;
+        match.displayBenchPlayers = matchDto.displayBenchPlayers;
         return match;
     }
 }

@@ -16,6 +16,7 @@ public class MatchDto {
     public boolean displayPenaltiesScore;
     public boolean displayStatistics;
     public boolean displayGoalScorer;
+    public boolean displayBenchPlayers;
 
     public MatchDto() {
     }
