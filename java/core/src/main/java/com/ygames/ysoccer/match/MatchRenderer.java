@@ -223,7 +223,7 @@ public class MatchRenderer extends SceneRenderer<Match> {
             drawBenchFormation();
         }
 
-        if (matchState.displayTacticsSwitch) {
+        if (scene.displayTacticsSwitch) {
             drawTacticsSwitch();
         }
 

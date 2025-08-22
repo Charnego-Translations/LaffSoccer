@@ -29,7 +29,6 @@ class MatchStatePause extends MatchState {
     void entryActions() {
         super.entryActions();
 
-        useHoldStateDisplayFlags();
         keyPause = Gdx.input.isKeyPressed(Input.Keys.P);
         waitingNoPauseKey = true;
         resume = false;
@@ -70,11 +69,5 @@ class MatchStatePause extends MatchState {
         }
 
         return checkCommonConditions();
-    }
-
-    private void useHoldStateDisplayFlags() {
-        MatchState holdState = scene.getFsm().getHoldState();
-
-        displayTacticsSwitch = holdState.displayTacticsSwitch;
     }
 }

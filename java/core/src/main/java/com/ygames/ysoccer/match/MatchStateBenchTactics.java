@@ -15,8 +15,6 @@ class MatchStateBenchTactics extends MatchState {
     MatchStateBenchTactics(MatchFsm fsm) {
         super(fsm);
 
-        displayTacticsSwitch = true;
-
         checkReplayKey = false;
         checkPauseKey = false;
         checkHelpKey = false;
@@ -28,6 +26,7 @@ class MatchStateBenchTactics extends MatchState {
         scene.clearDisplayFlags();
         scene.displayTime = true;
         scene.displayWindVane = true;
+        scene.displayTacticsSwitch = true;
     }
 
     @Override
