@@ -219,7 +219,7 @@ public class MatchRenderer extends SceneRenderer<Match> {
             drawBenchPlayers();
         }
 
-        if (matchState.displayBenchFormation) {
+        if (scene.displayBenchFormation) {
             drawBenchFormation();
         }
 

@@ -23,8 +23,6 @@ class MatchStateBenchFormation extends MatchState {
     MatchStateBenchFormation(MatchFsm fsm) {
         super(fsm);
 
-        displayBenchFormation = true;
-
         checkReplayKey = false;
         checkPauseKey = false;
         checkHelpKey = false;
@@ -36,6 +34,7 @@ class MatchStateBenchFormation extends MatchState {
         scene.clearDisplayFlags();
         scene.displayTime = true;
         scene.displayWindVane = true;
+        scene.displayBenchFormation = true;
     }
 
     @Override
