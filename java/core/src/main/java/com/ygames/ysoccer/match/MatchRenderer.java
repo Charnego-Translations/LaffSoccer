@@ -211,7 +211,7 @@ public class MatchRenderer extends SceneRenderer<Match> {
         }
 
         // goal scorer
-        if (matchState.displayGoalScorer && (scene.subframe % 160 > 80)) {
+        if (scene.displayGoalScorer && (scene.subframe % 160 > 80)) {
             drawPlayerNumberAndName(scene.ball.goalOwner);
         }
 

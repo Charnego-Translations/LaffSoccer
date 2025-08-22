@@ -27,8 +27,6 @@ class MatchStateGoal extends MatchState {
     MatchStateGoal(MatchFsm fsm) {
         super(fsm);
 
-        displayGoalScorer = true;
-
         checkReplayKey = false;
     }
 
@@ -38,6 +36,7 @@ class MatchStateGoal extends MatchState {
         scene.displayTime = true;
         scene.displayRadar = true;
         scene.displayWindVane = true;
+        scene.displayGoalScorer = true;
     }
 
     @Override
