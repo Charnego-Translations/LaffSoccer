@@ -35,6 +35,7 @@ public class MatchMapper {
         matchDto.displayPause = match.displayPause;
         matchDto.displayReplayGui = match.displayReplayGui;
         matchDto.displayHighlightsGui = match.displayHighlightsGui;
+        matchDto.displayReplayControls = match.displayReplayControls;
         return matchDto;
     }
 
@@ -64,6 +65,7 @@ public class MatchMapper {
         match.displayPause = matchDto.displayPause;
         match.displayReplayGui = matchDto.displayReplayGui;
         match.displayHighlightsGui = matchDto.displayHighlightsGui;
+        match.displayReplayControls = matchDto.displayReplayControls;
         return match;
     }
 }

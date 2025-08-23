@@ -23,6 +23,7 @@ public class MatchDto {
     public boolean displayPause;
     public boolean displayReplayGui;
     public boolean displayHighlightsGui;
+    public boolean displayReplayControls;
 
     public MatchDto() {
     }
