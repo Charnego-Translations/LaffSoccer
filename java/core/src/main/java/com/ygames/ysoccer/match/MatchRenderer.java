@@ -240,29 +240,7 @@ public class MatchRenderer extends SceneRenderer<Match> {
         }
 
         if (scene.displayHighlightsGui) {
-            int f = Math.round(1f * scene.subframe / GLGame.SUBFRAMES) % 32;
-            if (
-                //showCurrentRecord &&
-                f < 16) {
-                Assets.font10.draw(batch, (scene.recorder.getCurrent() + 1) + "/" + scene.recorder.getRecorded(), 30, 22, Font.Align.LEFT);
-            }
-            if (Settings.showDevelopmentInfo) {
-                Assets.font10.draw(batch, "FRAME: " + (scene.subframe / 8) + " / " + Const.REPLAY_FRAMES, 30, 42, Font.Align.LEFT);
-                Assets.font10.draw(batch, "SUBFRAME: " + scene.subframe + " / " + Const.REPLAY_SUBFRAMES, 30, 62, Font.Align.LEFT);
-            }
-
-            float a = matchState.replayPosition * 360f / Const.REPLAY_SUBFRAMES;
-
-            batch.end();
-            shapeRenderer.setProjectionMatrix(camera.combined);
-            shapeRenderer.setAutoShapeType(true);
-            shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-            shapeRenderer.setColor(0x242424, guiAlpha);
-            shapeRenderer.arc(20, 32, 6, 270 + a, 360 - a);
-            shapeRenderer.setColor(0xFF0000, guiAlpha);
-            shapeRenderer.arc(18, 30, 6, 270 + a, 360 - a);
-            shapeRenderer.end();
-            batch.begin();
+            drawHighlightsGui();
         }
 
         if (matchState.displayReplayControls) {
@@ -1152,6 +1130,32 @@ public class MatchRenderer extends SceneRenderer<Match> {
         int f = Math.round(1f * scene.subframe / GLGame.SUBFRAMES) % 32;
         if (f < 16) {
             Assets.font10.draw(batch, gettext("ACTION REPLAY"), 30, 22, Font.Align.LEFT);
+        }
+        if (Settings.showDevelopmentInfo) {
+            Assets.font10.draw(batch, "FRAME: " + (scene.subframe / 8) + " / " + Const.REPLAY_FRAMES, 30, 42, Font.Align.LEFT);
+            Assets.font10.draw(batch, "SUBFRAME: " + scene.subframe + " / " + Const.REPLAY_SUBFRAMES, 30, 62, Font.Align.LEFT);
+        }
+
+        float a = matchState.replayPosition * 360f / Const.REPLAY_SUBFRAMES;
+
+        batch.end();
+        shapeRenderer.setProjectionMatrix(camera.combined);
+        shapeRenderer.setAutoShapeType(true);
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+        shapeRenderer.setColor(0x242424, guiAlpha);
+        shapeRenderer.arc(20, 32, 6, 270 + a, 360 - a);
+        shapeRenderer.setColor(0xFF0000, guiAlpha);
+        shapeRenderer.arc(18, 30, 6, 270 + a, 360 - a);
+        shapeRenderer.end();
+        batch.begin();
+    }
+
+    private void drawHighlightsGui() {
+        int f = Math.round(1f * scene.subframe / GLGame.SUBFRAMES) % 32;
+        if (
+            //showCurrentRecord &&
+            f < 16) {
+            Assets.font10.draw(batch, (scene.recorder.getCurrent() + 1) + "/" + scene.recorder.getRecorded(), 30, 22, Font.Align.LEFT);
         }
         if (Settings.showDevelopmentInfo) {
             Assets.font10.draw(batch, "FRAME: " + (scene.subframe / 8) + " / " + Const.REPLAY_FRAMES, 30, 42, Font.Align.LEFT);
