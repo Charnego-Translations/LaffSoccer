@@ -236,27 +236,7 @@ public class MatchRenderer extends SceneRenderer<Match> {
         }
 
         if (scene.displayReplayGui) {
-            int f = Math.round(1f * scene.subframe / GLGame.SUBFRAMES) % 32;
-            if (f < 16) {
-                Assets.font10.draw(batch, gettext("ACTION REPLAY"), 30, 22, Font.Align.LEFT);
-            }
-            if (Settings.showDevelopmentInfo) {
-                Assets.font10.draw(batch, "FRAME: " + (scene.subframe / 8) + " / " + Const.REPLAY_FRAMES, 30, 42, Font.Align.LEFT);
-                Assets.font10.draw(batch, "SUBFRAME: " + scene.subframe + " / " + Const.REPLAY_SUBFRAMES, 30, 62, Font.Align.LEFT);
-            }
-
-            float a = matchState.replayPosition * 360f / Const.REPLAY_SUBFRAMES;
-
-            batch.end();
-            shapeRenderer.setProjectionMatrix(camera.combined);
-            shapeRenderer.setAutoShapeType(true);
-            shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-            shapeRenderer.setColor(0x242424, guiAlpha);
-            shapeRenderer.arc(20, 32, 6, 270 + a, 360 - a);
-            shapeRenderer.setColor(0xFF0000, guiAlpha);
-            shapeRenderer.arc(18, 30, 6, 270 + a, 360 - a);
-            shapeRenderer.end();
-            batch.begin();
+            drawReplayGui();
         }
 
         if (matchState.displayHighlightsGui) {
@@ -1166,6 +1146,30 @@ public class MatchRenderer extends SceneRenderer<Match> {
         for (int i = 0; i < 18; i++) {
             Assets.font10.draw(batch, Tactics.codes[i], x + w / 2, y + 85 + h * i, Font.Align.CENTER);
         }
+    }
+
+    private void drawReplayGui() {
+        int f = Math.round(1f * scene.subframe / GLGame.SUBFRAMES) % 32;
+        if (f < 16) {
+            Assets.font10.draw(batch, gettext("ACTION REPLAY"), 30, 22, Font.Align.LEFT);
+        }
+        if (Settings.showDevelopmentInfo) {
+            Assets.font10.draw(batch, "FRAME: " + (scene.subframe / 8) + " / " + Const.REPLAY_FRAMES, 30, 42, Font.Align.LEFT);
+            Assets.font10.draw(batch, "SUBFRAME: " + scene.subframe + " / " + Const.REPLAY_SUBFRAMES, 30, 62, Font.Align.LEFT);
+        }
+
+        float a = matchState.replayPosition * 360f / Const.REPLAY_SUBFRAMES;
+
+        batch.end();
+        shapeRenderer.setProjectionMatrix(camera.combined);
+        shapeRenderer.setAutoShapeType(true);
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+        shapeRenderer.setColor(0x242424, guiAlpha);
+        shapeRenderer.arc(20, 32, 6, 270 + a, 360 - a);
+        shapeRenderer.setColor(0xFF0000, guiAlpha);
+        shapeRenderer.arc(18, 30, 6, 270 + a, 360 - a);
+        shapeRenderer.end();
+        batch.begin();
     }
 
     void drawYellowCard(Player player) {
