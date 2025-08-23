@@ -104,7 +104,7 @@ class MatchStateHighlights extends MatchState {
             scene.subframe = (subframe0 + replayPosition) % Const.REPLAY_SUBFRAMES;
         }
 
-        displayPause = paused;
+        scene.displayPause = paused;
         displayReplayControls = inputDevice != null;
     }
 

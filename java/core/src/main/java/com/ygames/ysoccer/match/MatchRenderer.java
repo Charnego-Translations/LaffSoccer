@@ -231,7 +231,7 @@ public class MatchRenderer extends SceneRenderer<Match> {
             drawHelp(hotKeys.keyMap);
         }
 
-        if (matchState.displayPause) {
+        if (scene.displayPause) {
             Assets.font10.draw(batch, gettext("PAUSE"), guiWidth / 2, 22, Font.Align.CENTER);
         }
 

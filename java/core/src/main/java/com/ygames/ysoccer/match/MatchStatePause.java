@@ -17,12 +17,15 @@ class MatchStatePause extends MatchState {
     MatchStatePause(MatchFsm fsm) {
         super(fsm);
 
-        displayPause = true;
-
         checkReplayKey = false;
         checkPauseKey = false;
         checkHelpKey = false;
         checkBenchCall = false;
+    }
+
+    @Override
+    void setDisplayFlags() {
+        scene.displayPause = true;
     }
 
     @Override
