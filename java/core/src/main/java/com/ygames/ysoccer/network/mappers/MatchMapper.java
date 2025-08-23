@@ -33,6 +33,7 @@ public class MatchMapper {
         matchDto.displayTacticsSwitch = match.displayTacticsSwitch;
         matchDto.displayHelp = match.displayHelp;
         matchDto.displayPause = match.displayPause;
+        matchDto.displayReplayGui = match.displayReplayGui;
         return matchDto;
     }
 
@@ -60,6 +61,7 @@ public class MatchMapper {
         match.displayTacticsSwitch = matchDto.displayTacticsSwitch;
         match.displayHelp = matchDto.displayHelp;
         match.displayPause = matchDto.displayPause;
+        match.displayReplayGui = matchDto.displayReplayGui;
         return match;
     }
 }
