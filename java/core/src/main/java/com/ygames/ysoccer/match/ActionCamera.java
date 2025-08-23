@@ -11,7 +11,7 @@ import static com.ygames.ysoccer.match.Const.PITCH_W;
 import static com.ygames.ysoccer.match.Const.SECOND;
 import static com.ygames.ysoccer.match.Const.TOUCH_LINE;
 
-class ActionCamera {
+public class ActionCamera {
 
     enum Mode {
         STILL,
@@ -51,7 +51,7 @@ class ActionCamera {
 
     private final Ball ball;
 
-    ActionCamera(Ball ball) {
+    public ActionCamera(Ball ball) {
         this.ball = ball;
         speed = Speed.NORMAL;
         target = new Vector2();
