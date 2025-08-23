@@ -20,6 +20,7 @@ public class MatchDto {
     public boolean displayBenchFormation;
     public boolean displayTacticsSwitch;
     public boolean displayHelp;
+    public boolean displayPause;
 
     public MatchDto() {
     }

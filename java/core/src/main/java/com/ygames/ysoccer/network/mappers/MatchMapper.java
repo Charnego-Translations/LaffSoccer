@@ -32,6 +32,7 @@ public class MatchMapper {
         matchDto.displayBenchFormation = match.displayBenchFormation;
         matchDto.displayTacticsSwitch = match.displayTacticsSwitch;
         matchDto.displayHelp = match.displayHelp;
+        matchDto.displayPause = match.displayPause;
         return matchDto;
     }
 
@@ -58,6 +59,7 @@ public class MatchMapper {
         match.displayBenchFormation = matchDto.displayBenchFormation;
         match.displayTacticsSwitch = matchDto.displayTacticsSwitch;
         match.displayHelp = matchDto.displayHelp;
+        match.displayPause = matchDto.displayPause;
         return match;
     }
 }
