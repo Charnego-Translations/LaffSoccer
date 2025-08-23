@@ -31,6 +31,7 @@ class MatchStateHighlights extends MatchState {
     void setDisplayFlags() {
         scene.clearDisplayFlags();
         scene.displayWindVane = true;
+        scene.displayHighlightsGui = true;
     }
 
     @Override
@@ -51,7 +52,6 @@ class MatchStateHighlights extends MatchState {
         replayPosition = 0;
 
         inputDevice = null;
-        displayHighlightsGui = true;
         displayReplayControls = false;
 
         scene.recorder.loadHighlight();
@@ -114,7 +114,6 @@ class MatchStateHighlights extends MatchState {
         // quit on fire button
         for (InputDevice d : fsm.inputDevices) {
             if (d.fire1Down()) {
-                displayHighlightsGui = false;
                 return newFadedAction(NEW_FOREGROUND, STATE_END);
             }
         }
@@ -122,7 +121,6 @@ class MatchStateHighlights extends MatchState {
         // quit on finish
         if (replayPosition == Const.REPLAY_SUBFRAMES) {
             scene.recorder.nextHighlight();
-            displayHighlightsGui = false;
             if (scene.recorder.hasEnded()) {
                 return newFadedAction(NEW_FOREGROUND, STATE_END);
             } else {

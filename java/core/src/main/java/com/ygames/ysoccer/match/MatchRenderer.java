@@ -239,7 +239,7 @@ public class MatchRenderer extends SceneRenderer<Match> {
             drawReplayGui();
         }
 
-        if (matchState.displayHighlightsGui) {
+        if (scene.displayHighlightsGui) {
             int f = Math.round(1f * scene.subframe / GLGame.SUBFRAMES) % 32;
             if (
                 //showCurrentRecord &&
