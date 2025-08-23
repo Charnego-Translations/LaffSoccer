@@ -17,8 +17,6 @@ import static com.ygames.ysoccer.match.SceneFsm.ActionType.HOLD_FOREGROUND;
 
 abstract class MatchState extends SceneState<MatchFsm, Match> {
 
-    boolean displayReplayControls;
-
     boolean checkReplayKey = true;
     boolean checkPauseKey = true;
     boolean checkHelpKey = true;

@@ -243,7 +243,7 @@ public class MatchRenderer extends SceneRenderer<Match> {
             drawHighlightsGui();
         }
 
-        if (matchState.displayReplayControls) {
+        if (scene.displayReplayControls) {
             int frameX = 1 + matchState.inputDevice.x1;
             int frameY = 1 + matchState.inputDevice.y1;
             batch.draw(Assets.replaySpeed[frameX][frameY], guiWidth - 50, guiHeight - 50);

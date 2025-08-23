@@ -51,12 +51,12 @@ class MatchStateReplay extends MatchState {
         replayPosition = 0;
 
         inputDevice = null;
-        displayReplayControls = false;
     }
 
     @Override
     void exitActions() {
         scene.subframe = subframe0;
+        scene.displayReplayControls = false;
     }
 
     @Override
@@ -107,7 +107,7 @@ class MatchStateReplay extends MatchState {
         }
 
         scene.displayPause = paused;
-        displayReplayControls = inputDevice != null;
+        scene.displayReplayControls = inputDevice != null;
     }
 
     @Override

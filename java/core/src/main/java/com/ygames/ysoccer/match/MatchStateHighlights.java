@@ -52,9 +52,13 @@ class MatchStateHighlights extends MatchState {
         replayPosition = 0;
 
         inputDevice = null;
-        displayReplayControls = false;
 
         scene.recorder.loadHighlight();
+    }
+
+    @Override
+    void exitActions() {
+        scene.displayReplayControls = false;
     }
 
     @Override
@@ -105,7 +109,7 @@ class MatchStateHighlights extends MatchState {
         }
 
         scene.displayPause = paused;
-        displayReplayControls = inputDevice != null;
+        scene.displayReplayControls = inputDevice != null;
     }
 
     @Override
