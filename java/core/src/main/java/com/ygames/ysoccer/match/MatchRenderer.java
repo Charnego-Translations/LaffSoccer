@@ -235,7 +235,7 @@ public class MatchRenderer extends SceneRenderer<Match> {
             Assets.font10.draw(batch, gettext("PAUSE"), guiWidth / 2, 22, Font.Align.CENTER);
         }
 
-        if (matchState.displayReplayGui) {
+        if (scene.displayReplayGui) {
             int f = Math.round(1f * scene.subframe / GLGame.SUBFRAMES) % 32;
             if (f < 16) {
                 Assets.font10.draw(batch, gettext("ACTION REPLAY"), 30, 22, Font.Align.LEFT);

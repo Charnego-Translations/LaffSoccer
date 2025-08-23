@@ -20,8 +20,6 @@ class MatchStateReplay extends MatchState {
     MatchStateReplay(MatchFsm fsm) {
         super(fsm);
 
-        displayReplayGui = true;
-
         checkReplayKey = false;
         checkPauseKey = false;
         checkHelpKey = false;
@@ -33,6 +31,7 @@ class MatchStateReplay extends MatchState {
         scene.clearDisplayFlags();
         scene.displayControlledPlayer = Settings.development;
         scene.displayWindVane = true;
+        scene.displayReplayGui = true;
     }
 
     @Override
