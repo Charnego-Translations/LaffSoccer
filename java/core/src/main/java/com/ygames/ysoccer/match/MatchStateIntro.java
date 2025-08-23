@@ -24,6 +24,7 @@ class MatchStateIntro extends MatchState {
 
     @Override
     void setDisplayFlags() {
+        scene.clearDisplayFlags();
         scene.displayWindVane = true;
         scene.displayRosters = true;
     }

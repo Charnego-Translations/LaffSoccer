@@ -15,8 +15,6 @@ class MatchStateHelp extends MatchState {
     MatchStateHelp(MatchFsm fsm) {
         super(fsm);
 
-        displayHelp = true;
-
         checkReplayKey = false;
         checkPauseKey = false;
         checkHelpKey = false;
@@ -32,6 +30,8 @@ class MatchStateHelp extends MatchState {
         scene.displayScore = false;
         scene.displayPenaltiesScore = false;
         scene.displayStatistics = false;
+
+        scene.displayHelp = true;
     }
 
     @Override

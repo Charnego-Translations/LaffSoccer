@@ -227,7 +227,7 @@ public class MatchRenderer extends SceneRenderer<Match> {
             drawTacticsSwitch();
         }
 
-        if (matchState.displayHelp) {
+        if (scene.displayHelp) {
             drawHelp(hotKeys.keyMap);
         }
 
