@@ -19,6 +19,7 @@ public class MatchDto {
     public boolean displayBenchPlayers;
     public boolean displayBenchFormation;
     public boolean displayTacticsSwitch;
+    public boolean displayHelp;
 
     public MatchDto() {
     }
