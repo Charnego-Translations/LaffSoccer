@@ -22,6 +22,7 @@ public class MatchDto {
     public boolean displayHelp;
     public boolean displayPause;
     public boolean displayReplayGui;
+    public boolean displayHighlightsGui;
 
     public MatchDto() {
     }
