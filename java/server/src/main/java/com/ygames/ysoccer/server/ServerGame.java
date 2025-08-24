@@ -46,6 +46,7 @@ public class ServerGame extends Game {
         match.setTeam(HOME, homeTeam);
         match.setTeam(AWAY, awayTeam);
         match.init(new InputDeviceList(), matchSettings, friendly);
+        match.light = 255; // TODO: remove me
 
         server.addListener(new Listener() {
             public void connected(Connection connection) {

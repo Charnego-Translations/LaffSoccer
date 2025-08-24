@@ -12,6 +12,7 @@ public class MatchMapper {
     public static MatchDto toDto(Match match) {
         MatchDto matchDto = new MatchDto();
         matchDto.matchSettingsDto = MatchSettingsMapper.toDto(match.getSettings());
+        matchDto.light = match.light;
         matchDto.ballDto = BallMapper.toDto(match.getBall());
         matchDto.teamDto = new TeamDto[2];
         matchDto.teamDto[HOME] = TeamMapper.toDto(match.team[HOME]);
@@ -43,6 +44,7 @@ public class MatchMapper {
         Match match = new Match();
         MatchSettings matchSettings = MatchSettingsMapper.fromDto(matchDto.matchSettingsDto);
         match.setSettings(matchSettings);
+        match.light = matchDto.light;
         match.setBall(BallMapper.fromDto(matchDto.ballDto, matchSettings));
         match.setTeam(HOME, TeamMapper.fromDto(matchDto.teamDto[HOME]));
         match.setTeam(AWAY, TeamMapper.fromDto(matchDto.teamDto[AWAY]));
