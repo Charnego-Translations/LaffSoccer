@@ -56,6 +56,8 @@ public class GLGame extends Game {
 
     public MenuMusic menuMusic;
 
+    public SoundManager soundManager;
+
     @Override
     public void create() {
         settings = new Settings();
@@ -85,6 +87,8 @@ public class GLGame extends Game {
         menuMusic = new MenuMusic("music");
 
         restoreSaveGame();
+
+        soundManager = new SoundManager();
     }
 
     private void loadAssets() {
