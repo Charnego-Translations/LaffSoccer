@@ -1,6 +1,7 @@
 package com.ygames.ysoccer.match;
 
-import com.ygames.ysoccer.framework.Assets;
+import com.ygames.ysoccer.events.BallKickEvent;
+import com.ygames.ysoccer.framework.EventManager;
 
 import static com.ygames.ysoccer.match.Const.PASSING_SPEED_FACTOR;
 import static com.ygames.ysoccer.match.Const.SECOND;
@@ -46,12 +47,13 @@ class PlayerStateKick extends PlayerState {
                         if (ball.isInsideDirectShotArea(-player.side) && player.seesTheGoal()) {
                             mode = Mode.SHOOTING;
 
-                            Assets.Sounds.kick.play(Assets.Sounds.volume / 100f);
+                            EventManager.publish(new BallKickEvent(1f));
+
                         } else {
                             mode = Mode.KICKING;
                             ball.v = 250.0f;
 
-                            Assets.Sounds.kick.play(0.8f * Assets.Sounds.volume / 100f);
+                            EventManager.publish(new BallKickEvent(0.8f));
                         }
 
                     } else {
@@ -67,7 +69,7 @@ class PlayerStateKick extends PlayerState {
                             }
                         }
 
-                        Assets.Sounds.kick.play(0.6f * Assets.Sounds.volume / 100f);
+                        EventManager.publish(new BallKickEvent(0.6f));
                     }
                 }
                 break;

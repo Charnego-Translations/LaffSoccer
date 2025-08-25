@@ -1,7 +1,8 @@
 package com.ygames.ysoccer.match;
 
-import com.ygames.ysoccer.framework.Assets;
+import com.ygames.ysoccer.events.BallKickEvent;
 import com.ygames.ysoccer.framework.EMath;
+import com.ygames.ysoccer.framework.EventManager;
 
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_TACKLE;
 
@@ -36,20 +37,21 @@ class PlayerStateTackle extends PlayerState {
                 float angle = EMath.aTan2(ball.y - player.y, ball.x - player.x);
                 float angleDiff = EMath.angleDiff(angle, player.a);
                 if ((angleDiff <= 90)
-                        && (player.ballDistance * EMath.sin(angleDiff) <= (8 + 0.3f * player.skills.tackling))) {
+                    && (player.ballDistance * EMath.sin(angleDiff) <= (8 + 0.3f * player.skills.tackling))) {
 
                     scene.setBallOwner(player);
                     ball.v = player.v * (1 + 0.02f * player.skills.tackling);
                     hit = true;
 
                     if ((player.inputDevice.value)
-                            && (Math.abs((((player.a - player.inputDevice.angle + 540) % 360)) - 180) < 67.5)) {
+                        && (Math.abs((((player.a - player.inputDevice.angle + 540) % 360)) - 180) < 67.5)) {
                         ball.a = player.inputDevice.angle;
                     } else {
                         ball.a = player.a;
                     }
 
-                    Assets.Sounds.kick.play(0.1f * (1 + 0.03f * timer) * Assets.Sounds.volume / 100f);
+                    EventManager.publish(new BallKickEvent(0.1f * (1 + 0.03f * timer)));
+
                 }
             }
         }

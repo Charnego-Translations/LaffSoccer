@@ -1,7 +1,8 @@
 package com.ygames.ysoccer.match;
 
-import com.ygames.ysoccer.framework.Assets;
+import com.ygames.ysoccer.events.BallKickEvent;
 import com.ygames.ysoccer.framework.EMath;
+import com.ygames.ysoccer.framework.EventManager;
 
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_HEAD;
 
@@ -21,7 +22,7 @@ class PlayerStateHead extends PlayerState {
 
         if (!hit) {
             if (EMath.isIn(ball.z, player.z + Const.PLAYER_H - Const.BALL_R,
-                    player.z + Const.PLAYER_H + Const.BALL_R)) {
+                player.z + Const.PLAYER_H + Const.BALL_R)) {
                 if (player.ballDistance < 2 * Const.BALL_R) {
 
                     scene.setBallOwner(player);
@@ -29,7 +30,7 @@ class PlayerStateHead extends PlayerState {
                     ball.vz = 100 - 8 * player.skills.heading + player.vz;
                     hit = true;
 
-                    Assets.Sounds.kick.play(0.1f * (1 + 0.03f * timer) * Assets.Sounds.volume / 100f);
+                    EventManager.publish(new BallKickEvent(0.1f * (1 + 0.03f * timer)));
 
                     if (player.inputDevice.value) {
                         ball.a = player.inputDevice.angle;

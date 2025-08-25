@@ -1,6 +1,7 @@
 package com.ygames.ysoccer.framework;
 
 import com.ygames.ysoccer.events.MatchIntroEvent;
+import com.ygames.ysoccer.events.BallKickEvent;
 import com.ygames.ysoccer.events.WhistleEvent;
 
 public class SoundManager {
@@ -13,6 +14,10 @@ public class SoundManager {
 
         EventManager.subscribe(WhistleEvent.class, whistleEvent -> {
             Assets.Sounds.whistle.play(Assets.Sounds.volume / 100f);
+        });
+
+        EventManager.subscribe(BallKickEvent.class, ballKickEvent -> {
+            Assets.Sounds.kick.play(ballKickEvent.strength * Assets.Sounds.volume / 100f);
         });
     }
 }
