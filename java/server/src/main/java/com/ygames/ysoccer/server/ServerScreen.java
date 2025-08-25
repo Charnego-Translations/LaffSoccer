@@ -8,6 +8,7 @@ public class ServerScreen extends ScreenAdapter {
 
     private final Server server;
     private final Match match;
+    private boolean matchStarted;
 
     public ServerScreen(Server server, Match match) {
         this.server = server;
@@ -16,6 +17,10 @@ public class ServerScreen extends ScreenAdapter {
 
     @Override
     public void render(float deltaTime) {
+        if (!matchStarted) {
+            match.start();
+            matchStarted = true;
+        }
         match.update(deltaTime);
     }
 }
