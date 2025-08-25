@@ -1,7 +1,8 @@
 package com.ygames.ysoccer.match;
 
 import com.badlogic.gdx.math.Vector2;
-import com.ygames.ysoccer.framework.Assets;
+import com.ygames.ysoccer.events.WhistleEvent;
+import com.ygames.ysoccer.framework.EventManager;
 import com.ygames.ysoccer.framework.GLGame;
 
 import static com.ygames.ysoccer.match.ActionCamera.Mode.FOLLOW_BALL;
@@ -40,7 +41,7 @@ class MatchStateCornerStop extends MatchState {
             scene.stats[AWAY].cornersWon += 1;
         }
 
-        Assets.Sounds.whistle.play(Assets.Sounds.volume / 100f);
+        EventManager.publish(new WhistleEvent());
 
         cornerPosition.set((Const.TOUCH_LINE - 12) * scene.ball.xSide, (Const.GOAL_LINE - 12) * scene.ball.ySide);
 

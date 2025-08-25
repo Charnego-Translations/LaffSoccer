@@ -1,6 +1,7 @@
 package com.ygames.ysoccer.match;
 
-import com.ygames.ysoccer.framework.Assets;
+import com.ygames.ysoccer.events.WhistleEvent;
+import com.ygames.ysoccer.framework.EventManager;
 import com.ygames.ysoccer.framework.GLGame;
 
 import static com.ygames.ysoccer.match.ActionCamera.Mode.REACH_TARGET;
@@ -41,7 +42,7 @@ class MatchStateYellowCard extends MatchState {
     void entryActions() {
         super.entryActions();
 
-        Assets.Sounds.whistle.play(Assets.Sounds.volume / 100f);
+        EventManager.publish(new WhistleEvent());
 
         booked = false;
 
@@ -55,10 +56,10 @@ class MatchStateYellowCard extends MatchState {
         scene.setPointOfInterest(scene.foul.position);
 
         scene.actionCamera
-                .setMode(REACH_TARGET)
-                .setTarget(scene.foul.player.x, scene.foul.player.y)
-                .setSpeed(NORMAL)
-                .setLimited(true, true);
+            .setMode(REACH_TARGET)
+            .setTarget(scene.foul.player.x, scene.foul.player.y)
+            .setSpeed(NORMAL)
+            .setLimited(true, true);
     }
 
     @Override

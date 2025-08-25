@@ -1,7 +1,8 @@
 package com.ygames.ysoccer.match;
 
-import com.ygames.ysoccer.framework.Assets;
+import com.ygames.ysoccer.events.WhistleEvent;
 import com.ygames.ysoccer.framework.EMath;
+import com.ygames.ysoccer.framework.EventManager;
 import com.ygames.ysoccer.framework.GLGame;
 
 import static com.ygames.ysoccer.match.ActionCamera.Mode.FOLLOW_BALL;
@@ -93,7 +94,7 @@ class MatchStateFreeKick extends MatchState {
                 }
             }
 
-            Assets.Sounds.whistle.play(Assets.Sounds.volume / 100f);
+            EventManager.publish(new WhistleEvent());
 
             freeKickPlayer.setState(STATE_FREE_KICK_ANGLE);
             if (freeKickPlayer.team.usesAutomaticInputDevice()) {

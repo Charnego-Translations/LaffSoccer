@@ -1,6 +1,8 @@
 package com.ygames.ysoccer.match;
 
+import com.ygames.ysoccer.events.WhistleEvent;
 import com.ygames.ysoccer.framework.Assets;
+import com.ygames.ysoccer.framework.EventManager;
 import com.ygames.ysoccer.framework.GLGame;
 
 import static com.ygames.ysoccer.match.ActionCamera.Mode.FOLLOW_BALL;
@@ -95,7 +97,7 @@ class MatchStateCornerKick extends MatchState {
         }
 
         if (!move && !isKicking) {
-            Assets.Sounds.whistle.play(Assets.Sounds.volume / 100f);
+            EventManager.publish(new WhistleEvent());
 
             cornerKickPlayer.setState(STATE_CORNER_KICK_ANGLE);
             if (cornerKickPlayer.team.usesAutomaticInputDevice()) {

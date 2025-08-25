@@ -1,6 +1,7 @@
 package com.ygames.ysoccer.match;
 
-import com.ygames.ysoccer.framework.Assets;
+import com.ygames.ysoccer.events.WhistleEvent;
+import com.ygames.ysoccer.framework.EventManager;
 import com.ygames.ysoccer.framework.GLGame;
 
 import static com.ygames.ysoccer.match.ActionCamera.Mode.FOLLOW_BALL;
@@ -88,7 +89,7 @@ class MatchStateThrowIn extends MatchState {
 
         if (!move && !isThrowingIn) {
 
-            Assets.Sounds.whistle.play(Assets.Sounds.volume / 100f);
+            EventManager.publish(new WhistleEvent());
 
             throwInPlayer.setState(STATE_THROW_IN_ANGLE);
             if (throwInPlayer.team.usesAutomaticInputDevice()) {
