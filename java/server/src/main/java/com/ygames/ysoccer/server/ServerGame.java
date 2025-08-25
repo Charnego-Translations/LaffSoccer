@@ -31,8 +31,7 @@ public class ServerGame extends Game {
         Server server = new Server();
         Network.register(server);
 
-        Assets.loadStrings(settings);
-        Assets.loadJson();
+        Assets.loadCore(settings);
 
         Friendly friendly = new Friendly();
         MatchSettings matchSettings = new MatchSettings(friendly, settings);

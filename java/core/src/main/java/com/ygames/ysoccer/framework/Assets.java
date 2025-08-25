@@ -203,10 +203,10 @@ public class Assets {
     }
 
     public static void load(Settings settings) {
+        loadCore(settings);
         customCursor = Gdx.graphics.newCursor(new Pixmap(Gdx.files.internal("images/arrow.png")), 0, 0);
         hiddenCursor = Gdx.graphics.newCursor(new Pixmap(1, 1, Pixmap.Format.RGBA8888), 0, 0);
         loadLocales();
-        loadStrings(settings);
         font14 = new Font(14, 16, 23, 16, 22);
         font14.load();
         font10 = new Font(10, 13, 17, 12, 16);
@@ -229,14 +229,12 @@ public class Assets {
         tacticsFolder = Gdx.files.local("data/tactics");
         savesFolder = Gdx.files.local("data/saves/competitions/");
         saveGame = savesFolder.child("savegame.json");
-        loadJson();
         loadCalendars();
 
         favouritesFile = teamsRootFolder.child("favourites.json");
         favourites = loadFavourites();
 
         associations = new ArrayList<>(Arrays.asList(Const.associations));
-        loadTactics();
         loadKits();
         loadPlayerOrigins();
         loadKeeperOrigins();
@@ -268,6 +266,12 @@ public class Assets {
         loadBench();
         Sounds.load();
         Commentary.load();
+    }
+
+    public static void loadCore(Settings settings) {
+        Assets.loadStrings(settings);
+        Assets.loadJson();
+        Assets.loadTactics();
     }
 
     public static void loadJson() {
