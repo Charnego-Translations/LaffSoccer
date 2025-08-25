@@ -1,6 +1,7 @@
 package com.ygames.ysoccer.match;
 
-import com.ygames.ysoccer.framework.Assets;
+import com.ygames.ysoccer.events.MatchIntroEvent;
+import com.ygames.ysoccer.framework.EventManager;
 import com.ygames.ysoccer.framework.GLGame;
 
 import static com.ygames.ysoccer.match.ActionCamera.Mode.FOLLOW_BALL;
@@ -39,9 +40,7 @@ class MatchStateIntro extends MatchState {
         scene.setIntroPositions();
         scene.resetData();
 
-        Assets.Sounds.introId = Assets.Sounds.intro.play(Assets.Sounds.volume / 100f);
-        Assets.Sounds.crowdId = Assets.Sounds.crowd.play(Assets.Sounds.volume / 100f);
-        Assets.Sounds.crowd.setLooping(Assets.Sounds.crowdId, true);
+        EventManager.publish(new MatchIntroEvent());
     }
 
     @Override
@@ -85,8 +84,8 @@ class MatchStateIntro extends MatchState {
     SceneFsm.Action[] checkConditions() {
         if (scene.enterPlayersFinished(timer, enterDelay)) {
             if ((scene.team[HOME].fire1Down() != null)
-                    || (scene.team[AWAY].fire1Down() != null)
-                    || (timer >= 5 * SECOND)) {
+                || (scene.team[AWAY].fire1Down() != null)
+                || (timer >= 5 * SECOND)) {
                 return newAction(NEW_FOREGROUND, STATE_STARTING_POSITIONS);
             }
         }
