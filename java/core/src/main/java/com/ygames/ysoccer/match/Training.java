@@ -1,7 +1,6 @@
 package com.ygames.ysoccer.match;
 
 import com.badlogic.gdx.math.Vector2;
-import com.ygames.ysoccer.framework.Assets;
 import com.ygames.ysoccer.framework.EMath;
 import com.ygames.ysoccer.framework.InputDeviceList;
 
@@ -137,8 +136,6 @@ public class Training extends Scene<TrainingFsm, TrainingState> {
 
     @Override
     void quit() {
-        Assets.Sounds.chant.stop();
-
         listener.quitTraining();
     }
 

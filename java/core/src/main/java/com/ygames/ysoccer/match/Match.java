@@ -641,13 +641,6 @@ public class Match extends Scene<MatchFsm, MatchState> implements Json.Serializa
 
     @Override
     void quit() {
-        Assets.Sounds.chant.stop();
-        Assets.Sounds.crowd.stop();
-        Assets.Sounds.end.stop();
-        Assets.Sounds.homeGoal.stop();
-        Assets.Sounds.intro.stop();
-        Assets.Commentary.stop();
-
         listener.quitMatch(getFsm().matchCompleted);
     }
 

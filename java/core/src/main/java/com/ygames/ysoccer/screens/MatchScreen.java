@@ -8,9 +8,9 @@ import com.ygames.ysoccer.framework.Font;
 import com.ygames.ysoccer.framework.GLGame;
 import com.ygames.ysoccer.framework.GLScreen;
 import com.ygames.ysoccer.framework.Settings;
+import com.ygames.ysoccer.framework.SoundManager;
 import com.ygames.ysoccer.match.Match;
 import com.ygames.ysoccer.match.MatchConsoleCommandExecutor;
-import com.ygames.ysoccer.match.MatchHotKeys;
 import com.ygames.ysoccer.match.MatchRenderer;
 import com.ygames.ysoccer.match.Player;
 
@@ -117,6 +117,8 @@ class MatchScreen extends GLScreen {
             }
             match.team[t].lineup.clear();
         }
+
+        SoundManager.stopMatchSounds();
 
         if (matchCompleted) {
             match.competition.matchCompleted();

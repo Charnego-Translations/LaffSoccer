@@ -68,4 +68,13 @@ public class SoundManager {
     public static void setCrowdVolume() {
         Assets.Sounds.crowd.setVolume(Assets.Sounds.crowdId, Assets.Sounds.volume / 100f);
     }
+
+    public static void stopMatchSounds() {
+        Assets.Sounds.chant.stop();
+        Assets.Sounds.crowd.stop();
+        Assets.Sounds.end.stop();
+        Assets.Sounds.homeGoal.stop();
+        Assets.Sounds.intro.stop();
+        Assets.Commentary.stop();
+    }
 }
