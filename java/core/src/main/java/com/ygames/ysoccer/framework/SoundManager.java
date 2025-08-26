@@ -1,5 +1,6 @@
 package com.ygames.ysoccer.framework;
 
+import com.ygames.ysoccer.events.CrowdChantsEvent;
 import com.ygames.ysoccer.events.MatchIntroEvent;
 import com.ygames.ysoccer.events.BallKickEvent;
 import com.ygames.ysoccer.events.WhistleEvent;
@@ -18,6 +19,10 @@ public class SoundManager {
 
         EventManager.subscribe(BallKickEvent.class, ballKickEvent -> {
             Assets.Sounds.kick.play(ballKickEvent.strength * Assets.Sounds.volume / 100f);
+        });
+
+        EventManager.subscribe(CrowdChantsEvent.class, crowdChantsEvent -> {
+            Assets.Sounds.chant.play(crowdChantsEvent.enabled ? Assets.Sounds.volume / 100f : 0);
         });
     }
 }

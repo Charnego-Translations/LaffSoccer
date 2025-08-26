@@ -1,8 +1,10 @@
 package com.ygames.ysoccer.match;
 
 import com.badlogic.gdx.Gdx;
+import com.ygames.ysoccer.events.CrowdChantsEvent;
 import com.ygames.ysoccer.framework.Assets;
 import com.ygames.ysoccer.framework.EMath;
+import com.ygames.ysoccer.framework.EventManager;
 import com.ygames.ysoccer.framework.GLGame;
 
 import static com.ygames.ysoccer.match.ActionCamera.Mode.FOLLOW_BALL;
@@ -85,7 +87,7 @@ class MatchStateMain extends MatchState {
                         scene.chantSwitch = false;
                         scene.nextChant = scene.clock + (6 + Assets.random.nextInt(6)) * 1000;
                     } else {
-                        Assets.Sounds.chant.play(scene.getSettings().crowdChants ? Assets.Sounds.volume / 100f : 0);
+                        EventManager.publish(new CrowdChantsEvent(scene.getSettings().crowdChants));
                         scene.chantSwitch = true;
                         scene.nextChant = scene.clock + 8000;
                     }
