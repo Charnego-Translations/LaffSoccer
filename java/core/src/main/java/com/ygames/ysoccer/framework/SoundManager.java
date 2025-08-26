@@ -61,6 +61,10 @@ public class SoundManager {
         });
     }
 
+    public static void setIntroVolume() {
+        Assets.Sounds.intro.setVolume(Assets.Sounds.introId, Assets.Sounds.volume / 100f);
+    }
+
     public static void setCrowdVolume() {
         Assets.Sounds.crowd.setVolume(Assets.Sounds.crowdId, Assets.Sounds.volume / 100f);
     }

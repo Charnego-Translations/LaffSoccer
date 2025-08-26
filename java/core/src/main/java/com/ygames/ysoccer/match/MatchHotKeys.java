@@ -1,7 +1,6 @@
 package com.ygames.ysoccer.match;
 
 import com.badlogic.gdx.Gdx;
-import com.ygames.ysoccer.framework.Assets;
 import com.ygames.ysoccer.framework.SoundManager;
 
 import static com.badlogic.gdx.Input.Keys.F10;
@@ -65,7 +64,7 @@ public class MatchHotKeys extends SceneHotKeys {
 
         if (Gdx.input.isKeyPressed(F5) && !keyCrowdChants) {
             getMatch().getSettings().crowdChants = !getMatch().getSettings().crowdChants;
-            Assets.Sounds.intro.setVolume(Assets.Sounds.introId, Assets.Sounds.volume / 100f);
+            SoundManager.setIntroVolume();
             SoundManager.setCrowdVolume();
 
             message = gettext("MATCH OPTIONS.CROWD CHANTS") + " ";
@@ -118,12 +117,11 @@ public class MatchHotKeys extends SceneHotKeys {
         keyRecordAction = Gdx.input.isKeyPressed(SPACE);
     }
 
-
     @Override
     void onChangeVolume() {
         super.onChangeVolume();
 
-        Assets.Sounds.intro.setVolume(Assets.Sounds.introId, Assets.Sounds.volume / 100f);
+        SoundManager.setIntroVolume();
         SoundManager.setCrowdVolume();
     }
 }
