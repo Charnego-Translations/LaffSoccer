@@ -252,7 +252,6 @@ public class Assets {
         jumper = new Texture("images/stadium/jumper.png");
         loadKeeperShadow();
         loadPlayerShadow();
-        keeperCollisionDetection = new Pixmap(Gdx.files.internal("images/keeper_cd.png"));
         loadPlayerNumbers();
         loadTinyNumbers();
         loadTime();
@@ -272,6 +271,7 @@ public class Assets {
         Assets.loadJson();
         Assets.loadTactics();
         loadKeeperOrigins();
+        loadKeeperCollisionDetection();
     }
 
     public static void loadJson() {
@@ -393,6 +393,10 @@ public class Assets {
 
     public static void loadKeeperOrigins() {
         keeperOrigins = loadIntegerArray3("configs/keeper_origins.json");
+    }
+
+    private static void loadKeeperCollisionDetection() {
+        keeperCollisionDetection = new Pixmap(Gdx.files.internal("images/keeper_cd.png"));
     }
 
     public static void loadPlayerHairMap() {
