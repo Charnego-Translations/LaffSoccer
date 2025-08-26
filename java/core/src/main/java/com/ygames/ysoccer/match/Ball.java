@@ -3,7 +3,7 @@ package com.ygames.ysoccer.match;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.ygames.ysoccer.events.BallBounceEvent;
-import com.ygames.ysoccer.framework.Assets;
+import com.ygames.ysoccer.events.BallCollisionEvent;
 import com.ygames.ysoccer.framework.EMath;
 import com.ygames.ysoccer.framework.EventManager;
 import com.ygames.ysoccer.framework.GLGame;
@@ -402,8 +402,8 @@ public class Ball {
 
         // sound
         if (hit) {
-            float volume = Math.min(EMath.floor(bouncing_speed / 10) / 10f, 1);
-            Assets.Sounds.post.play(volume * Assets.Sounds.volume / 100f);
+            float strength = Math.min(EMath.floor(bouncing_speed / 10) / 10f, 1);
+            EventManager.publish(new BallCollisionEvent(strength));
             bouncing_speed = 0;
         }
 
@@ -428,8 +428,8 @@ public class Ball {
             setY(y0);
             setZ(z0);
 
-            float volume = Math.min(EMath.floor(v / 10) / 20f, 1);
-            Assets.Sounds.post.play(volume * Assets.Sounds.volume / 100f);
+            float strength = Math.min(EMath.floor(v / 10) / 20f, 1);
+            EventManager.publish(new BallCollisionEvent(strength));
 
             GLGame.debug(BALL, this, "Flag post collision, v: " + v + ", a: " + a + ", vz: " + vz);
         }
@@ -599,8 +599,8 @@ public class Ball {
             setY(y0);
             setZ(z0);
 
-            float volume = Math.min(EMath.floor(v / 10) / 20f, 1);
-            Assets.Sounds.post.play(volume * Assets.Sounds.volume / 100f);
+            float strength = Math.min(EMath.floor(v / 10) / 20f, 1);
+            EventManager.publish(new BallCollisionEvent(strength));
 
             GLGame.debug(BALL, this, "Jumper collision, v: " + v + ", a: " + a + ", vz: " + vz);
         }
