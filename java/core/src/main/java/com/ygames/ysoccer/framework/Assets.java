@@ -237,7 +237,6 @@ public class Assets {
         associations = new ArrayList<>(Arrays.asList(Const.associations));
         loadKits();
         loadPlayerOrigins();
-        loadKeeperOrigins();
         hairStyles = loadHairStyles();
         loadPlayerHairMap();
         loadKeeperHairMap();
@@ -272,6 +271,7 @@ public class Assets {
         Assets.loadStrings(settings);
         Assets.loadJson();
         Assets.loadTactics();
+        loadKeeperOrigins();
     }
 
     public static void loadJson() {
