@@ -4,6 +4,7 @@ import com.ygames.ysoccer.events.BallBounceEvent;
 import com.ygames.ysoccer.events.BallCollisionEvent;
 import com.ygames.ysoccer.events.BallKickEvent;
 import com.ygames.ysoccer.events.CrowdChantsEvent;
+import com.ygames.ysoccer.events.HomeGoalEvent;
 import com.ygames.ysoccer.events.KeeperDeflectEvent;
 import com.ygames.ysoccer.events.KeeperHoldEvent;
 import com.ygames.ysoccer.events.MatchIntroEvent;
@@ -26,6 +27,10 @@ public class SoundManager {
 
         EventManager.subscribe(CrowdChantsEvent.class, crowdChantsEvent -> {
             Assets.Sounds.chant.play(crowdChantsEvent.enabled ? Assets.Sounds.volume / 100f : 0);
+        });
+
+        EventManager.subscribe(HomeGoalEvent.class, homeGoalEvent -> {
+            Assets.Sounds.homeGoal.play(Assets.Sounds.volume / 100f);
         });
 
         EventManager.subscribe(KeeperDeflectEvent.class, keeperDeflectEvent -> {

@@ -1,7 +1,8 @@
 package com.ygames.ysoccer.match;
 
-import com.ygames.ysoccer.framework.Assets;
+import com.ygames.ysoccer.events.HomeGoalEvent;
 import com.ygames.ysoccer.framework.EMath;
+import com.ygames.ysoccer.framework.EventManager;
 import com.ygames.ysoccer.framework.GLGame;
 
 import static com.ygames.ysoccer.match.ActionCamera.Mode.STILL;
@@ -73,7 +74,7 @@ class MatchStatePenaltiesEnd extends MatchState {
                 && EMath.isIn(scene.ball.x, -Const.POST_X, Const.POST_X)
                 && (scene.ball.z <= Const.CROSSBAR_H)) {
                 isGoal = true;
-                Assets.Sounds.homeGoal.play(Assets.Sounds.volume / 100f);
+                EventManager.publish(new HomeGoalEvent());
             }
 
             if (scene.ball.y * scene.ball.ySide >= (Const.GOAL_LINE + Const.BALL_R)) {

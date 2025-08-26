@@ -2,7 +2,9 @@ package com.ygames.ysoccer.match;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.ygames.ysoccer.events.HomeGoalEvent;
 import com.ygames.ysoccer.framework.Assets;
+import com.ygames.ysoccer.framework.EventManager;
 import com.ygames.ysoccer.framework.GLGame;
 
 import static com.ygames.ysoccer.match.ActionCamera.Mode.FOLLOW_BALL;
@@ -47,7 +49,7 @@ class MatchStateGoal extends MatchState {
         recordingDone = false;
         followBall = true;
 
-        Assets.Sounds.homeGoal.play(Assets.Sounds.volume / 100f);
+        EventManager.publish(new HomeGoalEvent());
 
         goal = scene.goals.get(scene.goals.size() - 1);
 
@@ -131,19 +133,19 @@ class MatchStateGoal extends MatchState {
     private void setCameraMode() {
         if (followBall) {
             scene.actionCamera
-                    .setMode(FOLLOW_BALL)
-                    .setSpeed(NORMAL);
+                .setMode(FOLLOW_BALL)
+                .setSpeed(NORMAL);
         } else {
             scene.actionCamera
-                    .setMode(REACH_TARGET)
-                    .setSpeed(FAST);
+                .setMode(REACH_TARGET)
+                .setSpeed(FAST);
         }
     }
 
     @Override
     SceneFsm.Action[] checkConditions() {
         if ((scene.ball.v == 0) && (scene.ball.vz == 0)
-                && (timer > 3 * SECOND)) {
+            && (timer > 3 * SECOND)) {
 
             if (!recordingDone) {
                 scene.recorder.saveHighlight();
