@@ -1,7 +1,8 @@
 package com.ygames.ysoccer.match;
 
 import com.badlogic.gdx.math.Vector2;
-import com.ygames.ysoccer.framework.Assets;
+import com.ygames.ysoccer.events.WhistleEvent;
+import com.ygames.ysoccer.framework.EventManager;
 import com.ygames.ysoccer.framework.GLGame;
 
 import static com.ygames.ysoccer.match.ActionCamera.Mode.FOLLOW_BALL;
@@ -30,7 +31,7 @@ class MatchStateGoalKickStop extends MatchState {
     void entryActions() {
         super.entryActions();
 
-        Assets.Sounds.whistle.play(Assets.Sounds.volume / 100f);
+        EventManager.publish(new WhistleEvent());
 
         scene.resetAutomaticInputDevices();
         scene.setPlayersState(STATE_REACH_TARGET, null);
@@ -49,8 +50,8 @@ class MatchStateGoalKickStop extends MatchState {
         opponentTeam.updateTactics(true);
 
         goalKickPosition.set(
-                (Const.GOAL_AREA_W / 2f) * scene.ball.xSide,
-                (Const.GOAL_LINE - Const.GOAL_AREA_H) * scene.ball.ySide
+            (Const.GOAL_AREA_W / 2f) * scene.ball.xSide,
+            (Const.GOAL_LINE - Const.GOAL_AREA_H) * scene.ball.ySide
         );
     }
 
@@ -59,9 +60,9 @@ class MatchStateGoalKickStop extends MatchState {
         super.onResume();
 
         scene.actionCamera
-                .setMode(FOLLOW_BALL)
-                .setSpeed(NORMAL)
-                .setLimited(true, true);
+            .setMode(FOLLOW_BALL)
+            .setSpeed(NORMAL)
+            .setLimited(true, true);
 
         scene.setPointOfInterest(goalKickPosition);
     }

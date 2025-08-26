@@ -1,6 +1,7 @@
 package com.ygames.ysoccer.match;
 
-import com.ygames.ysoccer.framework.Assets;
+import com.ygames.ysoccer.events.WhistleEvent;
+import com.ygames.ysoccer.framework.EventManager;
 import com.ygames.ysoccer.framework.GLGame;
 
 import static com.ygames.ysoccer.match.ActionCamera.Mode.FOLLOW_BALL;
@@ -86,7 +87,7 @@ class MatchStateGoalKick extends MatchState {
         }
 
         if (!move && !isKicking) {
-            Assets.Sounds.whistle.play(Assets.Sounds.volume / 100f);
+            EventManager.publish(new WhistleEvent());
 
             goalKickPlayer.setState(PlayerFsm.Id.STATE_GOAL_KICK);
             if (goalKickPlayer.team.usesAutomaticInputDevice()) {
