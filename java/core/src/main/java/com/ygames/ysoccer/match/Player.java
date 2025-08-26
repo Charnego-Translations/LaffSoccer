@@ -6,6 +6,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonValue;
 import com.ygames.ysoccer.competitions.Competition;
+import com.ygames.ysoccer.events.KeeperDeflectEvent;
 import com.ygames.ysoccer.events.KeeperHoldEvent;
 import com.ygames.ysoccer.framework.Ai;
 import com.ygames.ysoccer.framework.Assets;
@@ -432,7 +433,7 @@ public class Player implements Json.Serializable {
             switch (collisionType) {
                 case REBOUND:
                     if (ball.v > 180) {
-                        Assets.Sounds.deflect.play(0.5f * Assets.Sounds.volume / 100f);
+                        EventManager.publish(new KeeperDeflectEvent());
                     }
                     // real ball x-y angle (when spinning, it is different from ball.a)
                     float ballAxy = EMath.aTan2(ball.y - ball.y0, ball.x - ball.x0);
@@ -468,7 +469,7 @@ public class Player implements Json.Serializable {
 
                 case DEFLECT:
                     if (ball.v > 180) {
-                        Assets.Sounds.deflect.play(0.5f * Assets.Sounds.volume / 100f);
+                        EventManager.publish(new KeeperDeflectEvent());
                     }
                     // real ball x-y angle (when spinning, it is different from ball.a)
                     ballAxy = EMath.aTan2(ball.y - ball.y0, ball.x - ball.x0);
