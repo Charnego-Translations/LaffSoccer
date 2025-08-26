@@ -119,6 +119,7 @@ class MatchScreen extends GLScreen {
         }
 
         SoundManager.stopMatchSounds();
+        Assets.Commentary.stop();
 
         if (matchCompleted) {
             match.competition.matchCompleted();

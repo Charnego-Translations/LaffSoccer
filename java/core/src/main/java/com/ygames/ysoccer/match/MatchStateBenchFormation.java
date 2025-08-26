@@ -3,6 +3,7 @@ package com.ygames.ysoccer.match;
 import com.ygames.ysoccer.framework.Assets;
 import com.ygames.ysoccer.framework.EMath;
 import com.ygames.ysoccer.framework.GLGame;
+import com.ygames.ysoccer.framework.SoundManager;
 
 import java.util.Collections;
 
@@ -133,7 +134,7 @@ class MatchStateBenchFormation extends MatchState {
                             if (scene.settings.commentary) {
                                 int size = Assets.Commentary.playerSubstitution.size();
                                 if (size > 0) {
-                                    Assets.Commentary.playerSubstitution.get(Assets.random.nextInt(size)).play(Assets.Sounds.volume / 100f);
+                                    Assets.Commentary.playerSubstitution.get(Assets.random.nextInt(size)).play(SoundManager.volume / 100f);
                                 }
                             }
 
@@ -162,7 +163,7 @@ class MatchStateBenchFormation extends MatchState {
                         if (scene.settings.commentary) {
                             int size = Assets.Commentary.playerSwap.size();
                             if (size > 0) {
-                                Assets.Commentary.playerSwap.get(Assets.random.nextInt(size)).play(Assets.Sounds.volume / 100f);
+                                Assets.Commentary.playerSwap.get(Assets.random.nextInt(size)).play(SoundManager.volume / 100f);
                             }
                         }
 

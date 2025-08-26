@@ -5,9 +5,9 @@ import com.ygames.ysoccer.framework.Assets;
 import com.ygames.ysoccer.framework.Font;
 import com.ygames.ysoccer.framework.GLGame;
 import com.ygames.ysoccer.framework.GLScreen;
+import com.ygames.ysoccer.framework.SoundManager;
 import com.ygames.ysoccer.gui.Button;
 import com.ygames.ysoccer.gui.Widget;
-import com.ygames.ysoccer.match.MatchSettings;
 import com.ygames.ysoccer.match.Pitch;
 import com.ygames.ysoccer.match.SceneSettings;
 
@@ -26,7 +26,7 @@ class SetupTraining extends GLScreen {
 
         sceneSettings = new SceneSettings(game.settings);
 
-        Assets.Sounds.volume = game.settings.soundVolume;
+        SoundManager.volume = game.settings.soundVolume;
 
         background = new Texture("images/backgrounds/menu_training.jpg");
 

@@ -4,6 +4,7 @@ import com.ygames.ysoccer.events.WhistleEvent;
 import com.ygames.ysoccer.framework.Assets;
 import com.ygames.ysoccer.framework.EventManager;
 import com.ygames.ysoccer.framework.GLGame;
+import com.ygames.ysoccer.framework.SoundManager;
 
 import java.util.ArrayList;
 
@@ -45,7 +46,7 @@ class MatchStateFreeKickStop extends MatchState {
         if (scene.settings.commentary) {
             int size = Assets.Commentary.foul.size();
             if (size > 0) {
-                Assets.Commentary.foul.get(Assets.random.nextInt(size)).play(Assets.Sounds.volume / 100f);
+                Assets.Commentary.foul.get(Assets.random.nextInt(size)).play(SoundManager.volume / 100f);
             }
         }
 

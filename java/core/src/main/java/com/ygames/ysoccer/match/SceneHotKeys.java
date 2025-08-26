@@ -1,10 +1,10 @@
 package com.ygames.ysoccer.match;
 
 import com.badlogic.gdx.Gdx;
-import com.ygames.ysoccer.framework.Assets;
 import com.ygames.ysoccer.framework.EMath;
 import com.ygames.ysoccer.framework.GLGame;
 import com.ygames.ysoccer.framework.Settings;
+import com.ygames.ysoccer.framework.SoundManager;
 
 import java.util.TreeMap;
 
@@ -60,7 +60,7 @@ abstract class SceneHotKeys {
         if (messageTimer > 0) messageTimer--;
 
         if (Gdx.input.isKeyPressed(F2) && !keySoundDown) {
-            Assets.Sounds.volume = Math.max(0, Assets.Sounds.volume - 10);
+            SoundManager.volume = Math.max(0, SoundManager.volume - 10);
 
             onChangeVolume();
 
@@ -69,7 +69,7 @@ abstract class SceneHotKeys {
         }
 
         if (Gdx.input.isKeyPressed(F3) && !keySoundUp) {
-            Assets.Sounds.volume = Math.min(100, Assets.Sounds.volume + 10);
+            SoundManager.volume = Math.min(100, SoundManager.volume + 10);
 
             onChangeVolume();
 
@@ -131,7 +131,7 @@ abstract class SceneHotKeys {
         StringBuilder sb = new StringBuilder(gettext("MATCH OPTIONS.SOUND VOLUME"));
         sb.append(" <");
         for (int i = 10; i <= 100; i += 10) {
-            sb.append((i <= Assets.Sounds.volume) ? "|" : " ");
+            sb.append((i <= SoundManager.volume) ? "|" : " ");
         }
         sb.append(">");
         message = sb.toString();

@@ -1,5 +1,7 @@
 package com.ygames.ysoccer.framework;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.ygames.ysoccer.events.BallBounceEvent;
 import com.ygames.ysoccer.events.BallCollisionEvent;
 import com.ygames.ysoccer.events.BallKickEvent;
@@ -13,68 +15,105 @@ import com.ygames.ysoccer.events.PeriodStopEvent;
 import com.ygames.ysoccer.events.WhistleEvent;
 
 public class SoundManager {
-    public SoundManager() {
+
+    private static Sound bounce;
+    private static Sound celebration;
+    private static Sound chant;
+    private static Sound crowd;
+    private static Long crowdId;
+    private static Sound deflect;
+    private static Sound hold;
+    private static Sound homeGoal;
+    private static Sound intro;
+    private static Long introId;
+    private static Sound kick;
+    private static Sound net;
+    private static Sound post;
+    private static Sound end;
+    private static Sound whistle;
+    public static int volume;
+
+    SoundManager() {
         EventManager.subscribe(BallBounceEvent.class, ballBounceEvent -> {
-            Assets.Sounds.bounce.play(Math.min(ballBounceEvent.speed / 250, 1) * Assets.Sounds.volume / 100f);
+            bounce.play(Math.min(ballBounceEvent.speed / 250, 1) * volume / 100f);
         });
 
         EventManager.subscribe(BallCollisionEvent.class, ballCollisionEvent -> {
-            Assets.Sounds.post.play(ballCollisionEvent.strength * Assets.Sounds.volume / 100f);
+            post.play(ballCollisionEvent.strength * volume / 100f);
         });
 
         EventManager.subscribe(BallKickEvent.class, ballKickEvent -> {
-            Assets.Sounds.kick.play(ballKickEvent.strength * Assets.Sounds.volume / 100f);
+            kick.play(ballKickEvent.strength * volume / 100f);
         });
 
         EventManager.subscribe(CelebrationEvent.class, celebrationEvent -> {
-            Assets.Sounds.celebration.play(Assets.Sounds.volume / 100f);
+            celebration.play(volume / 100f);
         });
 
         EventManager.subscribe(CrowdChantsEvent.class, crowdChantsEvent -> {
-            Assets.Sounds.chant.play(crowdChantsEvent.enabled ? Assets.Sounds.volume / 100f : 0);
+            chant.play(crowdChantsEvent.enabled ? volume / 100f : 0);
         });
 
         EventManager.subscribe(HomeGoalEvent.class, homeGoalEvent -> {
-            Assets.Sounds.homeGoal.play(Assets.Sounds.volume / 100f);
+            homeGoal.play(volume / 100f);
         });
 
         EventManager.subscribe(KeeperDeflectEvent.class, keeperDeflectEvent -> {
-            Assets.Sounds.deflect.play(0.5f * Assets.Sounds.volume / 100f);
+            deflect.play(0.5f * volume / 100f);
         });
 
         EventManager.subscribe(KeeperHoldEvent.class, keeperHoldEvent -> {
-            Assets.Sounds.hold.play(0.5f * Assets.Sounds.volume / 100f);
+            hold.play(0.5f * volume / 100f);
         });
 
         EventManager.subscribe(MatchIntroEvent.class, matchIntroEvent -> {
-            Assets.Sounds.introId = Assets.Sounds.intro.play(Assets.Sounds.volume / 100f);
-            Assets.Sounds.crowdId = Assets.Sounds.crowd.play(Assets.Sounds.volume / 100f);
-            Assets.Sounds.crowd.setLooping(Assets.Sounds.crowdId, true);
+            introId = intro.play(volume / 100f);
+            crowdId = crowd.play(volume / 100f);
+            crowd.setLooping(crowdId, true);
         });
 
         EventManager.subscribe(PeriodStopEvent.class, periodStopEvent -> {
-            Assets.Sounds.end.play(Assets.Sounds.volume / 100f);
+            end.play(volume / 100f);
         });
 
         EventManager.subscribe(WhistleEvent.class, whistleEvent -> {
-            Assets.Sounds.whistle.play(Assets.Sounds.volume / 100f);
+            whistle.play(volume / 100f);
         });
     }
 
     public static void setIntroVolume() {
-        Assets.Sounds.intro.setVolume(Assets.Sounds.introId, Assets.Sounds.volume / 100f);
+        intro.setVolume(introId, volume / 100f);
     }
 
     public static void setCrowdVolume() {
-        Assets.Sounds.crowd.setVolume(Assets.Sounds.crowdId, Assets.Sounds.volume / 100f);
+        crowd.setVolume(crowdId, volume / 100f);
     }
 
     public static void stopMatchSounds() {
-        Assets.Sounds.chant.stop();
-        Assets.Sounds.crowd.stop();
-        Assets.Sounds.end.stop();
-        Assets.Sounds.homeGoal.stop();
-        Assets.Sounds.intro.stop();
-        Assets.Commentary.stop();
+        chant.stop();
+        crowd.stop();
+        end.stop();
+        homeGoal.stop();
+        intro.stop();
+    }
+
+    static void load() {
+        bounce = newSound("bounce.ogg");
+        celebration = newSound("celebration.ogg");
+        chant = newSound("chant.ogg");
+        crowd = newSound("crowd.ogg");
+        deflect = newSound("deflect.ogg");
+        end = newSound("end.ogg");
+        hold = newSound("hold.ogg");
+        homeGoal = newSound("home_goal.ogg");
+        intro = newSound("intro.ogg");
+        kick = newSound("kick.ogg");
+        net = newSound("net.ogg");
+        post = newSound("post.ogg");
+        whistle = newSound("whistle.ogg");
+    }
+
+    private static Sound newSound(String filename) {
+        return Gdx.audio.newSound(Gdx.files.internal("sounds").child(filename));
     }
 }

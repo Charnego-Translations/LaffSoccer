@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.ygames.ysoccer.framework.Assets;
 import com.ygames.ysoccer.framework.GLGame;
 import com.ygames.ysoccer.framework.GLScreen;
+import com.ygames.ysoccer.framework.SoundManager;
 import com.ygames.ysoccer.gui.Button;
 import com.ygames.ysoccer.gui.Widget;
 import com.ygames.ysoccer.match.Match;
@@ -45,7 +46,7 @@ class MatchSetup extends GLScreen {
 
         matchSettings = new MatchSettings(navigation.competition, game.settings);
 
-        Assets.Sounds.volume = game.settings.soundVolume;
+        SoundManager.volume = game.settings.soundVolume;
 
         background = new Texture("images/backgrounds/menu_match_presentation.jpg");
 

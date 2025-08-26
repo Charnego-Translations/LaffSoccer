@@ -105,46 +105,6 @@ public class Assets {
     public static final TextureRegion[][] wind = new TextureRegion[8][2];
     public static final TextureRegion[] bench = new TextureRegion[2];
 
-    public static class Sounds {
-
-        public static Sound bounce;
-        public static Sound celebration;
-        public static Sound chant;
-        public static Sound crowd;
-        public static Long crowdId;
-        public static Sound deflect;
-        public static Sound hold;
-        public static Sound homeGoal;
-        public static Sound intro;
-        public static Long introId;
-        public static Sound kick;
-        public static Sound net;
-        public static Sound post;
-        public static Sound end;
-        public static Sound whistle;
-        public static int volume;
-
-        static void load() {
-            bounce = newSound("bounce.ogg");
-            celebration = newSound("celebration.ogg");
-            chant = newSound("chant.ogg");
-            crowd = newSound("crowd.ogg");
-            deflect = newSound("deflect.ogg");
-            end = newSound("end.ogg");
-            hold = newSound("hold.ogg");
-            homeGoal = newSound("home_goal.ogg");
-            intro = newSound("intro.ogg");
-            kick = newSound("kick.ogg");
-            net = newSound("net.ogg");
-            post = newSound("post.ogg");
-            whistle = newSound("whistle.ogg");
-        }
-
-        private static Sound newSound(String filename) {
-            return Gdx.audio.newSound(Gdx.files.internal("sounds").child(filename));
-        }
-    }
-
     public static class Commentary {
 
         public static final List<Sound> cornerKick = new ArrayList<>();
@@ -262,7 +222,7 @@ public class Assets {
         fog = new Texture("images/fog.png");
         loadWind();
         loadBench();
-        Sounds.load();
+        SoundManager.load();
         Commentary.load();
     }
 
