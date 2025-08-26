@@ -60,4 +60,8 @@ public class SoundManager {
             Assets.Sounds.whistle.play(Assets.Sounds.volume / 100f);
         });
     }
+
+    public static void setCrowdVolume() {
+        Assets.Sounds.crowd.setVolume(Assets.Sounds.crowdId, Assets.Sounds.volume / 100f);
+    }
 }
