@@ -6,11 +6,13 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonValue;
 import com.ygames.ysoccer.competitions.Competition;
+import com.ygames.ysoccer.events.KeeperHoldEvent;
 import com.ygames.ysoccer.framework.Ai;
 import com.ygames.ysoccer.framework.Assets;
 import com.ygames.ysoccer.framework.Color2;
 import com.ygames.ysoccer.framework.Color3;
 import com.ygames.ysoccer.framework.EMath;
+import com.ygames.ysoccer.framework.EventManager;
 import com.ygames.ysoccer.framework.GLColor;
 import com.ygames.ysoccer.framework.GLGame;
 import com.ygames.ysoccer.framework.InputDevice;
@@ -454,7 +456,7 @@ public class Player implements Json.Serializable {
 
                 case CATCH:
                     if (ball.v > 180) {
-                        Assets.Sounds.hold.play(0.5f * Assets.Sounds.volume / 100f);
+                        EventManager.publish(new KeeperHoldEvent());
                     }
                     ball.v = 0;
                     ball.vz = 0;

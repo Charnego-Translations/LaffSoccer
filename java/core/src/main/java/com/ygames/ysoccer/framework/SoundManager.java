@@ -3,6 +3,7 @@ package com.ygames.ysoccer.framework;
 import com.ygames.ysoccer.events.BallBounceEvent;
 import com.ygames.ysoccer.events.BallKickEvent;
 import com.ygames.ysoccer.events.CrowdChantsEvent;
+import com.ygames.ysoccer.events.KeeperHoldEvent;
 import com.ygames.ysoccer.events.MatchIntroEvent;
 import com.ygames.ysoccer.events.PeriodStopEvent;
 import com.ygames.ysoccer.events.WhistleEvent;
@@ -15,10 +16,6 @@ public class SoundManager {
             Assets.Sounds.crowd.setLooping(Assets.Sounds.crowdId, true);
         });
 
-        EventManager.subscribe(WhistleEvent.class, whistleEvent -> {
-            Assets.Sounds.whistle.play(Assets.Sounds.volume / 100f);
-        });
-
         EventManager.subscribe(BallKickEvent.class, ballKickEvent -> {
             Assets.Sounds.kick.play(ballKickEvent.strength * Assets.Sounds.volume / 100f);
         });
@@ -27,12 +24,20 @@ public class SoundManager {
             Assets.Sounds.chant.play(crowdChantsEvent.enabled ? Assets.Sounds.volume / 100f : 0);
         });
 
+        EventManager.subscribe(KeeperHoldEvent.class, keeperHoldEvent -> {
+            Assets.Sounds.hold.play(0.5f * Assets.Sounds.volume / 100f);
+        });
+
         EventManager.subscribe(BallBounceEvent.class, ballBounceEvent -> {
             Assets.Sounds.bounce.play(Math.min(ballBounceEvent.speed / 250, 1) * Assets.Sounds.volume / 100f);
         });
 
         EventManager.subscribe(PeriodStopEvent.class, periodStopEvent -> {
             Assets.Sounds.end.play(Assets.Sounds.volume / 100f);
+        });
+
+        EventManager.subscribe(WhistleEvent.class, whistleEvent -> {
+            Assets.Sounds.whistle.play(Assets.Sounds.volume / 100f);
         });
     }
 }
