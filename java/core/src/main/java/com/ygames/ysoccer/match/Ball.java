@@ -2,8 +2,10 @@ package com.ygames.ysoccer.match;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
+import com.ygames.ysoccer.events.BallBounceEvent;
 import com.ygames.ysoccer.framework.Assets;
 import com.ygames.ysoccer.framework.EMath;
+import com.ygames.ysoccer.framework.EventManager;
 import com.ygames.ysoccer.framework.GLGame;
 
 import static com.ygames.ysoccer.framework.GLGame.LogType.BALL;
@@ -122,7 +124,7 @@ public class Ball {
         updatePhysics(true);
 
         if (bouncing_speed > 0) {
-            Assets.Sounds.bounce.play(Math.min(bouncing_speed / 250, 1) * Assets.Sounds.volume / 100f);
+            EventManager.publish(new BallBounceEvent(bouncing_speed));
             bouncing_speed = 0;
         }
 
