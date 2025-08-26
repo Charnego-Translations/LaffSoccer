@@ -3,6 +3,7 @@ package com.ygames.ysoccer.framework;
 import com.ygames.ysoccer.events.BallBounceEvent;
 import com.ygames.ysoccer.events.BallCollisionEvent;
 import com.ygames.ysoccer.events.BallKickEvent;
+import com.ygames.ysoccer.events.CelebrationEvent;
 import com.ygames.ysoccer.events.CrowdChantsEvent;
 import com.ygames.ysoccer.events.HomeGoalEvent;
 import com.ygames.ysoccer.events.KeeperDeflectEvent;
@@ -23,6 +24,10 @@ public class SoundManager {
 
         EventManager.subscribe(BallKickEvent.class, ballKickEvent -> {
             Assets.Sounds.kick.play(ballKickEvent.strength * Assets.Sounds.volume / 100f);
+        });
+
+        EventManager.subscribe(CelebrationEvent.class, celebrationEvent -> {
+            Assets.Sounds.celebration.play(Assets.Sounds.volume / 100f);
         });
 
         EventManager.subscribe(CrowdChantsEvent.class, crowdChantsEvent -> {

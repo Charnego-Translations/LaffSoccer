@@ -1,7 +1,8 @@
 package com.ygames.ysoccer.match;
 
-import com.ygames.ysoccer.framework.Assets;
+import com.ygames.ysoccer.events.CelebrationEvent;
 import com.ygames.ysoccer.framework.EMath;
+import com.ygames.ysoccer.framework.EventManager;
 import com.ygames.ysoccer.framework.GLGame;
 
 import java.util.ArrayList;
@@ -52,10 +53,10 @@ class MatchStateFinalCelebration extends MatchState {
         scene.setPointOfInterest(0, side * GOAL_LINE);
 
         scene.actionCamera
-                .setMode(ActionCamera.Mode.REACH_TARGET)
-                .setTarget(0, side * GOAL_LINE / 2f)
-                .setSpeed(NORMAL)
-                .setLimited(false, false);
+            .setMode(ActionCamera.Mode.REACH_TARGET)
+            .setTarget(0, side * GOAL_LINE / 2f)
+            .setSpeed(NORMAL)
+            .setLimited(false, false);
     }
 
     @Override
@@ -77,7 +78,7 @@ class MatchStateFinalCelebration extends MatchState {
                         winner.setLineupState(STATE_FINAL_CELEBRATION);
                         scene.actionCamera.setTarget(0, side * GOAL_LINE);
                         step = Step.CELEBRATING;
-                        Assets.Sounds.celebration.play(Assets.Sounds.volume / 100f);
+                        EventManager.publish(new CelebrationEvent());
                     }
                     break;
 
