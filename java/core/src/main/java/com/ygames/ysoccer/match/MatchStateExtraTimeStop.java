@@ -1,6 +1,8 @@
 package com.ygames.ysoccer.match;
 
+import com.ygames.ysoccer.events.PeriodStopEvent;
 import com.ygames.ysoccer.framework.Assets;
+import com.ygames.ysoccer.framework.EventManager;
 import com.ygames.ysoccer.framework.GLGame;
 
 import static com.ygames.ysoccer.match.ActionCamera.Mode.FOLLOW_BALL;
@@ -30,7 +32,7 @@ class MatchStateExtraTimeStop extends MatchState {
     void entryActions() {
         super.entryActions();
 
-        Assets.Sounds.end.play(Assets.Sounds.volume / 100f);
+        EventManager.publish(new PeriodStopEvent());
 
         scene.resetAutomaticInputDevices();
         scene.setPlayersState(STATE_IDLE, null);
@@ -41,8 +43,8 @@ class MatchStateExtraTimeStop extends MatchState {
         super.onResume();
 
         scene.actionCamera
-                .setMode(FOLLOW_BALL)
-                .setSpeed(NORMAL);
+            .setMode(FOLLOW_BALL)
+            .setSpeed(NORMAL);
     }
 
     @Override

@@ -1,6 +1,8 @@
 package com.ygames.ysoccer.match;
 
+import com.ygames.ysoccer.events.PeriodStopEvent;
 import com.ygames.ysoccer.framework.Assets;
+import com.ygames.ysoccer.framework.EventManager;
 import com.ygames.ysoccer.framework.GLGame;
 
 import static com.ygames.ysoccer.match.ActionCamera.Mode.FOLLOW_BALL;
@@ -36,7 +38,7 @@ class MatchStateFullTimeStop extends MatchState {
         scene.clock = scene.length;
         fsm.matchCompleted = true;
 
-        Assets.Sounds.end.play(Assets.Sounds.volume / 100f);
+        EventManager.publish(new PeriodStopEvent());
 
         scene.resetAutomaticInputDevices();
         scene.setPlayersState(STATE_IDLE, null);

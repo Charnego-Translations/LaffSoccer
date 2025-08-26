@@ -4,6 +4,7 @@ import com.ygames.ysoccer.events.BallBounceEvent;
 import com.ygames.ysoccer.events.BallKickEvent;
 import com.ygames.ysoccer.events.CrowdChantsEvent;
 import com.ygames.ysoccer.events.MatchIntroEvent;
+import com.ygames.ysoccer.events.PeriodStopEvent;
 import com.ygames.ysoccer.events.WhistleEvent;
 
 public class SoundManager {
@@ -28,6 +29,10 @@ public class SoundManager {
 
         EventManager.subscribe(BallBounceEvent.class, ballBounceEvent -> {
             Assets.Sounds.bounce.play(Math.min(ballBounceEvent.speed / 250, 1) * Assets.Sounds.volume / 100f);
+        });
+
+        EventManager.subscribe(PeriodStopEvent.class, periodStopEvent -> {
+            Assets.Sounds.end.play(Assets.Sounds.volume / 100f);
         });
     }
 }
