@@ -1,26 +1,69 @@
 package com.ygames.ysoccer.server;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
+import com.esotericsoftware.kryonet.Connection;
+import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.kryonet.Server;
+import com.ygames.ysoccer.framework.Settings;
 import com.ygames.ysoccer.match.Match;
+import com.ygames.ysoccer.network.dto.MatchSetupDto;
+import com.ygames.ysoccer.network.dto.MatchUpdateDto;
+import com.ygames.ysoccer.network.mappers.MatchMapper;
+
+import java.io.IOException;
 
 public class ServerScreen extends ScreenAdapter {
 
     private final Server server;
     private final Match match;
     private boolean matchStarted;
+    private boolean connected;
+    private boolean matchEnded;
 
     public ServerScreen(Server server, Match match) {
         this.server = server;
         this.match = match;
+
+        match.listener = new Match.MatchListener() {
+            public void quitMatch(boolean matchCompleted) {
+                quit(matchCompleted);
+            }
+        };
+
+        server.addListener(new Listener() {
+            public void connected(Connection connection) {
+                MatchSetupDto matchSetupDto = MatchSetupDto.toDto(match);
+                server.sendToTCP(connection.getID(), matchSetupDto);
+                connected = true;
+            }
+        });
+
+        try {
+            server.bind(Settings.tcpPort, Settings.udpPort);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        server.start();
     }
 
     @Override
     public void render(float deltaTime) {
-        if (!matchStarted) {
+        if (!matchStarted && connected) {
             match.start();
             matchStarted = true;
+            Gdx.app.log("Server", "Match started");
         }
-        match.update(deltaTime);
+
+        if (matchStarted && !matchEnded) {
+            match.update(deltaTime);
+            MatchUpdateDto matchUpdateDto = MatchMapper.toUpdateDto(match);
+            server.sendToAllUDP(matchUpdateDto);
+        }
+    }
+
+    private void quit(boolean matchCompleted) {
+        matchEnded = true;
+        Gdx.app.log("Server", "Match ended");
     }
 }
