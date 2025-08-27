@@ -6,6 +6,7 @@ import com.ygames.ysoccer.match.Pitch;
 import com.ygames.ysoccer.match.SceneSettings;
 import com.ygames.ysoccer.network.dto.BallDto;
 import com.ygames.ysoccer.network.dto.CoachDto;
+import com.ygames.ysoccer.network.dto.CompetitionDto;
 import com.ygames.ysoccer.network.dto.FrameDataDto;
 import com.ygames.ysoccer.network.dto.KitDto;
 import com.ygames.ysoccer.network.dto.MatchDto;
@@ -35,5 +36,6 @@ public class Network {
         kryo.register(MatchSetupDto.class);
         kryo.register(MatchDto.class);
         kryo.register(MatchUpdateDto.class);
+        kryo.register(CompetitionDto.class);
     }
 }
