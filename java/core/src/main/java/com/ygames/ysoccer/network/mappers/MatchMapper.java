@@ -12,74 +12,76 @@ import static com.ygames.ysoccer.match.Match.HOME;
 public class MatchMapper {
 
     public static MatchDto toDto(Match match) {
-        MatchDto matchDto = new MatchDto();
-        matchDto.matchSettingsDto = MatchSettingsMapper.toDto(match.getSettings());
-        matchDto.light = match.light;
-        matchDto.ballDto = BallMapper.toDto(match.getBall());
-        matchDto.teamDto = new TeamDto[2];
-        matchDto.teamDto[HOME] = TeamMapper.toDto(match.team[HOME]);
-        matchDto.teamDto[AWAY] = TeamMapper.toDto(match.team[AWAY]);
-        matchDto.rank = match.rank;
-        matchDto.displayControlledPlayer = match.displayControlledPlayer;
-        matchDto.displayFoulMaker = match.displayFoulMaker;
-        matchDto.displayBallOwner = match.displayBallOwner;
-        matchDto.displayTime = match.displayTime;
-        matchDto.displayRadar = match.displayRadar;
-        matchDto.displayWindVane = match.displayWindVane;
-        matchDto.displayRosters = match.displayRosters;
-        matchDto.displayScore = match.displayScore;
-        matchDto.displayPenaltiesScore = match.displayPenaltiesScore;
-        matchDto.displayStatistics = match.displayStatistics;
-        matchDto.displayGoalScorer = match.displayGoalScorer;
-        matchDto.displayBenchPlayers = match.displayBenchPlayers;
-        matchDto.displayBenchFormation = match.displayBenchFormation;
-        matchDto.displayTacticsSwitch = match.displayTacticsSwitch;
-        matchDto.displayHelp = match.displayHelp;
-        matchDto.displayPause = match.displayPause;
-        matchDto.displayReplayGui = match.displayReplayGui;
-        matchDto.displayHighlightsGui = match.displayHighlightsGui;
-        matchDto.displayReplayControls = match.displayReplayControls;
-        return matchDto;
+        MatchDto dto = new MatchDto();
+        dto.matchSettingsDto = MatchSettingsMapper.toDto(match.getSettings());
+        dto.light = match.light;
+        dto.ballDto = BallMapper.toDto(match.getBall());
+        dto.teamDto = new TeamDto[2];
+        dto.teamDto[HOME] = TeamMapper.toDto(match.team[HOME]);
+        dto.teamDto[AWAY] = TeamMapper.toDto(match.team[AWAY]);
+        dto.rank = match.rank;
+        dto.displayControlledPlayer = match.displayControlledPlayer;
+        dto.displayFoulMaker = match.displayFoulMaker;
+        dto.displayBallOwner = match.displayBallOwner;
+        dto.displayTime = match.displayTime;
+        dto.displayRadar = match.displayRadar;
+        dto.displayWindVane = match.displayWindVane;
+        dto.displayRosters = match.displayRosters;
+        dto.displayScore = match.displayScore;
+        dto.displayPenaltiesScore = match.displayPenaltiesScore;
+        dto.displayStatistics = match.displayStatistics;
+        dto.displayGoalScorer = match.displayGoalScorer;
+        dto.displayBenchPlayers = match.displayBenchPlayers;
+        dto.displayBenchFormation = match.displayBenchFormation;
+        dto.displayTacticsSwitch = match.displayTacticsSwitch;
+        dto.displayHelp = match.displayHelp;
+        dto.displayPause = match.displayPause;
+        dto.displayReplayGui = match.displayReplayGui;
+        dto.displayHighlightsGui = match.displayHighlightsGui;
+        dto.displayReplayControls = match.displayReplayControls;
+        return dto;
     }
 
     public static MatchUpdateDto toUpdateDto(Match match) {
-        MatchUpdateDto matchUpdateDto = new MatchUpdateDto();
-        matchUpdateDto.light = match.light;
-        return matchUpdateDto;
+        MatchUpdateDto dto = new MatchUpdateDto();
+        dto.light = match.light;
+        dto.displayRosters = match.displayRosters;
+        return dto;
     }
 
-    public static Match fromDto(MatchDto matchDto) {
+    public static Match fromDto(MatchDto dto) {
         Match match = new Match();
-        MatchSettings matchSettings = MatchSettingsMapper.fromDto(matchDto.matchSettingsDto);
+        MatchSettings matchSettings = MatchSettingsMapper.fromDto(dto.matchSettingsDto);
         match.setSettings(matchSettings);
-        match.light = matchDto.light;
-        match.setBall(BallMapper.fromDto(matchDto.ballDto, matchSettings));
-        match.setTeam(HOME, TeamMapper.fromDto(matchDto.teamDto[HOME]));
-        match.setTeam(AWAY, TeamMapper.fromDto(matchDto.teamDto[AWAY]));
-        match.rank = matchDto.rank;
-        match.displayControlledPlayer = matchDto.displayControlledPlayer;
-        match.displayFoulMaker = matchDto.displayFoulMaker;
-        match.displayBallOwner = matchDto.displayBallOwner;
-        match.displayTime = matchDto.displayTime;
-        match.displayRadar = matchDto.displayRadar;
-        match.displayWindVane = matchDto.displayWindVane;
-        match.displayRosters = matchDto.displayRosters;
-        match.displayScore = matchDto.displayScore;
-        match.displayPenaltiesScore = matchDto.displayPenaltiesScore;
-        match.displayStatistics = matchDto.displayStatistics;
-        match.displayGoalScorer = matchDto.displayGoalScorer;
-        match.displayBenchPlayers = matchDto.displayBenchPlayers;
-        match.displayBenchFormation = matchDto.displayBenchFormation;
-        match.displayTacticsSwitch = matchDto.displayTacticsSwitch;
-        match.displayHelp = matchDto.displayHelp;
-        match.displayPause = matchDto.displayPause;
-        match.displayReplayGui = matchDto.displayReplayGui;
-        match.displayHighlightsGui = matchDto.displayHighlightsGui;
-        match.displayReplayControls = matchDto.displayReplayControls;
+        match.light = dto.light;
+        match.setBall(BallMapper.fromDto(dto.ballDto, matchSettings));
+        match.setTeam(HOME, TeamMapper.fromDto(dto.teamDto[HOME]));
+        match.setTeam(AWAY, TeamMapper.fromDto(dto.teamDto[AWAY]));
+        match.rank = dto.rank;
+        match.displayControlledPlayer = dto.displayControlledPlayer;
+        match.displayFoulMaker = dto.displayFoulMaker;
+        match.displayBallOwner = dto.displayBallOwner;
+        match.displayTime = dto.displayTime;
+        match.displayRadar = dto.displayRadar;
+        match.displayWindVane = dto.displayWindVane;
+        match.displayRosters = dto.displayRosters;
+        match.displayScore = dto.displayScore;
+        match.displayPenaltiesScore = dto.displayPenaltiesScore;
+        match.displayStatistics = dto.displayStatistics;
+        match.displayGoalScorer = dto.displayGoalScorer;
+        match.displayBenchPlayers = dto.displayBenchPlayers;
+        match.displayBenchFormation = dto.displayBenchFormation;
+        match.displayTacticsSwitch = dto.displayTacticsSwitch;
+        match.displayHelp = dto.displayHelp;
+        match.displayPause = dto.displayPause;
+        match.displayReplayGui = dto.displayReplayGui;
+        match.displayHighlightsGui = dto.displayHighlightsGui;
+        match.displayReplayControls = dto.displayReplayControls;
         return match;
     }
 
-    public static void updateFromDto(Match match, MatchUpdateDto matchUpdateDto) {
-        match.light = matchUpdateDto.light;
+    public static void updateFromDto(Match match, MatchUpdateDto dto) {
+        match.light = dto.light;
+        match.displayRosters = dto.displayRosters;
     }
 }
