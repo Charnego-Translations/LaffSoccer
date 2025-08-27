@@ -12,29 +12,33 @@ import java.util.ArrayList;
 public class TeamMapper {
 
     public static TeamDto toDto(Team team) {
-        TeamDto teamDto = new TeamDto();
-        teamDto.name = team.name;
-        teamDto.coachDto = CoachMapper.toDto(team.coach);
-        teamDto.kits = new ArrayList<>();
+        TeamDto dto = new TeamDto();
+        dto.name = team.name;
+        dto.city = team.city;
+        dto.stadium = team.stadium;
+        dto.coachDto = CoachMapper.toDto(team.coach);
+        dto.kits = new ArrayList<>();
         for (Kit kit : team.kits) {
-            teamDto.kits.add(KitMapper.toDto(kit));
+            dto.kits.add(KitMapper.toDto(kit));
         }
-        teamDto.lineup = new ArrayList<>();
+        dto.lineup = new ArrayList<>();
         for (Player player : team.lineup) {
-            teamDto.lineup.add(PlayerMapper.toDto(player));
+            dto.lineup.add(PlayerMapper.toDto(player));
         }
-        return teamDto;
+        return dto;
     }
 
-    public static Team fromDto(TeamDto teamDto) {
+    public static Team fromDto(TeamDto dto) {
         Team team = new Team();
-        team.name = teamDto.name;
-        team.coach = CoachMapper.fromDto(teamDto.coachDto);
-        for (KitDto kitDto : teamDto.kits) {
+        team.name = dto.name;
+        team.city = dto.city;
+        team.stadium = dto.stadium;
+        team.coach = CoachMapper.fromDto(dto.coachDto);
+        for (KitDto kitDto : dto.kits) {
             team.kits.add(KitMapper.fromDto(kitDto));
         }
         team.lineup = new ArrayList<>();
-        for (PlayerDto playerDto : teamDto.lineup) {
+        for (PlayerDto playerDto : dto.lineup) {
             team.lineup.add(PlayerMapper.fromDto(playerDto));
         }
         return team;
