@@ -5,6 +5,7 @@ public class MatchDto {
     public int light;
     public BallDto ballDto;
     public TeamDto[] teamDto;
+    public CompetitionDto competitionDto;
     public int rank;
     public boolean displayControlledPlayer;
     public boolean displayFoulMaker;

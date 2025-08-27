@@ -19,6 +19,7 @@ public class MatchMapper {
         dto.teamDto = new TeamDto[2];
         dto.teamDto[HOME] = TeamMapper.toDto(match.team[HOME]);
         dto.teamDto[AWAY] = TeamMapper.toDto(match.team[AWAY]);
+        dto.competitionDto = CompetitionMapper.toDto(match.competition);
         dto.rank = match.rank;
         dto.displayControlledPlayer = match.displayControlledPlayer;
         dto.displayFoulMaker = match.displayFoulMaker;
@@ -57,6 +58,7 @@ public class MatchMapper {
         match.setBall(BallMapper.fromDto(dto.ballDto, matchSettings));
         match.setTeam(HOME, TeamMapper.fromDto(dto.teamDto[HOME]));
         match.setTeam(AWAY, TeamMapper.fromDto(dto.teamDto[AWAY]));
+        match.competition = CompetitionMapper.fromDto(dto.competitionDto);
         match.rank = dto.rank;
         match.displayControlledPlayer = dto.displayControlledPlayer;
         match.displayFoulMaker = dto.displayFoulMaker;
