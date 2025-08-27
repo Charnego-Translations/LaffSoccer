@@ -17,6 +17,8 @@ import com.ygames.ysoccer.gui.Label;
 import com.ygames.ysoccer.gui.Widget;
 import com.ygames.ysoccer.network.Network;
 import com.ygames.ysoccer.network.dto.MatchSetupDto;
+import com.ygames.ysoccer.network.dto.MatchUpdateDto;
+import com.ygames.ysoccer.network.mappers.MatchMapper;
 
 import java.io.IOException;
 
@@ -55,6 +57,14 @@ public class OnlineMatchConnect extends GLScreen {
                         game.setScreen(onlineMatchScreen);
                     });
                 }
+
+                if (object instanceof MatchUpdateDto) {
+                    Gdx.app.postRunnable(() -> {
+                        MatchUpdateDto matchUpdateDto = (MatchUpdateDto) object;
+                        MatchMapper.updateFromDto(onlineMatchScreen.match, matchUpdateDto);
+                    });
+                }
+
             }
         });
 

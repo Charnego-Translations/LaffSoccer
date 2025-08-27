@@ -3,12 +3,14 @@ package com.ygames.ysoccer.network.mappers;
 import com.ygames.ysoccer.match.Match;
 import com.ygames.ysoccer.match.MatchSettings;
 import com.ygames.ysoccer.network.dto.MatchDto;
+import com.ygames.ysoccer.network.dto.MatchUpdateDto;
 import com.ygames.ysoccer.network.dto.TeamDto;
 
 import static com.ygames.ysoccer.match.Match.AWAY;
 import static com.ygames.ysoccer.match.Match.HOME;
 
 public class MatchMapper {
+
     public static MatchDto toDto(Match match) {
         MatchDto matchDto = new MatchDto();
         matchDto.matchSettingsDto = MatchSettingsMapper.toDto(match.getSettings());
@@ -40,6 +42,12 @@ public class MatchMapper {
         return matchDto;
     }
 
+    public static MatchUpdateDto toUpdateDto(Match match) {
+        MatchUpdateDto matchUpdateDto = new MatchUpdateDto();
+        matchUpdateDto.light = match.light;
+        return matchUpdateDto;
+    }
+
     public static Match fromDto(MatchDto matchDto) {
         Match match = new Match();
         MatchSettings matchSettings = MatchSettingsMapper.fromDto(matchDto.matchSettingsDto);
@@ -69,5 +77,9 @@ public class MatchMapper {
         match.displayHighlightsGui = matchDto.displayHighlightsGui;
         match.displayReplayControls = matchDto.displayReplayControls;
         return match;
+    }
+
+    public static void updateFromDto(Match match, MatchUpdateDto matchUpdateDto) {
+        match.light = matchUpdateDto.light;
     }
 }
