@@ -430,7 +430,7 @@ public class MatchRenderer extends SceneRenderer<Match> {
         for (int tm = HOME; tm <= AWAY; tm++) {
             y = t + 16 * h / 42;
             for (int pos = 0; pos < Const.TEAM_SIZE; pos++) {
-                Player player = scene.team[tm].playerAtPosition(pos);
+                Player player = scene.team[tm].lineupAtPosition(pos);
                 Assets.font10.draw(batch, player.number, l + tm * w / 2 + w / 10, y, Font.Align.CENTER);
                 Assets.font10.draw(batch, player.shirtName, l + tm * w / 2 + w / 7, y, Font.Align.LEFT);
                 y = y + h / 23;
