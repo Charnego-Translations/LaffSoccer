@@ -33,7 +33,7 @@ public class SoundManager {
     private static Sound whistle;
     public static int volume;
 
-    SoundManager() {
+    void subscribeEvents() {
         EventManager.subscribe(BallBounceEvent.class, ballBounceEvent -> {
             bounce.play(Math.min(ballBounceEvent.speed / 250, 1) * volume / 100f);
         });

@@ -89,6 +89,8 @@ public class GLGame extends Game {
         restoreSaveGame();
 
         soundManager = new SoundManager();
+        soundManager.subscribeEvents();
+        SoundManager.volume = settings.soundVolume;
     }
 
     private void loadAssets() {

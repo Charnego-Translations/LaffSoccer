@@ -6,6 +6,7 @@ import com.ygames.ysoccer.framework.Font;
 import com.ygames.ysoccer.framework.GLGame;
 import com.ygames.ysoccer.framework.GLScreen;
 import com.ygames.ysoccer.framework.Settings;
+import com.ygames.ysoccer.framework.SoundManager;
 import com.ygames.ysoccer.gui.Button;
 import com.ygames.ysoccer.gui.Widget;
 import com.ygames.ysoccer.match.SceneRenderer;
@@ -343,6 +344,7 @@ class MatchOptions extends GLScreen {
 
         private void updateSfxVolume(int n) {
             game.settings.soundVolume = EMath.slide(game.settings.soundVolume, 0, 100, 10 * n);
+            SoundManager.volume = game.settings.soundVolume;
             setDirty(true);
         }
     }
