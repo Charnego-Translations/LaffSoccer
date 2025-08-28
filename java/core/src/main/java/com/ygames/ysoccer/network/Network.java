@@ -10,6 +10,7 @@ import com.ygames.ysoccer.network.dto.CompetitionDto;
 import com.ygames.ysoccer.network.dto.FrameDataDto;
 import com.ygames.ysoccer.network.dto.KitDto;
 import com.ygames.ysoccer.network.dto.MatchDto;
+import com.ygames.ysoccer.network.dto.events.MatchIntroEventDto;
 import com.ygames.ysoccer.network.dto.MatchSettingsDto;
 import com.ygames.ysoccer.network.dto.MatchSetupDto;
 import com.ygames.ysoccer.network.dto.MatchUpdateDto;
@@ -37,5 +38,8 @@ public class Network {
         kryo.register(MatchDto.class);
         kryo.register(MatchUpdateDto.class);
         kryo.register(CompetitionDto.class);
+
+        // events
+        kryo.register(MatchIntroEventDto.class);
     }
 }
