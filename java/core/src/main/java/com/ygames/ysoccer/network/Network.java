@@ -10,12 +10,13 @@ import com.ygames.ysoccer.network.dto.CompetitionDto;
 import com.ygames.ysoccer.network.dto.FrameDataDto;
 import com.ygames.ysoccer.network.dto.KitDto;
 import com.ygames.ysoccer.network.dto.MatchDto;
-import com.ygames.ysoccer.network.dto.events.MatchIntroEventDto;
 import com.ygames.ysoccer.network.dto.MatchSettingsDto;
 import com.ygames.ysoccer.network.dto.MatchSetupDto;
 import com.ygames.ysoccer.network.dto.MatchUpdateDto;
 import com.ygames.ysoccer.network.dto.PlayerDto;
 import com.ygames.ysoccer.network.dto.TeamDto;
+import com.ygames.ysoccer.network.dto.events.BallBounceEventDto;
+import com.ygames.ysoccer.network.dto.events.MatchIntroEventDto;
 import com.ygames.ysoccer.network.dto.events.WhistleEventDto;
 
 import java.util.ArrayList;
@@ -41,6 +42,7 @@ public class Network {
         kryo.register(CompetitionDto.class);
 
         // events
+        kryo.register(BallBounceEventDto.class);
         kryo.register(MatchIntroEventDto.class);
         kryo.register(WhistleEventDto.class);
     }

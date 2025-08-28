@@ -6,6 +6,7 @@ import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.minlog.Log;
+import com.ygames.ysoccer.events.BallBounceEvent;
 import com.ygames.ysoccer.events.MatchIntroEvent;
 import com.ygames.ysoccer.events.WhistleEvent;
 import com.ygames.ysoccer.framework.EventManager;
@@ -21,6 +22,7 @@ import com.ygames.ysoccer.gui.Widget;
 import com.ygames.ysoccer.network.Network;
 import com.ygames.ysoccer.network.dto.MatchSetupDto;
 import com.ygames.ysoccer.network.dto.MatchUpdateDto;
+import com.ygames.ysoccer.network.dto.events.BallBounceEventDto;
 import com.ygames.ysoccer.network.dto.events.MatchIntroEventDto;
 import com.ygames.ysoccer.network.dto.events.WhistleEventDto;
 import com.ygames.ysoccer.network.mappers.MatchMapper;
@@ -67,6 +69,13 @@ public class OnlineMatchConnect extends GLScreen {
                     Gdx.app.postRunnable(() -> {
                         MatchUpdateDto matchUpdateDto = (MatchUpdateDto) object;
                         MatchMapper.updateFromDto(onlineMatchScreen.match, matchUpdateDto);
+                    });
+                }
+
+                if (object instanceof BallBounceEventDto) {
+                    Gdx.app.postRunnable(() -> {
+                        BallBounceEventDto ballBounceEventDto = (BallBounceEventDto) object;
+                        EventManager.publish(new BallBounceEvent(ballBounceEventDto.speed));
                     });
                 }
 
