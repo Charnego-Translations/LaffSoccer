@@ -25,6 +25,7 @@ public class ServerGame extends Game {
         Log.set(LEVEL_TRACE);
         Server server = new Server();
         Network.register(server);
+        NetworkManager.subscribe(server);
 
         Assets.loadCore(settings);
 
