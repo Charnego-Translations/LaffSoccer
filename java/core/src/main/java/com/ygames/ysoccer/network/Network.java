@@ -16,6 +16,7 @@ import com.ygames.ysoccer.network.dto.MatchSetupDto;
 import com.ygames.ysoccer.network.dto.MatchUpdateDto;
 import com.ygames.ysoccer.network.dto.PlayerDto;
 import com.ygames.ysoccer.network.dto.TeamDto;
+import com.ygames.ysoccer.network.dto.events.WhistleEventDto;
 
 import java.util.ArrayList;
 
@@ -41,5 +42,6 @@ public class Network {
 
         // events
         kryo.register(MatchIntroEventDto.class);
+        kryo.register(WhistleEventDto.class);
     }
 }

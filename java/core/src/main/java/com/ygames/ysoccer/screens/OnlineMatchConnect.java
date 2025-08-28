@@ -7,6 +7,7 @@ import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.minlog.Log;
 import com.ygames.ysoccer.events.MatchIntroEvent;
+import com.ygames.ysoccer.events.WhistleEvent;
 import com.ygames.ysoccer.framework.EventManager;
 import com.ygames.ysoccer.framework.Font;
 import com.ygames.ysoccer.framework.GLGame;
@@ -18,9 +19,10 @@ import com.ygames.ysoccer.gui.InputButton;
 import com.ygames.ysoccer.gui.Label;
 import com.ygames.ysoccer.gui.Widget;
 import com.ygames.ysoccer.network.Network;
-import com.ygames.ysoccer.network.dto.events.MatchIntroEventDto;
 import com.ygames.ysoccer.network.dto.MatchSetupDto;
 import com.ygames.ysoccer.network.dto.MatchUpdateDto;
+import com.ygames.ysoccer.network.dto.events.MatchIntroEventDto;
+import com.ygames.ysoccer.network.dto.events.WhistleEventDto;
 import com.ygames.ysoccer.network.mappers.MatchMapper;
 
 import java.io.IOException;
@@ -71,6 +73,12 @@ public class OnlineMatchConnect extends GLScreen {
                 if (object instanceof MatchIntroEventDto) {
                     Gdx.app.postRunnable(() -> {
                         EventManager.publish(new MatchIntroEvent());
+                    });
+                }
+
+                if (object instanceof WhistleEventDto) {
+                    Gdx.app.postRunnable(() -> {
+                        EventManager.publish(new WhistleEvent());
                     });
                 }
             }
