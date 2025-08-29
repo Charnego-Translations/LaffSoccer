@@ -20,6 +20,7 @@ import com.ygames.ysoccer.network.dto.events.BallCollisionEventDto;
 import com.ygames.ysoccer.network.dto.events.BallKickEventDto;
 import com.ygames.ysoccer.network.dto.events.CelebrationEventDto;
 import com.ygames.ysoccer.network.dto.events.CrowdChantsEventDto;
+import com.ygames.ysoccer.network.dto.events.HomeGoalEventDto;
 import com.ygames.ysoccer.network.dto.events.MatchIntroEventDto;
 import com.ygames.ysoccer.network.dto.events.WhistleEventDto;
 
@@ -51,6 +52,7 @@ public class Network {
         kryo.register(BallKickEventDto.class);
         kryo.register(CelebrationEventDto.class);
         kryo.register(CrowdChantsEventDto.class);
+        kryo.register(HomeGoalEventDto.class);
         kryo.register(MatchIntroEventDto.class);
         kryo.register(WhistleEventDto.class);
     }
