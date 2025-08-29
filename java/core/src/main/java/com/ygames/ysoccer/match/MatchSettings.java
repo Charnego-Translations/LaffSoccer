@@ -12,7 +12,6 @@ public class MatchSettings extends SceneSettings {
     public int benchSize;
     boolean autoReplays;
     public boolean radar;
-    boolean crowdChants;
 
     public MatchSettings() {
     }
@@ -35,7 +34,6 @@ public class MatchSettings extends SceneSettings {
         benchSize = competition.benchSize;
         autoReplays = gameSettings.autoReplays;
         radar = gameSettings.radar;
-        crowdChants = true;
         commentary = gameSettings.commentary;
     }
 }

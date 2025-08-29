@@ -87,7 +87,7 @@ class MatchStateMain extends MatchState {
                         scene.chantSwitch = false;
                         scene.nextChant = scene.clock + (6 + Assets.random.nextInt(6)) * 1000;
                     } else {
-                        EventManager.publish(new CrowdChantsEvent(scene.getSettings().crowdChants));
+                        EventManager.publish(new CrowdChantsEvent());
                         scene.chantSwitch = true;
                         scene.nextChant = scene.clock + 8000;
                     }

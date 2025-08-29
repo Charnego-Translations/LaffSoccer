@@ -31,7 +31,9 @@ public class SoundManager {
     private static Sound post;
     private static Sound end;
     private static Sound whistle;
+
     public static int volume;
+    public static boolean crowdChantsEnabled = true;
 
     void subscribeEvents() {
         EventManager.subscribe(BallBounceEvent.class, ballBounceEvent -> {
@@ -51,7 +53,7 @@ public class SoundManager {
         });
 
         EventManager.subscribe(CrowdChantsEvent.class, crowdChantsEvent -> {
-            chant.play(crowdChantsEvent.enabled ? volume / 100f : 0);
+            if (crowdChantsEnabled) chant.play(volume / 100f);
         });
 
         EventManager.subscribe(HomeGoalEvent.class, homeGoalEvent -> {

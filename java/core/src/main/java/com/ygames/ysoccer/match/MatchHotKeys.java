@@ -63,12 +63,12 @@ public class MatchHotKeys extends SceneHotKeys {
         }
 
         if (Gdx.input.isKeyPressed(F5) && !keyCrowdChants) {
-            getMatch().getSettings().crowdChants = !getMatch().getSettings().crowdChants;
+            SoundManager.crowdChantsEnabled = !SoundManager.crowdChantsEnabled;
             SoundManager.setIntroVolume();
             SoundManager.setCrowdVolume();
 
             message = gettext("MATCH OPTIONS.CROWD CHANTS") + " ";
-            if (getMatch().getSettings().crowdChants) {
+            if (SoundManager.crowdChantsEnabled) {
                 message += gettext("MATCH OPTIONS.CROWD CHANTS.ON");
             } else {
                 message += gettext("MATCH OPTIONS.CROWD CHANTS.OFF");
