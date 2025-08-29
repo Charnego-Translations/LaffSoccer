@@ -8,6 +8,7 @@ import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.minlog.Log;
 import com.ygames.ysoccer.events.BallBounceEvent;
 import com.ygames.ysoccer.events.BallCollisionEvent;
+import com.ygames.ysoccer.events.BallKickEvent;
 import com.ygames.ysoccer.events.MatchIntroEvent;
 import com.ygames.ysoccer.events.WhistleEvent;
 import com.ygames.ysoccer.framework.EventManager;
@@ -25,6 +26,7 @@ import com.ygames.ysoccer.network.dto.MatchSetupDto;
 import com.ygames.ysoccer.network.dto.MatchUpdateDto;
 import com.ygames.ysoccer.network.dto.events.BallBounceEventDto;
 import com.ygames.ysoccer.network.dto.events.BallCollisionEventDto;
+import com.ygames.ysoccer.network.dto.events.BallKickEventDto;
 import com.ygames.ysoccer.network.dto.events.MatchIntroEventDto;
 import com.ygames.ysoccer.network.dto.events.WhistleEventDto;
 import com.ygames.ysoccer.network.mappers.MatchMapper;
@@ -80,6 +82,9 @@ public class OnlineMatchConnect extends GLScreen {
 
                 if (object instanceof BallCollisionEventDto)
                     Gdx.app.postRunnable(() -> EventManager.publish(new BallCollisionEvent(((BallCollisionEventDto) object).strength)));
+
+                if (object instanceof BallKickEventDto)
+                    Gdx.app.postRunnable(() -> EventManager.publish(new BallKickEvent(((BallKickEventDto) object).strength)));
 
                 if (object instanceof MatchIntroEventDto)
                     Gdx.app.postRunnable(() -> EventManager.publish(new MatchIntroEvent()));
