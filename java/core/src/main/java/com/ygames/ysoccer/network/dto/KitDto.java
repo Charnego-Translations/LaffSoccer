@@ -1,6 +1,7 @@
 package com.ygames.ysoccer.network.dto;
 
 public class KitDto {
+
     public String style;
     public int shirt1;
     public int shirt2;

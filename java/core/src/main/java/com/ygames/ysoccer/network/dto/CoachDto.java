@@ -1,6 +1,7 @@
 package com.ygames.ysoccer.network.dto;
 
 public class CoachDto {
+
     public String name;
     public int teamIndex;
     public float x;

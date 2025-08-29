@@ -1,6 +1,7 @@
 package com.ygames.ysoccer.network.dto;
 
 public class MatchDto {
+
     public MatchSettingsDto matchSettingsDto;
     public int light;
     public BallDto ballDto;
