@@ -15,6 +15,7 @@ import com.ygames.ysoccer.events.HomeGoalEvent;
 import com.ygames.ysoccer.events.KeeperDeflectEvent;
 import com.ygames.ysoccer.events.KeeperHoldEvent;
 import com.ygames.ysoccer.events.MatchIntroEvent;
+import com.ygames.ysoccer.events.PeriodStopEvent;
 import com.ygames.ysoccer.events.WhistleEvent;
 import com.ygames.ysoccer.framework.EventManager;
 import com.ygames.ysoccer.framework.Font;
@@ -38,6 +39,7 @@ import com.ygames.ysoccer.network.dto.events.HomeGoalEventDto;
 import com.ygames.ysoccer.network.dto.events.KeeperDeflectEventDto;
 import com.ygames.ysoccer.network.dto.events.KeeperHoldEventDto;
 import com.ygames.ysoccer.network.dto.events.MatchIntroEventDto;
+import com.ygames.ysoccer.network.dto.events.PeriodStopEventDto;
 import com.ygames.ysoccer.network.dto.events.WhistleEventDto;
 import com.ygames.ysoccer.network.mappers.MatchMapper;
 
@@ -113,6 +115,9 @@ public class OnlineMatchConnect extends GLScreen {
 
                 if (object instanceof MatchIntroEventDto)
                     Gdx.app.postRunnable(() -> EventManager.publish(new MatchIntroEvent()));
+
+                if (object instanceof PeriodStopEventDto)
+                    Gdx.app.postRunnable(() -> EventManager.publish(new PeriodStopEvent()));
 
                 if (object instanceof WhistleEventDto)
                     Gdx.app.postRunnable(() -> EventManager.publish(new WhistleEvent()));

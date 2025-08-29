@@ -24,6 +24,7 @@ import com.ygames.ysoccer.network.dto.events.HomeGoalEventDto;
 import com.ygames.ysoccer.network.dto.events.KeeperDeflectEventDto;
 import com.ygames.ysoccer.network.dto.events.KeeperHoldEventDto;
 import com.ygames.ysoccer.network.dto.events.MatchIntroEventDto;
+import com.ygames.ysoccer.network.dto.events.PeriodStopEventDto;
 import com.ygames.ysoccer.network.dto.events.WhistleEventDto;
 
 import java.util.ArrayList;
@@ -58,6 +59,7 @@ public class Network {
         kryo.register(KeeperDeflectEventDto.class);
         kryo.register(KeeperHoldEventDto.class);
         kryo.register(MatchIntroEventDto.class);
+        kryo.register(PeriodStopEventDto.class);
         kryo.register(WhistleEventDto.class);
     }
 }

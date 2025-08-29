@@ -10,6 +10,7 @@ import com.ygames.ysoccer.events.HomeGoalEvent;
 import com.ygames.ysoccer.events.KeeperDeflectEvent;
 import com.ygames.ysoccer.events.KeeperHoldEvent;
 import com.ygames.ysoccer.events.MatchIntroEvent;
+import com.ygames.ysoccer.events.PeriodStopEvent;
 import com.ygames.ysoccer.events.WhistleEvent;
 import com.ygames.ysoccer.framework.EventManager;
 import com.ygames.ysoccer.network.dto.events.BallBounceEventDto;
@@ -21,6 +22,7 @@ import com.ygames.ysoccer.network.dto.events.HomeGoalEventDto;
 import com.ygames.ysoccer.network.dto.events.KeeperDeflectEventDto;
 import com.ygames.ysoccer.network.dto.events.KeeperHoldEventDto;
 import com.ygames.ysoccer.network.dto.events.MatchIntroEventDto;
+import com.ygames.ysoccer.network.dto.events.PeriodStopEventDto;
 import com.ygames.ysoccer.network.dto.events.WhistleEventDto;
 
 public class NetworkManager {
@@ -35,6 +37,7 @@ public class NetworkManager {
         EventManager.subscribe(KeeperDeflectEvent.class, keeperDeflectEvent -> server.sendToAllTCP(new KeeperDeflectEventDto()));
         EventManager.subscribe(KeeperHoldEvent.class, keeperHoldEvent -> server.sendToAllTCP(new KeeperHoldEventDto()));
         EventManager.subscribe(MatchIntroEvent.class, matchIntroEvent -> server.sendToAllTCP(new MatchIntroEventDto()));
+        EventManager.subscribe(PeriodStopEvent.class, periodStopEvent -> server.sendToAllTCP(new PeriodStopEventDto()));
         EventManager.subscribe(WhistleEvent.class, whistleEvent -> server.sendToAllTCP(new WhistleEventDto()));
     }
 }
