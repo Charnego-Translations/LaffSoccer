@@ -46,6 +46,7 @@ public class MatchMapper {
     public static MatchUpdateDto toUpdateDto(Match match) {
         MatchUpdateDto dto = new MatchUpdateDto();
         dto.light = match.light;
+        dto.displayWindVane = match.displayWindVane;
         dto.displayRosters = match.displayRosters;
         return dto;
     }
@@ -84,6 +85,7 @@ public class MatchMapper {
 
     public static void updateFromDto(Match match, MatchUpdateDto dto) {
         match.light = dto.light;
+        match.displayWindVane = dto.displayWindVane;
         match.displayRosters = dto.displayRosters;
     }
 }
