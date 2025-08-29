@@ -57,6 +57,7 @@ public class ServerScreen extends ScreenAdapter {
 
         if (matchStarted && !matchEnded) {
             match.update(deltaTime);
+            match.updateCurrentData();
             MatchUpdateDto matchUpdateDto = MatchMapper.toUpdateDto(match);
             server.sendToAllUDP(matchUpdateDto);
         }
