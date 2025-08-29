@@ -5,6 +5,7 @@ import com.ygames.ysoccer.match.MatchSettings;
 import com.ygames.ysoccer.network.dto.MatchDto;
 import com.ygames.ysoccer.network.dto.MatchUpdateDto;
 import com.ygames.ysoccer.network.dto.TeamDto;
+import com.ygames.ysoccer.network.dto.TeamUpdateDto;
 
 import static com.ygames.ysoccer.match.Match.AWAY;
 import static com.ygames.ysoccer.match.Match.HOME;
@@ -46,6 +47,9 @@ public class MatchMapper {
     public static MatchUpdateDto toUpdateDto(Match match) {
         MatchUpdateDto dto = new MatchUpdateDto();
         dto.light = match.light;
+        dto.teamUpdateDto = new TeamUpdateDto[2];
+        dto.teamUpdateDto[HOME] = TeamMapper.toUpdateDto(match.team[HOME]);
+        dto.teamUpdateDto[AWAY] = TeamMapper.toUpdateDto(match.team[AWAY]);
         dto.displayWindVane = match.displayWindVane;
         dto.displayRosters = match.displayRosters;
         return dto;
@@ -85,6 +89,8 @@ public class MatchMapper {
 
     public static void updateFromDto(Match match, MatchUpdateDto dto) {
         match.light = dto.light;
+        TeamMapper.updateFromDto(match.team[HOME], dto.teamUpdateDto[HOME]);
+        TeamMapper.updateFromDto(match.team[AWAY], dto.teamUpdateDto[AWAY]);
         match.displayWindVane = dto.displayWindVane;
         match.displayRosters = dto.displayRosters;
     }
