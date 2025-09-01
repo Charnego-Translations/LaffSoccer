@@ -10,6 +10,7 @@ public class PlayerMapper {
         PlayerDto dto = new PlayerDto();
         dto.name = player.name;
         dto.shirtName = player.shirtName;
+        dto.role = player.role;
         dto.number = player.number;
         dto.skinColor = player.skinColor;
         dto.currentDataDto = FrameDataMapper.toDto(player.currentData);
@@ -26,6 +27,7 @@ public class PlayerMapper {
         Player player = new Player();
         player.name = dto.name;
         player.shirtName = dto.shirtName;
+        player.role = dto.role;
         player.number = dto.number;
         player.skinColor = dto.skinColor;
         player.currentData = FrameDataMapper.fromDto(dto.currentDataDto);
