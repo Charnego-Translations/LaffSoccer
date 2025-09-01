@@ -14,7 +14,7 @@ import com.ygames.ysoccer.match.MatchSettings;
 import com.ygames.ysoccer.match.Team;
 import com.ygames.ysoccer.network.Network;
 
-import static com.esotericsoftware.minlog.Log.LEVEL_TRACE;
+import static com.esotericsoftware.minlog.Log.LEVEL_INFO;
 import static com.ygames.ysoccer.match.Match.AWAY;
 import static com.ygames.ysoccer.match.Match.HOME;
 
@@ -22,7 +22,7 @@ public class ServerGame extends Game {
     @Override
     public void create() {
         Settings settings = new Settings();
-        Log.set(LEVEL_TRACE);
+        Log.set(LEVEL_INFO);
         Server server = new Server();
         Network.register(server);
         NetworkManager.subscribe(server);

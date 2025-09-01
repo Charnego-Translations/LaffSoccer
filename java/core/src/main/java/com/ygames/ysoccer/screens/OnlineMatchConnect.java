@@ -45,7 +45,8 @@ import com.ygames.ysoccer.network.mappers.MatchMapper;
 
 import java.io.IOException;
 
-import static com.esotericsoftware.minlog.Log.LEVEL_TRACE;
+import static com.esotericsoftware.minlog.Log.LEVEL_DEBUG;
+import static com.esotericsoftware.minlog.Log.LEVEL_INFO;
 import static com.ygames.ysoccer.framework.Assets.font14;
 import static com.ygames.ysoccer.framework.Assets.gettext;
 import static com.ygames.ysoccer.framework.Font.Align.CENTER;
@@ -63,7 +64,7 @@ public class OnlineMatchConnect extends GLScreen {
         super(game);
         background = new Texture("images/backgrounds/menu_network.jpg");
 
-        Log.set(LEVEL_TRACE);
+        Log.set(LEVEL_INFO);
         client = new Client();
         Network.register(client);
 
