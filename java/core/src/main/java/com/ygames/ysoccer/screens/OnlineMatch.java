@@ -9,6 +9,7 @@ import com.ygames.ysoccer.framework.GLScreen;
 import com.ygames.ysoccer.match.ActionCamera;
 import com.ygames.ysoccer.match.Match;
 import com.ygames.ysoccer.match.MatchRenderer;
+import com.ygames.ysoccer.match.Player;
 import com.ygames.ysoccer.network.dto.MatchSetupDto;
 import com.ygames.ysoccer.network.mappers.MatchMapper;
 
@@ -39,6 +40,15 @@ public class OnlineMatch extends GLScreen {
         Assets.loadCornerFlags(match.getSettings());
         for (int t = HOME; t <= AWAY; t++) {
             Assets.loadCoach(match.team[t]);
+            int len = match.team[t].lineup.size();
+            for (int i = 0; i < len; i++) {
+                Player player = match.team[t].lineup.get(i);
+                if (player.role == Player.Role.GOALKEEPER) {
+                    Assets.loadKeeper(player);
+                } else {
+                    Assets.loadPlayer(player, match.team[t].kits.get(match.team[t].kitIndex));
+                }
+            }
         }
         game.disableMouse();
     }
