@@ -11,6 +11,7 @@ public class PlayerMapper {
         dto.name = player.name;
         dto.shirtName = player.shirtName;
         dto.number = player.number;
+        dto.skinColor = player.skinColor;
         dto.currentDataDto = FrameDataMapper.toDto(player.currentData);
         return dto;
     }
@@ -26,11 +27,12 @@ public class PlayerMapper {
         player.name = dto.name;
         player.shirtName = dto.shirtName;
         player.number = dto.number;
+        player.skinColor = dto.skinColor;
         player.currentData = FrameDataMapper.fromDto(dto.currentDataDto);
         return player;
     }
 
-    public static void updateFromDto(Player player, PlayerUpdateDto playerUpdateDto) {
-        FrameDataMapper.updateFromDto(player.currentData, playerUpdateDto.currentDataDto);
+    public static void updateFromDto(Player player, PlayerUpdateDto updateDto) {
+        FrameDataMapper.updateFromDto(player.currentData, updateDto.currentDataDto);
     }
 }

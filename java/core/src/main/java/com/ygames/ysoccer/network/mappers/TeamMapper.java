@@ -49,15 +49,17 @@ public class TeamMapper {
         }
         team.lineup = new ArrayList<>();
         for (PlayerDto playerDto : dto.lineup) {
-            team.lineup.add(PlayerMapper.fromDto(playerDto));
+            Player player = PlayerMapper.fromDto(playerDto);
+            player.team = team;
+            team.lineup.add(player);
         }
         return team;
     }
 
-    public static void updateFromDto(Team team, TeamUpdateDto teamUpdateDto) {
+    public static void updateFromDto(Team team, TeamUpdateDto updateDto) {
         for (int i = 0; i < team.lineup.size(); i++) {
             Player player = team.lineup.get(i);
-            PlayerMapper.updateFromDto(player, teamUpdateDto.lineup.get(i));
+            PlayerMapper.updateFromDto(player, updateDto.lineup.get(i));
         }
     }
 }

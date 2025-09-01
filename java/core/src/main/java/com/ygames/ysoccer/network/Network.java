@@ -4,6 +4,7 @@ import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryonet.EndPoint;
 import com.ygames.ysoccer.match.Pitch;
 import com.ygames.ysoccer.match.SceneSettings;
+import com.ygames.ysoccer.match.Skin;
 import com.ygames.ysoccer.network.dto.BallDto;
 import com.ygames.ysoccer.network.dto.CoachDto;
 import com.ygames.ysoccer.network.dto.CompetitionDto;
@@ -41,6 +42,7 @@ public class Network {
         kryo.register(MatchSettingsDto.class);
         kryo.register(FrameDataDto.class);
         kryo.register(BallDto.class);
+        kryo.register(Skin.Color.class);
         kryo.register(PlayerDto.class);
         kryo.register(PlayerUpdateDto.class);
         kryo.register(KitDto.class);
