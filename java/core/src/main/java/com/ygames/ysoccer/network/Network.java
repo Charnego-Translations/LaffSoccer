@@ -8,6 +8,7 @@ import com.ygames.ysoccer.match.Player;
 import com.ygames.ysoccer.match.SceneSettings;
 import com.ygames.ysoccer.match.Skin;
 import com.ygames.ysoccer.network.dto.BallDto;
+import com.ygames.ysoccer.network.dto.BallUpdateDto;
 import com.ygames.ysoccer.network.dto.CoachDto;
 import com.ygames.ysoccer.network.dto.CompetitionDto;
 import com.ygames.ysoccer.network.dto.FrameDataDto;
@@ -44,6 +45,7 @@ public class Network {
         kryo.register(MatchSettingsDto.class);
         kryo.register(FrameDataDto.class);
         kryo.register(BallDto.class);
+        kryo.register(BallUpdateDto.class);
         kryo.register(Player.Role.class);
         kryo.register(Hair.Color.class);
         kryo.register(Skin.Color.class);
