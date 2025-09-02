@@ -12,6 +12,7 @@ public class PlayerDto {
     public int number;
     public Skin.Color skinColor;
     public Hair.Color hairColor;
+    public String hairStyle;
     public FrameDataDto currentDataDto;
 
     public PlayerDto() {

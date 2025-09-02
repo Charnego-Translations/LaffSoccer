@@ -14,6 +14,7 @@ public class PlayerMapper {
         dto.number = player.number;
         dto.skinColor = player.skinColor;
         dto.hairColor = player.hairColor;
+        dto.hairStyle = player.hairStyle;
         dto.currentDataDto = FrameDataMapper.toDto(player.currentData);
         return dto;
     }
@@ -32,6 +33,7 @@ public class PlayerMapper {
         player.number = dto.number;
         player.skinColor = dto.skinColor;
         player.hairColor = dto.hairColor;
+        player.hairStyle = dto.hairStyle;
         player.currentData = FrameDataMapper.fromDto(dto.currentDataDto);
         return player;
     }
