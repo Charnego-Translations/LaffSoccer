@@ -48,6 +48,7 @@ public class OnlineMatch extends GLScreen {
                 } else {
                     Assets.loadPlayer(player, match.team[t].kits.get(match.team[t].kitIndex));
                 }
+                Assets.loadHair(player);
             }
         }
         game.disableMouse();
