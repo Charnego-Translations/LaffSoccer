@@ -31,6 +31,7 @@ public class TeamMapper {
 
     public static TeamUpdateDto toUpdateDto(Team team) {
         TeamUpdateDto dto = new TeamUpdateDto();
+        dto.coachUpdateDto = CoachMapper.toUpdateDto(team.coach);
         dto.lineup = new ArrayList<>();
         for (Player player : team.lineup) {
             dto.lineup.add(PlayerMapper.toUpdateDto(player));
@@ -57,6 +58,7 @@ public class TeamMapper {
     }
 
     public static void updateFromDto(Team team, TeamUpdateDto updateDto) {
+        CoachMapper.updateFromDto(team.coach, updateDto.coachUpdateDto);
         for (int i = 0; i < team.lineup.size(); i++) {
             Player player = team.lineup.get(i);
             PlayerMapper.updateFromDto(player, updateDto.lineup.get(i));

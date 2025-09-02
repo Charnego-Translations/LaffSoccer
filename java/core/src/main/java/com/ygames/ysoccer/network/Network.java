@@ -10,6 +10,7 @@ import com.ygames.ysoccer.match.Skin;
 import com.ygames.ysoccer.network.dto.BallDto;
 import com.ygames.ysoccer.network.dto.BallUpdateDto;
 import com.ygames.ysoccer.network.dto.CoachDto;
+import com.ygames.ysoccer.network.dto.CoachUpdateDto;
 import com.ygames.ysoccer.network.dto.CompetitionDto;
 import com.ygames.ysoccer.network.dto.FrameDataDto;
 import com.ygames.ysoccer.network.dto.KitDto;
@@ -53,6 +54,7 @@ public class Network {
         kryo.register(PlayerUpdateDto.class);
         kryo.register(KitDto.class);
         kryo.register(CoachDto.class);
+        kryo.register(CoachUpdateDto.class);
         kryo.register(TeamDto.class);
         kryo.register(TeamDto[].class);
         kryo.register(TeamUpdateDto.class);
