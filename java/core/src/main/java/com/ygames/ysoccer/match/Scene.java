@@ -16,6 +16,8 @@ public abstract class Scene<SceneFsmT extends SceneFsm<?, SceneStateT>, SceneSta
 
     final int[] vCameraX = new int[Const.REPLAY_SUBFRAMES];
     final int[] vCameraY = new int[Const.REPLAY_SUBFRAMES];
+    int cameraX;
+    int cameraY;
 
     public SceneFsmT getFsm() {
         return fsm;
@@ -43,6 +45,10 @@ public abstract class Scene<SceneFsmT extends SceneFsm<?, SceneStateT>, SceneSta
 
     void setPointOfInterest(Vector2 v) {
         pointOfInterest.set(v);
+    }
+
+    public void setActionCamera(ActionCamera actionCamera) {
+        this.actionCamera = actionCamera;
     }
 
     abstract Player getNearestOfAll();

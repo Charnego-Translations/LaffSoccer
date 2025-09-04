@@ -83,7 +83,7 @@ public class MatchRenderer extends SceneRenderer<Match> {
         gl.glEnable(GL20.GL_BLEND);
         gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         camera.setToOrtho(true, Gdx.graphics.getWidth() * 100f / zoom, Gdx.graphics.getHeight() * 100f / zoom);
-        camera.translate(-Const.CENTER_X + scene.vCameraX[scene.subframe], -Const.CENTER_Y + scene.vCameraY[scene.subframe], 0);
+        camera.translate(-Const.CENTER_X + scene.cameraX, -Const.CENTER_Y + scene.cameraY, 0);
         camera.update();
         batch.setProjectionMatrix(camera.combined);
         batch.begin();

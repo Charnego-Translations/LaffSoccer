@@ -188,10 +188,10 @@ public abstract class SceneRenderer<SceneT extends Scene<?, ?>> {
 
         int subframe = scene.subframe;
         int TILE_WIDTH = 256;
-        int fogX = -Const.CENTER_X + scene.vCameraX[subframe] - 2 * TILE_WIDTH
-            + ((Const.CENTER_X - scene.vCameraX[subframe]) % TILE_WIDTH + 2 * TILE_WIDTH) % TILE_WIDTH;
-        int fogY = -Const.CENTER_Y + scene.vCameraY[subframe] - 2 * TILE_WIDTH
-            + ((Const.CENTER_Y - scene.vCameraY[subframe]) % TILE_WIDTH + 2 * TILE_WIDTH) % TILE_WIDTH;
+        int fogX = -Const.CENTER_X + scene.cameraX - 2 * TILE_WIDTH
+            + ((Const.CENTER_X - scene.cameraX) % TILE_WIDTH + 2 * TILE_WIDTH) % TILE_WIDTH;
+        int fogY = -Const.CENTER_Y + scene.cameraY - 2 * TILE_WIDTH
+            + ((Const.CENTER_Y - scene.cameraY) % TILE_WIDTH + 2 * TILE_WIDTH) % TILE_WIDTH;
         int x = fogX;
         while (x < (fogX + screenWidth + 2 * TILE_WIDTH)) {
             int y = fogY;
