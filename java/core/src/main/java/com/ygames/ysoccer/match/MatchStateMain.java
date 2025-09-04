@@ -68,7 +68,9 @@ class MatchStateMain extends MatchState {
 
         scene.actionCamera
             .setMode(FOLLOW_BALL)
-            .setSpeed(NORMAL);
+            .setSpeed(NORMAL)
+            .setLimited(true, true)
+        ;
     }
 
     @Override
