@@ -153,6 +153,8 @@ public class Training extends Scene<TrainingFsm, TrainingState> {
         ball.updateCurrentData(subframe);
         team[HOME].updateCurrentData(subframe);
         team[AWAY].updateCurrentData(subframe);
+        cameraX = vCameraX[subframe];
+        cameraY = vCameraY[subframe];
     }
 
     @Override
