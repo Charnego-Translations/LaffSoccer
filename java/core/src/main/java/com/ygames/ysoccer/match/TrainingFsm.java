@@ -4,11 +4,11 @@ import com.ygames.ysoccer.framework.InputDeviceList;
 
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.FADE_IN;
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.NEW_FOREGROUND;
-import static com.ygames.ysoccer.match.TrainingFsm.State.FREE;
+import static com.ygames.ysoccer.match.TrainingFsm.StateId.FREE;
 
 public class TrainingFsm extends SceneFsm<Training, TrainingState> {
 
-    enum State implements SceneState.Id {
+    enum StateId implements SceneState.Id {
         FREE,
         REPLAY
     }

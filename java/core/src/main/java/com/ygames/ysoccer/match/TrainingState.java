@@ -15,7 +15,7 @@ abstract class TrainingState extends SceneState<TrainingFsm, Training> {
     InputDevice inputDevice;
     int replayPosition;
 
-    TrainingState(TrainingFsm.State state, TrainingFsm trainingFsm) {
+    TrainingState(TrainingFsm.StateId state, TrainingFsm trainingFsm) {
         super(state, trainingFsm);
         fsm.addState(this);
         this.team = scene.team;

@@ -8,7 +8,7 @@ import com.ygames.ysoccer.framework.InputDevice;
 import com.ygames.ysoccer.framework.Settings;
 
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.RESTORE_FOREGROUND;
-import static com.ygames.ysoccer.match.TrainingFsm.State.REPLAY;
+import static com.ygames.ysoccer.match.TrainingFsm.StateId.REPLAY;
 
 class TrainingStateReplay extends TrainingState {
 

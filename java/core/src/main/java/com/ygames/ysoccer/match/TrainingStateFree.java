@@ -24,8 +24,8 @@ import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_KEEPER_POSITIONING;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_REACH_TARGET;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_STAND_RUN;
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.HOLD_FOREGROUND;
-import static com.ygames.ysoccer.match.TrainingFsm.State.FREE;
-import static com.ygames.ysoccer.match.TrainingFsm.State.REPLAY;
+import static com.ygames.ysoccer.match.TrainingFsm.StateId.FREE;
+import static com.ygames.ysoccer.match.TrainingFsm.StateId.REPLAY;
 
 class TrainingStateFree extends TrainingState {
 
