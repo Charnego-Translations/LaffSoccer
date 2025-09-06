@@ -9,8 +9,8 @@ import static com.ygames.ysoccer.match.ActionCamera.Speed.NORMAL;
 import static com.ygames.ysoccer.match.Const.SECOND;
 import static com.ygames.ysoccer.match.Match.AWAY;
 import static com.ygames.ysoccer.match.Match.HOME;
-import static com.ygames.ysoccer.match.MatchFsm.State.END;
-import static com.ygames.ysoccer.match.MatchFsm.State.HIGHLIGHTS;
+import static com.ygames.ysoccer.match.MatchFsm.StateId.END;
+import static com.ygames.ysoccer.match.MatchFsm.StateId.HIGHLIGHTS;
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.NEW_FOREGROUND;
 
 class MatchStateEnd extends MatchState {

@@ -4,8 +4,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.ygames.ysoccer.framework.InputDevice;
 
-import static com.ygames.ysoccer.match.MatchFsm.State.PAUSE;
-import static com.ygames.ysoccer.match.MatchFsm.State.REPLAY;
+import static com.ygames.ysoccer.match.MatchFsm.StateId.PAUSE;
+import static com.ygames.ysoccer.match.MatchFsm.StateId.REPLAY;
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.NEW_FOREGROUND;
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.RESTORE_FOREGROUND;
 

@@ -4,9 +4,9 @@ import com.ygames.ysoccer.framework.GLGame;
 
 import static com.ygames.ysoccer.match.ActionCamera.Mode.REACH_TARGET;
 import static com.ygames.ysoccer.match.ActionCamera.Speed.FAST;
-import static com.ygames.ysoccer.match.MatchFsm.State.END;
-import static com.ygames.ysoccer.match.MatchFsm.State.END_POSITIONS;
-import static com.ygames.ysoccer.match.MatchFsm.State.HIGHLIGHTS;
+import static com.ygames.ysoccer.match.MatchFsm.StateId.END;
+import static com.ygames.ysoccer.match.MatchFsm.StateId.END_POSITIONS;
+import static com.ygames.ysoccer.match.MatchFsm.StateId.HIGHLIGHTS;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_OUTSIDE;
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.NEW_FOREGROUND;
 

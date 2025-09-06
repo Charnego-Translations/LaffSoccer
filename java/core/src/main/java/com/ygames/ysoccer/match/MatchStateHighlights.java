@@ -6,8 +6,8 @@ import com.ygames.ysoccer.framework.EMath;
 import com.ygames.ysoccer.framework.GLGame;
 import com.ygames.ysoccer.framework.InputDevice;
 
-import static com.ygames.ysoccer.match.MatchFsm.State.END;
-import static com.ygames.ysoccer.match.MatchFsm.State.HIGHLIGHTS;
+import static com.ygames.ysoccer.match.MatchFsm.StateId.END;
+import static com.ygames.ysoccer.match.MatchFsm.StateId.HIGHLIGHTS;
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.NEW_FOREGROUND;
 
 class MatchStateHighlights extends MatchState {

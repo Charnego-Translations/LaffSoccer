@@ -9,9 +9,9 @@ import java.util.Collections;
 
 import static com.ygames.ysoccer.match.ActionCamera.Mode.STILL;
 import static com.ygames.ysoccer.match.Const.TEAM_SIZE;
-import static com.ygames.ysoccer.match.MatchFsm.State.BENCH_FORMATION;
-import static com.ygames.ysoccer.match.MatchFsm.State.BENCH_SUBSTITUTIONS;
-import static com.ygames.ysoccer.match.MatchFsm.State.BENCH_TACTICS;
+import static com.ygames.ysoccer.match.MatchFsm.StateId.BENCH_FORMATION;
+import static com.ygames.ysoccer.match.MatchFsm.StateId.BENCH_SUBSTITUTIONS;
+import static com.ygames.ysoccer.match.MatchFsm.StateId.BENCH_TACTICS;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_BENCH_STANDING;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_REACH_TARGET;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_SENT_OFF;

@@ -4,7 +4,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.ygames.ysoccer.framework.InputDevice;
 import com.ygames.ysoccer.framework.InputDeviceList;
 
-import static com.ygames.ysoccer.match.MatchFsm.State.INTRO;
+import static com.ygames.ysoccer.match.MatchFsm.StateId.INTRO;
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.FADE_IN;
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.NEW_FOREGROUND;
 
@@ -18,7 +18,7 @@ public class MatchFsm extends SceneFsm<Match, MatchState> {
     Team cornerKickTeam;
     Team goalKickTeam;
 
-    public enum State implements SceneState.Id {
+    public enum StateId implements SceneState.Id {
         BENCH_ENTER,
         BENCH_EXIT,
         BENCH_FORMATION,

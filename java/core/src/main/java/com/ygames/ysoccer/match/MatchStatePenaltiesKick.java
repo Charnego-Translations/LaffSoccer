@@ -5,8 +5,8 @@ import com.ygames.ysoccer.framework.EventManager;
 import com.ygames.ysoccer.framework.GLGame;
 
 import static com.ygames.ysoccer.match.ActionCamera.Mode.STILL;
-import static com.ygames.ysoccer.match.MatchFsm.State.PENALTIES_END;
-import static com.ygames.ysoccer.match.MatchFsm.State.PENALTIES_KICK;
+import static com.ygames.ysoccer.match.MatchFsm.StateId.PENALTIES_END;
+import static com.ygames.ysoccer.match.MatchFsm.StateId.PENALTIES_KICK;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_IDLE;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_PENALTY_KICK_ANGLE;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_REACH_TARGET;

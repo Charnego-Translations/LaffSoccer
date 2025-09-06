@@ -10,8 +10,8 @@ import static com.ygames.ysoccer.match.ActionCamera.Speed.NORMAL;
 import static com.ygames.ysoccer.match.Const.SECOND;
 import static com.ygames.ysoccer.match.Match.AWAY;
 import static com.ygames.ysoccer.match.Match.HOME;
-import static com.ygames.ysoccer.match.MatchFsm.State.EXTRA_TIME_STOP;
-import static com.ygames.ysoccer.match.MatchFsm.State.STARTING_POSITIONS;
+import static com.ygames.ysoccer.match.MatchFsm.StateId.EXTRA_TIME_STOP;
+import static com.ygames.ysoccer.match.MatchFsm.StateId.STARTING_POSITIONS;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_IDLE;
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.NEW_FOREGROUND;
 

@@ -15,9 +15,9 @@ import static com.ygames.ysoccer.match.ActionCamera.Speed.NORMAL;
 import static com.ygames.ysoccer.match.Const.SECOND;
 import static com.ygames.ysoccer.match.Match.AWAY;
 import static com.ygames.ysoccer.match.Match.HOME;
-import static com.ygames.ysoccer.match.MatchFsm.State.GOAL;
-import static com.ygames.ysoccer.match.MatchFsm.State.REPLAY;
-import static com.ygames.ysoccer.match.MatchFsm.State.STARTING_POSITIONS;
+import static com.ygames.ysoccer.match.MatchFsm.StateId.GOAL;
+import static com.ygames.ysoccer.match.MatchFsm.StateId.REPLAY;
+import static com.ygames.ysoccer.match.MatchFsm.StateId.STARTING_POSITIONS;
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.HOLD_FOREGROUND;
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.NEW_FOREGROUND;
 

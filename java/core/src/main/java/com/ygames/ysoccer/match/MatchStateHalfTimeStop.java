@@ -7,8 +7,8 @@ import com.ygames.ysoccer.framework.GLGame;
 import static com.ygames.ysoccer.match.ActionCamera.Mode.FOLLOW_BALL;
 import static com.ygames.ysoccer.match.ActionCamera.Speed.NORMAL;
 import static com.ygames.ysoccer.match.Const.SECOND;
-import static com.ygames.ysoccer.match.MatchFsm.State.HALF_TIME_POSITIONS;
-import static com.ygames.ysoccer.match.MatchFsm.State.HALF_TIME_STOP;
+import static com.ygames.ysoccer.match.MatchFsm.StateId.HALF_TIME_POSITIONS;
+import static com.ygames.ysoccer.match.MatchFsm.StateId.HALF_TIME_STOP;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_IDLE;
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.NEW_FOREGROUND;
 

@@ -8,9 +8,9 @@ import static com.ygames.ysoccer.match.Const.TEAM_SIZE;
 import static com.ygames.ysoccer.match.Const.TOUCH_LINE;
 import static com.ygames.ysoccer.match.Match.AWAY;
 import static com.ygames.ysoccer.match.Match.HOME;
-import static com.ygames.ysoccer.match.MatchFsm.State.BENCH_ENTER;
-import static com.ygames.ysoccer.match.MatchFsm.State.BENCH_EXIT;
-import static com.ygames.ysoccer.match.MatchFsm.State.BENCH_SUBSTITUTIONS;
+import static com.ygames.ysoccer.match.MatchFsm.StateId.BENCH_ENTER;
+import static com.ygames.ysoccer.match.MatchFsm.StateId.BENCH_EXIT;
+import static com.ygames.ysoccer.match.MatchFsm.StateId.BENCH_SUBSTITUTIONS;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_REACH_TARGET;
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.NEW_FOREGROUND;
 

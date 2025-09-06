@@ -7,8 +7,8 @@ import static com.ygames.ysoccer.match.ActionCamera.Speed.FAST;
 import static com.ygames.ysoccer.match.Const.SECOND;
 import static com.ygames.ysoccer.match.Match.AWAY;
 import static com.ygames.ysoccer.match.Match.HOME;
-import static com.ygames.ysoccer.match.MatchFsm.State.HALF_TIME_ENTER;
-import static com.ygames.ysoccer.match.MatchFsm.State.HALF_TIME_WAIT;
+import static com.ygames.ysoccer.match.MatchFsm.StateId.HALF_TIME_ENTER;
+import static com.ygames.ysoccer.match.MatchFsm.StateId.HALF_TIME_WAIT;
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.NEW_FOREGROUND;
 
 class MatchStateHalfTimeWait extends MatchState {

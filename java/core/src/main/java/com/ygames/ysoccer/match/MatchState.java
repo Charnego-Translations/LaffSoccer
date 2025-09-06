@@ -9,10 +9,10 @@ import static com.badlogic.gdx.Input.Keys.P;
 import static com.badlogic.gdx.Input.Keys.R;
 import static com.ygames.ysoccer.match.Match.AWAY;
 import static com.ygames.ysoccer.match.Match.HOME;
-import static com.ygames.ysoccer.match.MatchFsm.State.BENCH_ENTER;
-import static com.ygames.ysoccer.match.MatchFsm.State.HELP;
-import static com.ygames.ysoccer.match.MatchFsm.State.PAUSE;
-import static com.ygames.ysoccer.match.MatchFsm.State.REPLAY;
+import static com.ygames.ysoccer.match.MatchFsm.StateId.BENCH_ENTER;
+import static com.ygames.ysoccer.match.MatchFsm.StateId.HELP;
+import static com.ygames.ysoccer.match.MatchFsm.StateId.PAUSE;
+import static com.ygames.ysoccer.match.MatchFsm.StateId.REPLAY;
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.HOLD_FOREGROUND;
 
 abstract class MatchState extends SceneState<MatchFsm, Match> {
@@ -26,7 +26,7 @@ abstract class MatchState extends SceneState<MatchFsm, Match> {
     InputDevice inputDevice;
     int replayPosition;
 
-    MatchState(MatchFsm.State state, MatchFsm matchFsm) {
+    MatchState(MatchFsm.StateId state, MatchFsm matchFsm) {
         super(state, matchFsm);
         fsm.addState(this);
         this.ball = scene.ball;

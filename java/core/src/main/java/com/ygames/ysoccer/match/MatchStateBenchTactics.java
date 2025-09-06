@@ -5,8 +5,8 @@ import com.ygames.ysoccer.framework.EMath;
 import com.ygames.ysoccer.framework.GLGame;
 
 import static com.ygames.ysoccer.match.ActionCamera.Mode.STILL;
-import static com.ygames.ysoccer.match.MatchFsm.State.BENCH_SUBSTITUTIONS;
-import static com.ygames.ysoccer.match.MatchFsm.State.BENCH_TACTICS;
+import static com.ygames.ysoccer.match.MatchFsm.StateId.BENCH_SUBSTITUTIONS;
+import static com.ygames.ysoccer.match.MatchFsm.StateId.BENCH_TACTICS;
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.NEW_FOREGROUND;
 
 class MatchStateBenchTactics extends MatchState {
