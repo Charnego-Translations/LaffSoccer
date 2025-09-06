@@ -27,17 +27,9 @@ abstract class MatchState extends SceneState<MatchFsm, Match> {
     int replayPosition;
 
     MatchState(MatchFsm.State state, MatchFsm matchFsm) {
-        super(state.ordinal(), matchFsm);
+        super(state, matchFsm);
         fsm.addState(this);
         this.ball = scene.ball;
-    }
-
-    SceneFsm.Action[] newAction(SceneFsm.ActionType type, MatchFsm.State state) {
-        return fsm.newAction(type, state.ordinal());
-    }
-
-    SceneFsm.Action[] newFadedAction(SceneFsm.ActionType type, MatchFsm.State state) {
-        return fsm.newFadedAction(type, state.ordinal());
     }
 
     SceneFsm.Action[] checkCommonConditions() {

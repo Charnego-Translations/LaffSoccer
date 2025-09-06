@@ -26,16 +26,16 @@ abstract class SceneFsm<SceneT extends Scene<?, SceneStateT>, SceneStateT extend
 
     static class Action {
         final ActionType type;
-        final int stateId;
+        final SceneState.Id stateId;
         int timer;
 
-        Action(ActionType type, int stateId) {
+        Action(ActionType type, SceneState.Id stateId) {
             this.type = type;
             this.stateId = stateId;
         }
 
         Action(ActionType type) {
-            this(type, -1);
+            this(type, null);
         }
 
         void update() {
@@ -165,7 +165,7 @@ abstract class SceneFsm<SceneT extends Scene<?, SceneStateT>, SceneStateT extend
         }
     }
 
-    private SceneStateT searchState(int id) {
+    private SceneStateT searchState(SceneState.Id id) {
         for (int i = 0; i < states.size(); i++) {
             SceneStateT s = states.get(i);
             if (s.checkId(id)) {
@@ -177,18 +177,18 @@ abstract class SceneFsm<SceneT extends Scene<?, SceneStateT>, SceneStateT extend
     }
 
     void pushAction(ActionType type) {
-        pushAction(type, -1);
+        pushAction(type, null);
     }
 
-    void pushAction(ActionType type, int stateId) {
+    void pushAction(ActionType type, SceneState.Id stateId) {
         actions.offer(new Action(type, stateId));
     }
 
-    Action[] newAction(ActionType type, int stateId) {
+    Action[] newAction(ActionType type, SceneState.Id stateId) {
         return new Action[]{new Action(type, stateId)};
     }
 
-    Action[] newFadedAction(ActionType type, int stateId) {
+    Action[] newFadedAction(ActionType type, SceneState.Id stateId) {
         return new Action[]{
             new Action(FADE_OUT),
             new Action(type, stateId),

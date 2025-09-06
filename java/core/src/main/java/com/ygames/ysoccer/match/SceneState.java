@@ -4,22 +4,25 @@ import com.ygames.ysoccer.framework.GLGame;
 
 abstract class SceneState<SceneFsmT extends SceneFsm<SceneT, ?>, SceneT extends Scene<SceneFsmT, ?>> {
 
-    private int id;
+    interface Id {
+    }
+
+    private Id id;
     final SceneFsmT fsm;
     final SceneT scene;
     int timer;
 
-    SceneState(int id, SceneFsmT fsm) {
+    SceneState(Id id, SceneFsmT fsm) {
         this.id = id;
         this.fsm = fsm;
         this.scene = fsm.getScene();
     }
 
-    public int getId() {
+    public Id getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Id id) {
         this.id = id;
     }
 
@@ -39,20 +42,20 @@ abstract class SceneState<SceneFsmT extends SceneFsm<SceneT, ?>, SceneT extends 
         }
     }
 
-    SceneFsm.Action[] newAction(SceneFsm.ActionType type, int stateId) {
+    SceneFsm.Action[] newAction(SceneFsm.ActionType type, Id stateId) {
         return fsm.newAction(type, stateId);
     }
 
     SceneFsm.Action[] newAction(SceneFsm.ActionType type) {
-        return newAction(type, -1);
+        return newAction(type, null);
     }
 
-    SceneFsm.Action[] newFadedAction(SceneFsm.ActionType type, int stateId) {
+    SceneFsm.Action[] newFadedAction(SceneFsm.ActionType type, Id stateId) {
         return fsm.newFadedAction(type, stateId);
     }
 
     SceneFsm.Action[] newFadedAction(SceneFsm.ActionType type) {
-        return newFadedAction(type, -1);
+        return newFadedAction(type, null);
     }
 
     void onResume() {
@@ -64,7 +67,7 @@ abstract class SceneState<SceneFsmT extends SceneFsm<SceneT, ?>, SceneT extends 
 
     abstract SceneFsm.Action[] checkConditions();
 
-    boolean checkId(int id) {
+    boolean checkId(Id id) {
         return (this.id == id);
     }
 

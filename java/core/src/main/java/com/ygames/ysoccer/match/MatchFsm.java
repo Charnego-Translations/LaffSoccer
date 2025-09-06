@@ -18,7 +18,7 @@ public class MatchFsm extends SceneFsm<Match, MatchState> {
     Team cornerKickTeam;
     Team goalKickTeam;
 
-    public enum State {
+    public enum State implements SceneState.Id {
         BENCH_ENTER,
         BENCH_EXIT,
         BENCH_FORMATION,
@@ -117,10 +117,6 @@ public class MatchFsm extends SceneFsm<Match, MatchState> {
     public void start() {
         pushAction(NEW_FOREGROUND, INTRO);
         pushAction(FADE_IN);
-    }
-
-    void pushAction(ActionType type, State state) {
-        pushAction(type, state.ordinal());
     }
 
     static class BenchStatus {

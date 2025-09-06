@@ -16,7 +16,7 @@ abstract class TrainingState extends SceneState<TrainingFsm, Training> {
     int replayPosition;
 
     TrainingState(TrainingFsm.State state, TrainingFsm trainingFsm) {
-        super(state.ordinal(), trainingFsm);
+        super(state, trainingFsm);
         fsm.addState(this);
         this.team = scene.team;
         this.ball = scene.ball;
@@ -24,9 +24,5 @@ abstract class TrainingState extends SceneState<TrainingFsm, Training> {
 
     void quitTraining() {
         scene.quit();
-    }
-
-    SceneFsm.Action[] newFadedAction(SceneFsm.ActionType type, TrainingFsm.State stateId) {
-        return fsm.newFadedAction(type, stateId.ordinal());
     }
 }

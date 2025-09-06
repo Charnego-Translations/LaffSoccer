@@ -8,7 +8,7 @@ import static com.ygames.ysoccer.match.TrainingFsm.State.FREE;
 
 public class TrainingFsm extends SceneFsm<Training, TrainingState> {
 
-    enum State {
+    enum State implements SceneState.Id {
         FREE,
         REPLAY
     }
@@ -25,9 +25,5 @@ public class TrainingFsm extends SceneFsm<Training, TrainingState> {
     public void start() {
         pushAction(NEW_FOREGROUND, FREE);
         pushAction(FADE_IN);
-    }
-
-    void pushAction(ActionType type, State state) {
-        pushAction(type, state.ordinal());
     }
 }
