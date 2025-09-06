@@ -6,7 +6,8 @@ import com.ygames.ysoccer.framework.GLGame;
 
 import static com.ygames.ysoccer.match.ActionCamera.Mode.FOLLOW_BALL;
 import static com.ygames.ysoccer.match.ActionCamera.Speed.FAST;
-import static com.ygames.ysoccer.match.MatchFsm.STATE_MAIN;
+import static com.ygames.ysoccer.match.MatchFsm.State.MAIN;
+import static com.ygames.ysoccer.match.MatchFsm.State.THROW_IN;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_REACH_TARGET;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_STAND_RUN;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_THROW_IN_ANGLE;
@@ -18,7 +19,7 @@ class MatchStateThrowIn extends MatchState {
     private boolean isThrowingIn;
 
     MatchStateThrowIn(MatchFsm fsm) {
-        super(fsm);
+        super(THROW_IN, fsm);
     }
 
     @Override
@@ -103,7 +104,7 @@ class MatchStateThrowIn extends MatchState {
     SceneFsm.Action[] checkConditions() {
         if (Math.abs(scene.ball.x) < Const.TOUCH_LINE) {
             scene.setPlayersState(STATE_STAND_RUN, throwInPlayer);
-            return newAction(NEW_FOREGROUND, STATE_MAIN);
+            return newAction(NEW_FOREGROUND, MAIN);
         }
 
         return checkCommonConditions();

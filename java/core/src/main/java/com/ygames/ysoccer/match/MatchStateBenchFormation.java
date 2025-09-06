@@ -9,8 +9,9 @@ import java.util.Collections;
 
 import static com.ygames.ysoccer.match.ActionCamera.Mode.STILL;
 import static com.ygames.ysoccer.match.Const.TEAM_SIZE;
-import static com.ygames.ysoccer.match.MatchFsm.STATE_BENCH_SUBSTITUTIONS;
-import static com.ygames.ysoccer.match.MatchFsm.STATE_BENCH_TACTICS;
+import static com.ygames.ysoccer.match.MatchFsm.State.BENCH_FORMATION;
+import static com.ygames.ysoccer.match.MatchFsm.State.BENCH_SUBSTITUTIONS;
+import static com.ygames.ysoccer.match.MatchFsm.State.BENCH_TACTICS;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_BENCH_STANDING;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_REACH_TARGET;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_SENT_OFF;
@@ -22,7 +23,7 @@ class MatchStateBenchFormation extends MatchState {
     MatchFsm.BenchStatus benchStatus;
 
     MatchStateBenchFormation(MatchFsm fsm) {
-        super(fsm);
+        super(BENCH_FORMATION, fsm);
 
         checkReplayKey = false;
         checkPauseKey = false;
@@ -93,7 +94,7 @@ class MatchStateBenchFormation extends MatchState {
                     benchStatus.substPosition = -1;
                 }
 
-                return newAction(NEW_FOREGROUND, STATE_BENCH_TACTICS);
+                return newAction(NEW_FOREGROUND, BENCH_TACTICS);
             }
 
             // swap and substitutions
@@ -188,7 +189,7 @@ class MatchStateBenchFormation extends MatchState {
                 benchStatus.substPosition = -1;
             }
 
-            return newAction(NEW_FOREGROUND, STATE_BENCH_SUBSTITUTIONS);
+            return newAction(NEW_FOREGROUND, BENCH_SUBSTITUTIONS);
         }
 
         return checkCommonConditions();

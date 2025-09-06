@@ -9,7 +9,8 @@ import static com.ygames.ysoccer.match.ActionCamera.Mode.FOLLOW_BALL;
 import static com.ygames.ysoccer.match.ActionCamera.Speed.FAST;
 import static com.ygames.ysoccer.match.Match.AWAY;
 import static com.ygames.ysoccer.match.Match.HOME;
-import static com.ygames.ysoccer.match.MatchFsm.STATE_MAIN;
+import static com.ygames.ysoccer.match.MatchFsm.State.KICK_OFF;
+import static com.ygames.ysoccer.match.MatchFsm.State.MAIN;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_REACH_TARGET;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_STAND_RUN;
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.NEW_FOREGROUND;
@@ -20,7 +21,7 @@ class MatchStateKickOff extends MatchState {
     private boolean isKickingOff;
 
     MatchStateKickOff(MatchFsm fsm) {
-        super(fsm);
+        super(KICK_OFF, fsm);
     }
 
     @Override
@@ -109,7 +110,7 @@ class MatchStateKickOff extends MatchState {
                     }
                 }
             }
-            return newAction(NEW_FOREGROUND, STATE_MAIN);
+            return newAction(NEW_FOREGROUND, MAIN);
         }
 
         return checkCommonConditions();

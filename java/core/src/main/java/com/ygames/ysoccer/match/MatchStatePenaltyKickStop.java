@@ -15,7 +15,8 @@ import static com.ygames.ysoccer.match.Const.PENALTY_SPOT_Y;
 import static com.ygames.ysoccer.match.Const.TEAM_SIZE;
 import static com.ygames.ysoccer.match.Match.AWAY;
 import static com.ygames.ysoccer.match.Match.HOME;
-import static com.ygames.ysoccer.match.MatchFsm.STATE_PENALTY_KICK;
+import static com.ygames.ysoccer.match.MatchFsm.State.PENALTY_KICK;
+import static com.ygames.ysoccer.match.MatchFsm.State.PENALTY_KICK_STOP;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_DOWN;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_KEEPER_PENALTY_POSITIONING;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_REACH_TARGET;
@@ -30,7 +31,7 @@ class MatchStatePenaltyKickStop extends MatchState {
     private final Vector2 penaltyKickPosition;
 
     MatchStatePenaltyKickStop(MatchFsm fsm) {
-        super(fsm);
+        super(PENALTY_KICK_STOP, fsm);
 
         playersReachingTarget = new ArrayList<>();
         penaltyKickPosition = new Vector2();
@@ -153,7 +154,7 @@ class MatchStatePenaltyKickStop extends MatchState {
             scene.ball.setPosition(penaltyKickPosition.x, penaltyKickPosition.y, 0);
             scene.ball.updatePrediction();
 
-            return newAction(NEW_FOREGROUND, STATE_PENALTY_KICK);
+            return newAction(NEW_FOREGROUND, PENALTY_KICK);
         }
 
         return checkCommonConditions();

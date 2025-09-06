@@ -6,8 +6,8 @@ import com.ygames.ysoccer.framework.EMath;
 import com.ygames.ysoccer.framework.GLGame;
 import com.ygames.ysoccer.framework.InputDevice;
 
-import static com.ygames.ysoccer.match.MatchFsm.STATE_END;
-import static com.ygames.ysoccer.match.MatchFsm.STATE_HIGHLIGHTS;
+import static com.ygames.ysoccer.match.MatchFsm.State.END;
+import static com.ygames.ysoccer.match.MatchFsm.State.HIGHLIGHTS;
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.NEW_FOREGROUND;
 
 class MatchStateHighlights extends MatchState {
@@ -19,7 +19,7 @@ class MatchStateHighlights extends MatchState {
     private boolean keyPause;
 
     MatchStateHighlights(MatchFsm fsm) {
-        super(fsm);
+        super(HIGHLIGHTS, fsm);
 
         checkReplayKey = false;
         checkPauseKey = false;
@@ -118,7 +118,7 @@ class MatchStateHighlights extends MatchState {
         // quit on fire button
         for (InputDevice d : fsm.inputDevices) {
             if (d.fire1Down()) {
-                return newFadedAction(NEW_FOREGROUND, STATE_END);
+                return newFadedAction(NEW_FOREGROUND, END);
             }
         }
 
@@ -126,9 +126,9 @@ class MatchStateHighlights extends MatchState {
         if (replayPosition == Const.REPLAY_SUBFRAMES) {
             scene.recorder.nextHighlight();
             if (scene.recorder.hasEnded()) {
-                return newFadedAction(NEW_FOREGROUND, STATE_END);
+                return newFadedAction(NEW_FOREGROUND, END);
             } else {
-                return newFadedAction(NEW_FOREGROUND, STATE_HIGHLIGHTS);
+                return newFadedAction(NEW_FOREGROUND, HIGHLIGHTS);
             }
         }
 

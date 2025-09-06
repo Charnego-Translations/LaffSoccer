@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.ygames.ysoccer.framework.InputDevice;
 
+import static com.ygames.ysoccer.match.MatchFsm.State.HELP;
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.RESTORE_FOREGROUND;
 
 class MatchStateHelp extends MatchState {
@@ -13,7 +14,7 @@ class MatchStateHelp extends MatchState {
     private boolean resume;
 
     MatchStateHelp(MatchFsm fsm) {
-        super(fsm);
+        super(HELP, fsm);
 
         checkReplayKey = false;
         checkPauseKey = false;

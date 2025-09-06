@@ -9,13 +9,14 @@ import static com.ygames.ysoccer.match.ActionCamera.Speed.NORMAL;
 import static com.ygames.ysoccer.match.Const.SECOND;
 import static com.ygames.ysoccer.match.Match.AWAY;
 import static com.ygames.ysoccer.match.Match.HOME;
-import static com.ygames.ysoccer.match.MatchFsm.STATE_HIGHLIGHTS;
+import static com.ygames.ysoccer.match.MatchFsm.State.END;
+import static com.ygames.ysoccer.match.MatchFsm.State.HIGHLIGHTS;
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.NEW_FOREGROUND;
 
 class MatchStateEnd extends MatchState {
 
     MatchStateEnd(MatchFsm fsm) {
-        super(fsm);
+        super(END, fsm);
 
         checkReplayKey = false;
         checkPauseKey = false;
@@ -36,9 +37,9 @@ class MatchStateEnd extends MatchState {
         scene.period = Match.Period.UNDEFINED;
 
         scene.actionCamera
-                .setMode(REACH_TARGET)
-                .setTarget(0, 0)
-                .setSpeed(NORMAL);
+            .setMode(REACH_TARGET)
+            .setTarget(0, 0)
+            .setSpeed(NORMAL);
     }
 
     @Override
@@ -62,12 +63,12 @@ class MatchStateEnd extends MatchState {
     SceneFsm.Action[] checkConditions() {
         if (Gdx.input.isKeyPressed(Input.Keys.H) && scene.recorder.hasHighlights()) {
             scene.recorder.restart();
-            return newFadedAction(NEW_FOREGROUND, STATE_HIGHLIGHTS);
+            return newFadedAction(NEW_FOREGROUND, HIGHLIGHTS);
         }
 
         if (scene.team[HOME].fire1Up() != null
-                || scene.team[AWAY].fire1Up() != null
-                || timer > 20 * SECOND) {
+            || scene.team[AWAY].fire1Up() != null
+            || timer > 20 * SECOND) {
             quitMatch();
             return null;
         }

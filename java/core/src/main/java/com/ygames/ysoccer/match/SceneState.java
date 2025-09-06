@@ -9,7 +9,8 @@ abstract class SceneState<SceneFsmT extends SceneFsm<SceneT, ?>, SceneT extends 
     final SceneT scene;
     int timer;
 
-    SceneState(SceneFsmT fsm) {
+    SceneState(int id, SceneFsmT fsm) {
+        this.id = id;
         this.fsm = fsm;
         this.scene = fsm.getScene();
     }

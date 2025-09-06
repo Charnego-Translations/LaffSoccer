@@ -15,8 +15,9 @@ import static com.ygames.ysoccer.match.ActionCamera.Speed.NORMAL;
 import static com.ygames.ysoccer.match.Const.SECOND;
 import static com.ygames.ysoccer.match.Match.AWAY;
 import static com.ygames.ysoccer.match.Match.HOME;
-import static com.ygames.ysoccer.match.MatchFsm.STATE_REPLAY;
-import static com.ygames.ysoccer.match.MatchFsm.STATE_STARTING_POSITIONS;
+import static com.ygames.ysoccer.match.MatchFsm.State.GOAL;
+import static com.ygames.ysoccer.match.MatchFsm.State.REPLAY;
+import static com.ygames.ysoccer.match.MatchFsm.State.STARTING_POSITIONS;
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.HOLD_FOREGROUND;
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.NEW_FOREGROUND;
 
@@ -28,7 +29,7 @@ class MatchStateGoal extends MatchState {
     private boolean followBall;
 
     MatchStateGoal(MatchFsm fsm) {
-        super(fsm);
+        super(GOAL, fsm);
 
         checkReplayKey = false;
     }
@@ -155,19 +156,19 @@ class MatchStateGoal extends MatchState {
 
             if (scene.getSettings().autoReplays && !replayDone) {
                 replayDone = true;
-                return newFadedAction(HOLD_FOREGROUND, STATE_REPLAY);
+                return newFadedAction(HOLD_FOREGROUND, REPLAY);
             } else {
                 scene.ball.setPosition(0, 0, 0);
                 scene.ball.updatePrediction();
                 scene.actionCamera.setOffset(0, 0);
 
-                return newAction(NEW_FOREGROUND, STATE_STARTING_POSITIONS);
+                return newAction(NEW_FOREGROUND, STARTING_POSITIONS);
             }
         }
 
         if (Gdx.input.isKeyPressed(Input.Keys.R)) {
             replayDone = true;
-            return newFadedAction(HOLD_FOREGROUND, STATE_REPLAY);
+            return newFadedAction(HOLD_FOREGROUND, REPLAY);
         }
 
         return checkCommonConditions();

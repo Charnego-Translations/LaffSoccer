@@ -9,7 +9,8 @@ import static com.ygames.ysoccer.match.ActionCamera.Mode.FOLLOW_BALL;
 import static com.ygames.ysoccer.match.ActionCamera.Speed.NORMAL;
 import static com.ygames.ysoccer.match.Match.AWAY;
 import static com.ygames.ysoccer.match.Match.HOME;
-import static com.ygames.ysoccer.match.MatchFsm.STATE_CORNER_KICK;
+import static com.ygames.ysoccer.match.MatchFsm.State.CORNER_KICK;
+import static com.ygames.ysoccer.match.MatchFsm.State.CORNER_STOP;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_REACH_TARGET;
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.NEW_FOREGROUND;
 
@@ -18,7 +19,7 @@ class MatchStateCornerStop extends MatchState {
     private final Vector2 cornerPosition = new Vector2();
 
     MatchStateCornerStop(MatchFsm fsm) {
-        super(fsm);
+        super(CORNER_STOP, fsm);
 
     }
 
@@ -104,7 +105,7 @@ class MatchStateCornerStop extends MatchState {
             scene.ball.setPosition(cornerPosition);
             scene.ball.updatePrediction();
 
-            return newAction(NEW_FOREGROUND, STATE_CORNER_KICK);
+            return newAction(NEW_FOREGROUND, CORNER_KICK);
         }
 
         return checkCommonConditions();

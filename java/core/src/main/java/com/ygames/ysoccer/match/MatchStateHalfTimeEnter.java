@@ -6,7 +6,8 @@ import static com.ygames.ysoccer.match.ActionCamera.Mode.FOLLOW_BALL;
 import static com.ygames.ysoccer.match.ActionCamera.Speed.NORMAL;
 import static com.ygames.ysoccer.match.Match.AWAY;
 import static com.ygames.ysoccer.match.Match.HOME;
-import static com.ygames.ysoccer.match.MatchFsm.STATE_STARTING_POSITIONS;
+import static com.ygames.ysoccer.match.MatchFsm.State.HALF_TIME_ENTER;
+import static com.ygames.ysoccer.match.MatchFsm.State.STARTING_POSITIONS;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_REACH_TARGET;
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.NEW_FOREGROUND;
 
@@ -15,7 +16,7 @@ class MatchStateHalfTimeEnter extends MatchState {
     private int enteringCounter;
 
     MatchStateHalfTimeEnter(MatchFsm fsm) {
-        super(fsm);
+        super(HALF_TIME_ENTER, fsm);
     }
 
     @Override
@@ -38,8 +39,8 @@ class MatchStateHalfTimeEnter extends MatchState {
         super.onResume();
 
         scene.actionCamera
-                .setMode(FOLLOW_BALL)
-                .setSpeed(NORMAL);
+            .setMode(FOLLOW_BALL)
+            .setSpeed(NORMAL);
     }
 
     @Override
@@ -76,7 +77,7 @@ class MatchStateHalfTimeEnter extends MatchState {
     @Override
     SceneFsm.Action[] checkConditions() {
         if (enteringCounter / 4 == Const.TEAM_SIZE) {
-            return newAction(NEW_FOREGROUND, STATE_STARTING_POSITIONS);
+            return newAction(NEW_FOREGROUND, STARTING_POSITIONS);
         }
 
         return checkCommonConditions();

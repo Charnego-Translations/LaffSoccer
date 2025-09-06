@@ -9,7 +9,8 @@ import static com.ygames.ysoccer.match.ActionCamera.Speed.FAST;
 import static com.ygames.ysoccer.match.Const.GOAL_LINE;
 import static com.ygames.ysoccer.match.Match.AWAY;
 import static com.ygames.ysoccer.match.Match.HOME;
-import static com.ygames.ysoccer.match.MatchFsm.STATE_MAIN;
+import static com.ygames.ysoccer.match.MatchFsm.State.GOAL_KICK;
+import static com.ygames.ysoccer.match.MatchFsm.State.MAIN;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_REACH_TARGET;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_STAND_RUN;
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.NEW_FOREGROUND;
@@ -20,7 +21,7 @@ class MatchStateGoalKick extends MatchState {
     private boolean isKicking;
 
     MatchStateGoalKick(MatchFsm fsm) {
-        super(fsm);
+        super(GOAL_KICK, fsm);
     }
 
     @Override
@@ -101,7 +102,7 @@ class MatchStateGoalKick extends MatchState {
     SceneFsm.Action[] checkConditions() {
         if (scene.ball.v > 0) {
             scene.setPlayersState(STATE_STAND_RUN, goalKickPlayer);
-            return newAction(NEW_FOREGROUND, STATE_MAIN);
+            return newAction(NEW_FOREGROUND, MAIN);
         }
 
         return checkCommonConditions();

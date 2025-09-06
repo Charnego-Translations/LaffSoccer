@@ -12,7 +12,8 @@ import static com.ygames.ysoccer.match.ActionCamera.Mode.STILL;
 import static com.ygames.ysoccer.match.Const.TEAM_SIZE;
 import static com.ygames.ysoccer.match.Match.AWAY;
 import static com.ygames.ysoccer.match.Match.HOME;
-import static com.ygames.ysoccer.match.MatchFsm.STATE_FREE_KICK;
+import static com.ygames.ysoccer.match.MatchFsm.State.FREE_KICK;
+import static com.ygames.ysoccer.match.MatchFsm.State.FREE_KICK_STOP;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_DOWN;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_REACH_TARGET;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_TACKLE;
@@ -24,7 +25,7 @@ class MatchStateFreeKickStop extends MatchState {
     private final ArrayList<Player> playersReachingTarget;
 
     MatchStateFreeKickStop(MatchFsm fsm) {
-        super(fsm);
+        super(FREE_KICK_STOP, fsm);
 
         playersReachingTarget = new ArrayList<>();
     }
@@ -128,7 +129,7 @@ class MatchStateFreeKickStop extends MatchState {
             ball.setPosition(scene.foul.position.x, scene.foul.position.y, 0);
             ball.updatePrediction();
 
-            return newAction(NEW_FOREGROUND, STATE_FREE_KICK);
+            return newAction(NEW_FOREGROUND, FREE_KICK);
         }
 
         return checkCommonConditions();

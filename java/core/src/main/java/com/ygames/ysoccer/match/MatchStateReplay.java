@@ -7,6 +7,7 @@ import com.ygames.ysoccer.framework.GLGame;
 import com.ygames.ysoccer.framework.InputDevice;
 import com.ygames.ysoccer.framework.Settings;
 
+import static com.ygames.ysoccer.match.MatchFsm.State.REPLAY;
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.RESTORE_FOREGROUND;
 
 class MatchStateReplay extends MatchState {
@@ -18,7 +19,7 @@ class MatchStateReplay extends MatchState {
     private boolean keyPause;
 
     MatchStateReplay(MatchFsm fsm) {
-        super(fsm);
+        super(REPLAY, fsm);
 
         checkReplayKey = false;
         checkPauseKey = false;

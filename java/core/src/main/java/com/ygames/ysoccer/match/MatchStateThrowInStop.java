@@ -6,7 +6,8 @@ import com.ygames.ysoccer.framework.GLGame;
 
 import static com.ygames.ysoccer.match.ActionCamera.Mode.FOLLOW_BALL;
 import static com.ygames.ysoccer.match.ActionCamera.Speed.NORMAL;
-import static com.ygames.ysoccer.match.MatchFsm.STATE_THROW_IN;
+import static com.ygames.ysoccer.match.MatchFsm.State.THROW_IN;
+import static com.ygames.ysoccer.match.MatchFsm.State.THROW_IN_STOP;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_REACH_TARGET;
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.NEW_FOREGROUND;
 
@@ -15,7 +16,7 @@ class MatchStateThrowInStop extends MatchState {
     private boolean move;
 
     MatchStateThrowInStop(MatchFsm fsm) {
-        super(fsm);
+        super(THROW_IN_STOP, fsm);
     }
 
     @Override
@@ -85,7 +86,7 @@ class MatchStateThrowInStop extends MatchState {
             scene.ball.setPosition(fsm.throwInPosition);
             scene.ball.updatePrediction();
 
-            return newAction(NEW_FOREGROUND, STATE_THROW_IN);
+            return newAction(NEW_FOREGROUND, THROW_IN);
         }
 
         return checkCommonConditions();

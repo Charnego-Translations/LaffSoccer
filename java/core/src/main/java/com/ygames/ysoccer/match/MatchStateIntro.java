@@ -9,7 +9,8 @@ import static com.ygames.ysoccer.match.ActionCamera.Mode.STILL;
 import static com.ygames.ysoccer.match.Const.SECOND;
 import static com.ygames.ysoccer.match.Match.AWAY;
 import static com.ygames.ysoccer.match.Match.HOME;
-import static com.ygames.ysoccer.match.MatchFsm.STATE_STARTING_POSITIONS;
+import static com.ygames.ysoccer.match.MatchFsm.State.INTRO;
+import static com.ygames.ysoccer.match.MatchFsm.State.STARTING_POSITIONS;
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.NEW_FOREGROUND;
 
 class MatchStateIntro extends MatchState {
@@ -18,7 +19,7 @@ class MatchStateIntro extends MatchState {
     private boolean stillCamera;
 
     MatchStateIntro(MatchFsm fsm) {
-        super(fsm);
+        super(INTRO, fsm);
 
         checkBenchCall = false;
     }
@@ -85,8 +86,8 @@ class MatchStateIntro extends MatchState {
         if (scene.enterPlayersFinished(timer, enterDelay)) {
             if ((scene.team[HOME].fire1Down() != null)
                 || (scene.team[AWAY].fire1Down() != null)
-                || (timer >= 5 * SECOND)) {
-                return newAction(NEW_FOREGROUND, STATE_STARTING_POSITIONS);
+                || (timer >= 6 * SECOND)) {
+                return newAction(NEW_FOREGROUND, STARTING_POSITIONS);
             }
         }
 

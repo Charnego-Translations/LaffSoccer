@@ -5,7 +5,8 @@ import com.ygames.ysoccer.framework.EMath;
 import com.ygames.ysoccer.framework.GLGame;
 
 import static com.ygames.ysoccer.match.ActionCamera.Mode.STILL;
-import static com.ygames.ysoccer.match.MatchFsm.STATE_BENCH_SUBSTITUTIONS;
+import static com.ygames.ysoccer.match.MatchFsm.State.BENCH_SUBSTITUTIONS;
+import static com.ygames.ysoccer.match.MatchFsm.State.BENCH_TACTICS;
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.NEW_FOREGROUND;
 
 class MatchStateBenchTactics extends MatchState {
@@ -13,7 +14,7 @@ class MatchStateBenchTactics extends MatchState {
     MatchFsm.BenchStatus benchStatus;
 
     MatchStateBenchTactics(MatchFsm fsm) {
-        super(fsm);
+        super(BENCH_TACTICS, fsm);
 
         checkReplayKey = false;
         checkPauseKey = false;
@@ -72,14 +73,14 @@ class MatchStateBenchTactics extends MatchState {
 
         // set selected tactics and go back to bench
         if (benchStatus.inputDevice.fire1Down()
-                || benchStatus.inputDevice.xReleased()) {
+            || benchStatus.inputDevice.xReleased()) {
             if (benchStatus.selectedTactics != benchStatus.team.tactics) {
                 Coach coach = benchStatus.team.coach;
                 coach.status = Coach.Status.CALL;
                 coach.timer = 500;
                 benchStatus.team.tactics = benchStatus.selectedTactics;
             }
-            return newAction(NEW_FOREGROUND, STATE_BENCH_SUBSTITUTIONS);
+            return newAction(NEW_FOREGROUND, BENCH_SUBSTITUTIONS);
         }
 
         return checkCommonConditions();

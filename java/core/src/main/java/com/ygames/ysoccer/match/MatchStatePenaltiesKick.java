@@ -5,7 +5,8 @@ import com.ygames.ysoccer.framework.EventManager;
 import com.ygames.ysoccer.framework.GLGame;
 
 import static com.ygames.ysoccer.match.ActionCamera.Mode.STILL;
-import static com.ygames.ysoccer.match.MatchFsm.STATE_PENALTIES_END;
+import static com.ygames.ysoccer.match.MatchFsm.State.PENALTIES_END;
+import static com.ygames.ysoccer.match.MatchFsm.State.PENALTIES_KICK;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_IDLE;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_PENALTY_KICK_ANGLE;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_REACH_TARGET;
@@ -16,7 +17,7 @@ class MatchStatePenaltiesKick extends MatchState {
     private boolean isKicking;
 
     MatchStatePenaltiesKick(MatchFsm fsm) {
-        super(fsm);
+        super(PENALTIES_KICK, fsm);
 
         checkBenchCall = false;
     }
@@ -91,7 +92,7 @@ class MatchStatePenaltiesKick extends MatchState {
     SceneFsm.Action[] checkConditions() {
         if (scene.ball.v > 0) {
             scene.penalty.kicker.setState(STATE_IDLE);
-            return newAction(NEW_FOREGROUND, STATE_PENALTIES_END);
+            return newAction(NEW_FOREGROUND, PENALTIES_END);
         }
 
         return checkCommonConditions();

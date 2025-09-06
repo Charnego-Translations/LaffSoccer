@@ -7,7 +7,8 @@ import com.ygames.ysoccer.framework.GLGame;
 
 import static com.ygames.ysoccer.match.ActionCamera.Mode.FOLLOW_BALL;
 import static com.ygames.ysoccer.match.ActionCamera.Speed.NORMAL;
-import static com.ygames.ysoccer.match.MatchFsm.STATE_GOAL_KICK;
+import static com.ygames.ysoccer.match.MatchFsm.State.GOAL_KICK;
+import static com.ygames.ysoccer.match.MatchFsm.State.GOAL_KICK_STOP;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_REACH_TARGET;
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.NEW_FOREGROUND;
 
@@ -16,7 +17,7 @@ class MatchStateGoalKickStop extends MatchState {
     private final Vector2 goalKickPosition = new Vector2();
 
     MatchStateGoalKickStop(MatchFsm fsm) {
-        super(fsm);
+        super(GOAL_KICK_STOP, fsm);
     }
 
     @Override
@@ -102,7 +103,7 @@ class MatchStateGoalKickStop extends MatchState {
             scene.ball.setPosition(goalKickPosition.x, goalKickPosition.y, 0);
             scene.ball.updatePrediction();
 
-            return newAction(NEW_FOREGROUND, STATE_GOAL_KICK);
+            return newAction(NEW_FOREGROUND, GOAL_KICK);
         }
 
         return checkCommonConditions();

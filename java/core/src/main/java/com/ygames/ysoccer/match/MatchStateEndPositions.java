@@ -4,8 +4,9 @@ import com.ygames.ysoccer.framework.GLGame;
 
 import static com.ygames.ysoccer.match.ActionCamera.Mode.REACH_TARGET;
 import static com.ygames.ysoccer.match.ActionCamera.Speed.FAST;
-import static com.ygames.ysoccer.match.MatchFsm.STATE_END;
-import static com.ygames.ysoccer.match.MatchFsm.STATE_HIGHLIGHTS;
+import static com.ygames.ysoccer.match.MatchFsm.State.END;
+import static com.ygames.ysoccer.match.MatchFsm.State.END_POSITIONS;
+import static com.ygames.ysoccer.match.MatchFsm.State.HIGHLIGHTS;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_OUTSIDE;
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.NEW_FOREGROUND;
 
@@ -14,7 +15,7 @@ class MatchStateEndPositions extends MatchState {
     private boolean move;
 
     MatchStateEndPositions(MatchFsm fsm) {
-        super(fsm);
+        super(END_POSITIONS, fsm);
 
         checkReplayKey = false;
         checkPauseKey = false;
@@ -80,9 +81,9 @@ class MatchStateEndPositions extends MatchState {
         if (!move) {
             if (scene.recorder.hasHighlights()) {
                 scene.recorder.restart();
-                return newFadedAction(NEW_FOREGROUND, STATE_HIGHLIGHTS);
+                return newFadedAction(NEW_FOREGROUND, HIGHLIGHTS);
             } else {
-                return newAction(NEW_FOREGROUND, STATE_END);
+                return newAction(NEW_FOREGROUND, END);
             }
         }
 

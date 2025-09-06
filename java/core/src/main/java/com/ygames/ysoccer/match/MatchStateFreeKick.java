@@ -9,7 +9,8 @@ import static com.ygames.ysoccer.match.ActionCamera.Mode.FOLLOW_BALL;
 import static com.ygames.ysoccer.match.ActionCamera.Speed.FAST;
 import static com.ygames.ysoccer.match.Const.GOAL_LINE;
 import static com.ygames.ysoccer.match.Const.TEAM_SIZE;
-import static com.ygames.ysoccer.match.MatchFsm.STATE_MAIN;
+import static com.ygames.ysoccer.match.MatchFsm.State.FREE_KICK;
+import static com.ygames.ysoccer.match.MatchFsm.State.MAIN;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_BARRIER;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_FREE_KICK_ANGLE;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_REACH_TARGET;
@@ -24,7 +25,7 @@ class MatchStateFreeKick extends MatchState {
     private boolean isKicking;
 
     MatchStateFreeKick(MatchFsm fsm) {
-        super(fsm);
+        super(FREE_KICK, fsm);
     }
 
     @Override
@@ -116,7 +117,7 @@ class MatchStateFreeKick extends MatchState {
             }
 
             scene.foul = null;
-            return newAction(NEW_FOREGROUND, STATE_MAIN);
+            return newAction(NEW_FOREGROUND, MAIN);
         }
 
         return checkCommonConditions();

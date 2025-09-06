@@ -10,8 +10,9 @@ import static com.ygames.ysoccer.match.Const.SECOND;
 import static com.ygames.ysoccer.match.Const.TEAM_SIZE;
 import static com.ygames.ysoccer.match.Match.AWAY;
 import static com.ygames.ysoccer.match.Match.HOME;
-import static com.ygames.ysoccer.match.MatchFsm.STATE_FREE_KICK_STOP;
-import static com.ygames.ysoccer.match.MatchFsm.STATE_PENALTY_KICK_STOP;
+import static com.ygames.ysoccer.match.MatchFsm.State.FREE_KICK_STOP;
+import static com.ygames.ysoccer.match.MatchFsm.State.PENALTY_KICK_STOP;
+import static com.ygames.ysoccer.match.MatchFsm.State.YELLOW_CARD;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_IDLE;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_KEEPER_POSITIONING;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_REACH_TARGET;
@@ -25,7 +26,7 @@ class MatchStateYellowCard extends MatchState {
     boolean booked;
 
     MatchStateYellowCard(MatchFsm matchFsm) {
-        super(matchFsm);
+        super(YELLOW_CARD, matchFsm);
     }
 
     @Override
@@ -106,9 +107,9 @@ class MatchStateYellowCard extends MatchState {
                 scene.foul.player.setState(STATE_SENT_OFF);
             }
             if (scene.foul.isPenalty()) {
-                return newAction(NEW_FOREGROUND, STATE_PENALTY_KICK_STOP);
+                return newAction(NEW_FOREGROUND, PENALTY_KICK_STOP);
             } else {
-                return newAction(NEW_FOREGROUND, STATE_FREE_KICK_STOP);
+                return newAction(NEW_FOREGROUND, FREE_KICK_STOP);
             }
         }
         return checkCommonConditions();

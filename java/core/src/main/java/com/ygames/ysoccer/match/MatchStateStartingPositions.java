@@ -4,7 +4,8 @@ import com.ygames.ysoccer.framework.GLGame;
 
 import static com.ygames.ysoccer.match.ActionCamera.Mode.FOLLOW_BALL;
 import static com.ygames.ysoccer.match.ActionCamera.Speed.FAST;
-import static com.ygames.ysoccer.match.MatchFsm.STATE_KICK_OFF;
+import static com.ygames.ysoccer.match.MatchFsm.State.KICK_OFF;
+import static com.ygames.ysoccer.match.MatchFsm.State.STARTING_POSITIONS;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_REACH_TARGET;
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.NEW_FOREGROUND;
 
@@ -13,7 +14,7 @@ class MatchStateStartingPositions extends MatchState {
     private boolean move;
 
     MatchStateStartingPositions(MatchFsm fsm) {
-        super(fsm);
+        super(STARTING_POSITIONS, fsm);
     }
 
     @Override
@@ -38,9 +39,9 @@ class MatchStateStartingPositions extends MatchState {
         super.onResume();
 
         scene.actionCamera
-                .setMode(FOLLOW_BALL)
-                .setSpeed(FAST)
-                .setLimited(true, true);
+            .setMode(FOLLOW_BALL)
+            .setSpeed(FAST)
+            .setLimited(true, true);
     }
 
     @Override
@@ -65,7 +66,7 @@ class MatchStateStartingPositions extends MatchState {
     @Override
     SceneFsm.Action[] checkConditions() {
         if (!move) {
-            return newAction(NEW_FOREGROUND, STATE_KICK_OFF);
+            return newAction(NEW_FOREGROUND, KICK_OFF);
         }
 
         return checkCommonConditions();

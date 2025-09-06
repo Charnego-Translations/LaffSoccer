@@ -4,7 +4,8 @@ import com.ygames.ysoccer.framework.GLGame;
 
 import static com.ygames.ysoccer.match.ActionCamera.Mode.REACH_TARGET;
 import static com.ygames.ysoccer.match.ActionCamera.Speed.FAST;
-import static com.ygames.ysoccer.match.MatchFsm.STATE_HALF_TIME_WAIT;
+import static com.ygames.ysoccer.match.MatchFsm.State.HALF_TIME_POSITIONS;
+import static com.ygames.ysoccer.match.MatchFsm.State.HALF_TIME_WAIT;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_OUTSIDE;
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.NEW_FOREGROUND;
 
@@ -13,7 +14,7 @@ class MatchStateHalfTimePositions extends MatchState {
     private boolean move;
 
     MatchStateHalfTimePositions(MatchFsm fsm) {
-        super(fsm);
+        super(HALF_TIME_POSITIONS, fsm);
     }
 
     @Override
@@ -32,10 +33,10 @@ class MatchStateHalfTimePositions extends MatchState {
         scene.ball.updatePrediction();
 
         scene.actionCamera
-                .setMode(REACH_TARGET)
-                .setTarget(0, 0)
-                .setOffset(0, 0)
-                .setSpeed(FAST);
+            .setMode(REACH_TARGET)
+            .setTarget(0, 0)
+            .setOffset(0, 0)
+            .setSpeed(FAST);
 
         scene.period = Match.Period.UNDEFINED;
         scene.clock = scene.length * 45f / 90f;
@@ -70,7 +71,7 @@ class MatchStateHalfTimePositions extends MatchState {
     @Override
     SceneFsm.Action[] checkConditions() {
         if (!move) {
-            return newAction(NEW_FOREGROUND, STATE_HALF_TIME_WAIT);
+            return newAction(NEW_FOREGROUND, HALF_TIME_WAIT);
         }
 
         return checkCommonConditions();

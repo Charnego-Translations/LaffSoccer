@@ -8,15 +8,16 @@ import static com.ygames.ysoccer.match.Const.TEAM_SIZE;
 import static com.ygames.ysoccer.match.Const.TOUCH_LINE;
 import static com.ygames.ysoccer.match.Match.AWAY;
 import static com.ygames.ysoccer.match.Match.HOME;
-import static com.ygames.ysoccer.match.MatchFsm.STATE_BENCH_EXIT;
-import static com.ygames.ysoccer.match.MatchFsm.STATE_BENCH_SUBSTITUTIONS;
+import static com.ygames.ysoccer.match.MatchFsm.State.BENCH_ENTER;
+import static com.ygames.ysoccer.match.MatchFsm.State.BENCH_EXIT;
+import static com.ygames.ysoccer.match.MatchFsm.State.BENCH_SUBSTITUTIONS;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_REACH_TARGET;
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.NEW_FOREGROUND;
 
 class MatchStateBenchEnter extends MatchState {
 
     MatchStateBenchEnter(MatchFsm fsm) {
-        super(fsm);
+        super(BENCH_ENTER, fsm);
 
         checkReplayKey = false;
         checkPauseKey = false;
@@ -85,11 +86,11 @@ class MatchStateBenchEnter extends MatchState {
         if (scene.actionCamera.getTargetDistance() < 1) {
             Coach coach = fsm.benchStatus.team.coach;
             coach.status = Coach.Status.STAND;
-            return newAction(NEW_FOREGROUND, STATE_BENCH_SUBSTITUTIONS);
+            return newAction(NEW_FOREGROUND, BENCH_SUBSTITUTIONS);
         }
 
         if (fsm.benchStatus.inputDevice.xReleased()) {
-            return newAction(NEW_FOREGROUND, STATE_BENCH_EXIT);
+            return newAction(NEW_FOREGROUND, BENCH_EXIT);
         }
 
         return checkCommonConditions();

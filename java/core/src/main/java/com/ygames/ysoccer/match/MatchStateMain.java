@@ -12,21 +12,22 @@ import static com.ygames.ysoccer.match.ActionCamera.Speed.NORMAL;
 import static com.ygames.ysoccer.match.Const.TEAM_SIZE;
 import static com.ygames.ysoccer.match.Match.AWAY;
 import static com.ygames.ysoccer.match.Match.HOME;
-import static com.ygames.ysoccer.match.MatchFsm.STATE_CORNER_STOP;
-import static com.ygames.ysoccer.match.MatchFsm.STATE_EXTRA_TIME_STOP;
-import static com.ygames.ysoccer.match.MatchFsm.STATE_FREE_KICK_STOP;
-import static com.ygames.ysoccer.match.MatchFsm.STATE_FULL_EXTRA_TIME_STOP;
-import static com.ygames.ysoccer.match.MatchFsm.STATE_FULL_TIME_STOP;
-import static com.ygames.ysoccer.match.MatchFsm.STATE_GOAL;
-import static com.ygames.ysoccer.match.MatchFsm.STATE_GOAL_KICK_STOP;
-import static com.ygames.ysoccer.match.MatchFsm.STATE_HALF_EXTRA_TIME_STOP;
-import static com.ygames.ysoccer.match.MatchFsm.STATE_HALF_TIME_STOP;
-import static com.ygames.ysoccer.match.MatchFsm.STATE_KEEPER_STOP;
-import static com.ygames.ysoccer.match.MatchFsm.STATE_PENALTIES_STOP;
-import static com.ygames.ysoccer.match.MatchFsm.STATE_PENALTY_KICK_STOP;
-import static com.ygames.ysoccer.match.MatchFsm.STATE_RED_CARD;
-import static com.ygames.ysoccer.match.MatchFsm.STATE_THROW_IN_STOP;
-import static com.ygames.ysoccer.match.MatchFsm.STATE_YELLOW_CARD;
+import static com.ygames.ysoccer.match.MatchFsm.State.CORNER_STOP;
+import static com.ygames.ysoccer.match.MatchFsm.State.EXTRA_TIME_STOP;
+import static com.ygames.ysoccer.match.MatchFsm.State.FREE_KICK_STOP;
+import static com.ygames.ysoccer.match.MatchFsm.State.FULL_EXTRA_TIME_STOP;
+import static com.ygames.ysoccer.match.MatchFsm.State.FULL_TIME_STOP;
+import static com.ygames.ysoccer.match.MatchFsm.State.GOAL;
+import static com.ygames.ysoccer.match.MatchFsm.State.GOAL_KICK_STOP;
+import static com.ygames.ysoccer.match.MatchFsm.State.HALF_EXTRA_TIME_STOP;
+import static com.ygames.ysoccer.match.MatchFsm.State.HALF_TIME_STOP;
+import static com.ygames.ysoccer.match.MatchFsm.State.KEEPER_STOP;
+import static com.ygames.ysoccer.match.MatchFsm.State.MAIN;
+import static com.ygames.ysoccer.match.MatchFsm.State.PENALTIES_STOP;
+import static com.ygames.ysoccer.match.MatchFsm.State.PENALTY_KICK_STOP;
+import static com.ygames.ysoccer.match.MatchFsm.State.RED_CARD;
+import static com.ygames.ysoccer.match.MatchFsm.State.THROW_IN_STOP;
+import static com.ygames.ysoccer.match.MatchFsm.State.YELLOW_CARD;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_DOWN;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_TACKLE;
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.NEW_FOREGROUND;
@@ -40,7 +41,7 @@ class MatchStateMain extends MatchState {
     private Event event;
 
     MatchStateMain(MatchFsm fsm) {
-        super(fsm);
+        super(MAIN, fsm);
 
         checkBenchCall = false;
     }
@@ -293,31 +294,31 @@ class MatchStateMain extends MatchState {
     SceneFsm.Action[] checkConditions() {
         switch (event) {
             case KEEPER_STOP:
-                return newAction(NEW_FOREGROUND, STATE_KEEPER_STOP);
+                return newAction(NEW_FOREGROUND, KEEPER_STOP);
 
             case GOAL:
-                return newAction(NEW_FOREGROUND, STATE_GOAL);
+                return newAction(NEW_FOREGROUND, GOAL);
 
             case CORNER:
-                return newAction(NEW_FOREGROUND, STATE_CORNER_STOP);
+                return newAction(NEW_FOREGROUND, CORNER_STOP);
 
             case GOAL_KICK:
-                return newAction(NEW_FOREGROUND, STATE_GOAL_KICK_STOP);
+                return newAction(NEW_FOREGROUND, GOAL_KICK_STOP);
 
             case THROW_IN:
-                return newAction(NEW_FOREGROUND, STATE_THROW_IN_STOP);
+                return newAction(NEW_FOREGROUND, THROW_IN_STOP);
 
             case RED_CARD:
-                return newAction(NEW_FOREGROUND, STATE_RED_CARD);
+                return newAction(NEW_FOREGROUND, RED_CARD);
 
             case YELLOW_CARD:
-                return newAction(NEW_FOREGROUND, STATE_YELLOW_CARD);
+                return newAction(NEW_FOREGROUND, YELLOW_CARD);
 
             case FREE_KICK:
-                return newAction(NEW_FOREGROUND, STATE_FREE_KICK_STOP);
+                return newAction(NEW_FOREGROUND, FREE_KICK_STOP);
 
             case PENALTY_KICK:
-                return newAction(NEW_FOREGROUND, STATE_PENALTY_KICK_STOP);
+                return newAction(NEW_FOREGROUND, PENALTY_KICK_STOP);
         }
 
         switch (scene.period) {
@@ -327,7 +328,7 @@ class MatchStateMain extends MatchState {
 
             case FIRST_HALF:
                 if ((scene.clock > (scene.length * 45f / 90f)) && scene.periodIsTerminable()) {
-                    return newAction(NEW_FOREGROUND, STATE_HALF_TIME_STOP);
+                    return newAction(NEW_FOREGROUND, HALF_TIME_STOP);
                 }
                 break;
 
@@ -337,18 +338,18 @@ class MatchStateMain extends MatchState {
                     scene.setResult(scene.stats[HOME].goals, scene.stats[AWAY].goals, Match.ResultType.AFTER_90_MINUTES);
 
                     if (scene.competition.playExtraTime()) {
-                        return newAction(NEW_FOREGROUND, STATE_EXTRA_TIME_STOP);
+                        return newAction(NEW_FOREGROUND, EXTRA_TIME_STOP);
                     } else if (scene.competition.playPenalties()) {
-                        return newAction(NEW_FOREGROUND, STATE_PENALTIES_STOP);
+                        return newAction(NEW_FOREGROUND, PENALTIES_STOP);
                     } else {
-                        return newAction(NEW_FOREGROUND, STATE_FULL_TIME_STOP);
+                        return newAction(NEW_FOREGROUND, FULL_TIME_STOP);
                     }
                 }
                 break;
 
             case FIRST_EXTRA_TIME:
                 if ((scene.clock > (scene.length * 105f / 90f)) && scene.periodIsTerminable()) {
-                    return newAction(NEW_FOREGROUND, STATE_HALF_EXTRA_TIME_STOP);
+                    return newAction(NEW_FOREGROUND, HALF_EXTRA_TIME_STOP);
                 }
                 break;
 
@@ -358,9 +359,9 @@ class MatchStateMain extends MatchState {
                     scene.setResult(scene.stats[HOME].goals, scene.stats[AWAY].goals, Match.ResultType.AFTER_EXTRA_TIME);
 
                     if (scene.competition.playPenalties()) {
-                        return newAction(NEW_FOREGROUND, STATE_PENALTIES_STOP);
+                        return newAction(NEW_FOREGROUND, PENALTIES_STOP);
                     } else {
-                        return newAction(NEW_FOREGROUND, STATE_FULL_EXTRA_TIME_STOP);
+                        return newAction(NEW_FOREGROUND, FULL_EXTRA_TIME_STOP);
                     }
                 }
                 break;

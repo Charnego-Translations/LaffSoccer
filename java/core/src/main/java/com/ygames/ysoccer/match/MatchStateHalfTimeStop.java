@@ -7,14 +7,15 @@ import com.ygames.ysoccer.framework.GLGame;
 import static com.ygames.ysoccer.match.ActionCamera.Mode.FOLLOW_BALL;
 import static com.ygames.ysoccer.match.ActionCamera.Speed.NORMAL;
 import static com.ygames.ysoccer.match.Const.SECOND;
-import static com.ygames.ysoccer.match.MatchFsm.STATE_HALF_TIME_POSITIONS;
+import static com.ygames.ysoccer.match.MatchFsm.State.HALF_TIME_POSITIONS;
+import static com.ygames.ysoccer.match.MatchFsm.State.HALF_TIME_STOP;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_IDLE;
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.NEW_FOREGROUND;
 
 class MatchStateHalfTimeStop extends MatchState {
 
     MatchStateHalfTimeStop(MatchFsm fsm) {
-        super(fsm);
+        super(HALF_TIME_STOP, fsm);
     }
 
     @Override
@@ -40,8 +41,8 @@ class MatchStateHalfTimeStop extends MatchState {
         super.onResume();
 
         scene.actionCamera
-                .setMode(FOLLOW_BALL)
-                .setSpeed(NORMAL);
+            .setMode(FOLLOW_BALL)
+            .setSpeed(NORMAL);
     }
 
     @Override
@@ -73,7 +74,7 @@ class MatchStateHalfTimeStop extends MatchState {
     @Override
     SceneFsm.Action[] checkConditions() {
         if (timer > 3 * SECOND) {
-            return newAction(NEW_FOREGROUND, STATE_HALF_TIME_POSITIONS);
+            return newAction(NEW_FOREGROUND, HALF_TIME_POSITIONS);
         }
 
         return checkCommonConditions();

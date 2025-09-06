@@ -9,8 +9,9 @@ import static com.ygames.ysoccer.match.ActionCamera.Mode.FOLLOW_BALL;
 import static com.ygames.ysoccer.match.ActionCamera.Speed.NORMAL;
 import static com.ygames.ysoccer.match.Const.SECOND;
 import static com.ygames.ysoccer.match.Const.TEAM_SIZE;
-import static com.ygames.ysoccer.match.MatchFsm.STATE_END_POSITIONS;
-import static com.ygames.ysoccer.match.MatchFsm.STATE_FINAL_CELEBRATION;
+import static com.ygames.ysoccer.match.MatchFsm.State.END_POSITIONS;
+import static com.ygames.ysoccer.match.MatchFsm.State.FINAL_CELEBRATION;
+import static com.ygames.ysoccer.match.MatchFsm.State.FULL_EXTRA_TIME_STOP;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_CELEBRATION;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_IDLE;
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.NEW_FOREGROUND;
@@ -18,7 +19,7 @@ import static com.ygames.ysoccer.match.SceneFsm.ActionType.NEW_FOREGROUND;
 class MatchStateFullExtraTimeStop extends MatchState {
 
     MatchStateFullExtraTimeStop(MatchFsm fsm) {
-        super(fsm);
+        super(FULL_EXTRA_TIME_STOP, fsm);
 
         checkBenchCall = false;
     }
@@ -93,9 +94,9 @@ class MatchStateFullExtraTimeStop extends MatchState {
     SceneFsm.Action[] checkConditions() {
         if (timer > 3 * SECOND) {
             if (scene.competition.getFinalWinner() != null) {
-                return newAction(NEW_FOREGROUND, STATE_FINAL_CELEBRATION);
+                return newAction(NEW_FOREGROUND, FINAL_CELEBRATION);
             } else {
-                return newAction(NEW_FOREGROUND, STATE_END_POSITIONS);
+                return newAction(NEW_FOREGROUND, END_POSITIONS);
             }
         }
 

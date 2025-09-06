@@ -6,8 +6,9 @@ import com.ygames.ysoccer.framework.GLGame;
 import static com.ygames.ysoccer.match.ActionCamera.Mode.STILL;
 import static com.ygames.ysoccer.match.Coach.Status.LOOK_BENCH;
 import static com.ygames.ysoccer.match.Const.TEAM_SIZE;
-import static com.ygames.ysoccer.match.MatchFsm.STATE_BENCH_EXIT;
-import static com.ygames.ysoccer.match.MatchFsm.STATE_BENCH_FORMATION;
+import static com.ygames.ysoccer.match.MatchFsm.State.BENCH_EXIT;
+import static com.ygames.ysoccer.match.MatchFsm.State.BENCH_FORMATION;
+import static com.ygames.ysoccer.match.MatchFsm.State.BENCH_SUBSTITUTIONS;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_BENCH_OUT;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_BENCH_SITTING;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_BENCH_STANDING;
@@ -20,7 +21,7 @@ class MatchStateBenchSubstitutions extends MatchState {
     MatchFsm.BenchStatus benchStatus;
 
     MatchStateBenchSubstitutions(MatchFsm fsm) {
-        super(fsm);
+        super(BENCH_SUBSTITUTIONS, fsm);
 
         checkReplayKey = false;
         checkPauseKey = false;
@@ -104,7 +105,7 @@ class MatchStateBenchSubstitutions extends MatchState {
 
         if (benchStatus.inputDevice.fire1Down()) {
             if (benchStatus.selectedPosition == -1) {
-                return newAction(NEW_FOREGROUND, STATE_BENCH_FORMATION);
+                return newAction(NEW_FOREGROUND, BENCH_FORMATION);
             } else {
                 // if no previous selection
                 if (benchStatus.substPosition == -1) {
@@ -119,14 +120,14 @@ class MatchStateBenchSubstitutions extends MatchState {
                         benchStatus.substPosition = TEAM_SIZE + benchStatus.selectedPosition;
                         benchStatus.selectedPosition = benchStatus.team.nearestBenchPlayerByRole(player.role);
 
-                        return newAction(NEW_FOREGROUND, STATE_BENCH_FORMATION);
+                        return newAction(NEW_FOREGROUND, BENCH_FORMATION);
                     }
                 }
             }
         }
 
         if (benchStatus.inputDevice.xReleased()) {
-            return newAction(NEW_FOREGROUND, STATE_BENCH_EXIT);
+            return newAction(NEW_FOREGROUND, BENCH_EXIT);
         }
 
         return checkCommonConditions();

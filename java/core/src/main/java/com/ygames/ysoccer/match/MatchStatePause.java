@@ -4,7 +4,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.ygames.ysoccer.framework.InputDevice;
 
-import static com.ygames.ysoccer.match.MatchFsm.STATE_REPLAY;
+import static com.ygames.ysoccer.match.MatchFsm.State.PAUSE;
+import static com.ygames.ysoccer.match.MatchFsm.State.REPLAY;
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.NEW_FOREGROUND;
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.RESTORE_FOREGROUND;
 
@@ -15,7 +16,7 @@ class MatchStatePause extends MatchState {
     private boolean resume;
 
     MatchStatePause(MatchFsm fsm) {
-        super(fsm);
+        super(PAUSE, fsm);
 
         checkReplayKey = false;
         checkPauseKey = false;
@@ -68,7 +69,7 @@ class MatchStatePause extends MatchState {
 
         // hand over to replay
         if (Gdx.input.isKeyPressed(Input.Keys.R)) {
-            return newFadedAction(NEW_FOREGROUND, STATE_REPLAY);
+            return newFadedAction(NEW_FOREGROUND, REPLAY);
         }
 
         return checkCommonConditions();

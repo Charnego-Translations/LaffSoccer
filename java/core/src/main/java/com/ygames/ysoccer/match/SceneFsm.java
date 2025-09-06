@@ -65,10 +65,8 @@ abstract class SceneFsm<SceneT extends Scene<?, SceneStateT>, SceneStateT extend
         return scene;
     }
 
-    int addState(SceneStateT state) {
+    void addState(SceneStateT state) {
         states.add(state);
-        state.setId(states.size());
-        return state.getId();
     }
 
     public abstract void start();

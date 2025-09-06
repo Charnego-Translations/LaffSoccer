@@ -6,7 +6,8 @@ import com.ygames.ysoccer.framework.GLGame;
 
 import static com.ygames.ysoccer.match.ActionCamera.Mode.FOLLOW_BALL;
 import static com.ygames.ysoccer.match.ActionCamera.Speed.FAST;
-import static com.ygames.ysoccer.match.MatchFsm.STATE_MAIN;
+import static com.ygames.ysoccer.match.MatchFsm.State.MAIN;
+import static com.ygames.ysoccer.match.MatchFsm.State.PENALTY_KICK;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_PENALTY_KICK_ANGLE;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_REACH_TARGET;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_STAND_RUN;
@@ -17,7 +18,7 @@ class MatchStatePenaltyKick extends MatchState {
     private boolean isKicking;
 
     MatchStatePenaltyKick(MatchFsm fsm) {
-        super(fsm);
+        super(PENALTY_KICK, fsm);
     }
 
     @Override
@@ -101,7 +102,7 @@ class MatchStatePenaltyKick extends MatchState {
             scene.setPlayersState(STATE_STAND_RUN, scene.penalty.kicker);
             scene.penaltyScorer = scene.penalty.kicker;
             scene.penalty = null;
-            return newAction(NEW_FOREGROUND, STATE_MAIN);
+            return newAction(NEW_FOREGROUND, MAIN);
         }
 
         return checkCommonConditions();

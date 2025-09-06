@@ -10,14 +10,15 @@ import static com.ygames.ysoccer.match.ActionCamera.Speed.NORMAL;
 import static com.ygames.ysoccer.match.Const.SECOND;
 import static com.ygames.ysoccer.match.Match.AWAY;
 import static com.ygames.ysoccer.match.Match.HOME;
-import static com.ygames.ysoccer.match.MatchFsm.STATE_STARTING_POSITIONS;
+import static com.ygames.ysoccer.match.MatchFsm.State.EXTRA_TIME_STOP;
+import static com.ygames.ysoccer.match.MatchFsm.State.STARTING_POSITIONS;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_IDLE;
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.NEW_FOREGROUND;
 
 class MatchStateExtraTimeStop extends MatchState {
 
     MatchStateExtraTimeStop(MatchFsm fsm) {
-        super(fsm);
+        super(EXTRA_TIME_STOP, fsm);
     }
 
     @Override
@@ -92,7 +93,7 @@ class MatchStateExtraTimeStop extends MatchState {
             scene.period = Match.Period.FIRST_EXTRA_TIME;
             scene.clock = scene.length;
 
-            return newAction(NEW_FOREGROUND, STATE_STARTING_POSITIONS);
+            return newAction(NEW_FOREGROUND, STARTING_POSITIONS);
         }
 
         return checkCommonConditions();

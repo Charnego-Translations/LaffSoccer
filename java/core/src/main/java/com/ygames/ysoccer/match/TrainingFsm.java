@@ -4,22 +4,30 @@ import com.ygames.ysoccer.framework.InputDeviceList;
 
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.FADE_IN;
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.NEW_FOREGROUND;
+import static com.ygames.ysoccer.match.TrainingFsm.State.FREE;
 
 public class TrainingFsm extends SceneFsm<Training, TrainingState> {
 
-    private static int STATE_FREE;
-    static int STATE_REPLAY;
+    enum State {
+        FREE,
+        REPLAY
+    }
+
 
     TrainingFsm(Training training, InputDeviceList inputDevices) {
         super(training, inputDevices);
 
-        STATE_FREE = addState(new TrainingStateFree(this));
-        STATE_REPLAY = addState(new TrainingStateReplay(this));
+        new TrainingStateFree(this);
+        new TrainingStateReplay(this);
     }
 
     @Override
     public void start() {
-        pushAction(NEW_FOREGROUND, STATE_FREE);
+        pushAction(NEW_FOREGROUND, FREE);
         pushAction(FADE_IN);
+    }
+
+    void pushAction(ActionType type, State state) {
+        pushAction(type, state.ordinal());
     }
 }

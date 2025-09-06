@@ -7,14 +7,15 @@ import com.ygames.ysoccer.framework.GLGame;
 import static com.ygames.ysoccer.match.ActionCamera.Mode.FOLLOW_BALL;
 import static com.ygames.ysoccer.match.ActionCamera.Speed.NORMAL;
 import static com.ygames.ysoccer.match.Const.SECOND;
-import static com.ygames.ysoccer.match.MatchFsm.STATE_STARTING_POSITIONS;
+import static com.ygames.ysoccer.match.MatchFsm.State.HALF_EXTRA_TIME_STOP;
+import static com.ygames.ysoccer.match.MatchFsm.State.STARTING_POSITIONS;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_IDLE;
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.NEW_FOREGROUND;
 
 class MatchStateHalfExtraTimeStop extends MatchState {
 
     MatchStateHalfExtraTimeStop(MatchFsm fsm) {
-        super(fsm);
+        super(HALF_EXTRA_TIME_STOP, fsm);
     }
 
     @Override
@@ -85,7 +86,7 @@ class MatchStateHalfExtraTimeStop extends MatchState {
             scene.period = Match.Period.SECOND_EXTRA_TIME;
             scene.clock = scene.length * 105f / 90f;
 
-            return newAction(NEW_FOREGROUND, STATE_STARTING_POSITIONS);
+            return newAction(NEW_FOREGROUND, STARTING_POSITIONS);
         }
 
         return checkCommonConditions();

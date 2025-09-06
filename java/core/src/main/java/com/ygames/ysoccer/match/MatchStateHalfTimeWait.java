@@ -7,13 +7,14 @@ import static com.ygames.ysoccer.match.ActionCamera.Speed.FAST;
 import static com.ygames.ysoccer.match.Const.SECOND;
 import static com.ygames.ysoccer.match.Match.AWAY;
 import static com.ygames.ysoccer.match.Match.HOME;
-import static com.ygames.ysoccer.match.MatchFsm.STATE_HALF_TIME_ENTER;
+import static com.ygames.ysoccer.match.MatchFsm.State.HALF_TIME_ENTER;
+import static com.ygames.ysoccer.match.MatchFsm.State.HALF_TIME_WAIT;
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.NEW_FOREGROUND;
 
 class MatchStateHalfTimeWait extends MatchState {
 
     MatchStateHalfTimeWait(MatchFsm fsm) {
-        super(fsm);
+        super(HALF_TIME_WAIT, fsm);
     }
 
     @Override
@@ -33,9 +34,9 @@ class MatchStateHalfTimeWait extends MatchState {
         scene.kickOffTeam = 1 - scene.coinToss;
 
         scene.actionCamera
-                .setMode(REACH_TARGET)
-                .setSpeed(FAST)
-                .setTarget(0, 0);
+            .setMode(REACH_TARGET)
+            .setSpeed(FAST)
+            .setTarget(0, 0);
     }
 
     @Override
@@ -58,10 +59,10 @@ class MatchStateHalfTimeWait extends MatchState {
     @Override
     SceneFsm.Action[] checkConditions() {
         if (scene.team[HOME].fire1Down() != null
-                || scene.team[AWAY].fire1Down() != null
-                || (timer > 3 * SECOND)) {
+            || scene.team[AWAY].fire1Down() != null
+            || (timer > 3 * SECOND)) {
             scene.period = Match.Period.SECOND_HALF;
-            return newAction(NEW_FOREGROUND, STATE_HALF_TIME_ENTER);
+            return newAction(NEW_FOREGROUND, HALF_TIME_ENTER);
         }
 
         return checkCommonConditions();

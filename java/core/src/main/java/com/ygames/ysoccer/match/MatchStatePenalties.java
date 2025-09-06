@@ -9,7 +9,8 @@ import static com.ygames.ysoccer.match.Const.GOAL_LINE;
 import static com.ygames.ysoccer.match.Const.PENALTY_SPOT_Y;
 import static com.ygames.ysoccer.match.Match.AWAY;
 import static com.ygames.ysoccer.match.Match.HOME;
-import static com.ygames.ysoccer.match.MatchFsm.STATE_PENALTIES_KICK;
+import static com.ygames.ysoccer.match.MatchFsm.State.PENALTIES;
+import static com.ygames.ysoccer.match.MatchFsm.State.PENALTIES_KICK;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_KEEPER_PENALTY_POSITIONING;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_REACH_TARGET;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_SENT_OFF;
@@ -21,7 +22,7 @@ class MatchStatePenalties extends MatchState {
     private boolean move;
 
     MatchStatePenalties(MatchFsm fsm) {
-        super(fsm);
+        super(PENALTIES, fsm);
 
         checkBenchCall = false;
     }
@@ -61,8 +62,8 @@ class MatchStatePenalties extends MatchState {
         super.onResume();
 
         scene.actionCamera
-                .setMode(FOLLOW_BALL)
-                .setSpeed(NORMAL);
+            .setMode(FOLLOW_BALL)
+            .setSpeed(NORMAL);
     }
 
     @Override
@@ -88,7 +89,7 @@ class MatchStatePenalties extends MatchState {
     SceneFsm.Action[] checkConditions() {
         if (!move) {
             scene.penalty.keeper.setState(STATE_KEEPER_PENALTY_POSITIONING);
-            return newAction(NEW_FOREGROUND, STATE_PENALTIES_KICK);
+            return newAction(NEW_FOREGROUND, PENALTIES_KICK);
         }
 
         return checkCommonConditions();

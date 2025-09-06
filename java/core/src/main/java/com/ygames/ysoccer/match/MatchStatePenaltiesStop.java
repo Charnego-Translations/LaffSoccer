@@ -8,14 +8,15 @@ import com.ygames.ysoccer.framework.GLGame;
 import static com.ygames.ysoccer.match.ActionCamera.Mode.FOLLOW_BALL;
 import static com.ygames.ysoccer.match.ActionCamera.Speed.NORMAL;
 import static com.ygames.ysoccer.match.Const.SECOND;
-import static com.ygames.ysoccer.match.MatchFsm.STATE_PENALTIES;
+import static com.ygames.ysoccer.match.MatchFsm.State.PENALTIES;
+import static com.ygames.ysoccer.match.MatchFsm.State.PENALTIES_STOP;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_IDLE;
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.NEW_FOREGROUND;
 
 class MatchStatePenaltiesStop extends MatchState {
 
     MatchStatePenaltiesStop(MatchFsm fsm) {
-        super(fsm);
+        super(PENALTIES_STOP, fsm);
 
         checkBenchCall = false;
     }
@@ -85,7 +86,7 @@ class MatchStatePenaltiesStop extends MatchState {
 
             scene.addPenalties(5);
 
-            return newAction(NEW_FOREGROUND, STATE_PENALTIES);
+            return newAction(NEW_FOREGROUND, PENALTIES);
         }
 
         return checkCommonConditions();

@@ -8,6 +8,7 @@ import com.ygames.ysoccer.framework.InputDevice;
 import com.ygames.ysoccer.framework.Settings;
 
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.RESTORE_FOREGROUND;
+import static com.ygames.ysoccer.match.TrainingFsm.State.REPLAY;
 
 class TrainingStateReplay extends TrainingState {
 
@@ -18,7 +19,7 @@ class TrainingStateReplay extends TrainingState {
     private boolean keyPause;
 
     TrainingStateReplay(TrainingFsm fsm) {
-        super(fsm);
+        super(REPLAY, fsm);
 
         displayReplayGui = true;
 

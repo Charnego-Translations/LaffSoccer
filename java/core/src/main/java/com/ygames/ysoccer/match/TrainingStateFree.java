@@ -24,7 +24,8 @@ import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_KEEPER_POSITIONING;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_REACH_TARGET;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_STAND_RUN;
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.HOLD_FOREGROUND;
-import static com.ygames.ysoccer.match.TrainingFsm.STATE_REPLAY;
+import static com.ygames.ysoccer.match.TrainingFsm.State.FREE;
+import static com.ygames.ysoccer.match.TrainingFsm.State.REPLAY;
 
 class TrainingStateFree extends TrainingState {
 
@@ -32,7 +33,7 @@ class TrainingStateFree extends TrainingState {
     private final Player[] keepers;
 
     TrainingStateFree(TrainingFsm fsm) {
-        super(fsm);
+        super(FREE, fsm);
 
         displayControlledPlayer = true;
 
@@ -50,9 +51,9 @@ class TrainingStateFree extends TrainingState {
         lastTrained = team[HOME].lineup.get(0);
 
         scene.actionCamera
-                .setMode(FOLLOW_BALL)
-                .setSpeed(NORMAL)
-                .setLimited(true, true);
+            .setMode(FOLLOW_BALL)
+            .setSpeed(NORMAL)
+            .setLimited(true, true);
     }
 
     @Override
@@ -88,7 +89,7 @@ class TrainingStateFree extends TrainingState {
                             player.watchPosition(ball.x, ball.y);
                         }
                         if (player.checkState(STATE_KEEPER_KICK_ANGLE)
-                                && !Const.isInsideGoalArea(lastTrained.x, lastTrained.y, player.side)) {
+                            && !Const.isInsideGoalArea(lastTrained.x, lastTrained.y, player.side)) {
                             if (player.getState().timer > Const.SECOND) {
                                 player.setState(STATE_KEEPER_POSITIONING);
                                 ball.a = player.angleToPoint(lastTrained.x, lastTrained.y);
@@ -136,7 +137,7 @@ class TrainingStateFree extends TrainingState {
 
             // swap controls
             else if ((ball.owner.inputDevice == ball.owner.ai)
-                    && (lastTrained.inputDevice != lastTrained.ai)) {
+                && (lastTrained.inputDevice != lastTrained.ai)) {
 
                 ball.owner.setInputDevice(lastTrained.inputDevice);
                 ball.owner.setState(STATE_STAND_RUN);
@@ -148,9 +149,9 @@ class TrainingStateFree extends TrainingState {
         }
 
         if (ball.owner != null
-                && ball.owner != keepers[HOME]
-                && ball.owner != keepers[AWAY]
-                && ball.owner.inputDevice != ball.owner.ai) {
+            && ball.owner != keepers[HOME]
+            && ball.owner != keepers[AWAY]
+            && ball.owner.inputDevice != ball.owner.ai) {
             lastTrained = ball.owner;
         }
 
@@ -168,7 +169,7 @@ class TrainingStateFree extends TrainingState {
         }
 
         if (Gdx.input.isKeyPressed(Input.Keys.R)) {
-            return newFadedAction(HOLD_FOREGROUND, STATE_REPLAY);
+            return newFadedAction(HOLD_FOREGROUND, REPLAY);
         }
 
         return null;
@@ -218,8 +219,8 @@ class TrainingStateFree extends TrainingState {
 
     private Vector2 getDefaultTarget(Player player) {
         return new Vector2(
-                -280 + 16 * (-player.team.lineup.size() + 2 * player.index) + 6 * EMath.cos(70 * (player.number)),
-                -player.team.side * (150 + 5 * (player.index % 2)) + 8 * EMath.sin(70 * (player.number))
+            -280 + 16 * (-player.team.lineup.size() + 2 * player.index) + 6 * EMath.cos(70 * (player.number)),
+            -player.team.side * (150 + 5 * (player.index % 2)) + 8 * EMath.sin(70 * (player.number))
         );
     }
 
