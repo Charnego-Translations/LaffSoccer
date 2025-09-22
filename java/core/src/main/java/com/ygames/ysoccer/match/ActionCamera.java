@@ -11,7 +11,7 @@ import static com.ygames.ysoccer.match.Const.PITCH_W;
 import static com.ygames.ysoccer.match.Const.SECOND;
 import static com.ygames.ysoccer.match.Const.TOUCH_LINE;
 
-public class ActionCamera {
+abstract class ActionCamera {
 
     enum Mode {
         STILL,
@@ -59,40 +59,8 @@ public class ActionCamera {
         return mode;
     }
 
-    ActionCamera setMode(Mode mode) {
-        this.mode = mode;
-        return this;
-    }
-
     Speed getSpeed() {
         return speed;
-    }
-
-    ActionCamera setSpeed(Speed speed) {
-        this.speed = speed;
-        return this;
-    }
-
-    ActionCamera setOffset(float x, float y) {
-        this.offsetX = x;
-        this.offsetY = y;
-        return this;
-    }
-
-    ActionCamera setLimited(boolean xLimited, boolean yLimited) {
-        this.xLimited = xLimited;
-        this.yLimited = yLimited;
-        return this;
-    }
-
-    ActionCamera setTarget(float x, float y) {
-        target.set(x, y);
-        return this;
-    }
-
-    ActionCamera setTarget(Vector2 t) {
-        target.set(t);
-        return this;
     }
 
     Vector2 getCurrentTarget() {
@@ -151,8 +119,7 @@ public class ActionCamera {
         return targetDistance;
     }
 
-    void updateSettings() {
-    }
+    abstract void updateSettings();
 
     void update() {
         updateSettings();

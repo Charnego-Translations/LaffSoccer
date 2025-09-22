@@ -3,6 +3,7 @@ package com.ygames.ysoccer.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.ygames.ysoccer.framework.Assets;
+import com.ygames.ysoccer.framework.EventManager;
 import com.ygames.ysoccer.framework.GLGame;
 import com.ygames.ysoccer.framework.GLScreen;
 import com.ygames.ysoccer.match.Kit;
@@ -25,6 +26,9 @@ class TrainingLoading extends GLScreen {
         usesMouse = false;
 
         Team trainingTeam = navigation.team;
+
+        EventManager.clear();
+        game.soundManager.subscribeEvents();
 
         sceneSettings.setup();
 

@@ -9,8 +9,6 @@ import com.ygames.ysoccer.framework.GLGame;
 import java.util.Collections;
 
 import static com.badlogic.gdx.Input.Keys.ESCAPE;
-import static com.ygames.ysoccer.match.ActionCamera.Mode.FOLLOW_BALL;
-import static com.ygames.ysoccer.match.ActionCamera.Speed.NORMAL;
 import static com.ygames.ysoccer.match.Const.BALL_R;
 import static com.ygames.ysoccer.match.Const.BENCH_X;
 import static com.ygames.ysoccer.match.Const.BENCH_Y_UP;
@@ -49,11 +47,6 @@ class TrainingStateFree extends TrainingState {
         scene.resetData();
 
         lastTrained = team[HOME].lineup.get(0);
-
-        scene.actionCamera
-            .setMode(FOLLOW_BALL)
-            .setSpeed(NORMAL)
-            .setLimited(true, true);
     }
 
     @Override

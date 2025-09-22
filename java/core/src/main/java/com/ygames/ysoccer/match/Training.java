@@ -59,9 +59,13 @@ public class Training extends Scene<TrainingFsm, TrainingState> {
             team[t].setSide(1 - 2 * t);
         }
 
-        actionCamera = new ActionCamera(ball);
+        actionCamera = new TrainingCamera(this);
         fsm = new TrainingFsm(this, inputDevices);
         pointOfInterest = new Vector2();
+    }
+
+    public Ball getBall() {
+        return ball;
     }
 
     void updateBall() {

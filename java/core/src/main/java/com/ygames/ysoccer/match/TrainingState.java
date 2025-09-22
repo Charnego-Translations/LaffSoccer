@@ -22,6 +22,11 @@ abstract class TrainingState extends SceneState<TrainingFsm, Training> {
         this.ball = scene.ball;
     }
 
+    @Override
+    public TrainingFsm.StateId getId() {
+        return (TrainingFsm.StateId) this.id;
+    }
+
     void quitTraining() {
         scene.quit();
     }
