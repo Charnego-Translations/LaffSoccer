@@ -146,19 +146,19 @@ abstract class SceneFsm<SceneT extends Scene<?, SceneStateT>, SceneStateT extend
                 if (scene.state != null) {
                     scene.state.exitActions();
                 }
-                scene.state = searchState(currentAction.stateId);
+                scene.setState(searchState(currentAction.stateId));
                 Gdx.app.debug("NEW_FOREGROUND", scene.state == null ? "null" : scene.state.getClass().getSimpleName());
                 break;
 
             case HOLD_FOREGROUND:
                 holdState = scene.state;
-                scene.state = searchState(currentAction.stateId);
+                scene.setState(searchState(currentAction.stateId));
                 Gdx.app.debug("HOLD_FOREGROUND", scene.state == null ? "null" : scene.state.getClass().getSimpleName());
                 break;
 
             case RESTORE_FOREGROUND:
                 scene.state.exitActions();
-                scene.state = holdState;
+                scene.setState(holdState);
                 Gdx.app.debug("RESUME_FOREGROUND", scene.state == null ? "null" : scene.state.getClass().getSimpleName());
                 holdState = null;
                 break;

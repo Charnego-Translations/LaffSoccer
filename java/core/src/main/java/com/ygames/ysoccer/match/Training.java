@@ -164,4 +164,9 @@ public class Training extends Scene<TrainingFsm, TrainingState> {
     @Override
     public void clearDisplayFlags() {
     }
+
+    @Override
+    TrainingFsm.StateId getStateId() {
+        return (TrainingFsm.StateId) stateId;
+    }
 }

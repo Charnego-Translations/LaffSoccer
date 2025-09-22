@@ -20,7 +20,7 @@ public class MatchCamera extends SceneCamera<Match> {
 
     @Override
     public void updateSettings() {
-        switch (scene.state.getId()) {
+        switch (scene.getStateId()) {
             case INTRO:
                 mode = scene.state.timer > SECOND ? FOLLOW_BALL : STILL;
                 speed = NORMAL;

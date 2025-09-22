@@ -11,7 +11,7 @@ public class TrainingCamera extends SceneCamera<Training> {
 
     @Override
     void updateSettings() {
-        switch (scene.state.getId()) {
+        switch (scene.getStateId()) {
             case FREE:
                 mode = FOLLOW_BALL;
                 speed = NORMAL;

@@ -752,4 +752,9 @@ public class Match extends Scene<MatchFsm, MatchState> implements Json.Serializa
         displayHighlightsGui = false;
         displayReplayControls = false;
     }
+
+    @Override
+    MatchFsm.StateId getStateId() {
+        return (MatchFsm.StateId) stateId;
+    }
 }

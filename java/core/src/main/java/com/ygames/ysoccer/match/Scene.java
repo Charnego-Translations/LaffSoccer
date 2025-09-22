@@ -4,6 +4,7 @@ import com.badlogic.gdx.math.Vector2;
 
 public abstract class Scene<SceneFsmT extends SceneFsm<?, SceneStateT>, SceneStateT extends SceneState<SceneFsmT, ?>> {
 
+    SceneStateT.Id stateId;
     SceneFsmT fsm;
     public SceneStateT state;
     protected int subframe;
@@ -11,7 +12,7 @@ public abstract class Scene<SceneFsmT extends SceneFsm<?, SceneStateT>, SceneSta
 
     Vector2 pointOfInterest;
 
-    SceneCamera camera;
+    public SceneCamera<?> camera;
     public int light;
 
     final int[] vCameraX = new int[Const.REPLAY_SUBFRAMES];
@@ -26,6 +27,13 @@ public abstract class Scene<SceneFsmT extends SceneFsm<?, SceneStateT>, SceneSta
     public SceneStateT getState() {
         return state;
     }
+
+    void setState(SceneStateT state) {
+        this.state = state;
+        this.stateId = state == null ? null : state.getId();
+    }
+
+    abstract SceneStateT.Id getStateId();
 
     public void start() {
         fsm.start();

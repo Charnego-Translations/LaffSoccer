@@ -11,7 +11,7 @@ import static com.ygames.ysoccer.match.Const.PITCH_W;
 import static com.ygames.ysoccer.match.Const.SECOND;
 import static com.ygames.ysoccer.match.Const.TOUCH_LINE;
 
-abstract class SceneCamera<SceneT extends Scene<?, ?>> {
+public abstract class SceneCamera<SceneT extends Scene<?, ?>> {
 
     enum Mode {
         STILL,
@@ -123,7 +123,7 @@ abstract class SceneCamera<SceneT extends Scene<?, ?>> {
 
     abstract void updateSettings();
 
-    void update() {
+    public void update() {
         updateSettings();
 
         switch (mode) {
