@@ -61,7 +61,7 @@ class MatchStateRedCard extends MatchState {
 
         setPlayerStates();
 
-        if (!booked && timer > SECOND) {
+        if (!booked && scene.stateTimer > SECOND) {
             scene.foul.player.setState(STATE_RED_CARD);
             booked = true;
         }

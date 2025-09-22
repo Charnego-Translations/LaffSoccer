@@ -1183,14 +1183,14 @@ public class MatchRenderer extends SceneRenderer<Match> {
 
     void drawYellowCard(Player player) {
         FrameData d = player.currentData;
-        if ((matchState.timer % (SECOND / 2)) > SECOND / 4) {
+        if ((scene.stateTimer % (SECOND / 2)) > SECOND / 4) {
             Assets.font6.draw(batch, "" + (char) 14, d.x + 1, d.y - 40, CENTER);
         }
     }
 
     void drawRedCard(Player player) {
         FrameData d = player.currentData;
-        if ((matchState.timer % (SECOND / 2)) > SECOND / 4) {
+        if ((scene.stateTimer % (SECOND / 2)) > SECOND / 4) {
             Assets.font6.draw(batch, "" + (char) 15, d.x + 1, d.y - 40, CENTER);
         }
     }

@@ -10,7 +10,6 @@ abstract class SceneState<SceneFsmT extends SceneFsm<SceneT, ?>, SceneT extends 
     Id id;
     final SceneFsmT fsm;
     final SceneT scene;
-    int timer;
 
     SceneState(Id id, SceneFsmT fsm) {
         this.id = id;
@@ -27,7 +26,7 @@ abstract class SceneState<SceneFsmT extends SceneFsm<SceneT, ?>, SceneT extends 
     }
 
     void entryActions() {
-        timer = 0;
+        scene.stateTimer = 0;
     }
 
     void exitActions() {
@@ -36,7 +35,7 @@ abstract class SceneState<SceneFsmT extends SceneFsm<SceneT, ?>, SceneT extends 
     void doActions(float deltaTime) {
         float timeLeft = deltaTime;
         while (timeLeft >= GLGame.SUBFRAME_DURATION) {
-            timer += 1;
+            scene.stateTimer += 1;
 
             timeLeft -= GLGame.SUBFRAME_DURATION;
         }

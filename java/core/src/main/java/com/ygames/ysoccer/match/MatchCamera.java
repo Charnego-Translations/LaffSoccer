@@ -22,7 +22,7 @@ public class MatchCamera extends SceneCamera<Match> {
     public void updateSettings() {
         switch (scene.getStateId()) {
             case INTRO:
-                mode = scene.state.timer > SECOND ? FOLLOW_BALL : STILL;
+                mode = scene.stateTimer > SECOND ? FOLLOW_BALL : STILL;
                 speed = NORMAL;
                 break;
 
@@ -106,7 +106,7 @@ public class MatchCamera extends SceneCamera<Match> {
                 break;
 
             case GOAL:
-                if (scene.state.timer < SECOND) {
+                if (scene.stateTimer < SECOND) {
                     mode = FOLLOW_BALL;
                     speed = NORMAL;
                 } else {

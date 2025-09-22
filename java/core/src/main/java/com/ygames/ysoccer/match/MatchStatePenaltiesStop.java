@@ -63,7 +63,7 @@ class MatchStatePenaltiesStop extends MatchState {
 
     @Override
     SceneFsm.Action[] checkConditions() {
-        if (timer > 3 * SECOND) {
+        if (scene.stateTimer > 3 * SECOND) {
             scene.ball.setPosition(0, -Const.PENALTY_SPOT_Y, 0);
             scene.ball.updatePrediction();
 

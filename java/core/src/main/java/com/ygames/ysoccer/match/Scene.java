@@ -7,6 +7,7 @@ public abstract class Scene<SceneFsmT extends SceneFsm<?, SceneStateT>, SceneSta
     SceneStateT.Id stateId;
     SceneFsmT fsm;
     public SceneStateT state;
+    int stateTimer;
     protected int subframe;
     protected SceneSettings settings;
 

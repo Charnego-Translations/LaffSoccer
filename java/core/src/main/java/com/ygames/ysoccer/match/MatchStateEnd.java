@@ -61,7 +61,7 @@ class MatchStateEnd extends MatchState {
 
         if (scene.team[HOME].fire1Up() != null
             || scene.team[AWAY].fire1Up() != null
-            || timer > 20 * SECOND) {
+            || scene.stateTimer > 20 * SECOND) {
             quitMatch();
             return null;
         }

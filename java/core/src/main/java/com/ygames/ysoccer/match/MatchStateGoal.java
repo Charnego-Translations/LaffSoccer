@@ -112,7 +112,7 @@ class MatchStateGoal extends MatchState {
     @Override
     SceneFsm.Action[] checkConditions() {
         if ((scene.ball.v == 0) && (scene.ball.vz == 0)
-            && (timer > 3 * SECOND)) {
+            && (scene.stateTimer > 3 * SECOND)) {
 
             if (!recordingDone) {
                 scene.recorder.saveHighlight();

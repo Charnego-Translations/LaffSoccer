@@ -62,7 +62,7 @@ class MatchStateHalfTimeStop extends MatchState {
 
     @Override
     SceneFsm.Action[] checkConditions() {
-        if (timer > 3 * SECOND) {
+        if (scene.stateTimer > 3 * SECOND) {
             return newAction(NEW_FOREGROUND, HALF_TIME_POSITIONS);
         }
 

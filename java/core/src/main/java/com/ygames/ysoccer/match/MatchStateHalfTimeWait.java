@@ -53,7 +53,7 @@ class MatchStateHalfTimeWait extends MatchState {
     SceneFsm.Action[] checkConditions() {
         if (scene.team[HOME].fire1Down() != null
             || scene.team[AWAY].fire1Down() != null
-            || (timer > 3 * SECOND)) {
+            || (scene.stateTimer > 3 * SECOND)) {
             scene.period = Match.Period.SECOND_HALF;
             return newAction(NEW_FOREGROUND, HALF_TIME_ENTER);
         }

@@ -77,7 +77,7 @@ class MatchStateFinalCelebration extends MatchState {
 
                 case CELEBRATING:
                     if (!move) {
-                        celebrationEndingTime = timer;
+                        celebrationEndingTime = scene.stateTimer;
                         step = Step.QUITTING;
                     }
                     break;
@@ -97,7 +97,7 @@ class MatchStateFinalCelebration extends MatchState {
 
     @Override
     SceneFsm.Action[] checkConditions() {
-        if (step == Step.QUITTING && (timer - celebrationEndingTime > SECOND)) {
+        if (step == Step.QUITTING && (scene.stateTimer - celebrationEndingTime > SECOND)) {
             return newAction(NEW_FOREGROUND, END_POSITIONS);
         }
 

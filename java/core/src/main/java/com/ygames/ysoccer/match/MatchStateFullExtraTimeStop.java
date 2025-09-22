@@ -81,7 +81,7 @@ class MatchStateFullExtraTimeStop extends MatchState {
 
     @Override
     SceneFsm.Action[] checkConditions() {
-        if (timer > 3 * SECOND) {
+        if (scene.stateTimer > 3 * SECOND) {
             if (scene.competition.getFinalWinner() != null) {
                 return newAction(NEW_FOREGROUND, FINAL_CELEBRATION);
             } else {

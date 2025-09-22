@@ -44,7 +44,7 @@ class MatchStateIntro extends MatchState {
     void doActions(float deltaTime) {
         super.doActions(deltaTime);
 
-        scene.enterPlayers(timer - 1, enterDelay);
+        scene.enterPlayers(scene.stateTimer - 1, enterDelay);
 
         float timeLeft = deltaTime;
         while (timeLeft >= GLGame.SUBFRAME_DURATION) {
@@ -64,10 +64,10 @@ class MatchStateIntro extends MatchState {
 
     @Override
     SceneFsm.Action[] checkConditions() {
-        if (scene.enterPlayersFinished(timer, enterDelay)) {
+        if (scene.enterPlayersFinished(scene.stateTimer, enterDelay)) {
             if ((scene.team[HOME].fire1Down() != null)
                 || (scene.team[AWAY].fire1Down() != null)
-                || (timer >= 6 * SECOND)) {
+                || (scene.stateTimer >= 6 * SECOND)) {
                 return newAction(NEW_FOREGROUND, STARTING_POSITIONS);
             }
         }

@@ -62,7 +62,7 @@ class MatchStateHalfExtraTimeStop extends MatchState {
 
     @Override
     SceneFsm.Action[] checkConditions() {
-        if (timer > 3 * SECOND) {
+        if (scene.stateTimer > 3 * SECOND) {
             scene.ball.setPosition(0, 0, 0);
             scene.ball.updatePrediction();
 
