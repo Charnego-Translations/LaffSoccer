@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.ygames.ysoccer.competitions.Competition;
 import com.ygames.ysoccer.framework.Assets;
+import com.ygames.ysoccer.framework.EventManager;
 import com.ygames.ysoccer.framework.GLGame;
 import com.ygames.ysoccer.framework.GLScreen;
 import com.ygames.ysoccer.match.Match;
@@ -22,6 +23,9 @@ class MatchLoading extends GLScreen {
 
         playMenuMusic = false;
         usesMouse = false;
+
+        EventManager.clear();
+        game.soundManager.subscribeEvents();
 
         matchSettings.setup();
 

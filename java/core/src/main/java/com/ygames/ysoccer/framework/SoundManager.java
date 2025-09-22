@@ -35,7 +35,7 @@ public class SoundManager {
     public static int volume;
     public static boolean crowdChantsEnabled = true;
 
-    void subscribeEvents() {
+    public void subscribeEvents() {
         EventManager.subscribe(BallBounceEvent.class, ballBounceEvent -> {
             bounce.play(Math.min(ballBounceEvent.speed / 250, 1) * volume / 100f);
         });

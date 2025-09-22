@@ -35,4 +35,8 @@ public class EventManager {
             }
         }
     }
+
+    public static void clear() {
+        listeners.clear();
+    }
 }
