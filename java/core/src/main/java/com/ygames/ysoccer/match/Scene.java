@@ -8,7 +8,7 @@ public abstract class Scene<SceneFsmT extends SceneFsm<?, SceneStateT>, SceneSta
     SceneFsmT fsm;
     public SceneStateT state;
     int stateTimer;
-    protected int subframe;
+    public int subframe;
     protected SceneSettings settings;
 
     Vector2 pointOfInterest;

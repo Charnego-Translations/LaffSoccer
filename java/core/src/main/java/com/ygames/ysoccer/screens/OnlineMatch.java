@@ -58,7 +58,30 @@ public class OnlineMatch extends GLScreen {
     public void render(float deltaTime) {
         super.render(deltaTime);
 
+        // do not render until match gets initial state
+        if (match.getStateId() == null) return;
+
+        // pass ball position to camera
+        match.getBall().setX(match.getBall().currentData.x);
+        match.getBall().setY(match.getBall().currentData.y);
+
+        float timeLeft = deltaTime;
+        while (timeLeft >= GLGame.SUBFRAME_DURATION) {
+            match.camera.update();
+            match.nextSubframe();
+            match.saveCamera(match.subframe);
+            timeLeft -= GLGame.SUBFRAME_DURATION;
+        }
+
+        match.updateCurrentCamera();
         matchRenderer.render();
+    }
+
+    @Override
+    public void resize(int width, int height) {
+        super.resize(width, height);
+
+        matchRenderer.resize(width, height);
     }
 
     private void renderBackground() {

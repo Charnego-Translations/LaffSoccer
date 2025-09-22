@@ -717,8 +717,12 @@ public class Match extends Scene<MatchFsm, MatchState> implements Json.Serializa
         ball.save(subframe);
         team[HOME].save(subframe);
         team[AWAY].save(subframe);
-        vCameraX[subframe] = Math.round(camera.x);
-        vCameraY[subframe] = Math.round(camera.y);
+        saveCamera(subframe);
+    }
+
+    public void saveCamera(int s) {
+        vCameraX[s] = Math.round(camera.x);
+        vCameraY[s] = Math.round(camera.y);
     }
 
     @Override
@@ -726,6 +730,10 @@ public class Match extends Scene<MatchFsm, MatchState> implements Json.Serializa
         ball.updateCurrentData(subframe);
         team[HOME].updateCurrentData(subframe);
         team[AWAY].updateCurrentData(subframe);
+        updateCurrentCamera();
+    }
+
+    public void updateCurrentCamera() {
         cameraX = vCameraX[subframe];
         cameraY = vCameraY[subframe];
     }

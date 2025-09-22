@@ -1,16 +1,16 @@
 package com.ygames.ysoccer.match;
 
+import static com.ygames.ysoccer.match.Const.GOAL_LINE;
+import static com.ygames.ysoccer.match.Const.PENALTY_SPOT_Y;
+import static com.ygames.ysoccer.match.Const.SECOND;
+import static com.ygames.ysoccer.match.Const.TOUCH_LINE;
+import static com.ygames.ysoccer.match.Match.HOME;
 import static com.ygames.ysoccer.match.SceneCamera.Mode.FOLLOW_BALL;
 import static com.ygames.ysoccer.match.SceneCamera.Mode.REACH_TARGET;
 import static com.ygames.ysoccer.match.SceneCamera.Mode.STILL;
 import static com.ygames.ysoccer.match.SceneCamera.Speed.FAST;
 import static com.ygames.ysoccer.match.SceneCamera.Speed.NORMAL;
 import static com.ygames.ysoccer.match.SceneCamera.Speed.WARP;
-import static com.ygames.ysoccer.match.Const.GOAL_LINE;
-import static com.ygames.ysoccer.match.Const.PENALTY_SPOT_Y;
-import static com.ygames.ysoccer.match.Const.SECOND;
-import static com.ygames.ysoccer.match.Const.TOUCH_LINE;
-import static com.ygames.ysoccer.match.Match.HOME;
 
 public class MatchCamera extends SceneCamera<Match> {
 
