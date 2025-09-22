@@ -12,21 +12,17 @@ import static com.ygames.ysoccer.match.Const.SECOND;
 import static com.ygames.ysoccer.match.Const.TOUCH_LINE;
 import static com.ygames.ysoccer.match.Match.HOME;
 
-public class MatchCamera extends SceneCamera {
-
-    Match match;
-    Goal goal;
+public class MatchCamera extends SceneCamera<Match> {
 
     public MatchCamera(Match match) {
-        super(match.getBall());
-        this.match = match;
+        super(match, match.getBall());
     }
 
     @Override
     public void updateSettings() {
-        switch (match.state.getId()) {
+        switch (scene.state.getId()) {
             case INTRO:
-                mode = match.state.timer > SECOND ? FOLLOW_BALL : STILL;
+                mode = scene.state.timer > SECOND ? FOLLOW_BALL : STILL;
                 speed = NORMAL;
                 break;
 
@@ -97,26 +93,26 @@ public class MatchCamera extends SceneCamera {
             case BENCH_EXIT:
                 mode = REACH_TARGET;
                 speed = WARP;
-                target.set(match.fsm.benchStatus.oldTarget);
+                target.set(scene.fsm.benchStatus.oldTarget);
                 break;
 
             case FREE_KICK:
                 mode = FOLLOW_BALL;
                 speed = FAST;
-                offsetX = -match.foul.position.x / 10f;
-                offsetY = -80 * match.foul.opponent.team.side;
+                offsetX = -scene.foul.position.x / 10f;
+                offsetY = -80 * scene.foul.opponent.team.side;
                 xLimited = true;
                 yLimited = true;
                 break;
 
             case GOAL:
-                if (match.state.timer < SECOND) {
+                if (scene.state.timer < SECOND) {
                     mode = FOLLOW_BALL;
                     speed = NORMAL;
                 } else {
                     mode = REACH_TARGET;
                     speed = FAST;
-                    goal = match.goals.get(match.goals.size() - 1);
+                    Goal goal = scene.goals.get(scene.goals.size() - 1);
                     target.set(goal.player.x, goal.player.y);
                 }
                 xLimited = false;
@@ -127,7 +123,7 @@ public class MatchCamera extends SceneCamera {
             case RED_CARD:
                 mode = REACH_TARGET;
                 speed = NORMAL;
-                target.set(match.foul.player.x, match.foul.player.y);
+                target.set(scene.foul.player.x, scene.foul.player.y);
                 xLimited = true;
                 yLimited = true;
                 break;
@@ -135,7 +131,7 @@ public class MatchCamera extends SceneCamera {
             case PENALTY_KICK_STOP:
                 mode = REACH_TARGET;
                 speed = NORMAL;
-                target.set(0, match.penalty.side * PENALTY_SPOT_Y);
+                target.set(0, scene.penalty.side * PENALTY_SPOT_Y);
                 xLimited = true;
                 yLimited = true;
                 break;
@@ -159,6 +155,6 @@ public class MatchCamera extends SceneCamera {
     }
 
     private int winnerSide() {
-        return (match.competition.getFinalWinner() == match.team[HOME]) ? -1 : 1;
+        return (scene.competition.getFinalWinner() == scene.team[HOME]) ? -1 : 1;
     }
 }

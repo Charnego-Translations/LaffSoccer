@@ -11,7 +11,7 @@ import static com.ygames.ysoccer.match.Const.PITCH_W;
 import static com.ygames.ysoccer.match.Const.SECOND;
 import static com.ygames.ysoccer.match.Const.TOUCH_LINE;
 
-abstract class SceneCamera {
+abstract class SceneCamera<SceneT extends Scene<?, ?>> {
 
     enum Mode {
         STILL,
@@ -24,6 +24,9 @@ abstract class SceneCamera {
         FAST,
         WARP
     }
+
+    final SceneT scene;
+    final Ball ball;
 
     Mode mode = Mode.STILL;
     Speed speed = Speed.NORMAL;
@@ -49,9 +52,8 @@ abstract class SceneCamera {
     final Vector2 target = new Vector2();
     private float targetDistance;
 
-    final Ball ball;
-
-    public SceneCamera(Ball ball) {
+    public SceneCamera(SceneT scene, Ball ball) {
+        this.scene = scene;
         this.ball = ball;
     }
 
