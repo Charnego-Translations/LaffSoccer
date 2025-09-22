@@ -2,8 +2,6 @@ package com.ygames.ysoccer.match;
 
 import com.ygames.ysoccer.framework.GLGame;
 
-import static com.ygames.ysoccer.match.ActionCamera.Mode.FOLLOW_BALL;
-import static com.ygames.ysoccer.match.ActionCamera.Speed.NORMAL;
 import static com.ygames.ysoccer.match.MatchFsm.StateId.KEEPER_STOP;
 import static com.ygames.ysoccer.match.MatchFsm.StateId.MAIN;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_KEEPER_POSITIONING;
@@ -54,15 +52,6 @@ class MatchStateKeeperStop extends MatchState {
         opponentTeam.updateTactics(true);
 
         scene.setPointOfInterest(keeper.x, keeper.y);
-    }
-
-    @Override
-    void onResume() {
-        super.onResume();
-
-        scene.actionCamera
-            .setMode(FOLLOW_BALL)
-            .setSpeed(NORMAL);
     }
 
     @Override

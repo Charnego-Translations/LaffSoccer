@@ -166,7 +166,12 @@ public class MatchRenderer extends SceneRenderer<Match> {
         }
 
         if (Settings.showDevelopmentInfo) {
-            Assets.font10.draw(batch, "CAMERA MODE: " + scene.actionCamera.getMode() + ", SPEED: " + scene.actionCamera.getSpeed(), guiWidth / 2, 22, Font.Align.CENTER);
+            Assets.font10.draw(batch, scene.actionCamera.getMode() +
+                ", " + scene.actionCamera.getSpeed() +
+                ", " + scene.actionCamera.limitedToString() +
+                ", " + scene.actionCamera.targetToString() +
+                ", " + scene.actionCamera.offsetToString()
+                , guiWidth / 5, 42, Font.Align.LEFT);
         }
 
         // clock

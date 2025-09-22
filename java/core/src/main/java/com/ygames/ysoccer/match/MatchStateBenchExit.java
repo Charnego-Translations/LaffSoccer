@@ -2,8 +2,6 @@ package com.ygames.ysoccer.match;
 
 import com.ygames.ysoccer.framework.GLGame;
 
-import static com.ygames.ysoccer.match.ActionCamera.Mode.REACH_TARGET;
-import static com.ygames.ysoccer.match.ActionCamera.Speed.WARP;
 import static com.ygames.ysoccer.match.Const.TEAM_SIZE;
 import static com.ygames.ysoccer.match.MatchFsm.StateId.BENCH_EXIT;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_BENCH_SITTING;
@@ -44,11 +42,6 @@ class MatchStateBenchExit extends MatchState {
                 player.setState(STATE_BENCH_SITTING);
             }
         }
-
-        scene.actionCamera
-                .setMode(REACH_TARGET)
-                .setTarget(fsm.benchStatus.oldTarget)
-                .setSpeed(WARP);
     }
 
     @Override

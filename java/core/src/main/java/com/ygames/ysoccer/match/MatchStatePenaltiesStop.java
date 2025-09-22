@@ -5,8 +5,6 @@ import com.ygames.ysoccer.framework.Assets;
 import com.ygames.ysoccer.framework.EventManager;
 import com.ygames.ysoccer.framework.GLGame;
 
-import static com.ygames.ysoccer.match.ActionCamera.Mode.FOLLOW_BALL;
-import static com.ygames.ysoccer.match.ActionCamera.Speed.NORMAL;
 import static com.ygames.ysoccer.match.Const.SECOND;
 import static com.ygames.ysoccer.match.MatchFsm.StateId.PENALTIES;
 import static com.ygames.ysoccer.match.MatchFsm.StateId.PENALTIES_STOP;
@@ -35,15 +33,6 @@ class MatchStatePenaltiesStop extends MatchState {
 
         scene.resetAutomaticInputDevices();
         scene.setPlayersState(STATE_IDLE, null);
-    }
-
-    @Override
-    void onResume() {
-        super.onResume();
-
-        scene.actionCamera
-            .setMode(FOLLOW_BALL)
-            .setSpeed(NORMAL);
     }
 
     @Override
@@ -77,8 +66,6 @@ class MatchStatePenaltiesStop extends MatchState {
         if (timer > 3 * SECOND) {
             scene.ball.setPosition(0, -Const.PENALTY_SPOT_Y, 0);
             scene.ball.updatePrediction();
-
-            scene.actionCamera.setOffset(0, 0);
 
             scene.penaltyKickingTeam = Assets.random.nextInt(2);
 

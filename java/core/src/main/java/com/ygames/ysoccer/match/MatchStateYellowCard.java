@@ -4,8 +4,6 @@ import com.ygames.ysoccer.events.WhistleEvent;
 import com.ygames.ysoccer.framework.EventManager;
 import com.ygames.ysoccer.framework.GLGame;
 
-import static com.ygames.ysoccer.match.ActionCamera.Mode.REACH_TARGET;
-import static com.ygames.ysoccer.match.ActionCamera.Speed.NORMAL;
 import static com.ygames.ysoccer.match.Const.SECOND;
 import static com.ygames.ysoccer.match.Const.TEAM_SIZE;
 import static com.ygames.ysoccer.match.Match.AWAY;
@@ -55,12 +53,6 @@ class MatchStateYellowCard extends MatchState {
         super.onResume();
 
         scene.setPointOfInterest(scene.foul.position);
-
-        scene.actionCamera
-            .setMode(REACH_TARGET)
-            .setTarget(scene.foul.player.x, scene.foul.player.y)
-            .setSpeed(NORMAL)
-            .setLimited(true, true);
     }
 
     @Override

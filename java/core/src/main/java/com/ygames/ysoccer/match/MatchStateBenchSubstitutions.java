@@ -3,7 +3,6 @@ package com.ygames.ysoccer.match;
 import com.ygames.ysoccer.framework.EMath;
 import com.ygames.ysoccer.framework.GLGame;
 
-import static com.ygames.ysoccer.match.ActionCamera.Mode.STILL;
 import static com.ygames.ysoccer.match.Coach.Status.LOOK_BENCH;
 import static com.ygames.ysoccer.match.Const.TEAM_SIZE;
 import static com.ygames.ysoccer.match.MatchFsm.StateId.BENCH_EXIT;
@@ -42,7 +41,6 @@ class MatchStateBenchSubstitutions extends MatchState {
         super.entryActions();
 
         benchStatus = fsm.benchStatus;
-        scene.actionCamera.setMode(STILL);
     }
 
     @Override

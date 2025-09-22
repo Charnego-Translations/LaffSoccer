@@ -159,6 +159,7 @@ abstract class SceneFsm<SceneT extends Scene<?, SceneStateT>, SceneStateT extend
             case RESTORE_FOREGROUND:
                 scene.state.exitActions();
                 scene.state = holdState;
+                Gdx.app.debug("RESUME_FOREGROUND", scene.state == null ? "null" : scene.state.getClass().getSimpleName());
                 holdState = null;
                 break;
 

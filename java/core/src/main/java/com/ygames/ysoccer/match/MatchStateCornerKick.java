@@ -6,8 +6,6 @@ import com.ygames.ysoccer.framework.EventManager;
 import com.ygames.ysoccer.framework.GLGame;
 import com.ygames.ysoccer.framework.SoundManager;
 
-import static com.ygames.ysoccer.match.ActionCamera.Mode.FOLLOW_BALL;
-import static com.ygames.ysoccer.match.ActionCamera.Speed.FAST;
 import static com.ygames.ysoccer.match.MatchFsm.StateId.CORNER_KICK;
 import static com.ygames.ysoccer.match.MatchFsm.StateId.MAIN;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_CORNER_KICK_ANGLE;
@@ -49,12 +47,6 @@ class MatchStateCornerKick extends MatchState {
     @Override
     void onResume() {
         super.onResume();
-
-        scene.actionCamera
-            .setMode(FOLLOW_BALL)
-            .setOffset(-30 * scene.ball.xSide, -30 * scene.ball.ySide)
-            .setSpeed(FAST)
-            .setLimited(true, true);
 
         isKicking = false;
 

@@ -2,8 +2,6 @@ package com.ygames.ysoccer.match;
 
 import com.ygames.ysoccer.framework.GLGame;
 
-import static com.ygames.ysoccer.match.ActionCamera.Mode.REACH_TARGET;
-import static com.ygames.ysoccer.match.ActionCamera.Speed.FAST;
 import static com.ygames.ysoccer.match.MatchFsm.StateId.END;
 import static com.ygames.ysoccer.match.MatchFsm.StateId.END_POSITIONS;
 import static com.ygames.ysoccer.match.MatchFsm.StateId.HIGHLIGHTS;
@@ -42,12 +40,6 @@ class MatchStateEndPositions extends MatchState {
 
         scene.ball.setPosition(0, 0, 0);
         scene.ball.updatePrediction();
-
-        scene.actionCamera
-            .setMode(REACH_TARGET)
-            .setTarget(0, 0)
-            .setOffset(0, 0)
-            .setSpeed(FAST);
 
         scene.setLineupTarget(Const.TOUCH_LINE + 80, 0);
         scene.setLineupState(STATE_OUTSIDE);

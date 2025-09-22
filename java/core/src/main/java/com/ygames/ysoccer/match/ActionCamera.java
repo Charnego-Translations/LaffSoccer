@@ -25,8 +25,8 @@ public class ActionCamera {
         WARP
     }
 
-    private Mode mode;
-    private Speed speed;
+    Mode mode = Mode.STILL;
+    Speed speed = Speed.NORMAL;
 
     float x; // position
     float y;
@@ -40,21 +40,19 @@ public class ActionCamera {
     private float vx;
     private float vy;
 
-    private float offsetX;
-    private float offsetY;
+    float offsetX;
+    float offsetY;
 
-    private boolean xLimited;
-    private boolean yLimited;
+    boolean xLimited;
+    boolean yLimited;
 
-    private final Vector2 target;
+    final Vector2 target = new Vector2();
     private float targetDistance;
 
-    private final Ball ball;
+    final Ball ball;
 
     public ActionCamera(Ball ball) {
         this.ball = ball;
-        speed = Speed.NORMAL;
-        target = new Vector2();
     }
 
     Mode getMode() {
@@ -153,7 +151,11 @@ public class ActionCamera {
         return targetDistance;
     }
 
+    void updateSettings() {
+    }
+
     void update() {
+        updateSettings();
 
         switch (mode) {
 
@@ -205,8 +207,10 @@ public class ActionCamera {
                 float y0 = target.y - (y - dy);
                 float a = EMath.aTan2(y0, x0);
                 targetDistance = EMath.sqrt(Math.abs(x0) + Math.abs(y0));
-                x += (10.0f / SECOND) * (1 + speed.ordinal()) * targetDistance * EMath.cos(a);
-                y += (10.0f / SECOND) * (1 + speed.ordinal()) * targetDistance * EMath.sin(a);
+                if (targetDistance > 1) {
+                    x += (10.0f / SECOND) * (1 + speed.ordinal()) * targetDistance * EMath.cos(a);
+                    y += (10.0f / SECOND) * (1 + speed.ordinal()) * targetDistance * EMath.sin(a);
+                }
                 break;
         }
 
@@ -240,5 +244,20 @@ public class ActionCamera {
         if (y > yMax) {
             y = yMax;
         }
+    }
+
+    public String limitedToString() {
+        if (xLimited && yLimited) return "XY LIMITED";
+        if (xLimited) return "X LIMITED";
+        if (yLimited) return "Y LIMITED";
+        return "UNLIMITED";
+    }
+
+    public String targetToString() {
+        return "TARGET (" + (int) target.x + ", " + (int) target.y + ")";
+    }
+
+    public String offsetToString() {
+        return "OFFSET (" + (int) offsetX + ", " + (int) offsetY + ")";
     }
 }

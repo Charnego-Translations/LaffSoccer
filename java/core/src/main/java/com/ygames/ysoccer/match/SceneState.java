@@ -7,7 +7,7 @@ abstract class SceneState<SceneFsmT extends SceneFsm<SceneT, ?>, SceneT extends 
     interface Id {
     }
 
-    private Id id;
+    Id id;
     final SceneFsmT fsm;
     final SceneT scene;
     int timer;

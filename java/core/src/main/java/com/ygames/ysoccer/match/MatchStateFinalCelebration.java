@@ -10,7 +10,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import static com.ygames.ysoccer.match.ActionCamera.Speed.NORMAL;
 import static com.ygames.ysoccer.match.Const.GOAL_LINE;
 import static com.ygames.ysoccer.match.Const.SECOND;
 import static com.ygames.ysoccer.match.Match.HOME;
@@ -52,12 +51,6 @@ class MatchStateFinalCelebration extends MatchState {
         runnerUp = scene.competition.getFinalRunnerUp();
         positionLineups();
         scene.setPointOfInterest(0, side * GOAL_LINE);
-
-        scene.actionCamera
-            .setMode(ActionCamera.Mode.REACH_TARGET)
-            .setTarget(0, side * GOAL_LINE / 2f)
-            .setSpeed(NORMAL)
-            .setLimited(false, false);
     }
 
     @Override
@@ -77,7 +70,6 @@ class MatchStateFinalCelebration extends MatchState {
                 case POSITIONING:
                     if (readyToCelebrate()) {
                         winner.setLineupState(STATE_FINAL_CELEBRATION);
-                        scene.actionCamera.setTarget(0, side * GOAL_LINE);
                         step = Step.CELEBRATING;
                         EventManager.publish(new CelebrationEvent());
                     }

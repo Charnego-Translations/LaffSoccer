@@ -5,8 +5,6 @@ import com.ygames.ysoccer.framework.EMath;
 import com.ygames.ysoccer.framework.EventManager;
 import com.ygames.ysoccer.framework.GLGame;
 
-import static com.ygames.ysoccer.match.ActionCamera.Mode.FOLLOW_BALL;
-import static com.ygames.ysoccer.match.ActionCamera.Speed.FAST;
 import static com.ygames.ysoccer.match.Const.GOAL_LINE;
 import static com.ygames.ysoccer.match.Const.TEAM_SIZE;
 import static com.ygames.ysoccer.match.MatchFsm.StateId.FREE_KICK;
@@ -45,12 +43,6 @@ class MatchStateFreeKick extends MatchState {
 
         freeKickTeam = scene.foul.opponent.team;
         defendingTeam = scene.foul.player.team;
-
-        scene.actionCamera
-            .setMode(FOLLOW_BALL)
-            .setSpeed(FAST)
-            .setOffset(-30 * scene.ball.xSide, -80 * freeKickTeam.side)
-            .setLimited(true, true);
 
         isKicking = false;
 

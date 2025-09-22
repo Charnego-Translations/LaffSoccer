@@ -4,8 +4,6 @@ import com.ygames.ysoccer.events.MatchIntroEvent;
 import com.ygames.ysoccer.framework.EventManager;
 import com.ygames.ysoccer.framework.GLGame;
 
-import static com.ygames.ysoccer.match.ActionCamera.Mode.FOLLOW_BALL;
-import static com.ygames.ysoccer.match.ActionCamera.Mode.STILL;
 import static com.ygames.ysoccer.match.Const.SECOND;
 import static com.ygames.ysoccer.match.Match.AWAY;
 import static com.ygames.ysoccer.match.Match.HOME;
@@ -16,7 +14,6 @@ import static com.ygames.ysoccer.match.SceneFsm.ActionType.NEW_FOREGROUND;
 class MatchStateIntro extends MatchState {
 
     private final int enterDelay = SECOND / 16;
-    private boolean stillCamera;
 
     MatchStateIntro(MatchFsm fsm) {
         super(INTRO, fsm);
@@ -35,20 +32,12 @@ class MatchStateIntro extends MatchState {
     void entryActions() {
         super.entryActions();
 
-        stillCamera = true;
         scene.clock = 0;
         fsm.matchCompleted = false;
         scene.setIntroPositions();
         scene.resetData();
 
         EventManager.publish(new MatchIntroEvent());
-    }
-
-    @Override
-    void onResume() {
-        super.onResume();
-
-        setCameraMode();
     }
 
     @Override
@@ -67,18 +56,10 @@ class MatchStateIntro extends MatchState {
 
             scene.save();
 
-            if (stillCamera && timer > SECOND) {
-                stillCamera = false;
-                setCameraMode();
-            }
             scene.actionCamera.update();
 
             timeLeft -= GLGame.SUBFRAME_DURATION;
         }
-    }
-
-    private void setCameraMode() {
-        scene.actionCamera.setMode(stillCamera ? STILL : FOLLOW_BALL);
     }
 
     @Override

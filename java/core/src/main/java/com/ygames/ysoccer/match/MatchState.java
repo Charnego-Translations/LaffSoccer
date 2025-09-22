@@ -32,6 +32,11 @@ abstract class MatchState extends SceneState<MatchFsm, Match> {
         this.ball = scene.ball;
     }
 
+    @Override
+    public MatchFsm.StateId getId() {
+        return (MatchFsm.StateId) this.id;
+    }
+
     SceneFsm.Action[] checkCommonConditions() {
 
         if (checkReplayKey && Gdx.input.isKeyPressed(R)) {

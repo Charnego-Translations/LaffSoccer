@@ -5,8 +5,6 @@ import com.ygames.ysoccer.framework.Assets;
 import com.ygames.ysoccer.framework.EventManager;
 import com.ygames.ysoccer.framework.GLGame;
 
-import static com.ygames.ysoccer.match.ActionCamera.Mode.FOLLOW_BALL;
-import static com.ygames.ysoccer.match.ActionCamera.Speed.NORMAL;
 import static com.ygames.ysoccer.match.Const.SECOND;
 import static com.ygames.ysoccer.match.Match.AWAY;
 import static com.ygames.ysoccer.match.Match.HOME;
@@ -40,15 +38,6 @@ class MatchStateExtraTimeStop extends MatchState {
     }
 
     @Override
-    void onResume() {
-        super.onResume();
-
-        scene.actionCamera
-            .setMode(FOLLOW_BALL)
-            .setSpeed(NORMAL);
-    }
-
-    @Override
     void doActions(float deltaTime) {
         super.doActions(deltaTime);
 
@@ -79,8 +68,6 @@ class MatchStateExtraTimeStop extends MatchState {
         if (timer > 3 * SECOND) {
             scene.ball.setPosition(0, 0, 0);
             scene.ball.updatePrediction();
-
-            scene.actionCamera.setOffset(0, 0);
 
             // redo coin toss
             scene.coinToss = Assets.random.nextInt(2); // 0 = home begins, 1 = away begins

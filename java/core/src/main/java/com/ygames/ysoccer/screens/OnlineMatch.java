@@ -6,8 +6,8 @@ import com.esotericsoftware.kryonet.Client;
 import com.ygames.ysoccer.framework.Assets;
 import com.ygames.ysoccer.framework.GLGame;
 import com.ygames.ysoccer.framework.GLScreen;
-import com.ygames.ysoccer.match.ActionCamera;
 import com.ygames.ysoccer.match.Match;
+import com.ygames.ysoccer.match.MatchCamera;
 import com.ygames.ysoccer.match.MatchRenderer;
 import com.ygames.ysoccer.match.Player;
 import com.ygames.ysoccer.network.dto.MatchSetupDto;
@@ -32,7 +32,7 @@ public class OnlineMatch extends GLScreen {
 
     public void setup(MatchSetupDto matchSetupDto) {
         match = MatchMapper.fromDto(matchSetupDto.matchDto);
-        match.setActionCamera(new ActionCamera(match.getBall()));
+        match.setActionCamera(new MatchCamera(match));
         matchRenderer = new MatchRenderer(game.glGraphics, match);
         Assets.loadStadium(match.getSettings());
         Assets.loadCrowd(match.team[Match.HOME]);

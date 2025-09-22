@@ -5,8 +5,6 @@ import com.ygames.ysoccer.framework.Assets;
 import com.ygames.ysoccer.framework.EventManager;
 import com.ygames.ysoccer.framework.GLGame;
 
-import static com.ygames.ysoccer.match.ActionCamera.Mode.FOLLOW_BALL;
-import static com.ygames.ysoccer.match.ActionCamera.Speed.NORMAL;
 import static com.ygames.ysoccer.match.Const.SECOND;
 import static com.ygames.ysoccer.match.Const.TEAM_SIZE;
 import static com.ygames.ysoccer.match.MatchFsm.StateId.END_POSITIONS;
@@ -53,15 +51,6 @@ class MatchStateFullExtraTimeStop extends MatchState {
                 }
             }
         }
-    }
-
-    @Override
-    void onResume() {
-        super.onResume();
-
-        scene.actionCamera
-            .setMode(FOLLOW_BALL)
-            .setSpeed(NORMAL);
     }
 
     @Override

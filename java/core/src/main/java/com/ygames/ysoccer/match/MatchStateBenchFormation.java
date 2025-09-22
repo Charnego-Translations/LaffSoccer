@@ -7,7 +7,6 @@ import com.ygames.ysoccer.framework.SoundManager;
 
 import java.util.Collections;
 
-import static com.ygames.ysoccer.match.ActionCamera.Mode.STILL;
 import static com.ygames.ysoccer.match.Const.TEAM_SIZE;
 import static com.ygames.ysoccer.match.MatchFsm.StateId.BENCH_FORMATION;
 import static com.ygames.ysoccer.match.MatchFsm.StateId.BENCH_SUBSTITUTIONS;
@@ -44,7 +43,6 @@ class MatchStateBenchFormation extends MatchState {
         super.entryActions();
 
         benchStatus = fsm.benchStatus;
-        scene.actionCamera.setMode(STILL);
     }
 
     @Override

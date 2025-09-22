@@ -166,7 +166,7 @@ public class Match extends Scene<MatchFsm, MatchState> implements Json.Serializa
             team[t].beforeMatch(this);
         }
 
-        actionCamera = new ActionCamera(ball);
+        actionCamera = new MatchCamera(this);
         fsm = new MatchFsm(this, inputDevices);
 
         team[HOME].setSide(1 - 2 * Assets.random.nextInt(2)); // -1 = up, 1 = down

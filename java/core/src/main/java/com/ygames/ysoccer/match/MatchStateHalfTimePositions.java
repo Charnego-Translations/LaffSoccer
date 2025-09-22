@@ -2,8 +2,6 @@ package com.ygames.ysoccer.match;
 
 import com.ygames.ysoccer.framework.GLGame;
 
-import static com.ygames.ysoccer.match.ActionCamera.Mode.REACH_TARGET;
-import static com.ygames.ysoccer.match.ActionCamera.Speed.FAST;
 import static com.ygames.ysoccer.match.MatchFsm.StateId.HALF_TIME_POSITIONS;
 import static com.ygames.ysoccer.match.MatchFsm.StateId.HALF_TIME_WAIT;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_OUTSIDE;
@@ -31,12 +29,6 @@ class MatchStateHalfTimePositions extends MatchState {
 
         scene.ball.setPosition(0, 0, 0);
         scene.ball.updatePrediction();
-
-        scene.actionCamera
-            .setMode(REACH_TARGET)
-            .setTarget(0, 0)
-            .setOffset(0, 0)
-            .setSpeed(FAST);
 
         scene.period = Match.Period.UNDEFINED;
         scene.clock = scene.length * 45f / 90f;

@@ -4,8 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.ygames.ysoccer.framework.GLGame;
 
-import static com.ygames.ysoccer.match.ActionCamera.Mode.REACH_TARGET;
-import static com.ygames.ysoccer.match.ActionCamera.Speed.NORMAL;
 import static com.ygames.ysoccer.match.Const.SECOND;
 import static com.ygames.ysoccer.match.Match.AWAY;
 import static com.ygames.ysoccer.match.Match.HOME;
@@ -35,11 +33,6 @@ class MatchStateEnd extends MatchState {
         super.entryActions();
 
         scene.period = Match.Period.UNDEFINED;
-
-        scene.actionCamera
-            .setMode(REACH_TARGET)
-            .setTarget(0, 0)
-            .setSpeed(NORMAL);
     }
 
     @Override

@@ -4,8 +4,6 @@ import com.ygames.ysoccer.events.WhistleEvent;
 import com.ygames.ysoccer.framework.EventManager;
 import com.ygames.ysoccer.framework.GLGame;
 
-import static com.ygames.ysoccer.match.ActionCamera.Mode.FOLLOW_BALL;
-import static com.ygames.ysoccer.match.ActionCamera.Speed.NORMAL;
 import static com.ygames.ysoccer.match.MatchFsm.StateId.THROW_IN;
 import static com.ygames.ysoccer.match.MatchFsm.StateId.THROW_IN_STOP;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_REACH_TARGET;
@@ -46,11 +44,6 @@ class MatchStateThrowInStop extends MatchState {
         super.onResume();
 
         scene.setPointOfInterest(fsm.throwInPosition);
-
-        scene.actionCamera
-            .setMode(FOLLOW_BALL)
-            .setSpeed(NORMAL)
-            .setLimited(true, true);
     }
 
     @Override

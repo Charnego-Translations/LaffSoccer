@@ -2,8 +2,6 @@ package com.ygames.ysoccer.match;
 
 import com.ygames.ysoccer.framework.GLGame;
 
-import static com.ygames.ysoccer.match.ActionCamera.Mode.REACH_TARGET;
-import static com.ygames.ysoccer.match.ActionCamera.Speed.FAST;
 import static com.ygames.ysoccer.match.Const.SECOND;
 import static com.ygames.ysoccer.match.Match.AWAY;
 import static com.ygames.ysoccer.match.Match.HOME;
@@ -32,11 +30,6 @@ class MatchStateHalfTimeWait extends MatchState {
         scene.swapTeamSides();
 
         scene.kickOffTeam = 1 - scene.coinToss;
-
-        scene.actionCamera
-            .setMode(REACH_TARGET)
-            .setSpeed(FAST)
-            .setTarget(0, 0);
     }
 
     @Override

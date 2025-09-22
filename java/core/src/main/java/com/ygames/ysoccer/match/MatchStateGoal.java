@@ -8,10 +8,6 @@ import com.ygames.ysoccer.framework.EventManager;
 import com.ygames.ysoccer.framework.GLGame;
 import com.ygames.ysoccer.framework.SoundManager;
 
-import static com.ygames.ysoccer.match.ActionCamera.Mode.FOLLOW_BALL;
-import static com.ygames.ysoccer.match.ActionCamera.Mode.REACH_TARGET;
-import static com.ygames.ysoccer.match.ActionCamera.Speed.FAST;
-import static com.ygames.ysoccer.match.ActionCamera.Speed.NORMAL;
 import static com.ygames.ysoccer.match.Const.SECOND;
 import static com.ygames.ysoccer.match.Match.AWAY;
 import static com.ygames.ysoccer.match.Match.HOME;
@@ -26,7 +22,6 @@ class MatchStateGoal extends MatchState {
     private Goal goal;
     private boolean replayDone;
     private boolean recordingDone;
-    private boolean followBall;
 
     MatchStateGoal(MatchFsm fsm) {
         super(GOAL, fsm);
@@ -49,7 +44,6 @@ class MatchStateGoal extends MatchState {
 
         replayDone = false;
         recordingDone = false;
-        followBall = true;
 
         EventManager.publish(new HomeGoalEvent());
 
@@ -80,15 +74,6 @@ class MatchStateGoal extends MatchState {
         scene.resetAutomaticInputDevices();
 
         scene.setPointOfInterest(scene.ball.x, scene.ball.y);
-
-        scene.actionCamera.setLimited(true, true);
-    }
-
-    @Override
-    void onResume() {
-        super.onResume();
-
-        setCameraMode();
     }
 
     @Override
@@ -119,28 +104,8 @@ class MatchStateGoal extends MatchState {
 
             scene.save();
 
-            if (followBall) {
-                if (scene.ball.v == 0 && scene.ball.vz == 0) {
-                    followBall = false;
-                    setCameraMode();
-                }
-            } else {
-                scene.actionCamera.setTarget(goal.player.x, goal.player.y);
-            }
             scene.actionCamera.update();
             timeLeft -= GLGame.SUBFRAME_DURATION;
-        }
-    }
-
-    private void setCameraMode() {
-        if (followBall) {
-            scene.actionCamera
-                .setMode(FOLLOW_BALL)
-                .setSpeed(NORMAL);
-        } else {
-            scene.actionCamera
-                .setMode(REACH_TARGET)
-                .setSpeed(FAST);
         }
     }
 
@@ -160,7 +125,6 @@ class MatchStateGoal extends MatchState {
             } else {
                 scene.ball.setPosition(0, 0, 0);
                 scene.ball.updatePrediction();
-                scene.actionCamera.setOffset(0, 0);
 
                 return newAction(NEW_FOREGROUND, STARTING_POSITIONS);
             }

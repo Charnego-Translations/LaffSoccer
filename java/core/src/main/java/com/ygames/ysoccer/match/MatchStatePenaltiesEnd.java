@@ -5,7 +5,6 @@ import com.ygames.ysoccer.framework.EMath;
 import com.ygames.ysoccer.framework.EventManager;
 import com.ygames.ysoccer.framework.GLGame;
 
-import static com.ygames.ysoccer.match.ActionCamera.Mode.STILL;
 import static com.ygames.ysoccer.match.Const.SECOND;
 import static com.ygames.ysoccer.match.Match.AWAY;
 import static com.ygames.ysoccer.match.Match.HOME;
@@ -48,13 +47,6 @@ class MatchStatePenaltiesEnd extends MatchState {
         keeper = scene.team[1 - scene.penaltyKickingTeam].lineupAtPosition(0);
 
         scene.resetAutomaticInputDevices();
-    }
-
-    @Override
-    void onResume() {
-        super.onResume();
-
-        scene.actionCamera.setMode(STILL);
     }
 
     @Override

@@ -9,8 +9,6 @@ import com.ygames.ysoccer.framework.SoundManager;
 
 import java.util.ArrayList;
 
-import static com.ygames.ysoccer.match.ActionCamera.Mode.REACH_TARGET;
-import static com.ygames.ysoccer.match.ActionCamera.Speed.NORMAL;
 import static com.ygames.ysoccer.match.Const.PENALTY_SPOT_Y;
 import static com.ygames.ysoccer.match.Const.TEAM_SIZE;
 import static com.ygames.ysoccer.match.Match.AWAY;
@@ -92,12 +90,6 @@ class MatchStatePenaltyKickStop extends MatchState {
     @Override
     void onResume() {
         super.onResume();
-
-        scene.actionCamera
-            .setMode(REACH_TARGET)
-            .setTarget(penaltyKickPosition.x, penaltyKickPosition.y)
-            .setSpeed(NORMAL)
-            .setLimited(true, true);
 
         scene.setPointOfInterest(penaltyKickPosition);
     }

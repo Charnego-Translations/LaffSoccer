@@ -2,8 +2,6 @@ package com.ygames.ysoccer.match;
 
 import com.ygames.ysoccer.framework.GLGame;
 
-import static com.ygames.ysoccer.match.ActionCamera.Mode.FOLLOW_BALL;
-import static com.ygames.ysoccer.match.ActionCamera.Speed.FAST;
 import static com.ygames.ysoccer.match.MatchFsm.StateId.KICK_OFF;
 import static com.ygames.ysoccer.match.MatchFsm.StateId.STARTING_POSITIONS;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_REACH_TARGET;
@@ -32,16 +30,6 @@ class MatchStateStartingPositions extends MatchState {
         scene.setStartingPositions();
         scene.setPlayersState(STATE_REACH_TARGET, null);
         scene.setPointOfInterest(scene.ball.x, scene.ball.y);
-    }
-
-    @Override
-    void onResume() {
-        super.onResume();
-
-        scene.actionCamera
-            .setMode(FOLLOW_BALL)
-            .setSpeed(FAST)
-            .setLimited(true, true);
     }
 
     @Override

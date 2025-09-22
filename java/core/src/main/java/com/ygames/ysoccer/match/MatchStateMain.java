@@ -7,8 +7,6 @@ import com.ygames.ysoccer.framework.EMath;
 import com.ygames.ysoccer.framework.EventManager;
 import com.ygames.ysoccer.framework.GLGame;
 
-import static com.ygames.ysoccer.match.ActionCamera.Mode.FOLLOW_BALL;
-import static com.ygames.ysoccer.match.ActionCamera.Speed.NORMAL;
 import static com.ygames.ysoccer.match.Const.TEAM_SIZE;
 import static com.ygames.ysoccer.match.Match.AWAY;
 import static com.ygames.ysoccer.match.Match.HOME;
@@ -61,17 +59,6 @@ class MatchStateMain extends MatchState {
         super.entryActions();
 
         event = Event.NONE;
-    }
-
-    @Override
-    void onResume() {
-        super.onResume();
-
-        scene.actionCamera
-            .setMode(FOLLOW_BALL)
-            .setSpeed(NORMAL)
-            .setLimited(true, true)
-        ;
     }
 
     @Override

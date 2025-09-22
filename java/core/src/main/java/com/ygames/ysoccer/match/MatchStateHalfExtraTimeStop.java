@@ -4,8 +4,6 @@ import com.ygames.ysoccer.events.PeriodStopEvent;
 import com.ygames.ysoccer.framework.EventManager;
 import com.ygames.ysoccer.framework.GLGame;
 
-import static com.ygames.ysoccer.match.ActionCamera.Mode.FOLLOW_BALL;
-import static com.ygames.ysoccer.match.ActionCamera.Speed.NORMAL;
 import static com.ygames.ysoccer.match.Const.SECOND;
 import static com.ygames.ysoccer.match.MatchFsm.StateId.HALF_EXTRA_TIME_STOP;
 import static com.ygames.ysoccer.match.MatchFsm.StateId.STARTING_POSITIONS;
@@ -34,15 +32,6 @@ class MatchStateHalfExtraTimeStop extends MatchState {
 
         scene.resetAutomaticInputDevices();
         scene.setPlayersState(STATE_IDLE, null);
-    }
-
-    @Override
-    void onResume() {
-        super.onResume();
-
-        scene.actionCamera
-            .setMode(FOLLOW_BALL)
-            .setSpeed(NORMAL);
     }
 
     @Override
@@ -76,8 +65,6 @@ class MatchStateHalfExtraTimeStop extends MatchState {
         if (timer > 3 * SECOND) {
             scene.ball.setPosition(0, 0, 0);
             scene.ball.updatePrediction();
-
-            scene.actionCamera.setOffset(0, 0);
 
             scene.swapTeamSides();
 

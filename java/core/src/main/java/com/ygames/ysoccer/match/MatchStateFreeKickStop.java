@@ -8,7 +8,6 @@ import com.ygames.ysoccer.framework.SoundManager;
 
 import java.util.ArrayList;
 
-import static com.ygames.ysoccer.match.ActionCamera.Mode.STILL;
 import static com.ygames.ysoccer.match.Const.TEAM_SIZE;
 import static com.ygames.ysoccer.match.Match.AWAY;
 import static com.ygames.ysoccer.match.Match.HOME;
@@ -73,8 +72,6 @@ class MatchStateFreeKickStop extends MatchState {
         super.onResume();
 
         scene.setPointOfInterest(scene.foul.position);
-
-        scene.actionCamera.setMode(STILL);
     }
 
     @Override
