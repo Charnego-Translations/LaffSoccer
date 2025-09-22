@@ -1,5 +1,7 @@
 package com.ygames.ysoccer.network.dto;
 
+import com.ygames.ysoccer.match.MatchFsm;
+
 public class MatchUpdateDto {
 
     public int light;
@@ -7,6 +9,7 @@ public class MatchUpdateDto {
     public TeamUpdateDto[] teamUpdateDto;
     public boolean displayWindVane;
     public boolean displayRosters;
+    public MatchFsm.StateId stateId;
 
     public MatchUpdateDto() {
     }

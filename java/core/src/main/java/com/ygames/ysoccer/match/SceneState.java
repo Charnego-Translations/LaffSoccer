@@ -4,7 +4,7 @@ import com.ygames.ysoccer.framework.GLGame;
 
 abstract class SceneState<SceneFsmT extends SceneFsm<SceneT, ?>, SceneT extends Scene<SceneFsmT, ?>> {
 
-    interface Id {
+    public interface Id {
     }
 
     Id id;

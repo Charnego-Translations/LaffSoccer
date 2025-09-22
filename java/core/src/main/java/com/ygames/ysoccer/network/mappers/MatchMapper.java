@@ -53,6 +53,7 @@ public class MatchMapper {
         dto.teamUpdateDto[AWAY] = TeamMapper.toUpdateDto(match.team[AWAY]);
         dto.displayWindVane = match.displayWindVane;
         dto.displayRosters = match.displayRosters;
+        dto.stateId = match.getStateId();
         return dto;
     }
 
@@ -95,5 +96,6 @@ public class MatchMapper {
         TeamMapper.updateFromDto(match.team[AWAY], dto.teamUpdateDto[AWAY]);
         match.displayWindVane = dto.displayWindVane;
         match.displayRosters = dto.displayRosters;
+        match.setStateId(dto.stateId);
     }
 }

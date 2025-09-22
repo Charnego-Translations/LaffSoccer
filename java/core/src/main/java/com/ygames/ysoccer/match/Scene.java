@@ -30,10 +30,14 @@ public abstract class Scene<SceneFsmT extends SceneFsm<?, SceneStateT>, SceneSta
 
     void setState(SceneStateT state) {
         this.state = state;
-        this.stateId = state == null ? null : state.getId();
+        this.setStateId(state == null ? null : state.getId());
     }
 
     abstract SceneStateT.Id getStateId();
+
+    public void setStateId(SceneStateT.Id stateId) {
+        this.stateId = stateId;
+    }
 
     public void start() {
         fsm.start();

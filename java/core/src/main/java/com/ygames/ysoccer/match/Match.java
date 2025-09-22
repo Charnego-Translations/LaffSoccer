@@ -754,7 +754,7 @@ public class Match extends Scene<MatchFsm, MatchState> implements Json.Serializa
     }
 
     @Override
-    MatchFsm.StateId getStateId() {
+    public MatchFsm.StateId getStateId() {
         return (MatchFsm.StateId) stateId;
     }
 }
