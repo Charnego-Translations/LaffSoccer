@@ -59,7 +59,7 @@ public class Training extends Scene<TrainingFsm, TrainingState> {
             team[t].setSide(1 - 2 * t);
         }
 
-        actionCamera = new TrainingCamera(this);
+        camera = new TrainingCamera(this);
         fsm = new TrainingFsm(this, inputDevices);
         pointOfInterest = new Vector2();
     }
@@ -148,8 +148,8 @@ public class Training extends Scene<TrainingFsm, TrainingState> {
         ball.save(subframe);
         team[HOME].save(subframe);
         team[AWAY].save(subframe);
-        vCameraX[subframe] = Math.round(actionCamera.x);
-        vCameraY[subframe] = Math.round(actionCamera.y);
+        vCameraX[subframe] = Math.round(camera.x);
+        vCameraY[subframe] = Math.round(camera.y);
     }
 
     @Override

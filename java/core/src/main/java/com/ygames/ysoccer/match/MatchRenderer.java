@@ -39,11 +39,11 @@ public class MatchRenderer extends SceneRenderer<Match> {
 
         resize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
-        match.actionCamera.x = 0.5f * (Const.PITCH_W - screenWidth / (zoom / 100.0f));
-        match.actionCamera.y = 0;
+        match.camera.x = 0.5f * (Const.PITCH_W - screenWidth / (zoom / 100.0f));
+        match.camera.y = 0;
         for (int i = 0; i < Const.REPLAY_SUBFRAMES; i++) {
-            match.vCameraX[i] = Math.round(match.actionCamera.x);
-            match.vCameraY[i] = Math.round(match.actionCamera.y);
+            match.vCameraX[i] = Math.round(match.camera.x);
+            match.vCameraY[i] = Math.round(match.camera.y);
         }
 
         ballSprite = new BallSprite(glGraphics, match.ball);
@@ -166,11 +166,11 @@ public class MatchRenderer extends SceneRenderer<Match> {
         }
 
         if (Settings.showDevelopmentInfo) {
-            Assets.font10.draw(batch, scene.actionCamera.getMode() +
-                ", " + scene.actionCamera.getSpeed() +
-                ", " + scene.actionCamera.limitedToString() +
-                ", " + scene.actionCamera.targetToString() +
-                ", " + scene.actionCamera.offsetToString()
+            Assets.font10.draw(batch, scene.camera.getMode() +
+                ", " + scene.camera.getSpeed() +
+                ", " + scene.camera.limitedToString() +
+                ", " + scene.camera.targetToString() +
+                ", " + scene.camera.offsetToString()
                 , guiWidth / 5, 42, Font.Align.LEFT);
         }
 

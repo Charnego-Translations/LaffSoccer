@@ -62,7 +62,7 @@ class MatchStateBenchExit extends MatchState {
 
             scene.save();
 
-            scene.actionCamera.update();
+            scene.camera.update();
 
             timeLeft -= GLGame.SUBFRAME_DURATION;
         }
@@ -71,7 +71,7 @@ class MatchStateBenchExit extends MatchState {
     @Override
     SceneFsm.Action[] checkConditions() {
 
-        if (scene.actionCamera.getTargetDistance() < 1) {
+        if (scene.camera.getTargetDistance() < 1) {
             return newAction(RESTORE_FOREGROUND);
         }
 

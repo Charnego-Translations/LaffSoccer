@@ -27,11 +27,11 @@ public class TrainingRenderer extends SceneRenderer<Training> {
 
         resize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
-        scene.actionCamera.x = 0.5f * (Const.PITCH_W - screenWidth / (zoom / 100.0f));
-        scene.actionCamera.y = 0.5f * (Const.PITCH_H - screenHeight / (zoom / 100.0f));
+        scene.camera.x = 0.5f * (Const.PITCH_W - screenWidth / (zoom / 100.0f));
+        scene.camera.y = 0.5f * (Const.PITCH_H - screenHeight / (zoom / 100.0f));
         for (int i = 0; i < Const.REPLAY_SUBFRAMES; i++) {
-            scene.vCameraX[i] = Math.round(scene.actionCamera.x);
-            scene.vCameraY[i] = Math.round(scene.actionCamera.y);
+            scene.vCameraX[i] = Math.round(scene.camera.x);
+            scene.vCameraY[i] = Math.round(scene.camera.y);
         }
 
         ballSprite = new BallSprite(glGraphics, training.ball);

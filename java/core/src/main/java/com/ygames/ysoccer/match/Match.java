@@ -166,7 +166,7 @@ public class Match extends Scene<MatchFsm, MatchState> implements Json.Serializa
             team[t].beforeMatch(this);
         }
 
-        actionCamera = new MatchCamera(this);
+        camera = new MatchCamera(this);
         fsm = new MatchFsm(this, inputDevices);
 
         team[HOME].setSide(1 - 2 * Assets.random.nextInt(2)); // -1 = up, 1 = down
@@ -717,8 +717,8 @@ public class Match extends Scene<MatchFsm, MatchState> implements Json.Serializa
         ball.save(subframe);
         team[HOME].save(subframe);
         team[AWAY].save(subframe);
-        vCameraX[subframe] = Math.round(actionCamera.x);
-        vCameraY[subframe] = Math.round(actionCamera.y);
+        vCameraX[subframe] = Math.round(camera.x);
+        vCameraY[subframe] = Math.round(camera.y);
     }
 
     @Override

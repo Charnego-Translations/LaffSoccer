@@ -57,7 +57,7 @@ class MatchStateHalfTimeEnter extends MatchState {
 
             scene.save();
 
-            scene.actionCamera.update();
+            scene.camera.update();
 
             timeLeft -= GLGame.SUBFRAME_DURATION;
         }

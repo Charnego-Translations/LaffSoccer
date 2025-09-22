@@ -82,7 +82,7 @@ public abstract class SceneRenderer<SceneT extends Scene<?, ?>> {
         float zoomMax = width / (VISIBLE_FIELD_WIDTH_MIN * 2 * Const.TOUCH_LINE);
         zoom = 20 * (int) (5.0f * Math.min(Math.max(0.01f * scene.settings.zoom * zoomOpt, zoomMin), zoomMax));
 
-        scene.actionCamera.setScreenParameters(screenWidth, screenHeight, zoom);
+        scene.camera.setScreenParameters(screenWidth, screenHeight, zoom);
 
         guiHeight = guiWidth * height / width;
     }

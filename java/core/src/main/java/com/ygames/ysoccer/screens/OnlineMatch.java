@@ -32,7 +32,7 @@ public class OnlineMatch extends GLScreen {
 
     public void setup(MatchSetupDto matchSetupDto) {
         match = MatchMapper.fromDto(matchSetupDto.matchDto);
-        match.setActionCamera(new MatchCamera(match));
+        match.setCamera(new MatchCamera(match));
         matchRenderer = new MatchRenderer(game.glGraphics, match);
         Assets.loadStadium(match.getSettings());
         Assets.loadCrowd(match.team[Match.HOME]);
