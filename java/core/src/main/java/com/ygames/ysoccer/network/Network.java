@@ -3,6 +3,7 @@ package com.ygames.ysoccer.network;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryonet.EndPoint;
 import com.ygames.ysoccer.match.Hair;
+import com.ygames.ysoccer.match.MatchFsm;
 import com.ygames.ysoccer.match.Pitch;
 import com.ygames.ysoccer.match.Player;
 import com.ygames.ysoccer.match.SceneSettings;
@@ -63,6 +64,7 @@ public class Network {
         kryo.register(MatchDto.class);
         kryo.register(MatchUpdateDto.class);
         kryo.register(CompetitionDto.class);
+        kryo.register(MatchFsm.StateId.class);
 
         // events
         kryo.register(BallBounceEventDto.class);
