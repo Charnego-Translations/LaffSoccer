@@ -29,7 +29,7 @@ public class MatchFsm extends SceneFsm<Match, MatchState> {
         END,
         END_POSITIONS,
         EXTRA_TIME_STOP,
-        FINAL_CELEBRATION,
+        FINAL_CELEBRATION_POSITIONS,
         FREE_KICK,
         FREE_KICK_STOP,
         FULL_EXTRA_TIME_STOP,
@@ -79,7 +79,7 @@ public class MatchFsm extends SceneFsm<Match, MatchState> {
         new MatchStateEnd(this);
         new MatchStateEndPositions(this);
         new MatchStateExtraTimeStop(this);
-        new MatchStateFinalCelebration(this);
+        new MatchStateFinalCelebrationPositions(this);
         new MatchStateFreeKick(this);
         new MatchStateFreeKickStop(this);
         new MatchStateFullExtraTimeStop(this);

@@ -8,7 +8,7 @@ import com.ygames.ysoccer.framework.GLGame;
 import static com.ygames.ysoccer.match.Const.SECOND;
 import static com.ygames.ysoccer.match.Const.TEAM_SIZE;
 import static com.ygames.ysoccer.match.MatchFsm.StateId.END_POSITIONS;
-import static com.ygames.ysoccer.match.MatchFsm.StateId.FINAL_CELEBRATION;
+import static com.ygames.ysoccer.match.MatchFsm.StateId.FINAL_CELEBRATION_POSITIONS;
 import static com.ygames.ysoccer.match.MatchFsm.StateId.FULL_EXTRA_TIME_STOP;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_CELEBRATION;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_IDLE;
@@ -83,7 +83,7 @@ class MatchStateFullExtraTimeStop extends MatchState {
     SceneFsm.Action[] checkConditions() {
         if (scene.stateTimer > 3 * SECOND) {
             if (scene.competition.getFinalWinner() != null) {
-                return newAction(NEW_FOREGROUND, FINAL_CELEBRATION);
+                return newAction(NEW_FOREGROUND, FINAL_CELEBRATION_POSITIONS);
             } else {
                 return newAction(NEW_FOREGROUND, END_POSITIONS);
             }

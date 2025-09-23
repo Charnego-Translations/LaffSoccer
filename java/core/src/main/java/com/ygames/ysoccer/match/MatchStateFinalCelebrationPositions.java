@@ -14,13 +14,13 @@ import static com.ygames.ysoccer.match.Const.GOAL_LINE;
 import static com.ygames.ysoccer.match.Const.SECOND;
 import static com.ygames.ysoccer.match.Match.HOME;
 import static com.ygames.ysoccer.match.MatchFsm.StateId.END_POSITIONS;
-import static com.ygames.ysoccer.match.MatchFsm.StateId.FINAL_CELEBRATION;
+import static com.ygames.ysoccer.match.MatchFsm.StateId.FINAL_CELEBRATION_POSITIONS;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_FINAL_CELEBRATION;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_OUTSIDE;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_REACH_TARGET;
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.NEW_FOREGROUND;
 
-class MatchStateFinalCelebration extends MatchState {
+class MatchStateFinalCelebrationPositions extends MatchState {
 
     enum Step {POSITIONING, CELEBRATING, QUITTING}
 
@@ -30,8 +30,8 @@ class MatchStateFinalCelebration extends MatchState {
     private Team runnerUp;
     private int celebrationEndingTime;
 
-    MatchStateFinalCelebration(MatchFsm fsm) {
-        super(FINAL_CELEBRATION, fsm);
+    MatchStateFinalCelebrationPositions(MatchFsm fsm) {
+        super(FINAL_CELEBRATION_POSITIONS, fsm);
 
         checkReplayKey = false;
         checkPauseKey = false;

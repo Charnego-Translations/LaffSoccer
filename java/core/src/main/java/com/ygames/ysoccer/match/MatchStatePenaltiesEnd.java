@@ -11,7 +11,7 @@ import static com.ygames.ysoccer.match.Match.HOME;
 import static com.ygames.ysoccer.match.Match.PenaltyState.MISSED;
 import static com.ygames.ysoccer.match.Match.PenaltyState.SCORED;
 import static com.ygames.ysoccer.match.MatchFsm.StateId.END_POSITIONS;
-import static com.ygames.ysoccer.match.MatchFsm.StateId.FINAL_CELEBRATION;
+import static com.ygames.ysoccer.match.MatchFsm.StateId.FINAL_CELEBRATION_POSITIONS;
 import static com.ygames.ysoccer.match.MatchFsm.StateId.PENALTIES;
 import static com.ygames.ysoccer.match.MatchFsm.StateId.PENALTIES_END;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_IDLE;
@@ -127,7 +127,7 @@ class MatchStatePenaltiesEnd extends MatchState {
                     fsm.matchCompleted = true;
 
                     if (scene.competition.getFinalWinner() != null) {
-                        return newAction(NEW_FOREGROUND, FINAL_CELEBRATION);
+                        return newAction(NEW_FOREGROUND, FINAL_CELEBRATION_POSITIONS);
                     } else {
                         return newAction(NEW_FOREGROUND, END_POSITIONS);
                     }

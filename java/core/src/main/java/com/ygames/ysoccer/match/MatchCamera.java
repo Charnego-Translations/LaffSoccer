@@ -144,7 +144,7 @@ public class MatchCamera extends SceneCamera<Match> {
                 yLimited = true;
                 break;
 
-            case FINAL_CELEBRATION:
+            case FINAL_CELEBRATION_POSITIONS:
                 mode = REACH_TARGET;
                 speed = NORMAL;
                 target.set(0, winnerSide() * GOAL_LINE / 1.25f);
