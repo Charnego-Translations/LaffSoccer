@@ -8,6 +8,7 @@ public class MatchUpdateDto {
     public int light;
     public BallUpdateDto ballUpdateDto;
     public TeamUpdateDto[] teamUpdateDto;
+    public float clock;
     public Match.Period period;
     public boolean displayTime;
     public boolean displayWindVane;
