@@ -51,6 +51,7 @@ public class MatchMapper {
         dto.teamUpdateDto = new TeamUpdateDto[2];
         dto.teamUpdateDto[HOME] = TeamMapper.toUpdateDto(match.team[HOME]);
         dto.teamUpdateDto[AWAY] = TeamMapper.toUpdateDto(match.team[AWAY]);
+        dto.period = match.period;
         dto.displayTime = match.displayTime;
         dto.displayWindVane = match.displayWindVane;
         dto.displayRosters = match.displayRosters;
@@ -96,6 +97,7 @@ public class MatchMapper {
         BallMapper.updateFromDto(match.getBall(), dto.ballUpdateDto);
         TeamMapper.updateFromDto(match.team[HOME], dto.teamUpdateDto[HOME]);
         TeamMapper.updateFromDto(match.team[AWAY], dto.teamUpdateDto[AWAY]);
+        match.period = dto.period;
         match.displayTime = dto.displayTime;
         match.displayWindVane = dto.displayWindVane;
         match.displayRosters = dto.displayRosters;
