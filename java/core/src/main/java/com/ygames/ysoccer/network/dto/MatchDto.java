@@ -7,6 +7,7 @@ public class MatchDto {
     public BallDto ballDto;
     public TeamDto[] teamDto;
     public CompetitionDto competitionDto;
+    public int length;
     public int rank;
     public boolean displayControlledPlayer;
     public boolean displayFoulMaker;

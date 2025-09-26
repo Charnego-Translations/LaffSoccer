@@ -67,7 +67,7 @@ public class Match extends Scene<MatchFsm, MatchState> implements Json.Serializa
     public enum Period {UNDEFINED, FIRST_HALF, SECOND_HALF, FIRST_EXTRA_TIME, SECOND_EXTRA_TIME, PENALTIES}
 
     public float clock;
-    int length;
+    public int length;
     public Period period;
     int coinToss;
     int kickOffTeam;

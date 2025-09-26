@@ -167,10 +167,10 @@ public class MatchRenderer extends SceneRenderer<Match> {
 
         if (Settings.showDevelopmentInfo) {
             Assets.font10.draw(batch, scene.camera.getMode() +
-                ", " + scene.camera.getSpeed() +
-                ", " + scene.camera.limitedToString() +
-                ", " + scene.camera.targetToString() +
-                ", " + scene.camera.offsetToString()
+                    ", " + scene.camera.getSpeed() +
+                    ", " + scene.camera.limitedToString() +
+                    ", " + scene.camera.targetToString() +
+                    ", " + scene.camera.offsetToString()
                 , guiWidth / 5, 42, Font.Align.LEFT);
         }
 
