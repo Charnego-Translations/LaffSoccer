@@ -1,34 +1,25 @@
 package com.ygames.ysoccer.match;
 
-import com.ygames.ysoccer.events.CelebrationEvent;
 import com.ygames.ysoccer.framework.EMath;
-import com.ygames.ysoccer.framework.EventManager;
 import com.ygames.ysoccer.framework.GLGame;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
 import static com.ygames.ysoccer.match.Const.GOAL_LINE;
-import static com.ygames.ysoccer.match.Const.SECOND;
 import static com.ygames.ysoccer.match.Match.HOME;
-import static com.ygames.ysoccer.match.MatchFsm.StateId.END_POSITIONS;
+import static com.ygames.ysoccer.match.MatchFsm.StateId.FINAL_CELEBRATION;
 import static com.ygames.ysoccer.match.MatchFsm.StateId.FINAL_CELEBRATION_POSITIONS;
-import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_FINAL_CELEBRATION;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_OUTSIDE;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_REACH_TARGET;
 import static com.ygames.ysoccer.match.SceneFsm.ActionType.NEW_FOREGROUND;
 
 class MatchStateFinalCelebrationPositions extends MatchState {
 
-    enum Step {POSITIONING, CELEBRATING, QUITTING}
-
     private int side;
-    private Step step;
     private Team winner;
     private Team runnerUp;
-    private int celebrationEndingTime;
 
     MatchStateFinalCelebrationPositions(MatchFsm fsm) {
         super(FINAL_CELEBRATION_POSITIONS, fsm);
@@ -64,25 +55,7 @@ class MatchStateFinalCelebrationPositions extends MatchState {
                 scene.updateAi();
             }
 
-            boolean move = scene.updatePlayers(false);
-
-            switch (step) {
-                case POSITIONING:
-                    if (readyToCelebrate()) {
-                        winner.setLineupState(STATE_FINAL_CELEBRATION);
-                        step = Step.CELEBRATING;
-                        EventManager.publish(new CelebrationEvent());
-                    }
-                    break;
-
-                case CELEBRATING:
-                    if (!move) {
-                        celebrationEndingTime = scene.stateTimer;
-                        step = Step.QUITTING;
-                    }
-                    break;
-            }
-
+            scene.updatePlayers(false);
 
             scene.nextSubframe();
 
@@ -97,8 +70,8 @@ class MatchStateFinalCelebrationPositions extends MatchState {
 
     @Override
     SceneFsm.Action[] checkConditions() {
-        if (step == Step.QUITTING && (scene.stateTimer - celebrationEndingTime > SECOND)) {
-            return newAction(NEW_FOREGROUND, END_POSITIONS);
+        if (readyToCelebrate()) {
+            return newAction(NEW_FOREGROUND, FINAL_CELEBRATION);
         }
 
         return checkCommonConditions();
@@ -108,9 +81,9 @@ class MatchStateFinalCelebrationPositions extends MatchState {
 
         List<Player> winners = new ArrayList<>(winner.lineup);
 
-        step = Step.POSITIONING;
         PlayerCompareByX playerComparator = new PlayerCompareByX();
-        Collections.sort(winners, playerComparator);
+
+        winners.sort(playerComparator);
 
         float tx = -8 * winners.size();
         float ty = side * GOAL_LINE / 2f;
