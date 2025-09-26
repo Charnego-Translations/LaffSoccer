@@ -10,6 +10,7 @@ public class MatchUpdateDto {
     public boolean displayWindVane;
     public boolean displayRosters;
     public MatchFsm.StateId stateId;
+    public int stateTimer;
 
     public MatchUpdateDto() {
     }

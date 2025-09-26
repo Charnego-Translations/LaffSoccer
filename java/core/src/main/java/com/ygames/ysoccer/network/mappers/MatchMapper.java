@@ -54,6 +54,7 @@ public class MatchMapper {
         dto.displayWindVane = match.displayWindVane;
         dto.displayRosters = match.displayRosters;
         dto.stateId = match.getStateId();
+        dto.stateTimer = match.stateTimer;
         return dto;
     }
 
@@ -97,5 +98,6 @@ public class MatchMapper {
         match.displayWindVane = dto.displayWindVane;
         match.displayRosters = dto.displayRosters;
         match.setStateId(dto.stateId);
+        match.stateTimer = dto.stateTimer;
     }
 }
