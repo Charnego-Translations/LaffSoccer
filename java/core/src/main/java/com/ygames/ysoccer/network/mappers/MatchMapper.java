@@ -55,6 +55,7 @@ public class MatchMapper {
         dto.clock = match.clock;
         dto.period = match.period;
         dto.displayTime = match.displayTime;
+        dto.displayRadar = match.displayRadar;
         dto.displayWindVane = match.displayWindVane;
         dto.displayRosters = match.displayRosters;
         dto.stateId = match.getStateId();
@@ -103,6 +104,7 @@ public class MatchMapper {
         match.clock = dto.clock;
         match.period = dto.period;
         match.displayTime = dto.displayTime;
+        match.displayRadar = dto.displayRadar;
         match.displayWindVane = dto.displayWindVane;
         match.displayRosters = dto.displayRosters;
         match.setStateId(dto.stateId);
