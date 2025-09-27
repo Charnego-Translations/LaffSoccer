@@ -17,6 +17,7 @@ import static com.ygames.ysoccer.match.Const.BALL_ZONE_DX;
 import static com.ygames.ysoccer.match.Const.BALL_ZONE_DY;
 import static com.ygames.ysoccer.match.Const.SECOND;
 import static com.ygames.ysoccer.match.Const.TEAM_SIZE;
+import static com.ygames.ysoccer.match.Const.TOUCH_LINE;
 import static com.ygames.ysoccer.match.Match.AWAY;
 import static com.ygames.ysoccer.match.Match.HOME;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_BENCH_SITTING;
@@ -527,11 +528,8 @@ public class MatchRenderer extends SceneRenderer<Match> {
         for (Sprite sprite : allSprites) {
             if (sprite.getClass() == PlayerSprite.class) {
                 Player player = ((PlayerSprite) sprite).player;
-                if (player.checkState(STATE_BENCH_SITTING)) {
-                    continue;
-                }
                 FrameData d = player.currentData;
-                if (d.isVisible) {
+                if (d.isVisible && d.x > -TOUCH_LINE) {
                     int dx = RX + RW / 2 + d.x / 8;
                     int dy = RY + RH / 2 + d.y / 8;
 
