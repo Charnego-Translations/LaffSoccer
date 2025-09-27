@@ -58,6 +58,7 @@ public class MatchMapper {
         dto.displayRadar = match.displayRadar;
         dto.displayWindVane = match.displayWindVane;
         dto.displayRosters = match.displayRosters;
+        dto.displayScore = match.displayScore;
         dto.stateId = match.getStateId();
         dto.stateTimer = match.stateTimer;
         return dto;
@@ -107,6 +108,7 @@ public class MatchMapper {
         match.displayRadar = dto.displayRadar;
         match.displayWindVane = dto.displayWindVane;
         match.displayRosters = dto.displayRosters;
+        match.displayScore = dto.displayScore;
         match.setStateId(dto.stateId);
         match.stateTimer = dto.stateTimer;
     }
