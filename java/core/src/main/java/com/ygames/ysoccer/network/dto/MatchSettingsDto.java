@@ -9,6 +9,7 @@ public class MatchSettingsDto {
     public int darkShadow;
     public Pitch.Type pitchType;
     public int windSpeed;
+    public int windDirection;
     public int sky;
     public float shadowAlpha;
     public boolean radar;

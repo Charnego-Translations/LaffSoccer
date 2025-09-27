@@ -11,6 +11,7 @@ public class MatchSettingsMapper {
         dto.darkShadow = matchSettings.grass.darkShadow;
         dto.pitchType = matchSettings.pitchType;
         dto.windSpeed = matchSettings.wind.speed;
+        dto.windDirection = matchSettings.wind.direction;
         dto.sky = matchSettings.sky;
         dto.shadowAlpha = matchSettings.shadowAlpha;
         dto.radar = matchSettings.radar;
@@ -23,6 +24,7 @@ public class MatchSettingsMapper {
         matchSettings.grass.darkShadow = dto.darkShadow;
         matchSettings.pitchType = dto.pitchType;
         matchSettings.wind.speed = dto.windSpeed;
+        matchSettings.wind.direction = dto.windDirection;
         matchSettings.sky = dto.sky;
         matchSettings.shadowAlpha = dto.shadowAlpha;
         matchSettings.radar = dto.radar;
