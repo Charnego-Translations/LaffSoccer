@@ -573,19 +573,8 @@ public class Assets {
         }
     }
 
-    public static void loadCornerFlags(SceneSettings sceneSettings) {
-        List<RgbPair> rgbPairs = new ArrayList<>();
-        switch (sceneSettings.time) {
-            case DAY:
-                rgbPairs.add(new RgbPair(0x291000, sceneSettings.grass.darkShadow));
-                break;
-
-            case NIGHT:
-                rgbPairs.add(new RgbPair(0x291000, sceneSettings.grass.lightShadow));
-                break;
-        }
-
-        Texture cornerFlags = loadTexture("images/corner_flags.png", rgbPairs);
+    public static void loadCornerFlags() {
+        Texture cornerFlags = new Texture("images/corner_flags.png");
         for (int frameX = 0; frameX < 6; frameX++) {
             for (int frameY = 0; frameY < 3; frameY++) {
                 Assets.cornerFlags[frameX][frameY] = new TextureRegion(cornerFlags, 42 * frameX, 84 * frameY, 42, 36);

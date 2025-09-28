@@ -41,7 +41,7 @@ class TrainingLoading extends GLScreen {
         Assets.loadStadium(sceneSettings);
         Assets.loadCrowd(trainingTeam);
         Assets.loadBall(sceneSettings);
-        Assets.loadCornerFlags(sceneSettings);
+        Assets.loadCornerFlags();
         Assets.loadCoach(trainingTeam);
         Kit[] trainingKits = {
                 new Kit("PLAIN", 0xBFED6C, 0x264293, 0x264293, 0x264293, 0xBFED6C),
