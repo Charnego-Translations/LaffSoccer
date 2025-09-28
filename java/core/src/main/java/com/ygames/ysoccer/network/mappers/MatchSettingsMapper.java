@@ -8,7 +8,6 @@ public class MatchSettingsMapper {
     public static MatchSettingsDto toDto(MatchSettings matchSettings) {
         MatchSettingsDto dto = new MatchSettingsDto();
         dto.time = matchSettings.time;
-        dto.darkShadow = matchSettings.grass.darkShadow;
         dto.pitchType = matchSettings.pitchType;
         dto.windSpeed = matchSettings.wind.speed;
         dto.windDirection = matchSettings.wind.direction;
@@ -21,7 +20,6 @@ public class MatchSettingsMapper {
     public static MatchSettings fromDto(MatchSettingsDto dto) {
         MatchSettings matchSettings = new MatchSettings();
         matchSettings.time = dto.time;
-        matchSettings.grass.darkShadow = dto.darkShadow;
         matchSettings.pitchType = dto.pitchType;
         matchSettings.wind.speed = dto.windSpeed;
         matchSettings.wind.direction = dto.windDirection;

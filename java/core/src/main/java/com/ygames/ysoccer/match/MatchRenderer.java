@@ -506,7 +506,7 @@ public class MatchRenderer extends SceneRenderer<Match> {
         gl.glEnable(GL20.GL_BLEND);
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
 
-        fadeRect(RX, RY, RX + RW, RY + RH, 0.6f, scene.settings.grass.darkShadow);
+        fadeRect(RX, RY, RX + RW, RY + RH, 0.4f, 0x000000);
 
         shapeRenderer.setColor(0x000000, 1f);
         shapeRenderer.rect(RX, RY, 1, RH);
