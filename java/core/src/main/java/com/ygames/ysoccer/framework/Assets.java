@@ -566,20 +566,7 @@ public class Assets {
     }
 
     public static void loadBall(SceneSettings sceneSettings) {
-        List<RgbPair> rgbPairs = new ArrayList<>();
-        switch (sceneSettings.time) {
-            case DAY:
-                rgbPairs.add(new RgbPair(0x005200, sceneSettings.grass.lightShadow));
-                rgbPairs.add(new RgbPair(0x001800, sceneSettings.grass.darkShadow));
-                break;
-
-            case NIGHT:
-                rgbPairs.add(new RgbPair(0x005200, sceneSettings.grass.lightShadow));
-                rgbPairs.add(new RgbPair(0x001800, sceneSettings.grass.lightShadow));
-                break;
-        }
-
-        Texture ballTexture = loadTexture("images/" + (sceneSettings.useOrangeBall() ? "ballsnow.png" : "ball.png"), rgbPairs);
+        Texture ballTexture = new Texture("images/" + (sceneSettings.useOrangeBall() ? "ballsnow.png" : "ball.png"));
         for (int r = 0; r < 5; r++) {
             ball[r] = new TextureRegion(ballTexture, r * 8, 0, 8, 8);
             ball[r].flip(false, true);
