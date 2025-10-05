@@ -191,7 +191,7 @@ public class SceneSettings {
 
     private void initWind() {
         if (weatherEffect == Weather.WIND) {
-            wind.init(weatherStrength, Assets.random);
+            wind.init(weatherStrength, Assets.random.nextInt(8));
         }
     }
 

@@ -21,8 +21,7 @@ public class MatchSettingsMapper {
         MatchSettings matchSettings = new MatchSettings();
         matchSettings.time = dto.time;
         matchSettings.pitchType = dto.pitchType;
-        matchSettings.wind.speed = dto.windSpeed;
-        matchSettings.wind.direction = dto.windDirection;
+        matchSettings.wind.init(dto.windSpeed, dto.windDirection);
         matchSettings.sky = dto.sky;
         matchSettings.shadowAlpha = dto.shadowAlpha;
         matchSettings.radar = dto.radar;
