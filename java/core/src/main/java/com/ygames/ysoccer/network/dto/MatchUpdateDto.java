@@ -10,6 +10,7 @@ public class MatchUpdateDto {
     public TeamUpdateDto[] teamUpdateDto;
     public float clock;
     public Match.Period period;
+    public boolean displayControlledPlayer;
     public boolean displayTime;
     public boolean displayRadar;
     public boolean displayWindVane;

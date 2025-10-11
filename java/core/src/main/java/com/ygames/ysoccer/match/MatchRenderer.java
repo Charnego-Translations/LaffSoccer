@@ -557,11 +557,8 @@ public class MatchRenderer extends SceneRenderer<Match> {
             for (Sprite sprite : allSprites) {
                 if (sprite.getClass() == PlayerSprite.class) {
                     Player player = ((PlayerSprite) sprite).player;
-                    if (player.checkState(STATE_BENCH_SITTING)) {
-                        continue;
-                    }
                     FrameData d = player.currentData;
-                    if ((d.isVisible) && (player.inputDevice != player.ai)) {
+                    if (d.isVisible && (d.x > -TOUCH_LINE) && (player.inputDevice != player.ai)) {
                         int dx = RX + RW / 2 + d.x / 8 + 1;
                         int dy = RY + RH / 2 + d.y / 8 - 10;
 

@@ -54,6 +54,7 @@ public class MatchMapper {
         dto.teamUpdateDto[AWAY] = TeamMapper.toUpdateDto(match.team[AWAY]);
         dto.clock = match.clock;
         dto.period = match.period;
+        dto.displayControlledPlayer = match.displayControlledPlayer;
         dto.displayTime = match.displayTime;
         dto.displayRadar = match.displayRadar;
         dto.displayWindVane = match.displayWindVane;
@@ -104,6 +105,7 @@ public class MatchMapper {
         TeamMapper.updateFromDto(match.team[AWAY], dto.teamUpdateDto[AWAY]);
         match.clock = dto.clock;
         match.period = dto.period;
+        match.displayControlledPlayer = dto.displayControlledPlayer;
         match.displayTime = dto.displayTime;
         match.displayRadar = dto.displayRadar;
         match.displayWindVane = dto.displayWindVane;
