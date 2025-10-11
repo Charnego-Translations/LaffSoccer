@@ -15,6 +15,7 @@ public class Ai extends InputDevice {
         fsm = new AiFsm(this);
     }
 
+    @Override
     public void read() {
         fsm.think();
     }

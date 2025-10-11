@@ -8,6 +8,7 @@ import com.esotericsoftware.minlog.Log;
 import com.ygames.ysoccer.competitions.Friendly;
 import com.ygames.ysoccer.framework.Assets;
 import com.ygames.ysoccer.framework.InputDeviceList;
+import com.ygames.ysoccer.framework.NetworkInputDevice;
 import com.ygames.ysoccer.framework.Settings;
 import com.ygames.ysoccer.match.Match;
 import com.ygames.ysoccer.match.MatchSettings;
@@ -17,6 +18,7 @@ import com.ygames.ysoccer.network.Network;
 import static com.esotericsoftware.minlog.Log.LEVEL_INFO;
 import static com.ygames.ysoccer.match.Match.AWAY;
 import static com.ygames.ysoccer.match.Match.HOME;
+import static com.ygames.ysoccer.match.Team.ControlMode.PLAYER;
 
 public class ServerGame extends Game {
     @Override
@@ -38,6 +40,9 @@ public class ServerGame extends Game {
         FileHandle awayFileHandle = Gdx.files.local(Settings.serverAwayTeam);
         Team homeTeam = Assets.json.fromJson(Team.class, homeFileHandle.readString("UTF-8"));
         Team awayTeam = Assets.json.fromJson(Team.class, awayFileHandle.readString("UTF-8"));
+
+        homeTeam.inputDevice = new NetworkInputDevice(0);
+        homeTeam.controlMode = PLAYER;
         match.setTeam(HOME, homeTeam);
         match.setTeam(AWAY, awayTeam);
         match.init(new InputDeviceList(), matchSettings, friendly);

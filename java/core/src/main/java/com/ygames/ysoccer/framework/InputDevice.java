@@ -4,7 +4,7 @@ import com.badlogic.gdx.Input;
 
 public abstract class InputDevice {
 
-    public enum Type {COMPUTER, KEYBOARD, JOYSTICK}
+    public enum Type {COMPUTER, KEYBOARD, JOYSTICK, NETWORK}
 
     public final Type type;
     public final int port;

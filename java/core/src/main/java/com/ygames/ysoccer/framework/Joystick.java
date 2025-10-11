@@ -15,6 +15,7 @@ class Joystick extends InputDevice {
         this.config = config;
     }
 
+    @Override
     protected void read() {
         x0 = round(this.controller.getAxis(config.xAxis));
         y0 = round(this.controller.getAxis(config.yAxis));

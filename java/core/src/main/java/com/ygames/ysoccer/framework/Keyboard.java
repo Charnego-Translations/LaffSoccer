@@ -11,6 +11,7 @@ class Keyboard extends InputDevice {
         this.config = config;
     }
 
+    @Override
     protected void read() {
         x0 = (Gdx.input.isKeyPressed(config.keyLeft) ? -1 : 0) + (Gdx.input.isKeyPressed(config.keyRight) ? 1 : 0);
         y0 = (Gdx.input.isKeyPressed(config.keyUp) ? -1 : 0) + (Gdx.input.isKeyPressed(config.keyDown) ? 1 : 0);
