@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.esotericsoftware.kryonet.Client;
 import com.ygames.ysoccer.framework.Assets;
+import com.ygames.ysoccer.framework.EventManager;
 import com.ygames.ysoccer.framework.GLGame;
 import com.ygames.ysoccer.framework.GLScreen;
 import com.ygames.ysoccer.framework.InputDevice;
@@ -31,6 +32,9 @@ public class OnlineMatch extends GLScreen {
     public OnlineMatch(GLGame game, Client client) {
         super(game);
         usesMouse = false;
+
+        EventManager.clear();
+        game.soundManager.subscribeEvents();
 
         game.inputDevices.setAvailability(true);
         inputDevice = game.inputDevices.get(2);
