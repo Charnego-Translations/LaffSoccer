@@ -15,6 +15,7 @@ import com.ygames.ysoccer.network.dto.CoachDto;
 import com.ygames.ysoccer.network.dto.CoachUpdateDto;
 import com.ygames.ysoccer.network.dto.CompetitionDto;
 import com.ygames.ysoccer.network.dto.FrameDataDto;
+import com.ygames.ysoccer.network.dto.InputDeviceDto;
 import com.ygames.ysoccer.network.dto.KitDto;
 import com.ygames.ysoccer.network.dto.MatchDto;
 import com.ygames.ysoccer.network.dto.MatchSettingsDto;
@@ -67,6 +68,7 @@ public class Network {
         kryo.register(CompetitionDto.class);
         kryo.register(MatchFsm.StateId.class);
         kryo.register(Match.Period.class);
+        kryo.register(InputDeviceDto.class);
 
         // events
         kryo.register(BallBounceEventDto.class);
