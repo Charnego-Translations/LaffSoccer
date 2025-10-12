@@ -6,6 +6,7 @@ import com.esotericsoftware.kryonet.Client;
 import com.ygames.ysoccer.framework.Assets;
 import com.ygames.ysoccer.framework.GLGame;
 import com.ygames.ysoccer.framework.GLScreen;
+import com.ygames.ysoccer.framework.InputDevice;
 import com.ygames.ysoccer.match.Match;
 import com.ygames.ysoccer.match.MatchCamera;
 import com.ygames.ysoccer.match.MatchRenderer;
@@ -25,9 +26,14 @@ public class OnlineMatch extends GLScreen {
 
     int zoom = 100;
 
+    InputDevice inputDevice;
+
     public OnlineMatch(GLGame game, Client client) {
         super(game);
         usesMouse = false;
+
+        game.inputDevices.setAvailability(true);
+        inputDevice = game.inputDevices.get(2);
     }
 
     public void setup(MatchSetupDto matchSetupDto) {

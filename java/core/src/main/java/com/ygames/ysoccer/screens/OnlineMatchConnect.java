@@ -41,11 +41,11 @@ import com.ygames.ysoccer.network.dto.events.KeeperHoldEventDto;
 import com.ygames.ysoccer.network.dto.events.MatchIntroEventDto;
 import com.ygames.ysoccer.network.dto.events.PeriodStopEventDto;
 import com.ygames.ysoccer.network.dto.events.WhistleEventDto;
+import com.ygames.ysoccer.network.mappers.InputDeviceMapper;
 import com.ygames.ysoccer.network.mappers.MatchMapper;
 
 import java.io.IOException;
 
-import static com.esotericsoftware.minlog.Log.LEVEL_DEBUG;
 import static com.esotericsoftware.minlog.Log.LEVEL_INFO;
 import static com.ygames.ysoccer.framework.Assets.font14;
 import static com.ygames.ysoccer.framework.Assets.gettext;
@@ -87,6 +87,7 @@ public class OnlineMatchConnect extends GLScreen {
                         MatchUpdateDto matchUpdateDto = (MatchUpdateDto) object;
                         MatchMapper.updateFromDto(onlineMatchScreen.match, matchUpdateDto);
                     });
+                    connection.sendUDP(InputDeviceMapper.toDto(onlineMatchScreen.inputDevice));
                 }
 
                 // events

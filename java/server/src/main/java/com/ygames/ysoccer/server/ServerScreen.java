@@ -5,10 +5,13 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.kryonet.Server;
+import com.ygames.ysoccer.framework.NetworkInputDevice;
 import com.ygames.ysoccer.framework.Settings;
 import com.ygames.ysoccer.match.Match;
+import com.ygames.ysoccer.network.dto.InputDeviceDto;
 import com.ygames.ysoccer.network.dto.MatchSetupDto;
 import com.ygames.ysoccer.network.dto.MatchUpdateDto;
+import com.ygames.ysoccer.network.mappers.InputDeviceMapper;
 import com.ygames.ysoccer.network.mappers.MatchMapper;
 
 import java.io.IOException;
@@ -37,6 +40,15 @@ public class ServerScreen extends ScreenAdapter {
                 server.sendToTCP(connection.getID(), matchSetupDto);
                 connected = true;
             }
+
+            public void received(Connection connection, Object object) {
+                if (object instanceof InputDeviceDto) {
+                    NetworkInputDevice inputDevice = (NetworkInputDevice) match.team[0].inputDevice;
+                    inputDevice.update();
+
+                    InputDeviceMapper.updateFromDto(inputDevice, (InputDeviceDto) object);
+                }
+            }
         });
 
         try {
@@ -56,6 +68,7 @@ public class ServerScreen extends ScreenAdapter {
         }
 
         if (matchStarted && !matchEnded) {
+//            match.team[HOME].inputDevice.update();
             match.update(deltaTime);
             match.updateCurrentData();
             MatchUpdateDto matchUpdateDto = MatchMapper.toUpdateDto(match);
