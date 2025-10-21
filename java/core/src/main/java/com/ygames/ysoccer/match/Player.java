@@ -73,7 +73,6 @@ public class Player implements Json.Serializable {
     public String shirtName;
     public Team team;
     public String nationality;
-    int index;
     public Role role;
     public int number;
 
@@ -949,7 +948,11 @@ public class Player implements Json.Serializable {
     }
 
     public int getIndex() {
-        return this.team.players.indexOf(this);
+        return team.players.indexOf(this);
+    }
+
+    public int lineupIndex() {
+        return team.lineup.indexOf(this);
     }
 
     public int getScoringWeight() {

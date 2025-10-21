@@ -16,10 +16,10 @@ class PlayerStatePhoto extends PlayerState {
             player.fmx = 2;
             player.fmy = 16;
         } else {
-            if (player.index == 9) {
+            if (player.lineupIndex() == 9) {
                 player.fmx = 2;
             } else {
-                player.fmx = player.index % 2;
+                player.fmx = player.lineupIndex() % 2;
             }
             player.fmy = 14;
         }

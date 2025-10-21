@@ -199,7 +199,6 @@ public class Team implements Json.Serializable {
         for (int i = 0; i < lineupSize; i++) {
             Player player = players.get(i);
             player.beforeMatch(match);
-            player.index = i;
             lineup.add(player);
         }
         substitutionsCount = 0;
@@ -213,7 +212,6 @@ public class Team implements Json.Serializable {
         for (int i = 0; i < lineupSize; i++) {
             Player player = players.get(i);
             player.beforeTraining(training);
-            player.index = i;
             lineup.add(player);
         }
     }
@@ -618,7 +616,7 @@ public class Team implements Json.Serializable {
     }
 
     private boolean near1betterThan(Player controlled) {
-        if (near1 == controlled || near1.index == 0) return false;
+        if (near1 == controlled || near1.lineupIndex() == 0) return false;
 
         if (controlled == null) return true;
 

@@ -120,7 +120,7 @@ class TrainingStateFree extends TrainingState {
                     resetTargetPosition(oldKeeper);
                     oldKeeper.setState(STATE_REACH_TARGET);
 
-                    Collections.swap(team.lineup, oldKeeper.index, newKeeper.index);
+                    Collections.swap(team.lineup, oldKeeper.lineupIndex(), newKeeper.lineupIndex());
                     keepers[team.index] = newKeeper;
 
                     ball.a = newKeeper.angleToPoint(lastTrained.x, lastTrained.y);
@@ -212,8 +212,8 @@ class TrainingStateFree extends TrainingState {
 
     private Vector2 getDefaultTarget(Player player) {
         return new Vector2(
-            -280 + 16 * (-player.team.lineup.size() + 2 * player.index) + 6 * EMath.cos(70 * (player.number)),
-            -player.team.side * (150 + 5 * (player.index % 2)) + 8 * EMath.sin(70 * (player.number))
+            -280 + 16 * (-player.team.lineup.size() + 2 * player.lineupIndex()) + 6 * EMath.cos(70 * (player.number)),
+            -player.team.side * (150 + 5 * (player.lineupIndex() % 2)) + 8 * EMath.sin(70 * (player.number))
         );
     }
 
