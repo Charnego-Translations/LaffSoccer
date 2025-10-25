@@ -55,7 +55,9 @@ public class Ball {
     float mx;
     float my;
 
-    Player owner;
+    public Player owner;
+    public int ownerIndex;
+    public int ownerTeamIndex;
     Player ownerLast;
     Player goalOwner;
     Player holder;
