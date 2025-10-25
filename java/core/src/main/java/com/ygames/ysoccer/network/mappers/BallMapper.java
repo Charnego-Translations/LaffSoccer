@@ -8,18 +8,20 @@ import com.ygames.ysoccer.network.dto.BallUpdateDto;
 public class BallMapper {
 
     public static BallDto toDto(Ball ball) {
-        BallDto ballDto = new BallDto();
-        ballDto.x = ball.getX();
-        ballDto.y = ball.getY();
-        ballDto.z = ball.getZ();
-        ballDto.currentDataDto = FrameDataMapper.toDto(ball.currentData);
-        return ballDto;
+        BallDto dto = new BallDto();
+        dto.x = ball.getX();
+        dto.y = ball.getY();
+        dto.z = ball.getZ();
+        dto.currentDataDto = FrameDataMapper.toDto(ball.currentData);
+        return dto;
     }
 
     public static BallUpdateDto toUpdateDto(Ball ball) {
-        BallUpdateDto ballUpdateDto = new BallUpdateDto();
-        ballUpdateDto.currentDataDto = FrameDataMapper.toUpdateDto(ball.currentData);
-        return ballUpdateDto;
+        BallUpdateDto dto = new BallUpdateDto();
+        dto.currentDataDto = FrameDataMapper.toUpdateDto(ball.currentData);
+        dto.ownerIndex = ball.ownerIndex;
+        dto.ownerTeamIndex = ball.ownerTeamIndex;
+        return dto;
     }
 
     public static Ball fromDto(BallDto ballDto, SceneSettings sceneSettings) {
@@ -31,7 +33,9 @@ public class BallMapper {
         return ball;
     }
 
-    public static void updateFromDto(Ball ball, BallUpdateDto updateDto) {
-        FrameDataMapper.updateFromDto(ball.currentData, updateDto.currentDataDto);
+    public static void updateFromDto(Ball ball, BallUpdateDto dto) {
+        FrameDataMapper.updateFromDto(ball.currentData, dto.currentDataDto);
+        ball.ownerIndex= dto.ownerIndex;
+        ball.ownerTeamIndex = dto.ownerTeamIndex;
     }
 }
