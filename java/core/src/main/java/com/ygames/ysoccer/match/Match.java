@@ -342,7 +342,7 @@ public class Match extends Scene<MatchFsm, MatchState> implements Json.Serializa
     }
 
     private void updateBallOwner() {
-        if (ball.owner != null) {
+        if (ball.owner != null && ball.owner != ball.holder) {
             if ((ball.owner.ballDistance > 11) || (ball.z > (Const.PLAYER_H + BALL_R))) {
                 setBallOwner(null);
             }
