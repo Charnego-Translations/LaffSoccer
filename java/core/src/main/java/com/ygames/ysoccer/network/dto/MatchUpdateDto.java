@@ -11,6 +11,7 @@ public class MatchUpdateDto {
     public float clock;
     public Match.Period period;
     public boolean displayControlledPlayer;
+    public boolean displayBallOwner;
     public boolean displayTime;
     public boolean displayRadar;
     public boolean displayWindVane;
