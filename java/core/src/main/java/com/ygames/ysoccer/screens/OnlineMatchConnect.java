@@ -107,7 +107,7 @@ public class OnlineMatchConnect extends GLScreen {
                     Gdx.app.postRunnable(() -> EventManager.publish(new CrowdChantsEvent()));
 
                 if (object instanceof HomeGoalEventDto)
-                    Gdx.app.postRunnable(() -> EventManager.publish(new HomeGoalEvent()));
+                    Gdx.app.postRunnable(() -> EventManager.publish(new HomeGoalEvent(null)));
 
                 if (object instanceof KeeperDeflectEventDto)
                     Gdx.app.postRunnable(() -> EventManager.publish(new KeeperDeflectEvent()));

@@ -45,9 +45,9 @@ class MatchStateGoal extends MatchState {
         replayDone = false;
         recordingDone = false;
 
-        EventManager.publish(new HomeGoalEvent());
-
         goal = scene.goals.get(scene.goals.size() - 1);
+
+        EventManager.publish(new HomeGoalEvent(goal));
 
         if (scene.settings.commentary) {
             if (goal.type == Goal.Type.OWN_GOAL) {
