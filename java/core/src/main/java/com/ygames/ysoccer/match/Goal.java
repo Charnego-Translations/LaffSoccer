@@ -1,12 +1,12 @@
 package com.ygames.ysoccer.match;
 
-class Goal {
+public class Goal {
 
-    enum Type {NORMAL, OWN_GOAL, PENALTY}
+    public enum Type {NORMAL, OWN_GOAL, PENALTY}
 
-    Player player;
-    int minute;
-    Type type;
+    public Player player;
+    public int minute;
+    public Type type;
 
     public Goal(Player player, int minute, Type type) {
         this.player = player;
