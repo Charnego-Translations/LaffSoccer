@@ -75,7 +75,7 @@ public class Match extends Scene<MatchFsm, MatchState> implements Json.Serializa
 
     Tackle tackle;
     Foul foul;
-    List<Goal> goals;
+    public List<Goal> goals = new ArrayList<>();
 
     enum PenaltyState {TO_KICK, SCORED, MISSED}
 
@@ -178,7 +178,6 @@ public class Match extends Scene<MatchFsm, MatchState> implements Json.Serializa
         coinToss = Assets.random.nextInt(2); // 0 = home begins, 1 = away begins
         kickOffTeam = coinToss;
 
-        goals = new ArrayList<>();
         penalties[HOME] = new ArrayList<>();
         penalties[AWAY] = new ArrayList<>();
 
