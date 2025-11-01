@@ -112,6 +112,7 @@ public class OnlineMatchConnect extends GLScreen {
                     Gdx.app.postRunnable(() -> {
                         Goal goal = GoalMapper.fromDto(onlineMatchScreen.match, ((HomeGoalEventDto) object).goalDto);
                         onlineMatchScreen.match.goals.add(goal);
+                        onlineMatchScreen.match.buildScorersList();
                         EventManager.publish(new HomeGoalEvent(goal));
                     });
 

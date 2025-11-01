@@ -615,6 +615,10 @@ public class Match extends Scene<MatchFsm, MatchState> implements Json.Serializa
 
         goals.add(goal);
 
+        buildScorersList();
+    }
+
+    public void buildScorersList() {
         scorers.build(goals);
     }
 
