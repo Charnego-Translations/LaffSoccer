@@ -27,6 +27,7 @@ import com.ygames.ysoccer.gui.Button;
 import com.ygames.ysoccer.gui.InputButton;
 import com.ygames.ysoccer.gui.Label;
 import com.ygames.ysoccer.gui.Widget;
+import com.ygames.ysoccer.match.Goal;
 import com.ygames.ysoccer.network.Network;
 import com.ygames.ysoccer.network.dto.MatchSetupDto;
 import com.ygames.ysoccer.network.dto.MatchUpdateDto;
@@ -41,6 +42,7 @@ import com.ygames.ysoccer.network.dto.events.KeeperHoldEventDto;
 import com.ygames.ysoccer.network.dto.events.MatchIntroEventDto;
 import com.ygames.ysoccer.network.dto.events.PeriodStopEventDto;
 import com.ygames.ysoccer.network.dto.events.WhistleEventDto;
+import com.ygames.ysoccer.network.mappers.GoalMapper;
 import com.ygames.ysoccer.network.mappers.InputDeviceMapper;
 import com.ygames.ysoccer.network.mappers.MatchMapper;
 
@@ -107,7 +109,11 @@ public class OnlineMatchConnect extends GLScreen {
                     Gdx.app.postRunnable(() -> EventManager.publish(new CrowdChantsEvent()));
 
                 if (object instanceof HomeGoalEventDto)
-                    Gdx.app.postRunnable(() -> EventManager.publish(new HomeGoalEvent(null)));
+                    Gdx.app.postRunnable(() -> {
+                        Goal goal = GoalMapper.fromDto(onlineMatchScreen.match, ((HomeGoalEventDto) object).goalDto);
+                        onlineMatchScreen.match.goals.add(goal);
+                        EventManager.publish(new HomeGoalEvent(goal));
+                    });
 
                 if (object instanceof KeeperDeflectEventDto)
                     Gdx.app.postRunnable(() -> EventManager.publish(new KeeperDeflectEvent()));

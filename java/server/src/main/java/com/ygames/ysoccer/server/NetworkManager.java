@@ -24,6 +24,7 @@ import com.ygames.ysoccer.network.dto.events.KeeperHoldEventDto;
 import com.ygames.ysoccer.network.dto.events.MatchIntroEventDto;
 import com.ygames.ysoccer.network.dto.events.PeriodStopEventDto;
 import com.ygames.ysoccer.network.dto.events.WhistleEventDto;
+import com.ygames.ysoccer.network.mappers.GoalMapper;
 
 public class NetworkManager {
 
@@ -33,7 +34,7 @@ public class NetworkManager {
         EventManager.subscribe(BallKickEvent.class, ballKickEvent -> server.sendToAllTCP(new BallKickEventDto(ballKickEvent.strength)));
         EventManager.subscribe(CelebrationEvent.class, celebrationEvent -> server.sendToAllTCP(new CelebrationEventDto()));
         EventManager.subscribe(CrowdChantsEvent.class, crowdChantsEvent -> server.sendToAllTCP(new CrowdChantsEventDto()));
-        EventManager.subscribe(HomeGoalEvent.class, homeGoalEvent -> server.sendToAllTCP(new HomeGoalEventDto()));
+        EventManager.subscribe(HomeGoalEvent.class, homeGoalEvent -> server.sendToAllTCP(new HomeGoalEventDto(GoalMapper.toDto(homeGoalEvent.goal))));
         EventManager.subscribe(KeeperDeflectEvent.class, keeperDeflectEvent -> server.sendToAllTCP(new KeeperDeflectEventDto()));
         EventManager.subscribe(KeeperHoldEvent.class, keeperHoldEvent -> server.sendToAllTCP(new KeeperHoldEventDto()));
         EventManager.subscribe(MatchIntroEvent.class, matchIntroEvent -> server.sendToAllTCP(new MatchIntroEventDto()));
