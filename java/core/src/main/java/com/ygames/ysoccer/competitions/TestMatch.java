@@ -3,7 +3,6 @@ package com.ygames.ysoccer.competitions;
 import com.ygames.ysoccer.framework.Assets;
 import com.ygames.ysoccer.match.Match;
 import com.ygames.ysoccer.match.MatchSettings;
-import com.ygames.ysoccer.match.Team;
 
 public class TestMatch extends Competition {
 
@@ -24,6 +23,6 @@ public class TestMatch extends Competition {
 
     @Override
     public MatchSettings.Time getTime() {
-        return MatchSettings.Time.values()[Assets.random.nextInt(2)];
+        return MatchSettings.Time.values()[Assets.RANDOM.nextInt(2)];
     }
 }

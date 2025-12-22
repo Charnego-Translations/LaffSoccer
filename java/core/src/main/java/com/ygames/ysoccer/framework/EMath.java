@@ -91,16 +91,16 @@ public class EMath {
 
     // random integer between min and max (included)
     public static int rand(int min, int max) {
-        return min + Assets.random.nextInt(max + 1 - min);
+        return min + Assets.RANDOM.nextInt(max + 1 - min);
     }
 
     public static <T> T randomPick(T[] elements) {
-        return elements[Assets.random.nextInt(elements.length)];
+        return elements[Assets.RANDOM.nextInt(elements.length)];
     }
 
     public static <T extends Enum<T>> T randomPick(Class<T> c) {
         int values = c.getEnumConstants().length;
-        return c.getEnumConstants()[Assets.random.nextInt(values)];
+        return c.getEnumConstants()[Assets.RANDOM.nextInt(values)];
     }
 
     public static float roundBy(float value, float step) {

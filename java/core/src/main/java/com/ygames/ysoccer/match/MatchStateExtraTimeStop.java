@@ -70,11 +70,11 @@ class MatchStateExtraTimeStop extends MatchState {
             scene.ball.updatePrediction();
 
             // redo coin toss
-            scene.coinToss = Assets.random.nextInt(2); // 0 = home begins, 1 = away begins
+            scene.coinToss = Assets.RANDOM.nextInt(2); // 0 = home begins, 1 = away begins
             scene.kickOffTeam = scene.coinToss;
 
             // reassign teams sides
-            scene.team[HOME].setSide(1 - 2 * Assets.random.nextInt(2)); // -1 = up, 1 = down
+            scene.team[HOME].setSide(1 - 2 * Assets.RANDOM.nextInt(2)); // -1 = up, 1 = down
             scene.team[AWAY].setSide(-scene.team[HOME].side);
 
             scene.period = Match.Period.FIRST_EXTRA_TIME;

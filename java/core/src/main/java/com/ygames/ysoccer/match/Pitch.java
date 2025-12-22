@@ -82,7 +82,7 @@ public class Pitch {
         int[] pitchProbabilities = probabilityByMonth[EMath.rand(0, 11)];
 
         float sum = 0;
-        float r = Assets.random.nextFloat();
+        float r = Assets.RANDOM.nextFloat();
         int i = -1;
         do {
             i++;

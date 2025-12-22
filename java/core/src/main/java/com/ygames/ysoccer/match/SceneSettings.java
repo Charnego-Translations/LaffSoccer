@@ -191,7 +191,7 @@ public class SceneSettings {
 
     private void initWind() {
         if (weatherEffect == Weather.WIND) {
-            wind.init(weatherStrength, Assets.random.nextInt(8));
+            wind.init(weatherStrength, Assets.RANDOM.nextInt(8));
         }
     }
 
@@ -225,7 +225,7 @@ public class SceneSettings {
 
     public static Time randomTime() {
         float dayProbability = 0.7f;
-        return Assets.random.nextFloat() < dayProbability ? Time.DAY : Time.NIGHT;
+        return Assets.RANDOM.nextFloat() < dayProbability ? Time.DAY : Time.NIGHT;
     }
 
     public int getZoom() {

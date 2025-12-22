@@ -75,7 +75,7 @@ class MatchStateMain extends MatchState {
                 if (scene.clock >= scene.nextChant) {
                     if (scene.chantSwitch) {
                         scene.chantSwitch = false;
-                        scene.nextChant = scene.clock + (6 + Assets.random.nextInt(6)) * 1000;
+                        scene.nextChant = scene.clock + (6 + Assets.RANDOM.nextInt(6)) * 1000;
                     } else {
                         EventManager.publish(new CrowdChantsEvent());
                         scene.chantSwitch = true;
@@ -211,10 +211,10 @@ class MatchStateMain extends MatchState {
 
                     Gdx.app.debug(player.shirtName, "tackles on " + opponent.shirtName + " finished, hardness: " + hardness + ", unfairness: " + unfairness);
 
-                    if (Assets.random.nextFloat() < hardness) {
+                    if (Assets.RANDOM.nextFloat() < hardness) {
                         opponent.setState(STATE_DOWN);
 
-                        if (Assets.random.nextFloat() < unfairness) {
+                        if (Assets.RANDOM.nextFloat() < unfairness) {
                             scene.newFoul(scene.tackle.opponent.x, scene.tackle.opponent.y, hardness, unfairness);
                             Gdx.app.debug(player.shirtName, "tackle on " + opponent.shirtName + " is a foul at: " + scene.tackle.opponent.x + ", " + scene.tackle.opponent.y
                                 + " direct shot: " + (scene.foul.isDirectShot() ? "yes" : "no") + " yellow: " + scene.foul.entailsYellowCard + " red: " + scene.foul.entailsRedCard);

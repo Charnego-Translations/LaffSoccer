@@ -38,15 +38,19 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.MissingResourceException;
 import java.util.Random;
+import java.util.Set;
 
 public class Assets {
 
-    public static Random random = new Random(System.currentTimeMillis());
+    public static List<String> EXTENSIONS = Arrays.asList("ogg", "wav", "mp3");
+
+    public static Random RANDOM = new Random(System.currentTimeMillis());
     static Cursor customCursor;
     static Cursor hiddenCursor;
     public static I18NBundle strings;
@@ -119,8 +123,7 @@ public class Assets {
         static void load() {
             FileHandle commentaryFolder = Gdx.files.local("sounds/commentary");
             for (FileHandle fileHandle : commentaryFolder.list()) {
-                List<String> extensions = Arrays.asList("ogg", "wav", "mp3");
-                if (extensions.contains(fileHandle.extension().toLowerCase())) {
+                if (EXTENSIONS.contains(fileHandle.extension().toLowerCase())) {
                     String name = fileHandle.nameWithoutExtension();
                     if (name.startsWith("corner_kick")) {
                         cornerKick.add(Gdx.audio.newSound(fileHandle));
@@ -159,6 +162,155 @@ public class Assets {
             for (Sound s : penalty) s.stop();
             for (Sound s : playerSubstitution) s.stop();
             for (Sound s : playerSwap) s.stop();
+        }
+    }
+
+    public static class TeamFaces {
+
+        public static final Map<String, TeamFaces> teams = new HashMap<>();
+
+        public final Map<String, TextureRegion> faces = new HashMap<>();
+
+        public static void load(Team team) {
+
+            String teamFile = FileUtils.getTeamFromFile(team.path);
+            String teamPath = "data/teams" + FileUtils.getPathFromTeamPath(team.path);
+            TeamFaces element = new TeamFaces();
+
+            team.players.forEach(player -> {
+                element.faces.put(player.shirtName, loadTextureRegion(teamPath + teamFile + "/" + FileUtils.normalizeName(player.shirtName) + ".png"));
+            });
+
+            teams.put(teamFile, element);
+
+        }
+
+        public static void unload() {
+            teams.forEach((name, team) -> {
+                team.faces.forEach((player, face) -> {
+                    if (face != null) {
+                        face.getTexture().dispose();
+                    }
+                });
+            });
+            teams.clear();
+        }
+    }
+
+    public static class TeamCommentary {
+
+        public static final Map<String, TeamCommentary> teams = new HashMap<>();
+
+        public Sound teamName;
+        public Sound stadiumName;
+        public Sound city;
+        public final Map<String, Sound> players = new HashMap<>();
+
+        public static void load(Team team) {
+
+            String teamFile = FileUtils.getTeamFromFile(team.path);
+            String teamPath = FileUtils.getPathFromTeamPath(team.path);
+            String soundPath = "data/teams" + teamPath + teamFile;
+
+            TeamCommentary element = new TeamCommentary();
+
+            element.teamName = loadSound(soundPath + "/team.ogg");
+            element.stadiumName = loadSound(soundPath + "/stadium.ogg");
+            element.city = loadSound(soundPath + "/city.ogg");
+
+            team.players.forEach(player -> {
+                element.players.put(player.shirtName, loadSound(soundPath + "/player_" + FileUtils.normalizeName(player.shirtName) + ".ogg"));
+            });
+
+            teams.put(teamFile, element);
+
+        }
+
+        public static void unload() {
+            teams.forEach((name, team) -> {
+                stopAndDispose(team.teamName);
+                stopAndDispose(team.stadiumName);
+                stopAndDispose(team.city);
+                team.players.forEach((playerName, sound) -> {
+                    stopAndDispose(sound);
+                });
+            });
+            teams.clear();
+        }
+    }
+
+    public static class CommonComment {
+
+        public enum CommonCommentType {
+            CORNER_KICK, FOUL, NOT_FOUL, GOAL, KEEPER_SAVE, OWN_GOAL, PENALTY, PLAYER_SUBSTITUTION, PLAYER_SWAP, THROW_IN, GOAL_KICK, CHITCHAT, KICK_OFF, MATCH_END, HALF_MATCH, MATCH_END_EXTRA_TIME, EXTRA_TIME_FIRST_END, EXTRA_TIME_END
+        }
+
+        public static final Map<CommonCommentType, Set<Sound>> commonCommentary = new HashMap<>();
+        public static final Map<CommonCommentType, Set<Sound>> commonCommentarySecondary = new HashMap<>();
+
+        static {
+            for (CommonCommentType value : CommonCommentType.values()) {
+                commonCommentary.put(value, new HashSet<>());
+                commonCommentarySecondary.put(value, new HashSet<>());
+            }
+        }
+
+        public static final Set<Sound> allComments = new HashSet<>();
+        public static final Sound[] numbers = new Sound[999];
+
+        public static Sound pull(CommonCommentType type) {
+            return commonCommentary.get(type).stream().skip(RANDOM.nextInt(commonCommentary.get(type).size())).findFirst().orElse(null);
+        }
+
+        public static Sound pullSecond(CommonCommentType type) {
+            return commonCommentarySecondary.get(type).stream().skip(RANDOM.nextInt(commonCommentarySecondary.get(type).size())).findFirst().orElse(null);
+        }
+
+        static void load() {
+            FileHandle numbersFolder = Gdx.files.local("sounds/commentary/numbers");
+            for (FileHandle fileHandle : numbersFolder.list()) {
+                if (EXTENSIONS.contains(fileHandle.extension().toLowerCase())) {
+                    String name = fileHandle.nameWithoutExtension();
+                    numbers[Integer.parseInt(name)] = Gdx.audio.newSound(fileHandle);
+                }
+            }
+            // Legacy load
+            FileHandle commentaryFolder = Gdx.files.local("sounds/commentary");
+            for (FileHandle fileHandle : commentaryFolder.list()) {
+                if (EXTENSIONS.contains(fileHandle.extension().toLowerCase())) {
+                    String name = fileHandle.nameWithoutExtension();
+                    for (CommonCommentType type : CommonCommentType.values()) {
+                        String fileType = type.name().toLowerCase();
+                        if (name.startsWith(fileType)) {
+                            commonCommentary.get(type).add(Gdx.audio.newSound(fileHandle));
+                        }
+                    }
+                }
+            }
+            // Comments in their folders
+            for (CommonCommentType commentType : CommonCommentType.values()) {
+                commentaryFolder = Gdx.files.local("sounds/commentary/" + commentType.name().toLowerCase() + "/");
+                for (FileHandle fileHandle : commentaryFolder.list()) {
+                    if (EXTENSIONS.contains(fileHandle.extension().toLowerCase())) {
+                        commonCommentary.get(commentType).add(Gdx.audio.newSound(fileHandle));
+                    }
+                }
+                // Secondary comments
+                commentaryFolder = Gdx.files.local("sounds/commentary/" + commentType.name().toLowerCase() + "/secondary/");
+                for (FileHandle fileHandle : commentaryFolder.list()) {
+                    if (EXTENSIONS.contains(fileHandle.extension().toLowerCase())) {
+                        commonCommentarySecondary.get(commentType).add(Gdx.audio.newSound(fileHandle));
+                    }
+                }
+            }
+            allComments.addAll(Arrays.asList(numbers));
+            commonCommentary.forEach((k, v) -> allComments.addAll(v));
+            commonCommentarySecondary.forEach((k, v) -> allComments.addAll(v));
+            allComments.remove(null);
+        }
+
+        public static void stop() {
+            allComments.forEach(Sound::stop);
         }
     }
 
@@ -713,6 +865,11 @@ public class Assets {
     }
 
     public static TextureRegion loadTextureRegion(String internalPath) {
+        FileHandle file = Gdx.files.internal(internalPath);
+        if (!file.exists()) {
+            return null;
+        }
+
         Texture texture = new Texture(internalPath);
         TextureRegion textureRegion = new TextureRegion(texture);
         textureRegion.flip(false, true);
@@ -792,6 +949,28 @@ public class Assets {
             fh = fh.parent();
         }
         return fh;
+    }
+
+    /**
+     * Load sounds from absolute path from assets directory
+     * @param filename
+     * @return the sounds or null if doesn't exist
+     */
+    private static Sound loadSound(String filename) {
+        FileHandle file = Gdx.files.internal(filename);
+        if (file.exists()) {
+            return Gdx.audio.newSound(file);
+        } else {
+            return null;
+        }
+    }
+
+    private static void stopAndDispose(Sound sound) {
+        if (sound == null) {
+            return;
+        }
+        sound.stop();
+        sound.dispose();
     }
 
     public static FilenameFilter teamFilenameFilter = new FilenameFilter() {

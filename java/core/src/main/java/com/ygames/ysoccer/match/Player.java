@@ -1,6 +1,7 @@
 package com.ygames.ysoccer.match;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Json;
@@ -12,8 +13,10 @@ import com.ygames.ysoccer.framework.Ai;
 import com.ygames.ysoccer.framework.Assets;
 import com.ygames.ysoccer.framework.Color2;
 import com.ygames.ysoccer.framework.Color3;
+import com.ygames.ysoccer.framework.Commentary;
 import com.ygames.ysoccer.framework.EMath;
 import com.ygames.ysoccer.framework.EventManager;
+import com.ygames.ysoccer.framework.FileUtils;
 import com.ygames.ysoccer.framework.GLColor;
 import com.ygames.ysoccer.framework.GLGame;
 import com.ygames.ysoccer.framework.InputDevice;
@@ -314,9 +317,9 @@ public class Player implements Json.Serializable {
 
             float smoothedBallV = ball.v * 0.5f;
             Vector2 ballVec = new Vector2(smoothedBallV, 0);
-            ballVec.setAngle(ball.a);
+            ballVec.setAngleDeg(ball.a);
             Vector2 playerVec = new Vector2(v, 0);
-            playerVec.setAngle(a);
+            playerVec.setAngleDeg(a);
 
             Vector2 differenceVec = playerVec.sub(ballVec);
 
@@ -326,7 +329,7 @@ public class Player implements Json.Serializable {
                 if (ball.owner != null && ball.owner != this) {
 
                     float sum = skills.tackling + ball.owner.skills.tackling + 2;
-                    float r = Assets.random.nextFloat();
+                    float r = Assets.RANDOM.nextFloat();
 
                     // contrast winner
                     if (r < (skills.tackling + 1) / sum) {
@@ -343,6 +346,12 @@ public class Player implements Json.Serializable {
 
                 // get possession
                 else {
+                    if (this.team.path != null) {
+                        Sound playerSound = Assets.TeamCommentary.teams.get(FileUtils.getTeamFromFile(this.team.path)).players.get(this.shirtName);
+                        if (playerSound != null) {
+                            Commentary.getInstance().enqueueComment(new Commentary.Comment(Commentary.Comment.Priority.LOW, playerSound));
+                        }
+                    }
                     scene.setBallOwner(this);
                     ball.v = v;
                     ball.a = a;
@@ -501,7 +510,7 @@ public class Player implements Json.Serializable {
             if (scene.settings.commentary) {
                 int size = Assets.Commentary.keeperSave.size();
                 if (size > 0) {
-                    Assets.Commentary.keeperSave.get(Assets.random.nextInt(size)).play(SoundManager.volume / 100f);
+                    Assets.Commentary.keeperSave.get(Assets.RANDOM.nextInt(size)).play(SoundManager.volume / 100f);
                 }
             }
         }

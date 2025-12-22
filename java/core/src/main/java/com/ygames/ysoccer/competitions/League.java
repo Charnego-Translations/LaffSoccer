@@ -240,7 +240,7 @@ public class League extends Competition implements Json.Serializable {
     public void matchInterrupted() {
         Match match = getMatch();
         if (match.team[HOME].controlMode == COMPUTER && match.team[AWAY].controlMode != COMPUTER) {
-            int goals = 4 + Assets.random.nextInt(2);
+            int goals = 4 + Assets.RANDOM.nextInt(2);
             if (match.resultAfter90 != null) {
                 goals += match.resultAfter90[AWAY];
                 match.resultAfter90[HOME] += goals;
@@ -250,7 +250,7 @@ public class League extends Competition implements Json.Serializable {
             generateScorers(match.team[HOME], goals);
             matchCompleted();
         } else if (match.team[HOME].controlMode != COMPUTER && match.team[AWAY].controlMode == COMPUTER) {
-            int goals = 4 + Assets.random.nextInt(2);
+            int goals = 4 + Assets.RANDOM.nextInt(2);
             if (match.resultAfter90 != null) {
                 goals += match.resultAfter90[AWAY];
                 match.resultAfter90[HOME] += goals;

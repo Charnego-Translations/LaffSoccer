@@ -1,0 +1,11 @@
+Exception in thread "main" java.lang.NullPointerException: Cannot invoke "com.ygames.ysoccer.framework.MenuMusic.update(int)" because "this.game.prematchMusic" is null
+	at com.ygames.ysoccer.framework.GLScreen.render(GLScreen.java:79)
+	at com.ygames.ysoccer.screens.Intro.render(Intro.java:44)
+	at com.ygames.ysoccer.framework.GLGame.render(GLGame.java:152)
+	at com.badlogic.gdx.backends.lwjgl3.Lwjgl3Window.update(Lwjgl3Window.java:435)
+	at com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application.loop(Lwjgl3Application.java:181)
+	at com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application.<init>(Lwjgl3Application.java:153)
+	at com.ygames.ysoccer.lwjgl3.Lwjgl3Launcher.createApplication(Lwjgl3Launcher.java:15)
+	at com.ygames.ysoccer.lwjgl3.Lwjgl3Launcher.main(Lwjgl3Launcher.java:11)
+
+

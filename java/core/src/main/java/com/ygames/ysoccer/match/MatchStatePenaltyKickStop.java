@@ -54,7 +54,7 @@ class MatchStatePenaltyKickStop extends MatchState {
         if (scene.settings.commentary) {
             int size = Assets.Commentary.penalty.size();
             if (size > 0) {
-                Assets.Commentary.penalty.get(Assets.random.nextInt(size)).play(SoundManager.volume / 100f);
+                Assets.Commentary.penalty.get(Assets.RANDOM.nextInt(size)).play(SoundManager.volume / 100f);
             }
         }
 

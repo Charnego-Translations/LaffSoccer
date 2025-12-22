@@ -138,11 +138,11 @@ public abstract class SceneRenderer<SceneT extends Scene<?, ?>> {
     void drawRain() {
         batch.setColor(0xFFFFFF, 0.6f);
         int subframe = scene.subframe;
-        Assets.random.setSeed(1);
+        Assets.RANDOM.setSeed(1);
         for (int i = 1; i <= 40 * scene.settings.weatherStrength; i++) {
-            int x = Assets.random.nextInt(modW);
-            int y = Assets.random.nextInt(modH);
-            int h = (Assets.random.nextInt(modH) + subframe) % modH;
+            int x = Assets.RANDOM.nextInt(modW);
+            int y = Assets.RANDOM.nextInt(modH);
+            int h = (Assets.RANDOM.nextInt(modH) + subframe) % modH;
             if (h > 0.3f * modH) {
                 for (int fx = 0; fx <= modX; fx++) {
                     for (int fy = 0; fy <= modY; fy++) {
@@ -157,7 +157,7 @@ public abstract class SceneRenderer<SceneT extends Scene<?, ?>> {
                 }
             }
         }
-        Assets.random.setSeed(System.currentTimeMillis());
+        Assets.RANDOM.setSeed(System.currentTimeMillis());
         batch.setColor(0xFFFFFF, 1f);
     }
 
@@ -165,12 +165,12 @@ public abstract class SceneRenderer<SceneT extends Scene<?, ?>> {
         batch.setColor(0xFFFFFF, 0.7f);
 
         int subframe = scene.subframe;
-        Assets.random.setSeed(1);
+        Assets.RANDOM.setSeed(1);
         for (int i = 1; i <= 30 * scene.settings.weatherStrength; i++) {
-            int x = Assets.random.nextInt(modW);
-            int y = Assets.random.nextInt(modH);
+            int x = Assets.RANDOM.nextInt(modW);
+            int y = Assets.RANDOM.nextInt(modH);
             int s = i % 3;
-            int a = Assets.random.nextInt(360);
+            int a = Assets.RANDOM.nextInt(360);
             for (int fx = 0; fx <= modX; fx++) {
                 for (int fy = 0; fy <= modY; fy++) {
                     int px = (int) (((x + modW + 30 * EMath.sin(360 * subframe / ((float) Const.REPLAY_SUBFRAMES) + a)) % modW) + modW * (fx - 1));
@@ -179,7 +179,7 @@ public abstract class SceneRenderer<SceneT extends Scene<?, ?>> {
                 }
             }
         }
-        Assets.random.setSeed(System.currentTimeMillis());
+        Assets.RANDOM.setSeed(System.currentTimeMillis());
         batch.setColor(0xFFFFFF, 1f);
     }
 

@@ -45,7 +45,7 @@ class MatchStateFullExtraTimeStop extends MatchState {
         Team winner = scene.competition.getMatchWinner();
         if (winner != null) {
             for (int i = 1; i < TEAM_SIZE; i++) {
-                if (Assets.random.nextFloat() < 0.7f) {
+                if (Assets.RANDOM.nextFloat() < 0.7f) {
                     Player player = winner.lineup.get(i);
                     player.setState(STATE_CELEBRATION);
                 }

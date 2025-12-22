@@ -39,7 +39,7 @@ class MatchStateCornerKick extends MatchState {
         if (scene.settings.commentary) {
             int size = Assets.Commentary.cornerKick.size();
             if (size > 0) {
-                Assets.Commentary.cornerKick.get(Assets.random.nextInt(size)).play(SoundManager.volume / 100f);
+                Assets.Commentary.cornerKick.get(Assets.RANDOM.nextInt(size)).play(SoundManager.volume / 100f);
             }
         }
     }

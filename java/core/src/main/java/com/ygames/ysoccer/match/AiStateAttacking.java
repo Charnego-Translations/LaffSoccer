@@ -110,7 +110,7 @@ class AiStateAttacking extends AiState {
 
         // passing
         if (isMateSearchingTime()) {
-            if (player.passingMate != null && Assets.random.nextFloat() < Parameters.PASSING_PROBABILITY) {
+            if (player.passingMate != null && Assets.RANDOM.nextFloat() < Parameters.PASSING_PROBABILITY) {
                 return fsm.statePassing;
             }
         }
@@ -133,7 +133,7 @@ class AiStateAttacking extends AiState {
                     + ", distance: " + distance
                     + ", probabilityByDistance: " + probabilityByDistance
                     + ", probability: " + probability);
-            if (Assets.random.nextFloat() < probability) {
+            if (Assets.RANDOM.nextFloat() < probability) {
                 return fsm.stateKicking;
             }
         }

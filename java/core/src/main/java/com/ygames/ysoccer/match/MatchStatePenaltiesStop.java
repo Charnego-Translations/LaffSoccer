@@ -67,7 +67,7 @@ class MatchStatePenaltiesStop extends MatchState {
             scene.ball.setPosition(0, -Const.PENALTY_SPOT_Y, 0);
             scene.ball.updatePrediction();
 
-            scene.penaltyKickingTeam = Assets.random.nextInt(2);
+            scene.penaltyKickingTeam = Assets.RANDOM.nextInt(2);
 
             scene.period = Match.Period.PENALTIES;
 

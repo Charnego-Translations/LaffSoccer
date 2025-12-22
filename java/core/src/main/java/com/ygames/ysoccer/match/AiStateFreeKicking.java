@@ -43,7 +43,7 @@ class AiStateFreeKicking extends AiState {
     @Override
     void entryActions() {
         step = Step.TURNING;
-        boolean playerHasShootingConfidence = (Assets.random.nextFloat() < (0.13f * player.skills.shooting));
+        boolean playerHasShootingConfidence = (Assets.RANDOM.nextFloat() < (0.13f * player.skills.shooting));
 
         // CASE A: CLEAN AREA
         if (player.getMatch().foul.isNearOwnGoal()) {

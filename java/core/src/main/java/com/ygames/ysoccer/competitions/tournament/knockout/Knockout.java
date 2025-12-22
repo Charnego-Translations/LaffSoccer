@@ -613,7 +613,7 @@ public class Knockout extends Round implements Json.Serializable {
     protected void matchInterrupted() {
         Match match = getMatch();
         if (match.team[HOME].controlMode == COMPUTER && match.team[AWAY].controlMode != COMPUTER) {
-            int goals = 4 + Assets.random.nextInt(2);
+            int goals = 4 + Assets.RANDOM.nextInt(2);
             if (match.resultAfterPenalties != null) {
                 goals += match.resultAfterPenalties[AWAY];
                 match.resultAfterPenalties[HOME] += goals;
@@ -631,7 +631,7 @@ public class Knockout extends Round implements Json.Serializable {
             }
             matchCompleted();
         } else if (match.team[HOME].controlMode != COMPUTER && match.team[AWAY].controlMode == COMPUTER) {
-            int goals = 4 + Assets.random.nextInt(2);
+            int goals = 4 + Assets.RANDOM.nextInt(2);
             if (match.resultAfterPenalties != null) {
                 goals += match.resultAfterPenalties[HOME];
                 match.resultAfterPenalties[AWAY] += goals;

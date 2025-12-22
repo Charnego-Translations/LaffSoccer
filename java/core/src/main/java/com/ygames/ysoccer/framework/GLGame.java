@@ -55,6 +55,7 @@ public class GLGame extends Game {
     public Competition competition;
 
     public MenuMusic menuMusic;
+    public MenuMusic prematchMusic;
 
     public SoundManager soundManager;
 
@@ -85,6 +86,7 @@ public class GLGame extends Game {
         teamList = new TeamList();
 
         menuMusic = new MenuMusic("music");
+        prematchMusic = new MenuMusic("music/prematch");
 
         restoreSaveGame();
 
@@ -273,7 +275,8 @@ public class GLGame extends Game {
         BALL,
         GUI,
         PASSING,
-        PLAYER_SELECTION
+        PLAYER_SELECTION,
+        COMMENTARY
     }
 
     public static void debug(LogType type, Object Object, String message) {

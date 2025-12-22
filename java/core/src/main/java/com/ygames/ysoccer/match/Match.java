@@ -5,8 +5,10 @@ import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonValue;
 import com.ygames.ysoccer.competitions.Competition;
 import com.ygames.ysoccer.framework.Assets;
+import com.ygames.ysoccer.framework.Commentary;
 import com.ygames.ysoccer.framework.EMath;
 import com.ygames.ysoccer.framework.InputDeviceList;
+import com.ygames.ysoccer.framework.SoundManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +42,8 @@ import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_SUBSTITUTED;
 public class Match extends Scene<MatchFsm, MatchState> implements Json.Serializable {
 
     public enum ResultType {AFTER_90_MINUTES, AFTER_EXTRA_TIME, AFTER_PENALTIES}
+
+    private final Commentary commentary = Commentary.getInstance();
 
     public interface MatchListener {
         void quitMatch(boolean matchCompleted);
@@ -168,14 +172,14 @@ public class Match extends Scene<MatchFsm, MatchState> implements Json.Serializa
         camera = new MatchCamera(this);
         fsm = new MatchFsm(this, inputDevices);
 
-        team[HOME].setSide(1 - 2 * Assets.random.nextInt(2)); // -1 = up, 1 = down
+        team[HOME].setSide(1 - 2 * Assets.RANDOM.nextInt(2)); // -1 = up, 1 = down
         team[AWAY].setSide(-team[HOME].side);
 
-        benchSide = 1 - 2 * Assets.random.nextInt(2);
+        benchSide = 1 - 2 * Assets.RANDOM.nextInt(2);
 
         period = Period.FIRST_HALF;
         length = matchSettings.matchLength * 60 * 1000;
-        coinToss = Assets.random.nextInt(2); // 0 = home begins, 1 = away begins
+        coinToss = Assets.RANDOM.nextInt(2); // 0 = home begins, 1 = away begins
         kickOffTeam = coinToss;
 
         penalties[HOME] = new ArrayList<>();
@@ -492,7 +496,7 @@ public class Match extends Scene<MatchFsm, MatchState> implements Json.Serializa
                     player.ty = player.y;
                     if ((t == goal.player.team.index) && (player == goal.player)) {
                         player.setState(STATE_GOAL_SCORER);
-                    } else if ((t == goal.player.team.index) && (EMath.dist(player.x, player.y, goal.player.x, goal.player.y) < 150 * Assets.random.nextInt(4))) {
+                    } else if ((t == goal.player.team.index) && (EMath.dist(player.x, player.y, goal.player.x, goal.player.y) < 150 * Assets.RANDOM.nextInt(4))) {
                         player.setState(STATE_GOAL_MATE);
                     } else {
                         player.setState(STATE_REACH_TARGET);
@@ -642,6 +646,17 @@ public class Match extends Scene<MatchFsm, MatchState> implements Json.Serializa
 
     @Override
     void quit() {
+
+
+        Assets.CommonComment.stop();
+
+        SoundManager.stopSounds();
+
+        Assets.TeamCommentary.unload();
+        Assets.TeamFaces.unload();
+
+        commentary.stop();
+
         listener.quitMatch(getFsm().matchCompleted);
     }
 
@@ -668,7 +683,7 @@ public class Match extends Scene<MatchFsm, MatchState> implements Json.Serializa
         foul.position = new Vector2(x, y);
         foul.player = tackle.player;
         foul.opponent = tackle.opponent;
-        float r = Assets.random.nextFloat();
+        float r = Assets.RANDOM.nextFloat();
         foul.entailsYellowCard = r < EMath.pow(hardness * unfairness, 2);
         foul.entailsRedCard = r < EMath.pow(hardness * unfairness, 5);
     }

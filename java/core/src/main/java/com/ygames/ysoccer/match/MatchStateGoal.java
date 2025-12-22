@@ -53,12 +53,12 @@ class MatchStateGoal extends MatchState {
             if (goal.type == Goal.Type.OWN_GOAL) {
                 int size = Assets.Commentary.ownGoal.size();
                 if (size > 0) {
-                    Assets.Commentary.ownGoal.get(Assets.random.nextInt(size)).play(SoundManager.volume / 100f);
+                    Assets.Commentary.ownGoal.get(Assets.RANDOM.nextInt(size)).play(SoundManager.volume / 100f);
                 }
             } else {
                 int size = Assets.Commentary.goal.size();
                 if (size > 0) {
-                    Assets.Commentary.goal.get(Assets.random.nextInt(size)).play(SoundManager.volume / 100f);
+                    Assets.Commentary.goal.get(Assets.RANDOM.nextInt(size)).play(SoundManager.volume / 100f);
                 }
             }
         }

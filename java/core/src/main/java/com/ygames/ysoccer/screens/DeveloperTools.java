@@ -190,7 +190,7 @@ class DeveloperTools extends GLScreen {
             IImageLine l1 = pngr.readRow();
             int[] scanLine = ((ImageLineInt) l1).getScanline(); // to save typing
             for (int j = 0; j < scanLine.length; j++) {
-                scanLine[j] = Assets.random.nextInt(255);
+                scanLine[j] = Assets.RANDOM.nextInt(255);
             }
 //            for (int j = 0; j < pngr.imgInfo.cols; j++) {
 //                scanLine[j * channels] /= 2;

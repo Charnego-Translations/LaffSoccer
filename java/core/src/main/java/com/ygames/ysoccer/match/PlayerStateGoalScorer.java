@@ -78,7 +78,7 @@ class PlayerStateGoalScorer extends PlayerState {
 
         int celebrationType;
         do {
-            celebrationType = Assets.random.nextInt(8);
+            celebrationType = Assets.RANDOM.nextInt(8);
         } while (disallowed[celebrationType]);
 
         player.v = player.speed;

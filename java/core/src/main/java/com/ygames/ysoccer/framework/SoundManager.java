@@ -2,6 +2,7 @@ package com.ygames.ysoccer.framework;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.files.FileHandle;
 import com.ygames.ysoccer.events.BallBounceEvent;
 import com.ygames.ysoccer.events.BallCollisionEvent;
 import com.ygames.ysoccer.events.BallKickEvent;
@@ -14,7 +15,18 @@ import com.ygames.ysoccer.events.MatchIntroEvent;
 import com.ygames.ysoccer.events.PeriodStopEvent;
 import com.ygames.ysoccer.events.WhistleEvent;
 
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
 public class SoundManager {
+
+    public static Map<SoundClass, Set<Sound>> sounds = new HashMap<>();
+
+    public enum SoundClass {
+        CHANTS, PAIN
+    }
 
     private static Sound bounce;
     private static Sound celebration;
@@ -31,6 +43,15 @@ public class SoundManager {
     private static Sound post;
     private static Sound end;
     private static Sound whistle;
+
+    public static Sound shotgun;
+    public static Sound button;
+    // Specials
+    public static Sound noGoalsHalfTime;
+    public static Sound manyGoalsHalfTime;
+    public static Sound awayTeamTrashing;
+    public static Sound localTeamTrashing;
+    public static Sound violentMatch;
 
     public static int volume;
     public static boolean crowdChantsEnabled = true;
@@ -113,9 +134,43 @@ public class SoundManager {
         net = newSound("net.ogg");
         post = newSound("post.ogg");
         whistle = newSound("whistle.ogg");
+
+        shotgun = newSound("shotgun.ogg"); // Source: https://freesound.org/people/Marregheriti/sounds/266105/
+        button = newSound("button.ogg"); // Source: https://freesound.org/people/Snapper4298/sounds/178186/
+        sounds.put(SoundClass.CHANTS, loadSoundFolder("chants"));
+        sounds.put(SoundClass.PAIN, loadSoundFolder("pain"));
+
+        String specialsFolder = "commentary/special/";
+
+        noGoalsHalfTime = newSound(specialsFolder + "singolesmediotiempo.ogg");
+        manyGoalsHalfTime = newSound(specialsFolder + "muchosgolesmediotiempo.ogg");
+        awayTeamTrashing = newSound(specialsFolder + "equipovisitantepalizamediotiempo.ogg");
+        localTeamTrashing = newSound(specialsFolder + "equipolocalpalizamediotiempo.ogg");
+
+        violentMatch = newSound(specialsFolder + "muchasfaltas.ogg");
     }
 
     private static Sound newSound(String filename) {
         return Gdx.audio.newSound(Gdx.files.internal("sounds").child(filename));
+    }
+
+    public static void stopSounds() {
+        crowd.stop();
+        end.stop();
+        homeGoal.stop();
+        intro.stop();
+        sounds.forEach((k, v) -> v.forEach(Sound::stop));
+    }
+
+    private static Set<Sound> loadSoundFolder(String folder) {
+        Set<Sound> result = new HashSet<>();
+
+        FileHandle soundFolder = Gdx.files.local("sounds/" + folder);
+        for (FileHandle fileHandle : soundFolder.list()) {
+            if (Assets.EXTENSIONS.contains(fileHandle.extension().toLowerCase())) {
+                result.add(newSound(soundFolder.name() + "/" + fileHandle.name()));
+            }
+        }
+        return result;
     }
 }

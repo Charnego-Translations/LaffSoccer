@@ -22,6 +22,7 @@ class MatchLoading extends GLScreen {
         super(game);
 
         playMenuMusic = false;
+        playPrematchMusic = false;
         usesMouse = false;
 
         EventManager.clear();

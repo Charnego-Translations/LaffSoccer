@@ -4,11 +4,13 @@ import com.badlogic.gdx.Gdx;
 import com.strongjoshua.console.Console;
 import com.strongjoshua.console.GUIConsole;
 import com.ygames.ysoccer.framework.Assets;
+import com.ygames.ysoccer.framework.Commentary;
 import com.ygames.ysoccer.framework.Font;
 import com.ygames.ysoccer.framework.GLGame;
 import com.ygames.ysoccer.framework.GLScreen;
 import com.ygames.ysoccer.framework.Settings;
 import com.ygames.ysoccer.framework.SoundManager;
+import com.ygames.ysoccer.gui.Gui;
 import com.ygames.ysoccer.match.Match;
 import com.ygames.ysoccer.match.MatchConsoleCommandExecutor;
 import com.ygames.ysoccer.match.MatchRenderer;
@@ -43,11 +45,15 @@ class MatchScreen extends GLScreen {
         matchEnded = false;
         game.glGraphics.light = 0;
 
-        match.listener = new Match.MatchListener() {
-            public void quitMatch(boolean matchCompleted) {
-                quit(matchCompleted);
-            }
-        };
+        Commentary.getInstance().wake();
+
+        Assets.TeamCommentary.load(match.team[0]);
+        Assets.TeamCommentary.load(match.team[1]);
+
+        Assets.TeamFaces.load(match.team[0]);
+        Assets.TeamFaces.load(match.team[1]);
+
+        match.listener = this::quit;
 
         if (Settings.development) {
             console = new GUIConsole();
@@ -85,7 +91,7 @@ class MatchScreen extends GLScreen {
 
         if (Settings.development && Settings.showJavaHeap) {
             batch.begin();
-            Assets.font10.draw(batch, String.format(Locale.getDefault(), "%,d", Gdx.app.getJavaHeap()), game.gui.WIDTH - 120, 10, Font.Align.LEFT);
+            Assets.font10.draw(batch, String.format(Locale.getDefault(), "%,d", Gdx.app.getJavaHeap()), Gui.WIDTH - 120, 10, Font.Align.LEFT);
             batch.end();
         }
     }
