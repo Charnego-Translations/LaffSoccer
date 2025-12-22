@@ -1,0 +1,71 @@
+package com.ygames.ysoccer.match;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
+import com.ygames.ysoccer.framework.GLGame;
+
+import static com.ygames.ysoccer.match.Const.SECOND;
+import static com.ygames.ysoccer.match.Match.AWAY;
+import static com.ygames.ysoccer.match.Match.HOME;
+import static com.ygames.ysoccer.match.MatchFsm.StateId.END;
+import static com.ygames.ysoccer.match.MatchFsm.StateId.HIGHLIGHTS;
+import static com.ygames.ysoccer.match.SceneFsm.ActionType.NEW_FOREGROUND;
+
+class MatchStateEnd extends MatchState {
+
+    MatchStateEnd(MatchFsm fsm) {
+        super(END, fsm);
+
+        checkReplayKey = false;
+        checkPauseKey = false;
+        checkHelpKey = false;
+        checkBenchCall = false;
+    }
+
+    @Override
+    void setDisplayFlags() {
+        scene.clearDisplayFlags();
+        scene.displayStatistics = true;
+    }
+
+    @Override
+    void entryActions() {
+        super.entryActions();
+
+        scene.period = Match.Period.UNDEFINED;
+    }
+
+    @Override
+    void doActions(float deltaTime) {
+        super.doActions(deltaTime);
+
+        float timeLeft = deltaTime;
+        while (timeLeft >= GLGame.SUBFRAME_DURATION) {
+
+            scene.nextSubframe();
+
+            scene.save();
+
+            scene.camera.update();
+
+            timeLeft -= GLGame.SUBFRAME_DURATION;
+        }
+    }
+
+    @Override
+    SceneFsm.Action[] checkConditions() {
+        if (Gdx.input.isKeyPressed(Input.Keys.H) && scene.recorder.hasHighlights()) {
+            scene.recorder.restart();
+            return newFadedAction(NEW_FOREGROUND, HIGHLIGHTS);
+        }
+
+        if (scene.team[HOME].fire1Up() != null
+            || scene.team[AWAY].fire1Up() != null
+            || scene.stateTimer > 20 * SECOND) {
+            quitMatch();
+            return null;
+        }
+
+        return checkCommonConditions();
+    }
+}

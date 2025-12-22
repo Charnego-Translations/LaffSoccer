@@ -1,0 +1,48 @@
+
+gui.png
+size: 512, 256
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+controls
+  rotate: false
+  xy: 353, 61
+  size: 108, 54
+  orig: 108, 54
+  offset: 0, 0
+  index: -1
+light
+  rotate: false
+  xy: 353, 13
+  size: 94, 46
+  orig: 94, 46
+  offset: 0, 0
+  index: -1
+logo
+  rotate: false
+  xy: 2, 2
+  size: 349, 113
+  orig: 349, 113
+  offset: 0, 0
+  index: -1
+penalty_cards
+  rotate: false
+  xy: 474, 197
+  size: 34, 14
+  orig: 34, 14
+  offset: 0, 0
+  index: -1
+pitches
+  rotate: false
+  xy: 2, 117
+  size: 423, 46
+  orig: 423, 46
+  offset: 0, 0
+  index: -1
+weather
+  rotate: false
+  xy: 2, 165
+  size: 470, 46
+  orig: 470, 46
+  offset: 0, 0
+  index: -1

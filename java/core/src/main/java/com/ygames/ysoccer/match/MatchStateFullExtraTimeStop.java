@@ -1,0 +1,94 @@
+package com.ygames.ysoccer.match;
+
+import com.ygames.ysoccer.events.PeriodStopEvent;
+import com.ygames.ysoccer.framework.Assets;
+import com.ygames.ysoccer.framework.EventManager;
+import com.ygames.ysoccer.framework.GLGame;
+
+import static com.ygames.ysoccer.match.Const.SECOND;
+import static com.ygames.ysoccer.match.Const.TEAM_SIZE;
+import static com.ygames.ysoccer.match.MatchFsm.StateId.END_POSITIONS;
+import static com.ygames.ysoccer.match.MatchFsm.StateId.FINAL_CELEBRATION_POSITIONS;
+import static com.ygames.ysoccer.match.MatchFsm.StateId.FULL_EXTRA_TIME_STOP;
+import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_CELEBRATION;
+import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_IDLE;
+import static com.ygames.ysoccer.match.SceneFsm.ActionType.NEW_FOREGROUND;
+
+class MatchStateFullExtraTimeStop extends MatchState {
+
+    MatchStateFullExtraTimeStop(MatchFsm fsm) {
+        super(FULL_EXTRA_TIME_STOP, fsm);
+
+        checkBenchCall = false;
+    }
+
+    @Override
+    void setDisplayFlags() {
+        scene.clearDisplayFlags();
+        scene.displayTime = true;
+        scene.displayRadar = true;
+        scene.displayWindVane = true;
+    }
+
+    @Override
+    void entryActions() {
+        super.entryActions();
+
+        scene.clock = scene.length * 120f / 90f;
+        fsm.matchCompleted = true;
+
+        EventManager.publish(new PeriodStopEvent());
+
+        scene.resetAutomaticInputDevices();
+        scene.setPlayersState(STATE_IDLE, null);
+
+        Team winner = scene.competition.getMatchWinner();
+        if (winner != null) {
+            for (int i = 1; i < TEAM_SIZE; i++) {
+                if (Assets.random.nextFloat() < 0.7f) {
+                    Player player = winner.lineup.get(i);
+                    player.setState(STATE_CELEBRATION);
+                }
+            }
+        }
+    }
+
+    @Override
+    void doActions(float deltaTime) {
+        super.doActions(deltaTime);
+
+        float timeLeft = deltaTime;
+        while (timeLeft >= GLGame.SUBFRAME_DURATION) {
+
+            if (scene.subframe % GLGame.SUBFRAMES == 0) {
+                scene.updateAi();
+            }
+
+            scene.updateBall();
+            scene.ball.inFieldKeep();
+
+            scene.updatePlayers(false);
+
+            scene.nextSubframe();
+
+            scene.save();
+
+            scene.camera.update();
+
+            timeLeft -= GLGame.SUBFRAME_DURATION;
+        }
+    }
+
+    @Override
+    SceneFsm.Action[] checkConditions() {
+        if (scene.stateTimer > 3 * SECOND) {
+            if (scene.competition.getFinalWinner() != null) {
+                return newAction(NEW_FOREGROUND, FINAL_CELEBRATION_POSITIONS);
+            } else {
+                return newAction(NEW_FOREGROUND, END_POSITIONS);
+            }
+        }
+
+        return checkCommonConditions();
+    }
+}
