@@ -12,11 +12,11 @@ import java.util.Arrays;
 
 public class Settings {
 
-    private Preferences preferences;
-    private Json json;
+    private final Preferences preferences;
+    private final Json json;
 
-    public final String APP_NAME = "YSoccer";
-    public final String VERSION = "25";
+    public final String APP_NAME = "Charnego Internatiolaff Soccer";
+    public final String VERSION = "2.0";
 
     // game
     public String locale;
@@ -26,7 +26,7 @@ public class Settings {
     public int musicVolume;
 
     // match
-    public static Integer[] matchLengths = {3, 5, 7, 10};
+    public static Integer[] matchLengths = {3, 5, 7, 10, 15};
     public int matchLength;
     public int benchSize;
     public boolean useFlags;
@@ -107,7 +107,7 @@ public class Settings {
         udpPort = preferences.getInteger("udpPort", 54777);
 
         // development
-        development = preferences.getBoolean("development", false);
+        development = java.lang.management.ManagementFactory.getRuntimeMXBean().getInputArguments().toString().indexOf("-agentlib:jdwp") > 0;
         serverHomeTeam = preferences.getString("serverHomeTeam", "data/teams/1964-65/CLUB_TEAMS/EUROPE/ITALY/team.inter_milan.json");
         serverAwayTeam = preferences.getString("serverAwayTeam", "data/teams/1964-65/CLUB_TEAMS/EUROPE/ITALY/team.juventus.json");
 

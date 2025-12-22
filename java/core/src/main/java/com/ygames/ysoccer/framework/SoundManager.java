@@ -15,10 +15,14 @@ import com.ygames.ysoccer.events.MatchIntroEvent;
 import com.ygames.ysoccer.events.PeriodStopEvent;
 import com.ygames.ysoccer.events.WhistleEvent;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+
+import static com.ygames.ysoccer.framework.Assets.EXTENSIONS;
+import static com.ygames.ysoccer.framework.Assets.RANDOM;
 
 public class SoundManager {
 
@@ -167,10 +171,85 @@ public class SoundManager {
 
         FileHandle soundFolder = Gdx.files.local("sounds/" + folder);
         for (FileHandle fileHandle : soundFolder.list()) {
-            if (Assets.EXTENSIONS.contains(fileHandle.extension().toLowerCase())) {
+            if (EXTENSIONS.contains(fileHandle.extension().toLowerCase())) {
                 result.add(newSound(soundFolder.name() + "/" + fileHandle.name()));
             }
         }
         return result;
+    }
+
+    public static class CommonComment {
+
+        public enum CommonCommentType {
+            CORNER_KICK, FOUL, NOT_FOUL, GOAL, KEEPER_SAVE, OWN_GOAL, PENALTY, PLAYER_SUBSTITUTION, PLAYER_SWAP, THROW_IN, GOAL_KICK, CHITCHAT, KICK_OFF, MATCH_END, HALF_MATCH, MATCH_END_EXTRA_TIME, EXTRA_TIME_FIRST_END, EXTRA_TIME_END
+        }
+
+        public static final Map<CommonCommentType, Set<Sound>> commonCommentary = new HashMap<>();
+        public static final Map<CommonCommentType, Set<Sound>> commonCommentarySecondary = new HashMap<>();
+
+        static {
+            for (CommonCommentType value : CommonCommentType.values()) {
+                commonCommentary.put(value, new HashSet<>());
+                commonCommentarySecondary.put(value, new HashSet<>());
+            }
+        }
+
+        public static final Set<Sound> allComments = new HashSet<>();
+        public static final Sound[] numbers = new Sound[999];
+
+        public static Sound pull(CommonCommentType type) {
+            return commonCommentary.get(type).stream().skip(RANDOM.nextInt(commonCommentary.get(type).size())).findFirst().orElse(null);
+        }
+
+        public static Sound pullSecond(CommonCommentType type) {
+            return commonCommentarySecondary.get(type).stream().skip(RANDOM.nextInt(commonCommentarySecondary.get(type).size())).findFirst().orElse(null);
+        }
+
+        static void load() {
+            FileHandle numbersFolder = Gdx.files.local("sounds/commentary/numbers");
+            for (FileHandle fileHandle : numbersFolder.list()) {
+                if (EXTENSIONS.contains(fileHandle.extension().toLowerCase())) {
+                    String name = fileHandle.nameWithoutExtension();
+                    numbers[Integer.parseInt(name)] = Gdx.audio.newSound(fileHandle);
+                }
+            }
+            // Legacy load
+            FileHandle commentaryFolder = Gdx.files.local("sounds/commentary");
+            for (FileHandle fileHandle : commentaryFolder.list()) {
+                if (EXTENSIONS.contains(fileHandle.extension().toLowerCase())) {
+                    String name = fileHandle.nameWithoutExtension();
+                    for (CommonCommentType type : CommonCommentType.values()) {
+                        String fileType = type.name().toLowerCase();
+                        if (name.startsWith(fileType)) {
+                            commonCommentary.get(type).add(Gdx.audio.newSound(fileHandle));
+                        }
+                    }
+                }
+            }
+            // Comments in their folders
+            for (CommonCommentType commentType : CommonCommentType.values()) {
+                commentaryFolder = Gdx.files.local("sounds/commentary/" + commentType.name().toLowerCase() + "/");
+                for (FileHandle fileHandle : commentaryFolder.list()) {
+                    if (EXTENSIONS.contains(fileHandle.extension().toLowerCase())) {
+                        commonCommentary.get(commentType).add(Gdx.audio.newSound(fileHandle));
+                    }
+                }
+                // Secondary comments
+                commentaryFolder = Gdx.files.local("sounds/commentary/" + commentType.name().toLowerCase() + "/secondary/");
+                for (FileHandle fileHandle : commentaryFolder.list()) {
+                    if (EXTENSIONS.contains(fileHandle.extension().toLowerCase())) {
+                        commonCommentarySecondary.get(commentType).add(Gdx.audio.newSound(fileHandle));
+                    }
+                }
+            }
+            allComments.addAll(Arrays.asList(numbers));
+            commonCommentary.forEach((k, v) -> allComments.addAll(v));
+            commonCommentarySecondary.forEach((k, v) -> allComments.addAll(v));
+            allComments.remove(null);
+        }
+
+        public static void stop() {
+            allComments.forEach(Sound::stop);
+        }
     }
 }

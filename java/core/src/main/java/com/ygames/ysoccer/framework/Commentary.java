@@ -139,7 +139,7 @@ public class Commentary {
      * Prepares and enqueue end game comment
      */
     public void endGameComment(Match match) {
-        enqueueComment(Commentary.getComment(Assets.CommonComment.CommonCommentType.MATCH_END, Comment.Priority.HIGH));
+        enqueueComment(Commentary.getComment(SoundManager.CommonComment.CommonCommentType.MATCH_END, Comment.Priority.HIGH));
         Comment[] resultComment = buildResult(match);
         if (resultComment != null) {
             enqueueComment(resultComment);
@@ -152,18 +152,18 @@ public class Commentary {
      * @param priority
      * @return the composed comment
      */
-    public static Comment[] getComment(Assets.CommonComment.CommonCommentType type, Comment.Priority priority) {
+    public static Comment[] getComment(SoundManager.CommonComment.CommonCommentType type, Comment.Priority priority) {
 
         GLGame.debug(COMMENTARY, priority, "Generating new comment: " + type);
 
         Random dice = new Random();
 
         List<Comment> result = new ArrayList<>();
-        result.add(new Comment(priority, Assets.CommonComment.pull(type)));
+        result.add(new Comment(priority, SoundManager.CommonComment.pull(type)));
         if (dice.nextInt(6) > 2) {
-            Sound secSound = Assets.CommonComment.pullSecond(type);
+            Sound secSound = SoundManager.CommonComment.pullSecond(type);
             if (secSound != null) {
-                result.add(new Comment(priority == Comment.Priority.HIGH ? Comment.Priority.COMMON : priority, Assets.CommonComment.pullSecond(type)));
+                result.add(new Comment(priority == Comment.Priority.HIGH ? Comment.Priority.COMMON : priority, SoundManager.CommonComment.pullSecond(type)));
             }
         }
 
@@ -176,7 +176,7 @@ public class Commentary {
      * @return
      */
     public static Comment[] buildResult(Match match) {
-        Sound[] numbers = Assets.CommonComment.numbers;
+        Sound[] numbers = SoundManager.CommonComment.numbers;
 
         MatchStats home = match.stats[Match.HOME];
         MatchStats away = match.stats[Match.AWAY];
@@ -290,7 +290,7 @@ public class Commentary {
         if (now - lastChitChat > 20000) {
             Random rnd = new Random();
             if (rnd.nextInt((int) EMath.max(1, (now - lastChitChat))) > 36000) {
-                enqueueComment(getComment(Assets.CommonComment.CommonCommentType.CHITCHAT, Comment.Priority.CHITCHAT));
+                enqueueComment(getComment(SoundManager.CommonComment.CommonCommentType.CHITCHAT, Comment.Priority.CHITCHAT));
                 lastChitChat = now;
             }
         }

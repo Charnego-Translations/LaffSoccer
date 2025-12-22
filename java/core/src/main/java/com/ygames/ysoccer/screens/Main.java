@@ -354,7 +354,7 @@ public class Main extends GLScreen {
     private static class HomePageButton extends Button {
 
         HomePageButton() {
-            setGeometry(Gui.WIDTH - 172, Gui.HEIGHT - 20, 172, 20);
+            setGeometry(Gui.WIDTH - 320, Gui.HEIGHT - 20, 320, 20);
             setText("CHARNEGO TRANSLATIONS INC.", LEFT, font10);
         }
 

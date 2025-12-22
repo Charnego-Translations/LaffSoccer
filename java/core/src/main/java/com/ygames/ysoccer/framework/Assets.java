@@ -38,13 +38,11 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.MissingResourceException;
 import java.util.Random;
-import java.util.Set;
 
 public class Assets {
 
@@ -106,6 +104,10 @@ public class Assets {
     public static final TextureRegion[] rain = new TextureRegion[4];
     public static final TextureRegion[] snow = new TextureRegion[3];
     public static Texture fog;
+    public static Texture mow;
+    public static TextureRegion[] blood;
+    public static TextureRegion[] goalPicture;
+    public static TextureRegion[] explosion;
     public static final TextureRegion[][] wind = new TextureRegion[8][2];
     public static final TextureRegion[] bench = new TextureRegion[2];
 
@@ -239,81 +241,6 @@ public class Assets {
         }
     }
 
-    public static class CommonComment {
-
-        public enum CommonCommentType {
-            CORNER_KICK, FOUL, NOT_FOUL, GOAL, KEEPER_SAVE, OWN_GOAL, PENALTY, PLAYER_SUBSTITUTION, PLAYER_SWAP, THROW_IN, GOAL_KICK, CHITCHAT, KICK_OFF, MATCH_END, HALF_MATCH, MATCH_END_EXTRA_TIME, EXTRA_TIME_FIRST_END, EXTRA_TIME_END
-        }
-
-        public static final Map<CommonCommentType, Set<Sound>> commonCommentary = new HashMap<>();
-        public static final Map<CommonCommentType, Set<Sound>> commonCommentarySecondary = new HashMap<>();
-
-        static {
-            for (CommonCommentType value : CommonCommentType.values()) {
-                commonCommentary.put(value, new HashSet<>());
-                commonCommentarySecondary.put(value, new HashSet<>());
-            }
-        }
-
-        public static final Set<Sound> allComments = new HashSet<>();
-        public static final Sound[] numbers = new Sound[999];
-
-        public static Sound pull(CommonCommentType type) {
-            return commonCommentary.get(type).stream().skip(RANDOM.nextInt(commonCommentary.get(type).size())).findFirst().orElse(null);
-        }
-
-        public static Sound pullSecond(CommonCommentType type) {
-            return commonCommentarySecondary.get(type).stream().skip(RANDOM.nextInt(commonCommentarySecondary.get(type).size())).findFirst().orElse(null);
-        }
-
-        static void load() {
-            FileHandle numbersFolder = Gdx.files.local("sounds/commentary/numbers");
-            for (FileHandle fileHandle : numbersFolder.list()) {
-                if (EXTENSIONS.contains(fileHandle.extension().toLowerCase())) {
-                    String name = fileHandle.nameWithoutExtension();
-                    numbers[Integer.parseInt(name)] = Gdx.audio.newSound(fileHandle);
-                }
-            }
-            // Legacy load
-            FileHandle commentaryFolder = Gdx.files.local("sounds/commentary");
-            for (FileHandle fileHandle : commentaryFolder.list()) {
-                if (EXTENSIONS.contains(fileHandle.extension().toLowerCase())) {
-                    String name = fileHandle.nameWithoutExtension();
-                    for (CommonCommentType type : CommonCommentType.values()) {
-                        String fileType = type.name().toLowerCase();
-                        if (name.startsWith(fileType)) {
-                            commonCommentary.get(type).add(Gdx.audio.newSound(fileHandle));
-                        }
-                    }
-                }
-            }
-            // Comments in their folders
-            for (CommonCommentType commentType : CommonCommentType.values()) {
-                commentaryFolder = Gdx.files.local("sounds/commentary/" + commentType.name().toLowerCase() + "/");
-                for (FileHandle fileHandle : commentaryFolder.list()) {
-                    if (EXTENSIONS.contains(fileHandle.extension().toLowerCase())) {
-                        commonCommentary.get(commentType).add(Gdx.audio.newSound(fileHandle));
-                    }
-                }
-                // Secondary comments
-                commentaryFolder = Gdx.files.local("sounds/commentary/" + commentType.name().toLowerCase() + "/secondary/");
-                for (FileHandle fileHandle : commentaryFolder.list()) {
-                    if (EXTENSIONS.contains(fileHandle.extension().toLowerCase())) {
-                        commonCommentarySecondary.get(commentType).add(Gdx.audio.newSound(fileHandle));
-                    }
-                }
-            }
-            allComments.addAll(Arrays.asList(numbers));
-            commonCommentary.forEach((k, v) -> allComments.addAll(v));
-            commonCommentarySecondary.forEach((k, v) -> allComments.addAll(v));
-            allComments.remove(null);
-        }
-
-        public static void stop() {
-            allComments.forEach(Sound::stop);
-        }
-    }
-
     public static void load(Settings settings) {
         loadCore(settings);
         customCursor = Gdx.graphics.newCursor(new Pixmap(Gdx.files.internal("images/arrow.png")), 0, 0);
@@ -372,9 +299,14 @@ public class Assets {
         loadRain();
         loadSnow();
         fog = new Texture("images/fog.png");
+        mow = new Texture("images/mow.png");
+        goalPicture = loadTextureRegionFlat("images/goal.png", 1, 1);
+        blood = loadTextureRegionFlat("images/blood.png", 2, 2);
+        explosion = loadTextureRegionFlat("images/explosion.png", 16, 1); // https://docs.idew.org/video-game/
         loadWind();
         loadBench();
         SoundManager.load();
+        SoundManager.CommonComment.load();
         Commentary.load();
     }
 
@@ -891,6 +823,31 @@ public class Assets {
         TextureRegion textureRegion = new TextureRegion(texture);
         textureRegion.flip(false, true);
         return textureRegion;
+    }
+
+    public static TextureRegion[][] loadTextureRegion(String file, int framesX, int framesY) {
+        Texture texture =  new Texture(file);
+        int width = texture.getWidth() / framesX;
+        int height = texture.getHeight() / framesY;
+        TextureRegion[][] textures = TextureRegion.split(texture, width, height);
+        for (TextureRegion[] textureRegions : textures) {
+            for (TextureRegion textureRegion : textureRegions) {
+                textureRegion.flip(false, true);
+            }
+        }
+        return textures;
+    }
+
+    public static TextureRegion[] loadTextureRegionFlat(String file, int framesX, int framesY) {
+        TextureRegion[][] textureMatrix = loadTextureRegion(file, framesX, framesY);
+        TextureRegion[] result = new TextureRegion[framesX * framesY];
+        int count = 0;
+        for (TextureRegion[] matrix : textureMatrix) {
+            for (TextureRegion textureRegion : matrix) {
+                result[count++] = textureRegion;
+            }
+        }
+        return result;
     }
 
     private static Texture loadTexture(String internalPath, List<RgbPair> rgbPairs) {

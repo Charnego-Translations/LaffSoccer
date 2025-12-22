@@ -648,7 +648,7 @@ public class Match extends Scene<MatchFsm, MatchState> implements Json.Serializa
     void quit() {
 
 
-        Assets.CommonComment.stop();
+        SoundManager.CommonComment.stop();
 
         SoundManager.stopSounds();
 
