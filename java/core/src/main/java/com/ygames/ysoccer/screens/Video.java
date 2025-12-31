@@ -34,7 +34,7 @@ public class Video extends GLScreen {
             throw new RuntimeException(e);
         }
         videoPlayer.play();
-        videoPlayer.setOnCompletionListener(_ -> setMainMenu());
+        videoPlayer.setOnCompletionListener(fileHandle -> setMainMenu());
 
     }
 

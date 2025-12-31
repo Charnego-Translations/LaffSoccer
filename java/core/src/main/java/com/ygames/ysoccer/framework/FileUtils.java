@@ -43,12 +43,15 @@ public class FileUtils {
     }
 
     public static float soundDuration(Sound sound) {
-        return switch (sound) {
-            case Ogg.Sound s -> s.duration();
-            case Wav.Sound s -> s.duration();
-            case Mp3.Sound s -> s.duration();
-            default -> 0;
-        };
+        if (sound instanceof Ogg.Sound s) {
+            return s.duration();
+        } else if (sound instanceof Wav.Sound s) {
+            return s.duration();
+        } else if (sound instanceof Mp3.Sound s) {
+            return s.duration();
+        } else {
+            return 0;
+        }
     }
 
     public static String normalizeName(String name) {
