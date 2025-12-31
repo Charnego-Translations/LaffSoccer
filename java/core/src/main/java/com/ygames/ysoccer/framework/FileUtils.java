@@ -43,14 +43,14 @@ public class FileUtils {
     }
 
     public static float soundDuration(Sound sound) {
-        if (sound instanceof Ogg.Sound s) {
-            return s.duration();
-        } else if (sound instanceof Wav.Sound s) {
-            return s.duration();
-        } else if (sound instanceof Mp3.Sound s) {
-            return s.duration();
+        if (sound instanceof Ogg.Sound) {
+            return ((Ogg.Sound) sound).duration();
+        } else if (sound instanceof Wav.Sound) {
+            return ((Wav.Sound) sound).duration();
+        } else if (sound instanceof Mp3.Sound) {
+            return ((Mp3.Sound) sound).duration();
         } else {
-            return 0;
+            return 0f;
         }
     }
 

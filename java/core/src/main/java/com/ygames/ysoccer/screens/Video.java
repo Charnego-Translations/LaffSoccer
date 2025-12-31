@@ -26,7 +26,7 @@ public class Video extends GLScreen {
         game.disableMouse();
         Gdx.input.setInputProcessor(new IntroInputProcessor());
 
-        FileHandle intro = Gdx.files.local("videos").child("intro1.ogg");
+        FileHandle intro = Gdx.files.internal("videos").child("intro1.ogg");
 
         try {
             videoPlayer.load(intro);
