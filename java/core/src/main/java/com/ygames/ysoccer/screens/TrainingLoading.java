@@ -23,6 +23,7 @@ class TrainingLoading extends GLScreen {
     TrainingLoading(GLGame game, SceneSettings sceneSettings) {
         super(game);
         playMenuMusic = false;
+        playPrematchMusic = true;
         usesMouse = false;
 
         Team trainingTeam = navigation.team;

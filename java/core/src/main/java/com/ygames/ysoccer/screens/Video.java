@@ -8,6 +8,7 @@ import com.badlogic.gdx.video.VideoPlayer;
 import com.badlogic.gdx.video.VideoPlayerCreator;
 import com.ygames.ysoccer.framework.GLGame;
 import com.ygames.ysoccer.framework.GLScreen;
+import com.ygames.ysoccer.framework.MenuMusic;
 import com.ygames.ysoccer.gui.Gui;
 import com.ygames.ysoccer.gui.Widget;
 import org.apache.commons.lang3.SystemUtils;
@@ -88,6 +89,7 @@ public class Video extends GLScreen {
         }
         Gdx.input.setInputProcessor(null);
         game.enableMouse();
+        game.prematchMusic.setMode(MenuMusic.ALL);
         game.setScreen(new Intro(game));
     }
 }

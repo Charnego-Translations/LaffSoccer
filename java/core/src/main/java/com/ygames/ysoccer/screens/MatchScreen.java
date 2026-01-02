@@ -38,6 +38,7 @@ class MatchScreen extends GLScreen {
         matchRenderer = new MatchRenderer(game.glGraphics, match);
 
         playMenuMusic = false;
+        playPrematchMusic = true;
         usesMouse = false;
 
         matchStarted = false;

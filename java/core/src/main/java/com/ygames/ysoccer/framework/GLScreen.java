@@ -70,6 +70,7 @@ public abstract class GLScreen implements Screen {
         widgets = new ArrayList<>();
         usesMouse = true;
         playMenuMusic = true;
+        playPrematchMusic = false;
     }
 
     @Override
