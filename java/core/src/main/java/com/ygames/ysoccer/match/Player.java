@@ -1,7 +1,6 @@
 package com.ygames.ysoccer.match;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Json;
@@ -9,14 +8,13 @@ import com.badlogic.gdx.utils.JsonValue;
 import com.ygames.ysoccer.competitions.Competition;
 import com.ygames.ysoccer.events.KeeperDeflectEvent;
 import com.ygames.ysoccer.events.KeeperHoldEvent;
+import com.ygames.ysoccer.events.PlayerGetsBallEvent;
 import com.ygames.ysoccer.framework.Ai;
 import com.ygames.ysoccer.framework.Assets;
 import com.ygames.ysoccer.framework.Color2;
 import com.ygames.ysoccer.framework.Color3;
-import com.ygames.ysoccer.framework.Commentary;
 import com.ygames.ysoccer.framework.EMath;
 import com.ygames.ysoccer.framework.EventManager;
-import com.ygames.ysoccer.framework.FileUtils;
 import com.ygames.ysoccer.framework.GLColor;
 import com.ygames.ysoccer.framework.GLGame;
 import com.ygames.ysoccer.framework.InputDevice;
@@ -346,17 +344,12 @@ public class Player implements Json.Serializable {
 
                 // get possession
                 else {
-                    if (this.team.path != null) {
-                        Sound playerSound = Assets.TeamCommentary.teams.get(FileUtils.getTeamFromFile(this.team.path)).players.get(this.shirtName);
-                        if (playerSound != null) {
-                            Commentary.getInstance().enqueueComment(new Commentary.Comment(Commentary.Comment.Priority.LOW, playerSound));
-                        }
-                    }
+
                     scene.setBallOwner(this);
                     ball.v = v;
                     ball.a = a;
                 }
-
+                EventManager.publish(new PlayerGetsBallEvent(team, this));
             }
 
             // collision for too fast ball

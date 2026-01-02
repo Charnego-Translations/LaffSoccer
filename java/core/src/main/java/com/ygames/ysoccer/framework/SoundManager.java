@@ -13,6 +13,7 @@ import com.ygames.ysoccer.events.KeeperDeflectEvent;
 import com.ygames.ysoccer.events.KeeperHoldEvent;
 import com.ygames.ysoccer.events.MatchIntroEvent;
 import com.ygames.ysoccer.events.PeriodStopEvent;
+import com.ygames.ysoccer.events.PlayerGetsBallEvent;
 import com.ygames.ysoccer.events.WhistleEvent;
 
 import java.util.Arrays;
@@ -105,6 +106,15 @@ public class SoundManager {
 
         EventManager.subscribe(WhistleEvent.class, whistleEvent -> {
             whistle.play(volume / 100f);
+        });
+
+        EventManager.subscribe(PlayerGetsBallEvent.class, playerGetsBallEvent -> {
+            if (playerGetsBallEvent.getTeam().path != null) {
+                Sound playerSound = Assets.TeamCommentary.teams.get(FileUtils.getTeamFromFile(playerGetsBallEvent.getTeam().path)).players.get(playerGetsBallEvent.getPlayer().shirtName);
+                if (playerSound != null) {
+                    Commentary.getInstance().enqueueComment(new Commentary.Comment(Commentary.Comment.Priority.LOW, playerSound));
+                }
+            }
         });
     }
 
