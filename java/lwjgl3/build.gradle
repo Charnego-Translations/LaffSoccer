@@ -123,37 +123,64 @@ construo {
     }
 }
 
-def zipUrl = "https://corretto.aws/downloads/latest/amazon-corretto-8-x64-windows-jre.zip"
-def zipFile = file("$buildDir/tmp/archivo.zip")
-def outputDir = file("$buildDir/libs")
+String javaUrl = "";
+
+File buildDirResolved = project.layout.buildDirectory.get().asFile
+File tmpDir = new File(buildDirResolved, "tmp")
+File outputDir = new File(buildDirResolved, "libs")
 
 tasks.register('downloadAndUnzipJava') {
   doLast {
-    // Crear carpetas si no existen
-    zipFile.parentFile.mkdirs()
+
+    if (!javaUrl || javaUrl.isEmpty()) {
+      throw new GradleException("javaUrl no está definido")
+    }
+
+    tmpDir.mkdirs()
     outputDir.mkdirs()
 
-    // Descargar ZIP
-    new URL(zipUrl).withInputStream { i ->
-      zipFile.withOutputStream { it << i }
+    // Detectar extensión
+    boolean isTarGz = javaUrl.endsWith(".tar.gz") || javaUrl.endsWith(".tgz")
+    boolean isZip = javaUrl.endsWith(".zip")
+
+    if (!isZip && !isTarGz) {
+      throw new GradleException("Formato no soportado: $javaUrl")
+    }
+
+    // Archivo destino
+    File archiveFile = new File(
+      tmpDir,
+      isZip ? "archivo.zip" : "archivo.tar.gz"
+    )
+
+    // Descargar
+    new URL(javaUrl).withInputStream { input ->
+      archiveFile.withOutputStream { output ->
+        output << input
+      }
     }
 
     // Descomprimir
-    copy {
-      from zipTree(zipFile)
+    project.copy {
+      if (isZip) {
+        from project.zipTree(archiveFile)
+      } else {
+        from project.tarTree(project.resources.gzip(archiveFile))
+      }
       into outputDir
     }
   }
 }
 
-tasks.register('laffDist', Copy) {
+tasks.register('laffCopyDist', Copy) {
+  dependsOn clean
   dependsOn jar
   dependsOn downloadAndUnzipJava
 
-  def assethsPath = rootProject.file('assets').path
+  def assetsPath = rootProject.file('assets')
   def libDir = layout.buildDirectory.dir("libs")
 
-  from((assethsPath)) {
+  from(assetsPath) {
     include 'music/**'
     include 'docs/**'
     include 'data/**'
@@ -161,15 +188,34 @@ tasks.register('laffDist', Copy) {
   }
 
   into(libDir)
+}
+
+tasks.register('laffDistWindows') {
+  javaUrl = "https://corretto.aws/downloads/latest/amazon-corretto-8-x64-windows-jre.zip"
+  dependsOn laffCopyDist
 
   doLast {
-    // Crear archivo .cmd
-    def cmdFile = new File(outputDir, "LaffSoccer.cmd")
+    File libDir = project.layout.buildDirectory.get().asFile
+    File cmdFile = new File(outputDir, "LaffSoccer.cmd")
+
     cmdFile.text = """@echo off
 jre8\\bin\\java.exe -jar ${appName}-${projectVersion}.jar
 """
   }
+}
 
+tasks.register('laffDistLinux') {
+  javaUrl = "https://corretto.aws/downloads/latest/amazon-corretto-8-x64-linux-jdk.tar.gz"
+  dependsOn laffCopyDist
+
+  doLast {
+    File libDir = project.layout.buildDirectory.get().asFile
+    File cmdFile = new File(outputDir, "LaffSoccer.sh")
+
+    cmdFile.text = """#!/bin/sh
+amazon-corretto-8.472.08.1-linux-x64/bin/java -jar ${appName}-${projectVersion}.jar
+"""
+  }
 }
 
 // Equivalent to the jar task; here for compatibility with gdx-setup.
