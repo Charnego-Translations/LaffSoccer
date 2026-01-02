@@ -88,8 +88,8 @@
 		]
 	},
 	{
-		"name": "HERO",
-		"shirtName": "HERO",
+		"name": "SCORPIONMSX",
+		"shirtName": "SCORPIONMSX",
 		"nationality": "CUS",
 		"role": "DEFENDER",
 		"number": 4,
@@ -112,8 +112,8 @@
 		]
 	},
 	{
-		"name": "COMMANDO",
-		"shirtName": "COMMANDO",
+		"name": "PUNISHER",
+		"shirtName": "PUNISHER",
 		"nationality": "CUS",
 		"role": "DEFENDER",
 		"number": 5,
@@ -136,8 +136,8 @@
 		]
 	},
 	{
-		"name": "HUNCHBACK",
-		"shirtName": "HUNCHBACK",
+		"name": "NACHO",
+		"shirtName": "NACHO",
 		"nationality": "CUS",
 		"role": "LEFT_BACK",
 		"number": 3,
@@ -160,8 +160,8 @@
 		]
 	},
 	{
-		"name": "DECATHLON",
-		"shirtName": "DECATHLON",
+		"name": "ANTON SAPRISTI",
+		"shirtName": "SAPRISTI",
 		"nationality": "CUS",
 		"role": "RIGHT_WINGER",
 		"number": 7,
@@ -304,8 +304,8 @@
 		]
 	},
 	{
-		"name": "RAID OVER MOSCOW",
-		"shirtName": "OVER MOSCOW",
+		"name": "RADIOAK",
+		"shirtName": "RADIOAK",
 		"nationality": "CUS",
 		"role": "GOALKEEPER",
 		"number": 12,
@@ -315,8 +315,8 @@
 		"value": 10
 	},
 	{
-		"name": "SQUISH'EM",
-		"shirtName": "SQUISH'EM",
+		"name": "THREEPWOOD",
+		"shirtName": "THREEPWOOD",
 		"nationality": "CUS",
 		"role": "DEFENDER",
 		"number": 13,
@@ -339,8 +339,8 @@
 		]
 	},
 	{
-		"name": "URIDIUM",
-		"shirtName": "URIDIUM",
+		"name": "BAYCORPS",
+		"shirtName": "BAYCORPS",
 		"nationality": "CUS",
 		"role": "MIDFIELDER",
 		"number": 16,
@@ -363,8 +363,8 @@
 		]
 	},
 	{
-		"name": "EXPLODING FIST",
-		"shirtName": "FIST",
+		"name": "LOLOCOP",
+		"shirtName": "LOLOCOP",
 		"nationality": "CUS",
 		"role": "LEFT_BACK",
 		"number": 17,
@@ -387,8 +387,8 @@
 		]
 	},
 	{
-		"name": "SPINDIZZY",
-		"shirtName": "SPINDIZZY",
+		"name": "ESPETERO",
+		"shirtName": "ESPETERO",
 		"nationality": "CUS",
 		"role": "ATTACKER",
 		"number": 15,
