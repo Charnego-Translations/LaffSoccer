@@ -2,11 +2,13 @@ package com.ygames.ysoccer.match;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.ygames.ysoccer.events.TackleEvent;
 import com.ygames.ysoccer.framework.Assets;
 import com.ygames.ysoccer.framework.EMath;
 import com.ygames.ysoccer.framework.EventManager;
+import com.ygames.ysoccer.framework.FileUtils;
 import com.ygames.ysoccer.framework.Font;
 import com.ygames.ysoccer.framework.GLColor;
 import com.ygames.ysoccer.framework.GLGame;
@@ -174,6 +176,13 @@ public class MatchRenderer extends SceneRenderer<Match> {
         // ball owner
         if (scene.displayBallOwner && scene.ball.ownerIndex != -1) {
             drawPlayerNumberAndName(scene.team[scene.ball.ownerTeamIndex].lineup.get(scene.ball.ownerIndex));
+            Player player = scene.ball.owner;
+            if (player != null) {
+                TextureRegion face = Assets.TeamFaces.teams.get(FileUtils.getTeamFromFile(player.team.path)).faces.get(player.shirtName);
+                if (face != null) {
+                    drawFace(face);
+                }
+            }
         }
 
         // foul maker
@@ -202,12 +211,17 @@ public class MatchRenderer extends SceneRenderer<Match> {
 
         // wind vane
         if (scene.displayWindVane && (scene.settings.wind.speed > 0)) {
-            batch.draw(Assets.wind[scene.settings.wind.direction][scene.settings.wind.speed - 1], guiWidth - 50, 20);
+            batch.draw(Assets.wind[scene.settings.wind.direction][scene.settings.wind.speed - 1], guiWidth - 50, 175);
         }
 
         // rosters
         if (scene.displayRosters) {
             drawRosters();
+        }
+
+        // goal
+        if (matchState.displayGoal) {
+            drawGoal();
         }
 
         // score
@@ -271,6 +285,24 @@ public class MatchRenderer extends SceneRenderer<Match> {
         }
 
         batch.end();
+    }
+
+    private void drawFace(TextureRegion face) {
+        batch.draw(face, 10, 60);
+    }
+
+    private void drawGoal() {
+        float ratio = (float) (1d + Math.sin(System.currentTimeMillis() / 130d) / 5);
+        int width = Assets.goalPicture[0].getRegionWidth();
+        int height = Assets.goalPicture[0].getRegionHeight();
+
+        batch.draw(Assets.goalPicture[0],
+            (guiWidth / 2f) - (width * ratio / 2),
+            (guiHeight / 2f) - (height * ratio / 2),
+            width * ratio,
+            height * ratio
+        );
+
     }
 
     private void renderBackground() {
@@ -453,7 +485,7 @@ public class MatchRenderer extends SceneRenderer<Match> {
             for (int pos = 0; pos < Const.TEAM_SIZE; pos++) {
                 Player player = scene.team[tm].lineupAtPosition(pos);
                 Assets.font10.draw(batch, player.number, l + tm * w / 2 + w / 10, y, Font.Align.CENTER);
-                Assets.font10.draw(batch, player.shirtName, l + tm * w / 2 + w / 7, y, Font.Align.LEFT);
+                Assets.font10.draw(batch, player.name, l + tm * w / 2 + w / 7, y, Font.Align.LEFT);
                 y = y + h / 23;
             }
         }
@@ -512,8 +544,8 @@ public class MatchRenderer extends SceneRenderer<Match> {
 
     private void drawRadar() {
 
-        final int RX = 10;
-        final int RY = 60;
+        final int RX = guiWidth - 142;
+        final int RY = 10;
         final int RW = 132;
         final int RH = 166;
 

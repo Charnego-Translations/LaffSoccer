@@ -132,7 +132,7 @@ public class TrainingRenderer extends SceneRenderer<Training> {
 
         // wind vane
         if (scene.settings.wind.speed > 0) {
-            batch.draw(Assets.wind[scene.settings.wind.direction][scene.settings.wind.speed - 1], guiWidth - 50, 20);
+            batch.draw(Assets.wind[scene.settings.wind.direction][scene.settings.wind.speed - 1], guiWidth - 50, 175);
         }
 
         // messages

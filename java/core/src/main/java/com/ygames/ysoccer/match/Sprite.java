@@ -33,7 +33,7 @@ abstract class Sprite {
         @Override
         public int compare(Sprite sprite1, Sprite sprite2) {
 
-            if (sprite1.priority != sprite1.priority) {
+            if (sprite1.priority != sprite2.priority) {
                 return sprite2.priority - sprite1.priority;
             }
 

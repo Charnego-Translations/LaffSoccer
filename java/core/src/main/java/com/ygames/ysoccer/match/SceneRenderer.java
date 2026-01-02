@@ -14,6 +14,7 @@ import com.ygames.ysoccer.framework.GLShapeRenderer;
 import com.ygames.ysoccer.framework.GLSpriteBatch;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.TreeMap;
 
@@ -93,8 +94,14 @@ public abstract class SceneRenderer<SceneT extends Scene<?, ?>> {
 
         allSprites.sort(spriteComparator);
 
-        for (Sprite sprite : allSprites) {
-            sprite.draw(scene.subframe);
+        Iterator<Sprite> spritesIterator = allSprites.iterator();
+        while (spritesIterator.hasNext()) {
+            Sprite sprite = spritesIterator.next();
+            if (!sprite.alive) {
+                spritesIterator.remove();
+            } else {
+                sprite.draw(scene.subframe);
+            }
         }
     }
 
@@ -381,7 +388,7 @@ public abstract class SceneRenderer<SceneT extends Scene<?, ?>> {
     }
 
     void drawPlayerNumberAndName(Player player) {
-        Assets.font10.draw(batch, player.number + " " + player.shirtName, 10, 2, Font.Align.LEFT);
+        Assets.font10.draw(batch, player.number + " " + player.name, 10, 2, Font.Align.LEFT);
     }
 
     public void update() {

@@ -21,6 +21,7 @@ abstract class MatchState extends SceneState<MatchFsm, Match> {
     boolean checkPauseKey = true;
     boolean checkHelpKey = true;
     boolean checkBenchCall = true;
+    boolean displayGoal = false;
 
     final Ball ball;
     InputDevice inputDevice;

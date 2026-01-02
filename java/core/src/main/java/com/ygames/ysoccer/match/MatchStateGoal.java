@@ -26,6 +26,7 @@ class MatchStateGoal extends MatchState {
     MatchStateGoal(MatchFsm fsm) {
         super(GOAL, fsm);
 
+        displayGoal = true;
         checkReplayKey = false;
     }
 
