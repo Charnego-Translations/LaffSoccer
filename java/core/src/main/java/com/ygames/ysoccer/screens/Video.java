@@ -20,6 +20,7 @@ public class Video extends GLScreen {
 
     public Video(GLGame game) {
         super(game);
+        setMainMenu();
 
         usesMouse = false;
 
@@ -51,7 +52,7 @@ public class Video extends GLScreen {
         batch.end();
 
         // videoPlayer.getVideoHeight() returns 0 when the video is not loaded
-        if (widgetEvent == Widget.Event.FIRE1_UP || widgetEvent == Widget.Event.FIRE2_UP || videoPlayer.getVideoHeight() == 0) {
+        if (widgetEvent == Widget.Event.FIRE1_UP || widgetEvent == Widget.Event.FIRE2_UP) { // || videoPlayer.getVideoHeight() == 0) {
             setMainMenu();
         }
     }

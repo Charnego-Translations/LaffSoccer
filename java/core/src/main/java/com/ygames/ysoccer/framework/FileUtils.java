@@ -2,9 +2,9 @@ package com.ygames.ysoccer.framework;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.backends.lwjgl.audio.Mp3;
+/*import com.badlogic.gdx.backends.lwjgl.audio.Mp3;
 import com.badlogic.gdx.backends.lwjgl.audio.Ogg;
-import com.badlogic.gdx.backends.lwjgl.audio.Wav;
+import com.badlogic.gdx.backends.lwjgl.audio.Wav;*/
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.ByteArrayInputStream;
@@ -43,7 +43,7 @@ public class FileUtils {
     }
 
     public static float soundDuration(Sound sound) {
-        if (sound instanceof Ogg.Sound) {
+/*        if (sound instanceof Ogg.Sound) {
             return ((Ogg.Sound) sound).duration();
         } else if (sound instanceof Wav.Sound) {
             return ((Wav.Sound) sound).duration();
@@ -51,7 +51,8 @@ public class FileUtils {
             return ((Mp3.Sound) sound).duration();
         } else {
             return 0f;
-        }
+        }*/
+        return 0f;
     }
 
     public static String normalizeName(String name) {

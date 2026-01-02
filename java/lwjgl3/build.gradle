@@ -4,7 +4,7 @@ buildscript {
     gradlePluginPortal()
   }
   dependencies {
-    classpath "io.github.fourlastor:construo:1.5.1"
+    classpath "io.github.fourlastor:construo:2.1.0"
     if(enableGraalNative == 'true') {
       classpath "org.graalvm.buildtools.native:org.graalvm.buildtools.native.gradle.plugin:0.9.28"
     }
@@ -33,6 +33,7 @@ dependencies {
   implementation "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-desktop"
   implementation "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-desktop"
   implementation "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
+  implementation "com.badlogicgames.gdx-video:gdx-video-lwjgl:$gdxVideoVersion"
   implementation project(':core')
 
   if(enableGraalNative == 'true') {
@@ -81,7 +82,7 @@ construo {
     // human-readable name, used for example in the `.app` name for macOS
     humanName.set(appName)
     // Optional, defaults to project version property
-    version.set("$projectVersion")
+    // version.set("$projectVersion")
 
     targets.configure {
       create("linuxX64", Target.Linux) {
@@ -109,6 +110,8 @@ construo {
         jdkUrl.set("https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.12%2B7/OpenJDK17U-jdk_x64_windows_hotspot_17.0.12_7.zip")
         // Uncomment the next line to show a console when the game runs, to print messages.
         //useConsole.set(true)
+        // Optional: icon for Windows
+        icon.set(project.file("icons/logo.png"))
       }
     }
 }
