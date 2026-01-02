@@ -1,5 +1,9 @@
 package com.ygames.ysoccer.framework;
 
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+
 public class EMath {
 
     private static final float TO_RADIANS = (float) Math.PI / 180.0f;
@@ -103,6 +107,24 @@ public class EMath {
         return c.getEnumConstants()[Assets.RANDOM.nextInt(values)];
     }
 
+    public static <T> T randomPick(Collection<T> collection) {
+        if (collection == null || collection.isEmpty()) {
+            return null;
+        }
+
+        int index = Assets.RANDOM.nextInt(collection.size());
+
+        if (collection instanceof List) {
+            return ((List<T>) collection).get(index);
+        }
+
+        Iterator<T> it = collection.iterator();
+        for (int i = 0; i < index; i++) {
+            it.next();
+        }
+        return it.next();
+    }
+
     public static float roundBy(float value, float step) {
         return step * Math.round(value / step);
     }
@@ -113,6 +135,16 @@ public class EMath {
             if (v < min) min = v;
         }
         return min;
+    }
+
+    public static int dice(int min, int max) {
+        return Assets.RANDOM.nextInt(max - min + 1) + min;
+    }
+
+    public static void oneIn(float bet, Runnable action) {
+        if (Math.floor(Assets.RANDOM.nextFloat() * bet) == 0) {
+            action.run();
+        }
     }
 
     public static float max(float... values) {

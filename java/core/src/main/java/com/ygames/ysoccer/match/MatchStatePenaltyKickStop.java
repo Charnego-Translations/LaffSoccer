@@ -1,6 +1,7 @@
 package com.ygames.ysoccer.match;
 
 import com.badlogic.gdx.math.Vector2;
+import com.ygames.ysoccer.events.PenaltyEvent;
 import com.ygames.ysoccer.events.WhistleEvent;
 import com.ygames.ysoccer.framework.Assets;
 import com.ygames.ysoccer.framework.EventManager;
@@ -57,6 +58,8 @@ class MatchStatePenaltyKickStop extends MatchState {
                 Assets.Commentary.penalty.get(Assets.RANDOM.nextInt(size)).play(SoundManager.volume / 100f);
             }
         }
+
+        EventManager.publish(new PenaltyEvent());
 
         Player penaltyKicker = scene.foul.opponent.team.lastOfLineup();
         Player penaltyKeeper = scene.foul.player.team.lineupAtPosition(0);

@@ -97,12 +97,12 @@ class DeveloperTools extends GLScreen {
         public void onFire1Down() {
             game.setState(GLGame.State.FRIENDLY, null);
 
-            FileHandle homeTeamFile = Gdx.files.local("/data/teams/1964-65/CLUB_TEAMS/EUROPE/ITALY/team.inter_milan.json");
+            FileHandle homeTeamFile = Gdx.files.local("/data/teams/SELECSIONE/team.espana.json");
             Team homeTeam = Assets.json.fromJson(Team.class, homeTeamFile.readString("UTF-8"));
             homeTeam.path = Assets.getRelativeTeamPath(homeTeamFile);
             homeTeam.controlMode = Team.ControlMode.PLAYER;
 
-            FileHandle awayTeamFile = Gdx.files.local("/data/teams/1964-65/CLUB_TEAMS/EUROPE/ITALY/team.ac_milan.json");
+            FileHandle awayTeamFile = Gdx.files.local("/data/teams/SELECSIONE/team.espina.json");
             Team awayTeam = Assets.json.fromJson(Team.class, awayTeamFile.readString("UTF-8"));
             awayTeam.path = Assets.getRelativeTeamPath(awayTeamFile);
             awayTeam.controlMode = Team.ControlMode.COMPUTER;

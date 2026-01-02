@@ -1,6 +1,7 @@
 package com.ygames.ysoccer.match;
 
 import com.ygames.ysoccer.events.BallKickEvent;
+import com.ygames.ysoccer.events.TackleEvent;
 import com.ygames.ysoccer.framework.EMath;
 import com.ygames.ysoccer.framework.EventManager;
 
@@ -25,6 +26,9 @@ class PlayerStateTackle extends PlayerState {
         player.y += 10 * EMath.sin(player.a);
         player.fmx = Math.round((((player.a + 360) % 360)) / 45) % 8;
         player.fmy = 4;
+
+        EventManager.publish(new TackleEvent(false, player, null));
+
     }
 
     @Override

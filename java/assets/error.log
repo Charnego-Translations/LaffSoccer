@@ -1,18 +1,8 @@
-Exception in thread "main" com.badlogic.gdx.utils.SerializationException: Field not found: index (com.ygames.ysoccer.match.Player)
-Serialization trace:
-{}.players[1].index
-	at com.badlogic.gdx.utils.Json.readFields(Json.java:897)
-	at com.ygames.ysoccer.match.Player.read(Player.java:151)
-	at com.badlogic.gdx.utils.Json.readValue(Json.java:1016)
-	at com.badlogic.gdx.utils.Json.readValue(Json.java:1122)
-	at com.badlogic.gdx.utils.Json.readValue(Json.java:934)
-	at com.ygames.ysoccer.match.Team.read(Team.java:133)
-	at com.badlogic.gdx.utils.Json.readValue(Json.java:1016)
-	at com.badlogic.gdx.utils.Json.fromJson(Json.java:833)
-	at com.ygames.ysoccer.screens.SelectTeams.<init>(SelectTeams.java:66)
-	at com.ygames.ysoccer.screens.SelectFolder$FolderButton.onFire1Down(SelectFolder.java:181)
-	at com.ygames.ysoccer.gui.Widget.fireEvent(Widget.java:146)
-	at com.ygames.ysoccer.framework.GLScreen.render(GLScreen.java:117)
+Exception in thread "main" java.lang.NullPointerException: Cannot invoke "com.badlogic.gdx.audio.Sound.stop()" because "this.currentChant" is null
+	at com.ygames.ysoccer.match.MatchStateMain.doActions(MatchStateMain.java:85)
+	at com.ygames.ysoccer.match.SceneFsm.think(SceneFsm.java:102)
+	at com.ygames.ysoccer.match.Scene.update(Scene.java:48)
+	at com.ygames.ysoccer.screens.MatchScreen.render(MatchScreen.java:78)
 	at com.ygames.ysoccer.framework.GLGame.render(GLGame.java:153)
 	at com.badlogic.gdx.backends.lwjgl3.Lwjgl3Window.update(Lwjgl3Window.java:435)
 	at com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application.loop(Lwjgl3Application.java:181)

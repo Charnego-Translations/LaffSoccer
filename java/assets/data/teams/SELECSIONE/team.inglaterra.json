@@ -1,0 +1,531 @@
+{
+"name": "INGLATERRA",
+"type": "NATIONAL",
+"country": "ENG",
+"confederation": "UEFA",
+"city": "JAMÓN YORK",
+"stadium": "BARCO PIRATA",
+"coach": {
+	"name": "MR. BEAN",
+	"nationality": "ENG"
+},
+"tactics": "4-4-2",
+"kits": [
+	{
+		"style": "PLAIN",
+		"shirt1": "#dfe8eb",
+		"shirt2": "#3033c1",
+		"shirt3": "#3033c1",
+		"shorts": "#3033c1",
+		"socks": "#f61c1c"
+	},
+	{
+		"style": "CROSS",
+		"shirt1": "#f61c1c",
+		"shirt2": "#993333",
+		"shirt3": "#993333",
+		"shorts": "#dfe8eb",
+		"socks": "#f61c1c"
+	},
+	{
+		"style": "CROSS",
+		"shirt1": "#dfe8eb",
+		"shirt2": "#f61c1c",
+		"shirt3": "#f61c1c",
+		"shorts": "#1e1e1e",
+		"socks": "#dfe8eb"
+	}
+],
+"players": [
+	{
+		"name": "JAMES BOND",
+		"shirtName": "J.B. 007",
+		"nationality": "ENG",
+		"role": "GOALKEEPER",
+		"number": 5,
+		"skinColor": "PALE",
+		"hairColor": "BLACK",
+		"hairStyle": "CURLY_A",
+		"value": 16
+	},
+	{
+		"name": "RINGO STARR",
+		"shirtName": "R. STARR",
+		"nationality": "ENG",
+		"role": "RIGHT_BACK",
+		"number": 6,
+		"skinColor": "PINK",
+		"hairColor": "RED",
+		"hairStyle": "BALD_B",
+		"skills": {
+			"passing": 2,
+			"shooting": 3,
+			"heading": 2,
+			"tackling": 2,
+			"control": 3,
+			"speed": 2,
+			"finishing": 4
+		},
+		"bestSkills": [
+			"HEADING",
+			"SPEED",
+			"SHOOTING",
+			"TACKLING",
+			"FINISHING",
+			"PASSING"
+		]
+	},
+	{
+		"name": "PAUL MCCARTNEY",
+		"shirtName": "MCCARTNEY",
+		"nationality": "ENG",
+		"role": "LEFT_BACK",
+		"number": 21,
+		"skinColor": "ARAB",
+		"hairColor": "GRAY",
+		"hairStyle": "SHORT_C",
+		"skills": {
+			"passing": 1,
+			"shooting": 3,
+			"heading": 4,
+			"tackling": 4,
+			"control": 3,
+			"speed": 4,
+			"finishing": 3
+		},
+		"bestSkills": [
+			"TACKLING",
+			"PASSING",
+			"SHOOTING"
+		]
+	},
+	{
+		"name": "JOHN LENNON",
+		"shirtName": "LENNON",
+		"nationality": "ENG",
+		"role": "LEFT_BACK",
+		"number": 10,
+		"skinColor": "RED",
+		"hairColor": "GRAY",
+		"hairStyle": "SMOOTH_C",
+		"skills": {
+			"passing": 4,
+			"shooting": 1,
+			"heading": 5,
+			"tackling": 4,
+			"control": 4,
+			"speed": 6,
+			"finishing": 1
+		},
+		"bestSkills": [
+			"SPEED",
+			"CONTROL",
+			"PASSING",
+			"TACKLING",
+			"HEADING",
+			"SHOOTING"
+		]
+	},
+	{
+		"name": "ROGER WATERS",
+		"shirtName": "R. WATERS",
+		"nationality": "ENG",
+		"role": "MIDFIELDER",
+		"number": 17,
+		"skinColor": "MULATTO",
+		"hairColor": "RED",
+		"hairStyle": "CURLY_B",
+		"skills": {
+			"passing": 4,
+			"shooting": 3,
+			"heading": 1,
+			"tackling": 3,
+			"control": 4,
+			"speed": 6,
+			"finishing": 4
+		},
+		"bestSkills": [
+			"FINISHING",
+			"SPEED",
+			"PASSING",
+			"SHOOTING"
+		]
+	},
+	{
+		"name": "ERIC CLAPTON",
+		"shirtName": "E. CLAPTON",
+		"nationality": "ENG",
+		"role": "LEFT_BACK",
+		"number": 19,
+		"skinColor": "PALE",
+		"hairColor": "BLOND",
+		"hairStyle": "SPECIAL_G",
+		"skills": {
+			"passing": 4,
+			"shooting": 4,
+			"heading": 2,
+			"tackling": 4,
+			"control": 2,
+			"speed": 4,
+			"finishing": 4
+		},
+		"bestSkills": []
+	},
+	{
+		"name": "AUSTIN POWERS",
+		"shirtName": "A. POWERS",
+		"nationality": "ENG",
+		"role": "DEFENDER",
+		"number": 1,
+		"skinColor": "ARAB",
+		"hairColor": "RED",
+		"hairStyle": "SMOOTH_M",
+		"skills": {
+			"passing": 4,
+			"shooting": 2,
+			"heading": 3,
+			"tackling": 4,
+			"control": 4,
+			"speed": 3,
+			"finishing": 3
+		},
+		"bestSkills": [
+			"SHOOTING",
+			"FINISHING",
+			"PASSING",
+			"TACKLING"
+		]
+	},
+	{
+		"name": "TOM YORKE",
+		"shirtName": "RADIOHEAD",
+		"nationality": "ENG",
+		"role": "RIGHT_BACK",
+		"number": 9,
+		"skinColor": "MULATTO",
+		"hairColor": "RED",
+		"hairStyle": "SMOOTH_A",
+		"skills": {
+			"passing": 5,
+			"shooting": 2,
+			"heading": 2,
+			"tackling": 5,
+			"control": 5,
+			"speed": 4,
+			"finishing": 2
+		},
+		"bestSkills": [
+			"FINISHING",
+			"HEADING",
+			"CONTROL",
+			"SPEED",
+			"TACKLING",
+			"SHOOTING"
+		]
+	},
+	{
+		"name": "ELTON JOHN",
+		"shirtName": "ELTON JOHN",
+		"nationality": "ENG",
+		"role": "RIGHT_BACK",
+		"number": 15,
+		"skinColor": "MULATTO",
+		"hairColor": "BLOND",
+		"hairStyle": "SPECIAL_E",
+		"skills": {
+			"passing": 5,
+			"shooting": 4,
+			"heading": 3,
+			"tackling": 3,
+			"control": 2,
+			"speed": 3,
+			"finishing": 4
+		},
+		"bestSkills": [
+			"TACKLING",
+			"FINISHING",
+			"SHOOTING",
+			"SPEED"
+		]
+	},
+	{
+		"name": "DAVID BOWIE",
+		"shirtName": "D. BOWIE",
+		"nationality": "ENG",
+		"role": "LEFT_BACK",
+		"number": 4,
+		"skinColor": "PALE",
+		"hairColor": "PUNK_FUCHSIA",
+		"hairStyle": "SMOOTH_E",
+		"skills": {
+			"passing": 5,
+			"shooting": 2,
+			"heading": 2,
+			"tackling": 6,
+			"control": 4,
+			"speed": 4,
+			"finishing": 1
+		},
+		"bestSkills": [
+			"PASSING",
+			"SHOOTING"
+		]
+	},
+	{
+		"name": "IGGY POP",
+		"shirtName": "IGGY POP",
+		"nationality": "ENG",
+		"role": "DEFENDER",
+		"number": 13,
+		"skinColor": "ARAB",
+		"hairColor": "GRAY",
+		"hairStyle": "CURLY_A",
+		"skills": {
+			"passing": 2,
+			"shooting": 5,
+			"heading": 4,
+			"tackling": 2,
+			"control": 3,
+			"speed": 2,
+			"finishing": 4
+		},
+		"bestSkills": [
+			"SHOOTING",
+			"SPEED"
+		]
+	},
+	{
+		"name": "FREDDIE MERCURY",
+		"shirtName": "F. MERCURY",
+		"nationality": "ENG",
+		"role": "GOALKEEPER",
+		"number": 11,
+		"skinColor": "RED",
+		"hairColor": "BLACK",
+		"hairStyle": "CURLY_B",
+		"value": 15
+	},
+	{
+		"name": "ALI G",
+		"shirtName": "ALI G",
+		"nationality": "ENG",
+		"role": "RIGHT_WINGER",
+		"number": 12,
+		"skinColor": "PINK",
+		"hairColor": "PLATINUM",
+		"hairStyle": "THINNING_B",
+		"skills": {
+			"passing": 1,
+			"shooting": 3,
+			"heading": 2,
+			"tackling": 4,
+			"control": 1,
+			"speed": 6,
+			"finishing": 6
+		},
+		"bestSkills": [
+			"SHOOTING",
+			"HEADING",
+			"FINISHING",
+			"CONTROL",
+			"PASSING",
+			"TACKLING"
+		]
+	},
+	{
+		"name": "DAVID ATTENBOROUGH",
+		"shirtName": "DAVID ATT.",
+		"nationality": "ENG",
+		"role": "RIGHT_WINGER",
+		"number": 3,
+		"skinColor": "ARAB",
+		"hairColor": "BLOND",
+		"hairStyle": "PIGTAIL_B",
+		"skills": {
+			"passing": 3,
+			"shooting": 2,
+			"heading": 2,
+			"tackling": 6,
+			"control": 3,
+			"speed": 4,
+			"finishing": 2
+		},
+		"bestSkills": [
+			"SHOOTING",
+			"FINISHING",
+			"HEADING",
+			"TACKLING",
+			"CONTROL",
+			"PASSING"
+		]
+	},
+	{
+		"name": "ED SHEERAN",
+		"shirtName": "ED SHEERAN",
+		"nationality": "ENG",
+		"role": "RIGHT_WINGER",
+		"number": 14,
+		"skinColor": "ASIATIC",
+		"hairColor": "GRAY",
+		"hairStyle": "THINNING_A",
+		"skills": {
+			"passing": 1,
+			"shooting": 5,
+			"heading": 3,
+			"tackling": 2,
+			"control": 5,
+			"speed": 3,
+			"finishing": 3
+		},
+		"bestSkills": [
+			"FINISHING",
+			"SHOOTING",
+			"CONTROL",
+			"HEADING",
+			"TACKLING",
+			"PASSING"
+		]
+	},
+	{
+		"name": "GEORGE MICHAEL",
+		"shirtName": "G. MICHAEL",
+		"nationality": "ENG",
+		"role": "RIGHT_WINGER",
+		"number": 2,
+		"skinColor": "ALIEN",
+		"hairColor": "PLATINUM",
+		"hairStyle": "SPECIAL_B",
+		"skills": {
+			"passing": 4,
+			"shooting": 4,
+			"heading": 1,
+			"tackling": 3,
+			"control": 3,
+			"speed": 2,
+			"finishing": 2
+		},
+		"bestSkills": []
+	},
+	{
+		"name": "OZZY OSBOURNE",
+		"shirtName": "OZZY",
+		"nationality": "ENG",
+		"role": "MIDFIELDER",
+		"number": 7,
+		"skinColor": "RED",
+		"hairColor": "BLACK",
+		"hairStyle": "SMOOTH_D",
+		"skills": {
+			"passing": 2,
+			"shooting": 5,
+			"heading": 2,
+			"tackling": 3,
+			"control": 3,
+			"speed": 1,
+			"finishing": 4
+		},
+		"bestSkills": [
+			"TACKLING"
+		]
+	},
+	{
+		"name": "GEORGE HARRISON",
+		"shirtName": "GEORGE H.",
+		"nationality": "ENG",
+		"role": "RIGHT_WINGER",
+		"number": 20,
+		"skinColor": "ALIEN",
+		"hairColor": "PUNK_FUCHSIA",
+		"hairStyle": "CURLY_C",
+		"skills": {
+			"passing": 4,
+			"shooting": 2,
+			"heading": 2,
+			"tackling": 4,
+			"control": 5,
+			"speed": 2,
+			"finishing": 4
+		},
+		"bestSkills": [
+			"CONTROL",
+			"HEADING",
+			"FINISHING",
+			"TACKLING",
+			"SPEED"
+		]
+	},
+	{
+		"name": "ROD STEWART",
+		"shirtName": "ROD STW.",
+		"nationality": "ENG",
+		"role": "MIDFIELDER",
+		"number": 18,
+		"skinColor": "ASIATIC",
+		"hairColor": "BLOND",
+		"hairStyle": "SPECIAL_D",
+		"skills": {
+			"passing": 4,
+			"shooting": 2,
+			"heading": 4,
+			"tackling": 4,
+			"control": 3,
+			"speed": 3,
+			"finishing": 2
+		},
+		"bestSkills": [
+			"SPEED",
+			"PASSING"
+		]
+	},
+	{
+		"name": "LIAM GALLAGHER",
+		"shirtName": "L. GALLAGHER",
+		"nationality": "ENG",
+		"role": "MIDFIELDER",
+		"number": 16,
+		"skinColor": "ASIATIC",
+		"hairColor": "GRAY",
+		"hairStyle": "SPECIAL_C",
+		"skills": {
+			"passing": 4,
+			"shooting": 3,
+			"heading": 3,
+			"tackling": 4,
+			"control": 2,
+			"speed": 4,
+			"finishing": 2
+		},
+		"bestSkills": [
+			"HEADING",
+			"SPEED",
+			"TACKLING"
+		]
+	},
+	{
+		"name": "ROBERT PLANT",
+		"shirtName": "ROB PLANT",
+		"nationality": "ENG",
+		"role": "DEFENDER",
+		"number": 8,
+		"skinColor": "BLACK",
+		"hairColor": "BLOND",
+		"hairStyle": "SMOOTH_N",
+		"skills": {
+			"passing": 4,
+			"shooting": 1,
+			"heading": 1,
+			"tackling": 5,
+			"control": 5,
+			"speed": 3,
+			"finishing": 3
+		},
+		"bestSkills": [
+			"SPEED",
+			"SHOOTING",
+			"HEADING",
+			"FINISHING",
+			"PASSING"
+		]
+	}
+]
+}

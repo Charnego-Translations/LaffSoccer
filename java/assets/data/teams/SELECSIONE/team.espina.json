@@ -1,0 +1,399 @@
+{
+"name": "ESPIÑA",
+"type": "NATIONAL",
+"country": "ESP",
+"confederation": "UEFA",
+"city": "MADRÍS",
+"stadium": "VALLE DE LOS CAÍDOS",
+"coach": {
+	"name": "FRANCISCO FRASCO",
+	"nationality": "ESP"
+},
+"tactics": "SWEEP",
+"kits": [
+	{
+		"style": "STRIP",
+		"shirt1": "#f61c1c",
+		"shirt2": "#e8ef2f",
+		"shirt3": "#e8ef2f",
+		"shorts": "#1e1e1e",
+		"socks": "#1e1e1e"
+	},
+	{
+		"style": "PLAIN",
+		"shirt1": "#f59ee1",
+		"shirt2": "#47bfeb",
+		"shirt3": "#47bfeb",
+		"shorts": "#f59ee1",
+		"socks": "#47bfeb"
+	},
+	{
+		"style": "PLAIN",
+		"shirt1": "#993333",
+		"shirt2": "#1e1e1e",
+		"shirt3": "#1e1e1e",
+		"shorts": "#417039",
+		"socks": "#417039"
+	}
+],
+"players": [
+	{
+		"name": "PRIMO DE RIVERA DEL DUERO",
+		"shirtName": "RIVERA",
+		"nationality": "ESP",
+		"role": "GOALKEEPER",
+		"number": 1,
+		"skinColor": "PINK",
+		"hairColor": "BLACK",
+		"hairStyle": "SMOOTH_A",
+		"value": 39
+	},
+	{
+		"name": "JOSÉ PELUCA SOTELO",
+		"shirtName": "SOTELO",
+		"nationality": "ESP",
+		"role": "RIGHT_BACK",
+		"number": 2,
+		"skinColor": "PINK",
+		"hairColor": "BLACK",
+		"hairStyle": "SMOOTH_A",
+		"skills": {
+			"passing": 5,
+			"shooting": 3,
+			"heading": 6,
+			"tackling": 7,
+			"control": 5,
+			"speed": 7,
+			"finishing": 3
+		},
+		"bestSkills": [
+			"TACKLING",
+			"SPEED",
+			"HEADING"
+		]
+	},
+	{
+		"name": "GENERAL JOSÉ SANJORGE",
+		"shirtName": "JOSÉ S.",
+		"nationality": "ESP",
+		"role": "DEFENDER",
+		"number": 3,
+		"skinColor": "PINK",
+		"hairColor": "BLACK",
+		"hairStyle": "SMOOTH_A",
+		"skills": {
+			"passing": 7,
+			"shooting": 4,
+			"heading": 5,
+			"tackling": 7,
+			"control": 7,
+			"speed": 6,
+			"finishing": 3
+		},
+		"bestSkills": [
+			"TACKLING",
+			"PASSING",
+			"CONTROL"
+		]
+	},
+	{
+		"name": "ONÉSIMO CUADRADO",
+		"shirtName": "ONÉSIMO",
+		"nationality": "ESP",
+		"role": "DEFENDER",
+		"number": 4,
+		"skinColor": "PINK",
+		"hairColor": "BLACK",
+		"hairStyle": "SMOOTH_A",
+		"skills": {
+			"passing": 7,
+			"shooting": 5,
+			"heading": 7,
+			"tackling": 7,
+			"control": 7,
+			"speed": 7,
+			"finishing": 4
+		},
+		"bestSkills": [
+			"TACKLING",
+			"HEADING",
+			"PASSING"
+		]
+	},
+	{
+		"name": "JULIO RUIZ DE ALDI",
+		"shirtName": "J. RUIZ",
+		"nationality": "ESP",
+		"role": "LEFT_BACK",
+		"number": 5,
+		"skinColor": "PINK",
+		"hairColor": "BLACK",
+		"hairStyle": "SMOOTH_A",
+		"skills": {
+			"passing": 5,
+			"shooting": 4,
+			"heading": 7,
+			"tackling": 5,
+			"control": 5,
+			"speed": 5,
+			"finishing": 3
+		},
+		"bestSkills": [
+			"HEADING",
+			"TACKLING",
+			"SPEED"
+		]
+	},
+	{
+		"name": "JUAN DE BRIBÓN",
+		"shirtName": "BRIBÓN",
+		"nationality": "ESP",
+		"role": "MIDFIELDER",
+		"number": 6,
+		"skinColor": "PINK",
+		"hairColor": "BLACK",
+		"hairStyle": "SMOOTH_A",
+		"skills": {
+			"passing": 7,
+			"shooting": 6,
+			"heading": 6,
+			"tackling": 6,
+			"control": 7,
+			"speed": 6,
+			"finishing": 5
+		},
+		"bestSkills": [
+			"PASSING",
+			"CONTROL",
+			"TACKLING"
+		]
+	},
+	{
+		"name": "GENERAL YEGUA",
+		"shirtName": "G. YEGUA",
+		"nationality": "ESP",
+		"role": "MIDFIELDER",
+		"number": 7,
+		"skinColor": "PINK",
+		"hairColor": "BLACK",
+		"hairStyle": "SMOOTH_A",
+		"skills": {
+			"passing": 7,
+			"shooting": 6,
+			"heading": 6,
+			"tackling": 5,
+			"control": 7,
+			"speed": 6,
+			"finishing": 6
+		},
+		"bestSkills": [
+			"PASSING",
+			"CONTROL",
+			"HEADING"
+		]
+	},
+	{
+		"name": "QUEIPO LLANITO",
+		"shirtName": "QUEIPO L.",
+		"nationality": "ESP",
+		"role": "MIDFIELDER",
+		"number": 8,
+		"skinColor": "PINK",
+		"hairColor": "BROWN",
+		"hairStyle": "SMOOTH_A",
+		"skills": {
+			"passing": 5,
+			"shooting": 2,
+			"heading": 3,
+			"tackling": 4,
+			"control": 5,
+			"speed": 5,
+			"finishing": 1
+		},
+		"bestSkills": [
+			"PASSING",
+			"CONTROL",
+			"SPEED"
+		]
+	},
+	{
+		"name": "MANUEL FRASCA",
+		"shirtName": "FRASCA",
+		"nationality": "ESP",
+		"role": "LEFT_WINGER",
+		"number": 9,
+		"skinColor": "PINK",
+		"hairColor": "BLACK",
+		"hairStyle": "SMOOTH_D",
+		"skills": {
+			"passing": 7,
+			"shooting": 5,
+			"heading": 4,
+			"tackling": 5,
+			"control": 7,
+			"speed": 5,
+			"finishing": 6
+		},
+		"bestSkills": [
+			"CONTROL",
+			"PASSING",
+			"FINISHING"
+		]
+	},
+	{
+		"name": "CARRERO ARMSTRONG",
+		"shirtName": "CARRERO",
+		"nationality": "ESP",
+		"role": "MIDFIELDER",
+		"number": 10,
+		"skinColor": "PINK",
+		"hairColor": "BLACK",
+		"hairStyle": "SMOOTH_D",
+		"skills": {
+			"passing": 6,
+			"shooting": 6,
+			"heading": 5,
+			"tackling": 4,
+			"control": 7,
+			"speed": 7,
+			"finishing": 7
+		},
+		"bestSkills": [
+			"CONTROL",
+			"SPEED",
+			"FINISHING"
+		]
+	},
+	{
+		"name": "GENERAL MOLA MAZO",
+		"shirtName": "MOLA MAZO",
+		"nationality": "ESP",
+		"role": "ATTACKER",
+		"number": 11,
+		"skinColor": "PINK",
+		"hairColor": "BLACK",
+		"hairStyle": "SMOOTH_A",
+		"skills": {
+			"passing": 5,
+			"shooting": 6,
+			"heading": 6,
+			"tackling": 4,
+			"control": 5,
+			"speed": 6,
+			"finishing": 6
+		},
+		"bestSkills": [
+			"HEADING",
+			"FINISHING",
+			"SPEED"
+		]
+	},
+	{
+		"name": "WILLIAM NEGRI",
+		"shirtName": "NEGRI",
+		"nationality": "ESP",
+		"role": "GOALKEEPER",
+		"number": 12,
+		"skinColor": "PINK",
+		"hairColor": "BLACK",
+		"hairStyle": "SMOOTH_A",
+		"value": 38
+	},
+	{
+		"name": "SANDRO SALVADORE",
+		"shirtName": "SALVADORE",
+		"nationality": "ESP",
+		"role": "DEFENDER",
+		"number": 13,
+		"skinColor": "PINK",
+		"hairColor": "BLACK",
+		"hairStyle": "SMOOTH_A",
+		"skills": {
+			"passing": 7,
+			"shooting": 5,
+			"heading": 7,
+			"tackling": 7,
+			"control": 7,
+			"speed": 6,
+			"finishing": 4
+		},
+		"bestSkills": [
+			"TACKLING",
+			"HEADING",
+			"PASSING"
+		]
+	},
+	{
+		"name": "GIOVANNI TRAPATTONI",
+		"shirtName": "TRAPATTONI",
+		"nationality": "ESP",
+		"role": "MIDFIELDER",
+		"number": 14,
+		"skinColor": "PINK",
+		"hairColor": "BLOND",
+		"hairStyle": "SMOOTH_A",
+		"skills": {
+			"passing": 7,
+			"shooting": 5,
+			"heading": 7,
+			"tackling": 7,
+			"control": 6,
+			"speed": 6,
+			"finishing": 4
+		},
+		"bestSkills": [
+			"PASSING",
+			"TACKLING",
+			"HEADING"
+		]
+	},
+	{
+		"name": "GIAMPAOLO MENICHELLI",
+		"shirtName": "MENICHELLI",
+		"nationality": "ESP",
+		"role": "LEFT_WINGER",
+		"number": 15,
+		"skinColor": "PINK",
+		"hairColor": "BLACK",
+		"hairStyle": "SMOOTH_A",
+		"skills": {
+			"passing": 6,
+			"shooting": 6,
+			"heading": 5,
+			"tackling": 4,
+			"control": 6,
+			"speed": 7,
+			"finishing": 6
+		},
+		"bestSkills": [
+			"SPEED",
+			"CONTROL",
+			"PASSING"
+		]
+	},
+	{
+		"name": "EZIO PASCUTTI",
+		"shirtName": "PASCUTTI",
+		"nationality": "ESP",
+		"role": "ATTACKER",
+		"number": 16,
+		"skinColor": "PINK",
+		"hairColor": "BLACK",
+		"hairStyle": "SHORT_C",
+		"skills": {
+			"passing": 5,
+			"shooting": 6,
+			"heading": 6,
+			"tackling": 5,
+			"control": 5,
+			"speed": 6,
+			"finishing": 7
+		},
+		"bestSkills": [
+			"FINISHING",
+			"HEADING",
+			"SPEED"
+		]
+	}
+]
+}

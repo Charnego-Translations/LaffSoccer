@@ -20,7 +20,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import static com.ygames.ysoccer.framework.Assets.RANDOM;
-import static com.ygames.ysoccer.framework.FileUtils.randomOrNull;
+import static com.ygames.ysoccer.framework.EMath.randomPick;
 import static com.ygames.ysoccer.framework.GLGame.LogType.COMMENTARY;
 
 /**
@@ -210,7 +210,7 @@ public class Commentary {
         }
 
         if (!sounds.isEmpty()) {
-            return new Comment[] {new Comment(Comment.Priority.LOW, randomOrNull(sounds))};
+            return new Comment[] {new Comment(Comment.Priority.LOW, randomPick(sounds))};
         }
         return null;
     }
@@ -235,11 +235,13 @@ public class Commentary {
 
         playing = target;
         try {
-            playing.getSound().play();
+            if (playing.getSound() != null) {
+                playing.getSound().play();
+                lastSound = playing.getSound();
+            }
         } catch (UnsatisfiedLinkError ex) {
             GLGame.debug(COMMENTARY, this, "Couldn't play comment: " + ex.getMessage());
         }
-        lastSound = playing.getSound();
 
         return true;
     }

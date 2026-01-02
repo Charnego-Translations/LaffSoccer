@@ -1,6 +1,7 @@
 package com.ygames.ysoccer.match;
 
 import com.badlogic.gdx.math.Vector2;
+import com.ygames.ysoccer.events.CornerKickEvent;
 import com.ygames.ysoccer.events.WhistleEvent;
 import com.ygames.ysoccer.framework.EventManager;
 import com.ygames.ysoccer.framework.GLGame;
@@ -50,6 +51,8 @@ class MatchStateCornerStop extends MatchState {
         scene.updateTeamTactics();
         scene.team[HOME].lineup.get(0).setTarget(0, scene.team[HOME].side * (Const.GOAL_LINE - 8));
         scene.team[AWAY].lineup.get(0).setTarget(0, scene.team[AWAY].side * (Const.GOAL_LINE - 8));
+
+        EventManager.publish(new CornerKickEvent());
 
         scene.resetAutomaticInputDevices();
 

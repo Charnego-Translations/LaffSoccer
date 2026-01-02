@@ -1,5 +1,6 @@
 package com.ygames.ysoccer.match;
 
+import com.ygames.ysoccer.events.ThrowInEvent;
 import com.ygames.ysoccer.events.WhistleEvent;
 import com.ygames.ysoccer.framework.EventManager;
 import com.ygames.ysoccer.framework.GLGame;
@@ -32,6 +33,7 @@ class MatchStateThrowInStop extends MatchState {
         super.entryActions();
 
         EventManager.publish(new WhistleEvent());
+        EventManager.publish(new ThrowInEvent());
 
         fsm.throwInPosition.set(scene.ball.xSide * Const.TOUCH_LINE, scene.ball.y);
 

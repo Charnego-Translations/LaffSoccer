@@ -1,0 +1,402 @@
+{
+"name": "ESPAÑA",
+"type": "NATIONAL",
+"country": "ESP",
+"confederation": "UEFA",
+"city": "SEVILLA",
+"stadium": "LA NUEVA MAESTRANZA",
+"coach": {
+	"name": "EL FARY",
+	"nationality": "ESP"
+},
+"tactics": "4-4-2",
+"kits": [
+	{
+		"style": "PLAIN",
+		"shirt1": "#f61c1c",
+		"shirt2": "#e8ef2f",
+		"shirt3": "#e8ef2f",
+		"shorts": "#3033c1",
+		"socks": "#1e1e1e"
+	},
+	{
+		"style": "PLAIN",
+		"shirt1": "#dfe8eb",
+		"shirt2": "#a31212",
+		"shirt3": "#a31212",
+		"shorts": "#dfe8eb",
+		"socks": "#dfe8eb"
+	},
+	{
+		"style": "BIG_CHECK",
+		"shirt1": "#f61c1c",
+		"shirt2": "#dfe8eb",
+		"shirt3": "#dfe8eb",
+		"shorts": "#1e1e1e",
+		"socks": "#1e1e1e"
+	}
+],
+"players": [
+	{
+		"name": "ARTURO PÉREZ-REVERTE",
+		"shirtName": "PEREZ-REVERTE",
+		"nationality": "ESP",
+		"role": "GOALKEEPER",
+		"number": 19,
+		"skinColor": "RED",
+		"hairColor": "WHITE",
+		"hairStyle": "CURLY_A",
+		"value": 10
+	},
+	{
+		"name": "MANOLO ESCOBAR",
+		"shirtName": "MANOLO ESC.",
+		"nationality": "ESP",
+		"role": "MIDFIELDER",
+		"number": 4,
+		"skinColor": "ARAB",
+		"hairColor": "BLACK",
+		"hairStyle": "THINNING_C",
+		"skills": {
+			"passing": 2,
+			"shooting": 4,
+			"heading": 4,
+			"tackling": 3,
+			"control": 2,
+			"speed": 6,
+			"finishing": 2
+		},
+		"bestSkills": [
+			"SHOOTING"
+		]
+	},
+	{
+		"name": "BERTÍN OSBORNE",
+		"shirtName": "B. OSBORNE",
+		"nationality": "ESP",
+		"role": "DEFENDER",
+		"number": 11,
+		"skinColor": "RED",
+		"hairColor": "GRAY",
+		"hairStyle": "THINNING_B",
+		"skills": {
+			"passing": 4,
+			"shooting": 1,
+			"heading": 2,
+			"tackling": 5,
+			"control": 5,
+			"speed": 5,
+			"finishing": 2
+		},
+		"bestSkills": [
+			"FINISHING",
+			"SPEED",
+			"TACKLING",
+			"SHOOTING",
+			"HEADING",
+			"CONTROL"
+		]
+	},
+	{
+		"name": "JESÚS GIL Y GIL",
+		"shirtName": "JESÚS GIL",
+		"nationality": "ESP",
+		"role": "LEFT_BACK",
+		"number": 12,
+		"skinColor": "ARAB",
+		"hairColor": "RED",
+		"hairStyle": "PIGTAIL_C",
+		"skills": {
+			"passing": 2,
+			"shooting": 3,
+			"heading": 2,
+			"tackling": 2,
+			"control": 5,
+			"speed": 3,
+			"finishing": 2
+		},
+		"bestSkills": [
+			"TACKLING",
+			"SPEED",
+			"HEADING",
+			"CONTROL"
+		]
+	},
+	{
+		"name": "DON PELAYO",
+		"shirtName": "DON PELAYO",
+		"nationality": "ESP",
+		"role": "DEFENDER",
+		"number": 5,
+		"skinColor": "PALE",
+		"hairColor": "GRAY",
+		"hairStyle": "BALD_B",
+		"skills": {
+			"passing": 2,
+			"shooting": 3,
+			"heading": 3,
+			"tackling": 4,
+			"control": 3,
+			"speed": 4,
+			"finishing": 4
+		},
+		"bestSkills": []
+	},
+	{
+		"name": "RAMÓN GARCÍA",
+		"shirtName": "RAMÓN G.",
+		"nationality": "ESP",
+		"role": "LEFT_WINGER",
+		"number": 16,
+		"skinColor": "PALE",
+		"hairColor": "BLACK",
+		"hairStyle": "SMOOTH_E",
+		"skills": {
+			"passing": 1,
+			"shooting": 5,
+			"heading": 2,
+			"tackling": 3,
+			"control": 4,
+			"speed": 4,
+			"finishing": 6
+		},
+		"bestSkills": [
+			"PASSING",
+			"FINISHING",
+			"HEADING",
+			"SHOOTING",
+			"TACKLING"
+		]
+	},
+	{
+		"name": "CAMILO SESTO",
+		"shirtName": "C. SESTO",
+		"nationality": "ESP",
+		"role": "LEFT_WINGER",
+		"number": 10,
+		"skinColor": "PINK",
+		"hairColor": "BLOND",
+		"hairStyle": "SPECIAL_F",
+		"skills": {
+			"passing": 3,
+			"shooting": 4,
+			"heading": 1,
+			"tackling": 4,
+			"control": 5,
+			"speed": 5,
+			"finishing": 2
+		},
+		"bestSkills": [
+			"TACKLING"
+		]
+	},
+	{
+		"name": "NINO BRAVO",
+		"shirtName": "NINO BRAVO",
+		"nationality": "ESP",
+		"role": "RIGHT_BACK",
+		"number": 2,
+		"skinColor": "PALE",
+		"hairColor": "BLACK",
+		"hairStyle": "SMOOTH_D",
+		"skills": {
+			"passing": 4,
+			"shooting": 1,
+			"heading": 2,
+			"tackling": 4,
+			"control": 2,
+			"speed": 3,
+			"finishing": 4
+		},
+		"bestSkills": [
+			"FINISHING",
+			"TACKLING",
+			"PASSING",
+			"HEADING",
+			"SHOOTING"
+		]
+	},
+	{
+		"name": "JULIO IGLESIAS",
+		"shirtName": "JULIO I.",
+		"nationality": "ESP",
+		"role": "LEFT_WINGER",
+		"number": 17,
+		"skinColor": "PALE",
+		"hairColor": "BROWN",
+		"hairStyle": "SMOOTH_C",
+		"skills": {
+			"passing": 4,
+			"shooting": 4,
+			"heading": 4,
+			"tackling": 4,
+			"control": 3,
+			"speed": 2,
+			"finishing": 3
+		},
+		"bestSkills": [
+			"HEADING",
+			"SPEED"
+		]
+	},
+	{
+		"name": "ARTURO FERNÁNDEZ",
+		"shirtName": "ARTURO FDEZ.",
+		"nationality": "ESP",
+		"role": "RIGHT_BACK",
+		"number": 8,
+		"skinColor": "ARAB",
+		"hairColor": "BLACK",
+		"hairStyle": "SMOOTH_H",
+		"skills": {
+			"passing": 5,
+			"shooting": 3,
+			"heading": 3,
+			"tackling": 4,
+			"control": 2,
+			"speed": 2,
+			"finishing": 2
+		},
+		"bestSkills": [
+			"HEADING",
+			"SHOOTING",
+			"PASSING",
+			"FINISHING",
+			"SPEED",
+			"CONTROL"
+		]
+	},
+	{
+		"name": "MANOLETE",
+		"shirtName": "MANOLETE",
+		"nationality": "ESP",
+		"role": "DEFENDER",
+		"number": 15,
+		"skinColor": "MULATTO",
+		"hairColor": "BLACK",
+		"hairStyle": "SMOOTH_L",
+		"skills": {
+			"passing": 3,
+			"shooting": 3,
+			"heading": 4,
+			"tackling": 2,
+			"control": 4,
+			"speed": 2,
+			"finishing": 3
+		},
+		"bestSkills": [
+			"SHOOTING",
+			"PASSING",
+			"TACKLING"
+		]
+	},
+	{
+		"name": "CONSTANTINO ROMERO",
+		"shirtName": "CONSTANTINO",
+		"nationality": "ESP",
+		"role": "GOALKEEPER",
+		"number": 1,
+		"skinColor": "ARAB",
+		"hairColor": "GRAY",
+		"hairStyle": "SPECIAL_A",
+		"value": 16
+	},
+	{
+		"name": "PACO UMBRAL",
+		"shirtName": "UMBRAL",
+		"nationality": "ESP",
+		"role": "LEFT_BACK",
+		"number": 14,
+		"skinColor": "PINK",
+		"hairColor": "WHITE",
+		"hairStyle": "SHORT_A",
+		"skills": {
+			"passing": 5,
+			"shooting": 1,
+			"heading": 2,
+			"tackling": 4,
+			"control": 2,
+			"speed": 4,
+			"finishing": 2
+		},
+		"bestSkills": [
+			"CONTROL",
+			"TACKLING",
+			"SPEED",
+			"FINISHING"
+		]
+	},
+	{
+		"name": "ANDRÉS PAJARES",
+		"shirtName": "PAJARES",
+		"nationality": "ESP",
+		"role": "RIGHT_WINGER",
+		"number": 6,
+		"skinColor": "MULATTO",
+		"hairColor": "BLACK",
+		"hairStyle": "CURLY_C",
+		"skills": {
+			"passing": 2,
+			"shooting": 4,
+			"heading": 2,
+			"tackling": 2,
+			"control": 3,
+			"speed": 6,
+			"finishing": 5
+		},
+		"bestSkills": [
+			"CONTROL",
+			"SHOOTING",
+			"FINISHING",
+			"TACKLING"
+		]
+	},
+	{
+		"name": "PACO MARTÍNEZ SORIA",
+		"shirtName": "M. SORIA",
+		"nationality": "ESP",
+		"role": "RIGHT_BACK",
+		"number": 9,
+		"skinColor": "ARAB",
+		"hairColor": "GRAY",
+		"hairStyle": "SMOOTH_L",
+		"skills": {
+			"passing": 4,
+			"shooting": 4,
+			"heading": 2,
+			"tackling": 3,
+			"control": 3,
+			"speed": 1,
+			"finishing": 4
+		},
+		"bestSkills": []
+	},
+	{
+		"name": "EMILIO ARAGÓN",
+		"shirtName": "MILIKITO",
+		"nationality": "ESP",
+		"role": "DEFENDER",
+		"number": 7,
+		"skinColor": "RED",
+		"hairColor": "BROWN",
+		"hairStyle": "SMOOTH_O",
+		"skills": {
+			"passing": 4,
+			"shooting": 4,
+			"heading": 2,
+			"tackling": 4,
+			"control": 3,
+			"speed": 2,
+			"finishing": 3
+		},
+		"bestSkills": [
+			"TACKLING",
+			"FINISHING",
+			"CONTROL",
+			"SHOOTING",
+			"HEADING",
+			"PASSING"
+		]
+	}
+]
+}

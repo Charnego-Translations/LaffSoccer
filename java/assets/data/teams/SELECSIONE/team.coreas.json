@@ -1,0 +1,415 @@
+{
+"name": "COREA DEL SUR",
+"type": "NATIONAL",
+"country": "KOR",
+"confederation": "AFC",
+"city": "KAH WEN TO",
+"stadium": "BLIZZARD ARENA",
+"coach": {
+	"name": "STARCRAFT",
+	"nationality": "KOR"
+},
+"tactics": "4-4-2",
+"kits": [
+	{
+		"style": "PLAIN",
+		"shirt1": "#f61c1c",
+		"shirt2": "#1e1e1e",
+		"shirt3": "#1e1e1e",
+		"shorts": "#1e1e1e",
+		"socks": "#bc1163"
+	},
+	{
+		"style": "SIDE_LINES",
+		"shirt1": "#dfe8eb",
+		"shirt2": "#a31212",
+		"shirt3": "#a31212",
+		"shorts": "#dfe8eb",
+		"socks": "#dfe8eb"
+	},
+	{
+		"style": "DOUBLE_STRIPE",
+		"shirt1": "#dfe8eb",
+		"shirt2": "#f61c1c",
+		"shirt3": "#f61c1c",
+		"shorts": "#f61c1c",
+		"socks": "#3033c1"
+	}
+],
+"players": [
+	{
+		"name": "SSANG YONG",
+		"shirtName": "SSANG Y.",
+		"nationality": "SAM",
+		"role": "GOALKEEPER",
+		"number": 7,
+		"skinColor": "ASIATIC",
+		"hairColor": "BLACK",
+		"hairStyle": "THINNING_C",
+		"value": 14
+	},
+	{
+		"name": "DAIKIN",
+		"shirtName": "DAIKIN",
+		"nationality": "MTN",
+		"role": "LEFT_BACK",
+		"number": 19,
+		"skinColor": "ASIATIC",
+		"hairColor": "BLACK",
+		"hairStyle": "SHORT_A",
+		"skills": {
+			"passing": 3,
+			"shooting": 2,
+			"heading": 1,
+			"tackling": 4,
+			"control": 3,
+			"speed": 5,
+			"finishing": 3
+		},
+		"bestSkills": [
+			"SHOOTING",
+			"SPEED",
+			"CONTROL",
+			"PASSING",
+			"HEADING"
+		]
+	},
+	{
+		"name": "HANKOOK",
+		"shirtName": "HANKOOK",
+		"nationality": "MDV",
+		"role": "LEFT_WINGER",
+		"number": 13,
+		"skinColor": "ASIATIC",
+		"hairColor": "GRAY",
+		"hairStyle": "CURLY_C",
+		"skills": {
+			"passing": 3,
+			"shooting": 3,
+			"heading": 3,
+			"tackling": 3,
+			"control": 4,
+			"speed": 4,
+			"finishing": 3
+		},
+		"bestSkills": [
+			"CONTROL",
+			"SPEED",
+			"SHOOTING",
+			"HEADING",
+			"TACKLING"
+		]
+	},
+	{
+		"name": "TAEKWONDO",
+		"shirtName": "TAEKWONDO",
+		"nationality": "ENG",
+		"role": "RIGHT_WINGER",
+		"number": 4,
+		"skinColor": "ASIATIC",
+		"hairColor": "BLACK",
+		"hairStyle": "SHAVED",
+		"skills": {
+			"passing": 1,
+			"shooting": 4,
+			"heading": 1,
+			"tackling": 2,
+			"control": 6,
+			"speed": 4,
+			"finishing": 4
+		},
+		"bestSkills": [
+			"PASSING",
+			"CONTROL",
+			"SPEED",
+			"TACKLING",
+			"HEADING"
+		]
+	},
+	{
+		"name": "STARCRAFT",
+		"shirtName": "STARCRAFT",
+		"nationality": "ESP",
+		"role": "RIGHT_BACK",
+		"number": 1,
+		"skinColor": "ASIATIC",
+		"hairColor": "GRAY",
+		"hairStyle": "SMOOTH_O",
+		"skills": {
+			"passing": 5,
+			"shooting": 2,
+			"heading": 2,
+			"tackling": 4,
+			"control": 5,
+			"speed": 4,
+			"finishing": 1
+		},
+		"bestSkills": [
+			"SHOOTING",
+			"FINISHING"
+		]
+	},
+	{
+		"name": "SANYO",
+		"shirtName": "SANYO",
+		"nationality": "SRB",
+		"role": "MIDFIELDER",
+		"number": 6,
+		"skinColor": "ASIATIC",
+		"hairColor": "BLACK",
+		"hairStyle": "THINNING_A",
+		"skills": {
+			"passing": 3,
+			"shooting": 5,
+			"heading": 4,
+			"tackling": 4,
+			"control": 3,
+			"speed": 5,
+			"finishing": 3
+		},
+		"bestSkills": [
+			"HEADING",
+			"CONTROL",
+			"SPEED",
+			"SHOOTING",
+			"FINISHING",
+			"TACKLING"
+		]
+	},
+	{
+		"name": "KYMCO",
+		"shirtName": "KYMCO",
+		"nationality": "JOR",
+		"role": "DEFENDER",
+		"number": 3,
+		"skinColor": "ASIATIC",
+		"hairColor": "GRAY",
+		"hairStyle": "SMOOTH_N",
+		"skills": {
+			"passing": 2,
+			"shooting": 2,
+			"heading": 5,
+			"tackling": 4,
+			"control": 4,
+			"speed": 1,
+			"finishing": 3
+		},
+		"bestSkills": [
+			"PASSING",
+			"HEADING",
+			"SHOOTING",
+			"FINISHING",
+			"TACKLING"
+		]
+	},
+	{
+		"name": "HYOSUNG",
+		"shirtName": "HYOSUNG",
+		"nationality": "ZIM",
+		"role": "RIGHT_WINGER",
+		"number": 2,
+		"skinColor": "ASIATIC",
+		"hairColor": "GRAY",
+		"hairStyle": "CURLY_B",
+		"skills": {
+			"passing": 4,
+			"shooting": 3,
+			"heading": 2,
+			"tackling": 2,
+			"control": 3,
+			"speed": 4,
+			"finishing": 5
+		},
+		"bestSkills": [
+			"HEADING",
+			"CONTROL",
+			"PASSING"
+		]
+	},
+	{
+		"name": "DAEWOO",
+		"shirtName": "DAEWOO",
+		"nationality": "CTA",
+		"role": "RIGHT_BACK",
+		"number": 18,
+		"skinColor": "ASIATIC",
+		"hairColor": "BLACK",
+		"hairStyle": "SMOOTH_E",
+		"skills": {
+			"passing": 4,
+			"shooting": 2,
+			"heading": 2,
+			"tackling": 4,
+			"control": 5,
+			"speed": 5,
+			"finishing": 0
+		},
+		"bestSkills": [
+			"CONTROL"
+		]
+	},
+	{
+		"name": "HYUNDAI",
+		"shirtName": "HYUNDAI",
+		"nationality": "SUI",
+		"role": "MIDFIELDER",
+		"number": 12,
+		"skinColor": "ASIATIC",
+		"hairColor": "BLACK",
+		"hairStyle": "PIGTAIL_A",
+		"skills": {
+			"passing": 4,
+			"shooting": 2,
+			"heading": 2,
+			"tackling": 4,
+			"control": 1,
+			"speed": 3,
+			"finishing": 3
+		},
+		"bestSkills": [
+			"FINISHING",
+			"TACKLING",
+			"CONTROL",
+			"SHOOTING"
+		]
+	},
+	{
+		"name": "SAMSUNG",
+		"shirtName": "SAMSUNG",
+		"nationality": "PER",
+		"role": "DEFENDER",
+		"number": 5,
+		"skinColor": "ASIATIC",
+		"hairColor": "BLACK",
+		"hairStyle": "SPECIAL_A",
+		"skills": {
+			"passing": 4,
+			"shooting": 2,
+			"heading": 5,
+			"tackling": 4,
+			"control": 3,
+			"speed": 2,
+			"finishing": 3
+		},
+		"bestSkills": [
+			"TACKLING",
+			"SPEED",
+			"CONTROL",
+			"FINISHING",
+			"SHOOTING"
+		]
+	},
+	{
+		"name": "DOOSAN",
+		"shirtName": "DOOSAN",
+		"nationality": "NAM",
+		"role": "GOALKEEPER",
+		"number": 17,
+		"skinColor": "ASIATIC",
+		"hairColor": "BLACK",
+		"hairStyle": "SHORT_A",
+		"value": 0
+	},
+	{
+		"name": "KT&G",
+		"shirtName": "KT&G",
+		"nationality": "URU",
+		"role": "MIDFIELDER",
+		"number": 21,
+		"skinColor": "ASIATIC",
+		"hairColor": "BLACK",
+		"hairStyle": "SMOOTH_O",
+		"skills": {
+			"passing": 2,
+			"shooting": 5,
+			"heading": 5,
+			"tackling": 4,
+			"control": 2,
+			"speed": 3,
+			"finishing": 2
+		},
+		"bestSkills": [
+			"CONTROL",
+			"PASSING",
+			"FINISHING"
+		]
+	},
+	{
+		"name": "KUHMO",
+		"shirtName": "KUHMO",
+		"nationality": "BFA",
+		"role": "MIDFIELDER",
+		"number": 10,
+		"skinColor": "ASIATIC",
+		"hairColor": "BLACK",
+		"hairStyle": "THINNING_A",
+		"skills": {
+			"passing": 3,
+			"shooting": 4,
+			"heading": 4,
+			"tackling": 3,
+			"control": 4,
+			"speed": 4,
+			"finishing": 6
+		},
+		"bestSkills": [
+			"SPEED",
+			"SHOOTING",
+			"FINISHING",
+			"TACKLING"
+		]
+	},
+	{
+		"name": "DAEHAN",
+		"shirtName": "DAEHAN",
+		"nationality": "ENG",
+		"role": "RIGHT_WINGER",
+		"number": 20,
+		"skinColor": "ASIATIC",
+		"hairColor": "BLACK",
+		"hairStyle": "CURLY_E",
+		"skills": {
+			"passing": 1,
+			"shooting": 3,
+			"heading": 0,
+			"tackling": 1,
+			"control": 4,
+			"speed": 4,
+			"finishing": 5
+		},
+		"bestSkills": [
+			"HEADING",
+			"SHOOTING",
+			"PASSING",
+			"FINISHING"
+		]
+	},
+	{
+		"name": "LOTTE",
+		"shirtName": "LOTTE",
+		"nationality": "LAO",
+		"role": "RIGHT_BACK",
+		"number": 14,
+		"skinColor": "ASIATIC",
+		"hairColor": "BLACK",
+		"hairStyle": "SMOOTH_D",
+		"skills": {
+			"passing": 4,
+			"shooting": 2,
+			"heading": 2,
+			"tackling": 3,
+			"control": 4,
+			"speed": 4,
+			"finishing": 2
+		},
+		"bestSkills": [
+			"PASSING",
+			"FINISHING",
+			"CONTROL",
+			"HEADING",
+			"SHOOTING",
+			"TACKLING"
+		]
+	}
+]
+}

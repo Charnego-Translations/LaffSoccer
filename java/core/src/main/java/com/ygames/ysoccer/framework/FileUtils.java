@@ -68,21 +68,4 @@ public class FileUtils {
         return normalized;
     }
 
-    public static <T> T randomOrNull(Collection<T> collection) {
-        if (collection == null || collection.isEmpty()) {
-            return null;
-        }
-
-        int index = Assets.RANDOM.nextInt(collection.size());
-
-        if (collection instanceof List) {
-            return ((List<T>) collection).get(index);
-        }
-
-        Iterator<T> it = collection.iterator();
-        for (int i = 0; i < index; i++) {
-            it.next();
-        }
-        return it.next();
-    }
 }

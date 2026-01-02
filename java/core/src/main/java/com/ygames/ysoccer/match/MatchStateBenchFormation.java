@@ -1,7 +1,9 @@
 package com.ygames.ysoccer.match;
 
+import com.ygames.ysoccer.events.SubstitutionEvent;
 import com.ygames.ysoccer.framework.Assets;
 import com.ygames.ysoccer.framework.EMath;
+import com.ygames.ysoccer.framework.EventManager;
 import com.ygames.ysoccer.framework.GLGame;
 import com.ygames.ysoccer.framework.SoundManager;
 
@@ -127,6 +129,8 @@ class MatchStateBenchFormation extends MatchState {
 
                             selectedPlayer.setState(STATE_SUBSTITUTED);
                             benchPlayer.setState(STATE_REACH_TARGET);
+
+                            EventManager.publish(new SubstitutionEvent(benchStatus.team, benchPlayer, selectedPlayer));
 
                             benchStatus.substPosition = -1;
 

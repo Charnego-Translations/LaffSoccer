@@ -1,0 +1,411 @@
+{
+"name": "C.D. PELOTAZO",
+"type": "CUSTOM",
+"country": "SPA",
+"city": "PLAZA DEL MAMAERO",
+"stadium": "VENTA DEL NABO",
+"coach": {
+	"name": "EL YUYU",
+	"nationality": "ESP"
+},
+"tactics": "4-4-2",
+"kits": [
+	{
+		"style": "BAND",
+		"shirt1": "#3033c1",
+		"shirt2": "#f61c1c",
+		"shirt3": "#000000",
+		"shorts": "#3033c1",
+		"socks": "#f61c1c"
+	},
+	{
+		"style": "PLAIN",
+		"shirt1": "#dfe8eb",
+		"shirt2": "#f61c1c",
+		"shirt3": "#000000",
+		"shorts": "#3033c1",
+		"socks": "#f61c1c"
+	},
+	{
+		"style": "PLAIN",
+		"shirt1": "#afb2b9",
+		"shirt2": "#afb2b9",
+		"shirt3": "#000000",
+		"shorts": "#afb2b9",
+		"socks": "#afb2b9"
+	},
+	{
+		"style": "PLAIN",
+		"shirt1": "#ffd200",
+		"shirt2": "#dfe8eb",
+		"shirt3": "#000000",
+		"shorts": "#3033c1",
+		"socks": "#f61c1c"
+	},
+	{
+		"style": "PLAIN",
+		"shirt1": "#993333",
+		"shirt2": "#993333",
+		"shirt3": "#000000",
+		"shorts": "#dfe8eb",
+		"socks": "#3033c1"
+	}
+],
+"players": [
+	{
+		"name": "PACO EL BECARIO",
+		"shirtName": "PACO",
+		"nationality": "CUS",
+		"role": "GOALKEEPER",
+		"number": 1,
+		"skinColor": "PINK",
+		"hairColor": "BLACK",
+		"hairStyle": "SMOOTH_K",
+		"value": 30
+	},
+	{
+		"name": "EUSTAQUIO DOMÍNGUEZ",
+		"shirtName": "TAQUI",
+		"nationality": "ESP",
+		"role": "RIGHT_BACK",
+		"number": 2,
+		"skinColor": "PALE",
+		"hairColor": "BLACK",
+		"hairStyle": "SMOOTH_A",
+		"skills": {
+			"passing": 4,
+			"shooting": 1,
+			"heading": 3,
+			"tackling": 5,
+			"control": 3,
+			"speed": 4,
+			"finishing": 2
+		},
+		"bestSkills": [
+			"SHOOTING",
+			"HEADING",
+			"TACKLING"
+		]
+	},
+	{
+		"name": "DOCTOR BATABLANC",
+		"shirtName": "DR. BATABLANC",
+		"nationality": "CAT",
+		"role": "DEFENDER",
+		"number": 4,
+		"skinColor": "PINK",
+		"hairColor": "BLACK",
+		"hairStyle": "SMOOTH_D",
+		"skills": {
+			"passing": 3,
+			"shooting": 5,
+			"heading": 3,
+			"tackling": 3,
+			"control": 4,
+			"speed": 4,
+			"finishing": 2
+		},
+		"bestSkills": [
+			"PASSING",
+			"CONTROL",
+			"SHOOTING",
+			"HEADING",
+			"TACKLING",
+			"FINISHING"
+		]
+	},
+	{
+		"name": "QUIQUE LAFUENTE",
+		"shirtName": "LAFUENTE",
+		"nationality": "ESP",
+		"role": "DEFENDER",
+		"number": 5,
+		"skinColor": "PINK",
+		"hairColor": "BLACK",
+		"hairStyle": "SMOOTH_C",
+		"skills": {
+			"passing": 3,
+			"shooting": 3,
+			"heading": 0,
+			"tackling": 3,
+			"control": 4,
+			"speed": 3,
+			"finishing": 2
+		},
+		"bestSkills": []
+	},
+	{
+		"name": "COMANDANTE LARA",
+		"shirtName": "C. LARA",
+		"nationality": "ESP",
+		"role": "LEFT_BACK",
+		"number": 3,
+		"skinColor": "PINK",
+		"hairColor": "BLACK",
+		"hairStyle": "SMOOTH_C",
+		"skills": {
+			"passing": 3,
+			"shooting": 1,
+			"heading": 2,
+			"tackling": 4,
+			"control": 5,
+			"speed": 3,
+			"finishing": 1
+		},
+		"bestSkills": [
+			"PASSING",
+			"SHOOTING",
+			"CONTROL",
+			"FINISHING"
+		]
+	},
+	{
+		"name": "BERND SCHUSTER",
+		"shirtName": "SCHUSTER",
+		"nationality": "GER",
+		"role": "RIGHT_WINGER",
+		"number": 7,
+		"skinColor": "PINK",
+		"hairColor": "BLACK",
+		"hairStyle": "SMOOTH_B",
+		"skills": {
+			"passing": 1,
+			"shooting": 5,
+			"heading": 1,
+			"tackling": 3,
+			"control": 5,
+			"speed": 5,
+			"finishing": 6
+		},
+		"bestSkills": [
+			"SHOOTING",
+			"HEADING",
+			"SPEED",
+			"PASSING"
+		]
+	},
+	{
+		"name": "PACO NABO",
+		"shirtName": "NABO",
+		"nationality": "ESP",
+		"role": "MIDFIELDER",
+		"number": 14,
+		"skinColor": "PINK",
+		"hairColor": "BLACK",
+		"hairStyle": "SMOOTH_E",
+		"skills": {
+			"passing": 3,
+			"shooting": 4,
+			"heading": 3,
+			"tackling": 4,
+			"control": 4,
+			"speed": 3,
+			"finishing": 3
+		},
+		"bestSkills": []
+	},
+	{
+		"name": "JEQUE AL THANI",
+		"shirtName": "JEQUE",
+		"nationality": "CUS",
+		"role": "MIDFIELDER",
+		"number": 9,
+		"skinColor": "PINK",
+		"hairColor": "BLACK",
+		"hairStyle": "SMOOTH_C",
+		"skills": {
+			"passing": 5,
+			"shooting": 5,
+			"heading": 1,
+			"tackling": 3,
+			"control": 2,
+			"speed": 4,
+			"finishing": 4
+		},
+		"bestSkills": [
+			"CONTROL",
+			"PASSING",
+			"SPEED",
+			"TACKLING",
+			"FINISHING",
+			"SHOOTING"
+		]
+	},
+	{
+		"name": "JOSÉ MERCÉ",
+		"shirtName": "MERCÉ",
+		"nationality": "ESP",
+		"role": "LEFT_WINGER",
+		"number": 8,
+		"skinColor": "PINK",
+		"hairColor": "BLACK",
+		"hairStyle": "SMOOTH_E",
+		"skills": {
+			"passing": 1,
+			"shooting": 4,
+			"heading": 1,
+			"tackling": 3,
+			"control": 3,
+			"speed": 5,
+			"finishing": 5
+		},
+		"bestSkills": [
+			"SHOOTING"
+		]
+	},
+	{
+		"name": "STEVE MONTOYA",
+		"shirtName": "S. MONTOYA",
+		"nationality": "ENG",
+		"role": "ATTACKER",
+		"number": 10,
+		"skinColor": "PINK",
+		"hairColor": "BLACK",
+		"hairStyle": "SMOOTH_P",
+		"skills": {
+			"passing": 4,
+			"shooting": 5,
+			"heading": 2,
+			"tackling": 2,
+			"control": 4,
+			"speed": 4,
+			"finishing": 4
+		},
+		"bestSkills": [
+			"SPEED",
+			"FINISHING",
+			"TACKLING",
+			"HEADING",
+			"CONTROL"
+		]
+	},
+	{
+		"name": "EL CHANO DE CÁDIZ",
+		"shirtName": "CHANO",
+		"nationality": "ESP",
+		"role": "ATTACKER",
+		"number": 11,
+		"skinColor": "PINK",
+		"hairColor": "BLACK",
+		"hairStyle": "SMOOTH_A",
+		"skills": {
+			"passing": 3,
+			"shooting": 4,
+			"heading": 2,
+			"tackling": 4,
+			"control": 2,
+			"speed": 1,
+			"finishing": 3
+		},
+		"bestSkills": [
+			"TACKLING",
+			"SHOOTING",
+			"HEADING",
+			"CONTROL",
+			"FINISHING"
+		]
+	},
+	{
+		"name": "DAVID VIDAL",
+		"shirtName": "D. VIDAL",
+		"nationality": "ESP",
+		"role": "GOALKEEPER",
+		"number": 12,
+		"skinColor": "PINK",
+		"hairColor": "BLACK",
+		"hairStyle": "SMOOTH_A",
+		"value": 39
+	},
+	{
+		"name": "JOSÉ ANTONIO SÁNCHEZ ARAUJO",
+		"shirtName": "EL IMI",
+		"nationality": "ESP",
+		"role": "DEFENDER",
+		"number": 13,
+		"skinColor": "PINK",
+		"hairColor": "BLACK",
+		"hairStyle": "SMOOTH_A",
+		"skills": {
+			"passing": 5,
+			"shooting": 2,
+			"heading": 1,
+			"tackling": 3,
+			"control": 1,
+			"speed": 1,
+			"finishing": 5
+		},
+		"bestSkills": [
+			"HEADING",
+			"FINISHING"
+		]
+	},
+	{
+		"name": "SAMUEL ETO'O",
+		"shirtName": "ETO'O",
+		"nationality": "NIG",
+		"role": "MIDFIELDER",
+		"number": 16,
+		"skinColor": "BLACK",
+		"hairColor": "BLACK",
+		"hairStyle": "SMOOTH_A",
+		"skills": {
+			"passing": 4,
+			"shooting": 3,
+			"heading": 3,
+			"tackling": 2,
+			"control": 2,
+			"speed": 4,
+			"finishing": 3
+		},
+		"bestSkills": [
+			"SHOOTING"
+		]
+	},
+	{
+		"name": "LOUIS VAN GAAL",
+		"shirtName": "VAN GAAL",
+		"nationality": "HOL",
+		"role": "LEFT_BACK",
+		"number": 17,
+		"skinColor": "PINK",
+		"hairColor": "PLATINUM",
+		"hairStyle": "SPECIAL_G",
+		"skills": {
+			"passing": 4,
+			"shooting": 3,
+			"heading": 1,
+			"tackling": 5,
+			"control": 6,
+			"speed": 3,
+			"finishing": 2
+		},
+		"bestSkills": [
+			"SHOOTING",
+			"TACKLING"
+		]
+	},
+	{
+		"name": "KIKO NARVÁEZ",
+		"shirtName": "KIKO",
+		"nationality": "ESP",
+		"role": "ATTACKER",
+		"number": 15,
+		"skinColor": "PINK",
+		"hairColor": "BLACK",
+		"hairStyle": "SMOOTH_A",
+		"skills": {
+			"passing": 4,
+			"shooting": 5,
+			"heading": 2,
+			"tackling": 3,
+			"control": 2,
+			"speed": 4,
+			"finishing": 4
+		},
+		"bestSkills": [
+			"SPEED",
+			"TACKLING"
+		]
+	}
+]
+}

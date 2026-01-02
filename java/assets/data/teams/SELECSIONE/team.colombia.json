@@ -1,0 +1,444 @@
+{
+"name": "COLOMBIA",
+"type": "NATIONAL",
+"country": "COL",
+"confederation": "CONMEBOL",
+"city": "MEDELLÍN",
+"stadium": "MU GRANDE",
+"coach": {
+	"name": "PABLO ESCOBAR GAVIRIA",
+	"nationality": "COL"
+},
+"tactics": "4-4-2",
+"kits": [
+	{
+		"style": "CHECK",
+		"shirt1": "#e8ef2f",
+		"shirt2": "#ffd200",
+		"shirt3": "#ffd200",
+		"shorts": "#3033c1",
+		"socks": "#f61c1c"
+	},
+	{
+		"style": "SLEEVES",
+		"shirt1": "#3033c1",
+		"shirt2": "#e8ef2f",
+		"shirt3": "#e8ef2f",
+		"shorts": "#e8ef2f",
+		"socks": "#3033c1"
+	},
+	{
+		"style": "DOUBLE_STRIPE",
+		"shirt1": "#e8ef2f",
+		"shirt2": "#3033c1",
+		"shirt3": "#3033c1",
+		"shorts": "#2e247a",
+		"socks": "#f61c1c"
+	}
+],
+"players": [
+	{
+		"name": "HUGO HASANI FERNANDES",
+		"shirtName": "FERNANDES H.",
+		"nationality": "COL",
+		"role": "GOALKEEPER",
+		"number": 5,
+		"skinColor": "MULATTO",
+		"hairColor": "PLATINUM",
+		"hairStyle": "PIGTAIL_A",
+		"value": 19
+	},
+	{
+		"name": "ALEKSANDRS MARTINI",
+		"shirtName": "ALEKSANDRS M.",
+		"nationality": "COL",
+		"role": "DEFENDER",
+		"number": 2,
+		"skinColor": "MULATTO",
+		"hairColor": "BROWN",
+		"hairStyle": "CURLY_A",
+		"skills": {
+			"passing": 4,
+			"shooting": 3,
+			"heading": 1,
+			"tackling": 5,
+			"control": 4,
+			"speed": 3,
+			"finishing": 2
+		},
+		"bestSkills": []
+	},
+	{
+		"name": "ANDY GOMES",
+		"shirtName": "ANDY GOMES",
+		"nationality": "COL",
+		"role": "DEFENDER",
+		"number": 8,
+		"skinColor": "ASIATIC",
+		"hairColor": "RED",
+		"hairStyle": "THINNING_B",
+		"skills": {
+			"passing": 4,
+			"shooting": 2,
+			"heading": 1,
+			"tackling": 2,
+			"control": 5,
+			"speed": 3,
+			"finishing": 1
+		},
+		"bestSkills": [
+			"HEADING"
+		]
+	},
+	{
+		"name": "ALEKSANDAR BASILE MANCINI",
+		"shirtName": "MANCINI A.",
+		"nationality": "COL",
+		"role": "LEFT_WINGER",
+		"number": 13,
+		"skinColor": "ASIATIC",
+		"hairColor": "BROWN",
+		"hairStyle": "CURLY_B",
+		"skills": {
+			"passing": 4,
+			"shooting": 3,
+			"heading": 4,
+			"tackling": 3,
+			"control": 2,
+			"speed": 3,
+			"finishing": 4
+		},
+		"bestSkills": [
+			"SHOOTING",
+			"FINISHING",
+			"HEADING",
+			"TACKLING"
+		]
+	},
+	{
+		"name": "BENJAMIN RAMÍREZ KUZNETSOV",
+		"shirtName": "B. RAMÍREZ",
+		"nationality": "COL",
+		"role": "RIGHT_BACK",
+		"number": 12,
+		"skinColor": "ALIEN",
+		"hairColor": "BROWN",
+		"hairStyle": "CURLY_F",
+		"skills": {
+			"passing": 2,
+			"shooting": 3,
+			"heading": 2,
+			"tackling": 3,
+			"control": 3,
+			"speed": 4,
+			"finishing": 3
+		},
+		"bestSkills": [
+			"SHOOTING",
+			"FINISHING",
+			"CONTROL",
+			"PASSING"
+		]
+	},
+	{
+		"name": "NIKOLA AZEVEDO MATOS",
+		"shirtName": "NIKOLA A.",
+		"nationality": "COL",
+		"role": "LEFT_WINGER",
+		"number": 11,
+		"skinColor": "MULATTO",
+		"hairColor": "BLOND",
+		"hairStyle": "SPECIAL_A",
+		"skills": {
+			"passing": 3,
+			"shooting": 5,
+			"heading": 2,
+			"tackling": 3,
+			"control": 5,
+			"speed": 4,
+			"finishing": 5
+		},
+		"bestSkills": [
+			"SHOOTING",
+			"FINISHING",
+			"HEADING"
+		]
+	},
+	{
+		"name": "UNAX CRUZ VITALEALMEIDA",
+		"shirtName": "U. VITALEALMEIDA",
+		"nationality": "COL",
+		"role": "DEFENDER",
+		"number": 17,
+		"skinColor": "RED",
+		"hairColor": "GRAY",
+		"hairStyle": "SPECIAL_A",
+		"skills": {
+			"passing": 2,
+			"shooting": 4,
+			"heading": 5,
+			"tackling": 3,
+			"control": 4,
+			"speed": 3,
+			"finishing": 4
+		},
+		"bestSkills": [
+			"CONTROL",
+			"SHOOTING",
+			"TACKLING"
+		]
+	},
+	{
+		"name": "ARTJOMS MAYR CAPUTO",
+		"shirtName": "MAYR",
+		"nationality": "COL",
+		"role": "RIGHT_BACK",
+		"number": 15,
+		"skinColor": "ASIATIC",
+		"hairColor": "BLOND",
+		"hairStyle": "SMOOTH_M",
+		"skills": {
+			"passing": 2,
+			"shooting": 2,
+			"heading": 2,
+			"tackling": 2,
+			"control": 3,
+			"speed": 3,
+			"finishing": 5
+		},
+		"bestSkills": []
+	},
+	{
+		"name": "ALEKSANDER ROBERT HALL",
+		"shirtName": "ALEKSANDER",
+		"nationality": "COL",
+		"role": "DEFENDER",
+		"number": 18,
+		"skinColor": "ASIATIC",
+		"hairColor": "PUNK_FUCHSIA",
+		"hairStyle": "SMOOTH_C",
+		"skills": {
+			"passing": 3,
+			"shooting": 2,
+			"heading": 2,
+			"tackling": 3,
+			"control": 4,
+			"speed": 3,
+			"finishing": 2
+		},
+		"bestSkills": [
+			"HEADING"
+		]
+	},
+	{
+		"name": "ALI JACKSON",
+		"shirtName": "ALI JACKSON",
+		"nationality": "COL",
+		"role": "DEFENDER",
+		"number": 3,
+		"skinColor": "RED",
+		"hairColor": "GRAY",
+		"hairStyle": "SMOOTH_G",
+		"skills": {
+			"passing": 5,
+			"shooting": 2,
+			"heading": 4,
+			"tackling": 2,
+			"control": 5,
+			"speed": 4,
+			"finishing": 2
+		},
+		"bestSkills": [
+			"SHOOTING",
+			"FINISHING",
+			"SPEED",
+			"CONTROL"
+		]
+	},
+	{
+		"name": "IOANNIS HANSEN",
+		"shirtName": "IOANNIS HANSEN",
+		"nationality": "COL",
+		"role": "LEFT_BACK",
+		"number": 14,
+		"skinColor": "ARAB",
+		"hairColor": "BLACK",
+		"hairStyle": "CURLY_D",
+		"skills": {
+			"passing": 3,
+			"shooting": 2,
+			"heading": 3,
+			"tackling": 4,
+			"control": 3,
+			"speed": 3,
+			"finishing": 2
+		},
+		"bestSkills": [
+			"SHOOTING",
+			"PASSING",
+			"FINISHING",
+			"HEADING"
+		]
+	},
+	{
+		"name": "MARTIN SERRA",
+		"shirtName": "MARTIN SERRA",
+		"nationality": "COL",
+		"role": "GOALKEEPER",
+		"number": 9,
+		"skinColor": "ASIATIC",
+		"hairColor": "GRAY",
+		"hairStyle": "SMOOTH_D",
+		"value": 21
+	},
+	{
+		"name": "MIGUEL VILLA TEIXEIRA",
+		"shirtName": "TEIXEIRA",
+		"nationality": "COL",
+		"role": "RIGHT_BACK",
+		"number": 7,
+		"skinColor": "RED",
+		"hairColor": "GRAY",
+		"hairStyle": "SMOOTH_E",
+		"skills": {
+			"passing": 1,
+			"shooting": 2,
+			"heading": 3,
+			"tackling": 2,
+			"control": 2,
+			"speed": 4,
+			"finishing": 3
+		},
+		"bestSkills": [
+			"CONTROL",
+			"SPEED",
+			"SHOOTING",
+			"HEADING",
+			"TACKLING",
+			"FINISHING"
+		]
+	},
+	{
+		"name": "NAREK ANDREJEV BIANCHI",
+		"shirtName": "B. NAREK",
+		"nationality": "COL",
+		"role": "RIGHT_BACK",
+		"number": 10,
+		"skinColor": "ALIEN",
+		"hairColor": "PUNK_FUCHSIA",
+		"hairStyle": "SHORT_A",
+		"skills": {
+			"passing": 5,
+			"shooting": 4,
+			"heading": 4,
+			"tackling": 3,
+			"control": 5,
+			"speed": 4,
+			"finishing": 2
+		},
+		"bestSkills": [
+			"TACKLING",
+			"PASSING",
+			"FINISHING",
+			"SHOOTING"
+		]
+	},
+	{
+		"name": "JAKE LECHNER",
+		"shirtName": "JAKE LECHNER",
+		"nationality": "COL",
+		"role": "MIDFIELDER",
+		"number": 16,
+		"skinColor": "ASIATIC",
+		"hairColor": "BLACK",
+		"hairStyle": "SMOOTH_F",
+		"skills": {
+			"passing": 2,
+			"shooting": 4,
+			"heading": 2,
+			"tackling": 2,
+			"control": 2,
+			"speed": 3,
+			"finishing": 2
+		},
+		"bestSkills": []
+	},
+	{
+		"name": "CHARLIE LOMBARDO",
+		"shirtName": "LOMBARDO",
+		"nationality": "COL",
+		"role": "LEFT_WINGER",
+		"number": 4,
+		"skinColor": "BLACK",
+		"hairColor": "BLACK",
+		"hairStyle": "SPECIAL_G",
+		"skills": {
+			"passing": 3,
+			"shooting": 5,
+			"heading": 3,
+			"tackling": 3,
+			"control": 5,
+			"speed": 4,
+			"finishing": 4
+		},
+		"bestSkills": [
+			"FINISHING",
+			"PASSING",
+			"CONTROL",
+			"SHOOTING",
+			"TACKLING",
+			"HEADING"
+		]
+	},
+	{
+		"name": "TOBIAS GIL",
+		"shirtName": "TOBIAS GIL",
+		"nationality": "COL",
+		"role": "MIDFIELDER",
+		"number": 6,
+		"skinColor": "ARAB",
+		"hairColor": "PLATINUM",
+		"hairStyle": "SMOOTH_L",
+		"skills": {
+			"passing": 5,
+			"shooting": 2,
+			"heading": 3,
+			"tackling": 1,
+			"control": 2,
+			"speed": 2,
+			"finishing": 2
+		},
+		"bestSkills": [
+			"CONTROL",
+			"SHOOTING",
+			"SPEED",
+			"TACKLING",
+			"HEADING"
+		]
+	},
+	{
+		"name": "SERGEI ROMEO BIANCO",
+		"shirtName": "B. ROMEO",
+		"nationality": "COL",
+		"role": "DEFENDER",
+		"number": 1,
+		"skinColor": "ASIATIC",
+		"hairColor": "RED",
+		"hairStyle": "SMOOTH_B",
+		"skills": {
+			"passing": 4,
+			"shooting": 2,
+			"heading": 3,
+			"tackling": 4,
+			"control": 2,
+			"speed": 5,
+			"finishing": 2
+		},
+		"bestSkills": [
+			"TACKLING",
+			"CONTROL",
+			"SPEED"
+		]
+	}
+]
+}

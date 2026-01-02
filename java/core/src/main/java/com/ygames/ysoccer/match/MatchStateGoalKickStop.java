@@ -1,6 +1,7 @@
 package com.ygames.ysoccer.match;
 
 import com.badlogic.gdx.math.Vector2;
+import com.ygames.ysoccer.events.GoalKickEvent;
 import com.ygames.ysoccer.events.WhistleEvent;
 import com.ygames.ysoccer.framework.EventManager;
 import com.ygames.ysoccer.framework.GLGame;
@@ -47,6 +48,8 @@ class MatchStateGoalKickStop extends MatchState {
 
         goalKickTeam.updateTactics(true);
         opponentTeam.updateTactics(true);
+
+        EventManager.publish(new GoalKickEvent());
 
         goalKickPosition.set(
             (Const.GOAL_AREA_W / 2f) * scene.ball.xSide,

@@ -1,11 +1,15 @@
 package com.ygames.ysoccer.match;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.ygames.ysoccer.events.CrowdChantsEvent;
+import com.ygames.ysoccer.events.TackleEvent;
 import com.ygames.ysoccer.framework.Assets;
 import com.ygames.ysoccer.framework.EMath;
 import com.ygames.ysoccer.framework.EventManager;
+import com.ygames.ysoccer.framework.FileUtils;
 import com.ygames.ysoccer.framework.GLGame;
+import com.ygames.ysoccer.framework.SoundManager;
 
 import static com.ygames.ysoccer.match.Const.TEAM_SIZE;
 import static com.ygames.ysoccer.match.Match.AWAY;
@@ -37,6 +41,7 @@ class MatchStateMain extends MatchState {
     }
 
     private Event event;
+    private Sound currentChant;
 
     MatchStateMain(MatchFsm fsm) {
         super(MAIN, fsm);
@@ -77,9 +82,14 @@ class MatchStateMain extends MatchState {
                         scene.chantSwitch = false;
                         scene.nextChant = scene.clock + (6 + Assets.RANDOM.nextInt(6)) * 1000;
                     } else {
-                        EventManager.publish(new CrowdChantsEvent());
+                        if (currentChant != null) {
+                            currentChant.stop();
+                        }
+                        Sound chant = SoundManager.getSound(SoundManager.SoundClass.CHANTS);
+                        EventManager.publish(new CrowdChantsEvent(chant));
                         scene.chantSwitch = true;
-                        scene.nextChant = scene.clock + 8000;
+                        currentChant = chant;
+                        scene.nextChant = scene.clock + FileUtils.soundDuration(chant);
                     }
                 }
 
@@ -167,6 +177,7 @@ class MatchStateMain extends MatchState {
                                 float strength = (4f + player.v / 260f) / 5f;
                                 float angleDiff = EMath.angleDiff(player.a, opponent.a);
                                 scene.newTackle(player, opponent, strength, angleDiff);
+
                                 Gdx.app.debug(player.shirtName, "tackles on " + opponent.shirtName + " at speed: " + player.v + " (strength = " + strength + ") and angle: " + angleDiff);
                             }
                         }
@@ -213,14 +224,15 @@ class MatchStateMain extends MatchState {
 
                     if (Assets.RANDOM.nextFloat() < hardness) {
                         opponent.setState(STATE_DOWN);
-
-                        if (Assets.RANDOM.nextFloat() < unfairness) {
+                        boolean foul = Assets.RANDOM.nextFloat() < unfairness;
+                        if (foul) {
                             scene.newFoul(scene.tackle.opponent.x, scene.tackle.opponent.y, hardness, unfairness);
                             Gdx.app.debug(player.shirtName, "tackle on " + opponent.shirtName + " is a foul at: " + scene.tackle.opponent.x + ", " + scene.tackle.opponent.y
                                 + " direct shot: " + (scene.foul.isDirectShot() ? "yes" : "no") + " yellow: " + scene.foul.entailsYellowCard + " red: " + scene.foul.entailsRedCard);
                         } else {
                             Gdx.app.debug(player.shirtName, "tackles on " + opponent.shirtName + " is probably not a foul");
                         }
+                        EventManager.publish(new TackleEvent(foul, player, opponent));
                     } else {
                         Gdx.app.debug(opponent.shirtName, "avoids the tackle from " + player.shirtName);
                     }
