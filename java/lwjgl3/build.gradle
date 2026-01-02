@@ -15,6 +15,7 @@ plugins {
 }
 apply plugin: 'io.github.fourlastor.construo'
 
+
 import io.github.fourlastor.construo.Target
 
 sourceSets.main.resources.srcDirs += [ rootProject.file('assets').path ]
@@ -62,7 +63,7 @@ jar {
   dependsOn configurations.runtimeClasspath
   from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
 // these "exclude" lines remove some unnecessary duplicate files in the output JAR.
-  exclude('META-INF/INDEX.LIST', 'META-INF/*.SF', 'META-INF/*.DSA', 'META-INF/*.RSA', 'music', 'docs', 'data')
+  exclude('META-INF/INDEX.LIST', 'META-INF/*.SF', 'META-INF/*.DSA', 'META-INF/*.RSA', 'music', 'docs', 'data', 'images')
   dependencies {
     exclude('META-INF/INDEX.LIST', 'META-INF/maven/**')
   }
@@ -122,8 +123,6 @@ construo {
     }
 }
 
-import java.util.zip.ZipInputStream
-
 def zipUrl = "https://corretto.aws/downloads/latest/amazon-corretto-8-x64-windows-jre.zip"
 def zipFile = file("$buildDir/tmp/archivo.zip")
 def outputDir = file("$buildDir/libs")
@@ -158,6 +157,7 @@ tasks.register('laffDist', Copy) {
     include 'music/**'
     include 'docs/**'
     include 'data/**'
+    include 'images/**'
   }
 
   into(libDir)
