@@ -23,7 +23,7 @@ import java.util.Map;
 import java.util.Set;
 
 import static com.ygames.ysoccer.framework.Assets.EXTENSIONS;
-import static com.ygames.ysoccer.framework.Assets.RANDOM;
+import static com.ygames.ysoccer.framework.FileUtils.randomOrNull;
 
 public class SoundManager {
 
@@ -208,11 +208,11 @@ public class SoundManager {
         public static final Sound[] numbers = new Sound[999];
 
         public static Sound pull(CommonCommentType type) {
-            return commonCommentary.get(type).stream().skip(RANDOM.nextInt(commonCommentary.get(type).size())).findFirst().orElse(null);
+            return randomOrNull(commonCommentary.get(type));
         }
 
         public static Sound pullSecond(CommonCommentType type) {
-            return commonCommentarySecondary.get(type).stream().skip(RANDOM.nextInt(commonCommentarySecondary.get(type).size())).findFirst().orElse(null);
+            return randomOrNull(commonCommentarySecondary.get(type));
         }
 
         static void load() {

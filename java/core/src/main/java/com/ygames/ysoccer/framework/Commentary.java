@@ -17,6 +17,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import static com.ygames.ysoccer.framework.Assets.RANDOM;
+import static com.ygames.ysoccer.framework.FileUtils.randomOrNull;
 import static com.ygames.ysoccer.framework.GLGame.LogType.COMMENTARY;
 
 /**
@@ -156,11 +157,9 @@ public class Commentary {
 
         GLGame.debug(COMMENTARY, priority, "Generating new comment: " + type);
 
-        Random dice = new Random();
-
         List<Comment> result = new ArrayList<>();
         result.add(new Comment(priority, SoundManager.CommonComment.pull(type)));
-        if (dice.nextInt(6) > 2) {
+        if (RANDOM.nextInt(6) > 2) {
             Sound secSound = SoundManager.CommonComment.pullSecond(type);
             if (secSound != null) {
                 result.add(new Comment(priority == Comment.Priority.HIGH ? Comment.Priority.COMMON : priority, SoundManager.CommonComment.pullSecond(type)));
@@ -226,7 +225,7 @@ public class Commentary {
         }
 
         if (!sounds.isEmpty()) {
-            return new Comment[] {new Comment(Comment.Priority.LOW, sounds.stream().skip(RANDOM.nextInt(sounds.size())).findFirst().orElse(null))};
+            return new Comment[] {new Comment(Comment.Priority.LOW, randomOrNull(sounds))};
         }
         return null;
     }

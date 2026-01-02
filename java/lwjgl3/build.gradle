@@ -162,11 +162,13 @@ tasks.register('laffDist', Copy) {
 
   into(libDir)
 
-  // Crear archivo .cmd
-  def cmdFile = new File(outputDir, "LaffSoccer.cmd")
-  cmdFile.text = """@echo off
+  doLast {
+    // Crear archivo .cmd
+    def cmdFile = new File(outputDir, "LaffSoccer.cmd")
+    cmdFile.text = """@echo off
 jre8\\bin\\java.exe -jar ${appName}-${projectVersion}.jar
 """
+  }
 
 }
 

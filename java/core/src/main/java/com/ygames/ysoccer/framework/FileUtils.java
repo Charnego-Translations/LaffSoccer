@@ -9,6 +9,12 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
+import java.util.stream.Stream;
 
 public class FileUtils {
 
@@ -60,5 +66,23 @@ public class FileUtils {
             normalized = normalized.replace(String.valueOf(badChar), "");
         }
         return normalized;
+    }
+
+    public static <T> T randomOrNull(Collection<T> collection) {
+        if (collection == null || collection.isEmpty()) {
+            return null;
+        }
+
+        int index = Assets.RANDOM.nextInt(collection.size());
+
+        if (collection instanceof List) {
+            return ((List<T>) collection).get(index);
+        }
+
+        Iterator<T> it = collection.iterator();
+        for (int i = 0; i < index; i++) {
+            it.next();
+        }
+        return it.next();
     }
 }
