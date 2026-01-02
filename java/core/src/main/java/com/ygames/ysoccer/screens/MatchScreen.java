@@ -72,6 +72,7 @@ class MatchScreen extends GLScreen {
 
         if (!matchStarted) {
             match.start();
+            playPrematchMusic = false;
             matchStarted = true;
         }
 

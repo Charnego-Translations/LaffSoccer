@@ -158,6 +158,7 @@ public class SoundManager {
         EventManager.subscribe(TackleEvent.class, tackleEvent -> {
             if (tackleEvent.opponent == null) return;
             Commentary.INSTANCE.enqueueComment(Commentary.getComment(tackleEvent.isFault ? CommonComment.CommonCommentType.FOUL : CommonComment.CommonCommentType.NOT_FOUL, Commentary.Comment.Priority.HIGH));
+            playVariations(SoundClass.PAIN);
         });
 
         EventManager.subscribe(WhistleEvent.class, whistleEvent -> {
@@ -274,6 +275,16 @@ public class SoundManager {
         return result;
     }
 
+    public static void playVariations(Sound sound, boolean rndPanning) {
+        sound.play(Assets.RANDOM.nextFloat() / 1.4f, (Assets.RANDOM.nextFloat() / 2) + 0.5f, rndPanning ? (Assets.RANDOM.nextFloat() * 2) - 1 : 0);
+    }
+    public static void playVariations(Sound sound) {
+        playVariations(sound, false);
+    }
+    public static void playVariations(SoundClass soundClass) {
+        playVariations(SoundManager.getSound(soundClass), false);
+    }
+
     public static class CommonComment {
 
         public enum CommonCommentType {
@@ -347,5 +358,6 @@ public class SoundManager {
         public static void stop() {
             allComments.forEach(Sound::stop);
         }
+
     }
 }
