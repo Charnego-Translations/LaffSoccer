@@ -45,7 +45,7 @@ class MatchScreen extends GLScreen {
         matchEnded = false;
         game.glGraphics.light = 0;
 
-        Commentary.getInstance().wake();
+        Commentary.INSTANCE.wake();
 
         Assets.TeamCommentary.load(match.team[0]);
         Assets.TeamCommentary.load(match.team[1]);

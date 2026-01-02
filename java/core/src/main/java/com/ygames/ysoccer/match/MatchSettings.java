@@ -1,6 +1,7 @@
 package com.ygames.ysoccer.match;
 
 import com.ygames.ysoccer.competitions.Competition;
+import com.ygames.ysoccer.framework.Commentary;
 import com.ygames.ysoccer.framework.EMath;
 import com.ygames.ysoccer.framework.Settings;
 
@@ -35,5 +36,6 @@ public class MatchSettings extends SceneSettings {
         autoReplays = gameSettings.autoReplays;
         radar = gameSettings.radar;
         commentary = gameSettings.commentary;
+        Commentary.setEnabled(commentary);
     }
 }

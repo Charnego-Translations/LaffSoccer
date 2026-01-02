@@ -43,7 +43,7 @@ public class Match extends Scene<MatchFsm, MatchState> implements Json.Serializa
 
     public enum ResultType {AFTER_90_MINUTES, AFTER_EXTRA_TIME, AFTER_PENALTIES}
 
-    private final Commentary commentary = Commentary.getInstance();
+    private final Commentary commentary = Commentary.INSTANCE;
 
     public interface MatchListener {
         void quitMatch(boolean matchCompleted);

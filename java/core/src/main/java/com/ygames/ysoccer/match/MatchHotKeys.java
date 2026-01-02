@@ -1,6 +1,7 @@
 package com.ygames.ysoccer.match;
 
 import com.badlogic.gdx.Gdx;
+import com.ygames.ysoccer.framework.Commentary;
 import com.ygames.ysoccer.framework.SoundManager;
 
 import static com.badlogic.gdx.Input.Keys.F10;
@@ -52,6 +53,7 @@ public class MatchHotKeys extends SceneHotKeys {
 
         if (Gdx.input.isKeyPressed(F4) && !keyCommentary) {
             scene.settings.commentary = !scene.settings.commentary;
+            Commentary.setEnabled(scene.settings.commentary);
 
             message = gettext("MATCH OPTIONS.COMMENTARY") + " ";
             if (scene.settings.commentary) {

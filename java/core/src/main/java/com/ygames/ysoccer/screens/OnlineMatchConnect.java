@@ -126,7 +126,7 @@ public class OnlineMatchConnect extends GLScreen {
                     Gdx.app.postRunnable(() -> EventManager.publish(new MatchIntroEvent()));
 
                 if (object instanceof PeriodStopEventDto)
-                    Gdx.app.postRunnable(() -> EventManager.publish(new PeriodStopEvent()));
+                    Gdx.app.postRunnable(() -> EventManager.publish(new PeriodStopEvent(onlineMatchScreen.match)));
 
                 if (object instanceof WhistleEventDto)
                     Gdx.app.postRunnable(() -> EventManager.publish(new WhistleEvent()));

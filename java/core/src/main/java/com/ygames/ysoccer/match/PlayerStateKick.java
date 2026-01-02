@@ -1,6 +1,7 @@
 package com.ygames.ysoccer.match;
 
 import com.ygames.ysoccer.events.BallKickEvent;
+import com.ygames.ysoccer.framework.Assets;
 import com.ygames.ysoccer.framework.EventManager;
 
 import static com.ygames.ysoccer.match.Const.PASSING_SPEED_FACTOR;
@@ -9,7 +10,7 @@ import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_KICK;
 
 class PlayerStateKick extends PlayerState {
 
-    enum Mode {UNKNOWN, PASSING, KICKING, SHOOTING}
+    enum Mode {UNKNOWN, PASSING, KICKING, SHOOTING, SUPERSHOOT}
 
     private Mode mode;
     private boolean startedShooting;
@@ -45,9 +46,14 @@ class PlayerStateKick extends PlayerState {
                 if (timer > 0.15 * Const.SECOND) {
                     if (player.inputDevice.fire11) {
                         if (ball.isInsideDirectShotArea(-player.side) && player.seesTheGoal()) {
-                            mode = Mode.SHOOTING;
+                            int dice = Assets.RANDOM.nextInt(player.skills.shooting + (player.bestSkills.contains(Player.Skill.SHOOTING) ? 6 : 2));
+                            boolean isSuperShoot = false;
+                            if (dice > 7) {
+                                isSuperShoot = true;
+                                mode = Mode.SUPERSHOOT;
+                            }
 
-                            EventManager.publish(new BallKickEvent(1f));
+                            EventManager.publish(new BallKickEvent(1f, isSuperShoot));
 
                         } else {
                             mode = Mode.KICKING;
@@ -136,11 +142,15 @@ class PlayerStateKick extends PlayerState {
                 }
                 break;
 
-            case SHOOTING:
+            case SHOOTING: case SUPERSHOOT:
                 if (timer > 0.20f * SECOND && timer < 0.30f * SECOND) {
                     // horizontal speed
                     if (!startedShooting) {
-                        ball.v = 270f;
+                        if (mode == Mode.SUPERSHOOT) {
+                            ball.v = 500f;
+                        } else {
+                            ball.v = 270f;
+                        }
                         startedShooting = true;
                     }
 
@@ -169,6 +179,11 @@ class PlayerStateKick extends PlayerState {
                             factor = 1.2f;
                         }
                     }
+
+                    if (mode == Mode.SUPERSHOOT) {
+                        factor /= 2.5F;
+                    }
+
                     ball.vz = factor * (base + ball.v * (1 - 0.05f * player.skills.shooting) * timer / SECOND);
 
                     // spin

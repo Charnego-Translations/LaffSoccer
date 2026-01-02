@@ -37,7 +37,7 @@ class MatchStateFullExtraTimeStop extends MatchState {
         scene.clock = scene.length * 120f / 90f;
         fsm.matchCompleted = true;
 
-        EventManager.publish(new PeriodStopEvent());
+        EventManager.publish(new PeriodStopEvent(fsm.getScene()));
 
         scene.resetAutomaticInputDevices();
         scene.setPlayersState(STATE_IDLE, null);

@@ -15,6 +15,8 @@ import com.ygames.ysoccer.events.MatchIntroEvent;
 import com.ygames.ysoccer.events.PeriodStopEvent;
 import com.ygames.ysoccer.events.PlayerGetsBallEvent;
 import com.ygames.ysoccer.events.WhistleEvent;
+import com.ygames.ysoccer.match.Goal;
+import com.ygames.ysoccer.match.Match;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -71,7 +73,11 @@ public class SoundManager {
         });
 
         EventManager.subscribe(BallKickEvent.class, ballKickEvent -> {
-            kick.play(ballKickEvent.strength * volume / 100f);
+            if (ballKickEvent.isSuperShoot) {
+                shotgun.play(volume / 100f);
+            } else {
+                kick.play(ballKickEvent.strength * volume / 100f);
+            }
         });
 
         EventManager.subscribe(CelebrationEvent.class, celebrationEvent -> {
@@ -84,10 +90,20 @@ public class SoundManager {
 
         EventManager.subscribe(HomeGoalEvent.class, homeGoalEvent -> {
             homeGoal.play(volume / 100f);
+            if (homeGoalEvent.goal.type == Goal.Type.OWN_GOAL) {
+                Commentary.INSTANCE.enqueueComment(
+                    new Commentary.Comment(Commentary.Comment.Priority.GOAL, CommonComment.pull(CommonComment.CommonCommentType.OWN_GOAL)
+                    ));
+            } else {
+                Commentary.INSTANCE.enqueueComment(
+                    new Commentary.Comment(Commentary.Comment.Priority.GOAL, CommonComment.pull(CommonComment.CommonCommentType.GOAL)
+                    ));
+            }
         });
 
         EventManager.subscribe(KeeperDeflectEvent.class, keeperDeflectEvent -> {
             deflect.play(0.5f * volume / 100f);
+            Commentary.INSTANCE.enqueueComment(Commentary.getComment(CommonComment.CommonCommentType.KEEPER_SAVE, Commentary.Comment.Priority.HIGH));
         });
 
         EventManager.subscribe(KeeperHoldEvent.class, keeperHoldEvent -> {
@@ -102,6 +118,20 @@ public class SoundManager {
 
         EventManager.subscribe(PeriodStopEvent.class, periodStopEvent -> {
             end.play(volume / 100f);
+
+            if (periodStopEvent.match.period == Match.Period.FIRST_HALF) {
+                Commentary.INSTANCE.enqueueComment(Commentary.getComment(CommonComment.CommonCommentType.HALF_MATCH, Commentary.Comment.Priority.HIGH));
+                Commentary.INSTANCE.enqueueComment(Commentary.halfTime(periodStopEvent.match));
+            } else if (periodStopEvent.match.period == Match.Period.SECOND_HALF) {
+                Commentary.INSTANCE.enqueueComment(Commentary.getComment(CommonComment.CommonCommentType.MATCH_END, Commentary.Comment.Priority.HIGH));
+            } else if (periodStopEvent.match.period == Match.Period.FIRST_EXTRA_TIME) {
+                Commentary.INSTANCE.enqueueComment(Commentary.getComment(CommonComment.CommonCommentType.MATCH_END_EXTRA_TIME, Commentary.Comment.Priority.HIGH));
+            } else if (periodStopEvent.match.period == Match.Period.SECOND_EXTRA_TIME) {
+                Commentary.INSTANCE.enqueueComment(Commentary.getComment(CommonComment.CommonCommentType.MATCH_END, Commentary.Comment.Priority.HIGH));
+            } else if (periodStopEvent.match.period == Match.Period.PENALTIES) {
+                Commentary.INSTANCE.enqueueComment(Commentary.getComment(CommonComment.CommonCommentType.PENALTY, Commentary.Comment.Priority.HIGH));
+            }
+
         });
 
         EventManager.subscribe(WhistleEvent.class, whistleEvent -> {
@@ -112,7 +142,7 @@ public class SoundManager {
             if (playerGetsBallEvent.getTeam().path != null) {
                 Sound playerSound = Assets.TeamCommentary.teams.get(FileUtils.getTeamFromFile(playerGetsBallEvent.getTeam().path)).players.get(playerGetsBallEvent.getPlayer().shirtName);
                 if (playerSound != null) {
-                    Commentary.getInstance().enqueueComment(new Commentary.Comment(Commentary.Comment.Priority.LOW, playerSound));
+                    Commentary.INSTANCE.enqueueComment(new Commentary.Comment(Commentary.Comment.Priority.LOW, playerSound));
                 }
             }
         });

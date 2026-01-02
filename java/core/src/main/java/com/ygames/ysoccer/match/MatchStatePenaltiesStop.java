@@ -29,7 +29,7 @@ class MatchStatePenaltiesStop extends MatchState {
     void entryActions() {
         super.entryActions();
 
-        EventManager.publish(new PeriodStopEvent());
+        EventManager.publish(new PeriodStopEvent(fsm.getScene()));
 
         scene.resetAutomaticInputDevices();
         scene.setPlayersState(STATE_IDLE, null);

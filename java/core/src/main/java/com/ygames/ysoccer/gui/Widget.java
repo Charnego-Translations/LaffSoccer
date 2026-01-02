@@ -1,11 +1,13 @@
 package com.ygames.ysoccer.gui;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.ygames.ysoccer.framework.EMath;
 import com.ygames.ysoccer.framework.Font;
 import com.ygames.ysoccer.framework.GLColor;
 import com.ygames.ysoccer.framework.GLShapeRenderer;
 import com.ygames.ysoccer.framework.GLSpriteBatch;
-import com.ygames.ysoccer.framework.EMath;
+import com.ygames.ysoccer.framework.SoundManager;
+import lombok.Setter;
 
 import java.util.Comparator;
 import java.util.List;
@@ -30,12 +32,15 @@ public abstract class Widget {
     protected String text;
     Font font;
     Font.Align align;
+    @Setter
     protected int textOffsetX;
 
     // flags
+    @Setter
     public boolean active;
     public boolean selected;
     public boolean entryMode;
+    @Setter
     public boolean visible;
     boolean addShadow;
     private boolean dirty;
@@ -111,14 +116,6 @@ public abstract class Widget {
         this.font = font;
     }
 
-    public void setTextOffsetX(int textOffsetX) {
-        this.textOffsetX = textOffsetX;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
-    }
-
     public void setSelected(boolean selected) {
         if (this.selected && !selected) {
             onDeselect();
@@ -127,10 +124,6 @@ public abstract class Widget {
     }
 
     public void onDeselect() {
-    }
-
-    public void setVisible(boolean visible) {
-        this.visible = visible;
     }
 
     protected void setAddShadow(boolean addShadow) {
@@ -144,6 +137,7 @@ public abstract class Widget {
         switch (widgetEvent) {
             case FIRE1_DOWN:
                 onFire1Down();
+                SoundManager.button.play(SoundManager.volume / 100f);
                 break;
 
             case FIRE1_HOLD:
@@ -160,6 +154,7 @@ public abstract class Widget {
 
             case FIRE2_HOLD:
                 onFire2Hold();
+                SoundManager.button.play(SoundManager.volume / 100f);
                 break;
 
             case FIRE2_UP:

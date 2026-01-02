@@ -3,6 +3,9 @@ package com.ygames.ysoccer.framework;
 import com.badlogic.gdx.audio.Sound;
 import com.ygames.ysoccer.match.Match;
 import com.ygames.ysoccer.match.MatchStats;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,45 +32,27 @@ public class Commentary {
     private static final float MAX_QUEUE = 2.0f;
     private static final float SHORT_QUEUE = 0.15f;
 
-    private static final Commentary instance = new Commentary();
-
-    public static Commentary getInstance() { return instance; }
+    public static final Commentary INSTANCE = new Commentary();
+    @Getter
+    @Setter
+    private static boolean enabled = true;
 
     /**
      * A comment element
      */
+    @Getter
+    @AllArgsConstructor
     public static class Comment {
 
+        @AllArgsConstructor
         public enum Priority {
             CHITCHAT(4), LOW(1), COMMON(2), HIGH(3), GOAL(5);
-
             private final int weight;
-            Priority(int weight) { this.weight = weight; }
         }
 
-        private Priority priority;
-        private Sound sound;
+        private final Priority priority;
+        private final Sound sound;
 
-        public Comment(Priority priority, Sound sound) {
-            this.priority = priority;
-            this.sound = sound;
-        }
-
-        public Priority getPriority() {
-            return priority;
-        }
-
-        public void setPriority(Priority priority) {
-            this.priority = priority;
-        }
-
-        public Sound getSound() {
-            return sound;
-        }
-
-        public void setSound(Sound sound) {
-            this.sound = sound;
-        }
     }
 
     /**
@@ -236,7 +221,7 @@ public class Commentary {
      */
     private boolean pullAndPlay() {
 
-        if (current.isEmpty()) {
+        if (current.isEmpty() || !enabled) {
             return false;
         }
 
