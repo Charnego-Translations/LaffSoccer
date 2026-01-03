@@ -29,7 +29,7 @@ jobs:
         shell: powershell
         working-directory: java
         run: |
-          $versionLine = gradlew.bat properties -q | Select-String "^projectVersion:"
+          $versionLine = ./gradlew.bat properties -q | Select-String "^projectVersion:"
           $version = $versionLine -replace "projectVersion:\s*", ""
           echo "version=$version" >> $env:GITHUB_OUTPUT
 
