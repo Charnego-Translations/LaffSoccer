@@ -87,9 +87,9 @@ jobs:
           tag_name: ${{ github.ref_name }}
           name: Release ${{ github.ref_name }}
           body: |
-      🚀   **Release automática de ${{ github.ref_name }}**
-           Cambios desde la última versión:
-           ${{ env.CHANGES }}
+            🚀 **Release automática de ${{ github.ref_name }}**
+            Cambios desde la última versión:
+            ${{ env.CHANGES }}
           files: release/**
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
