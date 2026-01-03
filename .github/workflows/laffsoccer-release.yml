@@ -1,0 +1,13 @@
+- name: Subir TAR.GZ al release
+  uses: softprops/action-gh-release@v1
+  with:
+    files: java/Charnego\ Internatiolaff\ Soccer\ \(linux\ ${{ steps.version.outputs.version }}\).tar.gz
+  env:
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+- name: Subir ZIP de Windows al release
+  uses: softprops/action-gh-release@v1
+  with:
+    files: java/Charnego\ Internatiolaff\ Soccer\ \(win\ ${{ steps.version.outputs.version }}\).zip
+  env:
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
