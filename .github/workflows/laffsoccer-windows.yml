@@ -38,7 +38,7 @@ jobs:
         shell: powershell
         run: |
           $zipName = "Charnego Internatiolaff Soccer (win + ${{ steps.version.outputs.version }}).zip"
-          Compress-Archive -Path "lwjgl3\build\dist\*" -DestinationPath $zipName
+          Compress-Archive -Path "lwjgl3\build\libs\*" -DestinationPath $zipName
 
       - name: Publicar artefacto
         uses: actions/upload-artifact@v4
