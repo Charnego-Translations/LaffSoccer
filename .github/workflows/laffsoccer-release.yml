@@ -47,10 +47,10 @@ jobs:
         working-directory: java
         shell: bash
         run: |
-          mkdir -p ../release lintmp
-          cp -r lwjgl3/build/libs/* lintmp/
+          mkdir -p ../release "Charnego Internatiolaff Soccer"
+          cp -r lwjgl3/build/libs/* "Charnego Internatiolaff Soccer"
           TAR_NAME="../release/Charnego Internatiolaff Soccer (Linux64 ${GITHUB_REF_NAME#v}).tar.gz"
-          tar -czf "$TAR_NAME" lintmp
+          tar -czf "$TAR_NAME" "Charnego Internatiolaff Soccer"
 
       - name: Build Windows
         working-directory: java
@@ -61,8 +61,9 @@ jobs:
         working-directory: java
         shell: bash
         run: |
-          ZIP_NAME="../release/Charnego Internatiolaff Soccer (Win64 ${GITHUB_REF_NAME#v}).zip"
-          zip -r "$ZIP_NAME" lwjgl3/build/libs/*
+          ZIP_NAME="../../../../release/Charnego Internatiolaff Soccer (Win64 ${GITHUB_REF_NAME#v}).zip"
+          cd lwjgl3/build/libs/
+          zip -r "$ZIP_NAME" *
 
       - name: List files (Linux)
         if: matrix.os == 'ubuntu-latest'
