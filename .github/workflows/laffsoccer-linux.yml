@@ -50,7 +50,8 @@ jobs:
           # Copiar todo el contenido de la build/libs al temporal
           cp -r lwjgl3/build/libs/* "$TMP_DIR/"
           # Crear el tar.gz con la carpeta raíz
-          tar -czf "$TAR_NAME" "$TMP_DIR"
+          mkdir "Charnego Internatiolaff Soccer"
+          tar -czf "Charnego Internatiolaff Soccer/$TAR_NAME" "$TMP_DIR"
           # Limpiar temporal (opcional)
           rm -rf "$TMP_DIR"
 
