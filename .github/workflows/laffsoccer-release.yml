@@ -1,4 +1,4 @@
-name: Build and Release
+name: Build and Release (Linux)
 
 on:
   push:
@@ -7,14 +7,13 @@ on:
 
 jobs:
   build:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest]
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
+        with:
+          persist-credentials: true
 
       - name: Setup Java 17
         uses: actions/setup-java@v4
@@ -24,83 +23,66 @@ jobs:
           cache: gradle
 
       - name: Dar permisos a gradlew
-        if: matrix.os == 'ubuntu-latest'
         run: chmod +x java/gradlew
-        
-      - name: Update property
-        working-directory: java
-        shell: pwsh
-        run: |
-          $file = "gradle.properties"
-          $key = "projectVersion"
-          $newValue = ${GITHUB_REF_NAME#v}
 
-          (Get-Content $file) |
-            ForEach-Object {
-              if ($_ -match "^$key=") {
-                "$key=$newValue"
-              } else {
-                $_
-              }
-            } |
-            Set-Content $file
-      
+      - name: Update projectVersion in gradle.properties
+        working-directory: java
+        shell: bash
+        run: |
+          FILE="gradle.properties"
+          KEY="projectVersion"
+          NEW_VALUE="${GITHUB_REF_NAME#v}"
+
+          sed -i "s/^${KEY}=.*/${KEY}=${NEW_VALUE}/" "$FILE"
+
       - name: Commit and push changes
-        shell: pwsh
+        shell: bash
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
 
-          git status
-          git add java/config.properties
+          git add java/gradle.properties
 
-          if (git diff --cached --quiet) {
-            Write-Host "No changes to commit"
-          } else {
-            git commit -m "Release, update projectVersion in gradle.properties"
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Release: update projectVersion to ${GITHUB_REF_NAME#v}"
             git push
-          }
-        
-      - name: Build Windows
-        if: matrix.os == 'windows-latest'
-        working-directory: java
-        run: .\gradlew.bat lwjgl3:laffDistWindows --no-daemon --console=plain --info
+          fi
 
       - name: Build Linux
-        if: matrix.os == 'ubuntu-latest'
         working-directory: java
         run: ./gradlew lwjgl3:laffDistLinux --no-daemon --console=plain --info
 
-      - name: Empaquetar artefactos
+      - name: Empaquetar artefacto Linux
         working-directory: java
+        shell: bash
         run: |
-          if [ "${{ matrix.os }}" == "windows-latest" ]; then
-            mkdir "tmp"
-            ZIP_NAME="tmp\Charnego Internatiolaff Soccer (win64 ${GITHUB_REF_NAME#v}).zip"
-            powershell Compress-Archive -Path "lwjgl3\build\libs\*" -DestinationPath "$ZIP_NAME"
-            echo "ARTIFACT=Charnego Internatiolaff Soccer" >> $GITHUB_OUTPUT
-          else
-            mkdir -p "tmp"
-            TAR_NAME="tmp/Charnego Internatiolaff Soccer (linux64 ${GITHUB_REF_NAME#v}).tar.gz"
-            mkdir -p "tmp"
-            cp -r lwjgl3/build/libs/* "tartmp/"
-            tar -czf "$TAR_NAME" "tartmp"
-            echo "ARTIFACT=Charnego Internatiolaff Soccer" >> $GITHUB_OUTPUT
-          fi
+          mkdir -p ../tmp lintmp
+          cp -r lwjgl3/build/libs/* lintmp/
+          TAR_NAME="../tmp/Charnego Internatiolaff Soccer (Linux64 ${GITHUB_REF_NAME#v}).tar.gz"
+          tar -czf "$TAR_NAME" lintmp
 
-      - name: Crear GitHub Release
-        id: create_release
-        uses: softprops/action-gh-release@v1
+      - name: Build Windows
+        working-directory: java
+        run: ./gradlew lwjgl3:laffDistWindows --no-daemon --console=plain --info
+        
+      - name: Empaquetar artefacto Windows
+        working-directory: java
+        shell: bash
+        run: |
+          mkdir -p tmp wintmp
+          cp -r lwjgl3/build/libs/* wintmp/
+          ZIP_NAME="../tmp/Charnego Internatiolaff Soccer (Win64 ${GITHUB_REF_NAME#v}).zip"
+          cd wintmp
+          zip -r "../$ZIP_NAME" .
+
+        - name: Crear GitHub Release y subir artefactos
+        uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ github.ref_name }}
           name: Release ${{ github.ref_name }}
           body: "Release automática de ${{ github.ref_name }}"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Subir artefactos a la release
-        uses: softprops/action-gh-release@v1
-        with:
           files: java/tmp/**
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
