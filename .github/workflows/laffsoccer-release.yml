@@ -1,13 +1,77 @@
-- name: Subir TAR.GZ al release
-  uses: softprops/action-gh-release@v1
-  with:
-    files: java/Charnego\ Internatiolaff\ Soccer\ \(linux\ ${{ steps.version.outputs.version }}\).tar.gz
-  env:
-    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+name: Build and Release
 
-- name: Subir ZIP de Windows al release
-  uses: softprops/action-gh-release@v1
-  with:
-    files: java/Charnego\ Internatiolaff\ Soccer\ \(win\ ${{ steps.version.outputs.version }}\).zip
-  env:
-    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+on:
+  push:
+    tags:
+      - "*"
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: gradle
+
+      - name: Dar permisos a gradlew
+        if: matrix.os == 'ubuntu-latest'
+        run: chmod +x java/gradlew
+
+      - name: Ejecutar build
+        working-directory: java
+        run: |
+          if [ "${{ matrix.os }}" == "windows-latest" ]; then
+            .\gradlew.bat lwjgl3:laffDistWindows --no-daemon --console=plain --info
+          else
+            ./gradlew lwjgl3:laffDistLinux --no-daemon --console=plain --info
+          fi
+
+      - name: Obtener versión
+        id: version
+        working-directory: java
+        run: |
+          VERSION=$(./gradlew properties -q | grep "^projectVersion:" | awk '{print $2}')
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Empaquetar artefactos
+        working-directory: java
+        run: |
+          if [ "${{ matrix.os }}" == "windows-latest" ]; then
+            mkdir "Charnego Internatiolaff Soccer"
+            ZIP_NAME="Charnego Internatiolaff Soccer\Charnego Internatiolaff Soccer (win ${{ steps.version.outputs.version }}).zip"
+            powershell Compress-Archive -Path "lwjgl3\build\libs\*" -DestinationPath "$ZIP_NAME"
+            echo "ARTIFACT=Charnego Internatiolaff Soccer" >> $GITHUB_OUTPUT
+          else
+            TAR_NAME="Charnego Internatiolaff Soccer (linux ${{ steps.version.outputs.version }}).tar.gz"
+            mkdir -p "Charnego Internatiolaff Soccer"
+            cp -r lwjgl3/build/libs/* "Charnego Internatiolaff Soccer/"
+            tar -czf "$TAR_NAME" "Charnego Internatiolaff Soccer"
+            echo "ARTIFACT=Charnego Internatiolaff Soccer" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Crear GitHub Release
+        id: create_release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: Release ${{ github.ref_name }}
+          body: "Automated build for ${{ github.ref_name }}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Subir artefactos al release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: java/${{ steps.build.outputs.ARTIFACT }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
