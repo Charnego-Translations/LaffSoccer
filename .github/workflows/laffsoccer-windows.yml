@@ -24,31 +24,9 @@ jobs:
         working-directory: java
         run: .\gradlew.bat lwjgl3:laffDistWindows --no-daemon --console=plain --info
 
-      - name: Obtener versión del proyecto
-        id: version
-        shell: powershell
-        working-directory: java
-        run: |
-          $versionLine = ./gradlew.bat properties -q | Select-String "^projectVersion:"
-          $version = $versionLine -replace "projectVersion:\s*", ""
-          echo "version=$version" >> $env:GITHUB_OUTPUT
-
-      - name: Crear ZIP con nombre final
-        working-directory: java
-        shell: powershell
-        run: |
-          mkdir "Charnego Internatiolaff Soccer"
-          $zipName = "Charnego Internatiolaff Soccer\Charnego Internatiolaff Soccer (win ${{ steps.version.outputs.version }}).zip"
-          Compress-Archive -Path "lwjgl3\build\libs\*" -DestinationPath $zipName
-
-      - name: Ver estructura generada
-        working-directory: java
-        shell: powershell
-        run: Get-ChildItem -Recurse | Select-Object FullName
-
       - name: Publicar artefacto
         uses: actions/upload-artifact@v4
         with:
           name: laff-soccer-windows
           path: |
-            java/"Charnego Internatiolaff Soccer"
+            java/lwjgl3/build/libs

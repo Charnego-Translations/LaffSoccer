@@ -38,30 +38,9 @@ jobs:
           VERSION=$(./gradlew properties -q | grep "^projectVersion:" | awk '{print $2}')
           echo "version=$VERSION" >> $GITHUB_OUTPUT
 
-      - name: Crear TAR.GZ con nombre final
-        working-directory: java
-        run: |
-          # Nombre del tar final
-          TAR_NAME="Charnego Internatiolaff Soccer (linux ${{ steps.version.outputs.version }}).tar.gz"
-          # Carpeta temporal
-          TMP_DIR="Charnego Internatiolaff Soccer"
-          rm -rf "$TMP_DIR"
-          mkdir "$TMP_DIR"
-          # Copiar todo el contenido de la build/libs al temporal
-          cp -r lwjgl3/build/libs/* "$TMP_DIR/"
-          # Crear el tar.gz con la carpeta raíz
-          mkdir "Charnego Internatiolaff Soccer"
-          tar -czf "Charnego Internatiolaff Soccer/$TAR_NAME" "$TMP_DIR"
-          # Limpiar temporal (opcional)
-          rm -rf "$TMP_DIR"
-
-      - name: Ver estructura generada
-        working-directory: java
-        run: find . -maxdepth 4
-
       - name: Publicar artefacto
         uses: actions/upload-artifact@v4
         with:
           name: laff-soccer-linux
           path: |
-            java/"Charnego Internatiolaff Soccer"
+            java/lwjgl3/build/libs
