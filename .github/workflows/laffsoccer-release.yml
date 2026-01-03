@@ -52,27 +52,29 @@ jobs:
 
       - name: Build Linux
         working-directory: java
-        run: ./gradlew lwjgl3:laffDistLinux --no-daemon --console=plain --info
+        run: |
+          ./gradlew lwjgl3:laffDistLinux --no-daemon --console=plain --info
 
       - name: Empaquetar artefacto Linux
         working-directory: java
         shell: bash
         run: |
-          mkdir -p ../tmp lintmp
+          mkdir -p ../release lintmp
           cp -r lwjgl3/build/libs/* lintmp/
-          TAR_NAME="../tmp/Charnego Internatiolaff Soccer (Linux64 ${GITHUB_REF_NAME#v}).tar.gz"
+          TAR_NAME="../release/Charnego Internatiolaff Soccer (Linux64 ${GITHUB_REF_NAME#v}).tar.gz"
           tar -czf "$TAR_NAME" lintmp
 
       - name: Build Windows
         working-directory: java
-        run: ./gradlew lwjgl3:laffDistWindows --no-daemon --console=plain --info
+        run: |
+          ./gradlew lwjgl3:laffDistWindows --no-daemon --console=plain --info
 
       - name: Empaquetar artefacto Windows
         working-directory: java
         shell: bash
         run: |
-            ZIP_NAME="../tmp/Charnego Internatiolaff Soccer (Win64 ${GITHUB_REF_NAME#v}).zip"
-            zip -r "$ZIP_NAME" lwjgl3/build/libs/*
+          ZIP_NAME="../release/Charnego Internatiolaff Soccer (Win64 ${GITHUB_REF_NAME#v}).zip"
+          zip -r "$ZIP_NAME" lwjgl3/build/libs/*
 
         - name: Crear GitHub Release y subir artefactos
         uses: softprops/action-gh-release@v2
@@ -80,6 +82,6 @@ jobs:
           tag_name: ${{ github.ref_name }}
           name: Release ${{ github.ref_name }}
           body: "Release automática de ${{ github.ref_name }}"
-          files: java/tmp/**
+          files: java/release/**
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
