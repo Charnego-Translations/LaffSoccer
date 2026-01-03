@@ -26,5 +26,5 @@ C:\COSAS\LAFFSOCCER\JAVA\> gradlew lwjgl3:run
 (Leenucs, MacdonaldsOS X, UN*X, etc)
 ```
 $ cd java/
-$ ./gradlew desktop:run
+$ ./gradlew lwjgl3:run
 ```
