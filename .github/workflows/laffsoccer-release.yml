@@ -71,12 +71,25 @@ jobs:
           echo "Archivos hasta profundidad 3:"
           find . -maxdepth 3 -type f
 
+      - name: Generar lista de cambios
+        id: changelog
+        run: |
+          LAST_TAG=$(git describe --tags --abbrev=0 HEAD^)
+          echo "Última tag: $LAST_TAG"
+          CHANGES=$(git log $LAST_TAG..HEAD --pretty=format:"- %s")
+          echo "CHANGES<<EOF" >> $GITHUB_ENV
+          echo "$CHANGES" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+
       - name: Crear GitHub Release y subir artefactos
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ github.ref_name }}
           name: Release ${{ github.ref_name }}
-          body: "Release automática de ${{ github.ref_name }}"
+          body: |
+      🚀   **Release automática de ${{ github.ref_name }}**
+           Cambios desde la última versión:
+           ${{ env.CHANGES }}
           files: release/**
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
