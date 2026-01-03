@@ -22,7 +22,7 @@ jobs:
 
       - name: Ejecutar Gradle (LWJGL3 Windows)
         working-directory: java
-        run: .\gradlew.bat lwjgl3:laffDistWindows
+        run: .\gradlew.bat lwjgl3:laffDistWindows --no-daemon -console=plain --info
 
       - name: Obtener versión del proyecto
         id: version
