@@ -26,7 +26,41 @@ jobs:
       - name: Dar permisos a gradlew
         if: matrix.os == 'ubuntu-latest'
         run: chmod +x java/gradlew
+        
+      - name: Update property
+        path: java
+        shell: pwsh
+        run: |
+          $file = "gradle.properties"
+          $key = "projectVersion"
+          $newValue = ${GITHUB_REF_NAME#v}
 
+          (Get-Content $file) |
+            ForEach-Object {
+              if ($_ -match "^$key=") {
+                "$key=$newValue"
+              } else {
+                $_
+              }
+            } |
+            Set-Content $file
+      
+      - name: Commit and push changes
+        shell: pwsh
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+
+          git status
+          git add config.properties
+
+          if (git diff --cached --quiet) {
+            Write-Host "No changes to commit"
+          } else {
+            git commit -m "Release, update projectVersion in gradle.properties"
+            git push
+          }
+        
       - name: Build Windows
         if: matrix.os == 'windows-latest'
         working-directory: java
@@ -37,26 +71,20 @@ jobs:
         working-directory: java
         run: ./gradlew lwjgl3:laffDistLinux --no-daemon --console=plain --info
 
-      - name: Obtener versión
-        id: version
-        working-directory: java
-        run: |
-          VERSION=$(./gradlew properties -q | grep "^projectVersion:" | awk '{print $2}')
-          echo "version=$VERSION" >> $GITHUB_OUTPUT
-
       - name: Empaquetar artefactos
         working-directory: java
         run: |
           if [ "${{ matrix.os }}" == "windows-latest" ]; then
-            mkdir "Charnego Internatiolaff Soccer"
-            ZIP_NAME="Charnego Internatiolaff Soccer\Charnego Internatiolaff Soccer (win ${{ steps.version.outputs.version }}).zip"
+            mkdir "tmp"
+            ZIP_NAME="tmp\Charnego Internatiolaff Soccer (win64 ${GITHUB_REF_NAME#v}).zip"
             powershell Compress-Archive -Path "lwjgl3\build\libs\*" -DestinationPath "$ZIP_NAME"
             echo "ARTIFACT=Charnego Internatiolaff Soccer" >> $GITHUB_OUTPUT
           else
-            TAR_NAME="Charnego Internatiolaff Soccer (linux ${{ steps.version.outputs.version }}).tar.gz"
-            mkdir -p "Charnego Internatiolaff Soccer"
-            cp -r lwjgl3/build/libs/* "Charnego Internatiolaff Soccer/"
-            tar -czf "$TAR_NAME" "Charnego Internatiolaff Soccer"
+            mkdir -p "tmp"
+            TAR_NAME="tmp/Charnego Internatiolaff Soccer (linux64 ${GITHUB_REF_NAME#v}).tar.gz"
+            mkdir -p "tmp"
+            cp -r lwjgl3/build/libs/* "tartmp/"
+            tar -czf "$TAR_NAME" "tartmp"
             echo "ARTIFACT=Charnego Internatiolaff Soccer" >> $GITHUB_OUTPUT
           fi
 
@@ -66,13 +94,13 @@ jobs:
         with:
           tag_name: ${{ github.ref_name }}
           name: Release ${{ github.ref_name }}
-          body: "Automated build for ${{ github.ref_name }}"
+          body: "Release automática de ${{ github.ref_name }}"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Subir artefactos al release
+      - name: Subir artefactos a la release
         uses: softprops/action-gh-release@v1
         with:
-          files: java/${{ steps.build.outputs.ARTIFACT }}
+          files: java/tmp/**
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
