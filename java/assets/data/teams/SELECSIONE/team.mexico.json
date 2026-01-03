@@ -54,7 +54,7 @@
 		"nationality": "MEX",
 		"role": "RIGHT_BACK",
 		"number": 14,
-		"skinColor": "ALIEN",
+		"skinColor": "PALE",
 		"hairColor": "BROWN",
 		"hairStyle": "CURLY_C",
 		"skills": {
@@ -370,14 +370,14 @@
 		]
 	},
 	{
-		"name": "JOÃO LUCAS LÓPEZ GJIKA",
-		"shirtName": "LUCAS",
+		"name": "DOÑA FLORINDA",
+		"shirtName": "FLORINDA",
 		"nationality": "MEX",
 		"role": "DEFENDER",
 		"number": 15,
-		"skinColor": "BLACK",
-		"hairColor": "BROWN",
-		"hairStyle": "SMOOTH_P",
+		"skinColor": "PALE",
+		"hairColor": "BLACK",
+		"hairStyle": "SPECIAL_E",
 		"skills": {
 			"passing": 4,
 			"shooting": 1,

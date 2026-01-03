@@ -292,8 +292,8 @@
 		]
 	},
 	{
-		"name": "PETAR HOFER",
-		"shirtName": "PETAR HOFER",
+		"name": "GRIGORI RASPUTIN",
+		"shirtName": "RASPUTIN",
 		"nationality": "RUS",
 		"role": "GOALKEEPER",
 		"number": 5,
@@ -303,8 +303,8 @@
 		"value": 24
 	},
 	{
-		"name": "DAVID SERRA GIRARD",
-		"shirtName": "SERRA DAVID",
+		"name": "YURI GAGARIN",
+		"shirtName": "GAGARIN",
 		"nationality": "RUS",
 		"role": "LEFT_BACK",
 		"number": 17,
@@ -326,8 +326,8 @@
 		]
 	},
 	{
-		"name": "ALFRED MARQUES",
-		"shirtName": "ALFRED MARQUES",
+		"name": "FIODOR DOSTOIEVSKI",
+		"shirtName": "DOSTOIEVSKI",
 		"nationality": "RUS",
 		"role": "DEFENDER",
 		"number": 14,
@@ -350,8 +350,8 @@
 		]
 	},
 	{
-		"name": "LAZAR SUÁREZ GASHI",
-		"shirtName": "GASHI SUÁREZ",
+		"name": "VLADIMIR NABOKOV",
+		"shirtName": "NABOKOV",
 		"nationality": "RUS",
 		"role": "RIGHT_WINGER",
 		"number": 9,
@@ -377,8 +377,8 @@
 		]
 	},
 	{
-		"name": "DANIEL ABAZI PALUMBO",
-		"shirtName": "ABAZI",
+		"name": "ALEXEY PAJITNOV",
+		"shirtName": "PAJITNOV",
 		"nationality": "RUS",
 		"role": "RIGHT_WINGER",
 		"number": 6,

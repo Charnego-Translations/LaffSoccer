@@ -1,8 +1,8 @@
 {
 "name": "CONGO",
 "type": "NATIONAL",
-"confederation": "CAF",
 "country": "CGO",
+"confederation": "CAF",
 "city": "LA SABANA",
 "stadium": "PUMBA",
 "coach": {
@@ -348,8 +348,8 @@
 		]
 	},
 	{
-		"name": "FINN NUNES LOMBARDO",
-		"shirtName": "L. NUNES",
+		"name": "POTOMBO",
+		"shirtName": "POTOMBO",
 		"nationality": "CGO",
 		"role": "LEFT_WINGER",
 		"number": 9,
@@ -370,8 +370,8 @@
 		]
 	},
 	{
-		"name": "ADIN ROBERTS SILVESTRI",
-		"shirtName": "A. SILVESTRI",
+		"name": "MANDINGONGO",
+		"shirtName": "MANDINGONGO",
 		"nationality": "CGO",
 		"role": "DEFENDER",
 		"number": 11,
@@ -397,8 +397,8 @@
 		]
 	},
 	{
-		"name": "NOAH LEFEBVRE",
-		"shirtName": "NOAH LEFEBVRE",
+		"name": "PRESUPONGO",
+		"shirtName": "PRESUPONGO",
 		"nationality": "CGO",
 		"role": "MIDFIELDER",
 		"number": 6,
@@ -415,131 +415,6 @@
 			"finishing": 2
 		},
 		"bestSkills": []
-	},
-	{
-		"name": "KEVIN FARINA ARAÚJO",
-		"shirtName": "FARINA K.",
-		"nationality": "CGO",
-		"role": "RIGHT_WINGER",
-		"number": 12,
-		"skinColor": "BLACK",
-		"hairColor": "BROWN",
-		"hairStyle": "BALD_A",
-		"skills": {
-			"passing": 3,
-			"shooting": 4,
-			"heading": 3,
-			"tackling": 1,
-			"control": 3,
-			"speed": 3,
-			"finishing": 3
-		},
-		"bestSkills": [
-			"SHOOTING",
-			"SPEED"
-		]
-	},
-	{
-		"name": "FINN MATOS",
-		"shirtName": "FINN MATOS",
-		"nationality": "CGO",
-		"role": "RIGHT_BACK",
-		"number": 8,
-		"skinColor": "BLACK",
-		"hairColor": "BLACK",
-		"hairStyle": "THINNING_C",
-		"skills": {
-			"passing": 4,
-			"shooting": 2,
-			"heading": 4,
-			"tackling": 3,
-			"control": 3,
-			"speed": 2,
-			"finishing": 2
-		},
-		"bestSkills": [
-			"TACKLING",
-			"CONTROL",
-			"SHOOTING",
-			"HEADING",
-			"FINISHING"
-		]
-	},
-	{
-		"name": "LIAM BRUNO LEFÈVRE",
-		"shirtName": "LEFÈVRE B.",
-		"nationality": "CGO",
-		"role": "DEFENDER",
-		"number": 19,
-		"skinColor": "BLACK",
-		"hairColor": "RED",
-		"hairStyle": "BALD_A",
-		"skills": {
-			"passing": 3,
-			"shooting": 1,
-			"heading": 4,
-			"tackling": 4,
-			"control": 2,
-			"speed": 2,
-			"finishing": 2
-		},
-		"bestSkills": [
-			"SPEED",
-			"TACKLING",
-			"CONTROL",
-			"FINISHING",
-			"PASSING",
-			"SHOOTING"
-		]
-	},
-	{
-		"name": "SANTIAGO SHEHU",
-		"shirtName": "SANTIAGO SHEHU",
-		"nationality": "CGO",
-		"role": "RIGHT_WINGER",
-		"number": 2,
-		"skinColor": "BLACK",
-		"hairColor": "GRAY",
-		"hairStyle": "SPECIAL_B",
-		"skills": {
-			"passing": 4,
-			"shooting": 3,
-			"heading": 1,
-			"tackling": 4,
-			"control": 4,
-			"speed": 3,
-			"finishing": 5
-		},
-		"bestSkills": [
-			"PASSING",
-			"CONTROL"
-		]
-	},
-	{
-		"name": "THÉO NUNES",
-		"shirtName": "THÉO NUNES",
-		"nationality": "CGO",
-		"role": "LEFT_WINGER",
-		"number": 14,
-		"skinColor": "BLACK",
-		"hairColor": "RED",
-		"hairStyle": "SHAVED",
-		"skills": {
-			"passing": 1,
-			"shooting": 2,
-			"heading": 1,
-			"tackling": 0,
-			"control": 4,
-			"speed": 4,
-			"finishing": 5
-		},
-		"bestSkills": [
-			"TACKLING",
-			"CONTROL",
-			"FINISHING",
-			"SHOOTING",
-			"SPEED"
-		]
 	}
 ]
 }

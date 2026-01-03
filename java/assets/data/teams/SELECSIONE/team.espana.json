@@ -44,7 +44,7 @@
 		"role": "GOALKEEPER",
 		"number": 19,
 		"skinColor": "RED",
-		"hairColor": "WHITE",
+		"hairColor": "BROWN",
 		"hairStyle": "CURLY_A",
 		"value": 10
 	},
@@ -78,7 +78,7 @@
 		"number": 11,
 		"skinColor": "RED",
 		"hairColor": "GRAY",
-		"hairStyle": "THINNING_B",
+		"hairStyle": "CURLY_A",
 		"skills": {
 			"passing": 4,
 			"shooting": 1,
@@ -104,7 +104,7 @@
 		"role": "LEFT_BACK",
 		"number": 12,
 		"skinColor": "ARAB",
-		"hairColor": "RED",
+		"hairColor": "BROWN",
 		"hairStyle": "PIGTAIL_C",
 		"skills": {
 			"passing": 2,

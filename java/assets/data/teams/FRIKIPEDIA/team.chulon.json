@@ -157,7 +157,7 @@
 		"nationality": "ENG",
 		"role": "RIGHT_WINGER",
 		"number": 7,
-		"skinColor": "PINK",
+		"skinColor": "PALE",
 		"hairColor": "BLACK",
 		"hairStyle": "SMOOTH_B",
 		"skills": {
@@ -231,7 +231,7 @@
 		"nationality": "ESP",
 		"role": "LEFT_WINGER",
 		"number": 8,
-		"skinColor": "PINK",
+		"skinColor": "RED",
 		"hairColor": "BLACK",
 		"hairStyle": "SMOOTH_E",
 		"skills": {
@@ -255,7 +255,7 @@
 		"nationality": "ENG",
 		"role": "ATTACKER",
 		"number": 10,
-		"skinColor": "PINK",
+		"skinColor": "RED",
 		"hairColor": "BLACK",
 		"hairStyle": "SMOOTH_P",
 		"skills": {
@@ -302,7 +302,7 @@
 		"nationality": "ESP",
 		"role": "GOALKEEPER",
 		"number": 12,
-		"skinColor": "PINK",
+		"skinColor": "MULATTO",
 		"hairColor": "BLACK",
 		"hairStyle": "SMOOTH_A",
 		"value": 23
@@ -340,7 +340,7 @@
 		"nationality": "NIG",
 		"role": "MIDFIELDER",
 		"number": 16,
-		"skinColor": "BLACK",
+		"skinColor": "PALE",
 		"hairColor": "BLACK",
 		"hairStyle": "SMOOTH_A",
 		"skills": {

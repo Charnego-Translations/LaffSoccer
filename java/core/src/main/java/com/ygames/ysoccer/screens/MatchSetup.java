@@ -140,7 +140,7 @@ class MatchSetup extends GLScreen {
     private class HomeTeamPicture extends Picture {
 
         HomeTeamPicture() {
-            setPosition(120, 480);
+            setPosition(90, 480);
             setAddShadow(true);
         }
 
@@ -154,7 +154,7 @@ class MatchSetup extends GLScreen {
     private class AwayTeamPicture extends Picture {
 
         AwayTeamPicture() {
-            setPosition(Gui.WIDTH - 120, 480);
+            setPosition(Gui.WIDTH - 90, 480);
             setAddShadow(true);
         }
 
