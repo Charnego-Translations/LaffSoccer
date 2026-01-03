@@ -63,4 +63,4 @@ jobs:
         with:
           name: laff-soccer-linux
           path: |
-            java/Charnego Internatiolaff Soccer (linux ${{ steps.version.outputs.version }}).tar.gz
+            java/"Charnego Internatiolaff Soccer"

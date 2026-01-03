@@ -27,14 +27,15 @@ jobs:
         if: matrix.os == 'ubuntu-latest'
         run: chmod +x java/gradlew
 
-      - name: Ejecutar build
+      - name: Build Windows
+        if: matrix.os == 'windows-latest'
         working-directory: java
-        run: |
-          if [ "${{ matrix.os }}" == "windows-latest" ]; then
-            .\gradlew.bat lwjgl3:laffDistWindows --no-daemon --console=plain --info
-          else
-            ./gradlew lwjgl3:laffDistLinux --no-daemon --console=plain --info
-          fi
+        run: .\gradlew.bat lwjgl3:laffDistWindows --no-daemon --console=plain --info
+
+      - name: Build Linux
+        if: matrix.os == 'ubuntu-latest'
+        working-directory: java
+        run: ./gradlew lwjgl3:laffDistLinux --no-daemon --console=plain --info
 
       - name: Obtener versión
         id: version

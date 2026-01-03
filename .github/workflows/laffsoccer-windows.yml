@@ -37,7 +37,8 @@ jobs:
         working-directory: java
         shell: powershell
         run: |
-          $zipName = "Charnego Internatiolaff Soccer (win ${{ steps.version.outputs.version }}).zip"
+          mkdir "Charnego Internatiolaff Soccer"
+          $zipName = "Charnego Internatiolaff Soccer\Charnego Internatiolaff Soccer (win ${{ steps.version.outputs.version }}).zip"
           Compress-Archive -Path "lwjgl3\build\libs\*" -DestinationPath $zipName
 
       - name: Ver estructura generada
@@ -50,4 +51,4 @@ jobs:
         with:
           name: laff-soccer-windows
           path: |
-            java/Charnego Internatiolaff Soccer (win ${{ steps.version.outputs.version }}).zip
+            java/"Charnego Internatiolaff Soccer"
