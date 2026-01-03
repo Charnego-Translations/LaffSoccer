@@ -1,0 +1,35 @@
+┌───────────────────────────────┐
+│Charnego Internatiolaff Soccer │
+│Charnego Translations 2023-2026│
+└───────────────────────────────┘
+
+Por: Krusher, Laff, Anton Sapristi
+
+¡Del deporte también se sale!
+
+Faraónico megaproyecto balompédico producido por Charnego Translations Inc.
+junto con el Comité para la Charnegación. Fork del YSoccer, clon del clásico
+Sensible Soccer para Amiga. Siempre en construcción, pero de código libre, se
+puede probar sin compromiso. No le devolvemos su dinero si no queda satisfecho
+porque es gratis. De vez en cuando publicaramos (cuando nos pique) algún
+compilado listo para ejecutar. Si te bajas la versión de desarrollo requiere
+tener instalado Java 1.8 como mínimo. Debería funcionar en Wuindours, Leenucs
+y MacacOS X. En realidad, en cualquier sitio que tenga instalado Java 8.
+
+INSTRUCCIONES
+
+Se proporcionan versiones para Windowrs y Leenucs, listas para ejecutar.
+En otros sistemas operativos, usa Java 8 para ejecutar el .jar que hay en
+cualquiera de las versiones. ¡Búscate la vida, tío!
+
+CONTROLES POR DEFESTO
+
+Jugador 1:
+Cursores - Movimiento
+M - Botón 1 (aceptar, tiro, pase, etc.)
+N - Botón 2 (sustituciones, cancelar)
+
+Jugador 2:
+WASD - Movimiento
+V - Botón 1 (aceptar, tiro, pase, etc.)
+B - Botón 2 (sustituciones, cancelar)
