@@ -8,6 +8,7 @@ import com.ygames.ysoccer.framework.GLScreen;
 import com.ygames.ysoccer.framework.Settings;
 import com.ygames.ysoccer.framework.SoundManager;
 import com.ygames.ysoccer.gui.Button;
+import com.ygames.ysoccer.gui.Gui;
 import com.ygames.ysoccer.gui.Widget;
 import com.ygames.ysoccer.match.SceneRenderer;
 import com.ygames.ysoccer.match.Weather;
@@ -70,6 +71,11 @@ class MatchOptions extends GLScreen {
         widgets.add(w);
 
         w = new CommentaryButton();
+        widgets.add(w);
+
+        w = new NamesLabel();
+        widgets.add(w);
+        w = new NamesButton();
         widgets.add(w);
 
         w = new ExitButton();
@@ -400,6 +406,45 @@ class MatchOptions extends GLScreen {
         public void onFire1Down() {
             game.settings.save();
             game.setScreen(new Main(game));
+        }
+    }
+
+    private class NamesLabel extends Button {
+
+        NamesLabel() {
+            setColor(0x76683C);
+            setGeometry(Gui.WIDTH / 2 - 10 - 440, 540, 440, 40);
+            setText(Assets.strings.get("MATCH OPTIONS.NAMES"), Font.Align.CENTER, Assets.font14);
+            setActive(false);
+        }
+    }
+
+    private class NamesButton extends Button {
+
+        NamesButton() {
+            setColor(0x2B4A61);
+            setGeometry(Gui.WIDTH / 2 + 10, 540, 440, 40);
+            setText("", Font.Align.CENTER, Assets.font14);
+        }
+
+        @Override
+        public void refresh() {
+            setText(Assets.strings.get(game.settings.names ? "MATCH OPTIONS.NAMES.ON" : "MATCH OPTIONS.NAMES.OFF"));
+        }
+
+        @Override
+        public void onFire1Down() {
+            toggleNames();
+        }
+
+        @Override
+        public void onFire2Down() {
+            toggleNames();
+        }
+
+        private void toggleNames() {
+            game.settings.names = !game.settings.names;
+            setDirty(true);
         }
     }
 }

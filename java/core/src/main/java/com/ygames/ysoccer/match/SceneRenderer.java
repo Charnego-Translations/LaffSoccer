@@ -12,6 +12,7 @@ import com.ygames.ysoccer.framework.GLGame;
 import com.ygames.ysoccer.framework.GLGraphics;
 import com.ygames.ysoccer.framework.GLShapeRenderer;
 import com.ygames.ysoccer.framework.GLSpriteBatch;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -379,11 +380,19 @@ public abstract class SceneRenderer<SceneT extends Scene<?, ?>> {
         int fy = scene.settings.pitchType == Pitch.Type.WHITE ? 1 : 0;
         if (f1 > 0) {
             dx = dx - (w0 + 2 + w1) / 2;
-            batch.draw(Assets.playerNumbers[f1][fy], dx, dy, 6, 10);
-            dx = dx + w1 + 2;
-            batch.draw(Assets.playerNumbers[f0][fy], dx, dy, 6, 10);
+            if (scene.settings.names) {
+                Assets.font3.draw(batch, player.number + " " + StringUtils.stripAccents(player.shirtName), dx - w0 / 2, dy, Font.Align.CENTER);
+            } else {
+                batch.draw(Assets.playerNumbers[f1][fy], dx, dy, 6, 10);
+                dx = dx + w1 + 2;
+                batch.draw(Assets.playerNumbers[f0][fy], dx, dy, 6, 10);
+            }
         } else {
-            batch.draw(Assets.playerNumbers[f0][fy], dx - w0 / 2f, dy, 6, 10);
+            if (scene.settings.names) {
+                Assets.font3.draw(batch, player.number + " " + StringUtils.stripAccents(player.shirtName), dx - w0 / 2, dy, Font.Align.CENTER);
+            } else {
+                batch.draw(Assets.playerNumbers[f0][fy], dx - w0 / 2f, dy, 6, 10);
+            }
         }
     }
 

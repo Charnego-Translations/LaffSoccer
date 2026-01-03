@@ -7,6 +7,8 @@ import com.ygames.ysoccer.framework.GLGame;
 import com.ygames.ysoccer.framework.GLScreen;
 import com.ygames.ysoccer.framework.SoundManager;
 import com.ygames.ysoccer.gui.Button;
+import com.ygames.ysoccer.gui.Gui;
+import com.ygames.ysoccer.gui.Picture;
 import com.ygames.ysoccer.gui.Widget;
 import com.ygames.ysoccer.match.Match;
 import com.ygames.ysoccer.match.MatchSettings;
@@ -34,14 +36,20 @@ class MatchSetup extends GLScreen {
     private final ArrayList<KitButton>[] kitButtons = new ArrayList[2];
     private final Widget playMatchButton;
 
+    Team homeTeam;
+    Team awayTeam;
+
     MatchSetup(GLGame game) {
         super(game);
         playMenuMusic = false;
         playPrematchMusic = true;
 
         Match match = navigation.competition.getMatch();
-        Team homeTeam = match.team[HOME];
-        Team awayTeam = match.team[AWAY];
+        homeTeam = match.team[HOME];
+        awayTeam = match.team[AWAY];
+
+        homeTeam.loadImage();
+        awayTeam.loadImage();
 
         Team.kitAutoSelection(homeTeam, awayTeam);
 
@@ -76,6 +84,16 @@ class MatchSetup extends GLScreen {
 
         w = new WeatherLabel();
         widgets.add(w);
+
+        if (homeTeam.image != null) {
+            w = new HomeTeamPicture();
+            widgets.add(w);
+        }
+
+        if (awayTeam.image != null) {
+            w = new AwayTeamPicture();
+            widgets.add(w);
+        }
 
         weatherPicture = new WeatherPicture();
         widgets.add(weatherPicture);
@@ -116,6 +134,34 @@ class MatchSetup extends GLScreen {
             setGeometry(game.gui.WIDTH / 2 - 300 + 25, 130 - 40 / 2, 300, 40);
             setText(gettext("TIME"), CENTER, font14);
             setActive(false);
+        }
+    }
+
+    private class HomeTeamPicture extends Picture {
+
+        HomeTeamPicture() {
+            setPosition(120, 480);
+            setAddShadow(true);
+        }
+
+        @Override
+        public void refresh() {
+            setTextureRegion(homeTeam.image);
+            limitToSize(70, 70);
+        }
+    }
+
+    private class AwayTeamPicture extends Picture {
+
+        AwayTeamPicture() {
+            setPosition(Gui.WIDTH - 120, 480);
+            setAddShadow(true);
+        }
+
+        @Override
+        public void refresh() {
+            setTextureRegion(awayTeam.image);
+            limitToSize(70, 70);
         }
     }
 

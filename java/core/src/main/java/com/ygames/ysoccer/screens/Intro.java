@@ -3,10 +3,12 @@ package com.ygames.ysoccer.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.ygames.ysoccer.framework.GLGame;
 import com.ygames.ysoccer.framework.GLScreen;
 import com.ygames.ysoccer.framework.MenuMusic;
+import com.ygames.ysoccer.gui.Gui;
 import com.ygames.ysoccer.gui.TextBox;
 import com.ygames.ysoccer.gui.Widget;
 
@@ -17,6 +19,7 @@ public class Intro extends GLScreen {
     public Intro(GLGame game) {
         super(game);
 
+        background = new Texture("images/backgrounds/menu_title.jpg");
         usesMouse = false;
 
         game.disableMouse();
@@ -26,17 +29,19 @@ public class Intro extends GLScreen {
 
         BitmapFont font = new BitmapFont(true);
         String[] lines = {
-                "YSoccer 19, Copyright (C) 2019",
-                "by Massimo Modica, Daniele Giannarini, Marco Modica",
-                "",
-                "YSoccer comes with ABSOLUTELY NO WARRANTY; for details press 'W'.",
-                "This is free software, and you are welcome to redistribute it",
-                "under certain conditions; press 'C' for details.",
-                "",
-                "",
-                "Press any key or button to continue"
+            "Charnego Internatiolaff Soccer",
+            "Charnego Translations Inc. & Enloartolameza Studios",
+            "",
+            "Basado en YSoccer",
+            "",
+            "Este juego se distribuye SIN NINGUNA GARANTÍA, pulsa 'W' para saber más.",
+            "Juego libre y gratuito con licencia GPL2.",
+            "Dale a la 'C' para ver más.",
+            "",
+            "",
+            "¡¡Pica una tecla pa viciarte!!"
         };
-        w = new TextBox(font, Arrays.asList(lines), game.gui.WIDTH / 4, 270, game.gui.WIDTH / 2);
+        w = new TextBox(font, Arrays.asList(lines), Gui.WIDTH / 4, 420, Gui.WIDTH / 2);
         widgets.add(w);
     }
 

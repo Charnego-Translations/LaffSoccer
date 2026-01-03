@@ -24,6 +24,7 @@ public class Settings {
     public boolean showIntro;
     public int musicMode;
     public int musicVolume;
+    public boolean names;
 
     // match
     public static Integer[] matchLengths = {3, 5, 7, 10, 15};
@@ -80,6 +81,7 @@ public class Settings {
         locale = preferences.getString("locale", "en");
         fullScreen = preferences.getBoolean("fullScreen", false);
         showIntro = preferences.getBoolean("showIntro", true);
+        names = preferences.getBoolean("names", false);
         musicMode = preferences.getInteger("musicMode", MenuMusic.ALL);
         musicVolume = preferences.getInteger("musicVolume", 40);
         useFlags = preferences.getBoolean("useFlags", true);
