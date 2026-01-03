@@ -34,21 +34,6 @@ jobs:
           NEW_VALUE="${GITHUB_REF_NAME#v}"
           sed -i "s/^${KEY}=.*/${KEY}=${NEW_VALUE}/" "$FILE"
 
-      - name: Commit and push changes
-        shell: bash
-        run: |
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
-          git fetch origin main
-          git checkout main
-          git add java/gradle.properties
-          if git diff --cached --quiet; then
-            echo "No changes to commit"
-          else
-            git commit -m "Release: update projectVersion to ${GITHUB_REF_NAME#v}"
-            git push origin main
-          fi
-
       - name: Build Linux
         working-directory: java
         run: |
@@ -84,3 +69,22 @@ jobs:
           files: java/release/**
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+       
+      - name: Commit and push changes
+        shell: bash
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          BRANCH="release/${GITHUB_REF_NAME}"
+          if git show-ref --verify --quiet refs/heads/$BRANCH; then
+            git checkout $BRANCH
+          else
+            git checkout -b $BRANCH
+          fi
+          git add java/gradle.properties
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Release: update projectVersion to ${GITHUB_REF_NAME#v}"
+            git push origin $BRANCH
+          fi
