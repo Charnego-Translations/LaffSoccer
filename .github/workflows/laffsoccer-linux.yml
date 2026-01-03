@@ -1,4 +1,4 @@
-name: Build Linux LWJGL3 y publicar TAR.GZ
+name: Build Linux LWJGL3
 
 on:
   push:

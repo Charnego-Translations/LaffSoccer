@@ -1,4 +1,4 @@
-name: Build Windows LWJGL3 y publicar ZIP
+name: Build Windows LWJGL3
 
 on:
   push:
