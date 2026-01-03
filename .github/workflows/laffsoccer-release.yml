@@ -1,4 +1,4 @@
-name: Build and Release (Linux)
+name: Build and Release (Win64, Linux64)
 
 on:
   push:
@@ -39,12 +39,14 @@ jobs:
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
+          git fetch origin main
+          git checkout main
           git add java/gradle.properties
           if git diff --cached --quiet; then
             echo "No changes to commit"
           else
             git commit -m "Release: update projectVersion to ${GITHUB_REF_NAME#v}"
-            git push
+            git push origin main
           fi
 
       - name: Build Linux
