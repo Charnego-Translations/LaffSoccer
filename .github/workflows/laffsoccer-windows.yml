@@ -1,0 +1,48 @@
+name: Build Windows LWJGL3 y publicar ZIP
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout del repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: gradle
+
+      - name: Ejecutar Gradle (LWJGL3 Windows)
+        working-directory: java
+        run: gradlew.bat lwjgl3:laffDistWindows
+
+      - name: Obtener versión del proyecto
+        id: version
+        working-directory: java
+        shell: powershell
+        run: |
+          $versionLine = gradlew.bat properties -q | Select-String "^projectVersion:"
+          $version = $versionLine -replace "projectVersion:\s*", ""
+          echo "version=$version" >> $env:GITHUB_OUTPUT
+
+      - name: Crear ZIP con nombre final
+        working-directory: java
+        shell: powershell
+        run: |
+          $zipName = "Charnego Internatiolaff Soccer (win + ${{ steps.version.outputs.version }}).zip"
+          Compress-Archive -Path "lwjgl3\build\dist\*" -DestinationPath $zipName
+
+      - name: Publicar artefacto
+        uses: actions/upload-artifact@v4
+        with:
+          name: laff-soccer-windows
+          path: |
+            path: java/${{ steps.zip.outputs.zip }}
