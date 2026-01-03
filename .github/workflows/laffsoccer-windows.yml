@@ -21,14 +21,15 @@ jobs:
           cache: gradle
 
       - name: Ejecutar Gradle (LWJGL3 Windows)
-        working-directory: java
-        run: gradlew.bat lwjgl3:laffDistWindows
+        run: |
+          cd java
+          gradlew.bat lwjgl3:laffDistWindows
 
       - name: Obtener versión del proyecto
         id: version
-        working-directory: java
         shell: powershell
         run: |
+          cd java
           $versionLine = gradlew.bat properties -q | Select-String "^projectVersion:"
           $version = $versionLine -replace "projectVersion:\s*", ""
           echo "version=$version" >> $env:GITHUB_OUTPUT
