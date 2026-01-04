@@ -248,7 +248,7 @@ public class Commentary {
         since = System.currentTimeMillis();
 
         if (scheduler != null) {
-            scheduler.close();
+            scheduler.shutdownNow();
         } else {
             scheduler = Executors.newSingleThreadScheduledExecutor();
         }
