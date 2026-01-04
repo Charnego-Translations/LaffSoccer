@@ -5,10 +5,11 @@ import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonValue;
 import com.ygames.ysoccer.competitions.Competition;
 import com.ygames.ysoccer.framework.Assets;
-import com.ygames.ysoccer.framework.Commentary;
 import com.ygames.ysoccer.framework.EMath;
 import com.ygames.ysoccer.framework.InputDeviceList;
 import com.ygames.ysoccer.framework.SoundManager;
+import com.ygames.ysoccer.framework.commentary.Commentary;
+import com.ygames.ysoccer.framework.commentary.CommonComment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,8 +43,6 @@ import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_SUBSTITUTED;
 public class Match extends Scene<MatchFsm, MatchState> implements Json.Serializable {
 
     public enum ResultType {AFTER_90_MINUTES, AFTER_EXTRA_TIME, AFTER_PENALTIES}
-
-    private final Commentary commentary = Commentary.INSTANCE;
 
     public interface MatchListener {
         void quitMatch(boolean matchCompleted);
@@ -647,15 +646,14 @@ public class Match extends Scene<MatchFsm, MatchState> implements Json.Serializa
     @Override
     void quit() {
 
-
-        SoundManager.CommonComment.stop();
+        CommonComment.stop();
 
         SoundManager.stopSounds();
 
         Assets.TeamCommentary.unload();
         Assets.TeamFaces.unload();
 
-        commentary.stop();
+        Commentary.INSTANCE.stop();
 
         listener.quitMatch(getFsm().matchCompleted);
     }

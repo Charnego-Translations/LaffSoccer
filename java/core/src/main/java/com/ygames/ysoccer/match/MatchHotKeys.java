@@ -1,8 +1,8 @@
 package com.ygames.ysoccer.match;
 
 import com.badlogic.gdx.Gdx;
-import com.ygames.ysoccer.framework.Commentary;
 import com.ygames.ysoccer.framework.SoundManager;
+import com.ygames.ysoccer.framework.commentary.Commentary;
 
 import static com.badlogic.gdx.Input.Keys.F10;
 import static com.badlogic.gdx.Input.Keys.F4;

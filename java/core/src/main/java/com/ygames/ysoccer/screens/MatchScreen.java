@@ -4,7 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.strongjoshua.console.Console;
 import com.strongjoshua.console.GUIConsole;
 import com.ygames.ysoccer.framework.Assets;
-import com.ygames.ysoccer.framework.Commentary;
+import com.ygames.ysoccer.framework.commentary.Commentary;
 import com.ygames.ysoccer.framework.Font;
 import com.ygames.ysoccer.framework.GLGame;
 import com.ygames.ysoccer.framework.GLScreen;

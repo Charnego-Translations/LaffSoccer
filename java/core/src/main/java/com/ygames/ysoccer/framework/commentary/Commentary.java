@@ -1,9 +1,13 @@
-package com.ygames.ysoccer.framework;
+package com.ygames.ysoccer.framework.commentary;
 
 import com.badlogic.gdx.audio.Sound;
+import com.ygames.ysoccer.framework.Assets;
+import com.ygames.ysoccer.framework.EMath;
+import com.ygames.ysoccer.framework.FileUtils;
+import com.ygames.ysoccer.framework.GLGame;
+import com.ygames.ysoccer.framework.SoundManager;
 import com.ygames.ysoccer.match.Match;
 import com.ygames.ysoccer.match.MatchStats;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,8 +20,9 @@ import java.util.Map;
 import java.util.Queue;
 import java.util.Random;
 import java.util.Set;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import static com.ygames.ysoccer.framework.Assets.RANDOM;
 import static com.ygames.ysoccer.framework.EMath.randomPick;
@@ -36,24 +41,6 @@ public class Commentary {
     @Getter
     @Setter
     private static boolean enabled = true;
-
-    /**
-     * A comment element
-     */
-    @Getter
-    @AllArgsConstructor
-    public static class Comment {
-
-        @AllArgsConstructor
-        public enum Priority {
-            CHITCHAT(4), LOW(1), COMMON(2), HIGH(3), GOAL(5);
-            private final int weight;
-        }
-
-        private final Priority priority;
-        private final Sound sound;
-
-    }
 
     /**
      * This is meant to be a singleton
@@ -82,7 +69,7 @@ public class Commentary {
     private float queueLength = 0F;
     private Sound lastSound = null;
 
-    private Timer timer;
+    private ScheduledExecutorService scheduler;
 
     /**
      * Enqueue a comment
@@ -95,15 +82,19 @@ public class Commentary {
             return;
         }
 
-        if (queueLength > MAX_QUEUE && playing != null && playing.priority.weight > elements[0].priority.weight && elements[0].priority != Comment.Priority.CHITCHAT) {
+        if (queueLength > MAX_QUEUE && playing != null && playing.commentPriority.weight > elements[0].commentPriority.weight && elements[0].commentPriority != CommentPriority.CHITCHAT) {
             GLGame.debug(COMMENTARY, elements, "Commentary not queued: queue too long: " + queueLength);
             return;
         }
 
         // A comment with greater priority comes (or queue is very long)
-        if ((playing != null && playing.priority.weight < elements[0].priority.weight && queueLength < SHORT_QUEUE || queueLength > MAX_QUEUE) && elements[0].priority != Comment.Priority.CHITCHAT)  {
-            GLGame.debug(COMMENTARY, elements, "Queue clear and commentary pushed immediately: is not chitchat? " + (elements[0].priority != Comment.Priority.CHITCHAT));
-            GLGame.debug(COMMENTARY, elements, "Queue clear and commentary pushed immediately: higher priority? " + (playing == null? "(not playing)" : playing.priority.weight < elements[0].priority.weight));
+        if (((playing != null
+                && playing.commentPriority.weight < elements[0].commentPriority.weight
+                && queueLength < SHORT_QUEUE
+                && elements[0].commentPriority != CommentPriority.CHITCHAT))
+            || queueLength > MAX_QUEUE)  {
+            GLGame.debug(COMMENTARY, elements, "Queue clear and commentary pushed immediately: is not chitchat? " + (elements[0].commentPriority != CommentPriority.CHITCHAT));
+            GLGame.debug(COMMENTARY, elements, "Queue clear and commentary pushed immediately: higher priority? " + (playing == null? "(not playing)" : playing.commentPriority.weight < elements[0].commentPriority.weight));
             GLGame.debug(COMMENTARY, elements, "Queue clear and commentary pushed immediately: short queue?" + (queueLength < SHORT_QUEUE));
             queue.clear();
             current.clear();
@@ -124,9 +115,9 @@ public class Commentary {
     /**
      * Prepares and enqueue end game comment
      */
-    public void endGameComment(Match match) {
-        enqueueComment(Commentary.getComment(SoundManager.CommonComment.CommonCommentType.MATCH_END, Comment.Priority.HIGH));
-        Comment[] resultComment = buildResult(match);
+    public void enqueueMatchEndComment(Match match) {
+        enqueueComment(Commentary.getComment(CommonCommentType.MATCH_END, CommentPriority.HIGH));
+        Comment[] resultComment = buildResultComment(match);
         if (resultComment != null) {
             enqueueComment(resultComment);
         }
@@ -135,19 +126,19 @@ public class Commentary {
     /**
      * Prepares a random comment of type and priority specified
      * @param type
-     * @param priority
+     * @param commentPriority
      * @return the composed comment
      */
-    public static Comment[] getComment(SoundManager.CommonComment.CommonCommentType type, Comment.Priority priority) {
+    public static Comment[] getComment(CommonCommentType type, CommentPriority commentPriority) {
 
-        GLGame.debug(COMMENTARY, priority, "Generating new comment: " + type);
+        GLGame.debug(COMMENTARY, commentPriority, "Generating new comment: " + type);
 
         List<Comment> result = new ArrayList<>();
-        result.add(new Comment(priority, SoundManager.CommonComment.pull(type)));
+        result.add(new Comment(commentPriority, CommonComment.pull(type)));
         if (RANDOM.nextInt(6) > 2) {
-            Sound secSound = SoundManager.CommonComment.pullSecond(type);
+            Sound secSound = CommonComment.pullSecond(type);
             if (secSound != null) {
-                result.add(new Comment(priority == Comment.Priority.HIGH ? Comment.Priority.COMMON : priority, SoundManager.CommonComment.pullSecond(type)));
+                result.add(new Comment(commentPriority == CommentPriority.HIGH ? CommentPriority.COMMON : commentPriority, CommonComment.pullSecond(type)));
             }
         }
 
@@ -159,8 +150,8 @@ public class Commentary {
      * @param match
      * @return
      */
-    public static Comment[] buildResult(Match match) {
-        Sound[] numbers = SoundManager.CommonComment.numbers;
+    public static Comment[] buildResultComment(Match match) {
+        Sound[] numbers = CommonComment.numbers;
 
         MatchStats home = match.stats[Match.HOME];
         MatchStats away = match.stats[Match.AWAY];
@@ -175,10 +166,10 @@ public class Commentary {
             return null;
         }
         return new Comment[] {
-                new Comment(Comment.Priority.HIGH, homeName.teamName),
-                new Comment(Comment.Priority.HIGH, numbers[(home.goals)]),
-                new Comment(Comment.Priority.HIGH, awayName.teamName),
-                new Comment(Comment.Priority.HIGH, numbers[(away.goals)])
+                new Comment(CommentPriority.HIGH, homeName.teamName),
+                new Comment(CommentPriority.HIGH, numbers[(home.goals)]),
+                new Comment(CommentPriority.HIGH, awayName.teamName),
+                new Comment(CommentPriority.HIGH, numbers[(away.goals)])
             };
     }
 
@@ -210,7 +201,7 @@ public class Commentary {
         }
 
         if (!sounds.isEmpty()) {
-            return new Comment[] {new Comment(Comment.Priority.LOW, randomPick(sounds))};
+            return new Comment[] {new Comment(CommentPriority.LOW, randomPick(sounds))};
         }
         return null;
     }
@@ -256,15 +247,18 @@ public class Commentary {
 
         since = System.currentTimeMillis();
 
-        if (timer != null) {
-            timer.cancel();
+        if (scheduler != null) {
+            scheduler.close();
+        } else {
+            scheduler = Executors.newSingleThreadScheduledExecutor();
         }
-        timer = new Timer();
-        timer.schedule(new TimerTask() {
-            public void run()  {
-                tick();
-            }
-        }, 1, 50);
+
+        scheduler.scheduleAtFixedRate(
+            this::tick,
+            1,
+            50,
+            TimeUnit.MILLISECONDS
+        );
     }
 
     public synchronized void tick() {
@@ -276,7 +270,7 @@ public class Commentary {
         if (now - lastChitChat > 20000) {
             Random rnd = new Random();
             if (rnd.nextInt((int) EMath.max(1, (now - lastChitChat))) > 36000) {
-                enqueueComment(getComment(SoundManager.CommonComment.CommonCommentType.CHITCHAT, Comment.Priority.CHITCHAT));
+                enqueueComment(getComment(CommonCommentType.CHITCHAT, CommentPriority.CHITCHAT));
                 lastChitChat = now;
             }
         }
@@ -313,7 +307,7 @@ public class Commentary {
 
         GLGame.debug(COMMENTARY, this, "Stopping commentary subsystem");
 
-        timer.cancel();
+        scheduler.shutdown();
 
         current.clear();
         queue.clear();

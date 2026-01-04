@@ -1,0 +1,25 @@
+package com.ygames.ysoccer.framework.commentary;
+
+public enum CommonCommentType {
+    CORNER_KICK,
+    FOUL,
+    NOT_FOUL,
+    GOAL,
+    KEEPER_DEFLECT,
+    KEEPER_SAVE,
+    OWN_GOAL,
+    PENALTY,
+    PLAYER_SUBSTITUTION,
+    PLAYER_SWAP,
+    THROW_IN,
+    KICK_OFF,
+    GOAL_KICK,
+    CHITCHAT,
+    MATCH_END,
+    HALF_MATCH,
+    MATCH_END_EXTRA_TIME,
+    EXTRA_TIME_FIRST_END,
+    EXTRA_TIME_END,
+    YELLOW_CARD,
+    RED_CARD,
+}

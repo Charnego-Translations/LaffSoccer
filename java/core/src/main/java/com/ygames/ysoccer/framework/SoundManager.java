@@ -13,6 +13,7 @@ import com.ygames.ysoccer.events.GoalKickEvent;
 import com.ygames.ysoccer.events.HomeGoalEvent;
 import com.ygames.ysoccer.events.KeeperDeflectEvent;
 import com.ygames.ysoccer.events.KeeperHoldEvent;
+import com.ygames.ysoccer.events.KickOffEvent;
 import com.ygames.ysoccer.events.MatchIntroEvent;
 import com.ygames.ysoccer.events.PenaltyEvent;
 import com.ygames.ysoccer.events.PeriodStopEvent;
@@ -21,10 +22,13 @@ import com.ygames.ysoccer.events.SubstitutionEvent;
 import com.ygames.ysoccer.events.TackleEvent;
 import com.ygames.ysoccer.events.ThrowInEvent;
 import com.ygames.ysoccer.events.WhistleEvent;
+import com.ygames.ysoccer.framework.commentary.Comment;
+import com.ygames.ysoccer.framework.commentary.CommentPriority;
+import com.ygames.ysoccer.framework.commentary.Commentary;
+import com.ygames.ysoccer.framework.commentary.CommonComment;
+import com.ygames.ysoccer.framework.commentary.CommonCommentType;
 import com.ygames.ysoccer.match.Goal;
-import com.ygames.ysoccer.match.Match;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -101,18 +105,18 @@ public class SoundManager {
             homeGoal.play(volume / 100f);
             if (homeGoalEvent.goal.type == Goal.Type.OWN_GOAL) {
                 Commentary.INSTANCE.enqueueComment(
-                    new Commentary.Comment(Commentary.Comment.Priority.GOAL, CommonComment.pull(CommonComment.CommonCommentType.OWN_GOAL)
+                    new Comment(CommentPriority.GOAL, CommonComment.pull(CommonCommentType.OWN_GOAL)
                     ));
             } else {
                 Commentary.INSTANCE.enqueueComment(
-                    new Commentary.Comment(Commentary.Comment.Priority.GOAL, CommonComment.pull(CommonComment.CommonCommentType.GOAL)
+                    new Comment(CommentPriority.GOAL, CommonComment.pull(CommonCommentType.GOAL)
                     ));
             }
         });
 
         EventManager.subscribe(KeeperDeflectEvent.class, keeperDeflectEvent -> {
             deflect.play(0.5f * volume / 100f);
-            Commentary.INSTANCE.enqueueComment(Commentary.getComment(CommonComment.CommonCommentType.KEEPER_SAVE, Commentary.Comment.Priority.HIGH));
+            Commentary.INSTANCE.enqueueComment(Commentary.getComment(CommonCommentType.KEEPER_SAVE, CommentPriority.HIGH));
         });
 
         EventManager.subscribe(KeeperHoldEvent.class, keeperHoldEvent -> {
@@ -128,36 +132,50 @@ public class SoundManager {
         EventManager.subscribe(PeriodStopEvent.class, periodStopEvent -> {
             end.play(volume / 100f);
 
-            if (periodStopEvent.match.period == Match.Period.FIRST_HALF) {
-                Commentary.INSTANCE.enqueueComment(Commentary.getComment(CommonComment.CommonCommentType.HALF_MATCH, Commentary.Comment.Priority.HIGH));
-                Commentary.INSTANCE.enqueueComment(Commentary.halfTime(periodStopEvent.match));
-            } else if (periodStopEvent.match.period == Match.Period.SECOND_HALF) {
-                Commentary.INSTANCE.enqueueComment(Commentary.getComment(CommonComment.CommonCommentType.MATCH_END, Commentary.Comment.Priority.HIGH));
-            } else if (periodStopEvent.match.period == Match.Period.FIRST_EXTRA_TIME) {
-                Commentary.INSTANCE.enqueueComment(Commentary.getComment(CommonComment.CommonCommentType.EXTRA_TIME_FIRST_END, Commentary.Comment.Priority.HIGH));
-            } else if (periodStopEvent.match.period == Match.Period.SECOND_EXTRA_TIME) {
-                Commentary.INSTANCE.enqueueComment(Commentary.getComment(CommonComment.CommonCommentType.MATCH_END_EXTRA_TIME, Commentary.Comment.Priority.HIGH));
-            } else if (periodStopEvent.match.period == Match.Period.PENALTIES) {
-                Commentary.INSTANCE.enqueueComment(Commentary.getComment(CommonComment.CommonCommentType.PENALTY, Commentary.Comment.Priority.HIGH));
-            }
+            switch (periodStopEvent.match.period) {
+                case FIRST_HALF:
+                    Commentary.INSTANCE.enqueueComment(Commentary.getComment(CommonCommentType.HALF_MATCH, CommentPriority.HIGH));
+                    Commentary.INSTANCE.enqueueComment(Commentary.halfTime(periodStopEvent.match));
+                    break;
 
+                case SECOND_HALF:
+                    Commentary.INSTANCE.enqueueComment(Commentary.getComment(CommonCommentType.MATCH_END, CommentPriority.HIGH));
+                    Commentary.INSTANCE.enqueueMatchEndComment(periodStopEvent.match);
+                    break;
+
+                case FIRST_EXTRA_TIME:
+                    Commentary.INSTANCE.enqueueComment(Commentary.getComment(CommonCommentType.EXTRA_TIME_FIRST_END, CommentPriority.HIGH));
+                    break;
+
+                case SECOND_EXTRA_TIME:
+                    Commentary.INSTANCE.enqueueComment(Commentary.getComment(CommonCommentType.MATCH_END_EXTRA_TIME, CommentPriority.HIGH));
+                    Commentary.INSTANCE.enqueueMatchEndComment(periodStopEvent.match);
+                    break;
+
+                case PENALTIES:
+                    Commentary.INSTANCE.enqueueMatchEndComment(periodStopEvent.match);
+                    break;
+
+                default:
+                    break;
+            }
         });
 
         EventManager.subscribe(KeeperDeflectEvent.class, keeperDeflectEvent -> {
-            Commentary.INSTANCE.enqueueComment(Commentary.getComment(CommonComment.CommonCommentType.KEEPER_DEFLECT, Commentary.Comment.Priority.HIGH));
+            Commentary.INSTANCE.enqueueComment(Commentary.getComment(CommonCommentType.KEEPER_DEFLECT, CommentPriority.HIGH));
         });
 
         EventManager.subscribe(KeeperHoldEvent.class, keeperHoldEvent -> {
-            Commentary.INSTANCE.enqueueComment(Commentary.getComment(CommonComment.CommonCommentType.KEEPER_SAVE, Commentary.Comment.Priority.HIGH));
+            Commentary.INSTANCE.enqueueComment(Commentary.getComment(CommonCommentType.KEEPER_SAVE, CommentPriority.HIGH));
         });
 
         EventManager.subscribe(PenaltyEvent.class, penaltyEvent -> {
-            Commentary.INSTANCE.enqueueComment(Commentary.getComment(CommonComment.CommonCommentType.PENALTY, Commentary.Comment.Priority.HIGH));
+            Commentary.INSTANCE.enqueueComment(Commentary.getComment(CommonCommentType.PENALTY, CommentPriority.HIGH));
         });
 
         EventManager.subscribe(TackleEvent.class, tackleEvent -> {
             if (tackleEvent.opponent == null) return;
-            Commentary.INSTANCE.enqueueComment(Commentary.getComment(tackleEvent.isFault ? CommonComment.CommonCommentType.FOUL : CommonComment.CommonCommentType.NOT_FOUL, Commentary.Comment.Priority.HIGH));
+            Commentary.INSTANCE.enqueueComment(Commentary.getComment(tackleEvent.isFault ? CommonCommentType.FOUL : CommonCommentType.NOT_FOUL, CommentPriority.HIGH));
             playVariations(SoundClass.PAIN);
         });
 
@@ -166,24 +184,28 @@ public class SoundManager {
         });
 
         EventManager.subscribe(ThrowInEvent.class, throwInEvent -> {
-            Commentary.INSTANCE.enqueueComment(Commentary.getComment(CommonComment.CommonCommentType.THROW_IN, Commentary.Comment.Priority.HIGH));
+            Commentary.INSTANCE.enqueueComment(Commentary.getComment(CommonCommentType.THROW_IN, CommentPriority.HIGH));
+        });
+
+        EventManager.subscribe(KickOffEvent.class, kickOffEvent -> {
+            Commentary.INSTANCE.enqueueComment(Commentary.getComment(CommonCommentType.KICK_OFF, CommentPriority.HIGH));
         });
 
         EventManager.subscribe(PlayerGetsBallEvent.class, playerGetsBallEvent -> {
             if (playerGetsBallEvent.getTeam().path != null) {
                 Sound playerSound = Assets.TeamCommentary.teams.get(FileUtils.getTeamFromFile(playerGetsBallEvent.getTeam().path)).players.get(playerGetsBallEvent.getPlayer().shirtName);
                 if (playerSound != null) {
-                    Commentary.INSTANCE.enqueueComment(new Commentary.Comment(Commentary.Comment.Priority.LOW, playerSound));
+                    Commentary.INSTANCE.enqueueComment(new Comment(CommentPriority.LOW, playerSound));
                 }
             }
         });
 
         EventManager.subscribe(GoalKickEvent.class, goalKickEvent -> {
-            Commentary.INSTANCE.enqueueComment(Commentary.getComment(CommonComment.CommonCommentType.GOAL_KICK, Commentary.Comment.Priority.HIGH));
+            Commentary.INSTANCE.enqueueComment(Commentary.getComment(CommonCommentType.GOAL_KICK, CommentPriority.HIGH));
         });
 
         EventManager.subscribe(CornerKickEvent.class, cornerKickEvent -> {
-            Commentary.INSTANCE.enqueueComment(Commentary.getComment(CommonComment.CommonCommentType.CORNER_KICK, Commentary.Comment.Priority.HIGH));
+            Commentary.INSTANCE.enqueueComment(Commentary.getComment(CommonCommentType.CORNER_KICK, CommentPriority.HIGH));
         });
 
         EventManager.subscribe(SubstitutionEvent.class, substitutionEvent -> {
@@ -191,11 +213,11 @@ public class SoundManager {
             Sound playerIn = Assets.TeamCommentary.teams.get(FileUtils.getTeamFromFile(substitutionEvent.team.path)).players.get(substitutionEvent.in.shirtName);
             Sound playerOut = Assets.TeamCommentary.teams.get(FileUtils.getTeamFromFile(substitutionEvent.team.path)).players.get(substitutionEvent.out.shirtName);
 
-            Commentary.INSTANCE.enqueueComment(Commentary.getComment(CommonComment.CommonCommentType.PLAYER_SUBSTITUTION, Commentary.Comment.Priority.HIGH));
+            Commentary.INSTANCE.enqueueComment(Commentary.getComment(CommonCommentType.PLAYER_SUBSTITUTION, CommentPriority.HIGH));
 
             //TODO add substitution comment
             if (playerIn != null && playerOut != null) {
-                Commentary.INSTANCE.enqueueComment(new Commentary.Comment(Commentary.Comment.Priority.HIGH, playerIn), new Commentary.Comment(Commentary.Comment.Priority.HIGH, playerOut));
+                Commentary.INSTANCE.enqueueComment(new Comment(CommentPriority.HIGH, playerIn), new Comment(CommentPriority.HIGH, playerOut));
             }
 
         });
@@ -285,79 +307,5 @@ public class SoundManager {
         playVariations(SoundManager.getSound(soundClass), false);
     }
 
-    public static class CommonComment {
 
-        public enum CommonCommentType {
-            CORNER_KICK, FOUL, NOT_FOUL, GOAL, KEEPER_DEFLECT, KEEPER_SAVE, OWN_GOAL, PENALTY, PLAYER_SUBSTITUTION, PLAYER_SWAP, THROW_IN, GOAL_KICK, CHITCHAT, KICK_OFF, MATCH_END, HALF_MATCH, MATCH_END_EXTRA_TIME, EXTRA_TIME_FIRST_END, EXTRA_TIME_END
-        }
-
-        public static final Map<CommonCommentType, Set<Sound>> commonCommentary = new HashMap<>();
-        public static final Map<CommonCommentType, Set<Sound>> commonCommentarySecondary = new HashMap<>();
-
-        static {
-            for (CommonCommentType value : CommonCommentType.values()) {
-                commonCommentary.put(value, new HashSet<>());
-                commonCommentarySecondary.put(value, new HashSet<>());
-            }
-        }
-
-        public static final Set<Sound> allComments = new HashSet<>();
-        public static final Sound[] numbers = new Sound[999];
-
-        public static Sound pull(CommonCommentType type) {
-            return randomPick(commonCommentary.get(type));
-        }
-
-        public static Sound pullSecond(CommonCommentType type) {
-            return randomPick(commonCommentarySecondary.get(type));
-        }
-
-        static void load() {
-            FileHandle numbersFolder = Gdx.files.local("sounds/commentary/numbers");
-            for (FileHandle fileHandle : numbersFolder.list()) {
-                if (EXTENSIONS.contains(fileHandle.extension().toLowerCase())) {
-                    String name = fileHandle.nameWithoutExtension();
-                    numbers[Integer.parseInt(name)] = Gdx.audio.newSound(fileHandle);
-                }
-            }
-            // Legacy load
-            FileHandle commentaryFolder = Gdx.files.local("sounds/commentary");
-            for (FileHandle fileHandle : commentaryFolder.list()) {
-                if (EXTENSIONS.contains(fileHandle.extension().toLowerCase())) {
-                    String name = fileHandle.nameWithoutExtension();
-                    for (CommonCommentType type : CommonCommentType.values()) {
-                        String fileType = type.name().toLowerCase();
-                        if (name.startsWith(fileType)) {
-                            commonCommentary.get(type).add(Gdx.audio.newSound(fileHandle));
-                        }
-                    }
-                }
-            }
-            // Comments in their folders
-            for (CommonCommentType commentType : CommonCommentType.values()) {
-                commentaryFolder = Gdx.files.local("sounds/commentary/" + commentType.name().toLowerCase() + "/");
-                for (FileHandle fileHandle : commentaryFolder.list()) {
-                    if (EXTENSIONS.contains(fileHandle.extension().toLowerCase())) {
-                        commonCommentary.get(commentType).add(Gdx.audio.newSound(fileHandle));
-                    }
-                }
-                // Secondary comments
-                commentaryFolder = Gdx.files.local("sounds/commentary/" + commentType.name().toLowerCase() + "/secondary/");
-                for (FileHandle fileHandle : commentaryFolder.list()) {
-                    if (EXTENSIONS.contains(fileHandle.extension().toLowerCase())) {
-                        commonCommentarySecondary.get(commentType).add(Gdx.audio.newSound(fileHandle));
-                    }
-                }
-            }
-            allComments.addAll(Arrays.asList(numbers));
-            commonCommentary.forEach((k, v) -> allComments.addAll(v));
-            commonCommentarySecondary.forEach((k, v) -> allComments.addAll(v));
-            allComments.remove(null);
-        }
-
-        public static void stop() {
-            allComments.forEach(Sound::stop);
-        }
-
-    }
 }

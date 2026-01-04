@@ -16,6 +16,7 @@ import com.ygames.ysoccer.competitions.League;
 import com.ygames.ysoccer.competitions.tournament.Tournament;
 import com.ygames.ysoccer.competitions.tournament.groups.Groups;
 import com.ygames.ysoccer.competitions.tournament.knockout.Knockout;
+import com.ygames.ysoccer.framework.commentary.CommonComment;
 import com.ygames.ysoccer.gui.Gui;
 import com.ygames.ysoccer.match.Const;
 import com.ygames.ysoccer.match.CrowdRenderer;
@@ -306,7 +307,7 @@ public class Assets {
         loadWind();
         loadBench();
         SoundManager.load();
-        SoundManager.CommonComment.load();
+        CommonComment.load();
         Commentary.load();
     }
 

@@ -1,6 +1,9 @@
 package com.ygames.ysoccer.match;
 
+import com.ygames.ysoccer.events.BallKickEvent;
+import com.ygames.ysoccer.events.KickOffEvent;
 import com.ygames.ysoccer.framework.EMath;
+import com.ygames.ysoccer.framework.EventManager;
 
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_KICK_OFF;
 
@@ -32,6 +35,7 @@ class PlayerStateKickOff extends PlayerState {
     State checkConditions() {
         if (player.inputDevice.fire1Down()) {
             player.kickAngle = player.a;
+            EventManager.publish(new KickOffEvent());
             return fsm.stateKick;
         }
         return null;
