@@ -73,7 +73,7 @@ public class Commentary {
 
     /**
      * Enqueue a comment
-     * @param elements
+     * @param elements Elements to enqueue
      */
     public synchronized void enqueueComment(Comment... elements) {
 
@@ -125,8 +125,8 @@ public class Commentary {
 
     /**
      * Prepares a random comment of type and priority specified
-     * @param type
-     * @param commentPriority
+     * @param type Common comment type
+     * @param commentPriority Comment priority
      * @return the composed comment
      */
     public static Comment[] getComment(CommonCommentType type, CommentPriority commentPriority) {
@@ -142,13 +142,13 @@ public class Commentary {
             }
         }
 
-        return result.toArray(new Comment[result.size()]);
+        return result.toArray(new Comment[0]);
     }
 
     /**
      * Builds a comment saying the result
-     * @param match
-     * @return
+     * @param match Match object
+     * @return built comment
      */
     public static Comment[] buildResultComment(Match match) {
         Sound[] numbers = CommonComment.numbers;
@@ -174,9 +174,9 @@ public class Commentary {
     }
 
     /**
-     * Builds a comment for half time
-     * @param match
-     * @return
+     * Builds a comment for half-time
+     * @param match match object
+     * @return built comment
      */
     public static Comment[] halfTime(Match match) {
         Set<Sound> sounds = new HashSet<>();
@@ -249,9 +249,8 @@ public class Commentary {
 
         if (scheduler != null) {
             scheduler.shutdownNow();
-        } else {
-            scheduler = Executors.newSingleThreadScheduledExecutor();
         }
+        scheduler = Executors.newSingleThreadScheduledExecutor();
 
         scheduler.scheduleAtFixedRate(
             this::tick,

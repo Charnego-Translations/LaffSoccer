@@ -148,15 +148,16 @@ public class SoundManager {
                     break;
 
                 case SECOND_EXTRA_TIME:
+                    Commentary.INSTANCE.enqueueComment(Commentary.getComment(CommonCommentType.EXTRA_TIME_END, CommentPriority.HIGH));
+                    break;
+
+                case PENALTIES:
                     Commentary.INSTANCE.enqueueComment(Commentary.getComment(CommonCommentType.MATCH_END_EXTRA_TIME, CommentPriority.HIGH));
                     Commentary.INSTANCE.enqueueMatchEndComment(periodStopEvent.match);
                     break;
 
-                case PENALTIES:
-                    Commentary.INSTANCE.enqueueMatchEndComment(periodStopEvent.match);
-                    break;
-
                 default:
+                    Gdx.app.log("SoundManager PeriodStopEvent", "Unknown period: " + periodStopEvent.match.period);
                     break;
             }
         });
