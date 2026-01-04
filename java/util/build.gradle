@@ -1,0 +1,31 @@
+apply plugin: "java"
+
+sourceSets.main.java.srcDirs = [ "src/" ]
+sourceSets.main.resources.srcDirs = ["../assets", "../util/resources"]
+
+project.ext.mainClassName = "net.krusher.laffsoccer.util.GenerateTeam"
+project.ext.assetsDir = new File("../android/assets")
+
+tasks.register('run', JavaExec) {
+  dependsOn classes
+  main = project.mainClassName
+  classpath = sourceSets.main.runtimeClasspath
+  standardInput = System.in
+  workingDir = project.assetsDir
+  ignoreExitValue = true
+}
+
+tasks.register('debug', JavaExec) {
+  dependsOn classes
+  main = project.mainClassName
+  classpath = sourceSets.main.runtimeClasspath
+  standardInput = System.in
+  workingDir = project.assetsDir
+  ignoreExitValue = true
+  debug = true
+}
+
+dependencies {
+  implementation "com.badlogicgames.gdx:gdx-backend-lwjgl3:$gdxVersion"
+  implementation project(":core")
+}
