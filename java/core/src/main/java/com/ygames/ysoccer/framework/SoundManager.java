@@ -28,6 +28,7 @@ import com.ygames.ysoccer.framework.commentary.Commentary;
 import com.ygames.ysoccer.framework.commentary.CommonComment;
 import com.ygames.ysoccer.framework.commentary.CommonCommentType;
 import com.ygames.ysoccer.match.Goal;
+import com.ygames.ysoccer.match.Match;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -189,7 +190,9 @@ public class SoundManager {
         });
 
         EventManager.subscribe(KickOffEvent.class, kickOffEvent -> {
-            Commentary.INSTANCE.enqueueComment(Commentary.getComment(CommonCommentType.KICK_OFF, CommentPriority.HIGH));
+            if (kickOffEvent.period == Match.Period.FIRST_HALF) {
+                Commentary.INSTANCE.enqueueComment(Commentary.getComment(CommonCommentType.KICK_OFF, CommentPriority.HIGH));
+            }
         });
 
         EventManager.subscribe(PlayerGetsBallEvent.class, playerGetsBallEvent -> {
