@@ -42,45 +42,50 @@ public class ReportMissingAssets {
         String assetsPath = TEAMS_DIR + teamPathName + teamNameNormalised;
         String teamPath = TEAMS_DIR + teamPathName;
 
+        auditAssets(team, teamPath, assetsPath, teamNameNormalised);
+
+    }
+
+    private static void auditAssets(Team team, String teamPath, String assetsPath, String teamFileName) {
+
+        Path teamLogoPath;
+        if (team.type == Team.Type.NATIONAL) {
+            teamLogoPath = Paths.get("assets/images/flags/medium/" + teamFileName + ".png");
+        } else {
+            teamLogoPath = Paths.get(teamPath + "/logo." + teamFileName + ".png");
+        }
+        if (!Files.exists(teamLogoPath)) {
+            System.out.println("Falta gráfico de escudo: " + teamLogoPath);
+        }
+
         if (!Files.exists(Paths.get(assetsPath))) {
             System.out.println("Falta carpeta de recursos: " + assetsPath);
             return;
         }
 
-        auditAssets(team, teamPath, assetsPath, teamNameNormalised);
-
-    }
-
-    private static void auditAssets(Team team, String teamPath, String assetPath, String teamFileName) {
-
-        Path soundTeamPath = Paths.get(assetPath + "/team.ogg");
+        Path soundTeamPath = Paths.get(assetsPath + "/team.ogg");
         if (!Files.exists(soundTeamPath)) {
             System.out.println("Falta sonido de equipo: " + soundTeamPath);
         }
 
-        Path soundStadiumPath = Paths.get(assetPath + "/stadium.ogg");
+        Path soundStadiumPath = Paths.get(assetsPath + "/stadium.ogg");
         if (!Files.exists(soundStadiumPath)) {
             System.out.println("Falta sonido de estadio: " + soundStadiumPath);
         }
 
-        Path soundCityPath = Paths.get(assetPath + "/city.ogg");
+        Path soundCityPath = Paths.get(assetsPath + "/city.ogg");
         if (!Files.exists(soundCityPath)) {
             System.out.println("Falta sonido de ciudad: " + soundCityPath);
         }
 
-        Path teamLogoPath = Paths.get(teamPath + "/logo." + teamFileName + ".png");
-        if (!Files.exists(teamLogoPath)) {
-            System.out.println("Falta gráfico de escudo: " + teamLogoPath);
-        }
-
         for (Player player : team.players) {
-            String playerSoundPath = "/player_" + FileUtils.normalizeName(player.shirtName) + ".ogg";
-            if (!Files.exists(Paths.get(assetPath + playerSoundPath))) {
-                System.out.println("Falta sonido de jugador (" + player.shirtName + "): " + assetPath + playerSoundPath);
+            Path playerSoundPath = Paths.get(assetsPath + "/player_" + FileUtils.normalizeName(player.shirtName) + ".ogg");
+            if (!Files.exists(playerSoundPath)) {
+                System.out.println("Falta sonido de jugador (" + player.shirtName + "): " + playerSoundPath);
             }
-            String playerPicturePath = "/" + FileUtils.normalizeName(player.shirtName) + ".png";
-            if (!Files.exists(Paths.get(assetPath + playerPicturePath))) {
-                System.out.println("Falta sonido de jugador (" + player.shirtName + "): " + assetPath + playerPicturePath);
+            Path playerPicturePath = Paths.get(assetsPath + "/" + FileUtils.normalizeName(player.shirtName) + ".png");
+            if (!Files.exists(playerPicturePath)) {
+                System.out.println("Falta retrato de jugador (" + player.shirtName + "): " + playerPicturePath);
             }
         }
     }
