@@ -163,10 +163,10 @@ public class Commentary {
 
         MatchStats home = match.stats[Match.HOME];
         MatchStats away = match.stats[Match.AWAY];
-        Map<String, Assets.TeamCommentary> teams = Assets.TeamCommentary.teams;
+        Map<String, TeamCommentary> teams = TeamCommentary.teams;
 
-        Assets.TeamCommentary homeName = teams.get(FileUtils.getTeamFromFile(match.team[Match.HOME].path));
-        Assets.TeamCommentary awayName = teams.get(FileUtils.getTeamFromFile(match.team[Match.AWAY].path));
+        TeamCommentary homeName = teams.get(FileUtils.getTeamFromFile(match.team[Match.HOME].path));
+        TeamCommentary awayName = teams.get(FileUtils.getTeamFromFile(match.team[Match.AWAY].path));
 
         if (numbers[(home.goals)] == null
             || numbers[(away.goals)] == null

@@ -3,6 +3,7 @@ package com.ygames.ysoccer.framework.commentary;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.files.FileHandle;
+import com.ygames.ysoccer.framework.FileUtils;
 import com.ygames.ysoccer.match.Player;
 import com.ygames.ysoccer.match.Team;
 
@@ -34,22 +35,57 @@ public class CommonComment {
     public static final Sound[] numbers = new Sound[999];
 
     public static Sound[] pull(CommonCommentType type, Team team, Player player) {
-        Sentence sentence = randomPick(commonCommentary.get(type));
+        TeamCommentary teamCommentary = TeamCommentary.teams.get(FileUtils.getTeamFromFile(team.path));
+
+        Sentence sentence = randomPick(commonCommentary.get(type)
+            .stream()
+            .filter(s -> s.requiresStart == SentenceRequirement.NONE
+                || (s.requiresStart == SentenceRequirement.TEAM && teamCommentary.teamName != null)
+                || (s.requiresStart == SentenceRequirement.PLAYER && teamCommentary.players.containsKey(player.shirtName))
+                || (s.requiresStart == SentenceRequirement.CITY && teamCommentary.city != null)
+                || (s.requiresStart == SentenceRequirement.STADIUM && teamCommentary.stadiumName != null)
+            )
+            .collect(Collectors.toSet()));
 
         Sound prefix = null;
         Sound suffix = null;
         Sound main = sentence.sound;
-        
-        // TODO get prefix and suffix
+
+        if (sentence.requiresStart != SentenceRequirement.NONE) {
+            prefix = resolveRequirement(sentence.requiresStart, teamCommentary, player);
+        }
+
+        if (sentence.requiresEnd != SentenceRequirement.NONE) {
+            suffix = resolveRequirement(sentence.requiresEnd, teamCommentary, player);
+        }
 
         return Stream.of(prefix, main, suffix)
             .filter(Objects::nonNull)
             .toArray(Sound[]::new);
     }
 
+    private static Sound resolveRequirement(
+        SentenceRequirement requirement,
+        TeamCommentary teamCommentary,
+        Player player
+    ) {
+        switch (requirement) {
+            case TEAM:
+                return teamCommentary.teamName;
+            case PLAYER:
+                return teamCommentary.players.get(player.shirtName);
+            case CITY:
+                return teamCommentary.city;
+            case STADIUM:
+                return teamCommentary.stadiumName;
+            default:
+                return null;
+        }
+    }
+
     public static Sound pull(CommonCommentType type) {
         return randomPick(commonCommentary.get(type).stream()
-            .filter(sentence -> sentence.start == SentenceRequirement.NONE && sentence.end == SentenceRequirement.NONE)
+            .filter(sentence -> sentence.requiresStart == SentenceRequirement.NONE && sentence.requiresEnd == SentenceRequirement.NONE)
             .collect(Collectors.toSet())).sound;
     }
 

@@ -4,12 +4,13 @@ import com.badlogic.gdx.Gdx;
 import com.strongjoshua.console.Console;
 import com.strongjoshua.console.GUIConsole;
 import com.ygames.ysoccer.framework.Assets;
-import com.ygames.ysoccer.framework.commentary.Commentary;
 import com.ygames.ysoccer.framework.Font;
 import com.ygames.ysoccer.framework.GLGame;
 import com.ygames.ysoccer.framework.GLScreen;
 import com.ygames.ysoccer.framework.Settings;
 import com.ygames.ysoccer.framework.SoundManager;
+import com.ygames.ysoccer.framework.commentary.Commentary;
+import com.ygames.ysoccer.framework.commentary.TeamCommentary;
 import com.ygames.ysoccer.gui.Gui;
 import com.ygames.ysoccer.match.Match;
 import com.ygames.ysoccer.match.MatchConsoleCommandExecutor;
@@ -48,8 +49,8 @@ class MatchScreen extends GLScreen {
 
         Commentary.INSTANCE.wake();
 
-        Assets.TeamCommentary.load(match.team[0]);
-        Assets.TeamCommentary.load(match.team[1]);
+        TeamCommentary.load(match.team[0]);
+        TeamCommentary.load(match.team[1]);
 
         Assets.TeamFaces.load(match.team[0]);
         Assets.TeamFaces.load(match.team[1]);

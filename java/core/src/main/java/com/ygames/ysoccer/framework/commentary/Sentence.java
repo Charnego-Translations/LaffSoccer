@@ -15,8 +15,8 @@ import java.util.stream.Stream;
 public class Sentence {
 
     public final Sound sound;
-    public final SentenceRequirement start;
-    public final SentenceRequirement end;
+    public final SentenceRequirement requiresStart;
+    public final SentenceRequirement requiresEnd;
 
     public static Sentence of(Sound sound, String name) {
         return new Sentence(sound, start(name), end(name));

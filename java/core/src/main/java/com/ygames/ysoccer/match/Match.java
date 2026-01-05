@@ -10,6 +10,7 @@ import com.ygames.ysoccer.framework.InputDeviceList;
 import com.ygames.ysoccer.framework.SoundManager;
 import com.ygames.ysoccer.framework.commentary.Commentary;
 import com.ygames.ysoccer.framework.commentary.CommonComment;
+import com.ygames.ysoccer.framework.commentary.TeamCommentary;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -650,7 +651,7 @@ public class Match extends Scene<MatchFsm, MatchState> implements Json.Serializa
 
         SoundManager.stopSounds();
 
-        Assets.TeamCommentary.unload();
+        TeamCommentary.unload();
         Assets.TeamFaces.unload();
 
         Commentary.INSTANCE.stop();
