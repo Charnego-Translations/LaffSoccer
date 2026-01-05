@@ -28,6 +28,8 @@ public class Auxiliary {
     public static final int DICE = 5;
     public static final int MAX_STAT = 8;
 
+    public static final String TEAMS_DIR = "assets/data/teams/";
+
     public static List<String> fileToStringList(String filepath) throws IOException {
         Path file = new File(Auxiliary.class.getClassLoader().getResource(filepath).getFile()).toPath();
         return Files.readAllLines(file);
@@ -152,5 +154,13 @@ public class Auxiliary {
         String result = json.toJson(team, Team.class);
         System.out.println("Save as file: " + fileToSave.getAbsolutePath());
         Files.write(Paths.get(fileToSave.getPath()), result.getBytes());
+    }
+
+    public static Team loadTeam(String path) throws IOException {
+        Json json = new Json();
+        json.setOutputType(JsonWriter.OutputType.json);
+        json.setUsePrototypes(false);
+        json.addClassTag("kits", Kit[].class);
+        return json.fromJson(Team.class, Files.newInputStream(Paths.get(path)));
     }
 }
