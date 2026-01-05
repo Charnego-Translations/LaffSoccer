@@ -34,7 +34,14 @@ class PlayerStateKickOff extends PlayerState {
     State checkConditions() {
         if (player.inputDevice.fire1Down()) {
             player.kickAngle = player.a;
-            EventManager.publish(new KickOffEvent(((Match) scene).period));
+            switch (Math.round(((Match) scene).clock)) {
+                case 0:
+                    EventManager.publish(new KickOffEvent(Match.Period.FIRST_HALF));
+                    break;
+                case 90000:
+                    EventManager.publish(new KickOffEvent(Match.Period.SECOND_HALF));
+                    break;
+            }
             return fsm.stateKick;
         }
         return null;
