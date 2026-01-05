@@ -1,13 +1,14 @@
 package com.ygames.ysoccer.framework.commentary;
 
 import com.badlogic.gdx.audio.Sound;
-import com.ygames.ysoccer.framework.Assets;
 import com.ygames.ysoccer.framework.EMath;
 import com.ygames.ysoccer.framework.FileUtils;
 import com.ygames.ysoccer.framework.GLGame;
 import com.ygames.ysoccer.framework.SoundManager;
 import com.ygames.ysoccer.match.Match;
 import com.ygames.ysoccer.match.MatchStats;
+import com.ygames.ysoccer.match.Player;
+import com.ygames.ysoccer.match.Team;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -24,7 +25,6 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-import static com.ygames.ysoccer.framework.Assets.RANDOM;
 import static com.ygames.ysoccer.framework.EMath.randomPick;
 import static com.ygames.ysoccer.framework.GLGame.LogType.COMMENTARY;
 
@@ -106,7 +106,7 @@ public class Commentary {
         }
 
         for (Comment element : elements) {
-            queueLength += FileUtils.soundDuration(element.getSound());
+            queueLength += FileUtils.soundDuration(element.sound);
         }
         GLGame.debug(COMMENTARY, queueLength, "Queue length: " + queueLength);
         queue.add(elements);
@@ -129,20 +129,26 @@ public class Commentary {
      * @param commentPriority Comment priority
      * @return the composed comment
      */
-    public static Comment[] getComment(CommonCommentType type, CommentPriority commentPriority) {
+    public static Comment[] getComment(CommonCommentType type, CommentPriority commentPriority, Team team, Player player) {
 
         GLGame.debug(COMMENTARY, commentPriority, "Generating new comment: " + type);
 
         List<Comment> result = new ArrayList<>();
-        result.add(new Comment(commentPriority, CommonComment.pull(type)));
-        if (RANDOM.nextInt(6) > 2) {
-            Sound secSound = CommonComment.pullSecond(type);
-            if (secSound != null) {
-                result.add(new Comment(commentPriority == CommentPriority.HIGH ? CommentPriority.COMMON : commentPriority, CommonComment.pullSecond(type)));
-            }
+        for (Sound sound : CommonComment.pull(type, team, player)) {
+            result.add(new Comment(commentPriority, sound));
         }
+        EMath.oneIn(2.5f, () -> {
+            Sentence commonComment = CommonComment.pullSecond(type);
+            if (commonComment != null && commonComment.sound != null) {
+                result.add(new Comment(commentPriority == CommentPriority.HIGH ? CommentPriority.COMMON : commentPriority, commonComment.sound));
+            }
+        });
 
         return result.toArray(new Comment[0]);
+    }
+
+    public static Comment[] getComment(CommonCommentType type, CommentPriority commentPriority) {
+        return getComment(type, commentPriority, null, null);
     }
 
     /**
@@ -155,10 +161,10 @@ public class Commentary {
 
         MatchStats home = match.stats[Match.HOME];
         MatchStats away = match.stats[Match.AWAY];
-        Map<String, Assets.TeamCommentary> teams = Assets.TeamCommentary.teams;
+        Map<String, TeamCommentary> teams = TeamCommentary.teams;
 
-        Assets.TeamCommentary homeName = teams.get(FileUtils.getTeamFromFile(match.team[Match.HOME].path));
-        Assets.TeamCommentary awayName = teams.get(FileUtils.getTeamFromFile(match.team[Match.AWAY].path));
+        TeamCommentary homeName = teams.get(FileUtils.getTeamFromFile(match.team[Match.HOME].path));
+        TeamCommentary awayName = teams.get(FileUtils.getTeamFromFile(match.team[Match.AWAY].path));
 
         if (numbers[(home.goals)] == null
             || numbers[(away.goals)] == null
@@ -220,15 +226,15 @@ public class Commentary {
 
         GLGame.debug(COMMENTARY, target, "Pulling new comment: " + target);
 
-        lastLength = FileUtils.soundDuration(target.getSound());
+        lastLength = FileUtils.soundDuration(target.sound);
         queueLength -= lastLength;
         since = System.currentTimeMillis();
 
         playing = target;
         try {
-            if (playing.getSound() != null) {
-                playing.getSound().play();
-                lastSound = playing.getSound();
+            if (playing.sound != null) {
+                playing.sound.play();
+                lastSound = playing.sound;
             }
         } catch (UnsatisfiedLinkError ex) {
             GLGame.debug(COMMENTARY, this, "Couldn't play comment: " + ex.getMessage());
@@ -312,7 +318,7 @@ public class Commentary {
         queue.clear();
 
         if (playing != null) {
-            playing.getSound().stop();
+            playing.sound.stop();
             playing = null;
         }
 

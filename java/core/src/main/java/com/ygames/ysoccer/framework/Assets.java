@@ -200,48 +200,6 @@ public class Assets {
         }
     }
 
-    public static class TeamCommentary {
-
-        public static final Map<String, TeamCommentary> teams = new HashMap<>();
-
-        public Sound teamName;
-        public Sound stadiumName;
-        public Sound city;
-        public final Map<String, Sound> players = new HashMap<>();
-
-        public static void load(Team team) {
-
-            String teamFile = FileUtils.getTeamFromFile(team.path);
-            String teamPath = FileUtils.getPathFromTeamPath(team.path);
-            String soundPath = "data/teams" + teamPath + teamFile;
-
-            TeamCommentary element = new TeamCommentary();
-
-            element.teamName = loadSound(soundPath + "/team.ogg");
-            element.stadiumName = loadSound(soundPath + "/stadium.ogg");
-            element.city = loadSound(soundPath + "/city.ogg");
-
-            team.players.forEach(player -> {
-                element.players.put(player.shirtName, loadSound(soundPath + "/player_" + FileUtils.normalizeName(player.shirtName) + ".ogg"));
-            });
-
-            teams.put(teamFile, element);
-
-        }
-
-        public static void unload() {
-            teams.forEach((name, team) -> {
-                stopAndDispose(team.teamName);
-                stopAndDispose(team.stadiumName);
-                stopAndDispose(team.city);
-                team.players.forEach((playerName, sound) -> {
-                    stopAndDispose(sound);
-                });
-            });
-            teams.clear();
-        }
-    }
-
     public static void load(Settings settings) {
         loadCore(settings);
         customCursor = Gdx.graphics.newCursor(new Pixmap(Gdx.files.internal("images/arrow.png")), 0, 0);
@@ -907,28 +865,6 @@ public class Assets {
             fh = fh.parent();
         }
         return fh;
-    }
-
-    /**
-     * Load sounds from absolute path from assets directory
-     * @param filename
-     * @return the sounds or null if doesn't exist
-     */
-    private static Sound loadSound(String filename) {
-        FileHandle file = Gdx.files.internal(filename);
-        if (file.exists()) {
-            return Gdx.audio.newSound(file);
-        } else {
-            return null;
-        }
-    }
-
-    private static void stopAndDispose(Sound sound) {
-        if (sound == null) {
-            return;
-        }
-        sound.stop();
-        sound.dispose();
     }
 
     public static FilenameFilter teamFilenameFilter = new FilenameFilter() {
