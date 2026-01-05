@@ -30,7 +30,7 @@ public class ReportMissingAssets {
         // System.out.println("Procesando: " + jsonFile);
         Team team;
         try {
-            team = Auxiliary.loadTeam(jsonFile.toString());
+            team = Auxiliary.loadTeamFile(jsonFile.toString());
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
             return;

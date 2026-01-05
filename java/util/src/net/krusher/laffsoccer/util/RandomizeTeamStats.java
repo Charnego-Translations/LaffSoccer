@@ -1,9 +1,7 @@
 package net.krusher.laffsoccer.util;
 
 import com.badlogic.gdx.utils.Json;
-import com.badlogic.gdx.utils.JsonWriter;
 import com.ygames.ysoccer.framework.FileUtils;
-import com.ygames.ysoccer.match.Kit;
 import com.ygames.ysoccer.match.Player;
 import com.ygames.ysoccer.match.Team;
 import net.krusher.laffsoccer.util.auxiliary.Auxiliary;
@@ -12,10 +10,7 @@ import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
@@ -44,7 +39,7 @@ public class RandomizeTeamStats {
         }
         File fileToLoad = fileChooser.getSelectedFile();
 
-        Team team = Auxiliary.loadTeam(fileToLoad.getAbsolutePath());
+        Team team = Auxiliary.loadTeamFile(fileToLoad.getAbsolutePath());
 
         team.players.forEach(player -> {
             // Goalkeeper
@@ -77,7 +72,7 @@ public class RandomizeTeamStats {
         if (userSelection == JFileChooser.APPROVE_OPTION) {
             File fileToSave = fileChooser.getSelectedFile();
             System.out.println("Save as file: " + fileToSave.getAbsolutePath());
-            Auxiliary.saveTeam(team, fileToSave);
+            Auxiliary.writeTeamFile(team, fileToSave);
         }
 
         System.out.print("Done");

@@ -6,9 +6,18 @@ import com.ygames.ysoccer.framework.EMath;
 import com.ygames.ysoccer.match.Kit;
 import com.ygames.ysoccer.match.Player;
 import com.ygames.ysoccer.match.Team;
+import org.apache.commons.lang3.StringUtils;
 
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -123,7 +132,7 @@ public class Auxiliary {
 
         ArrayList<Integer> result = new ArrayList<>(intSet);
         Collections.shuffle(result);
-        return result.toArray(new Integer[result.size()]);
+        return result.toArray(new Integer[0]);
     }
 
     public static String shortName(String name) {
@@ -146,21 +155,93 @@ public class Auxiliary {
         return name;
     }
 
-    public static void saveTeam(Team team, File fileToSave) throws IOException {
+    public static void writeTeamFile(Team team, File fileToSave, String comment) throws IOException {
         Json json = new Json();
         json.setOutputType(JsonWriter.OutputType.json);
         json.setUsePrototypes(false);
         json.addClassTag("kits", Kit[].class);
         String result = json.toJson(team, Team.class);
+        if (StringUtils.isNotBlank(comment)) {
+            result = result.replaceFirst("\\{", "{\n  \"_comment\": \"" + comment + "\",");
+        }
         System.out.println("Save as file: " + fileToSave.getAbsolutePath());
         Files.write(Paths.get(fileToSave.getPath()), result.getBytes());
     }
 
-    public static Team loadTeam(String path) throws IOException {
+    public static void writeTeamFile(Team team, File fileToSave) throws IOException {
+        writeTeamFile(team, fileToSave, "");
+    }
+
+    public static Team loadTeamFile(String path) throws IOException {
         Json json = new Json();
         json.setOutputType(JsonWriter.OutputType.json);
         json.setUsePrototypes(false);
         json.addClassTag("kits", Kit[].class);
         return json.fromJson(Team.class, Files.newInputStream(Paths.get(path)));
+    }
+
+    public static String askForUrl(String message) {
+        while (true) {
+            String input = JOptionPane.showInputDialog(
+                null,
+                message,
+                "Introduce una URL",
+                JOptionPane.QUESTION_MESSAGE
+            );
+
+            if (input == null) {
+                return null; // usuario canceló
+            }
+
+            try {
+                new URL(input.trim()); // valida formato
+                return input.trim();
+            } catch (MalformedURLException e) {
+                JOptionPane.showMessageDialog(
+                    null,
+                    "La URL no es válida.\nEjemplo: https://www.ejemplo.com",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE
+                );
+            }
+        }
+    }
+
+    public static Path selectJsonFilePath() {
+        JFileChooser chooser = new JFileChooser();
+        chooser.setDialogTitle("Guardar equipo");
+        chooser.setFileFilter(new FileNameExtensionFilter("JSON (*.json)", "json"));
+
+        int result = chooser.showSaveDialog(null);
+        if (result != JFileChooser.APPROVE_OPTION) {
+            return null;
+        }
+
+        File file = chooser.getSelectedFile();
+
+        if (!file.getName().toLowerCase().endsWith(".json")) {
+            file = new File(file.getParentFile(), file.getName() + ".json");
+        }
+
+        return Paths.get(file.getAbsolutePath());
+    }
+
+    public static void downloadImageAndResize(String fileUrl, Path targetPath) throws IOException {
+        URL url = new URL(fileUrl);
+        try (InputStream in = url.openStream()) {
+
+            BufferedImage originalImage = ImageIO.read(in);
+
+            BufferedImage resizedImage = new BufferedImage(70, 70, BufferedImage.TYPE_INT_ARGB);
+
+            Graphics2D g = resizedImage.createGraphics();
+            g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+            g.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+            g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+            g.drawImage(originalImage.getScaledInstance(70, 70, Image.SCALE_SMOOTH), 0, 0, null);
+            g.dispose();
+
+            ImageIO.write(resizedImage, "PNG", targetPath.toFile());
+        }
     }
 }

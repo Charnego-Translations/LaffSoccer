@@ -27,5 +27,7 @@ tasks.register('debug', JavaExec) {
 
 dependencies {
   implementation "com.badlogicgames.gdx:gdx-backend-lwjgl3:$gdxVersion"
+  // https://mvnrepository.com/artifact/org.jsoup/jsoup
+  implementation("org.jsoup:jsoup:1.22.1")
   implementation project(":core")
 }

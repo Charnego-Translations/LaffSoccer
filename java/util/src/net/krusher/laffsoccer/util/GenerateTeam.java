@@ -29,7 +29,7 @@ public class GenerateTeam {
     public static final List<String> SUFIXES = Arrays.asList("UTD", "FC", "SAD", "FOOTBALL", "CLUB");
     public static final List<String> SUFIXES_STADIUM = Arrays.asList("ARENA", "STADIUM", "OLIMPIC", "CENTER");
     public static final List<String> PREFIXES_STADIUM = Arrays.asList("ST", "STADE", "LE");
-    public static final List<String> LEAGUES = Arrays.asList("LALIGA", "PREMIER", "FIRST");
+    public static final List<String> LEAGUES = Arrays.asList("CLUSES", "HISTÓRICOS");
 
     public static List<String> NAMES;
     public static List<String> SURNAMES;
@@ -87,19 +87,12 @@ public class GenerateTeam {
         team.country = Auxiliary.getRandomItem(COUNTRIES);
         team.coach.name = composeName();
         team.coach.nationality = Auxiliary.getRandomItem(COUNTRIES);
-        // team.league = Auxiliary.getRandomItem(LEAGUES);
+        team.league = Auxiliary.getRandomItem(LEAGUES);
 
         team.kits = new ArrayList<>();
-        for (int i=0; i<3; i++) {
-            Kit kit = new Kit();
-            kit.style = Auxiliary.getRandomItem(KIT_STYLES);
-            kit.shirt1 = Auxiliary.randomColour();
-            kit.shirt2 = Auxiliary.randomColour();
-            kit.shirt3 = Auxiliary.randomColour();
-            kit.shorts = Auxiliary.randomColour();
-            kit.socks = Auxiliary.randomColour();
-            team.kits.add(kit);
-        }
+        team.kits.add(randomKit());
+        team.kits.add(randomKit());
+        team.kits.add(randomKit());
 
         team.players = new ArrayList<>();
         int numPlayers = RND.nextInt(5) + 18;
@@ -124,13 +117,13 @@ public class GenerateTeam {
             // Goalkeeper
             if (Arrays.stream(goalKeepers).anyMatch(value -> value == finalI + 1)) {
                 player.role = Player.Role.GOALKEEPER;
-                player.value = RND.nextInt(30) + 10;
+                player.value = RND.nextInt(15) + 10;
             } else {
                 player.role = Player.Role.values()[RND.nextInt(Player.Role.values().length - 2) + 1];
 
                 player.skills = generateSkills(player.role);
 
-                List<Player.Skill> skills = new LinkedList<Player.Skill>(Arrays.asList(Player.Skill.values()));
+                List<Player.Skill> skills = new LinkedList<>(Arrays.asList(Player.Skill.values()));
                 Collections.shuffle(skills);
                 player.bestSkills.addAll(skills.subList(0, RND.nextInt(skills.size())));
 
@@ -148,7 +141,7 @@ public class GenerateTeam {
 
         if (arg.length != 0) {
             File fileToSave = new File(arg[0]);
-            Auxiliary.saveTeam(team, fileToSave);
+            Auxiliary.writeTeamFile(team, fileToSave);
         } else {
 
             JFrame parentFrame = new JFrame();
@@ -162,13 +155,24 @@ public class GenerateTeam {
                     team.name = name.substring(name.indexOf('.') + 1, name.lastIndexOf('.')).toUpperCase();
                 }
 
-                Auxiliary.saveTeam(team, fileToSave);
+                Auxiliary.writeTeamFile(team, fileToSave);
                 parentFrame.dispose();
             }
         }
 
         System.out.print("Done");
 
+    }
+
+    public static Kit randomKit() {
+        Kit kit = new Kit();
+        kit.style = Auxiliary.getRandomItem(KIT_STYLES);
+        kit.shirt1 = Auxiliary.randomColour();
+        kit.shirt2 = Auxiliary.randomColour();
+        kit.shirt3 = Auxiliary.randomColour();
+        kit.shorts = Auxiliary.randomColour();
+        kit.socks = Auxiliary.randomColour();
+        return kit;
     }
 
 }

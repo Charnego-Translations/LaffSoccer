@@ -1,0 +1,174 @@
+package net.krusher.laffsoccer.util;
+
+import com.ygames.ysoccer.framework.FileUtils;
+import com.ygames.ysoccer.match.Coach;
+import com.ygames.ysoccer.match.Hair;
+import com.ygames.ysoccer.match.Player;
+import com.ygames.ysoccer.match.Skin;
+import com.ygames.ysoccer.match.Team;
+import net.krusher.laffsoccer.util.auxiliary.Auxiliary;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.concurrent.atomic.AtomicInteger;
+
+import static net.krusher.laffsoccer.util.GenerateTeam.HAIR_STYLES;
+import static net.krusher.laffsoccer.util.GenerateTeam.randomKit;
+import static net.krusher.laffsoccer.util.auxiliary.Auxiliary.RND;
+import static net.krusher.laffsoccer.util.auxiliary.Auxiliary.generateSkills;
+
+public class GetTeamFromBdFutbol {
+
+    private final static Map<String, String> COUNTRY_CONV = new HashMap<>();
+    private final static Map<String, Player.Role> POSITION_CONV = new HashMap<>();
+    static {
+        COUNTRY_CONV.put("españa", "ESP");
+        COUNTRY_CONV.put("argentina", "ARG");
+        COUNTRY_CONV.put("brasil", "BRA");
+        COUNTRY_CONV.put("colombia", "COL");
+        COUNTRY_CONV.put("hungria", "HUN");
+        COUNTRY_CONV.put("uruguay", "URU");
+        COUNTRY_CONV.put("mexico", "MEX");
+        COUNTRY_CONV.put("paraguay", "PAR");
+        COUNTRY_CONV.put("bolivia", "BOL");
+        COUNTRY_CONV.put("peru", "PER");
+        COUNTRY_CONV.put("chile", "CHI");
+        COUNTRY_CONV.put("venezuela", "VEN");
+        COUNTRY_CONV.put("espana", "ESP");
+        COUNTRY_CONV.put("italia", "ITA");
+        COUNTRY_CONV.put("portugal", "POR");
+        COUNTRY_CONV.put("francia", "FRA");
+        COUNTRY_CONV.put("alemania", "DEN");
+        COUNTRY_CONV.put("australia", "AUS");
+        COUNTRY_CONV.put("austria", "AUT");
+        COUNTRY_CONV.put("belgica", "BEL");
+        COUNTRY_CONV.put("canada", "CAN");
+        COUNTRY_CONV.put("suecia", "SUE");
+        COUNTRY_CONV.put("irlanda", "IRL");
+        COUNTRY_CONV.put("rusia", "RUS");
+        COUNTRY_CONV.put("turquia", "TUR");
+        COUNTRY_CONV.put("polonia", "POL");
+        COUNTRY_CONV.put("serbia", "SRB");
+        COUNTRY_CONV.put("croacia", "CRO");
+        COUNTRY_CONV.put("eslovaquia", "SVK");
+        COUNTRY_CONV.put("estonia", "EST");
+        COUNTRY_CONV.put("finlandia", "FIN");
+        COUNTRY_CONV.put("lituania", "LTU");
+        COUNTRY_CONV.put("luxemburgo", "LUX");
+        COUNTRY_CONV.put("moldavia", "MDA");
+        COUNTRY_CONV.put("mongolia", "MNG");
+        COUNTRY_CONV.put("noruega", "NOR");
+        COUNTRY_CONV.put("romania", "ROU");
+        COUNTRY_CONV.put("slovaquia", "SVK");
+        COUNTRY_CONV.put("marruecos", "MAR");
+        COUNTRY_CONV.put("republicadominicana", "DOM");
+
+        POSITION_CONV.put("por", Player.Role.GOALKEEPER);
+        POSITION_CONV.put("mig", Player.Role.MIDFIELDER);
+        POSITION_CONV.put("dav", Player.Role.ATTACKER);
+        POSITION_CONV.put("lti", Player.Role.LEFT_BACK);
+        POSITION_CONV.put("cen", Player.Role.DEFENDER);
+        POSITION_CONV.put("ltd", Player.Role.RIGHT_BACK);
+    }
+
+    public static void main(String[] args) throws IOException {
+
+        String url = Auxiliary.askForUrl("Introduce la URL de la página www.bdfutbol.com");
+        //String url = "https://www.bdfutbol.com/es/t/t1987-88175.html";
+
+        if (url == null) {
+            return;
+        }
+
+        // Conecta y descarga
+        Document doc = Jsoup.connect(url)
+            .userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64)")
+            .timeout(10_000)
+            .get();
+
+
+        Team team = new Team();
+        team.coach = new Coach();
+        String paisEntrenador = doc.select("table#taulaentrenadors").select("td").get(1).select("div.pais").get(0).classNames().toArray()[1].toString();
+        team.coach.name = doc.select("table#taulaentrenadors").select("td").get(2).select("span").get(1).text().toUpperCase();
+        team.coach.nationality = Optional.ofNullable(COUNTRY_CONV.get(paisEntrenador)).orElse("ESP");
+
+        team.type = Team.Type.CLUB;
+        team.country = "ESP"; // TODO
+        team.city = "MADRID"; // TODO
+        team.stadium = "BERNABÉU"; // TODO
+        team.name = doc.select("span.heroh1 a").text().toUpperCase();
+        team.league = "HISTÓRICOS";
+        team.kits = new ArrayList<>();
+        team.kits.add(randomKit());
+        team.kits.add(randomKit());
+        team.kits.add(randomKit());
+
+        String comment = doc.select("span.heroh1").text();
+
+        AtomicInteger playerNumber = new AtomicInteger(1);
+        doc.select("#taulaplantilla tr:not(.parteix, .fons-transparent)").stream()
+            .skip(1)
+            .forEach(tr -> {
+
+                Player player = new Player();
+
+                player.skinColor = Skin.Color.values()[RND.nextInt(Skin.Color.values().length - 1)];
+                player.hairColor = Hair.Color.values()[RND.nextInt(Hair.Color.values().length - 1)];
+                player.hairStyle = Auxiliary.getRandomItem(HAIR_STYLES);
+
+                player.shirtName = tr.select("td span").get(0).text().toUpperCase();
+                player.name = tr.select("td span").get(1).text().toUpperCase();
+
+                String pais = tr.select("div.pais").get(0).classNames().toArray()[1].toString();
+                String posicion = tr.select("td div").get(2).classNames().toArray()[1].toString();
+
+                player.nationality = Optional.ofNullable(COUNTRY_CONV.get(pais)).orElse("ESP");
+                player.role = Optional.ofNullable(POSITION_CONV.get(posicion)).orElse(Player.Role.DEFENDER);
+
+                player.number = playerNumber.getAndIncrement();
+
+                player.value = RND.nextInt(15) + 10;;
+                if (player.role != Player.Role.GOALKEEPER) {
+                    player.role = Player.Role.values()[RND.nextInt(Player.Role.values().length - 2) + 1];
+
+                    player.skills = generateSkills(player.role);
+
+                    List<Player.Skill> skills = new LinkedList<>(Arrays.asList(Player.Skill.values()));
+                    Collections.shuffle(skills);
+                    player.bestSkills.addAll(skills.subList(0, RND.nextInt(skills.size())));
+                }
+
+                team.players.add(player);
+
+        });
+
+        Path fileToSave = Auxiliary.selectJsonFilePath();
+
+        if (fileToSave == null) {
+            return;
+        }
+
+        String logoSrc = doc.select("img").stream().filter(img -> img.attr("height").equals("150")).findAny().get().attr("src");
+        String logoUrl = url.substring(0, url.lastIndexOf('/') + 1) + logoSrc;
+
+        String teamFile = FileUtils.getTeamFromFile(fileToSave.toString());
+
+        Auxiliary.downloadImageAndResize(logoUrl, Paths.get(fileToSave.getParent() + "/logo." + teamFile + ".png"));
+
+        Auxiliary.writeTeamFile(team, fileToSave.toFile(), comment);
+
+    }
+
+}
