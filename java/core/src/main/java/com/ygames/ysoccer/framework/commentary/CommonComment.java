@@ -35,7 +35,9 @@ public class CommonComment {
     public static final Sound[] numbers = new Sound[999];
 
     public static Sound[] pull(CommonCommentType type, Team team, Player player) {
-        TeamCommentary teamCommentary = TeamCommentary.teams.get(FileUtils.getTeamFromFile(team.path));
+        TeamCommentary teamCommentary = team != null && player != null ?
+            TeamCommentary.teams.get(FileUtils.getTeamFromFile(team.path))
+            : TeamCommentary.EMPTY;
 
         Sentence sentence = randomPick(commonCommentary.get(type)
             .stream()

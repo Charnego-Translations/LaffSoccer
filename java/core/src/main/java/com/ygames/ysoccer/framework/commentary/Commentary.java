@@ -1,7 +1,6 @@
 package com.ygames.ysoccer.framework.commentary;
 
 import com.badlogic.gdx.audio.Sound;
-import com.ygames.ysoccer.framework.Assets;
 import com.ygames.ysoccer.framework.EMath;
 import com.ygames.ysoccer.framework.FileUtils;
 import com.ygames.ysoccer.framework.GLGame;
@@ -26,7 +25,6 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-import static com.ygames.ysoccer.framework.Assets.RANDOM;
 import static com.ygames.ysoccer.framework.EMath.randomPick;
 import static com.ygames.ysoccer.framework.GLGame.LogType.COMMENTARY;
 
@@ -139,12 +137,12 @@ public class Commentary {
         for (Sound sound : CommonComment.pull(type, team, player)) {
             result.add(new Comment(commentPriority, sound));
         }
-        if (RANDOM.nextInt(6) > 2) {
-            Sound secSound = CommonComment.pullSecond(type).sound;
-            if (secSound != null) {
-                result.add(new Comment(commentPriority == CommentPriority.HIGH ? CommentPriority.COMMON : commentPriority, secSound));
+        EMath.oneIn(2.5f, () -> {
+            Sentence commonComment = CommonComment.pullSecond(type);
+            if (commonComment != null && commonComment.sound != null) {
+                result.add(new Comment(commentPriority == CommentPriority.HIGH ? CommentPriority.COMMON : commentPriority, commonComment.sound));
             }
-        }
+        });
 
         return result.toArray(new Comment[0]);
     }

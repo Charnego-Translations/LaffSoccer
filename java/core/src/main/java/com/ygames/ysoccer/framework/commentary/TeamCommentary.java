@@ -13,6 +13,8 @@ public class TeamCommentary {
 
         public static final Map<String, TeamCommentary> teams = new HashMap<>();
 
+        public static final TeamCommentary EMPTY = new TeamCommentary();
+
         public Sound teamName;
         public Sound stadiumName;
         public Sound city;
