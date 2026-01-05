@@ -40,7 +40,7 @@ import static com.ygames.ysoccer.framework.EMath.randomPick;
 
 public class SoundManager {
 
-    public static Map<SoundClass, Set<Sound>> sounds = new HashMap<>();
+    public static final Map<SoundClass, Set<Sound>> SOUNDS = new HashMap<>();
 
     public enum SoundClass {
         CHANTS, PAIN
@@ -97,8 +97,7 @@ public class SoundManager {
 
         EventManager.subscribe(CrowdChantsEvent.class, crowdChantsEvent -> {
             if (crowdChantsEnabled) {
-                Sound chantToPlay = crowdChantsEvent.sound;
-                chantToPlay.play(volume / 100f);
+                crowdChantsEvent.sound.play(volume / 100f);
             }
         });
 
@@ -122,6 +121,7 @@ public class SoundManager {
 
         EventManager.subscribe(KeeperHoldEvent.class, keeperHoldEvent -> {
             hold.play(0.5f * volume / 100f);
+            Commentary.INSTANCE.enqueueComment(Commentary.getComment(CommonCommentType.KEEPER_SAVE, CommentPriority.HIGH));
         });
 
         EventManager.subscribe(MatchIntroEvent.class, matchIntroEvent -> {
@@ -199,7 +199,7 @@ public class SoundManager {
             if (playerGetsBallEvent.getTeam().path != null) {
                 Sound playerSound = Assets.TeamCommentary.teams.get(FileUtils.getTeamFromFile(playerGetsBallEvent.getTeam().path)).players.get(playerGetsBallEvent.getPlayer().shirtName);
                 if (playerSound != null) {
-                    Commentary.INSTANCE.enqueueComment(new Comment(CommentPriority.LOW, playerSound));
+                    EMath.oneIn(2.5f, () -> Commentary.INSTANCE.enqueueComment(new Comment(CommentPriority.LOW, playerSound)));
                 }
             }
         });
@@ -260,8 +260,8 @@ public class SoundManager {
 
         shotgun = newSound("shotgun.ogg"); // Source: https://freesound.org/people/Marregheriti/sounds/266105/
         button = newSound("button.ogg"); // Source: https://freesound.org/people/Snapper4298/sounds/178186/
-        sounds.put(SoundClass.CHANTS, loadSoundFolder("chants"));
-        sounds.put(SoundClass.PAIN, loadSoundFolder("pain"));
+        SOUNDS.put(SoundClass.CHANTS, loadSoundFolder("chants"));
+        SOUNDS.put(SoundClass.PAIN, loadSoundFolder("pain"));
 
         String specialsFolder = "commentary/special/";
 
@@ -278,7 +278,7 @@ public class SoundManager {
     }
 
     public static Sound getSound(SoundClass soundClass) {
-        return randomPick(sounds.get(soundClass));
+        return randomPick(SOUNDS.get(soundClass));
     }
 
     public static void stopSounds() {
@@ -286,7 +286,7 @@ public class SoundManager {
         end.stop();
         homeGoal.stop();
         intro.stop();
-        sounds.forEach((k, v) -> v.forEach(Sound::stop));
+        SOUNDS.forEach((k, v) -> v.forEach(Sound::stop));
     }
 
     private static Set<Sound> loadSoundFolder(String folder) {
@@ -303,9 +303,6 @@ public class SoundManager {
 
     public static void playVariations(Sound sound, boolean rndPanning) {
         sound.play(Assets.RANDOM.nextFloat() / 1.4f, (Assets.RANDOM.nextFloat() / 2) + 0.5f, rndPanning ? (Assets.RANDOM.nextFloat() * 2) - 1 : 0);
-    }
-    public static void playVariations(Sound sound) {
-        playVariations(sound, false);
     }
     public static void playVariations(SoundClass soundClass) {
         playVariations(SoundManager.getSound(soundClass), false);

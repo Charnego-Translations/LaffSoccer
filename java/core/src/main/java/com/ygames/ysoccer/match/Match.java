@@ -646,7 +646,7 @@ public class Match extends Scene<MatchFsm, MatchState> implements Json.Serializa
     @Override
     void quit() {
 
-        CommonComment.stop();
+        CommonComment.stopAll();
 
         SoundManager.stopSounds();
 

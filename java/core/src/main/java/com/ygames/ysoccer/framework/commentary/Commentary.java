@@ -8,6 +8,8 @@ import com.ygames.ysoccer.framework.GLGame;
 import com.ygames.ysoccer.framework.SoundManager;
 import com.ygames.ysoccer.match.Match;
 import com.ygames.ysoccer.match.MatchStats;
+import com.ygames.ysoccer.match.Player;
+import com.ygames.ysoccer.match.Team;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -106,7 +108,7 @@ public class Commentary {
         }
 
         for (Comment element : elements) {
-            queueLength += FileUtils.soundDuration(element.getSound());
+            queueLength += FileUtils.soundDuration(element.sound);
         }
         GLGame.debug(COMMENTARY, queueLength, "Queue length: " + queueLength);
         queue.add(elements);
@@ -129,20 +131,26 @@ public class Commentary {
      * @param commentPriority Comment priority
      * @return the composed comment
      */
-    public static Comment[] getComment(CommonCommentType type, CommentPriority commentPriority) {
+    public static Comment[] getComment(CommonCommentType type, CommentPriority commentPriority, Team team, Player player) {
 
         GLGame.debug(COMMENTARY, commentPriority, "Generating new comment: " + type);
 
         List<Comment> result = new ArrayList<>();
-        result.add(new Comment(commentPriority, CommonComment.pull(type)));
+        for (Sound sound : CommonComment.pull(type, team, player)) {
+            result.add(new Comment(commentPriority, sound));
+        }
         if (RANDOM.nextInt(6) > 2) {
-            Sound secSound = CommonComment.pullSecond(type);
+            Sound secSound = CommonComment.pullSecond(type).sound;
             if (secSound != null) {
-                result.add(new Comment(commentPriority == CommentPriority.HIGH ? CommentPriority.COMMON : commentPriority, CommonComment.pullSecond(type)));
+                result.add(new Comment(commentPriority == CommentPriority.HIGH ? CommentPriority.COMMON : commentPriority, secSound));
             }
         }
 
         return result.toArray(new Comment[0]);
+    }
+
+    public static Comment[] getComment(CommonCommentType type, CommentPriority commentPriority) {
+        return getComment(type, commentPriority, null, null);
     }
 
     /**
@@ -220,15 +228,15 @@ public class Commentary {
 
         GLGame.debug(COMMENTARY, target, "Pulling new comment: " + target);
 
-        lastLength = FileUtils.soundDuration(target.getSound());
+        lastLength = FileUtils.soundDuration(target.sound);
         queueLength -= lastLength;
         since = System.currentTimeMillis();
 
         playing = target;
         try {
-            if (playing.getSound() != null) {
-                playing.getSound().play();
-                lastSound = playing.getSound();
+            if (playing.sound != null) {
+                playing.sound.play();
+                lastSound = playing.sound;
             }
         } catch (UnsatisfiedLinkError ex) {
             GLGame.debug(COMMENTARY, this, "Couldn't play comment: " + ex.getMessage());
@@ -312,7 +320,7 @@ public class Commentary {
         queue.clear();
 
         if (playing != null) {
-            playing.getSound().stop();
+            playing.sound.stop();
             playing = null;
         }
 
