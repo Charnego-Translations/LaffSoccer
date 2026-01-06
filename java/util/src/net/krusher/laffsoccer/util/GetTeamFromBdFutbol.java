@@ -36,6 +36,7 @@ public class GetTeamFromBdFutbol {
         COUNTRY_CONV.put("españa", "ESP");
         COUNTRY_CONV.put("argentina", "ARG");
         COUNTRY_CONV.put("brasil", "BRA");
+        COUNTRY_CONV.put("argelia", "DZA");
         COUNTRY_CONV.put("colombia", "COL");
         COUNTRY_CONV.put("hungria", "HUN");
         COUNTRY_CONV.put("uruguay", "URU");
@@ -74,6 +75,9 @@ public class GetTeamFromBdFutbol {
         COUNTRY_CONV.put("slovaquia", "SVK");
         COUNTRY_CONV.put("marruecos", "MAR");
         COUNTRY_CONV.put("republicadominicana", "DOM");
+        COUNTRY_CONV.put("costademarfil", "CIV");
+        COUNTRY_CONV.put("honduras", "HND");
+        COUNTRY_CONV.put("guinea", "GIN");
 
         POSITION_CONV.put("por", Player.Role.GOALKEEPER);
         POSITION_CONV.put("mig", Player.Role.MIDFIELDER);
