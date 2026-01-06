@@ -10,32 +10,32 @@
 	"nationality": "HUN"
 },
 "tactics": "4-4-2",
-"kits": [
-	{
-		"style": "VERTICAL_HALF",
-		"shirt1": "#7a66e7",
-		"shirt2": "#c097fb",
-		"shirt3": "#ed3095",
-		"shorts": "#2ce9c1",
-		"socks": "#295ff9"
-	},
-	{
-		"style": "LARGE_STRIPS",
-		"shirt1": "#337546",
-		"shirt2": "#d76075",
-		"shirt3": "#ef0823",
-		"shorts": "#ce8262",
-		"socks": "#bdad9f"
-	},
-	{
-		"style": "SPICE",
-		"shirt1": "#4a06f2",
-		"shirt2": "#ee67e3",
-		"shirt3": "#5bbbc0",
-		"shorts": "#89031e",
-		"socks": "#548e99"
-	}
-],
+  "kits": [
+    {
+      "style": "VERTICAL",
+      "shirt1": "#47bfeb",
+      "shirt2": "#dfe8eb",
+      "shirt3": "#dfe8eb",
+      "shorts": "#3033c1",
+      "socks": "#3033c1"
+    },
+    {
+      "style": "PLAIN",
+      "shirt1": "#dfe8eb",
+      "shirt2": "#3033c1",
+      "shirt3": "#3033c1",
+      "shorts": "#dfe8eb",
+      "socks": "#dfe8eb"
+    },
+    {
+      "style": "PLAIN",
+      "shirt1": "#29c841",
+      "shirt2": "#c2e9bf",
+      "shirt3": "#dbbcf8",
+      "shorts": "#4114f3",
+      "socks": "#ce49cb"
+    }
+  ],
 "players": [
 	{
 		"name": "JÓZSEF SZENDREI",
