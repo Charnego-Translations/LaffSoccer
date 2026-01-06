@@ -132,7 +132,7 @@ public class GetTeamFromBdFutbol {
                 player.name = tr.select("td span").get(1).text().toUpperCase();
 
                 String pais = tr.select("div.pais").get(0).classNames().toArray()[1].toString();
-                String posicion = tr.select("td div").get(2).classNames().toArray()[1].toString();
+                String posicion = tr.select("td div.fit").get(0).classNames().toArray()[1].toString();
 
                 player.nationality = Optional.ofNullable(COUNTRY_CONV.get(pais)).orElse("ESP");
                 player.role = Optional.ofNullable(POSITION_CONV.get(posicion)).orElse(Player.Role.DEFENDER);
