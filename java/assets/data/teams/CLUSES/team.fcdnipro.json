@@ -1,0 +1,700 @@
+{
+"name": "FC DNIPRO",
+"type": "CLUB",
+"country": "ESP",
+"league": "HISTÓRICOS",
+"city": "DNIPRO",
+"stadium": "DNIPRO ARENA",
+"coach": {
+	"name": "MYRON BOHDANOVYCH MARKEVYCH",
+	"nationality": "UKR"
+},
+"tactics": "4-4-2",
+"kits": [
+	{
+		"style": "ARMBAND",
+		"shirt1": "#3033c1",
+		"shirt2": "#dfe8eb",
+		"shirt3": "#dfe8eb",
+		"shorts": "#3033c1",
+		"socks": "#3033c1"
+	},
+	{
+		"style": "ARMBAND",
+		"shirt1": "#dfe8eb",
+		"shirt2": "#3033c1",
+		"shirt3": "#3033c1",
+		"shorts": "#dfe8eb",
+		"socks": "#dfe8eb"
+	},
+	{
+		"style": "PLAIN",
+		"shirt1": "#3033c1",
+		"shirt2": "#3033c1",
+		"shirt3": "#3033c1",
+		"shorts": "#3033c1",
+		"socks": "#3033c1"
+	}
+],
+"players": [
+	{
+		"name": "DENYS OLEKSANDROVYCH BOYKO",
+		"shirtName": "BOYKO",
+		"nationality": "UKR",
+		"role": "GOALKEEPER",
+		"number": 1,
+		"skinColor": "ARAB",
+		"hairColor": "GRAY",
+		"hairStyle": "PIGTAIL_C",
+		"value": 19
+	},
+	{
+		"name": "LEONARDO DE MATOS CRUZ",
+		"shirtName": "LEO MATOS",
+		"nationality": "BRA",
+		"role": "DEFENDER",
+		"number": 2,
+		"skinColor": "ASIATIC",
+		"hairColor": "PLATINUM",
+		"hairStyle": "CURLY_C",
+		"skills": {
+			"passing": 5,
+			"shooting": 2,
+			"heading": 2,
+			"tackling": 5,
+			"control": 4,
+			"speed": 4,
+			"finishing": 3
+		},
+		"bestSkills": []
+	},
+	{
+		"name": "ARTEM ANDRIYOVYCH FEDETSKIY",
+		"shirtName": "FEDETSKIY",
+		"nationality": "UKR",
+		"role": "MIDFIELDER",
+		"number": 3,
+		"skinColor": "RED",
+		"hairColor": "GRAY",
+		"hairStyle": "SMOOTH_P",
+		"skills": {
+			"passing": 4,
+			"shooting": 2,
+			"heading": 3,
+			"tackling": 3,
+			"control": 3,
+			"speed": 2,
+			"finishing": 3
+		},
+		"bestSkills": [
+			"SHOOTING",
+			"HEADING"
+		]
+	},
+	{
+		"name": "DOUGLAS SILVA BACELAR",
+		"shirtName": "DOUGLAS",
+		"nationality": "BRA",
+		"role": "LEFT_BACK",
+		"number": 4,
+		"skinColor": "MULATTO",
+		"hairColor": "BLOND",
+		"hairStyle": "SMOOTH_L",
+		"skills": {
+			"passing": 5,
+			"shooting": 2,
+			"heading": 3,
+			"tackling": 4,
+			"control": 5,
+			"speed": 4,
+			"finishing": 1
+		},
+		"bestSkills": []
+	},
+	{
+		"name": "ONDŘEJ MAZUCH",
+		"shirtName": "MAZUCH",
+		"nationality": "CZE",
+		"role": "MIDFIELDER",
+		"number": 5,
+		"skinColor": "MULATTO",
+		"hairColor": "BLACK",
+		"hairStyle": "SMOOTH_D",
+		"skills": {
+			"passing": 4,
+			"shooting": 1,
+			"heading": 2,
+			"tackling": 2,
+			"control": 2,
+			"speed": 2,
+			"finishing": 4
+		},
+		"bestSkills": [
+			"SPEED",
+			"CONTROL"
+		]
+	},
+	{
+		"name": "SERHIY OLEHOVYCH POLITYLO",
+		"shirtName": "POLITYLO",
+		"nationality": "UKR",
+		"role": "MIDFIELDER",
+		"number": 6,
+		"skinColor": "ASIATIC",
+		"hairColor": "RED",
+		"hairStyle": "PIGTAIL_C",
+		"skills": {
+			"passing": 3,
+			"shooting": 5,
+			"heading": 3,
+			"tackling": 3,
+			"control": 2,
+			"speed": 4,
+			"finishing": 4
+		},
+		"bestSkills": [
+			"PASSING",
+			"CONTROL",
+			"TACKLING",
+			"FINISHING"
+		]
+	},
+	{
+		"name": "JABA KANKAVA",
+		"shirtName": "KANKAVA",
+		"nationality": "GEO",
+		"role": "DEFENDER",
+		"number": 7,
+		"skinColor": "MULATTO",
+		"hairColor": "BLACK",
+		"hairStyle": "SMOOTH_B",
+		"skills": {
+			"passing": 4,
+			"shooting": 1,
+			"heading": 3,
+			"tackling": 1,
+			"control": 1,
+			"speed": 4,
+			"finishing": 3
+		},
+		"bestSkills": [
+			"CONTROL",
+			"HEADING",
+			"SPEED",
+			"TACKLING",
+			"PASSING"
+		]
+	},
+	{
+		"name": "YEVHEN OLEHOVYCH KONOPLYANKA",
+		"shirtName": "KONOPLYANKA",
+		"nationality": "UKR",
+		"role": "LEFT_WINGER",
+		"number": 8,
+		"skinColor": "PINK",
+		"hairColor": "PUNK_FUCHSIA",
+		"hairStyle": "SMOOTH_A",
+		"skills": {
+			"passing": 4,
+			"shooting": 4,
+			"heading": 3,
+			"tackling": 3,
+			"control": 4,
+			"speed": 2,
+			"finishing": 2
+		},
+		"bestSkills": [
+			"FINISHING",
+			"PASSING",
+			"CONTROL",
+			"SHOOTING"
+		]
+	},
+	{
+		"name": "MATHEUS LEITE NASCIMENTO",
+		"shirtName": "MATHEUS",
+		"nationality": "BRA",
+		"role": "DEFENDER",
+		"number": 9,
+		"skinColor": "MULATTO",
+		"hairColor": "GRAY",
+		"hairStyle": "BALD_B",
+		"skills": {
+			"passing": 5,
+			"shooting": 3,
+			"heading": 2,
+			"tackling": 4,
+			"control": 3,
+			"speed": 5,
+			"finishing": 2
+		},
+		"bestSkills": [
+			"PASSING"
+		]
+	},
+	{
+		"name": "YEVHEN OLEKSANDROVICH SELEZNYOV",
+		"shirtName": "SELEZNYOV",
+		"nationality": "UKR",
+		"role": "LEFT_BACK",
+		"number": 10,
+		"skinColor": "ASIATIC",
+		"hairColor": "BLACK",
+		"hairStyle": "SMOOTH_B",
+		"skills": {
+			"passing": 5,
+			"shooting": 3,
+			"heading": 4,
+			"tackling": 3,
+			"control": 3,
+			"speed": 3,
+			"finishing": 3
+		},
+		"bestSkills": [
+			"SHOOTING",
+			"CONTROL",
+			"PASSING",
+			"HEADING",
+			"FINISHING",
+			"SPEED"
+		]
+	},
+	{
+		"name": "NIKOLA KALINIĆ",
+		"shirtName": "KALINIĆ",
+		"nationality": "CRO",
+		"role": "DEFENDER",
+		"number": 11,
+		"skinColor": "MULATTO",
+		"hairColor": "BROWN",
+		"hairStyle": "SPECIAL_G",
+		"skills": {
+			"passing": 3,
+			"shooting": 2,
+			"heading": 3,
+			"tackling": 4,
+			"control": 3,
+			"speed": 3,
+			"finishing": 3
+		},
+		"bestSkills": [
+			"SPEED",
+			"HEADING",
+			"PASSING",
+			"FINISHING",
+			"TACKLING"
+		]
+	},
+	{
+		"name": "JAN LAŠTŮVKA",
+		"shirtName": "LAŠTŮVKA",
+		"nationality": "CZE",
+		"role": "GOALKEEPER",
+		"number": 12,
+		"skinColor": "RED",
+		"hairColor": "GRAY",
+		"hairStyle": "SMOOTH_H",
+		"value": 10
+	},
+	{
+		"name": "VOLODYMYR OLEKSANDROVYCH POLYOVYI",
+		"shirtName": "POLYOVYI",
+		"nationality": "UKR",
+		"role": "RIGHT_WINGER",
+		"number": 13,
+		"skinColor": "ASIATIC",
+		"hairColor": "PLATINUM",
+		"hairStyle": "CURLY_A",
+		"skills": {
+			"passing": 1,
+			"shooting": 5,
+			"heading": 3,
+			"tackling": 4,
+			"control": 5,
+			"speed": 5,
+			"finishing": 3
+		},
+		"bestSkills": [
+			"SHOOTING"
+		]
+	},
+	{
+		"name": "MLADEN BARTULOVIĆ",
+		"shirtName": "BARTULOVIĆ",
+		"nationality": "CRO",
+		"role": "DEFENDER",
+		"number": 14,
+		"skinColor": "RED",
+		"hairColor": "BLOND",
+		"hairStyle": "SMOOTH_O",
+		"skills": {
+			"passing": 4,
+			"shooting": 1,
+			"heading": 2,
+			"tackling": 4,
+			"control": 4,
+			"speed": 4,
+			"finishing": 0
+		},
+		"bestSkills": [
+			"TACKLING",
+			"SHOOTING",
+			"FINISHING"
+		]
+	},
+	{
+		"name": "BRUNO ALEXANDRE VILELA GAMA",
+		"shirtName": "BRUNO GAMA",
+		"nationality": "POR",
+		"role": "LEFT_WINGER",
+		"number": 15,
+		"skinColor": "RED",
+		"hairColor": "RED",
+		"hairStyle": "PIGTAIL_B",
+		"skills": {
+			"passing": 1,
+			"shooting": 4,
+			"heading": 2,
+			"tackling": 2,
+			"control": 4,
+			"speed": 4,
+			"finishing": 6
+		},
+		"bestSkills": [
+			"CONTROL"
+		]
+	},
+	{
+		"name": "SERHIY OLEKSANDROVYCH KRAVCHENKO",
+		"shirtName": "KRAVCHENKO",
+		"nationality": "UKR",
+		"role": "DEFENDER",
+		"number": 16,
+		"skinColor": "ARAB",
+		"hairColor": "PLATINUM",
+		"hairStyle": "SPECIAL_C",
+		"skills": {
+			"passing": 2,
+			"shooting": 3,
+			"heading": 3,
+			"tackling": 2,
+			"control": 2,
+			"speed": 3,
+			"finishing": 1
+		},
+		"bestSkills": [
+			"FINISHING",
+			"SHOOTING",
+			"HEADING",
+			"TACKLING"
+		]
+	},
+	{
+		"name": "DENYS VASYLYOVYCH SHELIKHOV",
+		"shirtName": "SHELIKHOV",
+		"nationality": "UKR",
+		"role": "GOALKEEPER",
+		"number": 17,
+		"skinColor": "PALE",
+		"hairColor": "GRAY",
+		"hairStyle": "SMOOTH_C",
+		"value": 16
+	},
+	{
+		"name": "ROMAN ANATOLIYOVYCH BEZUS",
+		"shirtName": "BEZUS",
+		"nationality": "UKR",
+		"role": "RIGHT_BACK",
+		"number": 18,
+		"skinColor": "ASIATIC",
+		"hairColor": "BROWN",
+		"hairStyle": "SMOOTH_P",
+		"skills": {
+			"passing": 5,
+			"shooting": 1,
+			"heading": 1,
+			"tackling": 6,
+			"control": 4,
+			"speed": 4,
+			"finishing": 2
+		},
+		"bestSkills": [
+			"HEADING",
+			"SHOOTING",
+			"FINISHING",
+			"PASSING",
+			"TACKLING",
+			"SPEED"
+		]
+	},
+	{
+		"name": "VALERII YURIYOVYCH FEDORCHUK",
+		"shirtName": "FEDORCHUK",
+		"nationality": "UKR",
+		"role": "RIGHT_BACK",
+		"number": 19,
+		"skinColor": "MULATTO",
+		"hairColor": "GRAY",
+		"hairStyle": "SHORT_B",
+		"skills": {
+			"passing": 2,
+			"shooting": 3,
+			"heading": 4,
+			"tackling": 1,
+			"control": 4,
+			"speed": 3,
+			"finishing": 3
+		},
+		"bestSkills": [
+			"PASSING"
+		]
+	},
+	{
+		"name": "EGÍDIO DE ARAÚJO PEREIRA JÚNIOR",
+		"shirtName": "EGÍDIO",
+		"nationality": "BRA",
+		"role": "MIDFIELDER",
+		"number": 20,
+		"skinColor": "PALE",
+		"hairColor": "GRAY",
+		"hairStyle": "THINNING_A",
+		"skills": {
+			"passing": 1,
+			"shooting": 4,
+			"heading": 5,
+			"tackling": 2,
+			"control": 3,
+			"speed": 4,
+			"finishing": 5
+		},
+		"bestSkills": [
+			"HEADING"
+		]
+	},
+	{
+		"name": "ANDRIY VALERIYOVYCH BLIZNICHENKO",
+		"shirtName": "BLIZNICHENKO",
+		"nationality": "UKR",
+		"role": "LEFT_BACK",
+		"number": 21,
+		"skinColor": "RED",
+		"hairColor": "PLATINUM",
+		"hairStyle": "SMOOTH_P",
+		"skills": {
+			"passing": 4,
+			"shooting": 2,
+			"heading": 2,
+			"tackling": 6,
+			"control": 4,
+			"speed": 3,
+			"finishing": 1
+		},
+		"bestSkills": []
+	},
+	{
+		"name": "ALEXANDRU NICOLAE VLAD",
+		"shirtName": "VLAD",
+		"nationality": "ROM",
+		"role": "RIGHT_WINGER",
+		"number": 22,
+		"skinColor": "RED",
+		"hairColor": "GRAY",
+		"hairStyle": "SMOOTH_F",
+		"skills": {
+			"passing": 2,
+			"shooting": 4,
+			"heading": 2,
+			"tackling": 4,
+			"control": 4,
+			"speed": 6,
+			"finishing": 4
+		},
+		"bestSkills": [
+			"SPEED",
+			"SHOOTING",
+			"FINISHING"
+		]
+	},
+	{
+		"name": "OLEKSANDR YURIYOVYCH MIHUNOV",
+		"shirtName": "MIHUNOV",
+		"nationality": "UKR",
+		"role": "RIGHT_BACK",
+		"number": 23,
+		"skinColor": "MULATTO",
+		"hairColor": "GRAY",
+		"hairStyle": "SMOOTH_E",
+		"skills": {
+			"passing": 4,
+			"shooting": 3,
+			"heading": 3,
+			"tackling": 5,
+			"control": 2,
+			"speed": 4,
+			"finishing": 3
+		},
+		"bestSkills": [
+			"CONTROL",
+			"FINISHING",
+			"SHOOTING"
+		]
+	},
+	{
+		"name": "ROMAN VYACHESLAVOVYCH ZOZULYA",
+		"shirtName": "ZOZULYA",
+		"nationality": "UKR",
+		"role": "DEFENDER",
+		"number": 24,
+		"skinColor": "PINK",
+		"hairColor": "BLOND",
+		"hairStyle": "SPECIAL_G",
+		"skills": {
+			"passing": 3,
+			"shooting": 2,
+			"heading": 0,
+			"tackling": 4,
+			"control": 3,
+			"speed": 4,
+			"finishing": 1
+		},
+		"bestSkills": [
+			"PASSING"
+		]
+	},
+	{
+		"name": "IVAN STRINIĆ",
+		"shirtName": "STRINIĆ",
+		"nationality": "CRO",
+		"role": "DEFENDER",
+		"number": 25,
+		"skinColor": "PALE",
+		"hairColor": "RED",
+		"hairStyle": "SPECIAL_E",
+		"skills": {
+			"passing": 4,
+			"shooting": 2,
+			"heading": 2,
+			"tackling": 3,
+			"control": 4,
+			"speed": 5,
+			"finishing": 3
+		},
+		"bestSkills": [
+			"CONTROL",
+			"SPEED",
+			"PASSING"
+		]
+	},
+	{
+		"name": "YEVHEN YEVHENOVYCH SHAKHOV",
+		"shirtName": "SHAKHOV",
+		"nationality": "UKR",
+		"role": "RIGHT_WINGER",
+		"number": 26,
+		"skinColor": "RED",
+		"hairColor": "BLOND",
+		"hairStyle": "SPECIAL_B",
+		"skills": {
+			"passing": 4,
+			"shooting": 2,
+			"heading": 4,
+			"tackling": 4,
+			"control": 4,
+			"speed": 3,
+			"finishing": 4
+		},
+		"bestSkills": [
+			"TACKLING",
+			"SHOOTING"
+		]
+	},
+	{
+		"name": "YEVHEN OLEKSANDROVYCH CHEBERYACHKO",
+		"shirtName": "CHEBERYACHKO",
+		"nationality": "UKR",
+		"role": "DEFENDER",
+		"number": 27,
+		"skinColor": "ARAB",
+		"hairColor": "RED",
+		"hairStyle": "SPECIAL_F",
+		"skills": {
+			"passing": 4,
+			"shooting": 2,
+			"heading": 1,
+			"tackling": 6,
+			"control": 4,
+			"speed": 5,
+			"finishing": 1
+		},
+		"bestSkills": []
+	},
+	{
+		"name": "VALERIY IHOROVYCH LUCHKEVYCH",
+		"shirtName": "LUCHKEVYCH",
+		"nationality": "UKR",
+		"role": "RIGHT_WINGER",
+		"number": 28,
+		"skinColor": "ALIEN",
+		"hairColor": "RED",
+		"hairStyle": "SMOOTH_L",
+		"skills": {
+			"passing": 3,
+			"shooting": 3,
+			"heading": 4,
+			"tackling": 3,
+			"control": 3,
+			"speed": 3,
+			"finishing": 2
+		},
+		"bestSkills": [
+			"HEADING"
+		]
+	},
+	{
+		"name": "RUSLAN PETROVYCH ROTAN",
+		"shirtName": "ROTAN",
+		"nationality": "UKR",
+		"role": "DEFENDER",
+		"number": 29,
+		"skinColor": "BLACK",
+		"hairColor": "PUNK_FUCHSIA",
+		"hairStyle": "PIGTAIL_B",
+		"skills": {
+			"passing": 4,
+			"shooting": 2,
+			"heading": 4,
+			"tackling": 3,
+			"control": 4,
+			"speed": 4,
+			"finishing": 3
+		},
+		"bestSkills": [
+			"CONTROL"
+		]
+	},
+	{
+		"name": "OLEKSANDR SERHIIOVYCH SVATOK",
+		"shirtName": "SVATOK",
+		"nationality": "UKR",
+		"role": "RIGHT_WINGER",
+		"number": 30,
+		"skinColor": "PALE",
+		"hairColor": "PUNK_FUCHSIA",
+		"hairStyle": "BALD_A",
+		"skills": {
+			"passing": 3,
+			"shooting": 3,
+			"heading": 3,
+			"tackling": 1,
+			"control": 3,
+			"speed": 4,
+			"finishing": 3
+		},
+		"bestSkills": [
+			"TACKLING",
+			"PASSING",
+			"CONTROL"
+		]
+	}
+]
+}

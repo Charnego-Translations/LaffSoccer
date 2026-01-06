@@ -78,6 +78,28 @@ public class GetTeamFromBdFutbol {
         COUNTRY_CONV.put("costademarfil", "CIV");
         COUNTRY_CONV.put("honduras", "HND");
         COUNTRY_CONV.put("guinea", "GIN");
+        COUNTRY_CONV.put("guatemala", "GTM");
+        COUNTRY_CONV.put("belice", "BLZ");
+        COUNTRY_CONV.put("elsalvador", "SLV");
+        COUNTRY_CONV.put("nicaragua", "NIC");
+        COUNTRY_CONV.put("panama", "PAN");
+        COUNTRY_CONV.put("georgia", "GEO");
+        COUNTRY_CONV.put("azerbaijan", "AZE");
+        COUNTRY_CONV.put("turkmenistan", "TKM");
+        COUNTRY_CONV.put("uzbekistan", "UZB");
+        COUNTRY_CONV.put("tajikistan", "TJK");
+        COUNTRY_CONV.put("afghanistan", "AFG");
+        COUNTRY_CONV.put("iran", "IRN");
+        COUNTRY_CONV.put("pakistan", "PAK");
+        COUNTRY_CONV.put("bangladesh", "BGD");
+        COUNTRY_CONV.put("india", "IND");
+        COUNTRY_CONV.put("srilanka", "LKA");
+        COUNTRY_CONV.put("nepal", "NPL");
+        COUNTRY_CONV.put("ucrania", "UKR");
+        COUNTRY_CONV.put("armenia", "ARM");
+        COUNTRY_CONV.put("republicacheca", "CZE");
+        COUNTRY_CONV.put("rumania", "ROM");
+
 
         POSITION_CONV.put("por", Player.Role.GOALKEEPER);
         POSITION_CONV.put("mig", Player.Role.MIDFIELDER);
