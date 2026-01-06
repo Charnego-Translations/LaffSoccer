@@ -60,6 +60,7 @@ public class GetTeamFromBdFutbol {
         COUNTRY_CONV.put("turquia", "TUR");
         COUNTRY_CONV.put("polonia", "POL");
         COUNTRY_CONV.put("serbia", "SRB");
+        COUNTRY_CONV.put("bosnia", "BIH");
         COUNTRY_CONV.put("croacia", "CRO");
         COUNTRY_CONV.put("eslovaquia", "SVK");
         COUNTRY_CONV.put("estonia", "EST");
