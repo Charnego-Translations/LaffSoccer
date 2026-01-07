@@ -1,5 +1,5 @@
 {
-"name": "AS CHIEVOVERONA",
+"name": "AS CHIEVO-VERONA",
 "type": "CLUB",
 "country": "ESP",
 "league": "HISTÓRICOS",
@@ -13,28 +13,28 @@
 "tactics": "4-4-2",
 "kits": [
 	{
+		"style": "DIAGONAL_HALF",
+		"shirt1": "#47bfeb",
+		"shirt2": "#e8ef2f",
+		"shirt3": "#e8ef2f",
+		"shorts": "#e8ef2f",
+		"socks": "#e8ef2f"
+	},
+	{
+		"style": "DIAGONAL_HALF",
+		"shirt1": "#e8ef2f",
+		"shirt2": "#2e247a",
+		"shirt3": "#2e247a",
+		"shorts": "#2e247a",
+		"socks": "#2e247a"
+	},
+	{
 		"style": "LINE",
-		"shirt1": "#383bda",
-		"shirt2": "#914dd6",
-		"shirt3": "#c6fec0",
-		"shorts": "#3a70c4",
-		"socks": "#015d15"
-	},
-	{
-		"style": "HORIZONTAL",
-		"shirt1": "#5d005d",
-		"shirt2": "#c85a89",
-		"shirt3": "#c67863",
-		"shorts": "#43c86b",
-		"socks": "#867707"
-	},
-	{
-		"style": "BIG_V",
-		"shirt1": "#ec2380",
-		"shirt2": "#b33a64",
-		"shirt3": "#6e2313",
-		"shorts": "#a9ce99",
-		"socks": "#94f5e8"
+		"shirt1": "#dfe8eb",
+		"shirt2": "#3033c1",
+		"shirt3": "#e8ef2f",
+		"shorts": "#dfe8eb",
+		"socks": "#dfe8eb"
 	}
 ],
 "players": [
