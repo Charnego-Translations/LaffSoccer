@@ -1,0 +1,795 @@
+{
+"name": "AS CHIEVOVERONA",
+"type": "CLUB",
+"country": "ESP",
+"league": "HISTÓRICOS",
+"city": "VERONA",
+"stadium": "ALDO OLIVIERI",
+"year": 2004,
+"coach": {
+	"name": "MARIO BERETTA",
+	"nationality": "ITA"
+},
+"tactics": "4-4-2",
+"kits": [
+	{
+		"style": "LINE",
+		"shirt1": "#383bda",
+		"shirt2": "#914dd6",
+		"shirt3": "#c6fec0",
+		"shorts": "#3a70c4",
+		"socks": "#015d15"
+	},
+	{
+		"style": "HORIZONTAL",
+		"shirt1": "#5d005d",
+		"shirt2": "#c85a89",
+		"shirt3": "#c67863",
+		"shorts": "#43c86b",
+		"socks": "#867707"
+	},
+	{
+		"style": "BIG_V",
+		"shirt1": "#ec2380",
+		"shirt2": "#b33a64",
+		"shirt3": "#6e2313",
+		"shorts": "#a9ce99",
+		"socks": "#94f5e8"
+	}
+],
+"players": [
+	{
+		"name": "LUCA MARCHEGIANI",
+		"shirtName": "MARCHEGIANI",
+		"nationality": "ITA",
+		"role": "GOALKEEPER",
+		"number": 1,
+		"skinColor": "PALE",
+		"hairColor": "BROWN",
+		"hairStyle": "BALD_B",
+		"value": 20
+	},
+	{
+		"name": "FABIO MORO",
+		"shirtName": "MORO",
+		"nationality": "ITA",
+		"role": "LEFT_BACK",
+		"number": 2,
+		"skinColor": "RED",
+		"hairColor": "BLACK",
+		"hairStyle": "SMOOTH_D",
+		"skills": {
+			"passing": 4,
+			"shooting": 4,
+			"heading": 2,
+			"tackling": 1,
+			"control": 4,
+			"speed": 3,
+			"finishing": 3
+		},
+		"bestSkills": [
+			"SPEED",
+			"HEADING",
+			"TACKLING"
+		]
+	},
+	{
+		"name": "SALVATORE LANNA",
+		"shirtName": "LANNA",
+		"nationality": "ITA",
+		"role": "MIDFIELDER",
+		"number": 3,
+		"skinColor": "BLACK",
+		"hairColor": "GRAY",
+		"hairStyle": "SHORT_C",
+		"skills": {
+			"passing": 3,
+			"shooting": 3,
+			"heading": 2,
+			"tackling": 2,
+			"control": 4,
+			"speed": 3,
+			"finishing": 4
+		},
+		"bestSkills": [
+			"TACKLING",
+			"SPEED",
+			"CONTROL",
+			"SHOOTING",
+			"HEADING",
+			"PASSING"
+		]
+	},
+	{
+		"name": "DAVIDE MANDELLI",
+		"shirtName": "MANDELLI",
+		"nationality": "ITA",
+		"role": "LEFT_WINGER",
+		"number": 4,
+		"skinColor": "BLACK",
+		"hairColor": "WHITE",
+		"hairStyle": "CURLY_B",
+		"skills": {
+			"passing": 2,
+			"shooting": 4,
+			"heading": 4,
+			"tackling": 3,
+			"control": 2,
+			"speed": 3,
+			"finishing": 4
+		},
+		"bestSkills": [
+			"HEADING",
+			"FINISHING",
+			"CONTROL"
+		]
+	},
+	{
+		"name": "LORENZO D'ANNA",
+		"shirtName": "D'ANNA",
+		"nationality": "ITA",
+		"role": "LEFT_BACK",
+		"number": 5,
+		"skinColor": "BLACK",
+		"hairColor": "GRAY",
+		"hairStyle": "SPECIAL_B",
+		"skills": {
+			"passing": 5,
+			"shooting": 3,
+			"heading": 3,
+			"tackling": 5,
+			"control": 4,
+			"speed": 4,
+			"finishing": 2
+		},
+		"bestSkills": [
+			"TACKLING"
+		]
+	},
+	{
+		"name": "MATTEO BRIGHI",
+		"shirtName": "BRIGHI",
+		"nationality": "ITA",
+		"role": "LEFT_WINGER",
+		"number": 6,
+		"skinColor": "RED",
+		"hairColor": "BROWN",
+		"hairStyle": "CURLY_F",
+		"skills": {
+			"passing": 5,
+			"shooting": 3,
+			"heading": 3,
+			"tackling": 4,
+			"control": 2,
+			"speed": 3,
+			"finishing": 3
+		},
+		"bestSkills": [
+			"CONTROL",
+			"PASSING",
+			"SPEED",
+			"FINISHING"
+		]
+	},
+	{
+		"name": "FRANCO SEMIOLI",
+		"shirtName": "SEMIOLI",
+		"nationality": "ITA",
+		"role": "DEFENDER",
+		"number": 7,
+		"skinColor": "RED",
+		"hairColor": "BLOND",
+		"hairStyle": "SHORT_A",
+		"skills": {
+			"passing": 5,
+			"shooting": 0,
+			"heading": 1,
+			"tackling": 6,
+			"control": 5,
+			"speed": 5,
+			"finishing": 2
+		},
+		"bestSkills": [
+			"HEADING",
+			"SPEED",
+			"PASSING",
+			"CONTROL"
+		]
+	},
+	{
+		"name": "DANIELE FRANCESCHINI",
+		"shirtName": "FRANCESCHINI",
+		"nationality": "ITA",
+		"role": "LEFT_BACK",
+		"number": 8,
+		"skinColor": "ASIATIC",
+		"hairColor": "PLATINUM",
+		"hairStyle": "SHORT_C",
+		"skills": {
+			"passing": 4,
+			"shooting": 2,
+			"heading": 1,
+			"tackling": 4,
+			"control": 5,
+			"speed": 2,
+			"finishing": 2
+		},
+		"bestSkills": [
+			"PASSING",
+			"TACKLING"
+		]
+	},
+	{
+		"name": "ROBERTO BARONIO",
+		"shirtName": "BARONIO",
+		"nationality": "ITA",
+		"role": "RIGHT_WINGER",
+		"number": 9,
+		"skinColor": "MULATTO",
+		"hairColor": "WHITE",
+		"hairStyle": "SMOOTH_F",
+		"skills": {
+			"passing": 4,
+			"shooting": 4,
+			"heading": 2,
+			"tackling": 3,
+			"control": 4,
+			"speed": 3,
+			"finishing": 4
+		},
+		"bestSkills": [
+			"SPEED",
+			"TACKLING",
+			"PASSING",
+			"FINISHING"
+		]
+	},
+	{
+		"name": "SERGIO PELLISSIER",
+		"shirtName": "PELLISSIER",
+		"nationality": "ITA",
+		"role": "RIGHT_WINGER",
+		"number": 10,
+		"skinColor": "RED",
+		"hairColor": "BLACK",
+		"hairStyle": "SMOOTH_P",
+		"skills": {
+			"passing": 2,
+			"shooting": 4,
+			"heading": 3,
+			"tackling": 4,
+			"control": 4,
+			"speed": 4,
+			"finishing": 4
+		},
+		"bestSkills": []
+	},
+	{
+		"name": "FEDERICO COSSATO",
+		"shirtName": "COSSATO",
+		"nationality": "ITA",
+		"role": "RIGHT_WINGER",
+		"number": 11,
+		"skinColor": "ASIATIC",
+		"hairColor": "BROWN",
+		"hairStyle": "SMOOTH_F",
+		"skills": {
+			"passing": 1,
+			"shooting": 3,
+			"heading": 1,
+			"tackling": 1,
+			"control": 5,
+			"speed": 5,
+			"finishing": 4
+		},
+		"bestSkills": [
+			"CONTROL",
+			"HEADING",
+			"SHOOTING",
+			"TACKLING",
+			"SPEED",
+			"FINISHING"
+		]
+	},
+	{
+		"name": "SERGIO MARCON",
+		"shirtName": "MARCON",
+		"nationality": "ITA",
+		"role": "GOALKEEPER",
+		"number": 12,
+		"skinColor": "RED",
+		"hairColor": "BLOND",
+		"hairStyle": "SPECIAL_H",
+		"value": 11
+	},
+	{
+		"name": "MARCO MALAGO",
+		"shirtName": "MALAGO",
+		"nationality": "ITA",
+		"role": "MIDFIELDER",
+		"number": 13,
+		"skinColor": "ARAB",
+		"hairColor": "PLATINUM",
+		"hairStyle": "PIGTAIL_A",
+		"skills": {
+			"passing": 4,
+			"shooting": 3,
+			"heading": 2,
+			"tackling": 4,
+			"control": 3,
+			"speed": 3,
+			"finishing": 2
+		},
+		"bestSkills": [
+			"PASSING"
+		]
+	},
+	{
+		"name": "AMAURI CARVALHO DE OLIVEIRA",
+		"shirtName": "AMAURI",
+		"nationality": "ITA",
+		"role": "RIGHT_BACK",
+		"number": 14,
+		"skinColor": "BLACK",
+		"hairColor": "GRAY",
+		"hairStyle": "CURLY_E",
+		"skills": {
+			"passing": 4,
+			"shooting": 5,
+			"heading": 4,
+			"tackling": 3,
+			"control": 2,
+			"speed": 3,
+			"finishing": 3
+		},
+		"bestSkills": [
+			"SHOOTING"
+		]
+	},
+	{
+		"name": "SIMONE TIRIBOCCHI",
+		"shirtName": "TIRIBOCCHI",
+		"nationality": "ITA",
+		"role": "LEFT_BACK",
+		"number": 15,
+		"skinColor": "RED",
+		"hairColor": "GRAY",
+		"hairStyle": "CURLY_A",
+		"skills": {
+			"passing": 3,
+			"shooting": 3,
+			"heading": 3,
+			"tackling": 3,
+			"control": 2,
+			"speed": 5,
+			"finishing": 4
+		},
+		"bestSkills": [
+			"SPEED"
+		]
+	},
+	{
+		"name": "ANDREA ZANCHETTA",
+		"shirtName": "ZANCHETTA",
+		"nationality": "ITA",
+		"role": "LEFT_BACK",
+		"number": 16,
+		"skinColor": "MULATTO",
+		"hairColor": "RED",
+		"hairStyle": "SMOOTH_N",
+		"skills": {
+			"passing": 3,
+			"shooting": 5,
+			"heading": 3,
+			"tackling": 2,
+			"control": 5,
+			"speed": 3,
+			"finishing": 4
+		},
+		"bestSkills": [
+			"FINISHING",
+			"TACKLING",
+			"SPEED"
+		]
+	},
+	{
+		"name": "PAOLO CODOGNOLA",
+		"shirtName": "CODOGNOLA",
+		"nationality": "ITA",
+		"role": "GOALKEEPER",
+		"number": 17,
+		"skinColor": "RED",
+		"hairColor": "BLACK",
+		"hairStyle": "SMOOTH_A",
+		"value": 10
+	},
+	{
+		"name": "LUCIANO SIQUEIRA DE OLIVEIRA",
+		"shirtName": "LUCIANO",
+		"nationality": "BRA",
+		"role": "RIGHT_WINGER",
+		"number": 18,
+		"skinColor": "ARAB",
+		"hairColor": "PLATINUM",
+		"hairStyle": "CURLY_D",
+		"skills": {
+			"passing": 4,
+			"shooting": 4,
+			"heading": 3,
+			"tackling": 3,
+			"control": 3,
+			"speed": 3,
+			"finishing": 5
+		},
+		"bestSkills": [
+			"FINISHING",
+			"TACKLING"
+		]
+	},
+	{
+		"name": "PAOLO SAMMARCO",
+		"shirtName": "SAMMARCO",
+		"nationality": "ITA",
+		"role": "RIGHT_BACK",
+		"number": 19,
+		"skinColor": "RED",
+		"hairColor": "GRAY",
+		"hairStyle": "SHAVED",
+		"skills": {
+			"passing": 4,
+			"shooting": 1,
+			"heading": 2,
+			"tackling": 5,
+			"control": 4,
+			"speed": 4,
+			"finishing": 5
+		},
+		"bestSkills": [
+			"PASSING",
+			"HEADING",
+			"SPEED",
+			"CONTROL",
+			"TACKLING"
+		]
+	},
+	{
+		"name": "JOHN MENSAH",
+		"shirtName": "MENSAH",
+		"nationality": "ESP",
+		"role": "RIGHT_WINGER",
+		"number": 20,
+		"skinColor": "ARAB",
+		"hairColor": "BLACK",
+		"hairStyle": "SMOOTH_M",
+		"skills": {
+			"passing": 4,
+			"shooting": 2,
+			"heading": 2,
+			"tackling": 5,
+			"control": 2,
+			"speed": 2,
+			"finishing": 3
+		},
+		"bestSkills": [
+			"HEADING"
+		]
+	},
+	{
+		"name": "MATTIA MARCHESETTI",
+		"shirtName": "MARCHESETTI",
+		"nationality": "ITA",
+		"role": "RIGHT_BACK",
+		"number": 21,
+		"skinColor": "PALE",
+		"hairColor": "BLOND",
+		"hairStyle": "SPECIAL_G",
+		"skills": {
+			"passing": 3,
+			"shooting": 3,
+			"heading": 2,
+			"tackling": 5,
+			"control": 4,
+			"speed": 4,
+			"finishing": 3
+		},
+		"bestSkills": [
+			"SPEED",
+			"SHOOTING",
+			"FINISHING"
+		]
+	},
+	{
+		"name": "CÉSAR VINICIO CERVO DE LUCA",
+		"shirtName": "CÉSAR",
+		"nationality": "BRA",
+		"role": "DEFENDER",
+		"number": 22,
+		"skinColor": "PINK",
+		"hairColor": "WHITE",
+		"hairStyle": "SMOOTH_M",
+		"skills": {
+			"passing": 3,
+			"shooting": 2,
+			"heading": 3,
+			"tackling": 3,
+			"control": 2,
+			"speed": 2,
+			"finishing": 5
+		},
+		"bestSkills": [
+			"SPEED",
+			"FINISHING"
+		]
+	},
+	{
+		"name": "ALESSANDRO POTENZA",
+		"shirtName": "POTENZA",
+		"nationality": "ITA",
+		"role": "DEFENDER",
+		"number": 23,
+		"skinColor": "BLACK",
+		"hairColor": "WHITE",
+		"hairStyle": "CURLY_E",
+		"skills": {
+			"passing": 6,
+			"shooting": 2,
+			"heading": 3,
+			"tackling": 4,
+			"control": 5,
+			"speed": 3,
+			"finishing": 2
+		},
+		"bestSkills": [
+			"SPEED",
+			"PASSING",
+			"HEADING",
+			"CONTROL",
+			"TACKLING"
+		]
+	},
+	{
+		"name": "RICCARDO GIANNI ALLEGRETTI",
+		"shirtName": "ALLEGRETTI",
+		"nationality": "ITA",
+		"role": "LEFT_WINGER",
+		"number": 24,
+		"skinColor": "BLACK",
+		"hairColor": "BLOND",
+		"hairStyle": "PIGTAIL_A",
+		"skills": {
+			"passing": 3,
+			"shooting": 2,
+			"heading": 3,
+			"tackling": 4,
+			"control": 4,
+			"speed": 4,
+			"finishing": 4
+		},
+		"bestSkills": [
+			"SPEED",
+			"PASSING",
+			"CONTROL",
+			"FINISHING",
+			"HEADING",
+			"TACKLING"
+		]
+	},
+	{
+		"name": "MASSIMILIANO FUSANI",
+		"shirtName": "FUSANI",
+		"nationality": "ITA",
+		"role": "DEFENDER",
+		"number": 25,
+		"skinColor": "RED",
+		"hairColor": "PUNK_FUCHSIA",
+		"hairStyle": "SMOOTH_K",
+		"skills": {
+			"passing": 4,
+			"shooting": 2,
+			"heading": 3,
+			"tackling": 4,
+			"control": 3,
+			"speed": 4,
+			"finishing": 4
+		},
+		"bestSkills": [
+			"TACKLING"
+		]
+	},
+	{
+		"name": "IVONE DE FRANCESCHI",
+		"shirtName": "DE FRANCESCHI",
+		"nationality": "ITA",
+		"role": "RIGHT_WINGER",
+		"number": 26,
+		"skinColor": "MULATTO",
+		"hairColor": "RED",
+		"hairStyle": "SHORT_B",
+		"skills": {
+			"passing": 3,
+			"shooting": 4,
+			"heading": 3,
+			"tackling": 1,
+			"control": 4,
+			"speed": 5,
+			"finishing": 5
+		},
+		"bestSkills": [
+			"SPEED",
+			"TACKLING",
+			"FINISHING"
+		]
+	},
+	{
+		"name": "EMANUELE PESARESI",
+		"shirtName": "PESARESI",
+		"nationality": "ITA",
+		"role": "LEFT_WINGER",
+		"number": 27,
+		"skinColor": "BLACK",
+		"hairColor": "PUNK_FUCHSIA",
+		"hairStyle": "CURLY_E",
+		"skills": {
+			"passing": 3,
+			"shooting": 6,
+			"heading": 1,
+			"tackling": 3,
+			"control": 6,
+			"speed": 4,
+			"finishing": 2
+		},
+		"bestSkills": []
+	},
+	{
+		"name": "DAVIDE SUCCI",
+		"shirtName": "SUCCI",
+		"nationality": "ITA",
+		"role": "RIGHT_WINGER",
+		"number": 28,
+		"skinColor": "PALE",
+		"hairColor": "PUNK_FUCHSIA",
+		"hairStyle": "SPECIAL_A",
+		"skills": {
+			"passing": 2,
+			"shooting": 2,
+			"heading": 3,
+			"tackling": 2,
+			"control": 5,
+			"speed": 2,
+			"finishing": 3
+		},
+		"bestSkills": [
+			"SPEED"
+		]
+	},
+	{
+		"name": "JÚLIO CÉSAR SOARES DE ESPINDOLA",
+		"shirtName": "JÚLIO CÉSAR",
+		"nationality": "BRA",
+		"role": "GOALKEEPER",
+		"number": 29,
+		"skinColor": "ALIEN",
+		"hairColor": "BLACK",
+		"hairStyle": "THINNING_A",
+		"value": 20
+	},
+	{
+		"name": "SIMONE RIZZATO",
+		"shirtName": "RIZZATO",
+		"nationality": "ITA",
+		"role": "LEFT_WINGER",
+		"number": 30,
+		"skinColor": "BLACK",
+		"hairColor": "PUNK_FUCHSIA",
+		"hairStyle": "SHORT_B",
+		"skills": {
+			"passing": 2,
+			"shooting": 5,
+			"heading": 3,
+			"tackling": 2,
+			"control": 4,
+			"speed": 3,
+			"finishing": 3
+		},
+		"bestSkills": []
+	},
+	{
+		"name": "DIEGO DA SILVA REIS",
+		"shirtName": "REIS",
+		"nationality": "BRA",
+		"role": "MIDFIELDER",
+		"number": 31,
+		"skinColor": "PINK",
+		"hairColor": "BROWN",
+		"hairStyle": "BALD_B",
+		"skills": {
+			"passing": 3,
+			"shooting": 1,
+			"heading": 2,
+			"tackling": 5,
+			"control": 3,
+			"speed": 4,
+			"finishing": 2
+		},
+		"bestSkills": [
+			"FINISHING",
+			"TACKLING",
+			"CONTROL",
+			"SHOOTING"
+		]
+	},
+	{
+		"name": "ALFREDO CARIELLO",
+		"shirtName": "CARIELLO",
+		"nationality": "ITA",
+		"role": "MIDFIELDER",
+		"number": 32,
+		"skinColor": "MULATTO",
+		"hairColor": "WHITE",
+		"hairStyle": "CURLY_F",
+		"skills": {
+			"passing": 5,
+			"shooting": 3,
+			"heading": 4,
+			"tackling": 3,
+			"control": 3,
+			"speed": 4,
+			"finishing": 3
+		},
+		"bestSkills": [
+			"TACKLING",
+			"SHOOTING",
+			"HEADING",
+			"FINISHING",
+			"SPEED",
+			"CONTROL"
+		]
+	},
+	{
+		"name": "ENRICO ALFONSO",
+		"shirtName": "ALFONSO",
+		"nationality": "ITA",
+		"role": "GOALKEEPER",
+		"number": 33,
+		"skinColor": "RED",
+		"hairColor": "PUNK_FUCHSIA",
+		"hairStyle": "BALD_B",
+		"value": 12
+	},
+	{
+		"name": "MATTIA PASSARINI",
+		"shirtName": "PASSARINI",
+		"nationality": "ITA",
+		"role": "GOALKEEPER",
+		"number": 34,
+		"skinColor": "ALIEN",
+		"hairColor": "RED",
+		"hairStyle": "SPECIAL_C",
+		"value": 21
+	},
+	{
+		"name": "DAVIDE MARCHINI",
+		"shirtName": "MARCHINI",
+		"nationality": "ITA",
+		"role": "LEFT_WINGER",
+		"number": 35,
+		"skinColor": "PINK",
+		"hairColor": "GRAY",
+		"hairStyle": "SMOOTH_B",
+		"skills": {
+			"passing": 5,
+			"shooting": 3,
+			"heading": 3,
+			"tackling": 4,
+			"control": 2,
+			"speed": 3,
+			"finishing": 4
+		},
+		"bestSkills": [
+			"TACKLING",
+			"SPEED",
+			"HEADING"
+		]
+	}
+]
+}
