@@ -1,14 +1,14 @@
 {
 "name": "MARRUECOS",
-"type": "CUSTOM",
+"type": "NATIONAL",
 "country": "LIE",
 "league": "HISTÓRICOS",
 "city": "BARCELONA",
 "stadium": "HALAL",
 "year": null,
 "coach": {
-	"name": "MOHAMMED IV",
-	"nationality": "KEN"
+	"name": "MOHAMMED VI",
+	"nationality": "MAR"
 },
 "tactics": "4-4-2",
 "kits": [
@@ -163,8 +163,8 @@
 		]
 	},
 	{
-		"name": "HAMMAS HAMMED HAMMON",
-		"shirtName": "HAMMED H.",
+		"name": "SHANTI AB-ASCAL",
+		"shirtName": "AB-ASCAL",
 		"nationality": "MAR",
 		"role": "RIGHT_WINGER",
 		"number": 3,
