@@ -5,6 +5,7 @@
 "league": "HISTÓRICOS",
 "city": "MÉRIDA",
 "stadium": "ESTADIO ROMANO",
+"year": 1997,
 "coach": {
 	"name": "ROBERTO JORGE D'ALESSANDRO DI NINNO",
 	"nationality": "ARG"
@@ -217,7 +218,7 @@
 		]
 	},
 	{
-		"name": "MARCOS MARTÍN DE LA FUENTE MARTÍN-FRANCÉS",
+		"name": "MARCOS MARTÍN DE LA FUENTE",
 		"shirtName": "MARCOS",
 		"nationality": "ESP",
 		"role": "RIGHT_BACK",

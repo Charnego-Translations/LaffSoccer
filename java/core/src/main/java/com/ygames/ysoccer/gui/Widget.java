@@ -43,6 +43,7 @@ public abstract class Widget {
     @Setter
     public boolean visible;
     boolean addShadow;
+    @Setter
     private boolean dirty;
 
     public enum Event {
@@ -186,10 +187,6 @@ public abstract class Widget {
 
     public boolean getDirty() {
         return dirty;
-    }
-
-    public void setDirty(boolean dirty) {
-        this.dirty = dirty;
     }
 
     public static void arrange(int width, int centerY, int rowHeight, int spacing, List<Widget> widgetList) {

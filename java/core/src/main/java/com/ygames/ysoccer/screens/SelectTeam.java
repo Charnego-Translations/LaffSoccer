@@ -2,6 +2,7 @@ package com.ygames.ysoccer.screens;
 
 import com.badlogic.gdx.files.FileHandle;
 import com.ygames.ysoccer.framework.Assets;
+import com.ygames.ysoccer.framework.Font;
 import com.ygames.ysoccer.framework.GLGame;
 import com.ygames.ysoccer.framework.GLScreen;
 import com.ygames.ysoccer.framework.Settings;
@@ -76,7 +77,7 @@ class SelectTeam extends GLScreen {
                 list.add(leagueButton);
                 widgets.add(leagueButton);
             }
-            if (list.size() > 0) {
+            if (!list.isEmpty()) {
                 Widget.arrange(game.gui.WIDTH, 380, 34, 20, list);
                 setSelectedWidget(list.get(0));
             }
@@ -89,8 +90,8 @@ class SelectTeam extends GLScreen {
                 list.add(w);
                 widgets.add(w);
             }
-            if (list.size() > 0) {
-                Collections.sort(list, Widget.widgetComparatorByText);
+            if (!list.isEmpty()) {
+                list.sort(Widget.widgetComparatorByText);
                 Widget.arrange(game.gui.WIDTH, 380, 30, game.getState() == EDIT ? 40 : 20, list);
                 setSelectedWidget(list.get(0));
 

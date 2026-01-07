@@ -336,7 +336,7 @@ class MatchSetup extends GLScreen {
             int sign = teamIndex == 0 ? -1 : 1;
             setGeometry((game.gui.WIDTH - 500) / 2 + (500 / 2 + 20) * sign, 326, 500, 42);
             setColor(0x1F1F95);
-            setText(team.name, CENTER, font14);
+            setText(team.getNameYear(), CENTER, font14);
             setActive(false);
         }
     }

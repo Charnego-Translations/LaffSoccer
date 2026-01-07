@@ -476,8 +476,8 @@ public class MatchRenderer extends SceneRenderer<Match> {
 
         // team name
         y = t + h / 4;
-        Assets.font14.draw(batch, scene.team[HOME].name, l + w / 4, y, Font.Align.CENTER);
-        Assets.font14.draw(batch, scene.team[AWAY].name, l + 3 * w / 4, y, Font.Align.CENTER);
+        Assets.font14.draw(batch, scene.team[HOME].getNameYear(), l + w / 4, y, Font.Align.CENTER);
+        Assets.font14.draw(batch, scene.team[AWAY].getNameYear(), l + 3 * w / 4, y, Font.Align.CENTER);
 
         // players
         for (int tm = HOME; tm <= AWAY; tm++) {
@@ -681,8 +681,8 @@ public class MatchRenderer extends SceneRenderer<Match> {
         }
 
         // teams
-        Assets.font14.draw(batch, scene.team[HOME].name, +12, y0 - 22, Font.Align.LEFT);
-        Assets.font14.draw(batch, scene.team[AWAY].name, guiWidth - 10, y0 - 22, Font.Align.RIGHT);
+        Assets.font14.draw(batch, scene.team[HOME].getNameYear(), +12, y0 - 22, Font.Align.LEFT);
+        Assets.font14.draw(batch, scene.team[AWAY].getNameYear(), guiWidth - 10, y0 - 22, Font.Align.RIGHT);
 
         // bars
         batch.end();
@@ -786,8 +786,8 @@ public class MatchRenderer extends SceneRenderer<Match> {
         }
 
         // teams
-        Assets.font14.draw(batch, scene.team[HOME].name, +12, y0 - 22, Font.Align.LEFT);
-        Assets.font14.draw(batch, scene.team[AWAY].name, guiWidth - 10, y0 - 22, Font.Align.RIGHT);
+        Assets.font14.draw(batch, scene.team[HOME].getNameYear(), +12, y0 - 22, Font.Align.LEFT);
+        Assets.font14.draw(batch, scene.team[AWAY].getNameYear(), guiWidth - 10, y0 - 22, Font.Align.RIGHT);
 
         // bars
         batch.end();
@@ -914,8 +914,8 @@ public class MatchRenderer extends SceneRenderer<Match> {
         Assets.font14.draw(batch, Assets.strings.get("MATCH STATISTICS"), hw, i, Font.Align.CENTER);
 
         i = i + h / 10;
-        Assets.font14.draw(batch, scene.team[Match.HOME].name, lc, i, Font.Align.CENTER);
-        Assets.font14.draw(batch, scene.team[Match.AWAY].name, rc, i, Font.Align.CENTER);
+        Assets.font14.draw(batch, scene.team[Match.HOME].getNameYear(), lc, i, Font.Align.CENTER);
+        Assets.font14.draw(batch, scene.team[Match.AWAY].getNameYear(), rc, i, Font.Align.CENTER);
 
         i = i + h / 10;
         int homeGoals = scene.penalties[HOME].isEmpty() ? homeStats.goals : scene.penaltiesScore(HOME);

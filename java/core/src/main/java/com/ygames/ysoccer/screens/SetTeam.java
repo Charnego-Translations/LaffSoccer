@@ -744,7 +744,7 @@ class SetTeam extends GLScreen {
 
         @Override
         public void refresh() {
-            setText(shownTeam.name);
+            setText(shownTeam.getNameYear());
             if (shownTeam == ownTeam) {
                 setColor(0x005DDE);
             } else {

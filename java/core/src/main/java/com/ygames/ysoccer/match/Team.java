@@ -117,6 +117,10 @@ public class Team implements Json.Serializable {
         league = jsonData.getString("league", null);
         city = jsonData.getString("city");
         stadium = jsonData.getString("stadium");
+        String year = jsonData.getString("year", null);
+        if (year != null) {
+            this.year = Integer.valueOf(year);
+        }
 
         coach = json.readValue("coach", Coach.class, jsonData);
         coach.teamIndex = this.index;
@@ -158,6 +162,7 @@ public class Team implements Json.Serializable {
         }
         json.writeValue("city", city);
         json.writeValue("stadium", stadium);
+        json.writeValue("year", year);
         json.writeValue("coach", coach);
         json.writeValue("tactics", Tactics.codes[tactics]);
         json.writeValue("kits", kits, Kit[].class, Kit.class);
@@ -930,4 +935,9 @@ public class Team implements Json.Serializable {
         }
         return false;
     }
+
+    public String getNameYear() {
+        return name + (year != null ? " (" + year + ")" : "");
+    }
+
 }
