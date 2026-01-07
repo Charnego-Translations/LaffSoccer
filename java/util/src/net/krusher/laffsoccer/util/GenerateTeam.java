@@ -1,6 +1,5 @@
 package net.krusher.laffsoccer.util;
 
-import com.ygames.ysoccer.framework.FileUtils;
 import com.ygames.ysoccer.match.Coach;
 import com.ygames.ysoccer.match.Hair;
 import com.ygames.ysoccer.match.Kit;
@@ -9,11 +8,9 @@ import com.ygames.ysoccer.match.Skin;
 import com.ygames.ysoccer.match.Team;
 import net.krusher.laffsoccer.util.auxiliary.Auxiliary;
 
-import javax.swing.*;
-import javax.swing.filechooser.FileFilter;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -132,33 +129,18 @@ public class GenerateTeam {
             team.players.add(player);
         }
 
-        JFileChooser fileChooser = new JFileChooser();
-        FileFilter extensionFilter = new FileNameExtensionFilter("JSON File", "json");
-        fileChooser.setDialogType(JFileChooser.SAVE_DIALOG);
-        fileChooser.setSelectedFile(new File("team." + FileUtils.normalizeName(team.name) + ".json"));
-        fileChooser.setFileFilter(extensionFilter);
-        fileChooser.setDialogTitle("Specify a file to save");
-
+        File fileToSave;
         if (arg.length != 0) {
-            File fileToSave = new File(arg[0]);
+            fileToSave = new File(arg[0]);
             Auxiliary.writeTeamFile(team, fileToSave);
         } else {
-
-            JFrame parentFrame = new JFrame();
-            int userSelection = fileChooser.showSaveDialog(parentFrame);
-
-            if (userSelection == JFileChooser.APPROVE_OPTION) {
-                File fileToSave = fileChooser.getSelectedFile();
-
-                if (!fileToSave.getName().endsWith("team." + FileUtils.normalizeName(team.name) + ".json")) {
-                    String name = fileToSave.getName();
-                    team.name = name.substring(name.indexOf('.') + 1, name.lastIndexOf('.')).toUpperCase();
-                }
-
-                Auxiliary.writeTeamFile(team, fileToSave);
-                parentFrame.dispose();
+            Path pathToSave = Auxiliary.selectTeamFileSave();
+            if (pathToSave == null) {
+                return;
             }
+            fileToSave = pathToSave.toFile();
         }
+        Auxiliary.writeTeamFile(team, fileToSave);
 
         System.out.print("Done");
 

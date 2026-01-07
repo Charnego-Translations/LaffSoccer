@@ -1,0 +1,400 @@
+{
+"name": "MARRUECOS",
+"type": "CUSTOM",
+"country": "LIE",
+"league": "HISTÓRICOS",
+"city": "BARCELONA",
+"stadium": "HALAL",
+"year": null,
+"coach": {
+	"name": "MOHAMMED IV",
+	"nationality": "KEN"
+},
+"tactics": "4-4-2",
+"kits": [
+	{
+		"style": "SPICE",
+		"shirt1": "#f61c1c",
+		"shirt2": "#417039",
+		"shirt3": "#417039",
+		"shorts": "#417039",
+		"socks": "#f61c1c"
+	},
+	{
+		"style": "PLAIN",
+		"shirt1": "#dfe8eb",
+		"shirt2": "#417039",
+		"shirt3": "#417039",
+		"shorts": "#dfe8eb",
+		"socks": "#dfe8eb"
+	},
+	{
+		"style": "SIDE_LINES",
+		"shirt1": "#f61c1c",
+		"shirt2": "#417039",
+		"shirt3": "#417039",
+		"shorts": "#1e1e1e",
+		"socks": "#1e1e1e"
+	}
+],
+"players": [
+	{
+		"name": "MOHAMMED ECHAMEAWA",
+		"shirtName": "ECHAMEAWA",
+		"nationality": "MAR",
+		"role": "GOALKEEPER",
+		"number": 6,
+		"skinColor": "PINK",
+		"hairColor": "BROWN",
+		"hairStyle": "SPECIAL_B",
+		"value": 24
+	},
+	{
+		"name": "MEKHAÍ AL-NASSER",
+		"shirtName": "AL-NASSER",
+		"nationality": "MAR",
+		"role": "LEFT_BACK",
+		"number": 1,
+		"skinColor": "ARAB",
+		"hairColor": "GRAY",
+		"hairStyle": "SHORT_C",
+		"skills": {
+			"passing": 5,
+			"shooting": 3,
+			"heading": 2,
+			"tackling": 4,
+			"control": 4,
+			"speed": 1,
+			"finishing": 4
+		},
+		"bestSkills": [
+			"FINISHING"
+		]
+	},
+	{
+		"name": "NOAH MARÍN MERCIER",
+		"shirtName": "N. MARÍN",
+		"nationality": "MAR",
+		"role": "RIGHT_BACK",
+		"number": 9,
+		"skinColor": "MULATTO",
+		"hairColor": "GRAY",
+		"hairStyle": "SMOOTH_L",
+		"skills": {
+			"passing": 3,
+			"shooting": 2,
+			"heading": 1,
+			"tackling": 4,
+			"control": 6,
+			"speed": 4,
+			"finishing": 3
+		},
+		"bestSkills": [
+			"FINISHING",
+			"SPEED",
+			"HEADING",
+			"CONTROL"
+		]
+	},
+	{
+		"name": "ALSAKAD SAK-UDIR",
+		"shirtName": "SAK-UDIR",
+		"nationality": "MAR",
+		"role": "RIGHT_WINGER",
+		"number": 12,
+		"skinColor": "MULATTO",
+		"hairColor": "BLACK",
+		"hairStyle": "PIGTAIL_A",
+		"skills": {
+			"passing": 3,
+			"shooting": 2,
+			"heading": 3,
+			"tackling": 2,
+			"control": 4,
+			"speed": 4,
+			"finishing": 4
+		},
+		"bestSkills": [
+			"PASSING",
+			"FINISHING",
+			"TACKLING"
+		]
+	},
+	{
+		"name": "SALAM ALEIKUM",
+		"shirtName": "ALEIKUM",
+		"nationality": "MAR",
+		"role": "RIGHT_WINGER",
+		"number": 17,
+		"skinColor": "MULATTO",
+		"hairColor": "BLACK",
+		"hairStyle": "CURLY_D",
+		"skills": {
+			"passing": 3,
+			"shooting": 4,
+			"heading": 2,
+			"tackling": 5,
+			"control": 2,
+			"speed": 4,
+			"finishing": 2
+		},
+		"bestSkills": []
+	},
+	{
+		"name": "ALÍ EXPRESS",
+		"shirtName": "ALÍ E.",
+		"nationality": "MAR",
+		"role": "RIGHT_WINGER",
+		"number": 4,
+		"skinColor": "MULATTO",
+		"hairColor": "BLACK",
+		"hairStyle": "BALD_A",
+		"skills": {
+			"passing": 2,
+			"shooting": 3,
+			"heading": 0,
+			"tackling": 0,
+			"control": 4,
+			"speed": 5,
+			"finishing": 4
+		},
+		"bestSkills": [
+			"CONTROL"
+		]
+	},
+	{
+		"name": "HAMMAS HAMMED HAMMON",
+		"shirtName": "HAMMED H.",
+		"nationality": "MAR",
+		"role": "RIGHT_WINGER",
+		"number": 3,
+		"skinColor": "RED",
+		"hairColor": "BLACK",
+		"hairStyle": "SMOOTH_P",
+		"skills": {
+			"passing": 1,
+			"shooting": 3,
+			"heading": 2,
+			"tackling": 2,
+			"control": 5,
+			"speed": 3,
+			"finishing": 3
+		},
+		"bestSkills": [
+			"PASSING",
+			"SHOOTING",
+			"CONTROL"
+		]
+	},
+	{
+		"name": "ALLAHU AKBAR",
+		"shirtName": "AKBAR",
+		"nationality": "MAR",
+		"role": "LEFT_WINGER",
+		"number": 2,
+		"skinColor": "MULATTO",
+		"hairColor": "GRAY",
+		"hairStyle": "SHORT_B",
+		"skills": {
+			"passing": 2,
+			"shooting": 3,
+			"heading": 3,
+			"tackling": 3,
+			"control": 2,
+			"speed": 4,
+			"finishing": 3
+		},
+		"bestSkills": []
+	},
+	{
+		"name": "AL-CALAH MECO",
+		"shirtName": "AL-CALAH",
+		"nationality": "MAR",
+		"role": "MIDFIELDER",
+		"number": 11,
+		"skinColor": "RED",
+		"hairColor": "BLACK",
+		"hairStyle": "SMOOTH_A",
+		"skills": {
+			"passing": 4,
+			"shooting": 3,
+			"heading": 4,
+			"tackling": 3,
+			"control": 3,
+			"speed": 2,
+			"finishing": 3
+		},
+		"bestSkills": [
+			"PASSING",
+			"HEADING",
+			"SPEED",
+			"SHOOTING",
+			"CONTROL",
+			"FINISHING"
+		]
+	},
+	{
+		"name": "ALÍ CANTE",
+		"shirtName": "ALÍ CANTE",
+		"nationality": "MAR",
+		"role": "RIGHT_WINGER",
+		"number": 14,
+		"skinColor": "PALE",
+		"hairColor": "GRAY",
+		"hairStyle": "CURLY_A",
+		"skills": {
+			"passing": 3,
+			"shooting": 2,
+			"heading": 4,
+			"tackling": 3,
+			"control": 4,
+			"speed": 4,
+			"finishing": 1
+		},
+		"bestSkills": [
+			"SPEED",
+			"HEADING",
+			"FINISHING"
+		]
+	},
+	{
+		"name": "AMEGO SEGARRO",
+		"shirtName": "SEGARRO",
+		"nationality": "MAR",
+		"role": "LEFT_WINGER",
+		"number": 7,
+		"skinColor": "RED",
+		"hairColor": "BLACK",
+		"hairStyle": "SPECIAL_B",
+		"skills": {
+			"passing": 4,
+			"shooting": 3,
+			"heading": 4,
+			"tackling": 2,
+			"control": 3,
+			"speed": 3,
+			"finishing": 3
+		},
+		"bestSkills": [
+			"SPEED",
+			"TACKLING",
+			"FINISHING",
+			"CONTROL"
+		]
+	},
+	{
+		"name": "ALUD AL-KHAGAR",
+		"shirtName": "AL-KHAGAR",
+		"nationality": "MAR",
+		"role": "GOALKEEPER",
+		"number": 8,
+		"skinColor": "MULATTO",
+		"hairColor": "BLACK",
+		"hairStyle": "SMOOTH_P",
+		"value": 18
+	},
+	{
+		"name": "SALEJA LAHLMEJA",
+		"shirtName": "LAHLMEJA",
+		"nationality": "MAR",
+		"role": "DEFENDER",
+		"number": 13,
+		"skinColor": "MULATTO",
+		"hairColor": "BLACK",
+		"hairStyle": "PIGTAIL_A",
+		"skills": {
+			"passing": 3,
+			"shooting": 4,
+			"heading": 1,
+			"tackling": 4,
+			"control": 4,
+			"speed": 4,
+			"finishing": 3
+		},
+		"bestSkills": [
+			"SHOOTING",
+			"FINISHING",
+			"HEADING",
+			"PASSING",
+			"CONTROL",
+			"TACKLING"
+		]
+	},
+	{
+		"name": "YIHAD",
+		"shirtName": "YIHAD",
+		"nationality": "MAR",
+		"role": "RIGHT_WINGER",
+		"number": 15,
+		"skinColor": "MULATTO",
+		"hairColor": "GRAY",
+		"hairStyle": "SMOOTH_F",
+		"skills": {
+			"passing": 3,
+			"shooting": 3,
+			"heading": 3,
+			"tackling": 5,
+			"control": 4,
+			"speed": 2,
+			"finishing": 2
+		},
+		"bestSkills": [
+			"HEADING",
+			"FINISHING"
+		]
+	},
+	{
+		"name": "MIA KHALIFA",
+		"shirtName": "KHALIFA",
+		"nationality": "MAR",
+		"role": "RIGHT_BACK",
+		"number": 16,
+		"skinColor": "MULATTO",
+		"hairColor": "BLACK",
+		"hairStyle": "SMOOTH_O",
+		"skills": {
+			"passing": 4,
+			"shooting": 2,
+			"heading": 3,
+			"tackling": 3,
+			"control": 1,
+			"speed": 4,
+			"finishing": 5
+		},
+		"bestSkills": [
+			"PASSING",
+			"SHOOTING",
+			"FINISHING",
+			"HEADING",
+			"CONTROL"
+		]
+	},
+	{
+		"name": "ALÍ-JO",
+		"shirtName": "ALÍ-JO",
+		"nationality": "MAR",
+		"role": "DEFENDER",
+		"number": 5,
+		"skinColor": "MULATTO",
+		"hairColor": "BLACK",
+		"hairStyle": "THINNING_C",
+		"skills": {
+			"passing": 5,
+			"shooting": 2,
+			"heading": 2,
+			"tackling": 3,
+			"control": 4,
+			"speed": 4,
+			"finishing": 2
+		},
+		"bestSkills": [
+			"PASSING",
+			"CONTROL",
+			"FINISHING",
+			"HEADING",
+			"TACKLING",
+			"SPEED"
+		]
+	}
+]
+}

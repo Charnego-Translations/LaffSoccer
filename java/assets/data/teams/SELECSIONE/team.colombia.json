@@ -4,7 +4,8 @@
 "country": "COL",
 "confederation": "CONMEBOL",
 "city": "MEDELLÍN",
-"stadium": "MU GRANDE",
+"stadium": "HACIENDA NÁPOLES",
+"year": null,
 "coach": {
 	"name": "PABLO ESCOBAR GAVIRIA",
 	"nationality": "COL"
@@ -38,22 +39,22 @@
 ],
 "players": [
 	{
-		"name": "HUGO HASANI FERNANDES",
-		"shirtName": "FERNANDES H.",
+		"name": "JUAN DAVID OCHOA VÁSQUEZ",
+		"shirtName": "JD OCHOA",
 		"nationality": "COL",
 		"role": "GOALKEEPER",
-		"number": 5,
+		"number": 1,
 		"skinColor": "MULATTO",
 		"hairColor": "PLATINUM",
 		"hairStyle": "PIGTAIL_A",
 		"value": 19
 	},
 	{
-		"name": "ALEKSANDRS MARTINI",
-		"shirtName": "ALEKSANDRS M.",
+		"name": "JOSÉ SANTACRUZ ECHEVERRI",
+		"shirtName": "S. ECHEVERRI",
 		"nationality": "COL",
 		"role": "DEFENDER",
-		"number": 2,
+		"number": 9,
 		"skinColor": "MULATTO",
 		"hairColor": "BROWN",
 		"hairStyle": "CURLY_A",
@@ -69,8 +70,8 @@
 		"bestSkills": []
 	},
 	{
-		"name": "ANDY GOMES",
-		"shirtName": "ANDY GOMES",
+		"name": "LUIS SANTACRUZ LONDOÑO",
+		"shirtName": "S. LONDOÑO",
 		"nationality": "COL",
 		"role": "DEFENDER",
 		"number": 8,
@@ -91,11 +92,11 @@
 		]
 	},
 	{
-		"name": "ALEKSANDAR BASILE MANCINI",
-		"shirtName": "MANCINI A.",
+		"name": "GILBERTO RODRÍGUEZ OREJUELA",
+		"shirtName": "GILBERTO R.",
 		"nationality": "COL",
 		"role": "LEFT_WINGER",
-		"number": 13,
+		"number": 5,
 		"skinColor": "ASIATIC",
 		"hairColor": "BROWN",
 		"hairStyle": "CURLY_B",
@@ -116,12 +117,12 @@
 		]
 	},
 	{
-		"name": "BENJAMIN RAMÍREZ KUZNETSOV",
-		"shirtName": "B. RAMÍREZ",
+		"name": "MIGUEL RODRÍGUEZ OREJUELA",
+		"shirtName": "MIGUEL R.",
 		"nationality": "COL",
 		"role": "RIGHT_BACK",
 		"number": 12,
-		"skinColor": "ALIEN",
+		"skinColor": "BLACK",
 		"hairColor": "BROWN",
 		"hairStyle": "CURLY_F",
 		"skills": {
@@ -141,8 +142,8 @@
 		]
 	},
 	{
-		"name": "NIKOLA AZEVEDO MATOS",
-		"shirtName": "NIKOLA A.",
+		"name": "VICTOR PATIÑO FÓMEQUE",
+		"shirtName": "EL QUÍMICO",
 		"nationality": "COL",
 		"role": "LEFT_WINGER",
 		"number": 11,
@@ -165,11 +166,11 @@
 		]
 	},
 	{
-		"name": "UNAX CRUZ VITALEALMEIDA",
-		"shirtName": "U. VITALEALMEIDA",
+		"name": "JOHN JAIRO VELÁSQUEZ",
+		"shirtName": "POPEYE",
 		"nationality": "COL",
 		"role": "DEFENDER",
-		"number": 17,
+		"number": 13,
 		"skinColor": "RED",
 		"hairColor": "GRAY",
 		"hairStyle": "SPECIAL_A",
@@ -189,11 +190,11 @@
 		]
 	},
 	{
-		"name": "ARTJOMS MAYR CAPUTO",
-		"shirtName": "MAYR",
+		"name": "DIEGO MURILLO BEJARANO",
+		"shirtName": "DON BERNA",
 		"nationality": "COL",
 		"role": "RIGHT_BACK",
-		"number": 15,
+		"number": 10,
 		"skinColor": "ASIATIC",
 		"hairColor": "BLOND",
 		"hairStyle": "SMOOTH_M",
@@ -209,11 +210,11 @@
 		"bestSkills": []
 	},
 	{
-		"name": "ALEKSANDER ROBERT HALL",
-		"shirtName": "ALEKSANDER",
+		"name": "FIDEL CASTAÑO GIL",
+		"shirtName": "FIDEL C.",
 		"nationality": "COL",
 		"role": "DEFENDER",
-		"number": 18,
+		"number": 6,
 		"skinColor": "ASIATIC",
 		"hairColor": "PUNK_FUCHSIA",
 		"hairStyle": "SMOOTH_C",
@@ -231,8 +232,8 @@
 		]
 	},
 	{
-		"name": "ALI JACKSON",
-		"shirtName": "ALI JACKSON",
+		"name": "DAIRO ANTONIO ÚSUGA",
+		"shirtName": "OTONIEL",
 		"nationality": "COL",
 		"role": "DEFENDER",
 		"number": 3,
@@ -256,8 +257,8 @@
 		]
 	},
 	{
-		"name": "IOANNIS HANSEN",
-		"shirtName": "IOANNIS HANSEN",
+		"name": "CARLOS LEHDER RIVAS",
+		"shirtName": "RIVAS",
 		"nationality": "COL",
 		"role": "LEFT_BACK",
 		"number": 14,
@@ -281,22 +282,22 @@
 		]
 	},
 	{
-		"name": "MARTIN SERRA",
-		"shirtName": "MARTIN SERRA",
+		"name": "RODRIGO TOVAR PUPO",
+		"shirtName": "JORGE 40",
 		"nationality": "COL",
 		"role": "GOALKEEPER",
-		"number": 9,
+		"number": 24,
 		"skinColor": "ASIATIC",
 		"hairColor": "GRAY",
 		"hairStyle": "SMOOTH_D",
 		"value": 21
 	},
 	{
-		"name": "MIGUEL VILLA TEIXEIRA",
-		"shirtName": "TEIXEIRA",
+		"name": "ALFONSO CANO",
+		"shirtName": "A. CANO",
 		"nationality": "COL",
 		"role": "RIGHT_BACK",
-		"number": 7,
+		"number": 23,
 		"skinColor": "RED",
 		"hairColor": "GRAY",
 		"hairStyle": "SMOOTH_E",
@@ -319,12 +320,12 @@
 		]
 	},
 	{
-		"name": "NAREK ANDREJEV BIANCHI",
-		"shirtName": "B. NAREK",
+		"name": "MANUEL MARULANDA VÉLEZ",
+		"shirtName": "TIROFIJO",
 		"nationality": "COL",
 		"role": "RIGHT_BACK",
-		"number": 10,
-		"skinColor": "ALIEN",
+		"number": 21,
+		"skinColor": "BLACK",
 		"hairColor": "PUNK_FUCHSIA",
 		"hairStyle": "SHORT_A",
 		"skills": {
@@ -344,8 +345,8 @@
 		]
 	},
 	{
-		"name": "JAKE LECHNER",
-		"shirtName": "JAKE LECHNER",
+		"name": "CARLOS CASTAÑO GIL",
+		"shirtName": "CARLOS C.",
 		"nationality": "COL",
 		"role": "MIDFIELDER",
 		"number": 16,
@@ -364,8 +365,8 @@
 		"bestSkills": []
 	},
 	{
-		"name": "CHARLIE LOMBARDO",
-		"shirtName": "LOMBARDO",
+		"name": "WILBER VARELA",
+		"shirtName": "JABÓN",
 		"nationality": "COL",
 		"role": "LEFT_WINGER",
 		"number": 4,
@@ -391,11 +392,11 @@
 		]
 	},
 	{
-		"name": "TOBIAS GIL",
-		"shirtName": "TOBIAS GIL",
+		"name": "DIEGO LEÓN MONTOYA",
+		"shirtName": "DON DIEGO",
 		"nationality": "COL",
 		"role": "MIDFIELDER",
-		"number": 6,
+		"number": 26,
 		"skinColor": "ARAB",
 		"hairColor": "PLATINUM",
 		"hairStyle": "SMOOTH_L",
@@ -417,11 +418,11 @@
 		]
 	},
 	{
-		"name": "SERGEI ROMEO BIANCO",
-		"shirtName": "B. ROMEO",
+		"name": "HELMER HERRERA",
+		"shirtName": "PACHO",
 		"nationality": "COL",
 		"role": "DEFENDER",
-		"number": 1,
+		"number": 25,
 		"skinColor": "ASIATIC",
 		"hairColor": "RED",
 		"hairStyle": "SMOOTH_B",
@@ -439,6 +440,26 @@
 			"CONTROL",
 			"SPEED"
 		]
+	},
+	{
+		"name": "DANIEL RENDÓN HERRERA",
+		"shirtName": "DON MARIO",
+		"nationality": "COL",
+		"role": "MIDFIELDER",
+		"number": 28,
+		"skinColor": "PINK",
+		"hairColor": "BLACK",
+		"hairStyle": "SMOOTH_A",
+		"skills": {
+			"passing": 1,
+			"shooting": 4,
+			"heading": 1,
+			"tackling": 2,
+			"control": 4,
+			"speed": 5,
+			"finishing": 7
+		},
+		"bestSkills": []
 	}
 ]
 }

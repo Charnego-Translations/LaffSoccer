@@ -5,6 +5,7 @@
 "confederation": "AFC",
 "city": "TOKYO",
 "stadium": "ESTADIO ENORME",
+"year": null,
 "coach": {
 	"name": "ROBERTO SEDINHO",
 	"nationality": "BRA"
@@ -174,7 +175,7 @@
 		"number": 7,
 		"skinColor": "PINK",
 		"hairColor": "BLACK",
-		"hairStyle": "SMOOTH_A",
+		"hairStyle": "SMOOTH_D",
 		"skills": {
 			"passing": 4,
 			"shooting": 6,
@@ -197,7 +198,7 @@
 		"number": 8,
 		"skinColor": "PINK",
 		"hairColor": "BLACK",
-		"hairStyle": "SMOOTH_A",
+		"hairStyle": "SHORT_C",
 		"skills": {
 			"passing": 5,
 			"shooting": 2,
@@ -221,7 +222,7 @@
 		"number": 9,
 		"skinColor": "PINK",
 		"hairColor": "BLACK",
-		"hairStyle": "SMOOTH_D",
+		"hairStyle": "SMOOTH_G",
 		"skills": {
 			"passing": 7,
 			"shooting": 5,
@@ -245,7 +246,7 @@
 		"number": 10,
 		"skinColor": "PINK",
 		"hairColor": "BLACK",
-		"hairStyle": "SMOOTH_D",
+		"hairStyle": "SMOOTH_E",
 		"skills": {
 			"passing": 6,
 			"shooting": 6,
@@ -269,7 +270,7 @@
 		"number": 11,
 		"skinColor": "MULATTO",
 		"hairColor": "BLACK",
-		"hairStyle": "SMOOTH_A",
+		"hairStyle": "SMOOTH_B",
 		"skills": {
 			"passing": 5,
 			"shooting": 6,
@@ -294,7 +295,7 @@
 		"number": 12,
 		"skinColor": "PINK",
 		"hairColor": "BLACK",
-		"hairStyle": "SMOOTH_A",
+		"hairStyle": "SMOOTH_C",
 		"value": 38
 	},
 	{
@@ -305,7 +306,7 @@
 		"number": 13,
 		"skinColor": "PINK",
 		"hairColor": "BLACK",
-		"hairStyle": "SMOOTH_A",
+		"hairStyle": "SMOOTH_D",
 		"skills": {
 			"passing": 7,
 			"shooting": 5,

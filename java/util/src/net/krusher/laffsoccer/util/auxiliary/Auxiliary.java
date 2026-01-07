@@ -2,7 +2,6 @@ package net.krusher.laffsoccer.util.auxiliary;
 
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonWriter;
-import com.ygames.ysoccer.framework.Assets;
 import com.ygames.ysoccer.framework.EMath;
 import com.ygames.ysoccer.match.Kit;
 import com.ygames.ysoccer.match.Player;
@@ -43,7 +42,7 @@ public class Auxiliary {
 
     private static final FileFilter FILE_FILTER = new FileFilter() {
         public boolean accept(File f) {
-            return f.getName().startsWith("team.") && f.getName().endsWith(".json");
+            return f.isDirectory() || f.getName().startsWith("team.") && f.getName().endsWith(".json");
         }
 
         public String getDescription() {
@@ -256,8 +255,11 @@ public class Auxiliary {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setCurrentDirectory(new File(TEAMS_DIR));
         fileChooser.setDialogTitle("Specify a team to load");
-        fileChooser.setDialogType(JFileChooser.OPEN_DIALOG);
         fileChooser.setFileFilter(FILE_FILTER);
-        return fileChooser.getSelectedFile();
+        int result = fileChooser.showOpenDialog(null);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            return fileChooser.getSelectedFile();
+        }
+        return null;
     }
 }

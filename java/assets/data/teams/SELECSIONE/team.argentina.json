@@ -1,0 +1,425 @@
+{
+"name": "ARGENTINA",
+"type": "CUSTOM",
+"country": "BDI",
+"league": "CLUSES",
+"city": "STANLEY",
+"stadium": "CASA ROSADA",
+"year": null,
+"coach": {
+	"name": "ERNESTO 'CHE' GUEVARA",
+	"nationality": "ARG"
+},
+"tactics": "4-4-2",
+"kits": [
+	{
+		"style": "LARGE_STRIPS",
+		"shirt1": "#dfe8eb",
+		"shirt2": "#47bfeb",
+		"shirt3": "#47bfeb",
+		"shorts": "#2e247a",
+		"socks": "#2e247a"
+	},
+	{
+		"style": "ARMBAND",
+		"shirt1": "#3033c1",
+		"shirt2": "#47bfeb",
+		"shirt3": "#47bfeb",
+		"shorts": "#3033c1",
+		"socks": "#3033c1"
+	},
+	{
+		"style": "VERTICAL",
+		"shirt1": "#47bfeb",
+		"shirt2": "#dfe8eb",
+		"shirt3": "#dfe8eb",
+		"shorts": "#47bfeb",
+		"socks": "#1e1e1e"
+	}
+],
+"players": [
+	{
+		"name": "JULIO CORTÁZAR",
+		"shirtName": "CORTAZAR",
+		"nationality": "ARG",
+		"role": "GOALKEEPER",
+		"number": 3,
+		"skinColor": "ARAB",
+		"hairColor": "BLOND",
+		"hairStyle": "SMOOTH_B",
+		"value": 14
+	},
+	{
+		"name": "PANAGIOTIS ALEKSEJEVMARTIN LUKA",
+		"shirtName": "A. PANAGIOTIS",
+		"nationality": "ARG",
+		"role": "MIDFIELDER",
+		"number": 9,
+		"skinColor": "ARAB",
+		"hairColor": "PLATINUM",
+		"hairStyle": "CURLY_C",
+		"skills": {
+			"passing": 3,
+			"shooting": 3,
+			"heading": 4,
+			"tackling": 4,
+			"control": 2,
+			"speed": 3,
+			"finishing": 4
+		},
+		"bestSkills": [
+			"HEADING"
+		]
+	},
+	{
+		"name": "ANTONI DE ROSA",
+		"shirtName": "ANTONI DE ROSA",
+		"nationality": "ARG",
+		"role": "RIGHT_WINGER",
+		"number": 6,
+		"skinColor": "MULATTO",
+		"hairColor": "PLATINUM",
+		"hairStyle": "SMOOTH_B",
+		"skills": {
+			"passing": 3,
+			"shooting": 1,
+			"heading": 4,
+			"tackling": 3,
+			"control": 5,
+			"speed": 4,
+			"finishing": 4
+		},
+		"bestSkills": []
+	},
+	{
+		"name": "RODOLFO PÁEZ",
+		"shirtName": "FITO PÁEZ",
+		"nationality": "ARG",
+		"role": "MIDFIELDER",
+		"number": 17,
+		"skinColor": "RED",
+		"hairColor": "BLOND",
+		"hairStyle": "CURLY_C",
+		"skills": {
+			"passing": 3,
+			"shooting": 4,
+			"heading": 2,
+			"tackling": 3,
+			"control": 3,
+			"speed": 2,
+			"finishing": 4
+		},
+		"bestSkills": [
+			"FINISHING",
+			"HEADING",
+			"PASSING"
+		]
+	},
+	{
+		"name": "PEPE SORIANO",
+		"shirtName": "SORIANO",
+		"nationality": "ARG",
+		"role": "RIGHT_WINGER",
+		"number": 13,
+		"skinColor": "RED",
+		"hairColor": "GRAY",
+		"hairStyle": "BALD_A",
+		"skills": {
+			"passing": 5,
+			"shooting": 3,
+			"heading": 2,
+			"tackling": 4,
+			"control": 3,
+			"speed": 2,
+			"finishing": 3
+		},
+		"bestSkills": []
+	},
+	{
+		"name": "RICARDO FORT",
+		"shirtName": "R. FORT",
+		"nationality": "ARG",
+		"role": "DEFENDER",
+		"number": 11,
+		"skinColor": "MULATTO",
+		"hairColor": "BLOND",
+		"hairStyle": "SMOOTH_G",
+		"skills": {
+			"passing": 4,
+			"shooting": 2,
+			"heading": 3,
+			"tackling": 4,
+			"control": 3,
+			"speed": 3,
+			"finishing": 4
+		},
+		"bestSkills": [
+			"PASSING",
+			"SHOOTING",
+			"TACKLING",
+			"FINISHING"
+		]
+	},
+	{
+		"name": "JORGE RIAL",
+		"shirtName": "J. RIAL",
+		"nationality": "ARG",
+		"role": "MIDFIELDER",
+		"number": 8,
+		"skinColor": "RED",
+		"hairColor": "PUNK_BLOND",
+		"hairStyle": "THINNING_B",
+		"skills": {
+			"passing": 3,
+			"shooting": 4,
+			"heading": 2,
+			"tackling": 3,
+			"control": 4,
+			"speed": 3,
+			"finishing": 5
+		},
+		"bestSkills": [
+			"CONTROL",
+			"HEADING",
+			"SHOOTING"
+		]
+	},
+	{
+		"name": "ANDRÉS CALAMARO",
+		"shirtName": "CALAMARO",
+		"nationality": "ARG",
+		"role": "DEFENDER",
+		"number": 4,
+		"skinColor": "ASIATIC",
+		"hairColor": "BLOND",
+		"hairStyle": "SPECIAL_B",
+		"skills": {
+			"passing": 2,
+			"shooting": 3,
+			"heading": 3,
+			"tackling": 2,
+			"control": 4,
+			"speed": 2,
+			"finishing": 2
+		},
+		"bestSkills": [
+			"HEADING",
+			"FINISHING",
+			"CONTROL",
+			"PASSING"
+		]
+	},
+	{
+		"name": "ALBERTO OLMEDO",
+		"shirtName": "OLMEDO",
+		"nationality": "ARG",
+		"role": "LEFT_BACK",
+		"number": 5,
+		"skinColor": "RED",
+		"hairColor": "PLATINUM",
+		"hairStyle": "THINNING_B",
+		"skills": {
+			"passing": 6,
+			"shooting": 2,
+			"heading": 2,
+			"tackling": 3,
+			"control": 4,
+			"speed": 4,
+			"finishing": 2
+		},
+		"bestSkills": [
+			"PASSING",
+			"HEADING",
+			"CONTROL",
+			"FINISHING",
+			"TACKLING"
+		]
+	},
+	{
+		"name": "JAVIER GERARDO MILEI",
+		"shirtName": "MILEI",
+		"nationality": "ARG",
+		"role": "RIGHT_BACK",
+		"number": 12,
+		"skinColor": "PALE",
+		"hairColor": "BLACK",
+		"hairStyle": "SPECIAL_G",
+		"skills": {
+			"passing": 2,
+			"shooting": 2,
+			"heading": 1,
+			"tackling": 6,
+			"control": 4,
+			"speed": 7,
+			"finishing": 4
+		},
+		"bestSkills": [
+			"SHOOTING",
+			"HEADING",
+			"CONTROL",
+			"SPEED"
+		]
+	},
+	{
+		"name": "MARCELO TINELLI",
+		"shirtName": "M. TINELLI",
+		"nationality": "ARG",
+		"role": "RIGHT_WINGER",
+		"number": 20,
+		"skinColor": "PALE",
+		"hairColor": "BROWN",
+		"hairStyle": "PIGTAIL_A",
+		"skills": {
+			"passing": 4,
+			"shooting": 3,
+			"heading": 2,
+			"tackling": 2,
+			"control": 3,
+			"speed": 3,
+			"finishing": 4
+		},
+		"bestSkills": [
+			"FINISHING",
+			"SPEED",
+			"SHOOTING",
+			"PASSING",
+			"TACKLING",
+			"CONTROL"
+		]
+	},
+	{
+		"name": "JUAN DOMINGO PERÓN",
+		"shirtName": "PERÓN",
+		"nationality": "ARG",
+		"role": "GOALKEEPER",
+		"number": 18,
+		"skinColor": "PALE",
+		"hairColor": "GRAY",
+		"hairStyle": "PIGTAIL_A",
+		"value": 13
+	},
+	{
+		"name": "GUILLERMO FRANCELLA",
+		"shirtName": "FRANCELLA",
+		"nationality": "ARG",
+		"role": "DEFENDER",
+		"number": 7,
+		"skinColor": "PALE",
+		"hairColor": "BROWN",
+		"hairStyle": "SMOOTH_L",
+		"skills": {
+			"passing": 5,
+			"shooting": 3,
+			"heading": 2,
+			"tackling": 3,
+			"control": 2,
+			"speed": 4,
+			"finishing": 3
+		},
+		"bestSkills": []
+	},
+	{
+		"name": "ALEJANDRO WIEBE",
+		"shirtName": "MARLEY",
+		"nationality": "ARG",
+		"role": "RIGHT_BACK",
+		"number": 1,
+		"skinColor": "MULATTO",
+		"hairColor": "PLATINUM",
+		"hairStyle": "SPECIAL_A",
+		"skills": {
+			"passing": 3,
+			"shooting": 2,
+			"heading": 0,
+			"tackling": 4,
+			"control": 3,
+			"speed": 3,
+			"finishing": 2
+		},
+		"bestSkills": [
+			"CONTROL",
+			"TACKLING",
+			"PASSING",
+			"HEADING",
+			"SHOOTING",
+			"FINISHING"
+		]
+	},
+	{
+		"name": "GUIDO KACZKA",
+		"shirtName": "KACZA",
+		"nationality": "ARG",
+		"role": "LEFT_WINGER",
+		"number": 16,
+		"skinColor": "ARAB",
+		"hairColor": "BLOND",
+		"hairStyle": "SPECIAL_A",
+		"skills": {
+			"passing": 2,
+			"shooting": 5,
+			"heading": 3,
+			"tackling": 3,
+			"control": 5,
+			"speed": 5,
+			"finishing": 4
+		},
+		"bestSkills": [
+			"SPEED",
+			"PASSING",
+			"HEADING",
+			"FINISHING"
+		]
+	},
+	{
+		"name": "CARLOS TEVEZ",
+		"shirtName": "C. TEVEZ",
+		"nationality": "ARG",
+		"role": "RIGHT_WINGER",
+		"number": 10,
+		"skinColor": "MULATTO",
+		"hairColor": "PLATINUM",
+		"hairStyle": "THINNING_B",
+		"skills": {
+			"passing": 3,
+			"shooting": 3,
+			"heading": 5,
+			"tackling": 1,
+			"control": 3,
+			"speed": 3,
+			"finishing": 2
+		},
+		"bestSkills": [
+			"CONTROL",
+			"SPEED",
+			"FINISHING",
+			"TACKLING",
+			"SHOOTING"
+		]
+	},
+	{
+		"name": "MAURICIO MACRI",
+		"shirtName": "MACRI",
+		"nationality": "ARG",
+		"role": "MIDFIELDER",
+		"number": 14,
+		"skinColor": "MULATTO",
+		"hairColor": "RED",
+		"hairStyle": "THINNING_C",
+		"skills": {
+			"passing": 4,
+			"shooting": 1,
+			"heading": 4,
+			"tackling": 1,
+			"control": 3,
+			"speed": 3,
+			"finishing": 3
+		},
+		"bestSkills": [
+			"CONTROL",
+			"FINISHING",
+			"HEADING",
+			"SPEED"
+		]
+	}
+]
+}
