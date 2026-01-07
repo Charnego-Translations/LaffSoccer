@@ -2,6 +2,7 @@ package net.krusher.laffsoccer.util.auxiliary;
 
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonWriter;
+import com.ygames.ysoccer.framework.Assets;
 import com.ygames.ysoccer.framework.EMath;
 import com.ygames.ysoccer.match.Kit;
 import com.ygames.ysoccer.match.Player;
@@ -10,6 +11,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -38,6 +40,16 @@ public class Auxiliary {
     public static final int MAX_STAT = 8;
 
     public static final String TEAMS_DIR = "assets/data/teams/";
+
+    private static final FileFilter FILE_FILTER = new FileFilter() {
+        public boolean accept(File f) {
+            return f.getName().startsWith("team.") && f.getName().endsWith(".json");
+        }
+
+        public String getDescription() {
+            return "team.*.json";
+        }
+    };
 
     public static List<String> fileToStringList(String filepath) throws IOException {
         Path file = new File(Auxiliary.class.getClassLoader().getResource(filepath).getFile()).toPath();
@@ -160,7 +172,7 @@ public class Auxiliary {
         json.setOutputType(JsonWriter.OutputType.json);
         json.setUsePrototypes(false);
         json.addClassTag("kits", Kit[].class);
-        String result = json.toJson(team, Team.class);
+        String result = json.prettyPrint(team);
         if (StringUtils.isNotBlank(comment)) {
             result = result.replaceFirst("\\{", "{\n  \"_comment\": \"" + comment + "\",");
         }
@@ -207,41 +219,45 @@ public class Auxiliary {
         }
     }
 
-    public static Path selectJsonFilePath() {
+    public static Path selectTeamFileSave() {
         JFileChooser chooser = new JFileChooser();
-        chooser.setDialogTitle("Guardar equipo");
+        chooser.setDialogTitle("Save team");
         chooser.setFileFilter(new FileNameExtensionFilter("JSON (*.json)", "json"));
+        chooser.setCurrentDirectory(new File(TEAMS_DIR));
 
         int result = chooser.showSaveDialog(null);
         if (result != JFileChooser.APPROVE_OPTION) {
             return null;
         }
 
-        File file = chooser.getSelectedFile();
-
-        if (!file.getName().toLowerCase().endsWith(".json")) {
-            file = new File(file.getParentFile(), file.getName() + ".json");
-        }
-
-        return Paths.get(file.getAbsolutePath());
+        return Paths.get(chooser.getSelectedFile().getAbsolutePath());
     }
 
-    public static void downloadImageAndResize(String fileUrl, Path targetPath) throws IOException {
+    public static void downloadImageAndResize(String fileUrl, Path targetPath, int width, int height) throws IOException {
         URL url = new URL(fileUrl);
         try (InputStream in = url.openStream()) {
 
             BufferedImage originalImage = ImageIO.read(in);
 
-            BufferedImage resizedImage = new BufferedImage(70, 70, BufferedImage.TYPE_INT_ARGB);
+            BufferedImage resizedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
 
             Graphics2D g = resizedImage.createGraphics();
             g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
             g.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
             g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-            g.drawImage(originalImage.getScaledInstance(70, 70, Image.SCALE_SMOOTH), 0, 0, null);
+            g.drawImage(originalImage.getScaledInstance(width, height, Image.SCALE_SMOOTH), 0, 0, null);
             g.dispose();
 
             ImageIO.write(resizedImage, "PNG", targetPath.toFile());
         }
+    }
+
+    public static File chooseLoadTeam() {
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setCurrentDirectory(new File(TEAMS_DIR));
+        fileChooser.setDialogTitle("Specify a team to load");
+        fileChooser.setDialogType(JFileChooser.OPEN_DIALOG);
+        fileChooser.setFileFilter(FILE_FILTER);
+        return fileChooser.getSelectedFile();
     }
 }

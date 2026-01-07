@@ -44,6 +44,7 @@ public class TeamMapper {
         team.name = dto.name;
         team.city = dto.city;
         team.stadium = dto.stadium;
+        team.year = dto.year;
         team.coach = CoachMapper.fromDto(dto.coachDto);
         for (KitDto kitDto : dto.kits) {
             team.kits.add(KitMapper.fromDto(kitDto));

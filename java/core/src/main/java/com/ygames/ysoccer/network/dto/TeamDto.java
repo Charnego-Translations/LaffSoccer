@@ -7,6 +7,7 @@ public class TeamDto {
     public String name;
     public String city;
     public String stadium;
+    public Integer year;
     public CoachDto coachDto;
     public List<KitDto> kits;
     public List<PlayerDto> lineup;

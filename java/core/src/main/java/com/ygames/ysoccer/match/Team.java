@@ -58,6 +58,7 @@ public class Team implements Json.Serializable {
     public String city;
     public String stadium;
     public Coach coach;
+    public Integer year;
 
     public int tactics;
 

@@ -10,6 +10,7 @@ import net.krusher.laffsoccer.util.auxiliary.Auxiliary;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -46,7 +47,7 @@ public class GetTeamFromBdFutbol {
         COUNTRY_CONV.put("peru", "PER");
         COUNTRY_CONV.put("chile", "CHI");
         COUNTRY_CONV.put("venezuela", "VEN");
-        COUNTRY_CONV.put("espana", "ESP");
+        COUNTRY_CONV.put("espana", "ESP"); COUNTRY_CONV.put("espanya", "ESP");
         COUNTRY_CONV.put("italia", "ITA");
         COUNTRY_CONV.put("portugal", "POR");
         COUNTRY_CONV.put("francia", "FRA");
@@ -114,9 +115,13 @@ public class GetTeamFromBdFutbol {
         String url = Auxiliary.askForUrl("Introduce la URL de la página www.bdfutbol.com");
         //String url = "https://www.bdfutbol.com/es/t/t1987-88175.html";
 
-        if (url == null) {
+        Path fileToSave = Auxiliary.selectTeamFileSave();
+
+        if (url == null || fileToSave == null) {
             return;
         }
+
+        String teamFile = FileUtils.getTeamFromFile(fileToSave.toString());
 
         // Conecta y descarga
         Document doc = Jsoup.connect(url)
@@ -141,6 +146,11 @@ public class GetTeamFromBdFutbol {
         team.kits.add(randomKit());
         team.kits.add(randomKit());
         team.kits.add(randomKit());
+        try {
+            team.year = Integer.valueOf(doc.select("span.heroh1 span").text().replaceAll("\\-.*", ""));
+        } catch (Exception e) {
+            team.year = null;
+        }
 
         String comment = doc.select("span.heroh1").text();
 
@@ -177,22 +187,41 @@ public class GetTeamFromBdFutbol {
                     player.bestSkills.addAll(skills.subList(0, RND.nextInt(skills.size())));
                 }
 
+                Document playerDoc = null;
+                String playerUrl = tr.select("td a").attr("href");
+                try {
+                    playerDoc = Jsoup.connect(url.substring(0, url.lastIndexOf('/') + 1) + tr.select("td a").attr("href"))
+                        .userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64)")
+                        .timeout(10_000)
+                        .get();
+                } catch (IOException e) {
+                    System.out.println("Error loading " + playerUrl);
+                }
+
+                if (playerDoc == null) {
+                    return;
+                }
+
+                String playerImageUrl = url.substring(0, url.lastIndexOf('/') + 1) + playerDoc.select("div.active img").attr("src");
+                try {
+                    File directory = new File(fileToSave.getParent() + "/" + teamFile);
+                    if (!directory.exists()) {
+                        directory.mkdir();
+                    }
+                    Auxiliary.downloadImageAndResize(playerImageUrl, Paths.get(directory.getAbsolutePath() +"/" + FileUtils.normalizeName(player.shirtName) + ".png"), 70, 94);
+                    System.out.println("Downloaded " + player.shirtName + " from " + playerImageUrl);
+                } catch (IOException e) {
+                    System.out.println("Error downloading " + player.shirtName + " from " + playerImageUrl);
+                }
+
                 team.players.add(player);
 
         });
 
-        Path fileToSave = Auxiliary.selectJsonFilePath();
-
-        if (fileToSave == null) {
-            return;
-        }
-
         String logoSrc = doc.select("img").stream().filter(img -> img.attr("height").equals("150")).findAny().get().attr("src");
         String logoUrl = url.substring(0, url.lastIndexOf('/') + 1) + logoSrc;
 
-        String teamFile = FileUtils.getTeamFromFile(fileToSave.toString());
-
-        Auxiliary.downloadImageAndResize(logoUrl, Paths.get(fileToSave.getParent() + "/logo." + teamFile + ".png"));
+        Auxiliary.downloadImageAndResize(logoUrl, Paths.get(fileToSave.getParent() + "/logo." + teamFile + ".png"), 70, 70);
 
         Auxiliary.writeTeamFile(team, fileToSave.toFile(), comment);
 
