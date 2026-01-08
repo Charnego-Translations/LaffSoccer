@@ -81,7 +81,6 @@ public class Settings {
         locale = preferences.getString("locale", "en");
         fullScreen = preferences.getBoolean("fullScreen", false);
         showIntro = preferences.getBoolean("showIntro", true);
-        names = preferences.getBoolean("names", false);
         musicMode = preferences.getInteger("musicMode", MenuMusic.ALL);
         musicVolume = preferences.getInteger("musicVolume", 40);
         useFlags = preferences.getBoolean("useFlags", true);
@@ -98,6 +97,7 @@ public class Settings {
         autoReplays = preferences.getBoolean("autoReplays", true);
         soundVolume = preferences.getInteger("soundVolume", 40);
         commentary = preferences.getBoolean("commentary", true);
+        names = preferences.getBoolean("names", false);
 
         // controls
         keyboardConfigs = preferences.getString("keyboardConfigs", defaultKeyboardConfigs());
@@ -154,6 +154,7 @@ public class Settings {
         preferences.putBoolean("autoReplays", autoReplays);
         preferences.putInteger("soundVolume", soundVolume);
         preferences.putBoolean("commentary", commentary);
+        preferences.putBoolean("names", names);
 
         // controls
         preferences.putString("keyboardConfigs", keyboardConfigs);

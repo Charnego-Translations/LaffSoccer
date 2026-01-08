@@ -98,7 +98,7 @@ public class SoundManager {
 
         EventManager.subscribe(CrowdChantsEvent.class, crowdChantsEvent -> {
             if (crowdChantsEnabled) {
-                crowdChantsEvent.sound.play(volume / 100f);
+                crowdChantsEvent.sound.play(volume / 160f);
             }
         });
 
