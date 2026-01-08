@@ -23,8 +23,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
@@ -261,5 +263,19 @@ public class Auxiliary {
             return fileChooser.getSelectedFile();
         }
         return null;
+    }
+
+    public static void randomizePlayerStats(Player player) {
+        if (player.role == Player.Role.GOALKEEPER) {
+            player.value = RND.nextInt(30) + 10;
+        } else {
+            player.skills = generateSkills(player.role);
+
+            List<Player.Skill> skills = new LinkedList<Player.Skill>(Arrays.asList(Player.Skill.values()));
+            Collections.shuffle(skills);
+            player.bestSkills.clear();
+            player.bestSkills.addAll(skills.subList(0, RND.nextInt(skills.size())));
+
+        }
     }
 }

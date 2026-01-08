@@ -98,7 +98,7 @@
 		"nationality": "ESP",
 		"role": "RIGHT_WINGER",
 		"number": 4,
-		"skinColor": "ALIEN",
+		"skinColor": "PALE",
 		"hairColor": "PLATINUM",
 		"hairStyle": "SMOOTH_P",
 		"skills": {
@@ -122,7 +122,7 @@
 		"nationality": "ESP",
 		"role": "RIGHT_WINGER",
 		"number": 5,
-		"skinColor": "ALIEN",
+		"skinColor": "PALE",
 		"hairColor": "PLATINUM",
 		"hairStyle": "SMOOTH_L",
 		"skills": {
@@ -201,7 +201,7 @@
 		"nationality": "FRA",
 		"role": "MIDFIELDER",
 		"number": 8,
-		"skinColor": "BLACK",
+		"skinColor": "PALE",
 		"hairColor": "PLATINUM",
 		"hairStyle": "SHAVED",
 		"skills": {
@@ -294,7 +294,7 @@
 		"nationality": "ESP",
 		"role": "GOALKEEPER",
 		"number": 12,
-		"skinColor": "ALIEN",
+		"skinColor": "PALE",
 		"hairColor": "GRAY",
 		"hairStyle": "CURLY_E",
 		"value": 15
@@ -359,8 +359,8 @@
 		"nationality": "ESP",
 		"role": "RIGHT_WINGER",
 		"number": 15,
-		"skinColor": "BLACK",
-		"hairColor": "PUNK_FUCHSIA",
+		"skinColor": "PALE",
+		"hairColor": "BLACK",
 		"hairStyle": "PIGTAIL_A",
 		"skills": {
 			"passing": 2,
@@ -384,8 +384,8 @@
 		"nationality": "ESP",
 		"role": "LEFT_BACK",
 		"number": 16,
-		"skinColor": "BLACK",
-		"hairColor": "WHITE",
+		"skinColor": "PALE",
+		"hairColor": "BLACK",
 		"hairStyle": "SMOOTH_F",
 		"skills": {
 			"passing": 2,
@@ -412,7 +412,7 @@
 		"role": "GOALKEEPER",
 		"number": 17,
 		"skinColor": "PINK",
-		"hairColor": "PUNK_FUCHSIA",
+		"hairColor": "BLACK",
 		"hairStyle": "THINNING_A",
 		"value": 13
 	},
@@ -423,7 +423,7 @@
 		"role": "LEFT_BACK",
 		"number": 18,
 		"skinColor": "RED",
-		"hairColor": "BLOND",
+		"hairColor": "BROWN",
 		"hairStyle": "SMOOTH_M",
 		"skills": {
 			"passing": 4,
@@ -448,7 +448,7 @@
 		"role": "LEFT_BACK",
 		"number": 19,
 		"skinColor": "ARAB",
-		"hairColor": "PUNK_FUCHSIA",
+		"hairColor": "BLACK",
 		"hairStyle": "SMOOTH_B",
 		"skills": {
 			"passing": 3,
@@ -550,7 +550,7 @@
 		"nationality": "ESP",
 		"role": "LEFT_BACK",
 		"number": 23,
-		"skinColor": "ALIEN",
+		"skinColor": "PALE",
 		"hairColor": "RED",
 		"hairStyle": "SMOOTH_A",
 		"skills": {

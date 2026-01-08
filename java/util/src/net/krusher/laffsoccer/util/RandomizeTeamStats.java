@@ -30,21 +30,7 @@ public class RandomizeTeamStats {
 
         Team team = Auxiliary.loadTeamFile(fileToLoad.getAbsolutePath());
 
-        team.players.forEach(player -> {
-            // Goalkeeper
-            if (player.role == Player.Role.GOALKEEPER) {
-                player.value = RND.nextInt(30) + 10;
-            } else {
-
-                player.skills = generateSkills(player.role);
-
-                List<Player.Skill> skills = new LinkedList<Player.Skill>(Arrays.asList(Player.Skill.values()));
-                Collections.shuffle(skills);
-                player.bestSkills.clear();
-                player.bestSkills.addAll(skills.subList(0, RND.nextInt(skills.size())));
-
-            }
-        });
+        team.players.forEach(Auxiliary::randomizePlayerStats);
 
         File userSelection = chooseLoadTeam();
 

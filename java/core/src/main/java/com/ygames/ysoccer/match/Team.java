@@ -879,6 +879,8 @@ public class Team implements Json.Serializable {
                     }
                     image = new TextureRegion(texture);
                     image.flip(false, true);
+                } else {
+                    Gdx.app.log("National flag not found", file.path());
                 }
                 break;
         }

@@ -86,9 +86,9 @@ public class MatchRenderer extends SceneRenderer<Match> {
         EventManager.subscribe(TackleEvent.class, tackleEvent -> {
             if (tackleEvent.opponent == null) {
                 float angle = EMath.aTan2(tackleEvent.player.inputDevice.y0, tackleEvent.player.inputDevice.x0) + (float) (Math.random() - 0.5f) * 25;
-                EMath.oneIn(2.5f, () -> allSprites.add(ObjectSprite.mow(glGraphics, tackleEvent.player.x, tackleEvent.player.y, angle)));
+                EMath.oneIn(2f, () -> allSprites.add(ObjectSprite.mow(glGraphics, tackleEvent.player.x, tackleEvent.player.y, angle)));
             } else {
-                EMath.oneIn(3f, () -> allSprites.add(ObjectSprite.blood(glGraphics, tackleEvent.player.x, tackleEvent.player.y)));
+                EMath.oneIn(2.5f, () -> allSprites.add(ObjectSprite.blood(glGraphics, tackleEvent.player.x, tackleEvent.player.y)));
             }
         });
     }

@@ -12,6 +12,7 @@ import com.ygames.ysoccer.gui.Gui;
 import com.ygames.ysoccer.gui.Widget;
 import com.ygames.ysoccer.match.Player;
 import com.ygames.ysoccer.match.Team;
+import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +28,7 @@ public abstract class GLScreen implements Screen {
 
     protected Texture background;
     protected final List<Widget> widgets;
+    @Getter
     private Widget selectedWidget;
     protected Widget.Event widgetEvent;
     protected boolean usesMouse;
@@ -39,11 +41,8 @@ public abstract class GLScreen implements Screen {
         public String league;
         public Team team;
         public Competition competition;
+        @Getter
         private Player clipboardPlayer;
-
-        public Player getClipboardPlayer() {
-            return clipboardPlayer;
-        }
 
         public void setClipboardPlayer(Player player) {
             if (player != null) {
@@ -156,10 +155,6 @@ public abstract class GLScreen implements Screen {
             Assets.font10.draw(batch, String.format(Locale.getDefault(), "%,d", Gdx.app.getJavaHeap()), game.gui.WIDTH - 120, 10, Font.Align.LEFT);
             batch.end();
         }
-    }
-
-    public Widget getSelectedWidget() {
-        return selectedWidget;
     }
 
     public boolean setSelectedWidget(Widget widget) {

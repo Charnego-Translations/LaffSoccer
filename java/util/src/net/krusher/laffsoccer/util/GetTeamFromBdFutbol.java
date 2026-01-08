@@ -15,19 +15,16 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import static net.krusher.laffsoccer.util.GenerateTeam.HAIR_STYLES;
 import static net.krusher.laffsoccer.util.GenerateTeam.randomKit;
 import static net.krusher.laffsoccer.util.auxiliary.Auxiliary.RND;
-import static net.krusher.laffsoccer.util.auxiliary.Auxiliary.generateSkills;
 
 public class GetTeamFromBdFutbol {
 
@@ -100,6 +97,7 @@ public class GetTeamFromBdFutbol {
         COUNTRY_CONV.put("armenia", "ARM");
         COUNTRY_CONV.put("republicacheca", "CZE");
         COUNTRY_CONV.put("rumania", "ROM");
+        COUNTRY_CONV.put("suiza", "SUI");
 
 
         POSITION_CONV.put("por", Player.Role.GOALKEEPER);
@@ -112,10 +110,16 @@ public class GetTeamFromBdFutbol {
 
     public static void main(String[] args) throws IOException {
 
-        String url = Auxiliary.askForUrl("Introduce la URL de la página www.bdfutbol.com");
-        //String url = "https://www.bdfutbol.com/es/t/t1987-88175.html";
-
-        Path fileToSave = Auxiliary.selectTeamFileSave();
+        final String url;
+        final Path fileToSave;
+        if (args.length > 0) {
+            url = args[0];
+            fileToSave = Paths.get(args[1]);
+        } else {
+            url = Auxiliary.askForUrl("Introduce la URL de la página www.bdfutbol.com");
+            // url = "https://www.bdfutbol.com/es/t/t1987-88175.html";
+            fileToSave = Auxiliary.selectTeamFileSave();
+        }
 
         if (url == null || fileToSave == null) {
             return;
@@ -143,18 +147,19 @@ public class GetTeamFromBdFutbol {
         team.name = doc.select("span.heroh1 a").text().toUpperCase();
         team.league = "HISTÓRICOS";
         team.kits = new ArrayList<>();
-        team.kits.add(randomKit());
+        team.kits.add(randomKit()); // TODO and no idea how
         team.kits.add(randomKit());
         team.kits.add(randomKit());
         try {
-            team.year = Integer.valueOf(doc.select("span.heroh1 span").text().replaceAll("\\-.*", ""));
+            team.year = Integer.valueOf(doc.select("span.heroh1 span").text().replaceAll("-.*", ""));
         } catch (Exception e) {
             team.year = null;
         }
 
         String comment = doc.select("span.heroh1").text();
 
-        AtomicInteger playerNumber = new AtomicInteger(1);
+        List<Integer> numbers = IntStream.rangeClosed(1, 30).boxed().collect(Collectors.toList());
+
         doc.select("#taulaplantilla tr:not(.parteix, .fons-transparent)").stream()
             .skip(1)
             .forEach(tr -> {
@@ -171,21 +176,22 @@ public class GetTeamFromBdFutbol {
                 String pais = tr.select("div.pais").get(0).classNames().toArray()[1].toString();
                 String posicion = tr.select("td div.fit").get(0).classNames().toArray()[1].toString();
 
-                player.nationality = Optional.ofNullable(COUNTRY_CONV.get(pais)).orElse("ESP");
-                player.role = Optional.ofNullable(POSITION_CONV.get(posicion)).orElse(Player.Role.DEFENDER);
+                player.nationality = COUNTRY_CONV.getOrDefault(pais, "ESP");
+                player.role = POSITION_CONV.getOrDefault(posicion, Player.Role.DEFENDER);
 
-                player.number = playerNumber.getAndIncrement();
-
-                player.value = RND.nextInt(15) + 10;;
-                if (player.role != Player.Role.GOALKEEPER) {
-                    player.role = Player.Role.values()[RND.nextInt(Player.Role.values().length - 2) + 1];
-
-                    player.skills = generateSkills(player.role);
-
-                    List<Player.Skill> skills = new LinkedList<>(Arrays.asList(Player.Skill.values()));
-                    Collections.shuffle(skills);
-                    player.bestSkills.addAll(skills.subList(0, RND.nextInt(skills.size())));
+                Integer playerNumber;
+                try {
+                    playerNumber = Integer.valueOf(tr.select("td").get(0).text());
+                } catch (Exception e) {
+                    playerNumber = null;
                 }
+                if (playerNumber == null) {
+                    player.number = numbers.remove(RND.nextInt(numbers.size()));
+                } else {
+                    player.number = playerNumber;
+                }
+
+                Auxiliary.randomizePlayerStats(player);
 
                 Document playerDoc = null;
                 String playerUrl = tr.select("td a").attr("href");

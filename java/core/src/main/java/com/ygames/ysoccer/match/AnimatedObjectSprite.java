@@ -8,7 +8,7 @@ class AnimatedObjectSprite extends ObjectSprite {
 
     public TextureRegion[] anim;
     public int fps = 20;
-    public Long startRender = System.currentTimeMillis();;
+    public Long startRender = System.currentTimeMillis();
     public boolean oneShoot = false;
 
     AnimatedObjectSprite(GLGraphics glGraphics, TextureRegion[] anim, int x, int y) {
@@ -24,7 +24,7 @@ class AnimatedObjectSprite extends ObjectSprite {
 
         long now = System.currentTimeMillis();
 
-        int frame = (int) (((now - startRender) / 1000f ) * fps);
+        int frame = (int) (((now - startRender) / 1000f) * fps);
 
         if (oneShoot && frame >= anim.length) {
             alive = false;
@@ -40,6 +40,7 @@ class AnimatedObjectSprite extends ObjectSprite {
 
     public static AnimatedObjectSprite explosion(GLGraphics glGraphics, float x, float y) {
         AnimatedObjectSprite explosion = new AnimatedObjectSprite(glGraphics, Assets.explosion, (int) x, (int) y);
+        explosion.priority = 40;
         explosion.oneShoot = true;
         return explosion;
     }
