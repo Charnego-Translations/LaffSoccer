@@ -1,9 +1,10 @@
 {
-"name": "C.D. PELOTAZO",
+"name": "CD PELOTAZO",
 "type": "CUSTOM",
 "country": "SPA",
 "city": "PLAZA DEL MAMAERO",
 "stadium": "VENTA DEL NABO",
+"year": null,
 "coach": {
 	"name": "EL YUYU",
 	"nationality": "ESP"

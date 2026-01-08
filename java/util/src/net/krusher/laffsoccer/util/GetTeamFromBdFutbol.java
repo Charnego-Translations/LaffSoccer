@@ -51,12 +51,12 @@ public class GetTeamFromBdFutbol {
         COUNTRY_CONV.put("italia", "ITA");
         COUNTRY_CONV.put("portugal", "POR");
         COUNTRY_CONV.put("francia", "FRA");
-        COUNTRY_CONV.put("alemania", "DEN");
+        COUNTRY_CONV.put("alemania", "GER");
         COUNTRY_CONV.put("australia", "AUS");
         COUNTRY_CONV.put("austria", "AUT");
         COUNTRY_CONV.put("belgica", "BEL");
         COUNTRY_CONV.put("canada", "CAN");
-        COUNTRY_CONV.put("suecia", "SUE");
+        COUNTRY_CONV.put("suecia", "SWE");
         COUNTRY_CONV.put("irlanda", "IRL");
         COUNTRY_CONV.put("rusia", "RUS");
         COUNTRY_CONV.put("turquia", "TUR");

@@ -1,6 +1,7 @@
 package com.ygames.ysoccer.gui;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.ygames.ysoccer.framework.ClubComparator;
 import com.ygames.ysoccer.framework.EMath;
 import com.ygames.ysoccer.framework.Font;
 import com.ygames.ysoccer.framework.GLColor;
@@ -246,7 +247,7 @@ public abstract class Widget {
 
         @Override
         public int compare(Widget o1, Widget o2) {
-            return o1.text.compareTo(o2.text);
+            return ClubComparator.CLUB_COMPARATOR.compare(o1.text, o2.text);
         }
     }
 }

@@ -1,10 +1,11 @@
 {
-"name": "VIOLENCIA C.J.",
+"name": "VIOLENCIA CJ",
 "type": "CLUB",
 "country": "SPA",
 "league": "CLUSES",
 "city": "VALENSIA",
 "stadium": "ME ESTALLA",
+"year": null,
 "coach": {
 	"name": "ROBERTO ENSALADES",
 	"nationality": "AND"

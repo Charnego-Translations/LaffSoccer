@@ -5,6 +5,7 @@
 "confederation": "UEFA",
 "city": "WHISKY",
 "stadium": "EL BARRIL",
+"year": null,
 "coach": {
 	"name": "CONNOR MCLEOD",
 	"nationality": "SCO"
@@ -43,7 +44,7 @@
 		"nationality": "SCO",
 		"role": "GOALKEEPER",
 		"number": 13,
-		"skinColor": "MULATTO",
+		"skinColor": "PALE",
 		"hairColor": "BLACK",
 		"hairStyle": "SHORT_C",
 		"value": 36
@@ -108,7 +109,7 @@
 		"role": "MIDFIELDER",
 		"number": 4,
 		"skinColor": "RED",
-		"hairColor": "BLOND",
+		"hairColor": "PUNK_FUCHSIA",
 		"hairStyle": "SPECIAL_C",
 		"skills": {
 			"passing": 3,
@@ -180,7 +181,7 @@
 		"nationality": "SCO",
 		"role": "RIGHT_BACK",
 		"number": 17,
-		"skinColor": "MULATTO",
+		"skinColor": "PINK",
 		"hairColor": "BLACK",
 		"hairStyle": "SPECIAL_B",
 		"skills": {
@@ -280,7 +281,7 @@
 		"nationality": "SCO",
 		"role": "RIGHT_WINGER",
 		"number": 19,
-		"skinColor": "MULATTO",
+		"skinColor": "ARAB",
 		"hairColor": "PLATINUM",
 		"hairStyle": "SMOOTH_E",
 		"skills": {
@@ -304,7 +305,7 @@
 		"nationality": "SCO",
 		"role": "GOALKEEPER",
 		"number": 9,
-		"skinColor": "RED",
+		"skinColor": "ARAB",
 		"hairColor": "WHITE",
 		"hairStyle": "CURLY_D",
 		"value": 34
@@ -335,7 +336,7 @@
 		"nationality": "SCO",
 		"role": "MIDFIELDER",
 		"number": 18,
-		"skinColor": "ARAB",
+		"skinColor": "PALE",
 		"hairColor": "BLOND",
 		"hairStyle": "THINNING_C",
 		"skills": {
@@ -359,7 +360,7 @@
 		"nationality": "SCO",
 		"role": "LEFT_BACK",
 		"number": 10,
-		"skinColor": "RED",
+		"skinColor": "PALE",
 		"hairColor": "GRAY",
 		"hairStyle": "SHORT_C",
 		"skills": {

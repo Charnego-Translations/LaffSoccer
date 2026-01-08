@@ -1,9 +1,10 @@
 {
-"name": "R.C.D. CHULÓN",
+"name": "RCD CHULÓN",
 "type": "CUSTOM",
 "country": "SPA",
 "city": "VIETNAM",
 "stadium": "LA ATUNARA",
+"year": null,
 "coach": {
 	"name": "RAFAEL CHULÓN",
 	"nationality": "ESP"

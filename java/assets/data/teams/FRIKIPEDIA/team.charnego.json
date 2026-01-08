@@ -1,9 +1,10 @@
 {
-"name": "CHARNEGO F.C.",
+"name": "CHARNEGO FC",
 "type": "CUSTOM",
 "country": "SPA",
 "city": "HOSPITALET DEL LLOBREGAT",
 "stadium": "VILLA TACO GORDO",
+"year": null,
 "coach": {
 	"name": "CBEARD",
 	"nationality": "ENG"
@@ -11,28 +12,28 @@
 "tactics": "4-4-2",
 "kits": [
 	{
-		"style": "BAND",
-		"shirt1": "#3033c1",
-		"shirt2": "#f61c1c",
-		"shirt3": "#000000",
-		"shorts": "#3033c1",
-		"socks": "#f61c1c"
-	},
-	{
-		"style": "PLAIN",
+		"style": "BIG_V",
 		"shirt1": "#dfe8eb",
 		"shirt2": "#f61c1c",
 		"shirt3": "#000000",
-		"shorts": "#3033c1",
+		"shorts": "#dfe8eb",
 		"socks": "#f61c1c"
 	},
 	{
+		"style": "CHECK",
+		"shirt1": "#dfe8eb",
+		"shirt2": "#1e1e1e",
+		"shirt3": "#1e1e1e",
+		"shorts": "#f61c1c",
+		"socks": "#dfe8eb"
+	},
+	{
 		"style": "PLAIN",
-		"shirt1": "#afb2b9",
-		"shirt2": "#afb2b9",
-		"shirt3": "#000000",
-		"shorts": "#afb2b9",
-		"socks": "#afb2b9"
+		"shirt1": "#47bfeb",
+		"shirt2": "#3033c1",
+		"shirt3": "#3033c1",
+		"shorts": "#dfe8eb",
+		"socks": "#7be2e3"
 	},
 	{
 		"style": "PLAIN",
@@ -304,15 +305,15 @@
 		]
 	},
 	{
-		"name": "RADIOAK",
-		"shirtName": "RADIOAK",
-		"nationality": "CUS",
+		"name": "JORDI ALBA GUAITA",
+		"shirtName": "TSOLETE",
+		"nationality": "",
 		"role": "GOALKEEPER",
-		"number": 12,
+		"number": 6,
 		"skinColor": "PINK",
 		"hairColor": "BLACK",
 		"hairStyle": "SMOOTH_A",
-		"value": 10
+		"value": 6
 	},
 	{
 		"name": "THREEPWOOD",
@@ -385,6 +386,17 @@
 			"SPEED",
 			"HEADING"
 		]
+	},
+	{
+		"name": "RADIOAK",
+		"shirtName": "RADIOAK",
+		"nationality": "CUS",
+		"role": "GOALKEEPER",
+		"number": 12,
+		"skinColor": "PINK",
+		"hairColor": "BLACK",
+		"hairStyle": "SMOOTH_A",
+		"value": 10
 	},
 	{
 		"name": "ESPETERO",
