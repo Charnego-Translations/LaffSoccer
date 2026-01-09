@@ -216,9 +216,26 @@ tasks.register('laffDistLinux') {
     File libDir = project.layout.buildDirectory.get().asFile
     File cmdFile = new File(outputDir, "LaffSoccer.sh")
 
-    cmdFile.text = """#!/bin/sh
+    cmdFile.text = """#!/bin/bash
 amazon-corretto-8.472.08.1-linux-x64/bin/java -jar ${appName}-${projectVersion}.jar
 """
+    cmdFile.setExecutable(true)
+  }
+}
+
+tasks.register('laffDistMacX64') {
+  javaUrl = "https://cdn.azul.com/zulu/bin/zulu8.90.0.19-ca-jre8.0.472-macosx_x64.zip"
+  dependsOn laffCopyDist
+
+  doLast {
+    File libDir = project.layout.buildDirectory.get().asFile
+    File cmdFile = new File(outputDir, "LaffSoccer.command")
+
+    cmdFile.text = """#!/bin/bash
+cd "\$(dirname "\$0")"
+./zulu8.90.0.19-ca-jre8.0.472-macosx_x64/zulu-8.jre/Contents/Home/bin/java -jar ${appName}-${projectVersion}.jar
+"""
+    cmdFile.setExecutable(true)
   }
 }
 
