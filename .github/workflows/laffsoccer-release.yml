@@ -53,6 +53,19 @@ jobs:
           TAR_NAME="../release/Charnego Internatiolaff Soccer (Linux64 ${GITHUB_REF_NAME#v}).tar.gz"
           tar -czf "$TAR_NAME" "Charnego Internatiolaff Soccer"
 
+      - name: Build MacOS X64
+        working-directory: java
+        run: |
+          ./gradlew lwjgl3:laffDistMacX64 --no-daemon --console=plain --info
+
+      - name: Empaquetar artefacto MacX64
+        working-directory: java
+        shell: bash
+        run: |
+          ZIP_NAME="../../../../release/Charnego Internatiolaff Soccer (MacOS X64 ${GITHUB_REF_NAME#v}).zip"
+          cd lwjgl3/build/libs/
+          zip -r "$ZIP_NAME" *
+
       - name: Build Windows
         working-directory: java
         run: |
