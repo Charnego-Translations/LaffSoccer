@@ -239,6 +239,22 @@ cd "\$(dirname "\$0")"
   }
 }
 
+tasks.register('laffDistMacARM64') {
+  javaUrl = "https://cdn.azul.com/zulu/bin/zulu8.90.0.19-ca-jre8.0.472-macosx_aarch64.zip"
+  dependsOn laffCopyDist
+
+  doLast {
+    File libDir = project.layout.buildDirectory.get().asFile
+    File cmdFile = new File(outputDir, "LaffSoccer.command")
+
+    cmdFile.text = """#!/bin/bash
+cd "\$(dirname "\$0")"
+./zulu8.90.0.19-ca-jre8.0.472-macosx_aarch64/zulu-8.jre/Contents/Home/bin/java -jar ${appName}-${projectVersion}.jar
+"""
+    cmdFile.setExecutable(true)
+  }
+}
+
 // Equivalent to the jar task; here for compatibility with gdx-setup.
 tasks.register('dist') {
   dependsOn 'jar'
