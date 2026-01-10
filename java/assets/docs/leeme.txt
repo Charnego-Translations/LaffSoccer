@@ -18,9 +18,12 @@ y MacacOS X. En realidad, en cualquier sitio que tenga instalado Java 8.
 
 INSTRUCCIONES
 
-Se proporcionan versiones para Windowrs y Leenucs, listas para ejecutar.
-En otros sistemas operativos, usa Java 8 para ejecutar el .jar que hay en
-cualquiera de las versiones. ¡Búscate la vida, tío!
+Se proporcionan versiones para Windowrs, Leenucs y MacAcOs, listas para
+viciarse. En otros sistemas operativos, usa Java 8 para ejecutar el .jar que 
+hay en cualquiera de las versiones. ¡Búscate la vida, tío!
+
+(En Windorws ejecuta el fichero LaffSoccer.cmd, en Leenucs el LaffSoccer.sh y
+en Mak el LaffSoccer.command, no me seas brutísimo)
 
 CONTROLES POR DEFESTO
 
@@ -33,3 +36,21 @@ Jugador 2:
 WASD - Movimiento
 V - Botón 1 (aceptar, tiro, pase, etc.)
 B - Botón 2 (sustituciones, cancelar)
+
+Cosas:
+
+F1 - Mostrar ayuda
+F2, F3 - Volumen de los ruíos
+F4 - Apagar o encender comentarios
+F5 - Apagar o encender cánticos
+F6 - Cambiar entre ventana y pantalla completa
+F7, F8 - Zoom parriba o pabajo
+F9 - Repetisione artomáticas
+F10 - Apagar o encender radar
+P - Pausa
+R - Repetisión
+R - Cámara lenta
+Boton 2 durante la repetisión - Cámara lenta de 4 velosidade
+Espasio - Guardar acción para que salga en las repetisiones
+H - Mejores jugadas (cuando termina el partío)
+ESC - Te piras del partido
