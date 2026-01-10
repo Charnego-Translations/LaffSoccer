@@ -6,6 +6,12 @@ import com.ygames.ysoccer.framework.EMath;
 import com.ygames.ysoccer.match.Kit;
 import com.ygames.ysoccer.match.Player;
 import com.ygames.ysoccer.match.Team;
+import net.andrewcpu.elevenlabs.ElevenLabs;
+import net.andrewcpu.elevenlabs.builders.SpeechGenerationBuilder;
+import net.andrewcpu.elevenlabs.enums.ElevenLabsVoiceModel;
+import net.andrewcpu.elevenlabs.enums.GeneratedAudioOutputFormat;
+import net.andrewcpu.elevenlabs.model.voice.VoiceSettings;
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.imageio.ImageIO;
@@ -28,6 +34,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Properties;
 import java.util.Random;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -277,5 +284,48 @@ public class Auxiliary {
             player.bestSkills.addAll(skills.subList(0, RND.nextInt(skills.size())));
 
         }
+    }
+
+    public static void generateVoice(String text, File file) throws IOException {
+
+        Properties env = getEnvFile();
+        String elevenLabsApi = env.getProperty("elevenLabsApi");
+        String voiceId = env.getProperty("voiceId");
+
+        if (StringUtils.isBlank(elevenLabsApi)) {
+            System.err.println("ElevenLabs API key not found in .env file. Skipping voice generation.");
+            return;
+        }
+        if (StringUtils.isBlank(voiceId)) {
+            System.err.println("ElevenLabs Voice ID not found in .env file. Skipping voice generation.");
+            return;
+        }
+
+        VoiceSettings voiceSettings = new VoiceSettings(
+            0.4f,
+            0.7f,
+            1,
+            true
+        );
+        ElevenLabs.setApiKey(elevenLabsApi);
+        InputStream textToSpeech = SpeechGenerationBuilder.textToSpeech()
+            .streamed()
+            .setText(text)
+            .setGeneratedAudioOutputFormat(GeneratedAudioOutputFormat.MP3_44100_128)
+            .setVoiceId(voiceId)
+            .setVoiceSettings(voiceSettings)
+            .setModel(ElevenLabsVoiceModel.ELEVEN_MULTILINGUAL_V2)
+            .build();
+
+        IOUtils.copy(textToSpeech, Files.newOutputStream(file.toPath()));
+
+    }
+
+    public static Properties getEnvFile() throws IOException {
+        Properties env = new Properties();
+        File file = new File(Auxiliary.class.getClassLoader().getResource(".env").getFile());
+        InputStream input = Files.newInputStream(file.toPath());
+        env.load(input);
+        return env;
     }
 }

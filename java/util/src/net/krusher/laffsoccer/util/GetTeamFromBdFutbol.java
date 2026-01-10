@@ -12,8 +12,10 @@ import org.jsoup.nodes.Document;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -140,11 +142,24 @@ public class GetTeamFromBdFutbol {
         team.coach.name = doc.select("table#taulaentrenadors").select("td").get(2).select("span").get(1).text().toUpperCase();
         team.coach.nationality = Optional.ofNullable(COUNTRY_CONV.get(paisEntrenador)).orElse("ESP");
 
+        String logoSrc = doc.select("img").stream().filter(img -> img.attr("height").equals("150")).findAny().get().attr("src");
+        String logoUrl = url.substring(0, url.lastIndexOf('/') + 1) + logoSrc;
+
+        Auxiliary.downloadImageAndResize(logoUrl, Paths.get(fileToSave.getParent() + "/logo." + teamFile + ".png"), 70, 70);
+
+        String urlEquipo =  doc.select("img").stream().filter(img -> img.attr("height").equals("150")).findAny().get().parent().attr("href");
+        Document teamDoc = Jsoup.connect(url.substring(0, url.lastIndexOf('/') + 1) + urlEquipo)
+            .userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64)")
+            .timeout(10_000)
+            .get();
+
         team.type = Team.Type.CLUB;
-        team.country = "ESP"; // TODO
-        team.city = "MADRID"; // TODO
-        team.stadium = "BERNABÉU"; // TODO
-        team.name = doc.select("span.heroh1 a").text().toUpperCase();
+        String clubCountry = teamDoc.select("div.font-weight-bold div.pais").get(0).classNames().toArray()[1].toString();
+        team.country = COUNTRY_CONV.getOrDefault(clubCountry, "ESP");
+        team.city = teamDoc.select("div.font-weight-bold").get(3).text().replaceAll(" \\(.*", "").toUpperCase(); // TODO
+        team.stadium = teamDoc.select("div.font-weight-bold").get(5).text().toUpperCase();
+        String fullTeamName = teamDoc.select("div.font-weight-bold").get(0).text().toUpperCase();
+        team.name = doc.select("span.heroh1 a").text().toUpperCase(); // TODO abbreviate name instead of short name
         team.league = "HISTÓRICOS";
         team.kits = new ArrayList<>();
         team.kits.add(randomKit()); // TODO and no idea how
@@ -218,16 +233,34 @@ public class GetTeamFromBdFutbol {
                     System.out.println("Downloaded " + player.shirtName + " from " + playerImageUrl);
                 } catch (IOException e) {
                     System.out.println("Error downloading " + player.shirtName + " from " + playerImageUrl);
+                    e.printStackTrace();
+                }
+
+                try {
+                    // TODO needs fix
+                    // Auxiliary.generateVoice(player.shirtName + ".", new File(directory.getAbsolutePath() +"/" + FileUtils.normalizeName(player.shirtName) + ".mp3"));
+                } catch (Exception e) {
+                    System.out.println("Error downloading " + player.shirtName + " voice");
+                    e.printStackTrace();
                 }
 
                 team.players.add(player);
 
         });
 
-        String logoSrc = doc.select("img").stream().filter(img -> img.attr("height").equals("150")).findAny().get().attr("src");
-        String logoUrl = url.substring(0, url.lastIndexOf('/') + 1) + logoSrc;
-
-        Auxiliary.downloadImageAndResize(logoUrl, Paths.get(fileToSave.getParent() + "/logo." + teamFile + ".png"), 70, 70);
+        // Fichero para pasarle al generador de voces
+        File shirtsFile = new File(fileToSave.getParent() + "/shirts_" + teamFile + ".txt");
+        try {
+            List<String> shirtNames = new ArrayList<>();
+            team.players.forEach(player -> shirtNames.add(player.shirtName + "."));
+            shirtNames.add(fullTeamName + ".");
+            shirtNames.add(team.stadium + ".");
+            shirtNames.add(team.city + ".");
+            shirtNames.add(team.name + ".");
+            Files.write(shirtsFile.toPath(), shirtNames, StandardOpenOption.CREATE);
+        } catch (IOException e) {
+            System.err.println("Error writing shirt names to file: " + e.getMessage());
+        }
 
         Auxiliary.writeTeamFile(team, fileToSave.toFile(), comment);
 
