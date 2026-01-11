@@ -44,13 +44,17 @@ public class CommonComment {
 
         Sentence sentence = randomPick(commonCommentary.get(type)
             .stream()
-            .filter(s -> s.requiresStart == SentenceRequirement.NONE
-                || (s.requiresStart == SentenceRequirement.TEAM && teamCommentary.teamName != null)
-                || (s.requiresStart == SentenceRequirement.PLAYER && player != null && teamCommentary.players.containsKey(player.shirtName))
-                || (s.requiresStart == SentenceRequirement.CITY && teamCommentary.city != null)
-                || (s.requiresStart == SentenceRequirement.STADIUM && teamCommentaryHome.stadiumName != null)
+            .filter(s -> s.requiresStart == SentenceRequirement.NONE && s.requiresEnd == SentenceRequirement.NONE
+                || ((s.requiresStart == SentenceRequirement.TEAM || s.requiresEnd == SentenceRequirement.TEAM) && teamCommentary.teamName != null)
+                || ((s.requiresStart == SentenceRequirement.PLAYER || s.requiresEnd == SentenceRequirement.PLAYER) && player != null && teamCommentary.players.containsKey(player.shirtName))
+                || ((s.requiresStart == SentenceRequirement.CITY || s.requiresEnd == SentenceRequirement.CITY) && teamCommentary.city != null)
+                || ((s.requiresStart == SentenceRequirement.STADIUM || s.requiresEnd == SentenceRequirement.STADIUM) && teamCommentaryHome.stadiumName != null)
             )
             .collect(Collectors.toSet()));
+
+        if (sentence == null) {
+            return new Sound[0];
+        }
 
         Sound prefix = null;
         Sound suffix = null;

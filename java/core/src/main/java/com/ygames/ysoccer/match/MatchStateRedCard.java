@@ -1,5 +1,6 @@
 package com.ygames.ysoccer.match;
 
+import com.ygames.ysoccer.events.RedCardEvent;
 import com.ygames.ysoccer.events.WhistleEvent;
 import com.ygames.ysoccer.framework.EventManager;
 import com.ygames.ysoccer.framework.GLGame;
@@ -60,6 +61,8 @@ class MatchStateRedCard extends MatchState {
         super.doActions(deltaTime);
 
         setPlayerStates();
+
+        EventManager.publish(new RedCardEvent(scene));
 
         if (!booked && scene.stateTimer > SECOND) {
             scene.foul.player.setState(STATE_RED_CARD);

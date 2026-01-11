@@ -18,10 +18,12 @@ import com.ygames.ysoccer.events.MatchIntroEvent;
 import com.ygames.ysoccer.events.PenaltyEvent;
 import com.ygames.ysoccer.events.PeriodStopEvent;
 import com.ygames.ysoccer.events.PlayerGetsBallEvent;
+import com.ygames.ysoccer.events.RedCardEvent;
 import com.ygames.ysoccer.events.SubstitutionEvent;
 import com.ygames.ysoccer.events.TackleEvent;
 import com.ygames.ysoccer.events.ThrowInEvent;
 import com.ygames.ysoccer.events.WhistleEvent;
+import com.ygames.ysoccer.events.YellowCardEvent;
 import com.ygames.ysoccer.framework.commentary.Comment;
 import com.ygames.ysoccer.framework.commentary.CommentPriority;
 import com.ygames.ysoccer.framework.commentary.Commentary;
@@ -40,7 +42,6 @@ import java.util.Set;
 
 import static com.ygames.ysoccer.framework.Assets.EXTENSIONS;
 import static com.ygames.ysoccer.framework.EMath.randomPick;
-import static com.ygames.ysoccer.match.Match.AWAY;
 import static com.ygames.ysoccer.match.Match.HOME;
 
 public class SoundManager {
@@ -172,15 +173,23 @@ public class SoundManager {
         });
 
         EventManager.subscribe(KeeperDeflectEvent.class, keeperDeflectEvent -> {
-            Commentary.INSTANCE.enqueueComment(Commentary.getComment(CommonCommentType.KEEPER_DEFLECT, CommentPriority.HIGH));
+            Commentary.INSTANCE.enqueueComment(
+                pullComments(CommonCommentType.KEEPER_DEFLECT, keeperDeflectEvent.match, CommentPriority.HIGH)
+            );
         });
 
         EventManager.subscribe(KeeperHoldEvent.class, keeperHoldEvent -> {
+            Commentary.INSTANCE.enqueueComment(
+                pullComments(CommonCommentType.KEEPER_SAVE, keeperHoldEvent.match, CommentPriority.HIGH)
+            );
+
             Commentary.INSTANCE.enqueueComment(Commentary.getComment(CommonCommentType.KEEPER_SAVE, CommentPriority.HIGH));
         });
 
         EventManager.subscribe(PenaltyEvent.class, penaltyEvent -> {
-            Commentary.INSTANCE.enqueueComment(pullComments(CommonCommentType.PENALTY, penaltyEvent.match, CommentPriority.HIGH));
+            Commentary.INSTANCE.enqueueComment(
+                pullComments(CommonCommentType.PENALTY, penaltyEvent.match, CommentPriority.HIGH)
+            );
         });
 
         EventManager.subscribe(TackleEvent.class, tackleEvent -> {
@@ -205,6 +214,18 @@ public class SoundManager {
                     pullComments(CommonCommentType.KICK_OFF, kickOffEvent.match, CommentPriority.HIGH)
                 );
             }
+        });
+
+        EventManager.subscribe(YellowCardEvent.class, yellowCardEvent -> {
+            Commentary.INSTANCE.enqueueComment(
+                pullComments(CommonCommentType.YELLOW_CARD, yellowCardEvent.match, CommentPriority.HIGH)
+            );
+        });
+
+        EventManager.subscribe(RedCardEvent.class, redCardEvent -> {
+            Commentary.INSTANCE.enqueueComment(
+                pullComments(CommonCommentType.RED_CARD, redCardEvent.match, CommentPriority.HIGH)
+            );
         });
 
         EventManager.subscribe(PlayerGetsBallEvent.class, playerGetsBallEvent -> {
@@ -240,22 +261,31 @@ public class SoundManager {
     }
 
     private Comment[] pullComments(CommonCommentType commentType, Match match, CommentPriority commentPriority) {
-        return Arrays.stream(CommonComment.pull(commentType, match.team[HOME], getTeamOffender(match), match.ball.owner))
+        if (match == null) {
+            return new Comment[] { new Comment(commentPriority, CommonComment.pull(commentType)) };
+        }
+
+        Team team;
+        switch (commentType) {
+            case THROW_IN: case FOUL: case CORNER_KICK: case RED_CARD: case YELLOW_CARD:
+                team = getTeamDefender(match);
+                break;
+            default:
+                team = getTeamOffender(match);
+        }
+        return Arrays.stream(CommonComment.pull(commentType, match.team[HOME], team, match.ball.lastOwner))
             .map(s -> new Comment(commentPriority, s))
             .toArray(Comment[]::new);
     }
 
-    private int getSide(Match match) {
-        if (match.team[HOME].side == -match.ball.ySide) {
-            return HOME;
-        } else {
-            return AWAY;
-        }
+    private Team getTeamDefender(Match match) {
+        return Arrays.stream(match.team).filter(team -> !team.players.contains(match.ball.lastOwner)).findAny().orElse(null);
     }
 
     private Team getTeamOffender(Match match) {
-        return match.team[getSide(match)];
+        return match.ball.lastOwner.team;
     }
+
 
     public static void setIntroVolume() {
         intro.setVolume(introId, volume / 100f);

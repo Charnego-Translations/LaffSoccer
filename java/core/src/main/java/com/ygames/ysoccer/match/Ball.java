@@ -56,6 +56,7 @@ public class Ball {
     float my;
 
     public Player owner;
+    public Player lastOwner;
     public int ownerIndex;
     public int ownerTeamIndex;
     Player ownerLast;

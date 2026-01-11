@@ -6,6 +6,6 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @AllArgsConstructor
-public class PenaltyEvent extends GameEvent {
+public class RedCardEvent extends GameEvent {
     public Match match;
 }

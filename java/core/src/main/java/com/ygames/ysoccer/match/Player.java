@@ -434,9 +434,6 @@ public class Player implements Json.Serializable {
 
             switch (collisionType) {
                 case REBOUND:
-                    if (ball.v > 180) {
-                        EventManager.publish(new KeeperDeflectEvent());
-                    }
                     // real ball x-y angle (when spinning, it is different from ball.a)
                     float ballAxy = EMath.aTan2(ball.y - ball.y0, ball.x - ball.x0);
 
@@ -459,7 +456,7 @@ public class Player implements Json.Serializable {
 
                 case CATCH:
                     if (ball.v > 180) {
-                        EventManager.publish(new KeeperHoldEvent());
+                        EventManager.publish(new KeeperHoldEvent((Match) scene));
                     }
                     ball.v = 0;
                     ball.vz = 0;
@@ -471,7 +468,7 @@ public class Player implements Json.Serializable {
 
                 case DEFLECT:
                     if (ball.v > 180) {
-                        EventManager.publish(new KeeperDeflectEvent());
+                        EventManager.publish(new KeeperDeflectEvent((Match) scene));
                     }
                     // real ball x-y angle (when spinning, it is different from ball.a)
                     ballAxy = EMath.aTan2(ball.y - ball.y0, ball.x - ball.x0);
