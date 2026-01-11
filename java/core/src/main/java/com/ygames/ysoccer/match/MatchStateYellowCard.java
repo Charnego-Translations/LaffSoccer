@@ -1,6 +1,7 @@
 package com.ygames.ysoccer.match;
 
 import com.ygames.ysoccer.events.WhistleEvent;
+import com.ygames.ysoccer.events.YellowCardEvent;
 import com.ygames.ysoccer.framework.EventManager;
 import com.ygames.ysoccer.framework.GLGame;
 
@@ -60,6 +61,8 @@ class MatchStateYellowCard extends MatchState {
         super.doActions(deltaTime);
 
         setPlayerStates();
+
+        EventManager.publish(new YellowCardEvent(scene));
 
         if (!booked && scene.stateTimer > SECOND) {
             scene.foul.player.setState(STATE_YELLOW_CARD);

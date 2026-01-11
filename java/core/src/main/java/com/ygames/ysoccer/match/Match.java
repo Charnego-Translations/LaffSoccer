@@ -357,6 +357,9 @@ public class Match extends Scene<MatchFsm, MatchState> implements Json.Serializa
             penaltyScorer = null;
         }
         ball.owner = player;
+        if (ball.owner != null) {
+            ball.lastOwner = player;
+        }
         ball.ownerIndex = -1;
         if (player != null) {
             ball.ownerIndex = player.lineupIndex();
