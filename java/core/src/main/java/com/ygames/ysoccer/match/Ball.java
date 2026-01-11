@@ -40,8 +40,8 @@ public class Ball {
     float s;
     private float f;
 
-    int xSide; // -1=left, 1=right
-    int ySide; // -1=up, 1=down
+    public int xSide; // -1=left, 1=right
+    public int ySide; // -1=up, 1=down
 
     final Vector3[] predictionL = new Vector3[Const.BALL_PREDICTION];
     final Vector3[] prediction = new Vector3[Const.BALL_PREDICTION];

@@ -349,7 +349,7 @@ public class Player implements Json.Serializable {
                     ball.v = v;
                     ball.a = a;
                 }
-                EventManager.publish(new PlayerGetsBallEvent(team, this));
+                EventManager.publish(new PlayerGetsBallEvent(this));
             }
 
             // collision for too fast ball

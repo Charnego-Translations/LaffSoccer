@@ -52,7 +52,7 @@ class MatchStateCornerStop extends MatchState {
         scene.team[HOME].lineup.get(0).setTarget(0, scene.team[HOME].side * (Const.GOAL_LINE - 8));
         scene.team[AWAY].lineup.get(0).setTarget(0, scene.team[AWAY].side * (Const.GOAL_LINE - 8));
 
-        EventManager.publish(new CornerKickEvent());
+        EventManager.publish(new CornerKickEvent(scene));
 
         scene.resetAutomaticInputDevices();
 

@@ -34,18 +34,21 @@ public class CommonComment {
     public static final Set<Sentence> allComments = new HashSet<>();
     public static final Sound[] numbers = new Sound[999];
 
-    public static Sound[] pull(CommonCommentType type, Team team, Player player) {
+    public static Sound[] pull(CommonCommentType type, Team homeTeam, Team team, Player player) {
         TeamCommentary teamCommentary = team != null && player != null ?
             TeamCommentary.teams.get(FileUtils.getTeamFromFile(team.path))
+            : TeamCommentary.EMPTY;
+        TeamCommentary teamCommentaryHome = homeTeam != null ?
+            TeamCommentary.teams.get(FileUtils.getTeamFromFile(homeTeam.path))
             : TeamCommentary.EMPTY;
 
         Sentence sentence = randomPick(commonCommentary.get(type)
             .stream()
             .filter(s -> s.requiresStart == SentenceRequirement.NONE
                 || (s.requiresStart == SentenceRequirement.TEAM && teamCommentary.teamName != null)
-                || (s.requiresStart == SentenceRequirement.PLAYER && teamCommentary.players.containsKey(player.shirtName))
+                || (s.requiresStart == SentenceRequirement.PLAYER && player != null && teamCommentary.players.containsKey(player.shirtName))
                 || (s.requiresStart == SentenceRequirement.CITY && teamCommentary.city != null)
-                || (s.requiresStart == SentenceRequirement.STADIUM && teamCommentary.stadiumName != null)
+                || (s.requiresStart == SentenceRequirement.STADIUM && teamCommentaryHome.stadiumName != null)
             )
             .collect(Collectors.toSet()));
 
@@ -54,11 +57,11 @@ public class CommonComment {
         Sound main = sentence.sound;
 
         if (sentence.requiresStart != SentenceRequirement.NONE) {
-            prefix = resolveRequirement(sentence.requiresStart, teamCommentary, player);
+            prefix = resolveRequirement(sentence.requiresStart, teamCommentaryHome, teamCommentary, player);
         }
 
         if (sentence.requiresEnd != SentenceRequirement.NONE) {
-            suffix = resolveRequirement(sentence.requiresEnd, teamCommentary, player);
+            suffix = resolveRequirement(sentence.requiresEnd, teamCommentaryHome, teamCommentary, player);
         }
 
         return Stream.of(prefix, main, suffix)
@@ -68,6 +71,7 @@ public class CommonComment {
 
     private static Sound resolveRequirement(
         SentenceRequirement requirement,
+        TeamCommentary home,
         TeamCommentary teamCommentary,
         Player player
     ) {
@@ -77,9 +81,9 @@ public class CommonComment {
             case PLAYER:
                 return teamCommentary.players.get(player.shirtName);
             case CITY:
-                return teamCommentary.city;
+                return home.city;
             case STADIUM:
-                return teamCommentary.stadiumName;
+                return home.stadiumName;
             default:
                 return null;
         }
@@ -125,7 +129,7 @@ public class CommonComment {
                     if (fileHandle.name().startsWith("number")) {
                         numbers[Integer.parseInt(fileHandle.name().substring(6))] = sound;
                     }
-                    commonCommentary.get(commentType).add(Sentence.of(Gdx.audio.newSound(fileHandle), fileHandle.name()));
+                    commonCommentary.get(commentType).add(Sentence.of(Gdx.audio.newSound(fileHandle), fileHandle.nameWithoutExtension()));
                 }
             }
             // Secondary comments

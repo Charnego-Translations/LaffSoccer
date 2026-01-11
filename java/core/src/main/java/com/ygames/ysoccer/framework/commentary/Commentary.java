@@ -129,12 +129,12 @@ public class Commentary {
      * @param commentPriority Comment priority
      * @return the composed comment
      */
-    public static Comment[] getComment(CommonCommentType type, CommentPriority commentPriority, Team team, Player player) {
+    public static Comment[] getComment(CommonCommentType type, CommentPriority commentPriority, Team homeTeam, Team offenderteam, Player player) {
 
         GLGame.debug(COMMENTARY, commentPriority, "Generating new comment: " + type);
 
         List<Comment> result = new ArrayList<>();
-        for (Sound sound : CommonComment.pull(type, team, player)) {
+        for (Sound sound : CommonComment.pull(type, homeTeam, offenderteam, player)) {
             result.add(new Comment(commentPriority, sound));
         }
         EMath.oneIn(2.5f, () -> {
@@ -148,7 +148,7 @@ public class Commentary {
     }
 
     public static Comment[] getComment(CommonCommentType type, CommentPriority commentPriority) {
-        return getComment(type, commentPriority, null, null);
+        return getComment(type, commentPriority, null, null, null);
     }
 
     /**

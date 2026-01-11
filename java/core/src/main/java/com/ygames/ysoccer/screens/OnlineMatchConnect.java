@@ -113,7 +113,7 @@ public class OnlineMatchConnect extends GLScreen {
                         Goal goal = GoalMapper.fromDto(onlineMatchScreen.match, ((HomeGoalEventDto) object).goalDto);
                         onlineMatchScreen.match.goals.add(goal);
                         onlineMatchScreen.match.buildScorersList();
-                        EventManager.publish(new HomeGoalEvent(goal));
+                        EventManager.publish(new HomeGoalEvent(onlineMatchScreen.match, goal));
                     });
 
                 if (object instanceof KeeperDeflectEventDto)

@@ -59,7 +59,7 @@ public class Match extends Scene<MatchFsm, MatchState> implements Json.Serializa
     public int[] resultAfterExtraTime;
     public int[] resultAfterPenalties;
 
-    Ball ball;
+    public Ball ball;
     float lastGoalCollisionTime;
 
     public final Team[] team;
