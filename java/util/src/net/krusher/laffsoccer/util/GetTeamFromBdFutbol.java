@@ -32,6 +32,8 @@ public class GetTeamFromBdFutbol {
 
     private final static Map<String, String> COUNTRY_CONV = new HashMap<>();
     private final static Map<String, Player.Role> POSITION_CONV = new HashMap<>();
+    public static final String USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64)";
+
     static {
         COUNTRY_CONV.put("españa", "ESP");
         COUNTRY_CONV.put("argentina", "ARG");
@@ -131,7 +133,7 @@ public class GetTeamFromBdFutbol {
 
         // Conecta y descarga
         Document doc = Jsoup.connect(url)
-            .userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64)")
+            .userAgent(USER_AGENT)
             .timeout(10_000)
             .get();
 
@@ -149,7 +151,7 @@ public class GetTeamFromBdFutbol {
 
         String urlEquipo =  doc.select("img").stream().filter(img -> img.attr("height").equals("150")).findAny().get().parent().attr("href");
         Document teamDoc = Jsoup.connect(url.substring(0, url.lastIndexOf('/') + 1) + urlEquipo)
-            .userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64)")
+            .userAgent(USER_AGENT)
             .timeout(10_000)
             .get();
 
@@ -212,7 +214,7 @@ public class GetTeamFromBdFutbol {
                 String playerUrl = tr.select("td a").attr("href");
                 try {
                     playerDoc = Jsoup.connect(url.substring(0, url.lastIndexOf('/') + 1) + tr.select("td a").attr("href"))
-                        .userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64)")
+                        .userAgent(USER_AGENT)
                         .timeout(10_000)
                         .get();
                 } catch (IOException e) {

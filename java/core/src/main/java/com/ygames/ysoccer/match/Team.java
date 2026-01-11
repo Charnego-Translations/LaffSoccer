@@ -92,7 +92,7 @@ public class Team implements Json.Serializable {
 
     public ControlMode controlMode;
     public InputDevice inputDevice;
-    int side; // -1=upside, 1=downside
+    public int side; // -1=upside, 1=downside
 
     Player near1; // nearest to the ball
     Player bestDefender;

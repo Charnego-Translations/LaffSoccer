@@ -59,7 +59,7 @@ class MatchStatePenaltyKickStop extends MatchState {
             }
         }
 
-        EventManager.publish(new PenaltyEvent());
+        EventManager.publish(new PenaltyEvent(scene));
 
         Player penaltyKicker = scene.foul.opponent.team.lastOfLineup();
         Player penaltyKeeper = scene.foul.player.team.lineupAtPosition(0);

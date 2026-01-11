@@ -33,7 +33,7 @@ class MatchStateThrowInStop extends MatchState {
         super.entryActions();
 
         EventManager.publish(new WhistleEvent());
-        EventManager.publish(new ThrowInEvent());
+        EventManager.publish(new ThrowInEvent(scene));
 
         fsm.throwInPosition.set(scene.ball.xSide * Const.TOUCH_LINE, scene.ball.y);
 

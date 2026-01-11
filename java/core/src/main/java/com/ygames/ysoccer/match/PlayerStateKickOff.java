@@ -36,10 +36,10 @@ class PlayerStateKickOff extends PlayerState {
             player.kickAngle = player.a;
             switch (Math.round(((Match) scene).clock)) {
                 case 0:
-                    EventManager.publish(new KickOffEvent(Match.Period.FIRST_HALF));
+                    EventManager.publish(new KickOffEvent((Match) scene, Match.Period.FIRST_HALF));
                     break;
                 case 90000:
-                    EventManager.publish(new KickOffEvent(Match.Period.SECOND_HALF));
+                    EventManager.publish(new KickOffEvent((Match) scene, Match.Period.SECOND_HALF));
                     break;
             }
             return fsm.stateKick;

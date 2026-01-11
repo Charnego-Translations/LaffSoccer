@@ -3,10 +3,8 @@ package com.ygames.ysoccer.match;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.ygames.ysoccer.events.HomeGoalEvent;
-import com.ygames.ysoccer.framework.Assets;
 import com.ygames.ysoccer.framework.EventManager;
 import com.ygames.ysoccer.framework.GLGame;
-import com.ygames.ysoccer.framework.SoundManager;
 
 import static com.ygames.ysoccer.match.Const.SECOND;
 import static com.ygames.ysoccer.match.Match.AWAY;
@@ -48,21 +46,7 @@ class MatchStateGoal extends MatchState {
 
         goal = scene.goals.get(scene.goals.size() - 1);
 
-        EventManager.publish(new HomeGoalEvent(goal));
-
-        if (scene.settings.commentary) {
-            if (goal.type == Goal.Type.OWN_GOAL) {
-                int size = Assets.Commentary.ownGoal.size();
-                if (size > 0) {
-                    Assets.Commentary.ownGoal.get(Assets.RANDOM.nextInt(size)).play(SoundManager.volume / 100f);
-                }
-            } else {
-                int size = Assets.Commentary.goal.size();
-                if (size > 0) {
-                    Assets.Commentary.goal.get(Assets.RANDOM.nextInt(size)).play(SoundManager.volume / 100f);
-                }
-            }
-        }
+        EventManager.publish(new HomeGoalEvent(scene, goal));
 
         if (scene.team[HOME].side == scene.ball.ySide) {
             scene.kickOffTeam = HOME;

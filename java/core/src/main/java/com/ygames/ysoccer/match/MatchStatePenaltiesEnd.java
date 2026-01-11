@@ -67,7 +67,7 @@ class MatchStatePenaltiesEnd extends MatchState {
                 && EMath.isIn(scene.ball.x, -Const.POST_X, Const.POST_X)
                 && (scene.ball.z <= Const.CROSSBAR_H)) {
                 isGoal = true;
-                EventManager.publish(new HomeGoalEvent(null));
+                EventManager.publish(new HomeGoalEvent(scene, null));
             }
 
             if (scene.ball.y * scene.ball.ySide >= (Const.GOAL_LINE + Const.BALL_R)) {

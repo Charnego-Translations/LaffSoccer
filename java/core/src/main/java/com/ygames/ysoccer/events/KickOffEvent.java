@@ -5,5 +5,6 @@ import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 public class KickOffEvent extends GameEvent {
+    public final Match match;
     public final Match.Period period;
 }
