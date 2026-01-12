@@ -2,7 +2,7 @@ package com.ygames.ysoccer.match;
 
 import com.ygames.ysoccer.framework.GLGame;
 
-abstract class SceneState<SceneFsmT extends SceneFsm<SceneT, ?>, SceneT extends Scene<SceneFsmT, ?>> {
+public abstract class SceneState<SceneFsmT extends SceneFsm<SceneT, ?>, SceneT extends Scene<SceneFsmT, ?>> {
 
     public interface Id {
     }

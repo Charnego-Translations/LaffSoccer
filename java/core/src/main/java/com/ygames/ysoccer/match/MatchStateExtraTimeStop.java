@@ -31,7 +31,7 @@ class MatchStateExtraTimeStop extends MatchState {
     void entryActions() {
         super.entryActions();
 
-        EventManager.publish(new PeriodStopEvent(fsm.getScene()));
+        EventManager.publish(new PeriodStopEvent(fsm.getScene(), EXTRA_TIME_STOP));
 
         scene.resetAutomaticInputDevices();
         scene.setPlayersState(STATE_IDLE, null);

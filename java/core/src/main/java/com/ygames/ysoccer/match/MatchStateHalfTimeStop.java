@@ -28,7 +28,7 @@ class MatchStateHalfTimeStop extends MatchState {
     void entryActions() {
         super.entryActions();
 
-        EventManager.publish(new PeriodStopEvent(fsm.getScene()));
+        EventManager.publish(new PeriodStopEvent(fsm.getScene(), HALF_TIME_STOP));
 
         scene.resetAutomaticInputDevices();
         scene.setPlayersState(STATE_IDLE, null);

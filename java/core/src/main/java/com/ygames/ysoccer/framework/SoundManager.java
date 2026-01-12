@@ -44,6 +44,7 @@ import java.util.Set;
 import static com.ygames.ysoccer.framework.Assets.EXTENSIONS;
 import static com.ygames.ysoccer.framework.EMath.randomPick;
 import static com.ygames.ysoccer.match.Match.HOME;
+import static com.ygames.ysoccer.match.Match.Period.FIRST_HALF;
 
 public class SoundManager {
 
@@ -133,28 +134,27 @@ public class SoundManager {
         EventManager.subscribe(PeriodStopEvent.class, periodStopEvent -> {
             end.play(volume / 100f);
 
-            switch (periodStopEvent.match.period) {
-                case FIRST_HALF:
+            switch (periodStopEvent.sceneState) {
+                case HALF_TIME_STOP:
                     Commentary.INSTANCE.enqueueComment(Commentary.getComment(CommonCommentType.HALF_MATCH, CommentPriority.HIGH));
                     Commentary.INSTANCE.enqueueComment(Commentary.halfTime(periodStopEvent.match));
                     break;
 
-                case SECOND_HALF:
+                case FULL_TIME_STOP: case FULL_EXTRA_TIME_STOP:
                     Commentary.INSTANCE.enqueueComment(Commentary.getComment(CommonCommentType.MATCH_END, CommentPriority.HIGH));
                     Commentary.INSTANCE.enqueueMatchEndComment(periodStopEvent.match);
                     break;
 
-                case FIRST_EXTRA_TIME:
+                case EXTRA_TIME_STOP:
+                    Commentary.INSTANCE.enqueueComment(Commentary.getComment(CommonCommentType.MATCH_END_EXTRA_TIME, CommentPriority.HIGH));
+                    break;
+
+                case HALF_EXTRA_TIME_STOP:
                     Commentary.INSTANCE.enqueueComment(Commentary.getComment(CommonCommentType.EXTRA_TIME_FIRST_END, CommentPriority.HIGH));
                     break;
 
-                case SECOND_EXTRA_TIME:
+                case PENALTIES_STOP:
                     Commentary.INSTANCE.enqueueComment(Commentary.getComment(CommonCommentType.EXTRA_TIME_END, CommentPriority.HIGH));
-                    break;
-
-                case PENALTIES:
-                    Commentary.INSTANCE.enqueueComment(Commentary.getComment(CommonCommentType.MATCH_END, CommentPriority.HIGH));
-                    Commentary.INSTANCE.enqueueMatchEndComment(periodStopEvent.match);
                     break;
 
                 default:
@@ -204,7 +204,7 @@ public class SoundManager {
         });
 
         EventManager.subscribe(KickOffEvent.class, kickOffEvent -> {
-            if (kickOffEvent.period == Match.Period.FIRST_HALF) {
+            if (kickOffEvent.period == FIRST_HALF) {
                 Commentary.INSTANCE.enqueueComment(
                     pullComments(CommonCommentType.KICK_OFF, kickOffEvent.match, CommentPriority.HIGH)
                 );

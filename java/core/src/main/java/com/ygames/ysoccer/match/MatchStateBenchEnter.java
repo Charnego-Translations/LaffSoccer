@@ -35,6 +35,8 @@ class MatchStateBenchEnter extends MatchState {
     void entryActions() {
         super.entryActions();
 
+        EventManager.publish(new EnterBenchEvent(fsm.getScene(), fsm.benchStatus.team));
+
         fsm.benchStatus.oldTarget.set(scene.camera.getCurrentTarget());
 
         fsm.benchStatus.selectedPosition = -1;
@@ -54,8 +56,6 @@ class MatchStateBenchEnter extends MatchState {
     @Override
     void doActions(float deltaTime) {
         super.doActions(deltaTime);
-
-        EventManager.publish(new EnterBenchEvent(fsm.getScene(), fsm.benchStatus.team));
 
         float timeLeft = deltaTime;
         while (timeLeft >= GLGame.SUBFRAME_DURATION) {
