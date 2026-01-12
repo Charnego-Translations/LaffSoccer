@@ -1,6 +1,7 @@
 package com.ygames.ysoccer.framework.commentary;
 
 import com.badlogic.gdx.audio.Sound;
+import com.ygames.ysoccer.framework.Assets;
 import com.ygames.ysoccer.framework.EMath;
 import com.ygames.ysoccer.framework.FileUtils;
 import com.ygames.ysoccer.framework.GLGame;
@@ -34,8 +35,7 @@ import static com.ygames.ysoccer.framework.GLGame.LogType.COMMENTARY;
 public class Commentary {
 
     private static final String THREAD_NAME = "Commentary-thread";
-    private static final float MAX_QUEUE = 5.0f;
-    private static final float SHORT_QUEUE = 0.15f;
+    private static final float MAX_QUEUE = 3.0f;
 
     public static final Commentary INSTANCE = new Commentary();
     @Getter
@@ -83,20 +83,15 @@ public class Commentary {
             return;
         }
 
-        if (queueLength > MAX_QUEUE && playing != null && playing.commentPriority.weight > elements[0].commentPriority.weight && elements[0].commentPriority != CommentPriority.CHITCHAT) {
+        if (!shouldEnqueue(elements)) {
             GLGame.debug(COMMENTARY, elements, "Commentary not queued: queue too long: " + queueLength);
             return;
         }
 
         // A comment with greater priority comes (or queue is very long)
-        if (((playing != null
-                && playing.commentPriority.weight < elements[0].commentPriority.weight
-                && queueLength < SHORT_QUEUE
-                && elements[0].commentPriority != CommentPriority.CHITCHAT))
-            || queueLength > MAX_QUEUE)  {
+        if (shouldClearQueue(elements))  {
             GLGame.debug(COMMENTARY, elements, "Queue clear and commentary pushed immediately: is not chitchat? " + (elements[0].commentPriority != CommentPriority.CHITCHAT));
             GLGame.debug(COMMENTARY, elements, "Queue clear and commentary pushed immediately: higher priority? " + (playing == null? "(not playing)" : playing.commentPriority.weight < elements[0].commentPriority.weight));
-            GLGame.debug(COMMENTARY, elements, "Queue clear and commentary pushed immediately: short queue?" + (queueLength < SHORT_QUEUE));
             queue.clear();
             current.clear();
             queueLength = 0;
@@ -113,11 +108,25 @@ public class Commentary {
         queue.add(elements);
     }
 
+    private boolean shouldEnqueue(Comment... elements) {
+        return queueLength < MAX_QUEUE
+            || playing == null
+            || elements[0].commentPriority.weight >= CommentPriority.HIGH.weight;
+    }
+
+    private boolean shouldClearQueue(Comment... elements) {
+        return (playing != null
+            && elements[0].commentPriority.weight > playing.commentPriority.weight
+            && !queue.isEmpty() && elements[0].commentPriority.weight > queue.peek()[0].commentPriority.weight
+            && elements[0].commentPriority != CommentPriority.CHITCHAT
+            && elements[0].commentPriority.weight > CommentPriority.HIGH.weight)
+            || (playing != null && queueLength > MAX_QUEUE && elements[0].commentPriority.weight >= CommentPriority.HIGH.weight && playing.commentPriority.weight >= CommentPriority.HIGH.weight);
+    }
+
     /**
      * Prepares and enqueue end game comment
      */
     public void enqueueMatchEndComment(Match match) {
-        enqueueComment(Commentary.getComment(CommonCommentType.MATCH_END, CommentPriority.HIGH));
         Comment[] resultComment = buildResultComment(match);
         if (resultComment != null) {
             enqueueComment(resultComment);
@@ -186,6 +195,7 @@ public class Commentary {
      * @return built comment
      */
     public static Comment[] halfTime(Match match) {
+
         Set<Sound> sounds = new HashSet<>();
 
         MatchStats home = match.stats[Match.HOME];
@@ -208,7 +218,7 @@ public class Commentary {
         }
 
         if (!sounds.isEmpty()) {
-            return new Comment[] {new Comment(CommentPriority.LOW, randomPick(sounds))};
+            return new Comment[] {new Comment(CommentPriority.HIGH, randomPick(sounds))};
         }
         return null;
     }
@@ -273,9 +283,8 @@ public class Commentary {
 
         long now = System.currentTimeMillis();
 
-        if (now - lastChitChat > 20000) {
-            Random rnd = new Random();
-            if (rnd.nextInt((int) EMath.max(1, (now - lastChitChat))) > 36000) {
+        if (now - lastChitChat > 50000) {
+            if (Assets.RANDOM.nextInt((int) EMath.max(1, (now - lastChitChat))) > 36000) {
                 enqueueComment(getComment(CommonCommentType.CHITCHAT, CommentPriority.CHITCHAT));
                 lastChitChat = now;
             }

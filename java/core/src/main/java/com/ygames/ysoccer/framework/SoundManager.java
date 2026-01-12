@@ -124,16 +124,6 @@ public class SoundManager {
             }
         });
 
-        EventManager.subscribe(KeeperDeflectEvent.class, keeperDeflectEvent -> {
-            deflect.play(0.5f * volume / 100f);
-            Commentary.INSTANCE.enqueueComment(Commentary.getComment(CommonCommentType.KEEPER_SAVE, CommentPriority.HIGH));
-        });
-
-        EventManager.subscribe(KeeperHoldEvent.class, keeperHoldEvent -> {
-            hold.play(0.5f * volume / 100f);
-            Commentary.INSTANCE.enqueueComment(Commentary.getComment(CommonCommentType.KEEPER_SAVE, CommentPriority.HIGH));
-        });
-
         EventManager.subscribe(MatchIntroEvent.class, matchIntroEvent -> {
             introId = intro.play(volume / 100f);
             crowdId = crowd.play(volume / 100f);
@@ -163,7 +153,7 @@ public class SoundManager {
                     break;
 
                 case PENALTIES:
-                    Commentary.INSTANCE.enqueueComment(Commentary.getComment(CommonCommentType.MATCH_END_EXTRA_TIME, CommentPriority.HIGH));
+                    Commentary.INSTANCE.enqueueComment(Commentary.getComment(CommonCommentType.MATCH_END, CommentPriority.HIGH));
                     Commentary.INSTANCE.enqueueMatchEndComment(periodStopEvent.match);
                     break;
 
@@ -174,17 +164,17 @@ public class SoundManager {
         });
 
         EventManager.subscribe(KeeperDeflectEvent.class, keeperDeflectEvent -> {
+            deflect.play(0.5f * volume / 100f);
             Commentary.INSTANCE.enqueueComment(
                 pullComments(CommonCommentType.KEEPER_DEFLECT, keeperDeflectEvent.match, CommentPriority.HIGH)
             );
         });
 
         EventManager.subscribe(KeeperHoldEvent.class, keeperHoldEvent -> {
+            hold.play(0.5f * volume / 100f);
             Commentary.INSTANCE.enqueueComment(
                 pullComments(CommonCommentType.KEEPER_SAVE, keeperHoldEvent.match, CommentPriority.HIGH)
             );
-
-            Commentary.INSTANCE.enqueueComment(Commentary.getComment(CommonCommentType.KEEPER_SAVE, CommentPriority.HIGH));
         });
 
         EventManager.subscribe(PenaltyEvent.class, penaltyEvent -> {
@@ -237,7 +227,7 @@ public class SoundManager {
             if (playerGetsBallEvent.player.team.path != null) {
                 Sound playerSound = TeamCommentary.teams.get(FileUtils.getTeamFromFile(playerGetsBallEvent.player.team.path)).players.get(playerGetsBallEvent.player.shirtName);
                 if (playerSound != null) {
-                    EMath.oneIn(2.5f, () -> Commentary.INSTANCE.enqueueComment(new Comment(CommentPriority.LOW, playerSound)));
+                    EMath.oneIn(1.25f, () -> Commentary.INSTANCE.enqueueComment(new Comment(CommentPriority.LOW, playerSound)));
                 }
             }
         });
