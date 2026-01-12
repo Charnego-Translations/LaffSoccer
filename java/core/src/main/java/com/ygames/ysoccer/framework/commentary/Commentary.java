@@ -34,7 +34,7 @@ import static com.ygames.ysoccer.framework.GLGame.LogType.COMMENTARY;
 public class Commentary {
 
     private static final String THREAD_NAME = "Commentary-thread";
-    private static final float MAX_QUEUE = 2.0f;
+    private static final float MAX_QUEUE = 5.0f;
     private static final float SHORT_QUEUE = 0.15f;
 
     public static final Commentary INSTANCE = new Commentary();

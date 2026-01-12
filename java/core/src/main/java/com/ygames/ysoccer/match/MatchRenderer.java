@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.ygames.ysoccer.events.SlideEvent;
 import com.ygames.ysoccer.events.TackleEvent;
 import com.ygames.ysoccer.framework.Assets;
 import com.ygames.ysoccer.framework.EMath;
@@ -84,12 +85,12 @@ public class MatchRenderer extends SceneRenderer<Match> {
 
     public void subscribeEvents() {
         EventManager.subscribe(TackleEvent.class, tackleEvent -> {
-            if (tackleEvent.opponent == null) {
-                float angle = EMath.aTan2(tackleEvent.player.inputDevice.y0, tackleEvent.player.inputDevice.x0) + (float) (Math.random() - 0.5f) * 25;
-                EMath.oneIn(2f, () -> allSprites.add(ObjectSprite.mow(glGraphics, tackleEvent.player.x, tackleEvent.player.y, angle)));
-            } else {
-                EMath.oneIn(2.5f, () -> allSprites.add(ObjectSprite.blood(glGraphics, tackleEvent.player.x, tackleEvent.player.y)));
-            }
+            EMath.oneIn(2.5f, () -> allSprites.add(ObjectSprite.blood(glGraphics, tackleEvent.player.x, tackleEvent.player.y)));
+        });
+
+        EventManager.subscribe(SlideEvent.class, slideEvent -> {
+            float angle = EMath.aTan2(slideEvent.player.inputDevice.y0, slideEvent.player.inputDevice.x0) + (float) (Math.random() - 0.5f) * 25;
+            EMath.oneIn(2f, () -> allSprites.add(ObjectSprite.mow(glGraphics, slideEvent.player.x, slideEvent.player.y, angle)));
         });
     }
 

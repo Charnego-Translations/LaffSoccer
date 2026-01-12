@@ -46,6 +46,8 @@ class MatchStateYellowCard extends MatchState {
 
         booked = false;
 
+        EventManager.publish(new YellowCardEvent(scene));
+
         scene.resetAutomaticInputDevices();
     }
 
@@ -61,8 +63,6 @@ class MatchStateYellowCard extends MatchState {
         super.doActions(deltaTime);
 
         setPlayerStates();
-
-        EventManager.publish(new YellowCardEvent(scene));
 
         if (!booked && scene.stateTimer > SECOND) {
             scene.foul.player.setState(STATE_YELLOW_CARD);

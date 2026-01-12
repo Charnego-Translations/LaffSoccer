@@ -19,6 +19,7 @@ import static com.badlogic.gdx.Application.LOG_NONE;
 import static com.ygames.ysoccer.framework.GLGame.LogType.AI_ATTACKING;
 import static com.ygames.ysoccer.framework.GLGame.LogType.AI_KICKING;
 import static com.ygames.ysoccer.framework.GLGame.LogType.BALL;
+import static com.ygames.ysoccer.framework.GLGame.LogType.COMMENTARY;
 import static com.ygames.ysoccer.framework.GLGame.LogType.GUI;
 import static com.ygames.ysoccer.framework.GLGame.LogType.PASSING;
 import static com.ygames.ysoccer.framework.GLGame.LogType.PLAYER_SELECTION;
@@ -146,6 +147,12 @@ class DeveloperOptions extends GLScreen {
         w = new LogFilterLabel(PLAYER_SELECTION);
         widgets.add(w);
         w = new LogFilterButton(PLAYER_SELECTION);
+        widgets.add(w);
+
+        y0 += 22;
+        w = new LogFilterLabel(COMMENTARY);
+        widgets.add(w);
+        w = new LogFilterButton(COMMENTARY);
         widgets.add(w);
 
         w = new ExitButton();

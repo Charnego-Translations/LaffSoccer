@@ -196,11 +196,10 @@ public class SoundManager {
         EventManager.subscribe(TackleEvent.class, tackleEvent -> {
             if (tackleEvent.opponent == null) return;
             Commentary.INSTANCE.enqueueComment(
-                Arrays.stream(CommonComment.pull(CommonCommentType.FOUL, null, tackleEvent.player.team, tackleEvent.player))
+                Arrays.stream(CommonComment.pull(tackleEvent.isFault ? CommonCommentType.FOUL : CommonCommentType.NOT_FOUL, null, tackleEvent.player.team, tackleEvent.player))
                     .map(s -> new Comment(CommentPriority.HIGH, s))
                     .toArray(Comment[]::new)
             );
-            Commentary.INSTANCE.enqueueComment(Commentary.getComment(tackleEvent.isFault ? CommonCommentType.FOUL : CommonCommentType.NOT_FOUL, CommentPriority.HIGH));
             playVariations(SoundClass.PAIN);
         });
 
