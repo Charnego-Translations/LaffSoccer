@@ -1,8 +1,8 @@
 package com.ygames.ysoccer;
 
 import com.ygames.ysoccer.framework.GLGame;
+import com.ygames.ysoccer.framework.commentary.Commentary;
 import com.ygames.ysoccer.screens.Intro;
-import com.ygames.ysoccer.screens.Main;
 import com.ygames.ysoccer.screens.Video;
 
 public class YSoccer extends GLGame {
@@ -17,5 +17,11 @@ public class YSoccer extends GLGame {
             menuMusic.setMode(settings.musicMode);
             this.setScreen(new Intro(this));
         }
+    }
+
+    @Override
+    public void dispose() {
+        super.dispose();
+        Commentary.INSTANCE.stop();
     }
 }
