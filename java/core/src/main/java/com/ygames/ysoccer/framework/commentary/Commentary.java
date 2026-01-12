@@ -46,7 +46,6 @@ public class Commentary {
      * This is meant to be a singleton
      */
     private Commentary() {
-        Runtime.getRuntime().addShutdownHook(new Thread(this::stop));
     }
 
     /**

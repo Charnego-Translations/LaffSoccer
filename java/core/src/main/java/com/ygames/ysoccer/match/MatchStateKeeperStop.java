@@ -62,8 +62,6 @@ class MatchStateKeeperStop extends MatchState {
 
         float timeLeft = deltaTime;
 
-        EventManager.publish(new KeeperHoldEvent(scene));
-
         while (timeLeft > GLGame.SUBFRAME_DURATION) {
 
             if (scene.subframe % GLGame.SUBFRAMES == 0) {
