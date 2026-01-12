@@ -328,4 +328,20 @@ public class Auxiliary {
         env.load(input);
         return env;
     }
+
+    public static File chooseDirectory() {
+        File directorioSeleccionado;
+        JFileChooser chooser = new JFileChooser();
+        chooser.setDialogTitle("Choose a directory");
+        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        chooser.setAcceptAllFileFilterUsed(false);
+        chooser.setCurrentDirectory(new File(TEAMS_DIR));
+        int resultado = chooser.showOpenDialog(null);
+        if (resultado == JFileChooser.APPROVE_OPTION) {
+            directorioSeleccionado = chooser.getSelectedFile();
+        } else {
+            directorioSeleccionado = null;
+        }
+        return directorioSeleccionado;
+    }
 }

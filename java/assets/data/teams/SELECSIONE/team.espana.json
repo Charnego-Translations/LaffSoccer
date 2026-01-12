@@ -5,6 +5,7 @@
 "confederation": "UEFA",
 "city": "SEVILLA",
 "stadium": "LA NUEVA MAESTRANZA",
+"year": null,
 "coach": {
 	"name": "EL FARY",
 	"nationality": "ESP"
@@ -50,7 +51,7 @@
 	},
 	{
 		"name": "MANOLO ESCOBAR",
-		"shirtName": "MANOLO ESC.",
+		"shirtName": "M. ESCOBAR",
 		"nationality": "ESP",
 		"role": "MIDFIELDER",
 		"number": 4,
@@ -218,7 +219,7 @@
 	},
 	{
 		"name": "JULIO IGLESIAS",
-		"shirtName": "JULIO I.",
+		"shirtName": "J. IGLESIAS",
 		"nationality": "ESP",
 		"role": "LEFT_WINGER",
 		"number": 17,
