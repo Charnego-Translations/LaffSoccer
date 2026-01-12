@@ -1,5 +1,7 @@
 package com.ygames.ysoccer.match;
 
+import com.ygames.ysoccer.events.KeeperHoldEvent;
+import com.ygames.ysoccer.framework.EventManager;
 import com.ygames.ysoccer.framework.GLGame;
 
 import static com.ygames.ysoccer.match.MatchFsm.StateId.KEEPER_STOP;
@@ -59,6 +61,8 @@ class MatchStateKeeperStop extends MatchState {
         super.doActions(deltaTime);
 
         float timeLeft = deltaTime;
+
+        EventManager.publish(new KeeperHoldEvent(scene));
 
         while (timeLeft > GLGame.SUBFRAME_DURATION) {
 

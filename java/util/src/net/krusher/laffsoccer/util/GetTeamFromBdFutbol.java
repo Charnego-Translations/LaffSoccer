@@ -12,10 +12,8 @@ import org.jsoup.nodes.Document;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -137,6 +135,7 @@ public class GetTeamFromBdFutbol {
             .timeout(10_000)
             .get();
 
+        File directory = new File(fileToSave.getParent() + "/" + teamFile);
 
         Team team = new Team();
         team.coach = new Coach();
@@ -158,8 +157,14 @@ public class GetTeamFromBdFutbol {
         team.type = Team.Type.CLUB;
         String clubCountry = teamDoc.select("div.font-weight-bold div.pais").get(0).classNames().toArray()[1].toString();
         team.country = COUNTRY_CONV.getOrDefault(clubCountry, "ESP");
-        team.city = teamDoc.select("div.font-weight-bold").get(3).text().replaceAll(" \\(.*", "").toUpperCase(); // TODO
-        team.stadium = teamDoc.select("div.font-weight-bold").get(5).text().toUpperCase();
+        try {
+            team.city = teamDoc.select("div").stream().filter(n -> n.text().equals("Localidad")).findAny().get().parent().select("div.font-weight-bold").text().replaceAll(" \\(.*", "").toUpperCase(); // TODO
+            team.stadium = teamDoc.select("div").stream().filter(n -> n.text().equals("Estadio")).findAny().get().parent().select("div.font-weight-bold").text().toUpperCase();
+        } catch (Exception e) {
+            System.out.println("No se pudo obtener datos del equipo: " + e.getMessage());
+            team.city = "";
+            team.stadium = "";
+        }
         String fullTeamName = teamDoc.select("div.font-weight-bold").get(0).text().toUpperCase();
         team.name = doc.select("span.heroh1 a").text().toUpperCase(); // TODO abbreviate name instead of short name
         team.league = "HISTÓRICOS";
@@ -167,6 +172,11 @@ public class GetTeamFromBdFutbol {
         team.kits.add(randomKit()); // TODO and no idea how
         team.kits.add(randomKit());
         team.kits.add(randomKit());
+
+        Auxiliary.generateVoice(team.city + ".", new File(directory.getAbsolutePath() +"/city.mp3"));
+        Auxiliary.generateVoice(team.stadium + ".", new File(directory.getAbsolutePath() +"/stadium.mp3"));
+        Auxiliary.generateVoice(fullTeamName + ".", new File(directory.getAbsolutePath() +"/team.mp3"));
+
         try {
             team.year = Integer.valueOf(doc.select("span.heroh1 span").text().replaceAll("-.*", ""));
         } catch (Exception e) {
@@ -227,7 +237,6 @@ public class GetTeamFromBdFutbol {
 
                 String playerImageUrl = url.substring(0, url.lastIndexOf('/') + 1) + playerDoc.select("div.active img").attr("src");
                 try {
-                    File directory = new File(fileToSave.getParent() + "/" + teamFile);
                     if (!directory.exists()) {
                         directory.mkdir();
                     }
@@ -239,8 +248,7 @@ public class GetTeamFromBdFutbol {
                 }
 
                 try {
-                    // TODO needs fix
-                    // Auxiliary.generateVoice(player.shirtName + ".", new File(directory.getAbsolutePath() +"/" + FileUtils.normalizeName(player.shirtName) + ".mp3"));
+                    Auxiliary.generateVoice(player.shirtName + ".", new File(directory.getAbsolutePath() +"/player_" + FileUtils.normalizeName(player.shirtName) + ".mp3"));
                 } catch (Exception e) {
                     System.out.println("Error downloading " + player.shirtName + " voice");
                     e.printStackTrace();
@@ -249,20 +257,6 @@ public class GetTeamFromBdFutbol {
                 team.players.add(player);
 
         });
-
-        // Fichero para pasarle al generador de voces
-        File shirtsFile = new File(fileToSave.getParent() + "/shirts_" + teamFile + ".txt");
-        try {
-            List<String> shirtNames = new ArrayList<>();
-            team.players.forEach(player -> shirtNames.add(player.shirtName + "."));
-            shirtNames.add(fullTeamName + ".");
-            shirtNames.add(team.stadium + ".");
-            shirtNames.add(team.city + ".");
-            shirtNames.add(team.name + ".");
-            Files.write(shirtsFile.toPath(), shirtNames, StandardOpenOption.CREATE);
-        } catch (IOException e) {
-            System.err.println("Error writing shirt names to file: " + e.getMessage());
-        }
 
         Auxiliary.writeTeamFile(team, fileToSave.toFile(), comment);
 

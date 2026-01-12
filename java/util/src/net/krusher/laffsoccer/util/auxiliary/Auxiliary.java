@@ -13,6 +13,8 @@ import net.andrewcpu.elevenlabs.enums.GeneratedAudioOutputFormat;
 import net.andrewcpu.elevenlabs.model.voice.VoiceSettings;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.jsoup.Connection;
+import org.jsoup.Jsoup;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -21,6 +23,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
@@ -301,23 +304,20 @@ public class Auxiliary {
             return;
         }
 
-        VoiceSettings voiceSettings = new VoiceSettings(
-            0.4f,
-            0.7f,
-            1,
-            true
-        );
-        ElevenLabs.setApiKey(elevenLabsApi);
-        InputStream textToSpeech = SpeechGenerationBuilder.textToSpeech()
-            .streamed()
-            .setText(text)
-            .setGeneratedAudioOutputFormat(GeneratedAudioOutputFormat.MP3_44100_128)
-            .setVoiceId(voiceId)
-            .setVoiceSettings(voiceSettings)
-            .setModel(ElevenLabsVoiceModel.ELEVEN_MULTILINGUAL_V2)
-            .build();
+        String jsonBody = "{"
+            + "\"text\":\"" + text.replace("\"[Speak peninsular Spanish]", "\\\".") + "\","
+            + "\"model_id\":\"eleven_v3\""
+            + "}";
 
-        IOUtils.copy(textToSpeech, Files.newOutputStream(file.toPath()));
+        Connection.Response response = Jsoup.connect("https://api.elevenlabs.io/v1/text-to-speech/" + voiceId)
+            .ignoreContentType(true)  // muy importante para recibir audio
+            .header("xi-api-key", elevenLabsApi)
+            .header("Content-Type", "application/json")
+            .requestBody(jsonBody)
+            .method(Connection.Method.POST)
+            .execute();
+
+        IOUtils.copy(response.bodyStream(), Files.newOutputStream(file.toPath()));
 
     }
 
@@ -327,5 +327,21 @@ public class Auxiliary {
         InputStream input = Files.newInputStream(file.toPath());
         env.load(input);
         return env;
+    }
+
+    public static File chooseDirectory() {
+        File directorioSeleccionado;
+        JFileChooser chooser = new JFileChooser();
+        chooser.setDialogTitle("Choose a directory");
+        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        chooser.setAcceptAllFileFilterUsed(false);
+        chooser.setCurrentDirectory(new File(TEAMS_DIR));
+        int resultado = chooser.showOpenDialog(null);
+        if (resultado == JFileChooser.APPROVE_OPTION) {
+            directorioSeleccionado = chooser.getSelectedFile();
+        } else {
+            directorioSeleccionado = null;
+        }
+        return directorioSeleccionado;
     }
 }

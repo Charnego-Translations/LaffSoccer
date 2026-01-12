@@ -5,6 +5,7 @@
 "confederation": "AFC",
 "city": "SEBASTOPOL",
 "stadium": "MÁSS NIEVE QUE EL COPÓNN",
+"year": null,
 "coach": {
 	"name": "MIKHAIL GORBACHOV",
 	"nationality": "RUS"
@@ -50,7 +51,7 @@
 	},
 	{
 		"name": "K. G. B.",
-		"shirtName": "K.G.B.",
+		"shirtName": "KGB",
 		"nationality": "RUS",
 		"role": "RIGHT_WINGER",
 		"number": 4,

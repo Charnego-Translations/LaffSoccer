@@ -5,6 +5,7 @@
 "confederation": "UEFA",
 "city": "JAMÓN YORK",
 "stadium": "BARCO PIRATA",
+"year": null,
 "coach": {
 	"name": "MR. BEAN",
 	"nationality": "ENG"
@@ -392,7 +393,7 @@
 		"nationality": "ENG",
 		"role": "RIGHT_WINGER",
 		"number": 2,
-		"skinColor": "ALIEN",
+		"skinColor": "PALE",
 		"hairColor": "PLATINUM",
 		"hairStyle": "SPECIAL_B",
 		"skills": {
@@ -430,13 +431,13 @@
 	},
 	{
 		"name": "GEORGE HARRISON",
-		"shirtName": "GEORGE H.",
+		"shirtName": "G. HARRISON",
 		"nationality": "ENG",
 		"role": "RIGHT_WINGER",
 		"number": 20,
-		"skinColor": "ALIEN",
-		"hairColor": "PUNK_FUCHSIA",
-		"hairStyle": "CURLY_C",
+		"skinColor": "PALE",
+		"hairColor": "BLACK",
+		"hairStyle": "CURLY_D",
 		"skills": {
 			"passing": 4,
 			"shooting": 2,
@@ -456,7 +457,7 @@
 	},
 	{
 		"name": "ROD STEWART",
-		"shirtName": "ROD STW.",
+		"shirtName": "R. STEWART",
 		"nationality": "ENG",
 		"role": "MIDFIELDER",
 		"number": 18,
@@ -507,7 +508,7 @@
 		"nationality": "ENG",
 		"role": "DEFENDER",
 		"number": 8,
-		"skinColor": "BLACK",
+		"skinColor": "PALE",
 		"hairColor": "BLOND",
 		"hairStyle": "SMOOTH_N",
 		"skills": {

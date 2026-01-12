@@ -9,6 +9,7 @@ import com.ygames.ysoccer.events.BallKickEvent;
 import com.ygames.ysoccer.events.CelebrationEvent;
 import com.ygames.ysoccer.events.CornerKickEvent;
 import com.ygames.ysoccer.events.CrowdChantsEvent;
+import com.ygames.ysoccer.events.EnterBenchEvent;
 import com.ygames.ysoccer.events.GoalKickEvent;
 import com.ygames.ysoccer.events.HomeGoalEvent;
 import com.ygames.ysoccer.events.KeeperDeflectEvent;
@@ -194,6 +195,11 @@ public class SoundManager {
 
         EventManager.subscribe(TackleEvent.class, tackleEvent -> {
             if (tackleEvent.opponent == null) return;
+            Commentary.INSTANCE.enqueueComment(
+                Arrays.stream(CommonComment.pull(CommonCommentType.FOUL, null, tackleEvent.player.team, tackleEvent.player))
+                    .map(s -> new Comment(CommentPriority.HIGH, s))
+                    .toArray(Comment[]::new)
+            );
             Commentary.INSTANCE.enqueueComment(Commentary.getComment(tackleEvent.isFault ? CommonCommentType.FOUL : CommonCommentType.NOT_FOUL, CommentPriority.HIGH));
             playVariations(SoundClass.PAIN);
         });
@@ -235,6 +241,14 @@ public class SoundManager {
                     EMath.oneIn(2.5f, () -> Commentary.INSTANCE.enqueueComment(new Comment(CommentPriority.LOW, playerSound)));
                 }
             }
+        });
+
+        EventManager.subscribe(EnterBenchEvent.class, enterBenchEvent -> {
+            Commentary.INSTANCE.enqueueComment(
+                Arrays.stream(CommonComment.pull(CommonCommentType.PLAYER_SWAP, enterBenchEvent.match.team[HOME], enterBenchEvent.team, null))
+                    .map(s -> new Comment(CommentPriority.HIGH, s))
+                    .toArray(Comment[]::new)
+            );
         });
 
         EventManager.subscribe(GoalKickEvent.class, goalKickEvent -> {

@@ -9,6 +9,8 @@ import com.ygames.ysoccer.match.Team;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.ygames.ysoccer.framework.Assets.EXTENSIONS;
+
 public class TeamCommentary {
 
         public static final Map<String, TeamCommentary> teams = new HashMap<>();
@@ -28,16 +30,25 @@ public class TeamCommentary {
 
             TeamCommentary element = new TeamCommentary();
 
-            element.teamName = loadSound(soundPath + "/team.ogg");
-            element.stadiumName = loadSound(soundPath + "/stadium.ogg");
-            element.city = loadSound(soundPath + "/city.ogg");
+            element.teamName = loadSound(getMedia(soundPath + "/team"));
+            element.stadiumName = loadSound(getMedia(soundPath + "/stadium"));
+            element.city = loadSound(getMedia(soundPath + "/" + "city"));
 
             team.players.forEach(player ->
-                element.players.put(player.shirtName, loadSound(soundPath + "/player_" + FileUtils.normalizeName(player.shirtName) + ".ogg"))
+                element.players.put(player.shirtName, loadSound(getMedia(soundPath + "/player_" + FileUtils.normalizeName(player.shirtName))))
             );
 
             teams.put(teamFile, element);
 
+        }
+
+        private static String getMedia(String name) {
+            for (String extension : EXTENSIONS) {
+                if (Gdx.files.internal(name + "." + extension).exists()) {
+                    return name + "." + extension;
+                }
+            }
+            return name + ".ogg";
         }
 
         public static void unload() {

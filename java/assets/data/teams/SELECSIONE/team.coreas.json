@@ -5,6 +5,7 @@
 "confederation": "AFC",
 "city": "KAH WEN TO",
 "stadium": "BLIZZARD ARENA",
+"year": null,
 "coach": {
 	"name": "STARCRAFT",
 	"nationality": "KOR"
@@ -16,16 +17,16 @@
 		"shirt1": "#f61c1c",
 		"shirt2": "#1e1e1e",
 		"shirt3": "#1e1e1e",
-		"shorts": "#1e1e1e",
-		"socks": "#bc1163"
+		"shorts": "#f61c1c",
+		"socks": "#f61c1c"
 	},
 	{
-		"style": "SIDE_LINES",
-		"shirt1": "#dfe8eb",
-		"shirt2": "#a31212",
-		"shirt3": "#a31212",
-		"shorts": "#dfe8eb",
-		"socks": "#dfe8eb"
+		"style": "PLAIN",
+		"shirt1": "#1e1e1e",
+		"shirt2": "#1e1e1e",
+		"shirt3": "#1e1e1e",
+		"shorts": "#1e1e1e",
+		"socks": "#1e1e1e"
 	},
 	{
 		"style": "DOUBLE_STRIPE",

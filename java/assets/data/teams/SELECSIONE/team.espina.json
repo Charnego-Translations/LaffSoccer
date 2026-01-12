@@ -5,6 +5,7 @@
 "confederation": "UEFA",
 "city": "MADRÍS",
 "stadium": "VALLE DE LOS CAÍDOS",
+"year": null,
 "coach": {
 	"name": "FRANCISCO FRASCO",
 	"nationality": "ESP"
@@ -46,7 +47,7 @@
 		"skinColor": "PINK",
 		"hairColor": "BLACK",
 		"hairStyle": "SMOOTH_A",
-		"value": 39
+		"value": 41
 	},
 	{
 		"name": "JOSÉ PELUCA SOTELO",
@@ -61,14 +62,12 @@
 			"passing": 5,
 			"shooting": 3,
 			"heading": 6,
-			"tackling": 7,
+			"tackling": 1,
 			"control": 5,
-			"speed": 7,
+			"speed": 2,
 			"finishing": 3
 		},
 		"bestSkills": [
-			"TACKLING",
-			"SPEED",
 			"HEADING"
 		]
 	},
@@ -85,15 +84,13 @@
 			"passing": 7,
 			"shooting": 4,
 			"heading": 5,
-			"tackling": 7,
-			"control": 7,
+			"tackling": 1,
+			"control": 1,
 			"speed": 6,
 			"finishing": 3
 		},
 		"bestSkills": [
-			"TACKLING",
-			"PASSING",
-			"CONTROL"
+			"PASSING"
 		]
 	},
 	{
@@ -106,19 +103,15 @@
 		"hairColor": "BLACK",
 		"hairStyle": "SMOOTH_A",
 		"skills": {
-			"passing": 7,
+			"passing": 4,
 			"shooting": 5,
-			"heading": 7,
-			"tackling": 7,
-			"control": 7,
-			"speed": 7,
+			"heading": 3,
+			"tackling": 3,
+			"control": 4,
+			"speed": 2,
 			"finishing": 4
 		},
-		"bestSkills": [
-			"TACKLING",
-			"HEADING",
-			"PASSING"
-		]
+		"bestSkills": []
 	},
 	{
 		"name": "JULIO RUIZ DE ALDI",
@@ -154,7 +147,7 @@
 		"hairColor": "BLACK",
 		"hairStyle": "SMOOTH_A",
 		"skills": {
-			"passing": 7,
+			"passing": 4,
 			"shooting": 6,
 			"heading": 6,
 			"tackling": 6,
@@ -163,7 +156,6 @@
 			"finishing": 5
 		},
 		"bestSkills": [
-			"PASSING",
 			"CONTROL",
 			"TACKLING"
 		]
@@ -178,17 +170,15 @@
 		"hairColor": "BLACK",
 		"hairStyle": "SMOOTH_A",
 		"skills": {
-			"passing": 7,
+			"passing": 2,
 			"shooting": 6,
 			"heading": 6,
 			"tackling": 5,
-			"control": 7,
+			"control": 3,
 			"speed": 6,
 			"finishing": 6
 		},
 		"bestSkills": [
-			"PASSING",
-			"CONTROL",
 			"HEADING"
 		]
 	},
@@ -206,13 +196,12 @@
 			"shooting": 2,
 			"heading": 3,
 			"tackling": 4,
-			"control": 5,
+			"control": 3,
 			"speed": 5,
-			"finishing": 1
+			"finishing": 3
 		},
 		"bestSkills": [
 			"PASSING",
-			"CONTROL",
 			"SPEED"
 		]
 	},
@@ -226,17 +215,15 @@
 		"hairColor": "BLACK",
 		"hairStyle": "SMOOTH_D",
 		"skills": {
-			"passing": 7,
+			"passing": 6,
 			"shooting": 5,
 			"heading": 4,
 			"tackling": 5,
-			"control": 7,
+			"control": 4,
 			"speed": 5,
 			"finishing": 6
 		},
 		"bestSkills": [
-			"CONTROL",
-			"PASSING",
 			"FINISHING"
 		]
 	},
@@ -254,15 +241,11 @@
 			"shooting": 6,
 			"heading": 5,
 			"tackling": 4,
-			"control": 7,
-			"speed": 7,
-			"finishing": 7
+			"control": 2,
+			"speed": 3,
+			"finishing": 4
 		},
-		"bestSkills": [
-			"CONTROL",
-			"SPEED",
-			"FINISHING"
-		]
+		"bestSkills": []
 	},
 	{
 		"name": "GENERAL MOLA MAZO",
@@ -289,8 +272,8 @@
 		]
 	},
 	{
-		"name": "WILLIAM NEGRI",
-		"shirtName": "NEGRI",
+		"name": "ISIDRO TOMA Y TOMA",
+		"shirtName": "TOMA",
 		"nationality": "ESP",
 		"role": "GOALKEEPER",
 		"number": 12,
@@ -300,8 +283,8 @@
 		"value": 38
 	},
 	{
-		"name": "SANDRO SALVADORE",
-		"shirtName": "SALVADORE",
+		"name": "EDUARDO JUNTÓS PEREZ",
+		"shirtName": "JUNTÓS",
 		"nationality": "ESP",
 		"role": "DEFENDER",
 		"number": 13,
@@ -309,23 +292,19 @@
 		"hairColor": "BLACK",
 		"hairStyle": "SMOOTH_A",
 		"skills": {
-			"passing": 7,
+			"passing": 1,
 			"shooting": 5,
-			"heading": 7,
-			"tackling": 7,
-			"control": 7,
+			"heading": 1,
+			"tackling": 2,
+			"control": 2,
 			"speed": 6,
 			"finishing": 4
 		},
-		"bestSkills": [
-			"TACKLING",
-			"HEADING",
-			"PASSING"
-		]
+		"bestSkills": []
 	},
 	{
-		"name": "GIOVANNI TRAPATTONI",
-		"shirtName": "TRAPATTONI",
+		"name": "CARLOS CANTARES NAVARRO",
+		"shirtName": "CANTARES",
 		"nationality": "ESP",
 		"role": "MIDFIELDER",
 		"number": 14,
@@ -333,23 +312,19 @@
 		"hairColor": "BLOND",
 		"hairStyle": "SMOOTH_A",
 		"skills": {
-			"passing": 7,
-			"shooting": 5,
-			"heading": 7,
-			"tackling": 7,
-			"control": 6,
-			"speed": 6,
+			"passing": 2,
+			"shooting": 6,
+			"heading": 2,
+			"tackling": 3,
+			"control": 7,
+			"speed": 3,
 			"finishing": 4
 		},
-		"bestSkills": [
-			"PASSING",
-			"TACKLING",
-			"HEADING"
-		]
+		"bestSkills": []
 	},
 	{
-		"name": "GIAMPAOLO MENICHELLI",
-		"shirtName": "MENICHELLI",
+		"name": "RAMÓN SERRANITO SUÑER",
+		"shirtName": "SERRANITO",
 		"nationality": "ESP",
 		"role": "LEFT_WINGER",
 		"number": 15,
@@ -358,22 +333,22 @@
 		"hairStyle": "SMOOTH_A",
 		"skills": {
 			"passing": 6,
-			"shooting": 6,
-			"heading": 5,
-			"tackling": 4,
-			"control": 6,
-			"speed": 7,
+			"shooting": 2,
+			"heading": 7,
+			"tackling": 6,
+			"control": 7,
+			"speed": 2,
 			"finishing": 6
 		},
 		"bestSkills": [
-			"SPEED",
 			"CONTROL",
-			"PASSING"
+			"PASSING",
+			"HEADING"
 		]
 	},
 	{
-		"name": "EZIO PASCUTTI",
-		"shirtName": "PASCUTTI",
+		"name": "VALENTÍN SOBRINO GONZÁLEZ",
+		"shirtName": "SOBRINO",
 		"nationality": "ESP",
 		"role": "ATTACKER",
 		"number": 16,
@@ -383,16 +358,14 @@
 		"skills": {
 			"passing": 5,
 			"shooting": 6,
-			"heading": 6,
+			"heading": 7,
 			"tackling": 5,
 			"control": 5,
-			"speed": 6,
-			"finishing": 7
+			"speed": 1,
+			"finishing": 0
 		},
 		"bestSkills": [
-			"FINISHING",
-			"HEADING",
-			"SPEED"
+			"HEADING"
 		]
 	}
 ]

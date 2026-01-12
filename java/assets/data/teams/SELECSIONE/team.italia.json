@@ -5,6 +5,7 @@
 "confederation": "UEFA",
 "city": "MONZA",
 "stadium": "AUTODROMO NAZIONALE DI MONZA",
+"year": null,
 "coach": {
 	"name": "SILVIO BERLUSCONI",
 	"nationality": "ITA"
@@ -13,11 +14,11 @@
 "kits": [
 	{
 		"style": "PLAIN",
-		"shirt1": "#417039",
-		"shirt2": "#2e247a",
-		"shirt3": "#2e247a",
-		"shorts": "#417039",
-		"socks": "#417039"
+		"shirt1": "#3033c1",
+		"shirt2": "#e8ef2f",
+		"shirt3": "#e8ef2f",
+		"shorts": "#dfe8eb",
+		"socks": "#3033c1"
 	},
 	{
 		"style": "PLAIN",

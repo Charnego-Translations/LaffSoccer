@@ -5,6 +5,7 @@
 "confederation": "UEFA",
 "city": "SEVILLA",
 "stadium": "LA NUEVA MAESTRANZA",
+"year": null,
 "coach": {
 	"name": "EL FARY",
 	"nationality": "ESP"
@@ -39,7 +40,7 @@
 "players": [
 	{
 		"name": "ARTURO PÉREZ-REVERTE",
-		"shirtName": "PEREZ-REVERTE",
+		"shirtName": "PÉREZ-REVERTE",
 		"nationality": "ESP",
 		"role": "GOALKEEPER",
 		"number": 19,
@@ -50,7 +51,7 @@
 	},
 	{
 		"name": "MANOLO ESCOBAR",
-		"shirtName": "MANOLO ESC.",
+		"shirtName": "M. ESCOBAR",
 		"nationality": "ESP",
 		"role": "MIDFIELDER",
 		"number": 4,
@@ -218,7 +219,7 @@
 	},
 	{
 		"name": "JULIO IGLESIAS",
-		"shirtName": "JULIO I.",
+		"shirtName": "J. IGLESIAS",
 		"nationality": "ESP",
 		"role": "LEFT_WINGER",
 		"number": 17,

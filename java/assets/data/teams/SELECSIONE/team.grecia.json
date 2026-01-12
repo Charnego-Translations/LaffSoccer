@@ -5,6 +5,7 @@
 "confederation": "UEFA",
 "city": "ATENAS",
 "stadium": "RUINA PURA",
+"year": null,
 "coach": {
 	"name": "LIBEROMÓVILES ADOSMILKALAS",
 	"nationality": "GRE"
@@ -304,8 +305,8 @@
 		"value": 26
 	},
 	{
-		"name": "ALEXEY HANSEN HALILI",
-		"shirtName": "ALEXEY HANSEN",
+		"name": "EURÍPIDES",
+		"shirtName": "EURÍPIDES",
 		"nationality": "GRE",
 		"role": "RIGHT_WINGER",
 		"number": 11,
@@ -324,8 +325,8 @@
 		"bestSkills": []
 	},
 	{
-		"name": "SANTIAGO FREITAS BRUNO",
-		"shirtName": "SANTIAGO B.",
+		"name": "PERICLES",
+		"shirtName": "PERICLES",
 		"nationality": "GRE",
 		"role": "DEFENDER",
 		"number": 7,
@@ -349,8 +350,8 @@
 		]
 	},
 	{
-		"name": "ANDRÉS FELIPE STEINER ROCHA",
-		"shirtName": "FELIPE STEINER",
+		"name": "HERÁCLITO",
+		"shirtName": "HERÁCLITO",
 		"nationality": "GRE",
 		"role": "DEFENDER",
 		"number": 4,
@@ -369,8 +370,8 @@
 		"bestSkills": []
 	},
 	{
-		"name": "HARRY LEROY",
-		"shirtName": "HARRY LEROY",
+		"name": "DIÓGENES DE SINOPE",
+		"shirtName": "DIÓGENES",
 		"nationality": "GRE",
 		"role": "RIGHT_WINGER",
 		"number": 5,

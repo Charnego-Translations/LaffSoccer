@@ -45,7 +45,9 @@ public class Commentary {
     /**
      * This is meant to be a singleton
      */
-    private Commentary() {}
+    private Commentary() {
+        Runtime.getRuntime().addShutdownHook(new Thread(this::stop));
+    }
 
     /**
      * Queue of comments
@@ -312,7 +314,9 @@ public class Commentary {
 
         GLGame.debug(COMMENTARY, this, "Stopping commentary subsystem");
 
-        scheduler.shutdown();
+        if (scheduler != null) {
+            scheduler.shutdown();
+        }
 
         current.clear();
         queue.clear();

@@ -1,5 +1,7 @@
 package com.ygames.ysoccer.match;
 
+import com.ygames.ysoccer.events.EnterBenchEvent;
+import com.ygames.ysoccer.framework.EventManager;
 import com.ygames.ysoccer.framework.GLGame;
 
 import static com.ygames.ysoccer.match.Const.TEAM_SIZE;
@@ -52,6 +54,8 @@ class MatchStateBenchEnter extends MatchState {
     @Override
     void doActions(float deltaTime) {
         super.doActions(deltaTime);
+
+        EventManager.publish(new EnterBenchEvent(fsm.getScene(), fsm.benchStatus.team));
 
         float timeLeft = deltaTime;
         while (timeLeft >= GLGame.SUBFRAME_DURATION) {
