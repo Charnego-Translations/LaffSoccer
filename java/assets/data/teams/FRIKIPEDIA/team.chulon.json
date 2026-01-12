@@ -154,7 +154,7 @@
 	},
 	{
 		"name": "DON REGATE",
-		"shirtName": "D. REGATE",
+		"shirtName": "DON REGATE",
 		"nationality": "ENG",
 		"role": "RIGHT_WINGER",
 		"number": 7,
@@ -201,7 +201,7 @@
 	},
 	{
 		"name": "EL MARCAJE SÁTIRO",
-		"shirtName": "M. SÁTIRO",
+		"shirtName": "MARCAJE S.",
 		"nationality": "CUS",
 		"role": "MIDFIELDER",
 		"number": 9,
@@ -279,7 +279,7 @@
 	},
 	{
 		"name": "EL REGATE LOCO",
-		"shirtName": "R. LOCO",
+		"shirtName": "REGATE LOCO",
 		"nationality": "ESP",
 		"role": "ATTACKER",
 		"number": 11,
@@ -310,7 +310,7 @@
 	},
 	{
 		"name": "DON PELOTAZO",
-		"shirtName": "D. PELOTAZO",
+		"shirtName": "DON PELOTAZO",
 		"nationality": "ESP",
 		"role": "DEFENDER",
 		"number": 13,
@@ -337,7 +337,7 @@
 	},
 	{
 		"name": "LA CARTULINA TRAVIESA",
-		"shirtName": "C. TRAVIESA",
+		"shirtName": "CARTULINA T.",
 		"nationality": "NIG",
 		"role": "MIDFIELDER",
 		"number": 16,
@@ -364,7 +364,7 @@
 	},
 	{
 		"name": "EL RECHACE INQUIETO",
-		"shirtName": "R. INQUIETO",
+		"shirtName": "RECHACE I.",
 		"nationality": "ENG",
 		"role": "LEFT_BACK",
 		"number": 17,
