@@ -161,6 +161,7 @@ Thumbs.db
 /assets/assets.txt
 .env
 *.xmp
+/assets/data/saves/**
 
 ## Special cases:
 

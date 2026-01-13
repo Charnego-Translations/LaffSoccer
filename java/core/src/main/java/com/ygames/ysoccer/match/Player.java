@@ -8,6 +8,7 @@ import com.badlogic.gdx.utils.JsonValue;
 import com.ygames.ysoccer.competitions.Competition;
 import com.ygames.ysoccer.events.KeeperDeflectEvent;
 import com.ygames.ysoccer.events.KeeperHoldEvent;
+import com.ygames.ysoccer.events.KeeperSaveEvent;
 import com.ygames.ysoccer.events.PlayerGetsBallEvent;
 import com.ygames.ysoccer.framework.Ai;
 import com.ygames.ysoccer.framework.Assets;
@@ -456,7 +457,7 @@ public class Player implements Json.Serializable {
 
                 case CATCH:
                     if (ball.v > 180) {
-                        EventManager.publish(new KeeperHoldEvent((Match) scene));
+                        EventManager.publish(new KeeperHoldEvent());
                     }
                     ball.v = 0;
                     ball.vz = 0;
@@ -468,7 +469,7 @@ public class Player implements Json.Serializable {
 
                 case DEFLECT:
                     if (ball.v > 180) {
-                        EventManager.publish(new KeeperDeflectEvent((Match) scene));
+                        EventManager.publish(new KeeperDeflectEvent());
                     }
                     // real ball x-y angle (when spinning, it is different from ball.a)
                     ballAxy = EMath.aTan2(ball.y - ball.y0, ball.x - ball.x0);
@@ -499,8 +500,10 @@ public class Player implements Json.Serializable {
         if (collisionType == KeeperCollision.CATCH) {
             if (scene.settings.commentary) {
                 int size = Assets.Commentary.keeperSave.size();
+                EventManager.publish(new KeeperSaveEvent((Match) scene));
                 if (size > 0) {
                     Assets.Commentary.keeperSave.get(Assets.RANDOM.nextInt(size)).play(SoundManager.volume / 100f);
+
                 }
             }
         }

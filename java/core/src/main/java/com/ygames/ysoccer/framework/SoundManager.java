@@ -14,6 +14,7 @@ import com.ygames.ysoccer.events.GoalKickEvent;
 import com.ygames.ysoccer.events.HomeGoalEvent;
 import com.ygames.ysoccer.events.KeeperDeflectEvent;
 import com.ygames.ysoccer.events.KeeperHoldEvent;
+import com.ygames.ysoccer.events.KeeperSaveEvent;
 import com.ygames.ysoccer.events.KickOffEvent;
 import com.ygames.ysoccer.events.MatchIntroEvent;
 import com.ygames.ysoccer.events.PenaltyEvent;
@@ -172,8 +173,11 @@ public class SoundManager {
 
         EventManager.subscribe(KeeperHoldEvent.class, keeperHoldEvent -> {
             hold.play(0.5f * volume / 100f);
+        });
+        
+        EventManager.subscribe(KeeperSaveEvent.class, keeperSaveEvent -> {
             Commentary.INSTANCE.enqueueComment(
-                pullComments(CommonCommentType.KEEPER_SAVE, keeperHoldEvent.match, CommentPriority.HIGH)
+                pullComments(CommonCommentType.KEEPER_SAVE, keeperSaveEvent.match, CommentPriority.HIGH)
             );
         });
 
