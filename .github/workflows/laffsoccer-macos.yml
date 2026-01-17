@@ -39,7 +39,7 @@ jobs:
           fi
 
           # Directorio de salida
-          APP_OUTPUT="release/Charnego Internatiolaff Soccer.app"
+          APP_OUTPUT="release"
           mkdir -p "$APP_OUTPUT"
 
           # JAR principal generado por Gradle
