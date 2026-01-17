@@ -24,9 +24,24 @@ jobs:
         working-directory: java
         run: ./gradlew lwjgl3:laffDistMacARM64 --no-daemon --console=plain --info
 
+      - name: Install Platypus
+        run: brew install platypus
+
+      - name: Build .app
+        run: |
+          platypus \
+          -a "Charnego Internatiolaff Soccer" \
+          -o None \
+          -i java/src/main/resources/libgdx128.png \
+          -u "/bin/bash" \
+          -V "${{ github.sha }}" \
+          -s "java/build/macApp/launch.command" \
+          -r \
+          -o release/CharnegoInternatiolaffSoccer.app
+
       - name: Publicar artefacto
         uses: actions/upload-artifact@v4
         with:
           name: laff-soccer-macos
           path: |
-            java/lwjgl3/build/libs
+            release
