@@ -30,6 +30,13 @@ jobs:
           # Leer la versión del proyecto desde gradle.properties
           projectVersion=$(grep '^projectVersion=' gradle.properties | cut -d'=' -f2)
           echo "Project version: $projectVersion"
+          
+          # Si empieza por 0., cambiar por 1.
+          if [[ "$projectVersion" == 0.* ]]; then
+            macVersion="1.${projectVersion#0.}"
+          else
+            macVersion="$projectVersion"
+          fi
 
           # Directorio de salida
           APP_OUTPUT="../../release/Charnego Internatiolaff Soccer.app"
