@@ -43,7 +43,7 @@ jobs:
           mkdir -p "$APP_OUTPUT"
 
           # JAR principal generado por Gradle
-          MAIN_JAR="LaffSoccer-${macVersion}.jar"
+          MAIN_JAR="LaffSoccer-${projectVersion}.jar"
 
           # Confirmar que existe
           ls lwjgl3/build/libs/$MAIN_JAR
@@ -56,7 +56,7 @@ jobs:
             --main-jar "$MAIN_JAR" \
             --main-class "com.ygames.ysoccer.lwjgl3.Lwjgl3Launcher" \
             --icon lwjgl3/icons/logo.png \
-            --app-version "$projectVersion" \
+            --app-version "$macVersion" \
             --dest "$APP_OUTPUT" \
             --runtime-image "$JAVA_HOME"
 
