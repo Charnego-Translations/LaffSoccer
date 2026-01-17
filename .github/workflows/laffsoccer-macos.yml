@@ -1,0 +1,32 @@
+name: Build MacOS LWJGL3
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build-macos:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout del repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: gradle
+
+      - name: Ejecutar Gradle (LWJGL3 MacosM1)
+        working-directory: java
+        run: .\gradlew.bat lwjgl3:laffDistMacARM64 --no-daemon --console=plain --info
+
+      - name: Publicar artefacto
+        uses: actions/upload-artifact@v4
+        with:
+          name: laff-soccer-macos
+          path: |
+            java/lwjgl3/build/libs
