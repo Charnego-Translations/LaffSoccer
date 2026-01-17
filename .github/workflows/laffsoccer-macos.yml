@@ -22,7 +22,7 @@ jobs:
 
       - name: Ejecutar Gradle (LWJGL3 MacosM1)
         working-directory: java
-        run: .\gradlew.bat lwjgl3:laffDistMacARM64 --no-daemon --console=plain --info
+        run: ./gradlew.sh lwjgl3:laffDistMacARM64 --no-daemon --console=plain --info
 
       - name: Publicar artefacto
         uses: actions/upload-artifact@v4
