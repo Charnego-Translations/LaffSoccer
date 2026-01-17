@@ -59,6 +59,9 @@ jobs:
             --app-version "$macVersion" \
             --dest "$APP_OUTPUT" \
             --runtime-image "$JAVA_HOME"
+          # Mostrar la ruta absoluta de la app generada
+          echo "La .app se ha generado en la ruta absoluta:"
+          realpath "$APP_OUTPUT"
 
       - name: Publicar artefacto
         uses: actions/upload-artifact@v4
