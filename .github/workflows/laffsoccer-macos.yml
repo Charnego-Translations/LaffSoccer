@@ -48,7 +48,7 @@ jobs:
             --input lwjgl3/build/libs \
             --main-jar "$MAIN_JAR" \
             --main-class "com.ygames.ysoccer.lwjgl3.Lwjgl3Launcher" \
-            --icon src/main/resources/libgdx128.png \
+            --icon lwjgl3/icons/logo.png \
             --app-version "$projectVersion" \
             --dest "$APP_OUTPUT" \
             --runtime-image "$JAVA_HOME"
