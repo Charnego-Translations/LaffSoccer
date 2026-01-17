@@ -24,24 +24,37 @@ jobs:
         working-directory: java
         run: ./gradlew lwjgl3:laffDistMacARM64 --no-daemon --console=plain --info
 
-      - name: Install Platypus
-        run: brew install platypus
-
-      - name: Build .app
+      - name: Build Mac .app con jpackage
+        working-directory: java
         run: |
-          platypus \
-          -a "Charnego Internatiolaff Soccer" \
-          -o None \
-          -i java/src/main/resources/libgdx128.png \
-          -u "/bin/bash" \
-          -V "${{ github.sha }}" \
-          -s "java/build/macApp/launch.command" \
-          -r \
-          -o release/CharnegoInternatiolaffSoccer.app
+          # Leer la versión del proyecto desde gradle.properties
+          projectVersion=$(grep '^projectVersion=' gradle.properties | cut -d'=' -f2)
+          echo "Project version: $projectVersion"
+
+          # Directorio de salida
+          APP_OUTPUT="../../release/Charnego Internatiolaff Soccer.app"
+          mkdir -p "$APP_OUTPUT"
+
+          # JAR principal generado por Gradle
+          MAIN_JAR="LaffSoccer-${projectVersion}.jar"
+
+          # Confirmar que existe
+          ls lwjgl3/build/libs/$MAIN_JAR
+
+          # Ejecutable .app con jpackage
+          jpackage \
+            --type app-image \
+            --name "Charnego Internatiolaff Soccer" \
+            --input lwjgl3/build/libs \
+            --main-jar "$MAIN_JAR" \
+            --main-class "com.ygames.ysoccer.lwjgl3.Lwjgl3Launcher" \
+            --icon src/main/resources/libgdx128.png \
+            --app-version "$projectVersion" \
+            --dest "$APP_OUTPUT" \
+            --runtime-image "$JAVA_HOME"
 
       - name: Publicar artefacto
         uses: actions/upload-artifact@v4
         with:
           name: laff-soccer-macos
-          path: |
-            release
+          path: release
