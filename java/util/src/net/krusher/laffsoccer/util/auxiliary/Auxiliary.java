@@ -6,15 +6,7 @@ import com.ygames.ysoccer.framework.EMath;
 import com.ygames.ysoccer.match.Kit;
 import com.ygames.ysoccer.match.Player;
 import com.ygames.ysoccer.match.Team;
-import net.andrewcpu.elevenlabs.ElevenLabs;
-import net.andrewcpu.elevenlabs.builders.SpeechGenerationBuilder;
-import net.andrewcpu.elevenlabs.enums.ElevenLabsVoiceModel;
-import net.andrewcpu.elevenlabs.enums.GeneratedAudioOutputFormat;
-import net.andrewcpu.elevenlabs.model.voice.VoiceSettings;
-import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.jsoup.Connection;
-import org.jsoup.Jsoup;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -23,7 +15,6 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
@@ -46,6 +37,7 @@ import java.util.stream.IntStream;
 public class Auxiliary {
 
     public static final Random RND = new Random();
+    public static final String USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64)";
 
     public static final int DICE = 5;
     public static final int MAX_STAT = 8;
@@ -245,6 +237,9 @@ public class Auxiliary {
     }
 
     public static void downloadImageAndResize(String fileUrl, Path targetPath, int width, int height) throws IOException {
+        if (fileUrl.length() < 7) {
+            return;
+        }
         URL url = new URL(fileUrl);
         try (InputStream in = url.openStream()) {
 
@@ -305,19 +300,19 @@ public class Auxiliary {
         }
 
         String jsonBody = "{"
-            + "\"text\":\"" + text.replace("\"[Speak peninsular Spanish]", "\\\".") + "\","
+            + "\"text\":\"" + text.replace("\"[Speak Spanish]", "\\\".") + "\","
             + "\"model_id\":\"eleven_v3\""
             + "}";
 
-        Connection.Response response = Jsoup.connect("https://api.elevenlabs.io/v1/text-to-speech/" + voiceId)
+/*        Connection.Response response = Jsoup.connect("https://api.elevenlabs.io/v1/text-to-speech/" + voiceId)
             .ignoreContentType(true)  // muy importante para recibir audio
             .header("xi-api-key", elevenLabsApi)
             .header("Content-Type", "application/json")
             .requestBody(jsonBody)
             .method(Connection.Method.POST)
-            .execute();
+            .execute();*/
 
-        IOUtils.copy(response.bodyStream(), Files.newOutputStream(file.toPath()));
+        //IOUtils.copy(response.bodyStream(), Files.newOutputStream(file.toPath()));
 
     }
 

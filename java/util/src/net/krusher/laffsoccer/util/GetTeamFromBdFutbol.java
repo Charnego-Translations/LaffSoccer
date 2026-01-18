@@ -25,12 +25,12 @@ import java.util.stream.IntStream;
 import static net.krusher.laffsoccer.util.GenerateTeam.HAIR_STYLES;
 import static net.krusher.laffsoccer.util.GenerateTeam.randomKit;
 import static net.krusher.laffsoccer.util.auxiliary.Auxiliary.RND;
+import static net.krusher.laffsoccer.util.auxiliary.Auxiliary.USER_AGENT;
 
 public class GetTeamFromBdFutbol {
 
     private final static Map<String, String> COUNTRY_CONV = new HashMap<>();
     private final static Map<String, Player.Role> POSITION_CONV = new HashMap<>();
-    public static final String USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64)";
 
     static {
         COUNTRY_CONV.put("españa", "ESP");
@@ -136,6 +136,9 @@ public class GetTeamFromBdFutbol {
             .get();
 
         File directory = new File(fileToSave.getParent() + "/" + teamFile);
+        if (!directory.exists()) {
+            directory.mkdir();
+        }
 
         Team team = new Team();
         team.coach = new Coach();
@@ -200,8 +203,8 @@ public class GetTeamFromBdFutbol {
                 player.shirtName = tr.select("td span").get(0).text().toUpperCase();
                 player.name = tr.select("td span").get(1).text().toUpperCase();
 
-                String pais = tr.select("div.pais").get(0).classNames().toArray()[1].toString();
-                String posicion = tr.select("td div.fit").get(0).classNames().toArray()[1].toString();
+                String pais = tr.select("div.pais").stream().findFirst().map(element -> element.classNames().toArray()[1].toString()).orElse(null);;
+                String posicion = tr.select("td div.fit").stream().findFirst().map(element -> element.classNames().toArray()[1].toString()).orElse(null);
 
                 player.nationality = COUNTRY_CONV.getOrDefault(pais, "ESP");
                 player.role = POSITION_CONV.getOrDefault(posicion, Player.Role.DEFENDER);
