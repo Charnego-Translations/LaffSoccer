@@ -240,7 +240,7 @@ public class Auxiliary {
     }
 
     public static void downloadImageAndResize(String fileUrl, Path targetPath, int width, int height) throws IOException {
-        if (fileUrl.length() < 7 || targetPath.toFile().exists()) {
+        if (targetPath.toFile().exists()) {
             return;
         }
         URL url = new URL(fileUrl);

@@ -2,24 +2,20 @@ package net.krusher.laffsoccer.util;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.IntStream;
 
 public class GetLeaguesFromBdFutbol {
 
-    public static final String HISTORICOS_JSON = "[\n" +
-        "  \"HISTÓRICOS\"\n" +
-        "]\n";
-
-    public static Map<String, String> leagues = new HashMap<>();
+    public static Map<String, String> leagues = new LinkedHashMap<>();
 
     public static final String TARGET_DIR = "C:\\dev\\repos\\LaffSoccer-ligas\\";
 
     static {
+        leagues.put("https://www.bdfutbol.com/es/t/t2025-26.html", TARGET_DIR + "2025\\LALIGA\\1DIVISION");
+        leagues.put("https://www.bdfutbol.com/es/t/t2025-262a.html", TARGET_DIR + "2025\\LALIGA\\2DIVISION");
         leagues.put("https://www.bdfutbol.com/es/t/t2025-261rf1.html", TARGET_DIR + "2025\\LALIGA\\1RFEF\\GRUPO1");
         leagues.put("https://www.bdfutbol.com/es/t/t2025-261rf2.html", TARGET_DIR + "2025\\LALIGA\\1RFEF\\GRUPO2");
         leagues.put("https://www.bdfutbol.com/es/t/t2025-262aB1.html", TARGET_DIR + "2025\\LALIGA\\2RFEF\\GRUPO1");
@@ -41,10 +37,10 @@ public class GetLeaguesFromBdFutbol {
 
     public static void main(String[] args) throws IOException {
 
-        Map<String, String> allLeagues = new HashMap<>();
+        Map<String, String> allLeagues = new LinkedHashMap<>();
         String initialYear = "2025-26";
         String yearFolder = "2025";
-        Set<Integer> years = IntStream.range(1980, 2025).boxed().collect(java.util.stream.Collectors.toSet());
+        Set<Integer> years = IntStream.range(2000, 2025).boxed().collect(java.util.stream.Collectors.toSet());
         for (Map.Entry<String, String> league : leagues.entrySet()) {
             allLeagues.put(league.getKey(), league.getValue());
             for (Integer year : years) {
@@ -63,14 +59,17 @@ public class GetLeaguesFromBdFutbol {
 
             try {
                 GetLeagueFromBdFutbol.main(new String[]{league.getKey(), league.getValue()});
-                Files.write(Paths.get(league.getValue() + "/leagues.json"), HISTORICOS_JSON.getBytes());
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
 
-    public static int followingYearTwoFigures(int year) {
-        return (year + 1) % 100;
+    public static String followingYearTwoFigures(int year) {
+        int result = (year + 1) % 100;
+        if (result == 0) {
+            return "00";
+        }
+        return result < 10 ? "0" + result : String.valueOf(result);
     }
 }

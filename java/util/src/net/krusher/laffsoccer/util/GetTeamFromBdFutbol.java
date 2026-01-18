@@ -196,7 +196,7 @@ public class GetTeamFromBdFutbol {
 
         String comment = doc.select("span.heroh1").text();
 
-        List<Integer> numbers = IntStream.rangeClosed(1, 50).boxed().collect(Collectors.toList());
+        List<Integer> numbers = IntStream.rangeClosed(1, 99).boxed().collect(Collectors.toList());
 
         doc.select("#taulaplantilla tr:not(.parteix, .fons-transparent)").stream()
             .skip(1)
@@ -252,19 +252,25 @@ public class GetTeamFromBdFutbol {
                     return;
                 }
 
-                String playerImageUrl = url.substring(0, url.lastIndexOf('/') + 1) + playerDoc.select("div.active img").attr("src");
+                String imgUrl = playerDoc.select("div.active img").attr("src");
+                if (imgUrl.length() > 7) {
+                    String playerImageUrl = url.substring(0, url.lastIndexOf('/') + 1) + imgUrl;
+                    try {
+                        if (!directory.exists()) {
+                            directory.mkdir();
+                        }
+                        Auxiliary.downloadImageAndResize(playerImageUrl, Paths.get(directory.getAbsolutePath() +"/" + FileUtils.normalizeName(player.shirtName) + ".png"), 70, 94);
+                        //System.out.println("Downloaded " + player.shirtName + " from " + playerImageUrl);
+                    } catch (IOException e) {
+                        System.out.println("Error downloading " + player.shirtName + " from " + playerImageUrl);
+                        e.printStackTrace();
+                    }
+                }
+
                 try {
                     if (!directory.exists()) {
                         directory.mkdir();
                     }
-                    Auxiliary.downloadImageAndResize(playerImageUrl, Paths.get(directory.getAbsolutePath() +"/" + FileUtils.normalizeName(player.shirtName) + ".png"), 70, 94);
-                    //System.out.println("Downloaded " + player.shirtName + " from " + playerImageUrl);
-                } catch (IOException e) {
-                    System.out.println("Error downloading " + player.shirtName + " from " + playerImageUrl);
-                    e.printStackTrace();
-                }
-
-                try {
                     Auxiliary.generateVoice(player.shirtName + ".", new File(directory.getAbsolutePath() +"/player_" + FileUtils.normalizeName(player.shirtName) + ".mp3"));
                 } catch (Exception e) {
                     System.out.println("Error downloading " + player.shirtName + " voice");
