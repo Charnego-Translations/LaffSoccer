@@ -19,11 +19,15 @@ y MacacOS X. En realidad, en cualquier sitio que tenga instalado Java 8.
 INSTRUCCIONES
 
 Se proporcionan versiones para Windowrs, Leenucs y MacAcOs, listas para
-viciarse. En otros sistemas operativos, usa Java 8 para ejecutar el .jar que 
+viciarse. En otros sistemas operativos, usa Java 8 para ejecutar el .jar que
 hay en cualquiera de las versiones. ¡Búscate la vida, tío!
 
-(En Windorws ejecuta el fichero LaffSoccer.cmd, en Leenucs el LaffSoccer.sh y
-en Mak el LaffSoccer.command, no me seas brutísimo)
+En Windorws ejecuta el fichero LaffSoccer.cmd, en Leenucs el LaffSoccer.sh y
+en Mak el LaffSoccer.command, no me seas brutísimo.
+
+NOTA: En MacAcOs hay que ejecutar el LaffSoccer.command desde el Terminal,
+porque los que han hecho este sistema operativo son subnormales profundos
+y no permiten ejecutar así como así cosas bajadas de internet.
 
 CONTROLES POR DEFESTO
 
