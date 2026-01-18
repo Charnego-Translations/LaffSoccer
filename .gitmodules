@@ -1,0 +1,4 @@
+[submodule "java/assets/data/teams/LIGAS"]
+	path = java/assets/data/teams/LIGAS
+	url = https://github.com/Charnego-Translations/LaffSoccer-ligas.git
+	branch = main
