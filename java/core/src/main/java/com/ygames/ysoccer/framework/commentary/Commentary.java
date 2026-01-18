@@ -120,7 +120,8 @@ public class Commentary {
             && !queue.isEmpty() && elements[0].commentPriority.weight > queue.peek()[0].commentPriority.weight
             && elements[0].commentPriority != CommentPriority.CHITCHAT
             && elements[0].commentPriority.weight > CommentPriority.HIGH.weight)
-            || (playing != null && queueLength > MAX_QUEUE && elements[0].commentPriority.weight >= CommentPriority.HIGH.weight && playing.commentPriority.weight >= CommentPriority.HIGH.weight);
+            || (playing != null && queueLength > MAX_QUEUE && elements[0].commentPriority.weight >= CommentPriority.HIGH.weight && playing.commentPriority.weight >= CommentPriority.HIGH.weight)
+            || (playing != null && elements[0].commentPriority == CommentPriority.LOW && playing.commentPriority == CommentPriority.LOW);
     }
 
     /**
