@@ -34,14 +34,17 @@ public class GetLeagueFromBdFutbol {
             .timeout(10_000)
             .get();
 
-        doc.select("table.taula_classificacio tr").parallelStream().
-            skip(1)
+        doc.select("table.taula_classificacio tr").stream()
+            .skip(1)
             .forEach(tr -> {
                 String team = tr.select("td.text-nowrap").text();
                 String teamUrl = tr.select("td.text-nowrap a").attr("href");
-
+                File teamFile = new File(teamsDirectory.getAbsolutePath() + "/team." + FileUtils.normalizeName(team) + ".json");
+                if (teamFile.exists()) {
+                    return;
+                }
                 try {
-                    GetTeamFromBdFutbol.main(new String[]{url.substring(0, url.lastIndexOf('/') + 1) + teamUrl, teamsDirectory.getAbsolutePath() + "/team." + FileUtils.normalizeName(team) + ".json"});
+                    GetTeamFromBdFutbol.main(new String[]{url.substring(0, url.lastIndexOf('/') + 1) + teamUrl, teamFile.getAbsolutePath()});
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }

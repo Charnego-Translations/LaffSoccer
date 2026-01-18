@@ -7,6 +7,7 @@ import com.ygames.ysoccer.match.Player;
 import com.ygames.ysoccer.match.Skin;
 import com.ygames.ysoccer.match.Team;
 import net.krusher.laffsoccer.util.auxiliary.Auxiliary;
+import org.jsoup.HttpStatusException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
@@ -130,10 +131,16 @@ public class GetTeamFromBdFutbol {
         String teamFile = FileUtils.getTeamFromFile(fileToSave.toString());
 
         // Conecta y descarga
-        Document doc = Jsoup.connect(url)
-            .userAgent(USER_AGENT)
-            .timeout(10_000)
-            .get();
+        Document doc;
+        try {
+            doc = Jsoup.connect(url)
+                .userAgent(USER_AGENT)
+                .timeout(10_000)
+                .get();
+        } catch (HttpStatusException e) {
+            System.out.println("Error loading: " + url);
+            return;
+        }
 
         File directory = new File(fileToSave.getParent() + "/" + teamFile);
         if (!directory.exists()) {
@@ -244,7 +251,7 @@ public class GetTeamFromBdFutbol {
                         directory.mkdir();
                     }
                     Auxiliary.downloadImageAndResize(playerImageUrl, Paths.get(directory.getAbsolutePath() +"/" + FileUtils.normalizeName(player.shirtName) + ".png"), 70, 94);
-                    System.out.println("Downloaded " + player.shirtName + " from " + playerImageUrl);
+                    //System.out.println("Downloaded " + player.shirtName + " from " + playerImageUrl);
                 } catch (IOException e) {
                     System.out.println("Error downloading " + player.shirtName + " from " + playerImageUrl);
                     e.printStackTrace();

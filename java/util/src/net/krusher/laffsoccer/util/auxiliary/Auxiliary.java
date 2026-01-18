@@ -6,7 +6,10 @@ import com.ygames.ysoccer.framework.EMath;
 import com.ygames.ysoccer.match.Kit;
 import com.ygames.ysoccer.match.Player;
 import com.ygames.ysoccer.match.Team;
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.jsoup.Connection;
+import org.jsoup.Jsoup;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -237,7 +240,7 @@ public class Auxiliary {
     }
 
     public static void downloadImageAndResize(String fileUrl, Path targetPath, int width, int height) throws IOException {
-        if (fileUrl.length() < 7) {
+        if (fileUrl.length() < 7 || targetPath.toFile().exists()) {
             return;
         }
         URL url = new URL(fileUrl);
@@ -304,15 +307,15 @@ public class Auxiliary {
             + "\"model_id\":\"eleven_v3\""
             + "}";
 
-/*        Connection.Response response = Jsoup.connect("https://api.elevenlabs.io/v1/text-to-speech/" + voiceId)
+        Connection.Response response = Jsoup.connect("https://api.elevenlabs.io/v1/text-to-speech/" + voiceId)
             .ignoreContentType(true)  // muy importante para recibir audio
             .header("xi-api-key", elevenLabsApi)
             .header("Content-Type", "application/json")
             .requestBody(jsonBody)
             .method(Connection.Method.POST)
-            .execute();*/
+            .execute();
 
-        //IOUtils.copy(response.bodyStream(), Files.newOutputStream(file.toPath()));
+        IOUtils.copy(response.bodyStream(), Files.newOutputStream(file.toPath()));
 
     }
 
