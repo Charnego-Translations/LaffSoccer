@@ -37,7 +37,7 @@ public class GetLeagueFromBdFutbol {
         doc.select("table.taula_classificacio tr").stream()
             .skip(1)
             .forEach(tr -> {
-                String team = tr.select("td.text-nowrap").text();
+                String team = tr.select("td.text-nowrap a").text();
                 String teamUrl = tr.select("td.text-nowrap a").attr("href");
                 File teamFile = new File(teamsDirectory.getAbsolutePath() + "/team." + FileUtils.normalizeName(team) + ".json");
                 if (teamFile.exists()) {

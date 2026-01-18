@@ -7,6 +7,7 @@ import com.ygames.ysoccer.match.Player;
 import com.ygames.ysoccer.match.Skin;
 import com.ygames.ysoccer.match.Team;
 import net.krusher.laffsoccer.util.auxiliary.Auxiliary;
+import org.apache.commons.lang3.StringUtils;
 import org.jsoup.HttpStatusException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -195,7 +196,7 @@ public class GetTeamFromBdFutbol {
 
         String comment = doc.select("span.heroh1").text();
 
-        List<Integer> numbers = IntStream.rangeClosed(1, 30).boxed().collect(Collectors.toList());
+        List<Integer> numbers = IntStream.rangeClosed(1, 50).boxed().collect(Collectors.toList());
 
         doc.select("#taulaplantilla tr:not(.parteix, .fons-transparent)").stream()
             .skip(1)
@@ -218,7 +219,13 @@ public class GetTeamFromBdFutbol {
 
                 Integer playerNumber;
                 try {
-                    playerNumber = Integer.valueOf(tr.select("td").get(0).text());
+                    String numberString = tr.select("td").get(0).text();
+                    if (StringUtils.isNotBlank(numberString)) {
+                        playerNumber = Integer.valueOf(tr.select("td").get(0).text());
+                        numbers.remove(playerNumber);
+                    } else {
+                        playerNumber = null;
+                    }
                 } catch (Exception e) {
                     playerNumber = null;
                 }
