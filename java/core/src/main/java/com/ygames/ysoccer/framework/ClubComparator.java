@@ -8,7 +8,7 @@ import java.util.Locale;
 public class ClubComparator {
 
     private static final List<String> PREFIXES = Arrays.asList(
-        "fc", "cf", "as", "sd", "cd", "ud", "sc", "ac", "rc", "af", "asd", "cp", "rcd"
+        "fc", "cf", "as", "sd", "cd", "ud", "sc", "ac", "rc", "af", "asd", "cp", "rcd", "ca"
     );
 
     public static final Comparator<String> CLUB_COMPARATOR = Comparator.comparing(ClubComparator::normalize);
