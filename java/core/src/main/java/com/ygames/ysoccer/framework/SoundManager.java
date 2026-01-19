@@ -174,7 +174,7 @@ public class SoundManager {
         EventManager.subscribe(KeeperHoldEvent.class, keeperHoldEvent -> {
             hold.play(0.5f * volume / 100f);
         });
-        
+
         EventManager.subscribe(KeeperSaveEvent.class, keeperSaveEvent -> {
             Commentary.INSTANCE.enqueueComment(
                 pullComments(CommonCommentType.KEEPER_SAVE, keeperSaveEvent.match, CommentPriority.HIGH)
@@ -231,7 +231,7 @@ public class SoundManager {
             if (playerGetsBallEvent.player.team.path != null) {
                 Sound playerSound = TeamCommentary.teams.get(FileUtils.getTeamFromFile(playerGetsBallEvent.player.team.path)).players.get(playerGetsBallEvent.player.shirtName);
                 if (playerSound != null) {
-                    EMath.oneIn(1.25f, () -> Commentary.INSTANCE.enqueueComment(new Comment(CommentPriority.LOW, playerSound)));
+                    Commentary.INSTANCE.enqueueComment(new Comment(CommentPriority.LOW, playerSound));
                 }
             }
         });

@@ -30,18 +30,16 @@ public class Intro extends GLScreen {
         BitmapFont font = new BitmapFont(true);
         String[] lines = {
             "Charnego Internatiolaff Soccer",
-            "Charnego Translations Inc. & Enloartolameza Studios",
+            "Charnego Translations Inc.",
             "",
             "Basado en YSoccer",
             "",
             "Este juego se distribuye SIN NINGUNA GARANTÍA, pulsa 'W' para saber más.",
-            "Juego libre y gratuito con licencia GPL2.",
-            "Dale a la 'C' para ver más.",
-            "",
+            "Juego libre y gratuito con licencia GPL2. Dale a la 'C' para ver más.",
             "",
             "¡¡Pica una tecla pa viciarte!!"
         };
-        w = new TextBox(font, Arrays.asList(lines), Gui.WIDTH / 4, 420, Gui.WIDTH / 2);
+        w = new TextBox(font, Arrays.asList(lines), Gui.WIDTH / 4, 520, Gui.WIDTH / 2);
         widgets.add(w);
     }
 
