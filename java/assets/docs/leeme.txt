@@ -29,6 +29,14 @@ NOTA: En MacAcOs hay que ejecutar el LaffSoccer.command desde el Terminal,
 porque los que han hecho este sistema operativo son subnormales profundos
 y no permiten ejecutar así como así cosas bajadas de internet.
 
+INTELIGENSIA ABOMINABLE
+
+Sí, hemos usao la IA para crear la intro y para los comentarios, no nos
+daba el prosupuesto para contratar a gente de verdad. En total nos hemos
+gastao el equivalente a dos paquetes de tabaco en la generación de cosas.
+
+El logo es de verdad, creado por Suquet de Peix.
+
 CONTROLES POR DEFESTO
 
 Jugador 1:
