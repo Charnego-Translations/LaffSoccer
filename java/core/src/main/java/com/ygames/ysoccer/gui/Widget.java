@@ -152,11 +152,11 @@ public abstract class Widget {
 
             case FIRE2_DOWN:
                 onFire2Down();
+                SoundManager.button.play(SoundManager.volume / 100f);
                 break;
 
             case FIRE2_HOLD:
                 onFire2Hold();
-                SoundManager.button.play(SoundManager.volume / 100f);
                 break;
 
             case FIRE2_UP:

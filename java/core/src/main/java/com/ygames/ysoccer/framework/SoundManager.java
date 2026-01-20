@@ -94,7 +94,7 @@ public class SoundManager {
 
         EventManager.subscribe(BallKickEvent.class, ballKickEvent -> {
             if (ballKickEvent.isSuperShoot) {
-                shotgun.play(volume / 100f);
+                shotgun.play(volume / 130f);
             } else {
                 kick.play(ballKickEvent.strength * volume / 100f);
             }
@@ -106,12 +106,12 @@ public class SoundManager {
 
         EventManager.subscribe(CrowdChantsEvent.class, crowdChantsEvent -> {
             if (crowdChantsEnabled) {
-                crowdChantsEvent.sound.play(volume / 160f);
+                crowdChantsEvent.sound.play(volume / 200f);
             }
         });
 
         EventManager.subscribe(HomeGoalEvent.class, homeGoalEvent -> {
-            homeGoal.play(volume / 100f);
+            homeGoal.play(volume / 160f);
             if (homeGoalEvent.match == null || homeGoalEvent.goal == null) {
                 return;
             }
