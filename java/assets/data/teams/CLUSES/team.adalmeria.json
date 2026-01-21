@@ -80,7 +80,7 @@
 		"nationality": "ESP",
 		"role": "DEFENDER",
 		"number": 3,
-		"skinColor": "ASIATIC",
+		"skinColor": "PALE",
 		"hairColor": "RED",
 		"hairStyle": "SMOOTH_P",
 		"skills": {
@@ -100,7 +100,7 @@
 		"nationality": "ESP",
 		"role": "DEFENDER",
 		"number": 4,
-		"skinColor": "RED",
+		"skinColor": "ARAB",
 		"hairColor": "RED",
 		"hairStyle": "SPECIAL_F",
 		"skills": {
@@ -395,7 +395,7 @@
 		"nationality": "ESP",
 		"role": "LEFT_BACK",
 		"number": 18,
-		"skinColor": "ASIATIC",
+		"skinColor": "PALE",
 		"hairColor": "GRAY",
 		"hairStyle": "SMOOTH_A",
 		"skills": {
@@ -421,7 +421,7 @@
 		"nationality": "ESP",
 		"role": "RIGHT_BACK",
 		"number": 19,
-		"skinColor": "ASIATIC",
+		"skinColor": "PALE",
 		"hairColor": "BLOND",
 		"hairStyle": "THINNING_B",
 		"skills": {

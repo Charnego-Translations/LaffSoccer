@@ -232,7 +232,7 @@
 		"nationality": "ESP",
 		"role": "LEFT_BACK",
 		"number": 9,
-		"skinColor": "BLACK",
+		"skinColor": "PALE",
 		"hairColor": "BLOND",
 		"hairStyle": "CURLY_A",
 		"skills": {
@@ -339,7 +339,7 @@
 		"nationality": "ESP",
 		"role": "RIGHT_WINGER",
 		"number": 14,
-		"skinColor": "BLACK",
+		"skinColor": "PALE",
 		"hairColor": "RED",
 		"hairStyle": "PIGTAIL_C",
 		"skills": {
@@ -382,7 +382,7 @@
 		"nationality": "ESP",
 		"role": "LEFT_BACK",
 		"number": 16,
-		"skinColor": "BLACK",
+		"skinColor": "PALE",
 		"hairColor": "WHITE",
 		"hairStyle": "SMOOTH_P",
 		"skills": {
@@ -468,8 +468,8 @@
 		"nationality": "HUN",
 		"role": "DEFENDER",
 		"number": 20,
-		"skinColor": "BLACK",
-		"hairColor": "PUNK_FUCHSIA",
+		"skinColor": "PALE",
+		"hairColor": "BLACK",
 		"hairStyle": "THINNING_B",
 		"skills": {
 			"passing": 4,

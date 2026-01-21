@@ -206,7 +206,7 @@
 		"role": "MIDFIELDER",
 		"number": 8,
 		"skinColor": "MULATTO",
-		"hairColor": "PUNK_FUCHSIA",
+		"hairColor": "BLACK",
 		"hairStyle": "SPECIAL_H",
 		"skills": {
 			"passing": 1,
@@ -354,7 +354,7 @@
 		"role": "LEFT_WINGER",
 		"number": 15,
 		"skinColor": "PALE",
-		"hairColor": "PUNK_FUCHSIA",
+		"hairColor": "BLACK",
 		"hairStyle": "SMOOTH_M",
 		"skills": {
 			"passing": 0,
@@ -463,8 +463,8 @@
 		"nationality": "ITA",
 		"role": "DEFENDER",
 		"number": 20,
-		"skinColor": "BLACK",
-		"hairColor": "RED",
+		"skinColor": "PALE",
+		"hairColor": "PLATINUM",
 		"hairStyle": "SPECIAL_C",
 		"skills": {
 			"passing": 2,

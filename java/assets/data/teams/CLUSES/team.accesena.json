@@ -270,7 +270,7 @@
 		"role": "RIGHT_BACK",
 		"number": 11,
 		"skinColor": "ARAB",
-		"hairColor": "PUNK_FUCHSIA",
+		"hairColor": "BLACK",
 		"hairStyle": "CURLY_A",
 		"skills": {
 			"passing": 2,
@@ -626,7 +626,7 @@
 		"number": 26,
 		"skinColor": "PINK",
 		"hairColor": "PLATINUM",
-		"hairStyle": "SPECIAL_G",
+		"hairStyle": "SPECIAL_B",
 		"skills": {
 			"passing": 4,
 			"shooting": 2,

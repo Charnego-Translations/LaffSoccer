@@ -4,6 +4,7 @@
 "country": "SYR",
 "city": "ISLA DEL MELÓN",
 "stadium": "MUNISIPAL DE ISLA MELÓN",
+"year": null,
 "coach": {
 	"name": "SARGENTO LECHUSQUERO",
 	"nationality": "ESP"
@@ -90,11 +91,9 @@
 			"tackling": 6,
 			"control": 5,
 			"speed": 5,
-			"finishing": 0
+			"finishing": 2
 		},
-		"bestSkills": [
-			"FINISHING"
-		]
+		"bestSkills": []
 	},
 	{
 		"name": "VIGÍA DE ISLA MELÓN",
@@ -111,8 +110,8 @@
 			"heading": 4,
 			"tackling": 3,
 			"control": 7,
-			"speed": 6,
-			"finishing": 0
+			"speed": 7,
+			"finishing": 2
 		},
 		"bestSkills": [
 			"CONTROL",
@@ -133,7 +132,7 @@
 			"passing": 2,
 			"shooting": 1,
 			"heading": 1,
-			"tackling": 0,
+			"tackling": 2,
 			"control": 3,
 			"speed": 2,
 			"finishing": 5
@@ -157,7 +156,7 @@
 		"skills": {
 			"passing": 2,
 			"shooting": 7,
-			"heading": 0,
+			"heading": 1,
 			"tackling": 6,
 			"control": 6,
 			"speed": 6,
@@ -184,12 +183,11 @@
 			"shooting": 5,
 			"heading": 7,
 			"tackling": 4,
-			"control": 0,
+			"control": 1,
 			"speed": 6,
-			"finishing": 3
+			"finishing": 4
 		},
 		"bestSkills": [
-			"CONTROL",
 			"SHOOTING",
 			"TACKLING",
 			"SPEED",
@@ -212,7 +210,7 @@
 			"tackling": 5,
 			"control": 4,
 			"speed": 1,
-			"finishing": 7
+			"finishing": 0
 		},
 		"bestSkills": []
 	},
@@ -228,11 +226,11 @@
 		"skills": {
 			"passing": 1,
 			"shooting": 0,
-			"heading": 0,
+			"heading": 1,
 			"tackling": 3,
 			"control": 6,
 			"speed": 2,
-			"finishing": 6
+			"finishing": 7
 		},
 		"bestSkills": []
 	},
@@ -249,7 +247,7 @@
 			"passing": 1,
 			"shooting": 6,
 			"heading": 1,
-			"tackling": 0,
+			"tackling": 1,
 			"control": 2,
 			"speed": 2,
 			"finishing": 3
@@ -276,7 +274,7 @@
 			"tackling": 3,
 			"control": 4,
 			"speed": 2,
-			"finishing": 0
+			"finishing": 1
 		},
 		"bestSkills": [
 			"CONTROL",
@@ -304,12 +302,12 @@
 		"hairColor": "PUNK_FUCHSIA",
 		"hairStyle": "SMOOTH_P",
 		"skills": {
-			"passing": 0,
-			"shooting": 0,
-			"heading": 0,
-			"tackling": 0,
-			"control": 0,
-			"speed": 0,
+			"passing": 1,
+			"shooting": 1,
+			"heading": 4,
+			"tackling": 2,
+			"control": 4,
+			"speed": 2,
 			"finishing": 0
 		},
 		"bestSkills": []
@@ -348,7 +346,7 @@
 		"hairStyle": "SPECIAL_D",
 		"skills": {
 			"passing": 3,
-			"shooting": 0,
+			"shooting": 1,
 			"heading": 2,
 			"tackling": 3,
 			"control": 1,
@@ -369,7 +367,7 @@
 		"hairColor": "BLACK",
 		"hairStyle": "SMOOTH_I",
 		"skills": {
-			"passing": 0,
+			"passing": 1,
 			"shooting": 4,
 			"heading": 5,
 			"tackling": 3,

@@ -102,9 +102,9 @@
 		"nationality": "MWI",
 		"role": "LEFT_WINGER",
 		"number": 3,
-		"skinColor": "ARAB",
-		"hairColor": "BLACK",
-		"hairStyle": "PIGTAIL_C",
+		"skinColor": "PINK",
+		"hairColor": "PLATINUM",
+		"hairStyle": "SMOOTH_A",
 		"skills": {
 			"passing": 3,
 			"shooting": 4,
@@ -245,7 +245,7 @@
 		"number": 10,
 		"skinColor": "PALE",
 		"hairColor": "PLATINUM",
-		"hairStyle": "SHORT_C",
+		"hairStyle": "SHORT_B",
 		"skills": {
 			"passing": 3,
 			"shooting": 2,

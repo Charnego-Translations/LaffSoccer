@@ -56,7 +56,7 @@
 		"role": "RIGHT_WINGER",
 		"number": 2,
 		"skinColor": "RED",
-		"hairColor": "PUNK_FUCHSIA",
+		"hairColor": "BLACK",
 		"hairStyle": "SMOOTH_C",
 		"skills": {
 			"passing": 2,
@@ -398,7 +398,7 @@
 		"role": "GOALKEEPER",
 		"number": 17,
 		"skinColor": "PALE",
-		"hairColor": "WHITE",
+		"hairColor": "GRAY",
 		"hairStyle": "SMOOTH_G",
 		"value": 18
 	},
@@ -453,7 +453,7 @@
 		"role": "DEFENDER",
 		"number": 20,
 		"skinColor": "PALE",
-		"hairColor": "WHITE",
+		"hairColor": "GRAY",
 		"hairStyle": "SHAVED",
 		"skills": {
 			"passing": 3,
@@ -476,7 +476,7 @@
 		"role": "MIDFIELDER",
 		"number": 21,
 		"skinColor": "BLACK",
-		"hairColor": "WHITE",
+		"hairColor": "GRAY",
 		"hairStyle": "SHORT_C",
 		"skills": {
 			"passing": 4,
@@ -502,7 +502,7 @@
 		"role": "DEFENDER",
 		"number": 22,
 		"skinColor": "RED",
-		"hairColor": "PLATINUM",
+		"hairColor": "GRAY",
 		"hairStyle": "PIGTAIL_C",
 		"skills": {
 			"passing": 2,

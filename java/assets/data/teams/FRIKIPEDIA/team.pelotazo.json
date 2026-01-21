@@ -95,7 +95,7 @@
 		"role": "DEFENDER",
 		"number": 4,
 		"skinColor": "PINK",
-		"hairColor": "BLACK",
+		"hairColor": "WHITE",
 		"hairStyle": "SMOOTH_D",
 		"skills": {
 			"passing": 3,
@@ -142,8 +142,8 @@
 		"role": "LEFT_BACK",
 		"number": 3,
 		"skinColor": "PINK",
-		"hairColor": "BLACK",
-		"hairStyle": "SMOOTH_C",
+		"hairColor": "RED",
+		"hairStyle": "BALD_A",
 		"skills": {
 			"passing": 3,
 			"shooting": 1,
@@ -167,7 +167,7 @@
 		"role": "RIGHT_WINGER",
 		"number": 7,
 		"skinColor": "PINK",
-		"hairColor": "BLACK",
+		"hairColor": "BROWN",
 		"hairStyle": "SMOOTH_B",
 		"skills": {
 			"passing": 1,
@@ -211,7 +211,7 @@
 		"nationality": "CUS",
 		"role": "MIDFIELDER",
 		"number": 9,
-		"skinColor": "PINK",
+		"skinColor": "ARAB",
 		"hairColor": "BLACK",
 		"hairStyle": "SMOOTH_C",
 		"skills": {
@@ -240,7 +240,7 @@
 		"number": 8,
 		"skinColor": "PINK",
 		"hairColor": "BLACK",
-		"hairStyle": "SMOOTH_E",
+		"hairStyle": "SMOOTH_F",
 		"skills": {
 			"passing": 1,
 			"shooting": 4,
@@ -261,7 +261,7 @@
 		"role": "ATTACKER",
 		"number": 10,
 		"skinColor": "PINK",
-		"hairColor": "BLACK",
+		"hairColor": "PLATINUM",
 		"hairStyle": "SMOOTH_P",
 		"skills": {
 			"passing": 4,
