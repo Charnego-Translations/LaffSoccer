@@ -59,7 +59,7 @@ class SelectFolder extends GLScreen {
         ArrayList<FileHandle> files = new ArrayList<>(Arrays.asList(navigation.folder.list()));
         Collections.sort(files, fileComparatorByName);
         for (FileHandle file : files) {
-            if (file.isDirectory()) {
+            if (file.isDirectory() && file.list().length > 0) {
                 w = new FolderButton(file);
                 list.add(w);
                 widgets.add(w);

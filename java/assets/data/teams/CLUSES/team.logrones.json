@@ -252,17 +252,19 @@
 		"hairStyle": "SMOOTH_A",
 		"skills": {
 			"passing": 4,
-			"shooting": 4,
-			"heading": 4,
+			"shooting": 5,
+			"heading": 5,
 			"tackling": 3,
-			"control": 4,
-			"speed": 4,
+			"control": 5,
+			"speed": 6,
 			"finishing": 4
 		},
 		"bestSkills": [
 			"HEADING",
 			"FINISHING",
-			"SPEED"
+			"SPEED",
+			"CONTROL",
+			"SHOOTING"
 		]
 	},
 	{
@@ -277,8 +279,8 @@
 		"skills": {
 			"passing": 3,
 			"shooting": 4,
-			"heading": 4,
-			"tackling": 2,
+			"heading": 5,
+			"tackling": 3,
 			"control": 2,
 			"speed": 3,
 			"finishing": 3
@@ -456,7 +458,7 @@
 		"skills": {
 			"passing": 2,
 			"shooting": 2,
-			"heading": 3,
+			"heading": 4,
 			"tackling": 4,
 			"control": 2,
 			"speed": 2,
@@ -480,7 +482,7 @@
 		"skills": {
 			"passing": 4,
 			"shooting": 2,
-			"heading": 2,
+			"heading": 3,
 			"tackling": 3,
 			"control": 3,
 			"speed": 3,
@@ -505,7 +507,7 @@
 			"passing": 3,
 			"shooting": 2,
 			"heading": 2,
-			"tackling": 2,
+			"tackling": 3,
 			"control": 3,
 			"speed": 4,
 			"finishing": 2
@@ -528,8 +530,8 @@
 		"skills": {
 			"passing": 2,
 			"shooting": 3,
-			"heading": 1,
-			"tackling": 1,
+			"heading": 2,
+			"tackling": 2,
 			"control": 2,
 			"speed": 2,
 			"finishing": 2
@@ -552,8 +554,8 @@
 		"skills": {
 			"passing": 2,
 			"shooting": 2,
-			"heading": 2,
-			"tackling": 1,
+			"heading": 4,
+			"tackling": 2,
 			"control": 2,
 			"speed": 3,
 			"finishing": 1
@@ -598,13 +600,13 @@
 		"hairColor": "BLACK",
 		"hairStyle": "SMOOTH_A",
 		"skills": {
-			"passing": 0,
-			"shooting": 0,
-			"heading": 0,
-			"tackling": 0,
-			"control": 0,
-			"speed": 0,
-			"finishing": 0
+			"passing": 2,
+			"shooting": 3,
+			"heading": 5,
+			"tackling": 4,
+			"control": 5,
+			"speed": 1,
+			"finishing": 2
 		},
 		"bestSkills": []
 	},

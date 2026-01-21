@@ -1,10 +1,10 @@
 apply plugin: "java"
 
 sourceSets.main.java.srcDirs = [ "src/" ]
-sourceSets.main.resources.srcDirs = ["../assets", "../util/resources"]
+sourceSets.main.resources.srcDirs = ["../util/resources"]
 
 project.ext.mainClassName = "net.krusher.laffsoccer.util.GenerateTeam"
-project.ext.assetsDir = new File("../android/assets")
+project.ext.assetsDir = new File("../assets")
 
 tasks.register('run', JavaExec) {
   dependsOn classes
@@ -26,10 +26,8 @@ tasks.register('debug', JavaExec) {
 }
 
 dependencies {
-  implementation "com.badlogicgames.gdx:gdx-backend-lwjgl3:$gdxVersion"
   // https://mvnrepository.com/artifact/org.jsoup/jsoup
   implementation("org.jsoup:jsoup:1.22.1")
-  implementation 'net.andrewcpu:elevenlabs-api:2.7.8'
   // https://mvnrepository.com/artifact/commons-io/commons-io
   implementation("commons-io:commons-io:2.21.0")
   implementation project(":core")

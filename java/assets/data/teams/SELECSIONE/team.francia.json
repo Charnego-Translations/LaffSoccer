@@ -5,6 +5,7 @@
 "confederation": "UEFA",
 "city": "ALICANTE",
 "stadium": "OMELETTE DU FROMAGE",
+"year": null,
 "coach": {
 	"name": "POMME DE TERRE",
 	"nationality": "FRA"
@@ -403,6 +404,39 @@
 			"CONTROL",
 			"TACKLING"
 		]
+	},
+	{
+		"name": "ASTÉRIX",
+		"shirtName": "ASTÉRIX",
+		"nationality": "",
+		"role": "DEFENDER",
+		"number": 1,
+		"skinColor": "PINK",
+		"hairColor": "PLATINUM",
+		"hairStyle": "SMOOTH_B",
+		"skills": {
+			"passing": 1,
+			"shooting": 3,
+			"heading": 4,
+			"tackling": 2,
+			"control": 4,
+			"speed": 6,
+			"finishing": 5
+		},
+		"bestSkills": [
+			"SPEED"
+		]
+	},
+	{
+		"name": "OBÉLIX",
+		"shirtName": "OBÉLIX",
+		"nationality": "",
+		"role": "GOALKEEPER",
+		"number": 16,
+		"skinColor": "PINK",
+		"hairColor": "BLACK",
+		"hairStyle": "SMOOTH_F",
+		"value": 7
 	}
 ]
 }

@@ -5,6 +5,7 @@
 "confederation": "CONCACAF",
 "city": "MÉXICO LINDO",
 "stadium": "TACO BELL",
+"year": null,
 "coach": {
 	"name": "ROBERTO GÓMEZ BOLAÑOS",
 	"nationality": "MEX"
@@ -130,7 +131,7 @@
 		"nationality": "MEX",
 		"role": "DEFENDER",
 		"number": 10,
-		"skinColor": "BLACK",
+		"skinColor": "PALE",
 		"hairColor": "BLACK",
 		"hairStyle": "SPECIAL_A",
 		"skills": {
@@ -240,11 +241,11 @@
 	},
 	{
 		"name": "EL CHAVO DEL 8",
-		"shirtName": "CHAVO DEL 8",
+		"shirtName": "EL CHAVO",
 		"nationality": "MEX",
 		"role": "LEFT_BACK",
 		"number": 8,
-		"skinColor": "BLACK",
+		"skinColor": "PALE",
 		"hairColor": "WHITE",
 		"hairStyle": "CURLY_F",
 		"skills": {
@@ -266,7 +267,7 @@
 	},
 	{
 		"name": "DON RAMÓN",
-		"shirtName": "DON RAMON",
+		"shirtName": "DON RAMÓN",
 		"nationality": "MEX",
 		"role": "RIGHT_WINGER",
 		"number": 19,
@@ -295,7 +296,7 @@
 		"role": "GOALKEEPER",
 		"number": 7,
 		"skinColor": "MULATTO",
-		"hairColor": "PUNK_FUCHSIA",
+		"hairColor": "GRAY",
 		"hairStyle": "SMOOTH_P",
 		"value": 37
 	},
@@ -306,8 +307,8 @@
 		"role": "RIGHT_BACK",
 		"number": 4,
 		"skinColor": "PINK",
-		"hairColor": "PLATINUM",
-		"hairStyle": "SPECIAL_F",
+		"hairColor": "BLACK",
+		"hairStyle": "SMOOTH_P",
 		"skills": {
 			"passing": 3,
 			"shooting": 1,
@@ -376,7 +377,7 @@
 		"role": "DEFENDER",
 		"number": 15,
 		"skinColor": "PALE",
-		"hairColor": "BLACK",
+		"hairColor": "PUNK_FUCHSIA",
 		"hairStyle": "SPECIAL_E",
 		"skills": {
 			"passing": 4,

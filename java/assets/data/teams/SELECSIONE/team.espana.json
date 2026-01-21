@@ -398,6 +398,46 @@
 			"HEADING",
 			"PASSING"
 		]
+	},
+	{
+		"name": "MORTADELO",
+		"shirtName": "MORTADELO",
+		"nationality": "",
+		"role": "LEFT_WINGER",
+		"number": 18,
+		"skinColor": "PINK",
+		"hairColor": "BLACK",
+		"hairStyle": "BALD_A",
+		"skills": {
+			"passing": 1,
+			"shooting": 1,
+			"heading": 2,
+			"tackling": 4,
+			"control": 2,
+			"speed": 1,
+			"finishing": 2
+		},
+		"bestSkills": []
+	},
+	{
+		"name": "FILEMÓN PI",
+		"shirtName": "FILEMÓN",
+		"nationality": "",
+		"role": "MIDFIELDER",
+		"number": 13,
+		"skinColor": "PINK",
+		"hairColor": "BLACK",
+		"hairStyle": "SPECIAL_D",
+		"skills": {
+			"passing": 1,
+			"shooting": 2,
+			"heading": 4,
+			"tackling": 2,
+			"control": 2,
+			"speed": 3,
+			"finishing": 2
+		},
+		"bestSkills": []
 	}
 ]
 }

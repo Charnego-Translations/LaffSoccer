@@ -379,6 +379,26 @@
 			"TACKLING",
 			"CONTROL"
 		]
+	},
+	{
+		"name": "O REI DO MARRON",
+		"shirtName": "O REI",
+		"nationality": "",
+		"role": "ATTACKER",
+		"number": 12,
+		"skinColor": "PINK",
+		"hairColor": "BLACK",
+		"hairStyle": "SMOOTH_A",
+		"skills": {
+			"passing": 2,
+			"shooting": 1,
+			"heading": 4,
+			"tackling": 4,
+			"control": 4,
+			"speed": 5,
+			"finishing": 5
+		},
+		"bestSkills": []
 	}
 ]
 }

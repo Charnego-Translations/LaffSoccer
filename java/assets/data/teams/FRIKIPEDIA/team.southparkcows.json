@@ -1,0 +1,401 @@
+{
+"name": "SOUTH PARK COWS",
+"type": "CUSTOM",
+"country": "ROM",
+"league": "CLUSES",
+"city": "SOUTH PARK",
+"stadium": "PEPSI CENTER",
+"year": null,
+"coach": {
+	"name": "JEROME 'CHEF' MCELROY",
+	"nationality": "MNE"
+},
+"tactics": "4-4-2",
+"kits": [
+	{
+		"style": "PLAIN",
+		"shirt1": "#30c52c",
+		"shirt2": "#dfe8eb",
+		"shirt3": "#dfe8eb",
+		"shorts": "#1e1e1e",
+		"socks": "#30c52c"
+	},
+	{
+		"style": "CHECK",
+		"shirt1": "#1e1e1e",
+		"shirt2": "#dfe8eb",
+		"shirt3": "#dfe8eb",
+		"shorts": "#dfe8eb",
+		"socks": "#1e1e1e"
+	},
+	{
+		"style": "SLEEVES",
+		"shirt1": "#dfe8eb",
+		"shirt2": "#1e1e1e",
+		"shirt3": "#1e1e1e",
+		"shorts": "#1e1e1e",
+		"socks": "#dfe8eb"
+	}
+],
+"players": [
+	{
+		"name": "ERIC THEODORE CARTMAN",
+		"shirtName": "CARTMAN",
+		"nationality": "GHA",
+		"role": "GOALKEEPER",
+		"number": 1,
+		"skinColor": "PALE",
+		"hairColor": "BLACK",
+		"hairStyle": "SMOOTH_H",
+		"value": 18
+	},
+	{
+		"name": "SR. SLAVE",
+		"shirtName": "SLAVE",
+		"nationality": "MDA",
+		"role": "LEFT_BACK",
+		"number": 16,
+		"skinColor": "PALE",
+		"hairColor": "BLACK",
+		"hairStyle": "SMOOTH_D",
+		"skills": {
+			"passing": 4,
+			"shooting": 2,
+			"heading": 3,
+			"tackling": 2,
+			"control": 5,
+			"speed": 4,
+			"finishing": 3
+		},
+		"bestSkills": []
+	},
+	{
+		"name": "CRAIG TUCKER",
+		"shirtName": "TUCKER",
+		"nationality": "BHR",
+		"role": "MIDFIELDER",
+		"number": 17,
+		"skinColor": "PALE",
+		"hairColor": "BROWN",
+		"hairStyle": "SMOOTH_P",
+		"skills": {
+			"passing": 4,
+			"shooting": 5,
+			"heading": 4,
+			"tackling": 3,
+			"control": 5,
+			"speed": 3,
+			"finishing": 4
+		},
+		"bestSkills": [
+			"PASSING",
+			"HEADING",
+			"TACKLING",
+			"SHOOTING",
+			"SPEED",
+			"CONTROL"
+		]
+	},
+	{
+		"name": "TWEEK TWEAK",
+		"shirtName": "TWEEK",
+		"nationality": "MWI",
+		"role": "LEFT_WINGER",
+		"number": 3,
+		"skinColor": "ARAB",
+		"hairColor": "BLACK",
+		"hairStyle": "PIGTAIL_C",
+		"skills": {
+			"passing": 3,
+			"shooting": 4,
+			"heading": 3,
+			"tackling": 4,
+			"control": 3,
+			"speed": 4,
+			"finishing": 3
+		},
+		"bestSkills": [
+			"SHOOTING",
+			"CONTROL",
+			"PASSING"
+		]
+	},
+	{
+		"name": "TOLKIEN BLACK",
+		"shirtName": "TOLKIEN",
+		"nationality": "COK",
+		"role": "MIDFIELDER",
+		"number": 6,
+		"skinColor": "BLACK",
+		"hairColor": "BLACK",
+		"hairStyle": "SPECIAL_B",
+		"skills": {
+			"passing": 3,
+			"shooting": 3,
+			"heading": 4,
+			"tackling": 3,
+			"control": 3,
+			"speed": 3,
+			"finishing": 3
+		},
+		"bestSkills": [
+			"SHOOTING",
+			"FINISHING",
+			"CONTROL"
+		]
+	},
+	{
+		"name": "TIMOTHY BURCH",
+		"shirtName": "TIMOTHY",
+		"nationality": "ROM",
+		"role": "RIGHT_BACK",
+		"number": 5,
+		"skinColor": "RED",
+		"hairColor": "GRAY",
+		"hairStyle": "CURLY_A",
+		"skills": {
+			"passing": 3,
+			"shooting": 3,
+			"heading": 2,
+			"tackling": 4,
+			"control": 5,
+			"speed": 5,
+			"finishing": 1
+		},
+		"bestSkills": [
+			"CONTROL"
+		]
+	},
+	{
+		"name": "CLYDE DONOVAN",
+		"shirtName": "CLYDE",
+		"nationality": "DEN",
+		"role": "LEFT_WINGER",
+		"number": 4,
+		"skinColor": "MULATTO",
+		"hairColor": "RED",
+		"hairStyle": "SMOOTH_O",
+		"skills": {
+			"passing": 1,
+			"shooting": 5,
+			"heading": 3,
+			"tackling": 2,
+			"control": 4,
+			"speed": 5,
+			"finishing": 4
+		},
+		"bestSkills": [
+			"PASSING",
+			"CONTROL",
+			"TACKLING",
+			"SPEED",
+			"SHOOTING"
+		]
+	},
+	{
+		"name": "LEOPOLD SCOTCH",
+		"shirtName": "BUTTERS",
+		"nationality": "COL",
+		"role": "LEFT_BACK",
+		"number": 7,
+		"skinColor": "MULATTO",
+		"hairColor": "PLATINUM",
+		"hairStyle": "SHORT_B",
+		"skills": {
+			"passing": 3,
+			"shooting": 2,
+			"heading": 3,
+			"tackling": 3,
+			"control": 6,
+			"speed": 4,
+			"finishing": 2
+		},
+		"bestSkills": [
+			"HEADING"
+		]
+	},
+	{
+		"name": "KYLE MATTHEW BROFLOVSKI",
+		"shirtName": "KYLE",
+		"nationality": "BDI",
+		"role": "MIDFIELDER",
+		"number": 9,
+		"skinColor": "RED",
+		"hairColor": "PUNK_FUCHSIA",
+		"hairStyle": "SPECIAL_G",
+		"skills": {
+			"passing": 3,
+			"shooting": 4,
+			"heading": 1,
+			"tackling": 3,
+			"control": 5,
+			"speed": 1,
+			"finishing": 2
+		},
+		"bestSkills": [
+			"TACKLING",
+			"FINISHING"
+		]
+	},
+	{
+		"name": "KENNETH MCCORMICK",
+		"shirtName": "KENNY",
+		"nationality": "TRI",
+		"role": "MIDFIELDER",
+		"number": 10,
+		"skinColor": "PALE",
+		"hairColor": "PLATINUM",
+		"hairStyle": "SHORT_C",
+		"skills": {
+			"passing": 3,
+			"shooting": 2,
+			"heading": 2,
+			"tackling": 1,
+			"control": 5,
+			"speed": 4,
+			"finishing": 3
+		},
+		"bestSkills": [
+			"TACKLING",
+			"PASSING",
+			"FINISHING"
+		]
+	},
+	{
+		"name": "STANLEY RANDOLPH MARSH",
+		"shirtName": "STAN",
+		"nationality": "GAM",
+		"role": "RIGHT_BACK",
+		"number": 18,
+		"skinColor": "MULATTO",
+		"hairColor": "GRAY",
+		"hairStyle": "SMOOTH_J",
+		"skills": {
+			"passing": 5,
+			"shooting": 3,
+			"heading": 1,
+			"tackling": 6,
+			"control": 4,
+			"speed": 4,
+			"finishing": 2
+		},
+		"bestSkills": [
+			"SPEED",
+			"FINISHING"
+		]
+	},
+	{
+		"name": "RANDY MARSH",
+		"shirtName": "RANDY",
+		"nationality": "BOL",
+		"role": "GOALKEEPER",
+		"number": 11,
+		"skinColor": "PALE",
+		"hairColor": "BROWN",
+		"hairStyle": "SPECIAL_F",
+		"value": 22
+	},
+	{
+		"name": "HERBERT GARRISON",
+		"shirtName": "SR. GARRISON",
+		"nationality": "MAC",
+		"role": "LEFT_BACK",
+		"number": 19,
+		"skinColor": "ARAB",
+		"hairColor": "BLACK",
+		"hairStyle": "THINNING_A",
+		"skills": {
+			"passing": 2,
+			"shooting": 2,
+			"heading": 3,
+			"tackling": 2,
+			"control": 5,
+			"speed": 4,
+			"finishing": 3
+		},
+		"bestSkills": [
+			"HEADING",
+			"TACKLING",
+			"SPEED",
+			"FINISHING",
+			"CONTROL"
+		]
+	},
+	{
+		"name": "OFICIAL BARBRADY",
+		"shirtName": "BARBRADY",
+		"nationality": "BLZ",
+		"role": "LEFT_BACK",
+		"number": 8,
+		"skinColor": "PINK",
+		"hairColor": "BLACK",
+		"hairStyle": "THINNING_A",
+		"skills": {
+			"passing": 2,
+			"shooting": 4,
+			"heading": 5,
+			"tackling": 1,
+			"control": 3,
+			"speed": 3,
+			"finishing": 4
+		},
+		"bestSkills": [
+			"FINISHING",
+			"CONTROL",
+			"HEADING",
+			"SHOOTING"
+		]
+	},
+	{
+		"name": "PETER CHARLES PRINCIPAL",
+		"shirtName": "DIRECTOR PC",
+		"nationality": "SYR",
+		"role": "LEFT_BACK",
+		"number": 12,
+		"skinColor": "PALE",
+		"hairColor": "BLACK",
+		"hairStyle": "SMOOTH_G",
+		"skills": {
+			"passing": 4,
+			"shooting": 3,
+			"heading": 3,
+			"tackling": 5,
+			"control": 2,
+			"speed": 5,
+			"finishing": 4
+		},
+		"bestSkills": [
+			"TACKLING",
+			"HEADING",
+			"PASSING",
+			"FINISHING"
+		]
+	},
+	{
+		"name": "JESUCRISTO",
+		"shirtName": "JESUCRISTO",
+		"nationality": "SSD",
+		"role": "LEFT_BACK",
+		"number": 13,
+		"skinColor": "PALE",
+		"hairColor": "BLACK",
+		"hairStyle": "SPECIAL_F",
+		"skills": {
+			"passing": 3,
+			"shooting": 3,
+			"heading": 2,
+			"tackling": 2,
+			"control": 5,
+			"speed": 4,
+			"finishing": 2
+		},
+		"bestSkills": [
+			"SHOOTING",
+			"FINISHING",
+			"CONTROL",
+			"SPEED",
+			"HEADING"
+		]
+	}
+]
+}
