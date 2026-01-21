@@ -21,11 +21,27 @@ jobs:
           cache: gradle
 
       - name: Grant execute permission for gradlew
+        working-directory: java
         run: chmod +x ./gradlew
 
       - name: Build with Gradle
+        working-directory: java
         run: |
           ./gradlew android:build \
             --no-daemon \
             --console=plain \
             --info
+      
+      - name: Obtener versión del proyecto
+        id: version
+        working-directory: java
+        run: |
+          VERSION=$(./gradlew properties -q | grep "^projectVersion:" | awk '{print $2}')
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Publicar artefacto
+        uses: actions/upload-artifact@v4
+        with:
+          name: laff-soccer-linux
+          path: |
+            java/android/build/libs
