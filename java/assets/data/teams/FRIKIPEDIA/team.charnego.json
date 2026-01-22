@@ -441,6 +441,26 @@
 			"SPEED",
 			"SHOOTING"
 		]
+	},
+	{
+		"name": "ANTXIKO GORGON",
+		"shirtName": "ANTXIKO",
+		"nationality": "",
+		"role": "LEFT_WINGER",
+		"number": 18,
+		"skinColor": "PINK",
+		"hairColor": "BLACK",
+		"hairStyle": "SMOOTH_A",
+		"skills": {
+			"passing": 2,
+			"shooting": 1,
+			"heading": 5,
+			"tackling": 5,
+			"control": 3,
+			"speed": 2,
+			"finishing": 2
+		},
+		"bestSkills": []
 	}
 ]
 }

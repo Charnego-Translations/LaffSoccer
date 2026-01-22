@@ -82,7 +82,7 @@
 		"role": "LEFT_BACK",
 		"number": 3,
 		"skinColor": "ARAB",
-		"hairColor": "BLACK",
+		"hairColor": "PUNK_FUCHSIA",
 		"hairStyle": "SMOOTH_F",
 		"skills": {
 			"passing": 6,
@@ -252,7 +252,7 @@
 		"role": "LEFT_WINGER",
 		"number": 19,
 		"skinColor": "PINK",
-		"hairColor": "PUNK_FUCHSIA",
+		"hairColor": "BLACK",
 		"hairStyle": "SHORT_C",
 		"skills": {
 			"passing": 3,
