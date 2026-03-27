@@ -100,7 +100,7 @@ public class MatchCamera extends SceneCamera<Match> {
                 mode = FOLLOW_BALL;
                 speed = FAST;
                 offsetX = -scene.foul.position.x / 10f;
-                offsetY = -80 * scene.foul.opponent.team.side;
+                offsetY = 80 * scene.foul.player.team.side;
                 xLimited = true;
                 yLimited = true;
                 break;
