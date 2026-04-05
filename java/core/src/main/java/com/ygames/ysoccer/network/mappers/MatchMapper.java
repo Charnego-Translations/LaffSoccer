@@ -55,6 +55,7 @@ public class MatchMapper {
         dto.clock = match.clock;
         dto.period = match.period;
         dto.displayControlledPlayer = match.displayControlledPlayer;
+        dto.displayFoulMaker = match.displayFoulMaker;
         dto.displayBallOwner = match.displayBallOwner;
         dto.displayTime = match.displayTime;
         dto.displayRadar = match.displayRadar;
@@ -107,6 +108,7 @@ public class MatchMapper {
         match.clock = dto.clock;
         match.period = dto.period;
         match.displayControlledPlayer = dto.displayControlledPlayer;
+        match.displayFoulMaker = dto.displayFoulMaker;
         match.displayBallOwner = dto.displayBallOwner;
         match.displayTime = dto.displayTime;
         match.displayRadar = dto.displayRadar;
