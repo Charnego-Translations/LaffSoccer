@@ -131,7 +131,7 @@ public class MatchCamera extends SceneCamera<Match> {
             case PENALTY_KICK_STOP:
                 mode = REACH_TARGET;
                 speed = NORMAL;
-                target.set(0, scene.penalty.side * PENALTY_SPOT_Y);
+                target.set(0, scene.ball.ySide * PENALTY_SPOT_Y);
                 xLimited = true;
                 yLimited = true;
                 break;
