@@ -12,6 +12,7 @@ public class MatchUpdateDto {
     public Match.Period period;
     public boolean displayControlledPlayer;
     public boolean displayFoulMaker;
+    public boolean displayYellowCard;
     public boolean displayBallOwner;
     public boolean displayTime;
     public boolean displayRadar;
