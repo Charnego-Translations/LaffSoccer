@@ -90,6 +90,8 @@ class MatchStateYellowCard extends MatchState {
 
             timeLeft -= GLGame.SUBFRAME_DURATION;
         }
+
+        scene.displayYellowCard = scene.foul.player.checkState(STATE_YELLOW_CARD);
     }
 
     @Override
@@ -105,6 +107,13 @@ class MatchStateYellowCard extends MatchState {
             }
         }
         return checkCommonConditions();
+    }
+
+    @Override
+    void exitActions() {
+        super.exitActions();
+        scene.displayFoulMaker = false;
+        scene.displayYellowCard = false;
     }
 
     private void setPlayerStates() {
