@@ -25,6 +25,7 @@ public class MatchMapper {
         dto.rank = match.rank;
         dto.displayControlledPlayer = match.displayControlledPlayer;
         dto.displayFoulMaker = match.displayFoulMaker;
+        dto.displayYellowCard = match.displayYellowCard;
         dto.displayBallOwner = match.displayBallOwner;
         dto.displayTime = match.displayTime;
         dto.displayRadar = match.displayRadar;
@@ -80,6 +81,7 @@ public class MatchMapper {
         match.rank = dto.rank;
         match.displayControlledPlayer = dto.displayControlledPlayer;
         match.displayFoulMaker = dto.displayFoulMaker;
+        match.displayYellowCard = dto.displayYellowCard;
         match.displayBallOwner = dto.displayBallOwner;
         match.displayTime = dto.displayTime;
         match.displayRadar = dto.displayRadar;
