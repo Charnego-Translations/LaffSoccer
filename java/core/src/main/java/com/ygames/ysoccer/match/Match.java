@@ -113,6 +113,7 @@ public class Match extends Scene<MatchFsm, MatchState> implements Json.Serializa
     public boolean displayControlledPlayer;
     public boolean displayFoulMaker;
     public boolean displayYellowCard;
+    public boolean displayRedCard;
     public boolean displayBallOwner;
     public boolean displayTime;
     public boolean displayRadar;

@@ -14,6 +14,7 @@ import static com.ygames.ysoccer.match.MatchFsm.StateId.YELLOW_CARD;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_IDLE;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_KEEPER_POSITIONING;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_REACH_TARGET;
+import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_RED_CARD;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_SENT_OFF;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_STAND_RUN;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_YELLOW_CARD;
@@ -92,6 +93,7 @@ class MatchStateYellowCard extends MatchState {
         }
 
         scene.displayYellowCard = scene.foul.player.checkState(STATE_YELLOW_CARD);
+        scene.displayRedCard = scene.foul.player.checkState(STATE_RED_CARD);
     }
 
     @Override
@@ -114,6 +116,7 @@ class MatchStateYellowCard extends MatchState {
         super.exitActions();
         scene.displayFoulMaker = false;
         scene.displayYellowCard = false;
+        scene.displayRedCard = false;
     }
 
     private void setPlayerStates() {

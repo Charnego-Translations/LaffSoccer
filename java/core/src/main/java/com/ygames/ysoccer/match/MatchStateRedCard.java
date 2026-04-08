@@ -90,6 +90,8 @@ class MatchStateRedCard extends MatchState {
 
             timeLeft -= GLGame.SUBFRAME_DURATION;
         }
+
+        scene.displayRedCard = scene.foul.player.checkState(STATE_RED_CARD);
     }
 
     @Override
@@ -103,6 +105,13 @@ class MatchStateRedCard extends MatchState {
             }
         }
         return checkCommonConditions();
+    }
+
+    @Override
+    void exitActions() {
+        super.exitActions();
+        scene.displayFoulMaker = false;
+        scene.displayRedCard = false;
     }
 
     private void setPlayerStates() {

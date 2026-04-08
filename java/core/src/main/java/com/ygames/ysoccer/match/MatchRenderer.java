@@ -132,7 +132,7 @@ public class MatchRenderer extends SceneRenderer<Match> {
 
         if (scene.displayFoulMaker) {
             Player player = scene.foul.player;
-            if (player.checkState(STATE_RED_CARD)) {
+            if (scene.displayRedCard) {
                 drawRedCard(player);
             } else if (scene.displayYellowCard) {
                 drawYellowCard(player);
