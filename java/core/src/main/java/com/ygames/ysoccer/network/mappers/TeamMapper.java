@@ -15,6 +15,7 @@ public class TeamMapper {
     public static TeamDto toDto(Team team) {
         TeamDto dto = new TeamDto();
         dto.name = team.name;
+        dto.type = team.type;
         dto.city = team.city;
         dto.stadium = team.stadium;
         dto.coachDto = CoachMapper.toDto(team.coach);
@@ -42,6 +43,7 @@ public class TeamMapper {
     public static Team fromDto(TeamDto dto) {
         Team team = new Team();
         team.name = dto.name;
+        team.type = dto.type;
         team.city = dto.city;
         team.stadium = dto.stadium;
         team.coach = CoachMapper.fromDto(dto.coachDto);
