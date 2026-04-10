@@ -36,10 +36,13 @@ public class ServerGame extends Game {
         matchSettings.setup();
 
         Match match = friendly.getMatch();
-        FileHandle homeFileHandle = Gdx.files.local(Settings.serverHomeTeam);
-        FileHandle awayFileHandle = Gdx.files.local(Settings.serverAwayTeam);
+        FileHandle homeFileHandle = Assets.teamsRootFolder.child(Settings.serverHomeTeam);
+        FileHandle awayFileHandle = Assets.teamsRootFolder.child(Settings.serverAwayTeam);
         Team homeTeam = Assets.json.fromJson(Team.class, homeFileHandle.readString("UTF-8"));
         Team awayTeam = Assets.json.fromJson(Team.class, awayFileHandle.readString("UTF-8"));
+
+        homeTeam.path = Settings.serverHomeTeam;
+        awayTeam.path = Settings.serverAwayTeam;
 
         homeTeam.inputDevice = new NetworkInputDevice(0);
         homeTeam.controlMode = PLAYER;

@@ -55,7 +55,7 @@ public class Assets {
     public static Font font10;
     public static Font font6;
     public static Font font3;
-    public static FileHandle teamsRootFolder;
+    public static FileHandle teamsRootFolder = Gdx.files.local("data/teams/");
     public static FileHandle competitionsRootFolder;
     public static FileHandle tacticsFolder;
     public static FileHandle savesFolder;
@@ -184,7 +184,6 @@ public class Assets {
             }
         }
 
-        teamsRootFolder = Gdx.files.local("data/teams/");
         competitionsRootFolder = Gdx.files.local("data/competitions/");
         tacticsFolder = Gdx.files.local("data/tactics");
         savesFolder = Gdx.files.local("data/saves/competitions/");

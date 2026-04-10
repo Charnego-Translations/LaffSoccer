@@ -8,6 +8,7 @@ public class TeamDto {
 
     public String name;
     public Team.Type type;
+    public String path;
     public String city;
     public String stadium;
     public CoachDto coachDto;

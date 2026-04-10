@@ -108,8 +108,8 @@ public class Settings {
 
         // development
         development = preferences.getBoolean("development", false);
-        serverHomeTeam = preferences.getString("serverHomeTeam", "data/teams/1964-65/CLUB_TEAMS/EUROPE/ITALY/team.inter_milan.json");
-        serverAwayTeam = preferences.getString("serverAwayTeam", "data/teams/1964-65/CLUB_TEAMS/EUROPE/ITALY/team.juventus.json");
+        serverHomeTeam = preferences.getString("serverHomeTeam", "1964-65/CLUB_TEAMS/EUROPE/ITALY/team.inter_milan.json");
+        serverAwayTeam = preferences.getString("serverAwayTeam", "1964-65/CLUB_TEAMS/EUROPE/ITALY/team.juventus.json");
 
         // (logs)
         logLevel = preferences.getInteger("logLevel", Application.LOG_INFO);
