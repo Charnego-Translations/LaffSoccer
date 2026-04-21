@@ -29,7 +29,6 @@ import static com.ygames.ysoccer.match.Match.HOME;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_RED_CARD;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_SENT_OFF;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_SUBSTITUTED;
-import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_YELLOW_CARD;
 import static java.lang.Math.min;
 
 public class MatchRenderer extends SceneRenderer<Match> {
@@ -152,9 +151,9 @@ public class MatchRenderer extends SceneRenderer<Match> {
 
         if (scene.displayFoulMaker) {
             Player player = scene.foul.player;
-            if (player.checkState(STATE_RED_CARD)) {
+            if (scene.displayRedCard) {
                 drawRedCard(player);
-            } else if (player.checkState(STATE_YELLOW_CARD)) {
+            } else if (scene.displayYellowCard) {
                 drawYellowCard(player);
             } else {
                 drawPlayerNumber(scene.foul.player);

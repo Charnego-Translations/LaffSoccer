@@ -36,12 +36,14 @@ import com.ygames.ysoccer.network.dto.events.BallCollisionEventDto;
 import com.ygames.ysoccer.network.dto.events.BallKickEventDto;
 import com.ygames.ysoccer.network.dto.events.CelebrationEventDto;
 import com.ygames.ysoccer.network.dto.events.CrowdChantsEventDto;
+import com.ygames.ysoccer.network.dto.events.FoulEventDto;
 import com.ygames.ysoccer.network.dto.events.HomeGoalEventDto;
 import com.ygames.ysoccer.network.dto.events.KeeperDeflectEventDto;
 import com.ygames.ysoccer.network.dto.events.KeeperHoldEventDto;
 import com.ygames.ysoccer.network.dto.events.MatchIntroEventDto;
 import com.ygames.ysoccer.network.dto.events.PeriodStopEventDto;
 import com.ygames.ysoccer.network.dto.events.WhistleEventDto;
+import com.ygames.ysoccer.network.mappers.FoulMapper;
 import com.ygames.ysoccer.network.mappers.GoalMapper;
 import com.ygames.ysoccer.network.mappers.InputDeviceMapper;
 import com.ygames.ysoccer.network.mappers.MatchMapper;
@@ -131,6 +133,10 @@ public class OnlineMatchConnect extends GLScreen {
                 if (object instanceof WhistleEventDto)
                     Gdx.app.postRunnable(() -> EventManager.publish(new WhistleEvent()));
 
+                if (object instanceof FoulEventDto)
+                    Gdx.app.postRunnable(() -> {
+                        onlineMatchScreen.match.foul = FoulMapper.fromDto(onlineMatchScreen.match, ((FoulEventDto) object).foulDto);
+                    });
             }
         });
 

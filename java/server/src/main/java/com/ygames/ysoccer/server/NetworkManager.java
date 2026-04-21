@@ -6,6 +6,7 @@ import com.ygames.ysoccer.events.BallCollisionEvent;
 import com.ygames.ysoccer.events.BallKickEvent;
 import com.ygames.ysoccer.events.CelebrationEvent;
 import com.ygames.ysoccer.events.CrowdChantsEvent;
+import com.ygames.ysoccer.events.FoulEvent;
 import com.ygames.ysoccer.events.HomeGoalEvent;
 import com.ygames.ysoccer.events.KeeperDeflectEvent;
 import com.ygames.ysoccer.events.KeeperHoldEvent;
@@ -18,12 +19,14 @@ import com.ygames.ysoccer.network.dto.events.BallCollisionEventDto;
 import com.ygames.ysoccer.network.dto.events.BallKickEventDto;
 import com.ygames.ysoccer.network.dto.events.CelebrationEventDto;
 import com.ygames.ysoccer.network.dto.events.CrowdChantsEventDto;
+import com.ygames.ysoccer.network.dto.events.FoulEventDto;
 import com.ygames.ysoccer.network.dto.events.HomeGoalEventDto;
 import com.ygames.ysoccer.network.dto.events.KeeperDeflectEventDto;
 import com.ygames.ysoccer.network.dto.events.KeeperHoldEventDto;
 import com.ygames.ysoccer.network.dto.events.MatchIntroEventDto;
 import com.ygames.ysoccer.network.dto.events.PeriodStopEventDto;
 import com.ygames.ysoccer.network.dto.events.WhistleEventDto;
+import com.ygames.ysoccer.network.mappers.FoulMapper;
 import com.ygames.ysoccer.network.mappers.GoalMapper;
 
 public class NetworkManager {
@@ -40,5 +43,6 @@ public class NetworkManager {
         EventManager.subscribe(MatchIntroEvent.class, matchIntroEvent -> server.sendToAllTCP(new MatchIntroEventDto()));
         EventManager.subscribe(PeriodStopEvent.class, periodStopEvent -> server.sendToAllTCP(new PeriodStopEventDto()));
         EventManager.subscribe(WhistleEvent.class, whistleEvent -> server.sendToAllTCP(new WhistleEventDto()));
+        EventManager.subscribe(FoulEvent.class, foulEvent -> server.sendToAllTCP(new FoulEventDto(FoulMapper.toDto(foulEvent.foul))));
     }
 }

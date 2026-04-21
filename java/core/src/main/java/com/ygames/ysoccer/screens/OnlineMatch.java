@@ -50,6 +50,7 @@ public class OnlineMatch extends GLScreen {
         Assets.loadBall(match.getSettings());
         Assets.loadCornerFlags();
         for (int t = HOME; t <= AWAY; t++) {
+            match.team[t].loadImage();
             Assets.loadCoach(match.team[t]);
             int len = match.team[t].lineup.size();
             for (int i = 0; i < len; i++) {

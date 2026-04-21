@@ -1,10 +1,14 @@
 package com.ygames.ysoccer.network.dto;
 
+import com.ygames.ysoccer.match.Team;
+
 import java.util.List;
 
 public class TeamDto {
 
     public String name;
+    public Team.Type type;
+    public String path;
     public String city;
     public String stadium;
     public Integer year;

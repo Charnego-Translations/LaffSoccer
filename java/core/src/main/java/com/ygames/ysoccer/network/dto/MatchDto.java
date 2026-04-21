@@ -11,6 +11,8 @@ public class MatchDto {
     public int rank;
     public boolean displayControlledPlayer;
     public boolean displayFoulMaker;
+    public boolean displayYellowCard;
+    public boolean displayRedCard;
     public boolean displayBallOwner;
     public boolean displayTime;
     public boolean displayRadar;

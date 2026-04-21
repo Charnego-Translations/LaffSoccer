@@ -10,11 +10,13 @@ import com.ygames.ysoccer.match.Pitch;
 import com.ygames.ysoccer.match.Player;
 import com.ygames.ysoccer.match.SceneSettings;
 import com.ygames.ysoccer.match.Skin;
+import com.ygames.ysoccer.match.Team;
 import com.ygames.ysoccer.network.dto.BallDto;
 import com.ygames.ysoccer.network.dto.BallUpdateDto;
 import com.ygames.ysoccer.network.dto.CoachDto;
 import com.ygames.ysoccer.network.dto.CoachUpdateDto;
 import com.ygames.ysoccer.network.dto.CompetitionDto;
+import com.ygames.ysoccer.network.dto.FoulDto;
 import com.ygames.ysoccer.network.dto.FrameDataDto;
 import com.ygames.ysoccer.network.dto.GoalDto;
 import com.ygames.ysoccer.network.dto.InputDeviceDto;
@@ -32,6 +34,7 @@ import com.ygames.ysoccer.network.dto.events.BallCollisionEventDto;
 import com.ygames.ysoccer.network.dto.events.BallKickEventDto;
 import com.ygames.ysoccer.network.dto.events.CelebrationEventDto;
 import com.ygames.ysoccer.network.dto.events.CrowdChantsEventDto;
+import com.ygames.ysoccer.network.dto.events.FoulEventDto;
 import com.ygames.ysoccer.network.dto.events.HomeGoalEventDto;
 import com.ygames.ysoccer.network.dto.events.KeeperDeflectEventDto;
 import com.ygames.ysoccer.network.dto.events.KeeperHoldEventDto;
@@ -60,6 +63,7 @@ public class Network {
         kryo.register(KitDto.class);
         kryo.register(CoachDto.class);
         kryo.register(CoachUpdateDto.class);
+        kryo.register(Team.Type.class);
         kryo.register(TeamDto.class);
         kryo.register(TeamDto[].class);
         kryo.register(TeamUpdateDto.class);
@@ -73,6 +77,7 @@ public class Network {
         kryo.register(InputDeviceDto.class);
         kryo.register(GoalDto.class);
         kryo.register(Goal.Type.class);
+        kryo.register(FoulDto.class);
 
         // events
         kryo.register(BallBounceEventDto.class);
@@ -86,5 +91,6 @@ public class Network {
         kryo.register(MatchIntroEventDto.class);
         kryo.register(PeriodStopEventDto.class);
         kryo.register(WhistleEventDto.class);
+        kryo.register(FoulEventDto.class);
     }
 }

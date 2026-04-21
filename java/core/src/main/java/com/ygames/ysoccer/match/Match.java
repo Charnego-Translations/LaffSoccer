@@ -4,8 +4,10 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonValue;
 import com.ygames.ysoccer.competitions.Competition;
+import com.ygames.ysoccer.events.FoulEvent;
 import com.ygames.ysoccer.framework.Assets;
 import com.ygames.ysoccer.framework.EMath;
+import com.ygames.ysoccer.framework.EventManager;
 import com.ygames.ysoccer.framework.InputDeviceList;
 import com.ygames.ysoccer.framework.SoundManager;
 import com.ygames.ysoccer.framework.commentary.Commentary;
@@ -78,7 +80,7 @@ public class Match extends Scene<MatchFsm, MatchState> implements Json.Serializa
     int penaltyKickingTeam;
 
     Tackle tackle;
-    Foul foul;
+    public Foul foul;
     public List<Goal> goals = new ArrayList<>();
 
     enum PenaltyState {TO_KICK, SCORED, MISSED}
@@ -114,6 +116,8 @@ public class Match extends Scene<MatchFsm, MatchState> implements Json.Serializa
 
     public boolean displayControlledPlayer;
     public boolean displayFoulMaker;
+    public boolean displayYellowCard;
+    public boolean displayRedCard;
     public boolean displayBallOwner;
     public boolean displayTime;
     public boolean displayRadar;
@@ -688,9 +692,10 @@ public class Match extends Scene<MatchFsm, MatchState> implements Json.Serializa
         float r = Assets.RANDOM.nextFloat();
         foul.entailsYellowCard = r < EMath.pow(hardness * unfairness, 2);
         foul.entailsRedCard = r < EMath.pow(hardness * unfairness, 5);
+        EventManager.publish(new FoulEvent(foul));
     }
 
-    class Foul {
+    public static class Foul {
         float time;
         public Vector2 position;
         public Player player;
@@ -713,8 +718,8 @@ public class Match extends Scene<MatchFsm, MatchState> implements Json.Serializa
         }
 
         boolean isNearOwnGoal() {
-            return Math.abs(ball.x) < (GOAL_AREA_W / 2f + 50)
-                && EMath.isIn(ball.y,
+            return Math.abs(position.x) < (GOAL_AREA_W / 2f + 50)
+                && EMath.isIn(position.y,
                 -player.team.side * (GOAL_LINE - GOAL_AREA_H - 50),
                 -player.team.side * GOAL_LINE
             );
