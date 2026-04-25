@@ -1,9 +1,12 @@
 package com.ygames.ysoccer.network.mappers;
 
+import com.ygames.ysoccer.framework.EMath;
 import com.ygames.ysoccer.match.Ball;
 import com.ygames.ysoccer.match.SceneSettings;
 import com.ygames.ysoccer.network.dto.BallDto;
 import com.ygames.ysoccer.network.dto.BallUpdateDto;
+
+import static com.ygames.ysoccer.framework.GLGame.SERVER_UPDATES_PER_SECOND;
 
 public class BallMapper {
 
@@ -34,8 +37,15 @@ public class BallMapper {
     }
 
     public static void updateFromDto(Ball ball, BallUpdateDto dto) {
+        // update ball speed and angle for camera
+        float ballDist = EMath.dist(dto.currentDataDto.x, dto.currentDataDto.y, ball.currentData.x, ball.currentData.y);
+        if (ballDist < SERVER_UPDATES_PER_SECOND) {
+            ball.setV(ballDist * SERVER_UPDATES_PER_SECOND);
+            ball.setA(EMath.aTan2(dto.currentDataDto.y - ball.currentData.y, dto.currentDataDto.x - ball.currentData.x));
+        }
+
         FrameDataMapper.updateFromDto(ball.currentData, dto.currentDataDto);
-        ball.ownerIndex= dto.ownerIndex;
+        ball.ownerIndex = dto.ownerIndex;
         ball.ownerTeamIndex = dto.ownerTeamIndex;
     }
 }
