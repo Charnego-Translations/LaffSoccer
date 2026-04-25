@@ -81,7 +81,7 @@ public class Match extends Scene<MatchFsm, MatchState> implements Json.Serializa
 
     enum PenaltyState {TO_KICK, SCORED, MISSED}
 
-    final ArrayList<Penalty>[] penalties = new ArrayList[2];
+    final ArrayList<Penalty>[] penalties = new ArrayList[] {new ArrayList<>(), new ArrayList<>()};
     Penalty penalty;
     Player penaltyScorer;
 
@@ -181,9 +181,6 @@ public class Match extends Scene<MatchFsm, MatchState> implements Json.Serializa
         length = matchSettings.matchLength * 60 * 1000;
         coinToss = Assets.random.nextInt(2); // 0 = home begins, 1 = away begins
         kickOffTeam = coinToss;
-
-        penalties[HOME] = new ArrayList<>();
-        penalties[AWAY] = new ArrayList<>();
 
         recorder = new Recorder(this);
         pointOfInterest = new Vector2();
