@@ -117,6 +117,14 @@ public class Ball {
         this.setPosition(position.x, position.y, 0);
     }
 
+    public void setV(float v) {
+        this.v = v;
+    }
+
+    public void setA(float a) {
+        this.a = a;
+    }
+
     public void update() {
         // store old values
         x0 = x;
