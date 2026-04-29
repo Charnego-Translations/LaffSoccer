@@ -1,6 +1,8 @@
 package com.ygames.ysoccer.match;
 
 import com.badlogic.gdx.math.Vector2;
+import com.ygames.ysoccer.events.MatchNewStateEvent;
+import com.ygames.ysoccer.framework.EventManager;
 import com.ygames.ysoccer.framework.InputDevice;
 import com.ygames.ysoccer.framework.InputDeviceList;
 
@@ -119,6 +121,12 @@ public class MatchFsm extends SceneFsm<Match, MatchState> {
     public void start() {
         pushAction(NEW_FOREGROUND, INTRO);
         pushAction(FADE_IN);
+    }
+
+    @Override
+    protected void publishEvent() {
+        super.publishEvent();
+        EventManager.publish(new MatchNewStateEvent(getScene()));
     }
 
     static class BenchStatus {

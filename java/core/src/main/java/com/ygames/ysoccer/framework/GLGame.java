@@ -22,6 +22,7 @@ public class GLGame extends Game {
 
     public static final int SUBFRAMES = 8;
     public static final int VIRTUAL_REFRESH_RATE = 64;
+    public static final int SERVER_UPDATES_PER_SECOND = 60;
     public static final int SUBFRAMES_PER_SECOND = VIRTUAL_REFRESH_RATE * SUBFRAMES;
     public static final float SUBFRAME_DURATION = 1.0f / SUBFRAMES_PER_SECOND;
 

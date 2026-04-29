@@ -30,6 +30,7 @@ import com.ygames.ysoccer.gui.Widget;
 import com.ygames.ysoccer.match.Goal;
 import com.ygames.ysoccer.network.Network;
 import com.ygames.ysoccer.network.dto.MatchSetupDto;
+import com.ygames.ysoccer.network.dto.MatchStatsUpdateDto;
 import com.ygames.ysoccer.network.dto.MatchUpdateDto;
 import com.ygames.ysoccer.network.dto.events.BallBounceEventDto;
 import com.ygames.ysoccer.network.dto.events.BallCollisionEventDto;
@@ -136,6 +137,11 @@ public class OnlineMatchConnect extends GLScreen {
                 if (object instanceof FoulEventDto)
                     Gdx.app.postRunnable(() -> {
                         onlineMatchScreen.match.foul = FoulMapper.fromDto(onlineMatchScreen.match, ((FoulEventDto) object).foulDto);
+                    });
+
+                if (object instanceof MatchStatsUpdateDto)
+                    Gdx.app.postRunnable(() -> {
+                        onlineMatchScreen.match.stats = ((MatchStatsUpdateDto) object).stats;
                     });
             }
         });

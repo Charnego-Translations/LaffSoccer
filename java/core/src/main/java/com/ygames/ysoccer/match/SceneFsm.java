@@ -147,6 +147,7 @@ abstract class SceneFsm<SceneT extends Scene<?, SceneStateT>, SceneStateT extend
                     scene.state.exitActions();
                 }
                 scene.setState(searchState(currentAction.stateId));
+                publishEvent();
                 Gdx.app.debug("NEW_FOREGROUND", scene.state == null ? "null" : scene.state.getClass().getSimpleName());
                 break;
 
@@ -164,6 +165,9 @@ abstract class SceneFsm<SceneT extends Scene<?, SceneStateT>, SceneStateT extend
                 break;
 
         }
+    }
+
+    protected void publishEvent() {
     }
 
     private SceneStateT searchState(SceneState.Id id) {
