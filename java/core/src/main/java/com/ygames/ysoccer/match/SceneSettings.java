@@ -21,6 +21,7 @@ public class SceneSettings {
     int weatherMaxStrength;
 
     public boolean commentary;
+    public boolean easyMode;
 
     boolean fullScreen;
     public int zoom;
@@ -33,6 +34,7 @@ public class SceneSettings {
         this.zoom = gameSettings.zoom;
         this.fullScreen = gameSettings.fullScreen;
         this.names = gameSettings.names;
+        this.easyMode = gameSettings.easyMode;
 
         this.time = randomTime();
         this.pitchType = Pitch.random();

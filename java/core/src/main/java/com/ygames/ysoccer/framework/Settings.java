@@ -39,6 +39,7 @@ public class Settings {
     public boolean autoReplays;
     public int soundVolume;
     public boolean commentary;
+    public boolean easyMode;
 
     // controls
     private String keyboardConfigs;
@@ -98,6 +99,7 @@ public class Settings {
         soundVolume = preferences.getInteger("soundVolume", 40);
         commentary = preferences.getBoolean("commentary", true);
         names = preferences.getBoolean("names", false);
+        easyMode = preferences.getBoolean("easyMode", false);
 
         // controls
         keyboardConfigs = preferences.getString("keyboardConfigs", defaultKeyboardConfigs());
@@ -155,6 +157,7 @@ public class Settings {
         preferences.putInteger("soundVolume", soundVolume);
         preferences.putBoolean("commentary", commentary);
         preferences.putBoolean("names", names);
+        preferences.putBoolean("easyMode", easyMode);
 
         // controls
         preferences.putString("keyboardConfigs", keyboardConfigs);

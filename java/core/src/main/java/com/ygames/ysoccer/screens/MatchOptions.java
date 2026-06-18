@@ -78,6 +78,12 @@ class MatchOptions extends GLScreen {
         w = new NamesButton();
         widgets.add(w);
 
+        w = new EasyModeLabel();
+        widgets.add(w);
+
+        w = new EasyModeButton();
+        widgets.add(w);
+
         w = new ExitButton();
         widgets.add(w);
     }
@@ -390,6 +396,45 @@ class MatchOptions extends GLScreen {
 
         private void toggleCommentary() {
             game.settings.commentary = !game.settings.commentary;
+            setDirty(true);
+        }
+    }
+
+    private class EasyModeLabel extends Button {
+
+        EasyModeLabel() {
+            setColor(0x76683C);
+            setGeometry(Gui.WIDTH / 2 - 10 - 440, 590, 440, 40);
+            setText(Assets.strings.get("MATCH OPTIONS.EASY MODE"), Font.Align.CENTER, Assets.font14);
+            setActive(false);
+        }
+    }
+
+    private class EasyModeButton extends Button {
+
+        EasyModeButton() {
+            setColor(0x2B4A61);
+            setGeometry(Gui.WIDTH / 2 + 10, 590, 440, 40);
+            setText("", Font.Align.CENTER, Assets.font14);
+        }
+
+        @Override
+        public void refresh() {
+            setText(Assets.strings.get(game.settings.easyMode ? "MATCH OPTIONS.EASY MODE.ON" : "MATCH OPTIONS.EASY MODE.OFF"));
+        }
+
+        @Override
+        public void onFire1Down() {
+            toggleEasyMode();
+        }
+
+        @Override
+        public void onFire2Down() {
+            toggleEasyMode();
+        }
+
+        private void toggleEasyMode() {
+            game.settings.easyMode = !game.settings.easyMode;
             setDirty(true);
         }
     }

@@ -63,6 +63,10 @@ class PlayerStateStandRun extends PlayerState {
             player.a = player.inputDevice.angle;
         } else {
             player.v = 0;
+            if (scene.settings.easyMode && ball.owner == player) {
+                ball.v = 0;
+                ball.s = 0;
+            }
         }
 
         player.animationStandRun();
