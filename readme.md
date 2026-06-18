@@ -21,6 +21,7 @@ El tito Esteban Trabajos hace que no puedas ejecutar nada sin que le pagues 100 
 
 ```bash
 xattr -cr /ruta/a/tu/binario
+```
 
 ## Para jugar a la última versión (versión en desarrollo, inestable)
 
