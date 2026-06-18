@@ -15,6 +15,13 @@ Charnego Internatiolaff Soccer es una producción de Charnego Translations Ltd, 
 
 Ve a https://github.com/Charnego-Translations/laffsoccer/releases para ver las versiones lanzadas listas para jugar, sin tener que andarte con zarandajas de compilar cosas. No debería hacer falta Java, porque ya viene. Léete el [leeme.txt](java/assets/docs/leeme.txt) pa más info.
 
+## Si vas a jugar en MacAcOs
+
+El tito Esteban Trabajos hace que no puedas ejecutar nada sin que le pagues 100 pepinos al año. Si intentas jugar, el sistema te dirá que los ficheros están rotos, que son malos o nosequé niños muertos. Usa lo siguiente para desbloquearlos desde el terminal:
+
+```bash
+xattr -cr /ruta/a/tu/binario
+
 ## Para jugar a la última versión (versión en desarrollo, inestable)
 
 Tienes que tener Java 17 instalado como mínimo ya que Gradle lo requiere. Recomendamos la distro Amazon Correto, disponible en https://docs.aws.amazon.com/corretto/latest/corretto-17-ug/downloads-list.html. Funciona en Güindos, Kleenux y MacacOSX. Entra en la consola y haz lo siguiente:
