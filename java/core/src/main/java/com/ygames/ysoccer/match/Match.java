@@ -345,9 +345,13 @@ public class Match extends Scene<MatchFsm, MatchState> implements Json.Serializa
         ball.inFieldKeep();
     }
 
+    private static final float BALL_OWNER_MAX_DISTANCE = 11;
+    private static final float EASY_MODE_BALL_OWNER_MAX_DISTANCE = 18;
+
     private void updateBallOwner() {
         if (ball.owner != null && ball.owner != ball.holder) {
-            if ((ball.owner.ballDistance > 11) || (ball.z > (Const.PLAYER_H + BALL_R))) {
+            float maxDistance = settings.easyMode ? EASY_MODE_BALL_OWNER_MAX_DISTANCE : BALL_OWNER_MAX_DISTANCE;
+            if ((ball.owner.ballDistance > maxDistance) || (ball.z > (Const.PLAYER_H + BALL_R))) {
                 setBallOwner(null);
             }
         }
