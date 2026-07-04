@@ -1,11 +1,10 @@
 package com.ygames.ysoccer.match;
 
+import com.ygames.ysoccer.events.PlayerSwapEvent;
 import com.ygames.ysoccer.events.SubstitutionEvent;
-import com.ygames.ysoccer.framework.Assets;
 import com.ygames.ysoccer.framework.EMath;
 import com.ygames.ysoccer.framework.EventManager;
 import com.ygames.ysoccer.framework.GLGame;
-import com.ygames.ysoccer.framework.SoundManager;
 
 import java.util.Collections;
 
@@ -134,13 +133,6 @@ class MatchStateBenchFormation extends MatchState {
 
                             benchStatus.substPosition = -1;
 
-                            if (scene.settings.commentary) {
-                                int size = Assets.Commentary.playerSubstitution.size();
-                                if (size > 0) {
-                                    Assets.Commentary.playerSubstitution.get(Assets.RANDOM.nextInt(size)).play(SoundManager.volume / 100f);
-                                }
-                            }
-
                             Collections.swap(benchStatus.team.lineup, selectedPlayerIndex, benchPlayerIndex);
                             selectedPlayer.swapTargetWith(benchPlayer);
                         }
@@ -163,12 +155,7 @@ class MatchStateBenchFormation extends MatchState {
 
                         benchStatus.swapPosition = -1;
 
-                        if (scene.settings.commentary) {
-                            int size = Assets.Commentary.playerSwap.size();
-                            if (size > 0) {
-                                Assets.Commentary.playerSwap.get(Assets.RANDOM.nextInt(size)).play(SoundManager.volume / 100f);
-                            }
-                        }
+                        EventManager.publish(new PlayerSwapEvent(benchStatus.team, selectedPlayer, otherPlayer));
 
                         Collections.swap(benchStatus.team.lineup, selectedPlayerIndex, otherPlayerIndex);
                         selectedPlayer.swapTargetWith(otherPlayer);

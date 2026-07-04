@@ -20,6 +20,7 @@ import com.ygames.ysoccer.events.MatchIntroEvent;
 import com.ygames.ysoccer.events.PenaltyEvent;
 import com.ygames.ysoccer.events.PeriodStopEvent;
 import com.ygames.ysoccer.events.PlayerGetsBallEvent;
+import com.ygames.ysoccer.events.PlayerSwapEvent;
 import com.ygames.ysoccer.events.RedCardEvent;
 import com.ygames.ysoccer.events.SubstitutionEvent;
 import com.ygames.ysoccer.events.TackleEvent;
@@ -27,6 +28,7 @@ import com.ygames.ysoccer.events.ThrowInEvent;
 import com.ygames.ysoccer.events.WhistleEvent;
 import com.ygames.ysoccer.events.YellowCardEvent;
 import com.ygames.ysoccer.framework.commentary.Comment;
+import com.ygames.ysoccer.framework.commentary.CommentBuilder;
 import com.ygames.ysoccer.framework.commentary.CommentPriority;
 import com.ygames.ysoccer.framework.commentary.Commentary;
 import com.ygames.ysoccer.framework.commentary.CommonComment;
@@ -137,25 +139,25 @@ public class SoundManager {
 
             switch (periodStopEvent.sceneState) {
                 case HALF_TIME_STOP:
-                    Commentary.INSTANCE.enqueueComment(Commentary.getComment(CommonCommentType.HALF_MATCH, CommentPriority.HIGH));
-                    Commentary.INSTANCE.enqueueComment(Commentary.halfTime(periodStopEvent.match));
+                    Commentary.INSTANCE.enqueueComment(CommentBuilder.getComment(CommonCommentType.HALF_MATCH, CommentPriority.HIGH));
+                    Commentary.INSTANCE.enqueueComment(CommentBuilder.halfTime(periodStopEvent.match));
                     break;
 
                 case FULL_TIME_STOP: case FULL_EXTRA_TIME_STOP:
-                    Commentary.INSTANCE.enqueueComment(Commentary.getComment(CommonCommentType.MATCH_END, CommentPriority.HIGH));
+                    Commentary.INSTANCE.enqueueComment(CommentBuilder.getComment(CommonCommentType.MATCH_END, CommentPriority.HIGH));
                     Commentary.INSTANCE.enqueueMatchEndComment(periodStopEvent.match);
                     break;
 
                 case EXTRA_TIME_STOP:
-                    Commentary.INSTANCE.enqueueComment(Commentary.getComment(CommonCommentType.MATCH_END_EXTRA_TIME, CommentPriority.HIGH));
+                    Commentary.INSTANCE.enqueueComment(CommentBuilder.getComment(CommonCommentType.MATCH_END_EXTRA_TIME, CommentPriority.HIGH));
                     break;
 
                 case HALF_EXTRA_TIME_STOP:
-                    Commentary.INSTANCE.enqueueComment(Commentary.getComment(CommonCommentType.EXTRA_TIME_FIRST_END, CommentPriority.HIGH));
+                    Commentary.INSTANCE.enqueueComment(CommentBuilder.getComment(CommonCommentType.EXTRA_TIME_FIRST_END, CommentPriority.HIGH));
                     break;
 
                 case PENALTIES_STOP:
-                    Commentary.INSTANCE.enqueueComment(Commentary.getComment(CommonCommentType.EXTRA_TIME_END, CommentPriority.HIGH));
+                    Commentary.INSTANCE.enqueueComment(CommentBuilder.getComment(CommonCommentType.EXTRA_TIME_END, CommentPriority.HIGH));
                     break;
 
                 default:
@@ -244,12 +246,16 @@ public class SoundManager {
             );
         });
 
+        EventManager.subscribe(PlayerSwapEvent.class, playerSwapEvent -> {
+            Commentary.INSTANCE.enqueueComment(CommentBuilder.getComment(CommonCommentType.PLAYER_SWAP, CommentPriority.HIGH));
+        });
+
         EventManager.subscribe(GoalKickEvent.class, goalKickEvent -> {
-            Commentary.INSTANCE.enqueueComment(Commentary.getComment(CommonCommentType.GOAL_KICK, CommentPriority.HIGH));
+            Commentary.INSTANCE.enqueueComment(CommentBuilder.getComment(CommonCommentType.GOAL_KICK, CommentPriority.HIGH));
         });
 
         EventManager.subscribe(CornerKickEvent.class, cornerKickEvent -> {
-            Commentary.INSTANCE.enqueueComment(Commentary.getComment(CommonCommentType.CORNER_KICK, CommentPriority.HIGH));
+            Commentary.INSTANCE.enqueueComment(CommentBuilder.getComment(CommonCommentType.CORNER_KICK, CommentPriority.HIGH));
         });
 
         EventManager.subscribe(SubstitutionEvent.class, substitutionEvent -> {
@@ -257,7 +263,7 @@ public class SoundManager {
             Sound playerIn = TeamCommentary.teams.get(FileUtils.getTeamFromFile(substitutionEvent.team.path)).players.get(substitutionEvent.in.shirtName);
             Sound playerOut = TeamCommentary.teams.get(FileUtils.getTeamFromFile(substitutionEvent.team.path)).players.get(substitutionEvent.out.shirtName);
 
-            Commentary.INSTANCE.enqueueComment(Commentary.getComment(CommonCommentType.PLAYER_SUBSTITUTION, CommentPriority.HIGH));
+            Commentary.INSTANCE.enqueueComment(CommentBuilder.getComment(CommonCommentType.PLAYER_SUBSTITUTION, CommentPriority.HIGH));
 
             //TODO add substitution comment
             if (playerIn != null && playerOut != null) {

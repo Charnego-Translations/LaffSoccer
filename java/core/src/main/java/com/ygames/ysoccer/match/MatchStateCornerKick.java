@@ -1,10 +1,8 @@
 package com.ygames.ysoccer.match;
 
 import com.ygames.ysoccer.events.WhistleEvent;
-import com.ygames.ysoccer.framework.Assets;
 import com.ygames.ysoccer.framework.EventManager;
 import com.ygames.ysoccer.framework.GLGame;
-import com.ygames.ysoccer.framework.SoundManager;
 
 import static com.ygames.ysoccer.match.MatchFsm.StateId.CORNER_KICK;
 import static com.ygames.ysoccer.match.MatchFsm.StateId.MAIN;
@@ -31,17 +29,6 @@ class MatchStateCornerKick extends MatchState {
         scene.displayRadar = true;
         scene.displayWindVane = true;
         scene.displayScore = true;
-    }
-
-    @Override
-    void entryActions() {
-        super.entryActions();
-        if (scene.settings.commentary) {
-            int size = Assets.Commentary.cornerKick.size();
-            if (size > 0) {
-                Assets.Commentary.cornerKick.get(Assets.RANDOM.nextInt(size)).play(SoundManager.volume / 100f);
-            }
-        }
     }
 
     @Override

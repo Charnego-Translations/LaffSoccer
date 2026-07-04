@@ -3,10 +3,8 @@ package com.ygames.ysoccer.match;
 import com.badlogic.gdx.math.Vector2;
 import com.ygames.ysoccer.events.PenaltyEvent;
 import com.ygames.ysoccer.events.WhistleEvent;
-import com.ygames.ysoccer.framework.Assets;
 import com.ygames.ysoccer.framework.EventManager;
 import com.ygames.ysoccer.framework.GLGame;
-import com.ygames.ysoccer.framework.SoundManager;
 
 import java.util.ArrayList;
 
@@ -51,13 +49,6 @@ class MatchStatePenaltyKickStop extends MatchState {
         super.entryActions();
 
         EventManager.publish(new WhistleEvent());
-
-        if (scene.settings.commentary) {
-            int size = Assets.Commentary.penalty.size();
-            if (size > 0) {
-                Assets.Commentary.penalty.get(Assets.RANDOM.nextInt(size)).play(SoundManager.volume / 100f);
-            }
-        }
 
         EventManager.publish(new PenaltyEvent(scene));
 

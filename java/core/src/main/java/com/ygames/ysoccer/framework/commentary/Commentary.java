@@ -5,28 +5,17 @@ import com.ygames.ysoccer.framework.Assets;
 import com.ygames.ysoccer.framework.EMath;
 import com.ygames.ysoccer.framework.FileUtils;
 import com.ygames.ysoccer.framework.GLGame;
-import com.ygames.ysoccer.framework.SoundManager;
 import com.ygames.ysoccer.match.Match;
-import com.ygames.ysoccer.match.MatchStats;
-import com.ygames.ysoccer.match.Player;
-import com.ygames.ysoccer.match.Team;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
 import java.util.Queue;
-import java.util.Random;
-import java.util.Set;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-import static com.ygames.ysoccer.framework.EMath.randomPick;
 import static com.ygames.ysoccer.framework.GLGame.LogType.COMMENTARY;
 
 /**
@@ -35,7 +24,6 @@ import static com.ygames.ysoccer.framework.GLGame.LogType.COMMENTARY;
 public class Commentary {
 
     private static final String THREAD_NAME = "Commentary-thread";
-    private static final float MAX_QUEUE = 3.0f;
 
     public static final Commentary INSTANCE = new Commentary();
     @Getter
@@ -83,15 +71,18 @@ public class Commentary {
             return;
         }
 
-        if (!shouldEnqueue(elements)) {
+        Comment incoming = elements[0];
+
+        if (!QueuePolicy.shouldEnqueue(incoming, queueLength, playing != null)) {
             GLGame.debug(COMMENTARY, elements, "Commentary not queued: queue too long: " + queueLength);
             return;
         }
 
+        Comment queuedNext = queue.isEmpty() ? null : queue.peek()[0];
+
         // A comment with greater priority comes (or queue is very long)
-        if (shouldClearQueue(elements))  {
-            GLGame.debug(COMMENTARY, elements, "Queue clear and commentary pushed immediately: is not chitchat? " + (elements[0].commentPriority != CommentPriority.CHITCHAT));
-            GLGame.debug(COMMENTARY, elements, "Queue clear and commentary pushed immediately: higher priority? " + (playing == null? "(not playing)" : playing.commentPriority.weight < elements[0].commentPriority.weight));
+        if (QueuePolicy.shouldClearQueue(incoming, playing, queuedNext, queueLength))  {
+            GLGame.debug(COMMENTARY, elements, "Queue clear and commentary pushed immediately");
             queue.clear();
             current.clear();
             queueLength = 0;
@@ -108,120 +99,14 @@ public class Commentary {
         queue.add(elements);
     }
 
-    private boolean shouldEnqueue(Comment... elements) {
-        return queueLength < MAX_QUEUE
-            || playing == null
-            || elements[0].commentPriority.weight >= CommentPriority.HIGH.weight;
-    }
-
-    private boolean shouldClearQueue(Comment... elements) {
-        return (playing != null
-            && elements[0].commentPriority.weight > playing.commentPriority.weight
-            && !queue.isEmpty() && elements[0].commentPriority.weight > queue.peek()[0].commentPriority.weight
-            && elements[0].commentPriority != CommentPriority.CHITCHAT
-            && elements[0].commentPriority.weight > CommentPriority.HIGH.weight)
-            || (playing != null && queueLength > MAX_QUEUE && elements[0].commentPriority.weight >= CommentPriority.HIGH.weight && playing.commentPriority.weight >= CommentPriority.HIGH.weight)
-            || (playing != null && elements[0].commentPriority == CommentPriority.LOW && playing.commentPriority == CommentPriority.LOW);
-    }
-
     /**
      * Prepares and enqueue end game comment
      */
     public void enqueueMatchEndComment(Match match) {
-        Comment[] resultComment = buildResultComment(match);
+        Comment[] resultComment = CommentBuilder.buildResultComment(match);
         if (resultComment != null) {
             enqueueComment(resultComment);
         }
-    }
-
-    /**
-     * Prepares a random comment of type and priority specified
-     * @param type Common comment type
-     * @param commentPriority Comment priority
-     * @return the composed comment
-     */
-    public static Comment[] getComment(CommonCommentType type, CommentPriority commentPriority, Team homeTeam, Team offenderteam, Player player) {
-
-        GLGame.debug(COMMENTARY, commentPriority, "Generating new comment: " + type);
-
-        List<Comment> result = new ArrayList<>();
-        for (Sound sound : CommonComment.pull(type, homeTeam, offenderteam, player)) {
-            result.add(new Comment(commentPriority, sound));
-        }
-        EMath.oneIn(2.5f, () -> {
-            Sentence commonComment = CommonComment.pullSecond(type);
-            if (commonComment != null && commonComment.sound != null) {
-                result.add(new Comment(commentPriority == CommentPriority.HIGH ? CommentPriority.COMMON : commentPriority, commonComment.sound));
-            }
-        });
-
-        return result.toArray(new Comment[0]);
-    }
-
-    public static Comment[] getComment(CommonCommentType type, CommentPriority commentPriority) {
-        return getComment(type, commentPriority, null, null, null);
-    }
-
-    /**
-     * Builds a comment saying the result
-     * @param match Match object
-     * @return built comment
-     */
-    public static Comment[] buildResultComment(Match match) {
-        Sound[] numbers = CommonComment.numbers;
-
-        MatchStats home = match.stats[Match.HOME];
-        MatchStats away = match.stats[Match.AWAY];
-        Map<String, TeamCommentary> teams = TeamCommentary.teams;
-
-        TeamCommentary homeName = teams.get(FileUtils.getTeamFromFile(match.team[Match.HOME].path));
-        TeamCommentary awayName = teams.get(FileUtils.getTeamFromFile(match.team[Match.AWAY].path));
-
-        if (numbers[(home.goals)] == null
-            || numbers[(away.goals)] == null
-            || homeName.teamName == null || awayName.teamName == null) {
-            return null;
-        }
-        return new Comment[] {
-                new Comment(CommentPriority.HIGH, homeName.teamName),
-                new Comment(CommentPriority.HIGH, numbers[(home.goals)]),
-                new Comment(CommentPriority.HIGH, awayName.teamName),
-                new Comment(CommentPriority.HIGH, numbers[(away.goals)])
-            };
-    }
-
-    /**
-     * Builds a comment for half-time
-     * @param match match object
-     * @return built comment
-     */
-    public static Comment[] halfTime(Match match) {
-
-        Set<Sound> sounds = new HashSet<>();
-
-        MatchStats home = match.stats[Match.HOME];
-        MatchStats away = match.stats[Match.AWAY];
-
-        if (home.goals + away.goals > 5) {
-            sounds.add(SoundManager.manyGoalsHalfTime);
-        }
-        if (home.foulsConceded + away.foulsConceded > 15) {
-            sounds.add(SoundManager.violentMatch);
-        }
-        if (home.goals + away.goals == 0) {
-            sounds.add(SoundManager.noGoalsHalfTime);
-        }
-        if (home.goals + 3 < away.goals) {
-            sounds.add(SoundManager.awayTeamTrashing);
-        }
-        if (home.goals > away.goals + 3) {
-            sounds.add(SoundManager.localTeamTrashing);
-        }
-
-        if (!sounds.isEmpty()) {
-            return new Comment[] {new Comment(CommentPriority.HIGH, randomPick(sounds))};
-        }
-        return null;
     }
 
     /**
@@ -286,7 +171,7 @@ public class Commentary {
 
         if (now - lastChitChat > 50000) {
             if (Assets.RANDOM.nextInt((int) EMath.max(1, (now - lastChitChat))) > 36000) {
-                enqueueComment(getComment(CommonCommentType.CHITCHAT, CommentPriority.CHITCHAT));
+                enqueueComment(CommentBuilder.getComment(CommonCommentType.CHITCHAT, CommentPriority.CHITCHAT));
                 lastChitChat = now;
             }
         }

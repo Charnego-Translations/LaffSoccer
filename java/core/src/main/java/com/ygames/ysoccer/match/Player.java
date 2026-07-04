@@ -20,7 +20,6 @@ import com.ygames.ysoccer.framework.GLColor;
 import com.ygames.ysoccer.framework.GLGame;
 import com.ygames.ysoccer.framework.InputDevice;
 import com.ygames.ysoccer.framework.RgbPair;
-import com.ygames.ysoccer.framework.SoundManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -498,14 +497,7 @@ public class Player implements Json.Serializable {
         }
 
         if (collisionType == KeeperCollision.CATCH) {
-            if (scene.settings.commentary) {
-                int size = Assets.Commentary.keeperSave.size();
-                EventManager.publish(new KeeperSaveEvent((Match) scene));
-                if (size > 0) {
-                    Assets.Commentary.keeperSave.get(Assets.RANDOM.nextInt(size)).play(SoundManager.volume / 100f);
-
-                }
-            }
+            EventManager.publish(new KeeperSaveEvent((Match) scene));
         }
 
         return (collisionType == KeeperCollision.CATCH);

@@ -112,62 +112,6 @@ public class Assets {
     public static final TextureRegion[][] wind = new TextureRegion[8][2];
     public static final TextureRegion[] bench = new TextureRegion[2];
 
-    public static class Commentary {
-
-        public static final List<Sound> cornerKick = new ArrayList<>();
-        public static final List<Sound> foul = new ArrayList<>();
-        public static final List<Sound> goal = new ArrayList<>();
-        public static final List<Sound> keeperSave = new ArrayList<>();
-        public static final List<Sound> ownGoal = new ArrayList<>();
-        public static final List<Sound> penalty = new ArrayList<>();
-        public static final List<Sound> playerSubstitution = new ArrayList<>();
-        public static final List<Sound> playerSwap = new ArrayList<>();
-
-        static void load() {
-            FileHandle commentaryFolder = Gdx.files.local("sounds/commentary");
-            for (FileHandle fileHandle : commentaryFolder.list()) {
-                if (EXTENSIONS.contains(fileHandle.extension().toLowerCase())) {
-                    String name = fileHandle.nameWithoutExtension();
-                    if (name.startsWith("corner_kick")) {
-                        cornerKick.add(Gdx.audio.newSound(fileHandle));
-                    }
-                    if (name.startsWith("foul")) {
-                        foul.add(Gdx.audio.newSound(fileHandle));
-                    }
-                    if (name.startsWith("goal")) {
-                        goal.add(Gdx.audio.newSound(fileHandle));
-                    }
-                    if (name.startsWith("keeper_save")) {
-                        keeperSave.add(Gdx.audio.newSound(fileHandle));
-                    }
-                    if (name.startsWith("own_goal")) {
-                        ownGoal.add(Gdx.audio.newSound(fileHandle));
-                    }
-                    if (name.startsWith("penalty")) {
-                        penalty.add(Gdx.audio.newSound(fileHandle));
-                    }
-                    if (name.startsWith("player_substitution")) {
-                        playerSubstitution.add(Gdx.audio.newSound(fileHandle));
-                    }
-                    if (name.startsWith("player_swap")) {
-                        playerSwap.add(Gdx.audio.newSound(fileHandle));
-                    }
-                }
-            }
-        }
-
-        public static void stop() {
-            for (Sound s : cornerKick) s.stop();
-            for (Sound s : foul) s.stop();
-            for (Sound s : goal) s.stop();
-            for (Sound s : keeperSave) s.stop();
-            for (Sound s : ownGoal) s.stop();
-            for (Sound s : penalty) s.stop();
-            for (Sound s : playerSubstitution) s.stop();
-            for (Sound s : playerSwap) s.stop();
-        }
-    }
-
     public static class TeamFaces {
 
         public static final Map<String, TeamFaces> teams = new HashMap<>();
@@ -265,7 +209,6 @@ public class Assets {
         loadBench();
         SoundManager.load();
         CommonComment.load();
-        Commentary.load();
     }
 
     public static void loadCore(Settings settings) {
