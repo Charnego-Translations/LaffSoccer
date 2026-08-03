@@ -8,6 +8,7 @@ import com.badlogic.gdx.controllers.Controller;
 import com.badlogic.gdx.controllers.ControllerAdapter;
 import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.graphics.Texture;
+import com.ygames.ysoccer.framework.EMath;
 import com.ygames.ysoccer.framework.GLGame;
 import com.ygames.ysoccer.framework.GLScreen;
 import com.ygames.ysoccer.framework.InputDevice;
@@ -16,7 +17,6 @@ import com.ygames.ysoccer.framework.JoystickConfig;
 import com.ygames.ysoccer.framework.KeyboardConfig;
 import com.ygames.ysoccer.gui.Button;
 import com.ygames.ysoccer.gui.Widget;
-import com.ygames.ysoccer.framework.EMath;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,7 +29,6 @@ class SetupControls extends GLScreen {
 
     private enum ConfigParam {KEY_LEFT, KEY_RIGHT, KEY_UP, KEY_DOWN, BUTTON_1, BUTTON_2}
 
-    private final ConfigParam[] buttonParams = {ConfigParam.BUTTON_1, ConfigParam.BUTTON_2};
     private final ConfigParam[] axisParams = {ConfigParam.KEY_LEFT, ConfigParam.KEY_RIGHT, ConfigParam.KEY_UP, ConfigParam.KEY_DOWN};
 
     private InputDeviceButton selectedInputDeviceButton;
@@ -285,27 +284,69 @@ class SetupControls extends GLScreen {
             switch (configParam) {
                 case KEY_LEFT:
                 case KEY_RIGHT:
-                    if (axisIndex == -1) return;
-                    if (axisIndex == joystickConfig.yAxis) return;
-                    joystickConfig.xAxis = axisIndex;
+                    if (axisIndex == -1 && buttonIndex == -1) return;
+
+                    // analog axis
+                    if (axisIndex != -1) {
+                        if (axisIndex == joystickConfig.yAxis) return;
+                        joystickConfig.setXAxis(axisIndex);
+                    }
+
+                    // digital axis
+                    if (buttonIndex != -1) {
+                        switch (configParam) {
+                            case KEY_LEFT:
+                                if (buttonIndex != joystickConfig.left && isButtonAssigned(joystickConfig, buttonIndex))
+                                    return;
+                                joystickConfig.setLeft(buttonIndex);
+                                break;
+                            case KEY_RIGHT:
+                                if (buttonIndex != joystickConfig.right && isButtonAssigned(joystickConfig, buttonIndex))
+                                    return;
+                                joystickConfig.setRight(buttonIndex);
+                                break;
+                        }
+                    }
                     break;
 
                 case KEY_UP:
                 case KEY_DOWN:
-                    if (axisIndex == -1) return;
-                    if (axisIndex == joystickConfig.xAxis) return;
-                    joystickConfig.yAxis = axisIndex;
+                    if (axisIndex == -1 && buttonIndex == -1) return;
+
+                    // analog axis
+                    if (axisIndex != -1) {
+                        if (axisIndex == joystickConfig.xAxis) return;
+                        joystickConfig.setYAxis(axisIndex);
+                    }
+
+                    // digital axis
+                    if (buttonIndex != -1) {
+                        switch (configParam) {
+                            case KEY_UP:
+                                if (buttonIndex != joystickConfig.up && isButtonAssigned(joystickConfig, buttonIndex))
+                                    return;
+                                joystickConfig.setUp(buttonIndex);
+                                break;
+                            case KEY_DOWN:
+                                if (buttonIndex != joystickConfig.down && isButtonAssigned(joystickConfig, buttonIndex))
+                                    return;
+                                joystickConfig.setDown(buttonIndex);
+                                break;
+                        }
+                    }
                     break;
 
                 case BUTTON_1:
                     if (buttonIndex == -1) return;
-                    if (buttonIndex == joystickConfig.button2) return;
+                    if (buttonIndex != joystickConfig.button1 && isButtonAssigned(joystickConfig, buttonIndex))
+                        return;
                     joystickConfig.button1 = buttonIndex;
                     break;
 
                 case BUTTON_2:
                     if (buttonIndex == -1) return;
-                    if (buttonIndex == joystickConfig.button1) return;
+                    if (buttonIndex != joystickConfig.button2 && isButtonAssigned(joystickConfig, buttonIndex))
+                        return;
                     joystickConfig.button2 = buttonIndex;
                     break;
             }
@@ -333,6 +374,16 @@ class SetupControls extends GLScreen {
                 refreshAllWidgets();
             }
         }
+    }
+
+    private boolean isButtonAssigned(JoystickConfig joystickConfig, int buttonIndex) {
+        if (joystickConfig.left == buttonIndex) return true;
+        if (joystickConfig.right == buttonIndex) return true;
+        if (joystickConfig.up == buttonIndex) return true;
+        if (joystickConfig.down == buttonIndex) return true;
+        if (joystickConfig.button1 == buttonIndex) return true;
+        if (joystickConfig.button2 == buttonIndex) return true;
+        return false;
     }
 
     private void setKeyboardConfigs() {
@@ -371,10 +422,10 @@ class SetupControls extends GLScreen {
 
     private boolean isKeyCodeReserved(int keyCode) {
         Integer[] reservedKeyCodes = {
-                Input.Keys.SPACE, Input.Keys.R, Input.Keys.P, Input.Keys.H,
-                Input.Keys.F1, Input.Keys.F2, Input.Keys.F3, Input.Keys.F4,
-                Input.Keys.F5, Input.Keys.F6, Input.Keys.F7, Input.Keys.F8,
-                Input.Keys.F9, Input.Keys.F10, Input.Keys.F11, Input.Keys.F12
+            Input.Keys.SPACE, Input.Keys.R, Input.Keys.P, Input.Keys.H,
+            Input.Keys.F1, Input.Keys.F2, Input.Keys.F3, Input.Keys.F4,
+            Input.Keys.F5, Input.Keys.F6, Input.Keys.F7, Input.Keys.F8,
+            Input.Keys.F9, Input.Keys.F10, Input.Keys.F11, Input.Keys.F12
         };
         return Arrays.asList(reservedKeyCodes).contains(keyCode);
     }
@@ -413,16 +464,18 @@ class SetupControls extends GLScreen {
 
                 case JOYSTICK:
                     JoystickConfig joystickConfig = (JoystickConfig) selectedInputDeviceButton.config;
-                    int xAxisIndex = joystickConfig.xAxis;
                     if (entryMode) {
                         setText("?");
                         setColor(0xEB9532);
-                    } else if (xAxisIndex == -1) {
+                    } else if (joystickConfig.left != -1) {
+                        setText(joystickConfig.left);
+                        setColor(0x548854);
+                    } else if (joystickConfig.xAxis != -1) {
+                        setText(gettext("CONTROLS.AXIS") + " " + joystickConfig.xAxis);
+                        setColor(0x548854);
+                    } else {
                         setText(gettext("CONTROLS.UNKNOWN"));
                         setColor(0xB40000);
-                    } else {
-                        setText(gettext("CONTROLS.AXIS") + " " + xAxisIndex);
-                        setColor(0x548854);
                     }
                     break;
             }
@@ -463,16 +516,18 @@ class SetupControls extends GLScreen {
 
                 case JOYSTICK:
                     JoystickConfig joystickConfig = (JoystickConfig) selectedInputDeviceButton.config;
-                    int xAxisIndex = joystickConfig.xAxis;
                     if (entryMode) {
                         setText("?");
                         setColor(0xEB9532);
-                    } else if (xAxisIndex == -1) {
+                    } else if (joystickConfig.right != -1) {
+                        setText(joystickConfig.right);
+                        setColor(0x548854);
+                    } else if (joystickConfig.xAxis != -1) {
+                        setText(gettext("CONTROLS.AXIS") + " " + joystickConfig.xAxis);
+                        setColor(0x548854);
+                    } else {
                         setText(gettext("CONTROLS.UNKNOWN"));
                         setColor(0xB40000);
-                    } else {
-                        setText(gettext("CONTROLS.AXIS") + " " + xAxisIndex);
-                        setColor(0x548854);
                     }
                     break;
             }
@@ -513,16 +568,18 @@ class SetupControls extends GLScreen {
 
                 case JOYSTICK:
                     JoystickConfig joystickConfig = (JoystickConfig) selectedInputDeviceButton.config;
-                    int yAxisIndex = joystickConfig.yAxis;
                     if (entryMode) {
                         setText("?");
                         setColor(0xEB9532);
-                    } else if (yAxisIndex == -1) {
+                    } else if (joystickConfig.up != -1) {
+                        setText(joystickConfig.up);
+                        setColor(0x548854);
+                    } else if (joystickConfig.yAxis != -1) {
+                        setText(gettext("CONTROLS.AXIS") + " " + joystickConfig.yAxis);
+                        setColor(0x548854);
+                    } else {
                         setText(gettext("CONTROLS.UNKNOWN"));
                         setColor(0xB40000);
-                    } else {
-                        setText(gettext("CONTROLS.AXIS") + " " + yAxisIndex);
-                        setColor(0x548854);
                     }
                     break;
             }
@@ -563,16 +620,18 @@ class SetupControls extends GLScreen {
 
                 case JOYSTICK:
                     JoystickConfig joystickConfig = (JoystickConfig) selectedInputDeviceButton.config;
-                    int yAxisIndex = joystickConfig.yAxis;
                     if (entryMode) {
                         setText("?");
                         setColor(0xEB9532);
-                    } else if (yAxisIndex == -1) {
+                    } else if (joystickConfig.down != -1) {
+                        setText(joystickConfig.down);
+                        setColor(0x548854);
+                    } else if (joystickConfig.yAxis != -1) {
+                        setText(gettext("CONTROLS.AXIS") + " " + joystickConfig.yAxis);
+                        setColor(0x548854);
+                    } else {
                         setText(gettext("CONTROLS.UNKNOWN"));
                         setColor(0xB40000);
-                    } else {
-                        setText(gettext("CONTROLS.AXIS") + " " + yAxisIndex);
-                        setColor(0x548854);
                     }
                     break;
             }
@@ -657,12 +716,11 @@ class SetupControls extends GLScreen {
                 return false;
             }
 
-            if (EMath.isAmong(listeningConfigButton.configParam, buttonParams)) {
-                JoystickConfig joystickConfig = (JoystickConfig) selectedInputDeviceButton.config;
-                if (controller.getName().equals(joystickConfig.name)) {
-                    listeningConfigButton.setJoystickConfigParam(-1, buttonIndex);
-                }
+            JoystickConfig joystickConfig = (JoystickConfig) selectedInputDeviceButton.config;
+            if (controller.getName().equals(joystickConfig.name)) {
+                listeningConfigButton.setJoystickConfigParam(-1, buttonIndex);
             }
+
             return false;
         }
 

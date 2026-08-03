@@ -17,8 +17,16 @@ class Joystick extends InputDevice {
 
     @Override
     protected void read() {
-        x0 = round(this.controller.getAxis(config.xAxis));
-        y0 = round(this.controller.getAxis(config.yAxis));
+        if (config.isAnalogXAxis()) {
+            x0 = round(this.controller.getAxis(config.xAxis));
+        } else {
+            x0 = (this.controller.getButton(config.left) ? -1 : 0) + (this.controller.getButton(config.right) ? 1 : 0);
+        }
+        if (config.isAnalogYAxis()) {
+            y0 = round(this.controller.getAxis(config.yAxis));
+        } else {
+            y0 = (this.controller.getButton(config.up) ? -1 : 0) + (this.controller.getButton(config.down) ? 1 : 0);
+        }
         fire10 = this.controller.getButton(config.button1);
         fire20 = this.controller.getButton(config.button2);
     }
