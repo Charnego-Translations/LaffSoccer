@@ -67,6 +67,7 @@ public class MatchMapper {
         dto.displayRosters = match.displayRosters;
         dto.displayScore = match.displayScore;
         dto.displayStatistics = match.displayStatistics;
+        dto.displayGoalScorer = match.displayGoalScorer;
         dto.stateId = match.getStateId();
         dto.stateTimer = match.stateTimer;
         return dto;
@@ -125,6 +126,7 @@ public class MatchMapper {
         match.displayRosters = dto.displayRosters;
         match.displayScore = dto.displayScore;
         match.displayStatistics = dto.displayStatistics;
+        match.displayGoalScorer = dto.displayGoalScorer;
         match.setStateId(dto.stateId);
         match.stateTimer = dto.stateTimer;
     }

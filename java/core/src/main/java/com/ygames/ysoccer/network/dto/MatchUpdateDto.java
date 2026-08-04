@@ -21,6 +21,7 @@ public class MatchUpdateDto {
     public boolean displayRosters;
     public boolean displayScore;
     public boolean displayStatistics;
+    public boolean displayGoalScorer;
     public MatchFsm.StateId stateId;
     public int stateTimer;
 
