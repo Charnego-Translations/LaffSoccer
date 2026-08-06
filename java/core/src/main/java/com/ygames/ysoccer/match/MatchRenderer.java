@@ -1098,7 +1098,7 @@ public class MatchRenderer extends SceneRenderer<Match> {
         // slots
         for (int i = 0; i < 18; i++) {
             int color = 0x242424;
-            if (i == scene.getFsm().benchStatus.selectedTactics) {
+            if (i == scene.benchSelectedTactics) {
                 color = GLColor.sweepColor(color, 0xFFAA33);
             }
             fadeRect(x, y + 84 + h * i, x + w - 2, y + 82 + h * (i + 1), 0.6f, color);

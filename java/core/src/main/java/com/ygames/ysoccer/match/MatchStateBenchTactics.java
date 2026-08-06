@@ -34,7 +34,7 @@ class MatchStateBenchTactics extends MatchState {
         super.entryActions();
 
         benchStatus = fsm.benchStatus;
-        benchStatus.selectedTactics = scene.benchTeam.tactics;
+        scene.benchSelectedTactics = scene.benchTeam.tactics;
     }
 
     @Override
@@ -62,7 +62,7 @@ class MatchStateBenchTactics extends MatchState {
 
         // change selected tactics
         if (benchStatus.inputDevice.yMoved()) {
-            benchStatus.selectedTactics = EMath.rotate(benchStatus.selectedTactics, 0, 17, benchStatus.inputDevice.y1);
+            scene.benchSelectedTactics = EMath.rotate(scene.benchSelectedTactics, 0, 17, benchStatus.inputDevice.y1);
         }
     }
 
@@ -72,11 +72,11 @@ class MatchStateBenchTactics extends MatchState {
         // set selected tactics and go back to bench
         if (benchStatus.inputDevice.fire1Down()
             || benchStatus.inputDevice.xReleased()) {
-            if (benchStatus.selectedTactics != scene.benchTeam.tactics) {
+            if (scene.benchSelectedTactics != scene.benchTeam.tactics) {
                 Coach coach = scene.benchTeam.coach;
                 coach.status = Coach.Status.CALL;
                 coach.timer = 500;
-                scene.benchTeam.tactics = benchStatus.selectedTactics;
+                scene.benchTeam.tactics = scene.benchSelectedTactics;
             }
             return newAction(NEW_FOREGROUND, BENCH_SUBSTITUTIONS);
         }

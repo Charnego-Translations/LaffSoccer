@@ -132,6 +132,5 @@ public class MatchFsm extends SceneFsm<Match, MatchState> {
     static class BenchStatus {
         InputDevice inputDevice;
         final Vector2 oldTarget = new Vector2();
-        int selectedTactics;
     }
 }
