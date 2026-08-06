@@ -106,7 +106,7 @@ class MatchStateBenchSubstitutions extends MatchState {
                 return newAction(NEW_FOREGROUND, BENCH_FORMATION);
             } else {
                 // if no previous selection
-                if (benchStatus.substPosition == -1) {
+                if (scene.benchSubstPosition == -1) {
 
                     // out the player for substitution
                     Player player = scene.benchTeam.lineup.get(TEAM_SIZE + scene.benchSelectedPosition);
@@ -115,7 +115,7 @@ class MatchStateBenchSubstitutions extends MatchState {
 
                         player.setState(STATE_BENCH_OUT);
 
-                        benchStatus.substPosition = TEAM_SIZE + scene.benchSelectedPosition;
+                        scene.benchSubstPosition = TEAM_SIZE + scene.benchSelectedPosition;
                         scene.benchSelectedPosition = scene.benchTeam.nearestBenchPlayerByRole(player.role);
 
                         return newAction(NEW_FOREGROUND, BENCH_FORMATION);

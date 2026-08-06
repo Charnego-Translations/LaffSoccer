@@ -1011,7 +1011,7 @@ public class MatchRenderer extends SceneRenderer<Match> {
         int color = 0x242424;
         if (scene.benchSelectedPosition == -1) {
             // substitution - yellow
-            if (scene.getFsm().benchStatus.substPosition != -1) {
+            if (scene.benchSubstPosition != -1) {
                 color = GLColor.sweepColor(color, 0xFFFF33);
             }
             // swap - blue
@@ -1029,7 +1029,7 @@ public class MatchRenderer extends SceneRenderer<Match> {
 
             if (pos == scene.benchSelectedPosition) {
                 // substitution - yellow
-                if (scene.getFsm().benchStatus.substPosition != -1) {
+                if (scene.benchSubstPosition != -1) {
                     color = GLColor.sweepColor(0x242424, 0xFFFF33);
                 }
                 // swap - blue

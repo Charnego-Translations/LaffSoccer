@@ -37,7 +37,7 @@ class MatchStateBenchEnter extends MatchState {
         fsm.benchStatus.oldTarget.set(scene.camera.getCurrentTarget());
 
         scene.benchSelectedPosition = -1;
-        fsm.benchStatus.substPosition = -1;
+        scene.benchSubstPosition = -1;
 
         for (int t = HOME; t <= AWAY; t++) {
             for (int i = 0; i < TEAM_SIZE; i++) {
