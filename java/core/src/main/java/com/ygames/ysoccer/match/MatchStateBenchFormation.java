@@ -70,7 +70,7 @@ class MatchStateBenchFormation extends MatchState {
 
         // change selected position
         if (benchStatus.inputDevice.yMoved()) {
-            benchStatus.selectedPosition = EMath.rotate(benchStatus.selectedPosition, -1, TEAM_SIZE - 1, benchStatus.inputDevice.y1);
+            scene.benchSelectedPosition = EMath.rotate(scene.benchSelectedPosition, -1, TEAM_SIZE - 1, benchStatus.inputDevice.y1);
         }
     }
 
@@ -80,7 +80,7 @@ class MatchStateBenchFormation extends MatchState {
         if (benchStatus.inputDevice.fire1Down()) {
 
             // switch to tactics mode
-            if (benchStatus.selectedPosition == -1) {
+            if (scene.benchSelectedPosition == -1) {
 
                 // reset eventually pending swap or substitution
                 benchStatus.swapPosition = -1;
@@ -88,7 +88,7 @@ class MatchStateBenchFormation extends MatchState {
                     Player player = benchStatus.team.lineup.get(benchStatus.substPosition);
                     player.setState(STATE_BENCH_STANDING);
 
-                    benchStatus.selectedPosition = benchStatus.substPosition - TEAM_SIZE;
+                    scene.benchSelectedPosition = benchStatus.substPosition - TEAM_SIZE;
                     benchStatus.substPosition = -1;
                 }
 
@@ -98,13 +98,13 @@ class MatchStateBenchFormation extends MatchState {
             // swap and substitutions
             else {
                 // if already selected for swap then deselect
-                if (benchStatus.swapPosition == benchStatus.selectedPosition) {
+                if (benchStatus.swapPosition == scene.benchSelectedPosition) {
                     benchStatus.swapPosition = -1;
                 }
 
                 // if no swap nor substitution then select for swap
                 else if ((benchStatus.swapPosition == -1) && (benchStatus.substPosition == -1)) {
-                    benchStatus.swapPosition = benchStatus.selectedPosition;
+                    benchStatus.swapPosition = scene.benchSelectedPosition;
                 }
 
                 // swap or substitution
@@ -112,7 +112,7 @@ class MatchStateBenchFormation extends MatchState {
 
                     // substitution
                     if (benchStatus.substPosition != -1) {
-                        int selectedPlayerIndex = benchStatus.team.playerIndexAtPosition(benchStatus.selectedPosition);
+                        int selectedPlayerIndex = benchStatus.team.playerIndexAtPosition(scene.benchSelectedPosition);
                         Player selectedPlayer = benchStatus.team.lineup.get(selectedPlayerIndex);
 
                         if (!selectedPlayer.checkState(STATE_SENT_OFF)) {
@@ -148,7 +148,7 @@ class MatchStateBenchFormation extends MatchState {
                         coach.status = Coach.Status.SWAP;
                         coach.timer = 500;
 
-                        int selectedPlayerIndex = benchStatus.team.playerIndexAtPosition(benchStatus.selectedPosition);
+                        int selectedPlayerIndex = benchStatus.team.playerIndexAtPosition(scene.benchSelectedPosition);
                         int otherPlayerIndex = benchStatus.team.playerIndexAtPosition(benchStatus.swapPosition);
 
                         Player selectedPlayer = benchStatus.team.lineup.get(selectedPlayerIndex);
@@ -175,7 +175,7 @@ class MatchStateBenchFormation extends MatchState {
 
         // go back to bench substitutions
         if (benchStatus.inputDevice.xReleased()) {
-            benchStatus.selectedPosition = -1;
+            scene.benchSelectedPosition = -1;
 
             // reset eventually pending swap or substitution
             benchStatus.swapPosition = -1;
@@ -183,7 +183,7 @@ class MatchStateBenchFormation extends MatchState {
                 Player player = benchStatus.team.lineup.get(benchStatus.substPosition);
                 player.setState(STATE_BENCH_STANDING);
 
-                benchStatus.selectedPosition = benchStatus.substPosition - TEAM_SIZE;
+                scene.benchSelectedPosition = benchStatus.substPosition - TEAM_SIZE;
                 benchStatus.substPosition = -1;
             }
 

@@ -72,7 +72,7 @@ class MatchStateBenchSubstitutions extends MatchState {
 
             // if remaining substitutions
             if (benchStatus.team.substitutionsCount < scene.getSettings().substitutions) {
-                benchStatus.selectedPosition = EMath.rotate(benchStatus.selectedPosition, -1, substitutes - 1, benchStatus.inputDevice.y1);
+                scene.benchSelectedPosition = EMath.rotate(scene.benchSelectedPosition, -1, substitutes - 1, benchStatus.inputDevice.y1);
             }
 
             // reset positions
@@ -84,8 +84,8 @@ class MatchStateBenchSubstitutions extends MatchState {
             }
 
             // move selected player
-            if (benchStatus.selectedPosition != -1) {
-                Player player = benchStatus.team.lineup.get(TEAM_SIZE + benchStatus.selectedPosition);
+            if (scene.benchSelectedPosition != -1) {
+                Player player = benchStatus.team.lineup.get(TEAM_SIZE + scene.benchSelectedPosition);
                 if (!player.getState().checkId(STATE_SUBSTITUTED)) {
                     // coach calls player
                     Coach coach = benchStatus.team.coach;
@@ -102,21 +102,21 @@ class MatchStateBenchSubstitutions extends MatchState {
     SceneFsm.Action[] checkConditions() {
 
         if (benchStatus.inputDevice.fire1Down()) {
-            if (benchStatus.selectedPosition == -1) {
+            if (scene.benchSelectedPosition == -1) {
                 return newAction(NEW_FOREGROUND, BENCH_FORMATION);
             } else {
                 // if no previous selection
                 if (benchStatus.substPosition == -1) {
 
                     // out the player for substitution
-                    Player player = benchStatus.team.lineup.get(TEAM_SIZE + benchStatus.selectedPosition);
+                    Player player = benchStatus.team.lineup.get(TEAM_SIZE + scene.benchSelectedPosition);
 
                     if (!player.getState().checkId(STATE_SUBSTITUTED)) {
 
                         player.setState(STATE_BENCH_OUT);
 
-                        benchStatus.substPosition = TEAM_SIZE + benchStatus.selectedPosition;
-                        benchStatus.selectedPosition = benchStatus.team.nearestBenchPlayerByRole(player.role);
+                        benchStatus.substPosition = TEAM_SIZE + scene.benchSelectedPosition;
+                        scene.benchSelectedPosition = benchStatus.team.nearestBenchPlayerByRole(player.role);
 
                         return newAction(NEW_FOREGROUND, BENCH_FORMATION);
                     }

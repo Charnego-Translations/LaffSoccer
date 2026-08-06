@@ -20,7 +20,6 @@ import static com.ygames.ysoccer.match.Const.TEAM_SIZE;
 import static com.ygames.ysoccer.match.Const.TOUCH_LINE;
 import static com.ygames.ysoccer.match.Match.AWAY;
 import static com.ygames.ysoccer.match.Match.HOME;
-import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_RED_CARD;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_SENT_OFF;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_SUBSTITUTED;
 import static java.lang.Math.min;
@@ -938,7 +937,7 @@ public class MatchRenderer extends SceneRenderer<Match> {
         // slots
         int color = 0x242424;
 
-        if (scene.getFsm().benchStatus.selectedPosition == -1) {
+        if (scene.benchSelectedPosition == -1) {
             color = GLColor.sweepColor(color, 0xFFDD33);
         }
 
@@ -947,7 +946,7 @@ public class MatchRenderer extends SceneRenderer<Match> {
         for (int pos = 0; pos < scene.getSettings().benchSize; pos++) {
             color = 0x242424;
 
-            if (scene.getFsm().benchStatus.selectedPosition == pos) {
+            if (scene.benchSelectedPosition == pos) {
                 color = GLColor.sweepColor(color, 0xFFDD33);
             }
             fadeRect(x, y + 125 + 4 + pos * h, x + w - 2, y + 125 + 2 + (pos + 1) * h, 0.6f, color);
@@ -1010,7 +1009,7 @@ public class MatchRenderer extends SceneRenderer<Match> {
 
         // slots
         int color = 0x242424;
-        if (scene.getFsm().benchStatus.selectedPosition == -1) {
+        if (scene.benchSelectedPosition == -1) {
             // substitution - yellow
             if (scene.getFsm().benchStatus.substPosition != -1) {
                 color = GLColor.sweepColor(color, 0xFFFF33);
@@ -1028,7 +1027,7 @@ public class MatchRenderer extends SceneRenderer<Match> {
                 color = 0x33DDFF;
             }
 
-            if (pos == scene.getFsm().benchStatus.selectedPosition) {
+            if (pos == scene.benchSelectedPosition) {
                 // substitution - yellow
                 if (scene.getFsm().benchStatus.substPosition != -1) {
                     color = GLColor.sweepColor(0x242424, 0xFFFF33);
