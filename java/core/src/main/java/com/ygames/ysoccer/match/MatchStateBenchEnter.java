@@ -2,6 +2,7 @@ package com.ygames.ysoccer.match;
 
 import com.ygames.ysoccer.framework.GLGame;
 
+import static com.ygames.ysoccer.match.Const.SECOND;
 import static com.ygames.ysoccer.match.Const.TEAM_SIZE;
 import static com.ygames.ysoccer.match.Match.AWAY;
 import static com.ygames.ysoccer.match.Match.HOME;
@@ -74,7 +75,7 @@ class MatchStateBenchEnter extends MatchState {
     @Override
     SceneFsm.Action[] checkConditions() {
 
-        if (scene.camera.getTargetDistance() < 1) {
+        if (scene.stateTimer > 1.5f * SECOND) {
             Coach coach = fsm.benchStatus.team.coach;
             coach.status = Coach.Status.STAND;
             return newAction(NEW_FOREGROUND, BENCH_SUBSTITUTIONS);

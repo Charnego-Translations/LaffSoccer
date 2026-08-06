@@ -22,6 +22,7 @@ public class MatchUpdateDto {
     public boolean displayScore;
     public boolean displayStatistics;
     public boolean displayGoalScorer;
+    public boolean displayBenchPlayers;
     public MatchFsm.StateId stateId;
     public int stateTimer;
 
