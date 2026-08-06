@@ -1023,7 +1023,7 @@ public class MatchRenderer extends SceneRenderer<Match> {
 
         for (int pos = 0; pos < TEAM_SIZE; pos++) {
             color = 0x242424;
-            if (pos == scene.getFsm().benchStatus.swapPosition) {
+            if (pos == scene.benchSwapPosition) {
                 color = 0x33DDFF;
             }
 

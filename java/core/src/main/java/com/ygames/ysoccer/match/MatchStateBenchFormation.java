@@ -83,7 +83,7 @@ class MatchStateBenchFormation extends MatchState {
             if (scene.benchSelectedPosition == -1) {
 
                 // reset eventually pending swap or substitution
-                benchStatus.swapPosition = -1;
+                scene.benchSwapPosition = -1;
                 if (scene.benchSubstPosition != -1) {
                     Player player = scene.benchTeam.lineup.get(scene.benchSubstPosition);
                     player.setState(STATE_BENCH_STANDING);
@@ -98,13 +98,13 @@ class MatchStateBenchFormation extends MatchState {
             // swap and substitutions
             else {
                 // if already selected for swap then deselect
-                if (benchStatus.swapPosition == scene.benchSelectedPosition) {
-                    benchStatus.swapPosition = -1;
+                if (scene.benchSwapPosition == scene.benchSelectedPosition) {
+                    scene.benchSwapPosition = -1;
                 }
 
                 // if no swap nor substitution then select for swap
-                else if ((benchStatus.swapPosition == -1) && (scene.benchSubstPosition == -1)) {
-                    benchStatus.swapPosition = scene.benchSelectedPosition;
+                else if ((scene.benchSwapPosition == -1) && (scene.benchSubstPosition == -1)) {
+                    scene.benchSwapPosition = scene.benchSelectedPosition;
                 }
 
                 // swap or substitution
@@ -149,7 +149,7 @@ class MatchStateBenchFormation extends MatchState {
                         coach.timer = 500;
 
                         int selectedPlayerIndex = scene.benchTeam.playerIndexAtPosition(scene.benchSelectedPosition);
-                        int otherPlayerIndex = scene.benchTeam.playerIndexAtPosition(benchStatus.swapPosition);
+                        int otherPlayerIndex = scene.benchTeam.playerIndexAtPosition(scene.benchSwapPosition);
 
                         Player selectedPlayer = scene.benchTeam.lineup.get(selectedPlayerIndex);
                         Player otherPlayer = scene.benchTeam.lineup.get(otherPlayerIndex);
@@ -157,7 +157,7 @@ class MatchStateBenchFormation extends MatchState {
                         selectedPlayer.setState(STATE_REACH_TARGET);
                         otherPlayer.setState(STATE_REACH_TARGET);
 
-                        benchStatus.swapPosition = -1;
+                        scene.benchSwapPosition = -1;
 
                         if (scene.settings.commentary) {
                             int size = Assets.Commentary.playerSwap.size();
@@ -178,7 +178,7 @@ class MatchStateBenchFormation extends MatchState {
             scene.benchSelectedPosition = -1;
 
             // reset eventually pending swap or substitution
-            benchStatus.swapPosition = -1;
+            scene.benchSwapPosition = -1;
             if (scene.benchSubstPosition != -1) {
                 Player player = scene.benchTeam.lineup.get(scene.benchSubstPosition);
                 player.setState(STATE_BENCH_STANDING);
