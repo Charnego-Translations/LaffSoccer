@@ -130,7 +130,6 @@ public class MatchFsm extends SceneFsm<Match, MatchState> {
     }
 
     static class BenchStatus {
-        Team team;
         InputDevice inputDevice;
         final Vector2 oldTarget = new Vector2();
         int substPosition = -1;

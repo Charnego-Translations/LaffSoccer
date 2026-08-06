@@ -31,13 +31,13 @@ class MatchStateBenchExit extends MatchState {
     void entryActions() {
         super.entryActions();
 
-        Coach coach = fsm.benchStatus.team.coach;
+        Coach coach = scene.benchTeam.coach;
         coach.status = Coach.Status.BENCH;
 
         // reset positions
-        int substitutes = min(scene.getSettings().benchSize, fsm.benchStatus.team.lineup.size() - TEAM_SIZE);
+        int substitutes = min(scene.getSettings().benchSize, scene.benchTeam.lineup.size() - TEAM_SIZE);
         for (int i = 0; i < substitutes; i++) {
-            Player player = fsm.benchStatus.team.lineup.get(TEAM_SIZE + i);
+            Player player = scene.benchTeam.lineup.get(TEAM_SIZE + i);
             if (!player.getState().checkId(STATE_SUBSTITUTED)) {
                 player.setState(STATE_BENCH_SITTING);
             }

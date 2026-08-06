@@ -55,7 +55,7 @@ abstract class MatchState extends SceneState<MatchFsm, Match> {
             for (int t = HOME; t <= AWAY; t++) {
                 InputDevice inputDevice = scene.team[t].fire2Down();
                 if (inputDevice != null) {
-                    fsm.benchStatus.team = scene.team[t];
+                    scene.benchTeam = scene.team[t];
                     fsm.benchStatus.inputDevice = inputDevice;
                     return newAction(HOLD_FOREGROUND, BENCH_ENTER);
                 }

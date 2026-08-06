@@ -973,9 +973,9 @@ public class MatchRenderer extends SceneRenderer<Match> {
 
         Assets.font10.draw(batch, Assets.strings.get("BENCH"), x + w / 2, y + 3, Font.Align.CENTER);
 
-        int benchSize = min(scene.getSettings().benchSize, scene.getFsm().benchStatus.team.lineup.size() - TEAM_SIZE);
+        int benchSize = min(scene.getSettings().benchSize, scene.benchTeam.lineup.size() - TEAM_SIZE);
         for (int pos = 0; pos < benchSize; pos++) {
-            Player player = scene.getFsm().benchStatus.team.lineupAtPosition(TEAM_SIZE + pos);
+            Player player = scene.benchTeam.lineupAtPosition(TEAM_SIZE + pos);
 
             if (!player.getState().checkId(STATE_SUBSTITUTED)) {
                 Assets.font10.draw(batch, player.number, x + 25, y + 5 + 125 + pos * h, Font.Align.CENTER);
@@ -1063,7 +1063,7 @@ public class MatchRenderer extends SceneRenderer<Match> {
 
         for (int pos = 0; pos < TEAM_SIZE; pos++) {
 
-            Player ply = scene.getFsm().benchStatus.team.lineupAtPosition(pos);
+            Player ply = scene.benchTeam.lineupAtPosition(pos);
 
             if (!ply.checkState(STATE_SENT_OFF)) {
                 Assets.font10.draw(batch, ply.number, x + 25, y + 5 + 125 + pos * h, Font.Align.CENTER);

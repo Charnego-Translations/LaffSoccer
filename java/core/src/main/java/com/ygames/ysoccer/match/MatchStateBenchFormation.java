@@ -85,7 +85,7 @@ class MatchStateBenchFormation extends MatchState {
                 // reset eventually pending swap or substitution
                 benchStatus.swapPosition = -1;
                 if (benchStatus.substPosition != -1) {
-                    Player player = benchStatus.team.lineup.get(benchStatus.substPosition);
+                    Player player = scene.benchTeam.lineup.get(benchStatus.substPosition);
                     player.setState(STATE_BENCH_STANDING);
 
                     scene.benchSelectedPosition = benchStatus.substPosition - TEAM_SIZE;
@@ -112,18 +112,18 @@ class MatchStateBenchFormation extends MatchState {
 
                     // substitution
                     if (benchStatus.substPosition != -1) {
-                        int selectedPlayerIndex = benchStatus.team.playerIndexAtPosition(scene.benchSelectedPosition);
-                        Player selectedPlayer = benchStatus.team.lineup.get(selectedPlayerIndex);
+                        int selectedPlayerIndex = scene.benchTeam.playerIndexAtPosition(scene.benchSelectedPosition);
+                        Player selectedPlayer = scene.benchTeam.lineup.get(selectedPlayerIndex);
 
                         if (!selectedPlayer.checkState(STATE_SENT_OFF)) {
-                            Coach coach = benchStatus.team.coach;
+                            Coach coach = scene.benchTeam.coach;
                             coach.status = Coach.Status.CALL;
                             coach.timer = 500;
 
-                            benchStatus.team.substitutionsCount += 1;
+                            scene.benchTeam.substitutionsCount += 1;
 
-                            int benchPlayerIndex = benchStatus.team.playerIndexAtPosition(benchStatus.substPosition);
-                            Player benchPlayer = benchStatus.team.lineup.get(benchPlayerIndex);
+                            int benchPlayerIndex = scene.benchTeam.playerIndexAtPosition(benchStatus.substPosition);
+                            Player benchPlayer = scene.benchTeam.lineup.get(benchPlayerIndex);
 
                             selectedPlayer.setState(STATE_SUBSTITUTED);
                             benchPlayer.setState(STATE_REACH_TARGET);
@@ -137,22 +137,22 @@ class MatchStateBenchFormation extends MatchState {
                                 }
                             }
 
-                            Collections.swap(benchStatus.team.lineup, selectedPlayerIndex, benchPlayerIndex);
+                            Collections.swap(scene.benchTeam.lineup, selectedPlayerIndex, benchPlayerIndex);
                             selectedPlayer.swapTargetWith(benchPlayer);
                         }
                     }
 
                     // if swap
                     else {
-                        Coach coach = benchStatus.team.coach;
+                        Coach coach = scene.benchTeam.coach;
                         coach.status = Coach.Status.SWAP;
                         coach.timer = 500;
 
-                        int selectedPlayerIndex = benchStatus.team.playerIndexAtPosition(scene.benchSelectedPosition);
-                        int otherPlayerIndex = benchStatus.team.playerIndexAtPosition(benchStatus.swapPosition);
+                        int selectedPlayerIndex = scene.benchTeam.playerIndexAtPosition(scene.benchSelectedPosition);
+                        int otherPlayerIndex = scene.benchTeam.playerIndexAtPosition(benchStatus.swapPosition);
 
-                        Player selectedPlayer = benchStatus.team.lineup.get(selectedPlayerIndex);
-                        Player otherPlayer = benchStatus.team.lineup.get(otherPlayerIndex);
+                        Player selectedPlayer = scene.benchTeam.lineup.get(selectedPlayerIndex);
+                        Player otherPlayer = scene.benchTeam.lineup.get(otherPlayerIndex);
 
                         selectedPlayer.setState(STATE_REACH_TARGET);
                         otherPlayer.setState(STATE_REACH_TARGET);
@@ -166,7 +166,7 @@ class MatchStateBenchFormation extends MatchState {
                             }
                         }
 
-                        Collections.swap(benchStatus.team.lineup, selectedPlayerIndex, otherPlayerIndex);
+                        Collections.swap(scene.benchTeam.lineup, selectedPlayerIndex, otherPlayerIndex);
                         selectedPlayer.swapTargetWith(otherPlayer);
                     }
                 }
@@ -180,7 +180,7 @@ class MatchStateBenchFormation extends MatchState {
             // reset eventually pending swap or substitution
             benchStatus.swapPosition = -1;
             if (benchStatus.substPosition != -1) {
-                Player player = benchStatus.team.lineup.get(benchStatus.substPosition);
+                Player player = scene.benchTeam.lineup.get(benchStatus.substPosition);
                 player.setState(STATE_BENCH_STANDING);
 
                 scene.benchSelectedPosition = benchStatus.substPosition - TEAM_SIZE;

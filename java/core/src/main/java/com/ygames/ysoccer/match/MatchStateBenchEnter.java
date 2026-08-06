@@ -76,7 +76,7 @@ class MatchStateBenchEnter extends MatchState {
     SceneFsm.Action[] checkConditions() {
 
         if (scene.stateTimer > 1.5f * SECOND) {
-            Coach coach = fsm.benchStatus.team.coach;
+            Coach coach = scene.benchTeam.coach;
             coach.status = Coach.Status.STAND;
             return newAction(NEW_FOREGROUND, BENCH_SUBSTITUTIONS);
         }
