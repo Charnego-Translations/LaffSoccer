@@ -19,7 +19,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
 
 import static com.ygames.ysoccer.match.Const.BASE_TEAM;
 import static com.ygames.ysoccer.match.Match.AWAY;
@@ -192,7 +191,7 @@ public abstract class Competition {
 
     public boolean bothComputers() {
         return getTeam(HOME).controlMode == COMPUTER
-                && getTeam(AWAY).controlMode == COMPUTER;
+            && getTeam(AWAY).controlMode == COMPUTER;
     }
 
     public boolean playExtraTime() {
@@ -477,11 +476,15 @@ public abstract class Competition {
     }
 
     private void updateSanctionsList() {
-        Referee referee = getMatch().getReferee();
-        if (referee != null) {
-            Map<Player, Referee.PenaltyCard> penaltyCards = referee.getPenaltyCards();
-            for (Map.Entry<Player, Referee.PenaltyCard> entry : penaltyCards.entrySet()) {
-                updatePlayerSanctions(entry.getKey(), entry.getValue());
+        Match match = getMatch();
+        for (int t = HOME; t <= AWAY; t++) {
+            Team team = match.team[t];
+            if (team!= null) {
+                for (Player player : team.players) {
+                    if (player.penaltyCard != null) {
+                        updatePlayerSanctions(player, player.penaltyCard);
+                    }
+                }
             }
         }
     }
@@ -495,14 +498,14 @@ public abstract class Competition {
 
         switch (penaltyCard) {
             case YELLOW:
-                if(oneToSuspension(playerSanctions.yellows)) {
+                if (oneToSuspension(playerSanctions.yellows)) {
                     playerSanctions.suspensions += 1;
                 }
                 playerSanctions.yellows += 1;
                 break;
 
             case YELLOW_PLUS_RED:
-                if(oneToSuspension(playerSanctions.yellows)) {
+                if (oneToSuspension(playerSanctions.yellows)) {
                     playerSanctions.suspensions += 1;
                 }
                 playerSanctions.yellows += 1;
@@ -525,7 +528,7 @@ public abstract class Competition {
         return null;
     }
 
-    public boolean isPlayerCautioned(Player player){
+    public boolean isPlayerCautioned(Player player) {
         PlayerSanctions playerSanctions = searchPlayerSanctions(player);
         return oneToSuspension(playerSanctions.yellows);
     }

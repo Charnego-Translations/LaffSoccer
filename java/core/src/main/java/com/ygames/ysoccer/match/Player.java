@@ -102,6 +102,7 @@ public class Player implements Json.Serializable {
 
     public boolean isVisible;
     public boolean isActive;
+    public Referee.PenaltyCard penaltyCard;
 
     public final FrameData[] data = new FrameData[Const.REPLAY_SUBFRAMES];
     public FrameData currentData = new FrameData();
@@ -178,6 +179,7 @@ public class Player implements Json.Serializable {
         fsm = new PlayerFsm(this);
         isVisible = true;
         isActive = true;
+        penaltyCard = null;
         for (int i = 0; i < data.length; i++) {
             data[i] = new FrameData();
         }
