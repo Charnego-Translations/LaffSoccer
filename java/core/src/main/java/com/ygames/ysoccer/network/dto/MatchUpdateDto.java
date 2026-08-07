@@ -28,6 +28,7 @@ public class MatchUpdateDto {
 
     // bench control
     public int benchTeamIndex;
+    public int benchSelectedPosition;
 
     public MatchFsm.StateId stateId;
     public int stateTimer;

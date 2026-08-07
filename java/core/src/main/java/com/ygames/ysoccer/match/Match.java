@@ -133,7 +133,7 @@ public class Match extends Scene<MatchFsm, MatchState> implements Json.Serializa
     public boolean displayReplayControls;
 
     public Team benchTeam;
-    int benchSelectedPosition;
+    public int benchSelectedPosition;
     int benchSubstPosition = -1;
     int benchSwapPosition = -1;
     int benchSelectedTactics;
