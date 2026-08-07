@@ -13,6 +13,8 @@ public class MatchSettingsDto {
     public float shadowAlpha;
     public boolean radar;
 
+    public int benchSize;
+
     public MatchSettingsDto() {
     }
 }

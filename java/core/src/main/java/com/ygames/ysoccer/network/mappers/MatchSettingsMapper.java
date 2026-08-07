@@ -14,6 +14,7 @@ public class MatchSettingsMapper {
         dto.sky = matchSettings.sky;
         dto.shadowAlpha = matchSettings.shadowAlpha;
         dto.radar = matchSettings.radar;
+        dto.benchSize = matchSettings.benchSize;
         return dto;
     }
 
@@ -25,6 +26,7 @@ public class MatchSettingsMapper {
         matchSettings.sky = dto.sky;
         matchSettings.shadowAlpha = dto.shadowAlpha;
         matchSettings.radar = dto.radar;
+        matchSettings.benchSize = dto.benchSize;
         return matchSettings;
     }
 }
