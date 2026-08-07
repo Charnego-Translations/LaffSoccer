@@ -69,6 +69,7 @@ public class MatchMapper {
         dto.displayStatistics = match.displayStatistics;
         dto.displayGoalScorer = match.displayGoalScorer;
         dto.displayBenchPlayers = match.displayBenchPlayers;
+        dto.benchTeamIndex = match.benchTeam == null ? -1 : match.benchTeam.index;
         dto.stateId = match.getStateId();
         dto.stateTimer = match.stateTimer;
         return dto;
@@ -129,6 +130,7 @@ public class MatchMapper {
         match.displayStatistics = dto.displayStatistics;
         match.displayGoalScorer = dto.displayGoalScorer;
         match.displayBenchPlayers = dto.displayBenchPlayers;
+        match.benchTeam = dto.benchTeamIndex == -1 ? null : match.team[dto.benchTeamIndex];
         match.setStateId(dto.stateId);
         match.stateTimer = dto.stateTimer;
     }
