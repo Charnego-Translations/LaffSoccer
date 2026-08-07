@@ -20,7 +20,6 @@ import static com.ygames.ysoccer.match.Const.TEAM_SIZE;
 import static com.ygames.ysoccer.match.Const.TOUCH_LINE;
 import static com.ygames.ysoccer.match.Match.AWAY;
 import static com.ygames.ysoccer.match.Match.HOME;
-import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_SENT_OFF;
 import static java.lang.Math.min;
 
 public class MatchRenderer extends SceneRenderer<Match> {
@@ -1064,7 +1063,7 @@ public class MatchRenderer extends SceneRenderer<Match> {
 
             Player ply = scene.benchTeam.lineupAtPosition(pos);
 
-            if (!ply.checkState(STATE_SENT_OFF)) {
+            if (ply.isActive) {
                 Assets.font10.draw(batch, ply.number, x + 25, y + 5 + 125 + pos * h, Font.Align.CENTER);
                 Assets.font10.draw(batch, ply.shirtName, x + 45, y + 5 + 125 + pos * h, Font.Align.LEFT);
                 if (scene.referee.hasYellowCard(ply)) {
