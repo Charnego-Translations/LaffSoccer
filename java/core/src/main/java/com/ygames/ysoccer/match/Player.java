@@ -101,7 +101,7 @@ public class Player implements Json.Serializable {
     float speed;
 
     public boolean isVisible;
-    boolean isActive;
+    public boolean isActive;
 
     public final FrameData[] data = new FrameData[Const.REPLAY_SUBFRAMES];
     public FrameData currentData = new FrameData();

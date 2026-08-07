@@ -22,6 +22,7 @@ public class PlayerMapper {
     public static PlayerUpdateDto toUpdateDto(Player player) {
         PlayerUpdateDto dto = new PlayerUpdateDto();
         dto.currentDataDto = FrameDataMapper.toUpdateDto(player.currentData);
+        dto.isActive = player.isActive;
         return dto;
     }
 
@@ -38,7 +39,8 @@ public class PlayerMapper {
         return player;
     }
 
-    public static void updateFromDto(Player player, PlayerUpdateDto updateDto) {
-        FrameDataMapper.updateFromDto(player.currentData, updateDto.currentDataDto);
+    public static void updateFromDto(Player player, PlayerUpdateDto dto) {
+        FrameDataMapper.updateFromDto(player.currentData, dto.currentDataDto);
+        player.isActive = dto.isActive;
     }
 }
