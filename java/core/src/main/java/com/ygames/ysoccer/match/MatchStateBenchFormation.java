@@ -1,7 +1,9 @@
 package com.ygames.ysoccer.match;
 
+import com.ygames.ysoccer.events.PlayerSwapEvent;
 import com.ygames.ysoccer.framework.Assets;
 import com.ygames.ysoccer.framework.EMath;
+import com.ygames.ysoccer.framework.EventManager;
 import com.ygames.ysoccer.framework.GLGame;
 import com.ygames.ysoccer.framework.SoundManager;
 
@@ -138,6 +140,7 @@ class MatchStateBenchFormation extends MatchState {
                             }
 
                             Collections.swap(scene.benchTeam.lineup, selectedPlayerIndex, benchPlayerIndex);
+                            EventManager.publish(new PlayerSwapEvent(scene.benchTeam, selectedPlayerIndex, benchPlayerIndex));
                             selectedPlayer.swapTargetWith(benchPlayer);
                         }
                     }
@@ -167,6 +170,7 @@ class MatchStateBenchFormation extends MatchState {
                         }
 
                         Collections.swap(scene.benchTeam.lineup, selectedPlayerIndex, otherPlayerIndex);
+                        EventManager.publish(new PlayerSwapEvent(scene.benchTeam, selectedPlayerIndex, otherPlayerIndex));
                         selectedPlayer.swapTargetWith(otherPlayer);
                     }
                 }
