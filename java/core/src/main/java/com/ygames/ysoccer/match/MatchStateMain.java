@@ -2,6 +2,7 @@ package com.ygames.ysoccer.match;
 
 import com.badlogic.gdx.Gdx;
 import com.ygames.ysoccer.events.CrowdChantsEvent;
+import com.ygames.ysoccer.events.YellowCardEvent;
 import com.ygames.ysoccer.framework.Assets;
 import com.ygames.ysoccer.framework.EMath;
 import com.ygames.ysoccer.framework.EventManager;
@@ -236,6 +237,7 @@ class MatchStateMain extends MatchState {
                     event = Event.RED_CARD;
                 } else if (scene.foul.entailsYellowCard) {
                     scene.foul.player.addYellowCard();
+                    EventManager.publish(new YellowCardEvent(scene.foul.player));
                     scene.stats[scene.foul.player.team.index].yellowCards++;
                     if (scene.foul.player.isSentOff()) {
                         scene.stats[scene.foul.player.team.index].redCards++;
