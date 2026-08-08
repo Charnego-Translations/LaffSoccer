@@ -31,6 +31,7 @@ public class MatchUpdateDto {
     public int benchTeamIndex;
     public int benchSelectedPosition;
     public int benchSubstPosition;
+    public int benchSwapPosition;
 
     public MatchFsm.StateId stateId;
     public int stateTimer;

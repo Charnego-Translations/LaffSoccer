@@ -74,6 +74,8 @@ public class MatchMapper {
         dto.benchTeamIndex = match.benchTeam == null ? -1 : match.benchTeam.index;
         dto.benchSelectedPosition = match.benchSelectedPosition;
         dto.benchSubstPosition = match.benchSubstPosition;
+        dto.benchSwapPosition = match.benchSwapPosition;
+
         dto.stateId = match.getStateId();
         dto.stateTimer = match.stateTimer;
         return dto;
@@ -139,6 +141,8 @@ public class MatchMapper {
         match.benchTeam = dto.benchTeamIndex == -1 ? null : match.team[dto.benchTeamIndex];
         match.benchSelectedPosition = dto.benchSelectedPosition;
         match.benchSubstPosition = dto.benchSubstPosition;
+        match.benchSwapPosition = dto.benchSwapPosition;
+
         match.setStateId(dto.stateId);
         match.stateTimer = dto.stateTimer;
     }
