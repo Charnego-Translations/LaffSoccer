@@ -26,6 +26,7 @@ public class MatchUpdateDto {
     public boolean displayGoalScorer;
     public boolean displayBenchPlayers;
     public boolean displayBenchFormation;
+    public boolean displayTacticsSwitch;
 
     // bench control
     public int benchTeamIndex;

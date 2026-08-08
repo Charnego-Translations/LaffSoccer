@@ -70,6 +70,7 @@ public class MatchMapper {
         dto.displayGoalScorer = match.displayGoalScorer;
         dto.displayBenchPlayers = match.displayBenchPlayers;
         dto.displayBenchFormation = match.displayBenchFormation;
+        dto.displayTacticsSwitch = match.displayTacticsSwitch;
 
         dto.benchTeamIndex = match.benchTeam == null ? -1 : match.benchTeam.index;
         dto.benchSelectedPosition = match.benchSelectedPosition;
@@ -137,6 +138,7 @@ public class MatchMapper {
         match.displayGoalScorer = dto.displayGoalScorer;
         match.displayBenchPlayers = dto.displayBenchPlayers;
         match.displayBenchFormation = dto.displayBenchFormation;
+        match.displayTacticsSwitch = dto.displayTacticsSwitch;
 
         match.benchTeam = dto.benchTeamIndex == -1 ? null : match.team[dto.benchTeamIndex];
         match.benchSelectedPosition = dto.benchSelectedPosition;
