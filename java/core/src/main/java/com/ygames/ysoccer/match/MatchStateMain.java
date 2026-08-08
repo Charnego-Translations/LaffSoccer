@@ -230,7 +230,7 @@ class MatchStateMain extends MatchState {
 
             if (scene.foul != null) {
                 if (scene.foul.entailsRedCard) {
-                    scene.referee.addRedCard(scene.foul.player);
+                    scene.foul.player.addRedCard();
                     scene.stats[scene.foul.player.team.index].redCards++;
 
                     event = Event.RED_CARD;

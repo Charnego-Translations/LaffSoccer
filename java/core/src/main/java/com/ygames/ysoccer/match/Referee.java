@@ -7,8 +7,4 @@ public class Referee {
     void addYellowCard(Player player) {
         player.penaltyCard = player.hasYellowCard() ? PenaltyCard.DOUBLE_YELLOW : PenaltyCard.YELLOW;
     }
-
-    void addRedCard(Player player) {
-        player.penaltyCard = player.hasYellowCard() ? PenaltyCard.YELLOW_PLUS_RED : PenaltyCard.RED;
-    }
 }
