@@ -68,6 +68,7 @@ public class Player implements Json.Serializable {
     };
 
     enum KeeperCollision {NONE, REBOUND, CATCH, DEFLECT}
+    public enum PenaltyCard {YELLOW, RED, DOUBLE_YELLOW, YELLOW_PLUS_RED}
 
     public String name;
     public String shirtName;
@@ -102,7 +103,7 @@ public class Player implements Json.Serializable {
 
     public boolean isVisible;
     public boolean isActive;
-    public Referee.PenaltyCard penaltyCard;
+    public PenaltyCard penaltyCard;
 
     public final FrameData[] data = new FrameData[Const.REPLAY_SUBFRAMES];
     public FrameData currentData = new FrameData();
@@ -1161,18 +1162,18 @@ public class Player implements Json.Serializable {
     }
 
     void addYellowCard() {
-        penaltyCard = hasYellowCard() ? Referee.PenaltyCard.DOUBLE_YELLOW : Referee.PenaltyCard.YELLOW;
+        penaltyCard = hasYellowCard() ? PenaltyCard.DOUBLE_YELLOW : PenaltyCard.YELLOW;
     }
 
     void addRedCard() {
-        penaltyCard = hasYellowCard() ? Referee.PenaltyCard.YELLOW_PLUS_RED : Referee.PenaltyCard.RED;
+        penaltyCard = hasYellowCard() ? PenaltyCard.YELLOW_PLUS_RED : PenaltyCard.RED;
     }
 
     boolean hasYellowCard() {
-        return penaltyCard == Referee.PenaltyCard.YELLOW;
+        return penaltyCard == PenaltyCard.YELLOW;
     }
 
     boolean isSentOff() {
-        return penaltyCard != null && penaltyCard != Referee.PenaltyCard.YELLOW;
+        return penaltyCard != null && penaltyCard != PenaltyCard.YELLOW;
     }
 }

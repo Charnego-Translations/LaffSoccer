@@ -12,7 +12,6 @@ import com.ygames.ysoccer.match.Match;
 import com.ygames.ysoccer.match.MatchSettings;
 import com.ygames.ysoccer.match.Pitch;
 import com.ygames.ysoccer.match.Player;
-import com.ygames.ysoccer.match.Referee;
 import com.ygames.ysoccer.match.Team;
 
 import java.util.ArrayList;
@@ -489,7 +488,7 @@ public abstract class Competition {
         }
     }
 
-    private void updatePlayerSanctions(Player player, Referee.PenaltyCard penaltyCard) {
+    private void updatePlayerSanctions(Player player, Player.PenaltyCard penaltyCard) {
         PlayerSanctions playerSanctions = searchPlayerSanctions(player);
         if (playerSanctions == null) {
             playerSanctions = new PlayerSanctions(player, 0, 0);
