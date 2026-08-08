@@ -68,6 +68,7 @@ public class Player implements Json.Serializable {
     };
 
     enum KeeperCollision {NONE, REBOUND, CATCH, DEFLECT}
+
     public enum PenaltyCard {YELLOW, RED, DOUBLE_YELLOW, YELLOW_PLUS_RED}
 
     public String name;
@@ -1161,7 +1162,7 @@ public class Player implements Json.Serializable {
         }
     }
 
-    void addYellowCard() {
+    public void addYellowCard() {
         penaltyCard = hasYellowCard() ? PenaltyCard.DOUBLE_YELLOW : PenaltyCard.YELLOW;
     }
 

@@ -28,6 +28,8 @@ import com.ygames.ysoccer.gui.InputButton;
 import com.ygames.ysoccer.gui.Label;
 import com.ygames.ysoccer.gui.Widget;
 import com.ygames.ysoccer.match.Goal;
+import com.ygames.ysoccer.match.Player;
+import com.ygames.ysoccer.match.Team;
 import com.ygames.ysoccer.network.Network;
 import com.ygames.ysoccer.network.dto.MatchSetupDto;
 import com.ygames.ysoccer.network.dto.MatchStatsUpdateDto;
@@ -44,6 +46,7 @@ import com.ygames.ysoccer.network.dto.events.KeeperHoldEventDto;
 import com.ygames.ysoccer.network.dto.events.MatchIntroEventDto;
 import com.ygames.ysoccer.network.dto.events.PeriodStopEventDto;
 import com.ygames.ysoccer.network.dto.events.WhistleEventDto;
+import com.ygames.ysoccer.network.dto.events.YellowCardEventDto;
 import com.ygames.ysoccer.network.mappers.FoulMapper;
 import com.ygames.ysoccer.network.mappers.GoalMapper;
 import com.ygames.ysoccer.network.mappers.InputDeviceMapper;
@@ -143,6 +146,14 @@ public class OnlineMatchConnect extends GLScreen {
                 if (object instanceof MatchStatsUpdateDto)
                     Gdx.app.postRunnable(() -> {
                         onlineMatchScreen.match.stats = ((MatchStatsUpdateDto) object).stats;
+                    });
+
+                if (object instanceof YellowCardEventDto)
+                    Gdx.app.postRunnable(() -> {
+                        YellowCardEventDto dto = (YellowCardEventDto) object;
+                        Team team = onlineMatchScreen.match.team[dto.teamIndex];
+                        Player player = team.lineup.get(dto.lineupIndex);
+                        player.addYellowCard();
                     });
             }
         });
