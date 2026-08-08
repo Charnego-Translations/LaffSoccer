@@ -52,7 +52,6 @@ public class Match extends Scene<MatchFsm, MatchState> implements Json.Serializa
     public final int[] teams = {-1, -1};
     public MatchStats[] stats = {new MatchStats(), new MatchStats()};
     public Scorers scorers = new Scorers();
-    Referee referee;
     public int[] resultAfter90;
     public int[] resultAfterExtraTime;
     public int[] resultAfterPenalties;
@@ -167,7 +166,6 @@ public class Match extends Scene<MatchFsm, MatchState> implements Json.Serializa
         this.settings = matchSettings;
         this.competition = competition;
 
-        referee = new Referee();
         ball = new Ball(matchSettings);
 
         for (int t = HOME; t <= AWAY; t++) {
@@ -719,10 +717,6 @@ public class Match extends Scene<MatchFsm, MatchState> implements Json.Serializa
         public Player opponent;
         float strength;
         float angleDiff;
-    }
-
-    public Referee getReferee() {
-        return referee;
     }
 
     @Override
