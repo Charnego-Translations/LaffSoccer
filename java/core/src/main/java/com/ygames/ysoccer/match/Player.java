@@ -1159,4 +1159,8 @@ public class Player implements Json.Serializable {
             isCautioned = false;
         }
     }
+
+    boolean isSentOff() {
+        return penaltyCard != null && penaltyCard != Referee.PenaltyCard.YELLOW;
+    }
 }

@@ -237,7 +237,7 @@ class MatchStateMain extends MatchState {
                 } else if (scene.foul.entailsYellowCard) {
                     scene.referee.addYellowCard(scene.foul.player);
                     scene.stats[scene.foul.player.team.index].yellowCards++;
-                    if (scene.referee.isSentOff(scene.foul.player)) {
+                    if (scene.foul.player.isSentOff()) {
                         scene.stats[scene.foul.player.team.index].redCards++;
                     }
 

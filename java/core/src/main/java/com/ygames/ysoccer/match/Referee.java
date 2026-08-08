@@ -15,8 +15,4 @@ public class Referee {
     boolean hasYellowCard(Player player) {
         return player.penaltyCard == PenaltyCard.YELLOW;
     }
-
-    boolean isSentOff(Player player) {
-        return player.penaltyCard != null && player.penaltyCard != PenaltyCard.YELLOW;
-    }
 }
