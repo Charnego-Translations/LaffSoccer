@@ -45,6 +45,7 @@ import com.ygames.ysoccer.network.dto.events.KeeperDeflectEventDto;
 import com.ygames.ysoccer.network.dto.events.KeeperHoldEventDto;
 import com.ygames.ysoccer.network.dto.events.MatchIntroEventDto;
 import com.ygames.ysoccer.network.dto.events.PeriodStopEventDto;
+import com.ygames.ysoccer.network.dto.events.PlayerSwapEventDto;
 import com.ygames.ysoccer.network.dto.events.WhistleEventDto;
 import com.ygames.ysoccer.network.dto.events.YellowCardEventDto;
 import com.ygames.ysoccer.network.mappers.FoulMapper;
@@ -53,6 +54,7 @@ import com.ygames.ysoccer.network.mappers.InputDeviceMapper;
 import com.ygames.ysoccer.network.mappers.MatchMapper;
 
 import java.io.IOException;
+import java.util.Collections;
 
 import static com.esotericsoftware.minlog.Log.LEVEL_INFO;
 import static com.ygames.ysoccer.framework.Assets.font14;
@@ -154,6 +156,13 @@ public class OnlineMatchConnect extends GLScreen {
                         Team team = onlineMatchScreen.match.team[dto.teamIndex];
                         Player player = team.lineup.get(dto.lineupIndex);
                         player.addYellowCard();
+                    });
+
+                if (object instanceof PlayerSwapEventDto)
+                    Gdx.app.postRunnable(() -> {
+                        PlayerSwapEventDto dto = (PlayerSwapEventDto) object;
+                        Team team = onlineMatchScreen.match.team[dto.teamIndex];
+                        Collections.swap(team.lineup, dto.lineupIndexA, dto.lineupIndexB);
                     });
             }
         });

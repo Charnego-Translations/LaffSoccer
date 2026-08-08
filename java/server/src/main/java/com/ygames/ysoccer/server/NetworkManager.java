@@ -13,6 +13,7 @@ import com.ygames.ysoccer.events.KeeperHoldEvent;
 import com.ygames.ysoccer.events.MatchIntroEvent;
 import com.ygames.ysoccer.events.MatchNewStateEvent;
 import com.ygames.ysoccer.events.PeriodStopEvent;
+import com.ygames.ysoccer.events.PlayerSwapEvent;
 import com.ygames.ysoccer.events.WhistleEvent;
 import com.ygames.ysoccer.events.YellowCardEvent;
 import com.ygames.ysoccer.framework.EventManager;
@@ -28,6 +29,7 @@ import com.ygames.ysoccer.network.dto.events.KeeperDeflectEventDto;
 import com.ygames.ysoccer.network.dto.events.KeeperHoldEventDto;
 import com.ygames.ysoccer.network.dto.events.MatchIntroEventDto;
 import com.ygames.ysoccer.network.dto.events.PeriodStopEventDto;
+import com.ygames.ysoccer.network.dto.events.PlayerSwapEventDto;
 import com.ygames.ysoccer.network.dto.events.WhistleEventDto;
 import com.ygames.ysoccer.network.dto.events.YellowCardEventDto;
 import com.ygames.ysoccer.network.mappers.FoulMapper;
@@ -64,5 +66,7 @@ public class NetworkManager {
             new MatchStatsUpdateDto(event.match.stats)));
         EventManager.subscribe(YellowCardEvent.class, event -> server.sendToAllTCP(
             new YellowCardEventDto(event.player.team.index, event.player.lineupIndex())));
+        EventManager.subscribe(PlayerSwapEvent.class, event -> server.sendToAllTCP(
+            new PlayerSwapEventDto(event.team.index, event.lineupIndexA, event.lineupIndexB)));
     }
 }
