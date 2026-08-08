@@ -1066,7 +1066,7 @@ public class MatchRenderer extends SceneRenderer<Match> {
             if (ply.isActive) {
                 Assets.font10.draw(batch, ply.number, x + 25, y + 5 + 125 + pos * h, Font.Align.CENTER);
                 Assets.font10.draw(batch, ply.shirtName, x + 45, y + 5 + 125 + pos * h, Font.Align.LEFT);
-                if (scene.referee.hasYellowCard(ply)) {
+                if (ply.hasYellowCard()) {
                     Assets.font10.draw(batch, "" + (char) 14, x + w - 45, y + 5 + 125 + pos * h, Font.Align.CENTER);
                 }
                 Assets.font10.draw(batch, Assets.strings.get(ply.getRoleLabel()), x + w - 20, y + 5 + 125 + pos * h, Font.Align.CENTER);

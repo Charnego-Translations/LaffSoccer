@@ -1160,6 +1160,10 @@ public class Player implements Json.Serializable {
         }
     }
 
+    boolean hasYellowCard() {
+        return penaltyCard == Referee.PenaltyCard.YELLOW;
+    }
+
     boolean isSentOff() {
         return penaltyCard != null && penaltyCard != Referee.PenaltyCard.YELLOW;
     }
