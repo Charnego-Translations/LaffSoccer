@@ -2,6 +2,7 @@ package com.ygames.ysoccer.match;
 
 import com.ygames.ysoccer.framework.GLGame;
 
+import static com.ygames.ysoccer.match.Const.SECOND;
 import static com.ygames.ysoccer.match.Const.TEAM_SIZE;
 import static com.ygames.ysoccer.match.MatchFsm.StateId.BENCH_EXIT;
 import static com.ygames.ysoccer.match.PlayerFsm.Id.STATE_BENCH_SITTING;
@@ -71,7 +72,7 @@ class MatchStateBenchExit extends MatchState {
     @Override
     SceneFsm.Action[] checkConditions() {
 
-        if (scene.camera.getTargetDistance() < 1) {
+        if (scene.stateTimer > 1.5f * SECOND) {
             return newAction(RESTORE_FOREGROUND);
         }
 

@@ -50,6 +50,7 @@ public abstract class SceneCamera<SceneT extends Scene<?, ?>> {
     boolean yLimited;
 
     final Vector2 target = new Vector2();
+    final Vector2 savedTarget = new Vector2();
     private float targetDistance;
 
     public SceneCamera(SceneT scene, Ball ball) {
@@ -85,6 +86,14 @@ public abstract class SceneCamera<SceneT extends Scene<?, ?>> {
         clampTarget(t);
 
         return t;
+    }
+
+    public void saveCurrentTarget() {
+        savedTarget.set(getCurrentTarget());
+    }
+
+    protected void restoreTarget() {
+        target.set(savedTarget);
     }
 
     private void clampTarget(Vector2 t) {

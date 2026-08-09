@@ -14,13 +14,16 @@ import static com.ygames.ysoccer.match.SceneCamera.Speed.WARP;
 
 public class MatchCamera extends SceneCamera<Match> {
 
+    private MatchFsm.StateId previousStateId;
+
     public MatchCamera(Match match) {
         super(match, match.getBall());
     }
 
     @Override
     public void updateSettings() {
-        switch (scene.getStateId()) {
+        MatchFsm.StateId stateId = scene.getStateId();
+        switch (stateId) {
             case INTRO:
                 mode = scene.stateTimer > SECOND ? FOLLOW_BALL : STILL;
                 speed = NORMAL;
@@ -74,6 +77,8 @@ public class MatchCamera extends SceneCamera<Match> {
                 break;
 
             case BENCH_ENTER:
+                if (stateId != previousStateId)
+                    saveCurrentTarget();
                 mode = REACH_TARGET;
                 speed = WARP;
                 target.set(-0.55f * TOUCH_LINE, -20);
@@ -93,7 +98,7 @@ public class MatchCamera extends SceneCamera<Match> {
             case BENCH_EXIT:
                 mode = REACH_TARGET;
                 speed = WARP;
-                target.set(scene.fsm.benchStatus.oldTarget);
+                restoreTarget();
                 break;
 
             case FREE_KICK:
@@ -160,6 +165,8 @@ public class MatchCamera extends SceneCamera<Match> {
                 yLimited = false;
                 break;
         }
+
+        previousStateId = stateId;
     }
 
     private int winnerSide() {
