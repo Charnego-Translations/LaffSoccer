@@ -17,8 +17,6 @@ import static java.lang.Math.min;
 
 class MatchStateBenchSubstitutions extends MatchState {
 
-    MatchFsm.BenchStatus benchStatus;
-
     MatchStateBenchSubstitutions(MatchFsm fsm) {
         super(BENCH_SUBSTITUTIONS, fsm);
 
@@ -34,13 +32,6 @@ class MatchStateBenchSubstitutions extends MatchState {
         scene.displayTime = true;
         scene.displayWindVane = true;
         scene.displayBenchPlayers = true;
-    }
-
-    @Override
-    void entryActions() {
-        super.entryActions();
-
-        benchStatus = fsm.benchStatus;
     }
 
     @Override
@@ -67,12 +58,12 @@ class MatchStateBenchSubstitutions extends MatchState {
         }
 
         // move selection
-        if (benchStatus.inputDevice.yMoved()) {
+        if (fsm.benchInputDevice.yMoved()) {
             int substitutes = min(scene.getSettings().benchSize, scene.benchTeam.lineup.size() - TEAM_SIZE);
 
             // if remaining substitutions
             if (scene.benchTeam.substitutionsCount < scene.getSettings().substitutions) {
-                scene.benchSelectedPosition = EMath.rotate(scene.benchSelectedPosition, -1, substitutes - 1, benchStatus.inputDevice.y1);
+                scene.benchSelectedPosition = EMath.rotate(scene.benchSelectedPosition, -1, substitutes - 1, fsm.benchInputDevice.y1);
             }
 
             // reset positions
@@ -101,7 +92,7 @@ class MatchStateBenchSubstitutions extends MatchState {
     @Override
     SceneFsm.Action[] checkConditions() {
 
-        if (benchStatus.inputDevice.fire1Down()) {
+        if (fsm.benchInputDevice.fire1Down()) {
             if (scene.benchSelectedPosition == -1) {
                 return newAction(NEW_FOREGROUND, BENCH_FORMATION);
             } else {
@@ -124,7 +115,7 @@ class MatchStateBenchSubstitutions extends MatchState {
             }
         }
 
-        if (benchStatus.inputDevice.xReleased()) {
+        if (fsm.benchInputDevice.xReleased()) {
             return newAction(NEW_FOREGROUND, BENCH_EXIT);
         }
 

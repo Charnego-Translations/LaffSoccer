@@ -79,7 +79,7 @@ class MatchStateBenchEnter extends MatchState {
             return newAction(NEW_FOREGROUND, BENCH_SUBSTITUTIONS);
         }
 
-        if (fsm.benchStatus.inputDevice.xReleased()) {
+        if (fsm.benchInputDevice.xReleased()) {
             return newAction(NEW_FOREGROUND, BENCH_EXIT);
         }
 

@@ -21,8 +21,6 @@ import static com.ygames.ysoccer.match.SceneFsm.ActionType.NEW_FOREGROUND;
 
 class MatchStateBenchFormation extends MatchState {
 
-    MatchFsm.BenchStatus benchStatus;
-
     MatchStateBenchFormation(MatchFsm fsm) {
         super(BENCH_FORMATION, fsm);
 
@@ -38,13 +36,6 @@ class MatchStateBenchFormation extends MatchState {
         scene.displayTime = true;
         scene.displayWindVane = true;
         scene.displayBenchFormation = true;
-    }
-
-    @Override
-    void entryActions() {
-        super.entryActions();
-
-        benchStatus = fsm.benchStatus;
     }
 
     @Override
@@ -71,15 +62,15 @@ class MatchStateBenchFormation extends MatchState {
         }
 
         // change selected position
-        if (benchStatus.inputDevice.yMoved()) {
-            scene.benchSelectedPosition = EMath.rotate(scene.benchSelectedPosition, -1, TEAM_SIZE - 1, benchStatus.inputDevice.y1);
+        if (fsm.benchInputDevice.yMoved()) {
+            scene.benchSelectedPosition = EMath.rotate(scene.benchSelectedPosition, -1, TEAM_SIZE - 1, fsm.benchInputDevice.y1);
         }
     }
 
     @Override
     SceneFsm.Action[] checkConditions() {
 
-        if (benchStatus.inputDevice.fire1Down()) {
+        if (fsm.benchInputDevice.fire1Down()) {
 
             // switch to tactics mode
             if (scene.benchSelectedPosition == -1) {
@@ -178,7 +169,7 @@ class MatchStateBenchFormation extends MatchState {
         }
 
         // go back to bench substitutions
-        if (benchStatus.inputDevice.xReleased()) {
+        if (fsm.benchInputDevice.xReleased()) {
             scene.benchSelectedPosition = -1;
 
             // reset eventually pending swap or substitution

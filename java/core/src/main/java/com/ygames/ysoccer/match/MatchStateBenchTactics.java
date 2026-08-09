@@ -10,8 +10,6 @@ import static com.ygames.ysoccer.match.SceneFsm.ActionType.NEW_FOREGROUND;
 
 class MatchStateBenchTactics extends MatchState {
 
-    MatchFsm.BenchStatus benchStatus;
-
     MatchStateBenchTactics(MatchFsm fsm) {
         super(BENCH_TACTICS, fsm);
 
@@ -33,7 +31,6 @@ class MatchStateBenchTactics extends MatchState {
     void entryActions() {
         super.entryActions();
 
-        benchStatus = fsm.benchStatus;
         scene.benchSelectedTactics = scene.benchTeam.tactics;
     }
 
@@ -61,8 +58,8 @@ class MatchStateBenchTactics extends MatchState {
         }
 
         // change selected tactics
-        if (benchStatus.inputDevice.yMoved()) {
-            scene.benchSelectedTactics = EMath.rotate(scene.benchSelectedTactics, 0, 17, benchStatus.inputDevice.y1);
+        if (fsm.benchInputDevice.yMoved()) {
+            scene.benchSelectedTactics = EMath.rotate(scene.benchSelectedTactics, 0, 17, fsm.benchInputDevice.y1);
         }
     }
 
@@ -70,8 +67,8 @@ class MatchStateBenchTactics extends MatchState {
     SceneFsm.Action[] checkConditions() {
 
         // set selected tactics and go back to bench
-        if (benchStatus.inputDevice.fire1Down()
-            || benchStatus.inputDevice.xReleased()) {
+        if (fsm.benchInputDevice.fire1Down()
+            || fsm.benchInputDevice.xReleased()) {
             if (scene.benchSelectedTactics != scene.benchTeam.tactics) {
                 Coach coach = scene.benchTeam.coach;
                 coach.status = Coach.Status.CALL;

@@ -56,7 +56,7 @@ abstract class MatchState extends SceneState<MatchFsm, Match> {
                 InputDevice inputDevice = scene.team[t].fire2Down();
                 if (inputDevice != null) {
                     scene.benchTeam = scene.team[t];
-                    fsm.benchStatus.inputDevice = inputDevice;
+                    fsm.benchInputDevice = inputDevice;
                     return newAction(HOLD_FOREGROUND, BENCH_ENTER);
                 }
             }
