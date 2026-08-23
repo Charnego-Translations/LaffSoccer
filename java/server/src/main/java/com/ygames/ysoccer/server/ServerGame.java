@@ -24,6 +24,7 @@ public class ServerGame extends Game {
     @Override
     public void create() {
         Settings settings = new Settings();
+        Gdx.app.setLogLevel(Settings.logLevel);
         Log.set(LEVEL_INFO);
         Server server = new Server();
         Network.register(server);

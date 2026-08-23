@@ -25,7 +25,6 @@ public class ServerScreen extends ScreenAdapter {
     private final Map<Connection, InputDevice> connections = new ConcurrentHashMap<>();
     private final Match match;
     private boolean matchStarted;
-    private boolean connected;
     private boolean matchEnded;
 
     public ServerScreen(Server server, Match match) {
@@ -46,9 +45,6 @@ public class ServerScreen extends ScreenAdapter {
                 Gdx.app.postRunnable(() -> {
                     if (connections.size() < 2) {
                         connections.put(connection, match.team[connections.size()].inputDevice);
-
-                        if (connections.size() == 2)
-                            connected = true;
                     }
                 });
             }
@@ -62,6 +58,12 @@ public class ServerScreen extends ScreenAdapter {
                     }
                 }
             }
+
+            public void disconnected(Connection connection) {
+                Gdx.app.postRunnable(() -> {
+                    connections.remove(connection);
+                });
+            }
         });
 
         try {
@@ -74,10 +76,10 @@ public class ServerScreen extends ScreenAdapter {
 
     @Override
     public void render(float deltaTime) {
-        if (!matchStarted && connected) {
+        if (!matchStarted && connections.size() == 2) {
             match.start();
             matchStarted = true;
-            Gdx.app.log("Server", "Match started");
+            Gdx.app.debug("Server", "Match started");
         }
 
         if (matchStarted && !matchEnded) {
@@ -90,6 +92,6 @@ public class ServerScreen extends ScreenAdapter {
 
     private void quit(boolean matchCompleted) {
         matchEnded = true;
-        Gdx.app.log("Server", "Match ended");
+        Gdx.app.debug("Server", "Match ended");
     }
 }
