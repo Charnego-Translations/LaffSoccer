@@ -193,6 +193,9 @@ public class OnlineMatchConnect extends GLScreen {
         w = new UdpPortButton();
         widgets.add(w);
 
+        w = new InputDeviceLabel();
+        widgets.add(w);
+
         errorLabel = new ErrorLabel();
         widgets.add(errorLabel);
 
@@ -208,7 +211,7 @@ public class OnlineMatchConnect extends GLScreen {
 
         ServerLabel() {
             setColor(0x7A7A7A);
-            setGeometry(game.gui.WIDTH / 2 - 10 - 440, 150, 440, 40);
+            setGeometry(game.gui.WIDTH / 2 - 10 - 440, 150, 440, 42);
             setText("SERVER", CENTER, font14);
             setActive(false);
         }
@@ -218,7 +221,7 @@ public class OnlineMatchConnect extends GLScreen {
 
         ServerButton() {
             setColor(0x762B8E);
-            setGeometry(game.gui.WIDTH / 2 + 10, 150, 440, 40);
+            setGeometry(game.gui.WIDTH / 2 + 10, 150, 440, 42);
             setText(Settings.serverAddress, CENTER, font14);
             setEntryLimit(28);
         }
@@ -233,7 +236,7 @@ public class OnlineMatchConnect extends GLScreen {
 
         TcpPortLabel() {
             setColor(0x7A7A7A);
-            setGeometry(game.gui.WIDTH / 2 - 10 - 440, 200, 440, 40);
+            setGeometry(game.gui.WIDTH / 2 - 10 - 440, 200, 440, 42);
             setText("TCP PORT", CENTER, font14);
             setActive(false);
         }
@@ -243,7 +246,7 @@ public class OnlineMatchConnect extends GLScreen {
 
         TcpPortButton() {
             setColor(0x762B8E);
-            setGeometry(game.gui.WIDTH / 2 + 10, 200, 440, 40);
+            setGeometry(game.gui.WIDTH / 2 + 10, 200, 440, 42);
             setText(Settings.tcpPort, CENTER, font14);
             setEntryLimit(5);
             setInputFilter("[0-9]");
@@ -259,7 +262,7 @@ public class OnlineMatchConnect extends GLScreen {
 
         UdpPortLabel() {
             setColor(0x7A7A7A);
-            setGeometry(game.gui.WIDTH / 2 - 10 - 440, 250, 440, 40);
+            setGeometry(game.gui.WIDTH / 2 - 10 - 440, 250, 440, 42);
             setText("UDP PORT", CENTER, font14);
             setActive(false);
         }
@@ -269,7 +272,7 @@ public class OnlineMatchConnect extends GLScreen {
 
         UdpPortButton() {
             setColor(0x762B8E);
-            setGeometry(game.gui.WIDTH / 2 + 10, 250, 440, 40);
+            setGeometry(game.gui.WIDTH / 2 + 10, 250, 440, 42);
             setText(Settings.udpPort, CENTER, font14);
             setEntryLimit(5);
             setInputFilter("[0-9]");
@@ -278,6 +281,16 @@ public class OnlineMatchConnect extends GLScreen {
         @Override
         public void onChanged() {
             Settings.udpPort = parseInt(text);
+        }
+    }
+
+    private class InputDeviceLabel extends Button {
+
+        InputDeviceLabel() {
+            setColor(0x7A7A7A);
+            setGeometry(game.gui.WIDTH / 2 - 10 - 440, 300, 440, 42);
+            setText("CONTROLLER", CENTER, font14);
+            setActive(false);
         }
     }
 
