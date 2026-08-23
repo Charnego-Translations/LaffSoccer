@@ -60,6 +60,7 @@ import static com.esotericsoftware.minlog.Log.LEVEL_INFO;
 import static com.ygames.ysoccer.framework.Assets.font14;
 import static com.ygames.ysoccer.framework.Assets.gettext;
 import static com.ygames.ysoccer.framework.Font.Align.CENTER;
+import static com.ygames.ysoccer.framework.Font.Align.LEFT;
 import static java.lang.Integer.parseInt;
 
 public class OnlineMatchConnect extends GLScreen {
@@ -196,6 +197,9 @@ public class OnlineMatchConnect extends GLScreen {
         w = new InputDeviceLabel();
         widgets.add(w);
 
+        w = new InputDeviceButton();
+        widgets.add(w);
+
         errorLabel = new ErrorLabel();
         widgets.add(errorLabel);
 
@@ -291,6 +295,55 @@ public class OnlineMatchConnect extends GLScreen {
             setGeometry(game.gui.WIDTH / 2 - 10 - 440, 300, 440, 42);
             setText("CONTROLLER", CENTER, font14);
             setActive(false);
+        }
+    }
+
+    private class InputDeviceButton extends Button {
+
+        InputDeviceButton() {
+            setColor(0x762B8E);
+            setGeometry(game.gui.WIDTH / 2 + 10, 300, 440, 42);
+            setText("", LEFT, font14);
+            textOffsetX = 140;
+            setImagePosition(98, 1);
+            setAddShadow(true);
+        }
+
+        @Override
+        public void refresh() {
+            if (onlineMatchScreen.inputDevice != null) {
+                switch (onlineMatchScreen.inputDevice.type) {
+                    case COMPUTER:
+                        setText("");
+                        break;
+
+                    case KEYBOARD:
+                        setText(gettext("KEYBOARD") + " " + (onlineMatchScreen.inputDevice.port + 1));
+                        break;
+
+                    case JOYSTICK:
+                        setText(gettext("JOYSTICK") + " " + (onlineMatchScreen.inputDevice.port + 1));
+                        break;
+                }
+                textureRegion = gui.controls[0][onlineMatchScreen.inputDevice.type.ordinal()];
+            } else {
+                setVisible(false);
+            }
+        }
+
+        @Override
+        public void onFire1Down() {
+            updateTeamInputDevice(1);
+        }
+
+        @Override
+        public void onFire2Down() {
+            updateTeamInputDevice(-1);
+        }
+
+        private void updateTeamInputDevice(int n) {
+            onlineMatchScreen.inputDevice = game.inputDevices.rotateAvailable(onlineMatchScreen.inputDevice, n);
+            setDirty(true);
         }
     }
 
