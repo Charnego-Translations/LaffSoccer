@@ -19,6 +19,9 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import static com.ygames.ysoccer.match.Match.AWAY;
+import static com.ygames.ysoccer.match.Match.HOME;
+
 public class ServerScreen extends ScreenAdapter {
 
     private final Server server;
@@ -43,9 +46,7 @@ public class ServerScreen extends ScreenAdapter {
                 server.sendToTCP(connection.getID(), matchSetupDto);
 
                 Gdx.app.postRunnable(() -> {
-                    if (connections.size() < 2) {
-                        connections.put(connection, match.team[connections.size()].inputDevice);
-                    }
+                    addConnection(connection, match);
                 });
             }
 
@@ -72,6 +73,23 @@ public class ServerScreen extends ScreenAdapter {
             throw new RuntimeException(e);
         }
         server.start();
+    }
+
+    private void addConnection(Connection connection, Match match) {
+        switch (connections.size()) {
+            case 0:
+                connections.put(connection, match.team[HOME].inputDevice);
+                break;
+            case 1:
+                if (connections.containsValue(match.team[HOME].inputDevice)) {
+                    connections.put(connection, match.team[AWAY].inputDevice);
+                } else {
+                    connections.put(connection, match.team[HOME].inputDevice);
+                }
+                break;
+            default:
+                // do nothing
+        }
     }
 
     @Override
