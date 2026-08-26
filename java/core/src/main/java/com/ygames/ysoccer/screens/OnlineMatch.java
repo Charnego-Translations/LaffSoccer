@@ -96,6 +96,23 @@ public class OnlineMatch extends GLScreen {
         matchRenderer.resize(width, height);
     }
 
+    @Override
+    public void hide() {
+        if (match == null) {
+            return;
+        }
+        for (int t = HOME; t <= AWAY; t++) {
+            for (Player player : match.team[t].lineup) {
+                if (player.role == Player.Role.GOALKEEPER) {
+                    Assets.unloadKeeper(player);
+                } else {
+                    Assets.unloadPlayer(player);
+                }
+                Assets.unloadHair(player);
+            }
+        }
+    }
+
     private void renderBackground() {
         gl.glEnable(GL20.GL_BLEND);
         gl.glClear(GL20.GL_COLOR_BUFFER_BIT);

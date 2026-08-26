@@ -862,4 +862,16 @@ class EditTactics extends GLScreen {
             player.setDirty(true);
         }
     }
+
+    @Override
+    public void hide() {
+        for (Player player : team.players) {
+            if (player.role == Player.Role.GOALKEEPER) {
+                Assets.unloadKeeper(player);
+            } else {
+                Assets.unloadPlayer(player);
+            }
+            Assets.unloadHair(player);
+        }
+    }
 }
