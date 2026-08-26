@@ -500,8 +500,8 @@ public class Player implements Json.Serializable {
             getMatch().stats[1 - team.index].centeredShots += 1;
         }
 
-        if (collisionType == KeeperCollision.CATCH) {
-            EventManager.publish(new KeeperSaveEvent((Match) scene));
+        if (collisionType == KeeperCollision.CATCH && getMatch() != null) {
+            EventManager.publish(new KeeperSaveEvent(getMatch()));
         }
 
         return (collisionType == KeeperCollision.CATCH);
