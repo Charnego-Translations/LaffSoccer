@@ -14,11 +14,11 @@ public class MatchFsm extends SceneFsm<Match, MatchState> {
 
     boolean matchCompleted;
 
-    final BenchStatus benchStatus;
     final Vector2 throwInPosition;
     Team throwInTeam;
     Team cornerKickTeam;
     Team goalKickTeam;
+    InputDevice benchInputDevice;
 
     public enum StateId implements SceneState.Id {
         BENCH_ENTER,
@@ -69,7 +69,6 @@ public class MatchFsm extends SceneFsm<Match, MatchState> {
     MatchFsm(Match match, InputDeviceList inputDevices) {
         super(match, inputDevices);
 
-        benchStatus = new BenchStatus();
         throwInPosition = new Vector2();
 
         new MatchStateBenchEnter(this);
@@ -127,15 +126,5 @@ public class MatchFsm extends SceneFsm<Match, MatchState> {
     protected void publishEvent() {
         super.publishEvent();
         EventManager.publish(new MatchNewStateEvent(getScene()));
-    }
-
-    static class BenchStatus {
-        Team team;
-        InputDevice inputDevice;
-        final Vector2 oldTarget = new Vector2();
-        int selectedPosition;
-        int substPosition = -1;
-        int swapPosition = -1;
-        int selectedTactics;
     }
 }

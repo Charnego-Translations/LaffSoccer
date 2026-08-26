@@ -24,6 +24,7 @@ public class ServerGame extends Game {
     @Override
     public void create() {
         Settings settings = new Settings();
+        Gdx.app.setLogLevel(Settings.logLevel);
         Log.set(LEVEL_INFO);
         Server server = new Server();
         Network.register(server);
@@ -46,6 +47,8 @@ public class ServerGame extends Game {
 
         homeTeam.inputDevice = new NetworkInputDevice(0);
         homeTeam.controlMode = PLAYER;
+        awayTeam.inputDevice = new NetworkInputDevice(1);
+        awayTeam.controlMode = PLAYER;
         match.setTeam(HOME, homeTeam);
         match.setTeam(AWAY, awayTeam);
         match.init(new InputDeviceList(), matchSettings, friendly);

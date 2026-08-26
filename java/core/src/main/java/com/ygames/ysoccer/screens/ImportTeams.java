@@ -11,6 +11,7 @@ import com.ygames.ysoccer.export.Config;
 import com.ygames.ysoccer.export.FileConfig;
 import com.ygames.ysoccer.export.TeamConfig;
 import com.ygames.ysoccer.framework.Assets;
+import com.ygames.ysoccer.framework.FileUtils;
 import com.ygames.ysoccer.framework.GLGame;
 import com.ygames.ysoccer.framework.GLScreen;
 import com.ygames.ysoccer.gui.Button;
@@ -95,7 +96,7 @@ class ImportTeams extends GLScreen {
 
         background = new Texture("images/backgrounds/menu_set_team.jpg");
 
-        FileHandle importFolder = Gdx.files.local("data/import");
+        FileHandle importFolder = FileUtils.local("data/import");
 
         json = new Json();
         json.setOutputType(JsonWriter.OutputType.json);
@@ -279,9 +280,9 @@ class ImportTeams extends GLScreen {
     }
 
     private void updateConfigFile() {
-        configFile = Gdx.files.local("data/config/import_" + getYearFolder() + ".json");
+        configFile = FileUtils.local("data/config/import_" + getYearFolder() + ".json");
         if (!configFile.exists()) {
-            configFile = Gdx.files.local("data/config/import.json");
+            configFile = FileUtils.local("data/config/import.json");
         }
     }
 

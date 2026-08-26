@@ -10,6 +10,8 @@ public class MatchUpdateDto {
     public TeamUpdateDto[] teamUpdateDto;
     public float clock;
     public Match.Period period;
+
+    // display flags
     public boolean displayControlledPlayer;
     public boolean displayFoulMaker;
     public boolean displayYellowCard;
@@ -21,6 +23,18 @@ public class MatchUpdateDto {
     public boolean displayRosters;
     public boolean displayScore;
     public boolean displayStatistics;
+    public boolean displayGoalScorer;
+    public boolean displayBenchPlayers;
+    public boolean displayBenchFormation;
+    public boolean displayTacticsSwitch;
+
+    // bench control
+    public int benchTeamIndex;
+    public int benchSelectedPosition;
+    public int benchSubstPosition;
+    public int benchSwapPosition;
+    public int benchSelectedTactics;
+
     public MatchFsm.StateId stateId;
     public int stateTimer;
 

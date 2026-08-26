@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.ygames.ysoccer.events.CrowdChantsEvent;
 import com.ygames.ysoccer.events.TackleEvent;
+import com.ygames.ysoccer.events.YellowCardEvent;
 import com.ygames.ysoccer.framework.Assets;
 import com.ygames.ysoccer.framework.EMath;
 import com.ygames.ysoccer.framework.EventManager;
@@ -242,14 +243,15 @@ class MatchStateMain extends MatchState {
 
             if (scene.foul != null) {
                 if (scene.foul.entailsRedCard) {
-                    scene.referee.addRedCard(scene.foul.player);
+                    scene.foul.player.addRedCard();
                     scene.stats[scene.foul.player.team.index].redCards++;
 
                     event = Event.RED_CARD;
                 } else if (scene.foul.entailsYellowCard) {
-                    scene.referee.addYellowCard(scene.foul.player);
+                    scene.foul.player.addYellowCard();
+                    EventManager.publish(new YellowCardEvent(scene, scene.foul.player));
                     scene.stats[scene.foul.player.team.index].yellowCards++;
-                    if (scene.referee.isSentOff(scene.foul.player)) {
+                    if (scene.foul.player.isSentOff()) {
                         scene.stats[scene.foul.player.team.index].redCards++;
                     }
 

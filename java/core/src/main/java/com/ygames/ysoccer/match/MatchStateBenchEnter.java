@@ -4,6 +4,7 @@ import com.ygames.ysoccer.events.EnterBenchEvent;
 import com.ygames.ysoccer.framework.EventManager;
 import com.ygames.ysoccer.framework.GLGame;
 
+import static com.ygames.ysoccer.match.Const.SECOND;
 import static com.ygames.ysoccer.match.Const.TEAM_SIZE;
 import static com.ygames.ysoccer.match.Match.AWAY;
 import static com.ygames.ysoccer.match.Match.HOME;
@@ -35,12 +36,10 @@ class MatchStateBenchEnter extends MatchState {
     void entryActions() {
         super.entryActions();
 
-        EventManager.publish(new EnterBenchEvent(fsm.getScene(), fsm.benchStatus.team));
+        EventManager.publish(new EnterBenchEvent(fsm.getScene(), scene.benchTeam));
 
-        fsm.benchStatus.oldTarget.set(scene.camera.getCurrentTarget());
-
-        fsm.benchStatus.selectedPosition = -1;
-        fsm.benchStatus.substPosition = -1;
+        scene.benchSelectedPosition = -1;
+        scene.benchSubstPosition = -1;
 
         for (int t = HOME; t <= AWAY; t++) {
             for (int i = 0; i < TEAM_SIZE; i++) {
@@ -78,13 +77,13 @@ class MatchStateBenchEnter extends MatchState {
     @Override
     SceneFsm.Action[] checkConditions() {
 
-        if (scene.camera.getTargetDistance() < 1) {
-            Coach coach = fsm.benchStatus.team.coach;
+        if (scene.stateTimer > 1.5f * SECOND) {
+            Coach coach = scene.benchTeam.coach;
             coach.status = Coach.Status.STAND;
             return newAction(NEW_FOREGROUND, BENCH_SUBSTITUTIONS);
         }
 
-        if (fsm.benchStatus.inputDevice.xReleased()) {
+        if (fsm.benchInputDevice.xReleased()) {
             return newAction(NEW_FOREGROUND, BENCH_EXIT);
         }
 

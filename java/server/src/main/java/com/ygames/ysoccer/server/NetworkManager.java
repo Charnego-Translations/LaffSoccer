@@ -13,7 +13,9 @@ import com.ygames.ysoccer.events.KeeperHoldEvent;
 import com.ygames.ysoccer.events.MatchIntroEvent;
 import com.ygames.ysoccer.events.MatchNewStateEvent;
 import com.ygames.ysoccer.events.PeriodStopEvent;
+import com.ygames.ysoccer.events.PlayerSwapEvent;
 import com.ygames.ysoccer.events.WhistleEvent;
+import com.ygames.ysoccer.events.YellowCardEvent;
 import com.ygames.ysoccer.framework.EventManager;
 import com.ygames.ysoccer.network.dto.MatchStatsUpdateDto;
 import com.ygames.ysoccer.network.dto.events.BallBounceEventDto;
@@ -27,25 +29,44 @@ import com.ygames.ysoccer.network.dto.events.KeeperDeflectEventDto;
 import com.ygames.ysoccer.network.dto.events.KeeperHoldEventDto;
 import com.ygames.ysoccer.network.dto.events.MatchIntroEventDto;
 import com.ygames.ysoccer.network.dto.events.PeriodStopEventDto;
+import com.ygames.ysoccer.network.dto.events.PlayerSwapEventDto;
 import com.ygames.ysoccer.network.dto.events.WhistleEventDto;
+import com.ygames.ysoccer.network.dto.events.YellowCardEventDto;
 import com.ygames.ysoccer.network.mappers.FoulMapper;
 import com.ygames.ysoccer.network.mappers.GoalMapper;
 
 public class NetworkManager {
 
     public static void subscribe(Server server) {
-        EventManager.subscribe(BallBounceEvent.class, ballBounceEvent -> server.sendToAllTCP(new BallBounceEventDto(ballBounceEvent.speed)));
-        EventManager.subscribe(BallCollisionEvent.class, ballCollisionEvent -> server.sendToAllTCP(new BallCollisionEventDto(ballCollisionEvent.strength)));
-        EventManager.subscribe(BallKickEvent.class, ballKickEvent -> server.sendToAllTCP(new BallKickEventDto(ballKickEvent.strength)));
-        EventManager.subscribe(CelebrationEvent.class, celebrationEvent -> server.sendToAllTCP(new CelebrationEventDto()));
-        EventManager.subscribe(CrowdChantsEvent.class, crowdChantsEvent -> server.sendToAllTCP(new CrowdChantsEventDto()));
-        EventManager.subscribe(HomeGoalEvent.class, homeGoalEvent -> server.sendToAllTCP(new HomeGoalEventDto(GoalMapper.toDto(homeGoalEvent.goal))));
-        EventManager.subscribe(KeeperDeflectEvent.class, keeperDeflectEvent -> server.sendToAllTCP(new KeeperDeflectEventDto()));
-        EventManager.subscribe(KeeperHoldEvent.class, keeperHoldEvent -> server.sendToAllTCP(new KeeperHoldEventDto()));
-        EventManager.subscribe(MatchIntroEvent.class, matchIntroEvent -> server.sendToAllTCP(new MatchIntroEventDto()));
-        EventManager.subscribe(PeriodStopEvent.class, periodStopEvent -> server.sendToAllTCP(new PeriodStopEventDto()));
-        EventManager.subscribe(WhistleEvent.class, whistleEvent -> server.sendToAllTCP(new WhistleEventDto()));
-        EventManager.subscribe(FoulEvent.class, foulEvent -> server.sendToAllTCP(new FoulEventDto(FoulMapper.toDto(foulEvent.foul))));
-        EventManager.subscribe(MatchNewStateEvent.class, event -> server.sendToAllTCP(new MatchStatsUpdateDto(event.match.stats)));
+        EventManager.subscribe(BallBounceEvent.class, ballBounceEvent -> server.sendToAllTCP(
+            new BallBounceEventDto(ballBounceEvent.speed)));
+        EventManager.subscribe(BallCollisionEvent.class, ballCollisionEvent -> server.sendToAllTCP(
+            new BallCollisionEventDto(ballCollisionEvent.strength)));
+        EventManager.subscribe(BallKickEvent.class, ballKickEvent -> server.sendToAllTCP(
+            new BallKickEventDto(ballKickEvent.strength)));
+        EventManager.subscribe(CelebrationEvent.class, celebrationEvent -> server.sendToAllTCP(
+            new CelebrationEventDto()));
+        EventManager.subscribe(CrowdChantsEvent.class, crowdChantsEvent -> server.sendToAllTCP(
+            new CrowdChantsEventDto()));
+        EventManager.subscribe(HomeGoalEvent.class, homeGoalEvent -> server.sendToAllTCP(
+            new HomeGoalEventDto(GoalMapper.toDto(homeGoalEvent.goal))));
+        EventManager.subscribe(KeeperDeflectEvent.class, keeperDeflectEvent -> server.sendToAllTCP(
+            new KeeperDeflectEventDto()));
+        EventManager.subscribe(KeeperHoldEvent.class, keeperHoldEvent -> server.sendToAllTCP(
+            new KeeperHoldEventDto()));
+        EventManager.subscribe(MatchIntroEvent.class, matchIntroEvent -> server.sendToAllTCP(
+            new MatchIntroEventDto()));
+        EventManager.subscribe(PeriodStopEvent.class, periodStopEvent -> server.sendToAllTCP(
+            new PeriodStopEventDto()));
+        EventManager.subscribe(WhistleEvent.class, whistleEvent -> server.sendToAllTCP(
+            new WhistleEventDto()));
+        EventManager.subscribe(FoulEvent.class, foulEvent -> server.sendToAllTCP(
+            new FoulEventDto(FoulMapper.toDto(foulEvent.foul))));
+        EventManager.subscribe(MatchNewStateEvent.class, event -> server.sendToAllTCP(
+            new MatchStatsUpdateDto(event.match.stats)));
+        EventManager.subscribe(YellowCardEvent.class, event -> server.sendToAllTCP(
+            new YellowCardEventDto(event.player.team.index, event.player.lineupIndex())));
+        EventManager.subscribe(PlayerSwapEvent.class, event -> server.sendToAllTCP(
+            new PlayerSwapEventDto(event.team.index, event.lineupIndexA, event.lineupIndexB)));
     }
 }

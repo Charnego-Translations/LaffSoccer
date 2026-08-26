@@ -42,7 +42,9 @@ import com.ygames.ysoccer.network.dto.events.KeeperDeflectEventDto;
 import com.ygames.ysoccer.network.dto.events.KeeperHoldEventDto;
 import com.ygames.ysoccer.network.dto.events.MatchIntroEventDto;
 import com.ygames.ysoccer.network.dto.events.PeriodStopEventDto;
+import com.ygames.ysoccer.network.dto.events.PlayerSwapEventDto;
 import com.ygames.ysoccer.network.dto.events.WhistleEventDto;
+import com.ygames.ysoccer.network.dto.events.YellowCardEventDto;
 
 import java.util.ArrayList;
 
@@ -97,5 +99,7 @@ public class Network {
         kryo.register(PeriodStopEventDto.class);
         kryo.register(WhistleEventDto.class);
         kryo.register(FoulEventDto.class);
+        kryo.register(YellowCardEventDto.class);
+        kryo.register(PlayerSwapEventDto.class);
     }
 }

@@ -2,14 +2,9 @@
 eclipse.project.name = appName + '-core'
 
 dependencies {
-  api "com.badlogicgames.ashley:ashley:$ashleyVersion"
-  api "com.badlogicgames.box2dlights:box2dlights:$box2dlightsVersion"
   api "com.badlogicgames.gdx-controllers:gdx-controllers-core:$gdxControllersVersion"
-  api "com.badlogicgames.gdx:gdx-ai:$aiVersion"
-  api "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
-  api "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
   api "com.badlogicgames.gdx:gdx:$gdxVersion"
-  api 'com.esotericsoftware:kryonet:2.22.0-RC1'
+  api "com.esotericsoftware:kryonet:$kryoNetVersion"
   implementation "com.badlogicgames.gdx-video:gdx-video-lwjgl3:$gdxVideoVersion"
   api 'org.apache.commons:commons-lang3:3.18.0'
   compileOnly "org.projectlombok:lombok:1.18.30"
@@ -21,4 +16,7 @@ dependencies {
 
   implementation group: 'ar.com.hjg', name: 'pngj', version: '2.1.0'
   implementation "com.strongjoshua:libgdx-inGameConsole:1.0.0"
+}
+jar {
+  duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }

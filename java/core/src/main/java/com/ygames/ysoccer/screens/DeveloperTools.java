@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.ygames.ysoccer.competitions.Competition;
 import com.ygames.ysoccer.competitions.TestMatch;
 import com.ygames.ysoccer.framework.Assets;
+import com.ygames.ysoccer.framework.FileUtils;
 import com.ygames.ysoccer.framework.Font;
 import com.ygames.ysoccer.framework.GLGame;
 import com.ygames.ysoccer.framework.GLScreen;
@@ -97,12 +98,12 @@ class DeveloperTools extends GLScreen {
         public void onFire1Down() {
             game.setState(GLGame.State.FRIENDLY, null);
 
-            FileHandle homeTeamFile = Gdx.files.local("/data/teams/SELECSIONE/team.espana.json");
+            FileHandle homeTeamFile = FileUtils.local("data/teams/SELECSIONE/team.espana.json");
             Team homeTeam = Assets.json.fromJson(Team.class, homeTeamFile.readString("UTF-8"));
             homeTeam.path = Assets.getRelativeTeamPath(homeTeamFile);
             homeTeam.controlMode = Team.ControlMode.PLAYER;
 
-            FileHandle awayTeamFile = Gdx.files.local("/data/teams/SELECSIONE/team.espina.json");
+            FileHandle awayTeamFile = FileUtils.local("data/teams/SELECSIONE/team.espina.json");
             Team awayTeam = Assets.json.fromJson(Team.class, awayTeamFile.readString("UTF-8"));
             awayTeam.path = Assets.getRelativeTeamPath(awayTeamFile);
             awayTeam.controlMode = Team.ControlMode.COMPUTER;
@@ -182,7 +183,7 @@ class DeveloperTools extends GLScreen {
 //        if (channels < 3 || pngr.imgInfo.bitDepth != 8)
 //            throw new RuntimeException("This method is for RGB8/RGBA8 images");
 
-        FileHandle outputFileHandle = Gdx.files.local("images/" + destFilename);
+        FileHandle outputFileHandle = FileUtils.local("images/" + destFilename);
         PngWriter pngw = new PngWriter(outputFileHandle.write(false), pngr.imgInfo);
         pngw.copyChunksFrom(pngr.getChunksList(), ChunkCopyBehaviour.COPY_ALL);
 //        pngw.getMetadata().setText(PngChunkTextVar.KEY_Description, "Decreased red and increased green");

@@ -58,7 +58,7 @@ public class Assets {
     public static Font font10;
     public static Font font6;
     public static Font font3;
-    public static FileHandle teamsRootFolder = Gdx.files.local("data/teams/");
+    public static FileHandle teamsRootFolder = FileUtils.local("data/teams/");
     public static FileHandle competitionsRootFolder;
     public static FileHandle tacticsFolder;
     public static FileHandle savesFolder;
@@ -166,9 +166,9 @@ public class Assets {
             }
         }
 
-        competitionsRootFolder = Gdx.files.local("data/competitions/");
-        tacticsFolder = Gdx.files.local("data/tactics");
-        savesFolder = Gdx.files.local("data/saves/competitions/");
+        competitionsRootFolder = FileUtils.local("data/competitions/");
+        tacticsFolder = FileUtils.local("data/tactics");
+        savesFolder = FileUtils.local("data/saves/competitions/");
         saveGame = savesFolder.child("savegame.json");
         loadCalendars();
 
@@ -232,7 +232,7 @@ public class Assets {
 
     private static void loadLocales() {
         locales = new ArrayList<>();
-        FileHandle[] files = Gdx.files.local("i18n/").list(".properties");
+        FileHandle[] files = FileUtils.local("i18n/").list(".properties");
         for (FileHandle file : files) {
             String[] parts = file.nameWithoutExtension().split("_");
             if (parts.length > 1) {
@@ -329,7 +329,7 @@ public class Assets {
     }
 
     private static Integer[][][] loadIntegerArray3(String path) {
-        return Assets.json.fromJson(Integer[][][].class, Gdx.files.local(path).readString("UTF-8"));
+        return Assets.json.fromJson(Integer[][][].class, FileUtils.local(path).readString("UTF-8"));
     }
 
     public static void loadPlayerOrigins() {
@@ -353,7 +353,7 @@ public class Assets {
     }
 
     private static void saveIntegerArray3(Integer[][][] array3, String path) {
-        Gdx.files.local(path).writeString(Assets.json.prettyPrint(array3), false, "UTF-8");
+        FileUtils.local(path).writeString(Assets.json.prettyPrint(array3), false, "UTF-8");
     }
 
     public static void savePlayerOrigins() {

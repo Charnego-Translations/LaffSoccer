@@ -1,7 +1,6 @@
 package com.ygames.ysoccer.match;
 
 import com.ygames.ysoccer.events.WhistleEvent;
-import com.ygames.ysoccer.events.YellowCardEvent;
 import com.ygames.ysoccer.framework.EventManager;
 import com.ygames.ysoccer.framework.GLGame;
 
@@ -46,8 +45,6 @@ class MatchStateYellowCard extends MatchState {
         EventManager.publish(new WhistleEvent());
 
         booked = false;
-
-        EventManager.publish(new YellowCardEvent(scene));
 
         scene.resetAutomaticInputDevices();
     }
@@ -102,7 +99,7 @@ class MatchStateYellowCard extends MatchState {
     @Override
     SceneFsm.Action[] checkConditions() {
         if (booked && scene.foul.player.checkState(STATE_IDLE)) {
-            if (scene.referee.isSentOff(scene.foul.player)) {
+            if (scene.foul.player.isSentOff()) {
                 scene.foul.player.setState(STATE_SENT_OFF);
             }
             if (scene.foul.isPenalty()) {

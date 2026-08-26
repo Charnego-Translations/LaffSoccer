@@ -67,6 +67,17 @@ public class MatchMapper {
         dto.displayRosters = match.displayRosters;
         dto.displayScore = match.displayScore;
         dto.displayStatistics = match.displayStatistics;
+        dto.displayGoalScorer = match.displayGoalScorer;
+        dto.displayBenchPlayers = match.displayBenchPlayers;
+        dto.displayBenchFormation = match.displayBenchFormation;
+        dto.displayTacticsSwitch = match.displayTacticsSwitch;
+
+        dto.benchTeamIndex = match.benchTeam == null ? -1 : match.benchTeam.index;
+        dto.benchSelectedPosition = match.benchSelectedPosition;
+        dto.benchSubstPosition = match.benchSubstPosition;
+        dto.benchSwapPosition = match.benchSwapPosition;
+        dto.benchSelectedTactics = match.benchSelectedTactics;
+
         dto.stateId = match.getStateId();
         dto.stateTimer = match.stateTimer;
         return dto;
@@ -125,6 +136,17 @@ public class MatchMapper {
         match.displayRosters = dto.displayRosters;
         match.displayScore = dto.displayScore;
         match.displayStatistics = dto.displayStatistics;
+        match.displayGoalScorer = dto.displayGoalScorer;
+        match.displayBenchPlayers = dto.displayBenchPlayers;
+        match.displayBenchFormation = dto.displayBenchFormation;
+        match.displayTacticsSwitch = dto.displayTacticsSwitch;
+
+        match.benchTeam = dto.benchTeamIndex == -1 ? null : match.team[dto.benchTeamIndex];
+        match.benchSelectedPosition = dto.benchSelectedPosition;
+        match.benchSubstPosition = dto.benchSubstPosition;
+        match.benchSwapPosition = dto.benchSwapPosition;
+        match.benchSelectedTactics = dto.benchSelectedTactics;
+
         match.setStateId(dto.stateId);
         match.stateTimer = dto.stateTimer;
     }

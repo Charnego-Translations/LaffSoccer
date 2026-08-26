@@ -28,6 +28,8 @@ import com.ygames.ysoccer.gui.InputButton;
 import com.ygames.ysoccer.gui.Label;
 import com.ygames.ysoccer.gui.Widget;
 import com.ygames.ysoccer.match.Goal;
+import com.ygames.ysoccer.match.Player;
+import com.ygames.ysoccer.match.Team;
 import com.ygames.ysoccer.network.Network;
 import com.ygames.ysoccer.network.dto.MatchSetupDto;
 import com.ygames.ysoccer.network.dto.MatchStatsUpdateDto;
@@ -43,18 +45,22 @@ import com.ygames.ysoccer.network.dto.events.KeeperDeflectEventDto;
 import com.ygames.ysoccer.network.dto.events.KeeperHoldEventDto;
 import com.ygames.ysoccer.network.dto.events.MatchIntroEventDto;
 import com.ygames.ysoccer.network.dto.events.PeriodStopEventDto;
+import com.ygames.ysoccer.network.dto.events.PlayerSwapEventDto;
 import com.ygames.ysoccer.network.dto.events.WhistleEventDto;
+import com.ygames.ysoccer.network.dto.events.YellowCardEventDto;
 import com.ygames.ysoccer.network.mappers.FoulMapper;
 import com.ygames.ysoccer.network.mappers.GoalMapper;
 import com.ygames.ysoccer.network.mappers.InputDeviceMapper;
 import com.ygames.ysoccer.network.mappers.MatchMapper;
 
 import java.io.IOException;
+import java.util.Collections;
 
 import static com.esotericsoftware.minlog.Log.LEVEL_INFO;
 import static com.ygames.ysoccer.framework.Assets.font14;
 import static com.ygames.ysoccer.framework.Assets.gettext;
 import static com.ygames.ysoccer.framework.Font.Align.CENTER;
+import static com.ygames.ysoccer.framework.Font.Align.LEFT;
 import static java.lang.Integer.parseInt;
 
 public class OnlineMatchConnect extends GLScreen {
@@ -114,6 +120,7 @@ public class OnlineMatchConnect extends GLScreen {
                 if (object instanceof HomeGoalEventDto)
                     Gdx.app.postRunnable(() -> {
                         Goal goal = GoalMapper.fromDto(onlineMatchScreen.match, ((HomeGoalEventDto) object).goalDto);
+                        onlineMatchScreen.match.getBall().goalOwner = goal.player;
                         onlineMatchScreen.match.goals.add(goal);
                         onlineMatchScreen.match.buildScorersList();
                         EventManager.publish(new HomeGoalEvent(onlineMatchScreen.match, goal));
@@ -142,6 +149,21 @@ public class OnlineMatchConnect extends GLScreen {
                 if (object instanceof MatchStatsUpdateDto)
                     Gdx.app.postRunnable(() -> {
                         onlineMatchScreen.match.stats = ((MatchStatsUpdateDto) object).stats;
+                    });
+
+                if (object instanceof YellowCardEventDto)
+                    Gdx.app.postRunnable(() -> {
+                        YellowCardEventDto dto = (YellowCardEventDto) object;
+                        Team team = onlineMatchScreen.match.team[dto.teamIndex];
+                        Player player = team.lineup.get(dto.lineupIndex);
+                        player.addYellowCard();
+                    });
+
+                if (object instanceof PlayerSwapEventDto)
+                    Gdx.app.postRunnable(() -> {
+                        PlayerSwapEventDto dto = (PlayerSwapEventDto) object;
+                        Team team = onlineMatchScreen.match.team[dto.teamIndex];
+                        Collections.swap(team.lineup, dto.lineupIndexA, dto.lineupIndexB);
                     });
             }
         });
@@ -172,6 +194,12 @@ public class OnlineMatchConnect extends GLScreen {
         w = new UdpPortButton();
         widgets.add(w);
 
+        w = new InputDeviceLabel();
+        widgets.add(w);
+
+        w = new InputDeviceButton();
+        widgets.add(w);
+
         errorLabel = new ErrorLabel();
         widgets.add(errorLabel);
 
@@ -187,7 +215,7 @@ public class OnlineMatchConnect extends GLScreen {
 
         ServerLabel() {
             setColor(0x7A7A7A);
-            setGeometry(game.gui.WIDTH / 2 - 10 - 440, 150, 440, 40);
+            setGeometry(game.gui.WIDTH / 2 - 10 - 440, 150, 440, 42);
             setText("SERVER", CENTER, font14);
             setActive(false);
         }
@@ -197,7 +225,7 @@ public class OnlineMatchConnect extends GLScreen {
 
         ServerButton() {
             setColor(0x762B8E);
-            setGeometry(game.gui.WIDTH / 2 + 10, 150, 440, 40);
+            setGeometry(game.gui.WIDTH / 2 + 10, 150, 440, 42);
             setText(Settings.serverAddress, CENTER, font14);
             setEntryLimit(28);
         }
@@ -212,7 +240,7 @@ public class OnlineMatchConnect extends GLScreen {
 
         TcpPortLabel() {
             setColor(0x7A7A7A);
-            setGeometry(game.gui.WIDTH / 2 - 10 - 440, 200, 440, 40);
+            setGeometry(game.gui.WIDTH / 2 - 10 - 440, 200, 440, 42);
             setText("TCP PORT", CENTER, font14);
             setActive(false);
         }
@@ -222,7 +250,7 @@ public class OnlineMatchConnect extends GLScreen {
 
         TcpPortButton() {
             setColor(0x762B8E);
-            setGeometry(game.gui.WIDTH / 2 + 10, 200, 440, 40);
+            setGeometry(game.gui.WIDTH / 2 + 10, 200, 440, 42);
             setText(Settings.tcpPort, CENTER, font14);
             setEntryLimit(5);
             setInputFilter("[0-9]");
@@ -238,7 +266,7 @@ public class OnlineMatchConnect extends GLScreen {
 
         UdpPortLabel() {
             setColor(0x7A7A7A);
-            setGeometry(game.gui.WIDTH / 2 - 10 - 440, 250, 440, 40);
+            setGeometry(game.gui.WIDTH / 2 - 10 - 440, 250, 440, 42);
             setText("UDP PORT", CENTER, font14);
             setActive(false);
         }
@@ -248,7 +276,7 @@ public class OnlineMatchConnect extends GLScreen {
 
         UdpPortButton() {
             setColor(0x762B8E);
-            setGeometry(game.gui.WIDTH / 2 + 10, 250, 440, 40);
+            setGeometry(game.gui.WIDTH / 2 + 10, 250, 440, 42);
             setText(Settings.udpPort, CENTER, font14);
             setEntryLimit(5);
             setInputFilter("[0-9]");
@@ -257,6 +285,65 @@ public class OnlineMatchConnect extends GLScreen {
         @Override
         public void onChanged() {
             Settings.udpPort = parseInt(text);
+        }
+    }
+
+    private class InputDeviceLabel extends Button {
+
+        InputDeviceLabel() {
+            setColor(0x7A7A7A);
+            setGeometry(game.gui.WIDTH / 2 - 10 - 440, 300, 440, 42);
+            setText("CONTROLLER", CENTER, font14);
+            setActive(false);
+        }
+    }
+
+    private class InputDeviceButton extends Button {
+
+        InputDeviceButton() {
+            setColor(0x762B8E);
+            setGeometry(game.gui.WIDTH / 2 + 10, 300, 440, 42);
+            setText("", LEFT, font14);
+            textOffsetX = 140;
+            setImagePosition(98, 1);
+            setAddShadow(true);
+        }
+
+        @Override
+        public void refresh() {
+            if (onlineMatchScreen.inputDevice != null) {
+                switch (onlineMatchScreen.inputDevice.type) {
+                    case COMPUTER:
+                        setText("");
+                        break;
+
+                    case KEYBOARD:
+                        setText(gettext("KEYBOARD") + " " + (onlineMatchScreen.inputDevice.port + 1));
+                        break;
+
+                    case JOYSTICK:
+                        setText(gettext("JOYSTICK") + " " + (onlineMatchScreen.inputDevice.port + 1));
+                        break;
+                }
+                textureRegion = gui.controls[0][onlineMatchScreen.inputDevice.type.ordinal()];
+            } else {
+                setVisible(false);
+            }
+        }
+
+        @Override
+        public void onFire1Down() {
+            updateTeamInputDevice(1);
+        }
+
+        @Override
+        public void onFire2Down() {
+            updateTeamInputDevice(-1);
+        }
+
+        private void updateTeamInputDevice(int n) {
+            onlineMatchScreen.inputDevice = game.inputDevices.rotateAvailable(onlineMatchScreen.inputDevice, n);
+            setDirty(true);
         }
     }
 

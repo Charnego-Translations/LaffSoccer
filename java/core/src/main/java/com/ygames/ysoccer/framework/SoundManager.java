@@ -365,7 +365,7 @@ public class SoundManager {
     private static Set<Sound> loadSoundFolder(String folder) {
         Set<Sound> result = new HashSet<>();
 
-        FileHandle soundFolder = Gdx.files.local("sounds/" + folder);
+        FileHandle soundFolder = FileUtils.local("sounds/" + folder);
         for (FileHandle fileHandle : soundFolder.list()) {
             if (EXTENSIONS.contains(fileHandle.extension().toLowerCase())) {
                 result.add(newSound(soundFolder.name() + "/" + fileHandle.name()));

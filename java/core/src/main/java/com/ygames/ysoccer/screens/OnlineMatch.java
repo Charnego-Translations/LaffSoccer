@@ -37,7 +37,7 @@ public class OnlineMatch extends GLScreen {
         game.soundManager.subscribeEvents();
 
         game.inputDevices.setAvailability(true);
-        inputDevice = game.inputDevices.get(2);
+        inputDevice = game.inputDevices.assignFirstAvailable();
     }
 
     public void setup(MatchSetupDto matchSetupDto) {

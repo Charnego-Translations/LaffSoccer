@@ -104,7 +104,7 @@ public class CommonComment {
     }
 
     public static void load() {
-        FileHandle numbersFolder = Gdx.files.local("sounds/commentary/numbers");
+        FileHandle numbersFolder = FileUtils.local("sounds/commentary/numbers");
         for (FileHandle fileHandle : numbersFolder.list()) {
             if (EXTENSIONS.contains(fileHandle.extension().toLowerCase())) {
                 String name = fileHandle.nameWithoutExtension();
@@ -112,7 +112,7 @@ public class CommonComment {
             }
         }
         // Legacy load
-        FileHandle commentaryFolder = Gdx.files.local("sounds/commentary");
+        FileHandle commentaryFolder = FileUtils.local("sounds/commentary");
         for (FileHandle fileHandle : commentaryFolder.list()) {
             if (EXTENSIONS.contains(fileHandle.extension().toLowerCase())) {
                 String name = fileHandle.nameWithoutExtension();
@@ -126,7 +126,7 @@ public class CommonComment {
         }
         // Comments in their folders
         for (CommonCommentType commentType : CommonCommentType.values()) {
-            commentaryFolder = Gdx.files.local("sounds/commentary/" + commentType.name().toLowerCase() + "/");
+            commentaryFolder = FileUtils.local("sounds/commentary/" + commentType.name().toLowerCase() + "/");
             for (FileHandle fileHandle : commentaryFolder.list()) {
                 if (EXTENSIONS.contains(fileHandle.extension().toLowerCase())) {
                     Sound sound = Gdx.audio.newSound(fileHandle);
@@ -137,7 +137,7 @@ public class CommonComment {
                 }
             }
             // Secondary comments
-            commentaryFolder = Gdx.files.local("sounds/commentary/" + commentType.name().toLowerCase() + "/secondary/");
+            commentaryFolder = FileUtils.local("sounds/commentary/" + commentType.name().toLowerCase() + "/secondary/");
             for (FileHandle fileHandle : commentaryFolder.list()) {
                 if (EXTENSIONS.contains(fileHandle.extension().toLowerCase())) {
                     commonCommentarySecondary.get(commentType).add(Sentence.of(Gdx.audio.newSound(fileHandle)));

@@ -8,6 +8,7 @@ import com.badlogic.gdx.utils.JsonWriter;
 import com.ygames.ysoccer.export.Config;
 import com.ygames.ysoccer.export.FileConfig;
 import com.ygames.ysoccer.export.TeamConfig;
+import com.ygames.ysoccer.framework.FileUtils;
 import com.ygames.ysoccer.framework.GLColor;
 import com.ygames.ysoccer.framework.GLGame;
 import com.ygames.ysoccer.framework.GLScreen;
@@ -64,9 +65,9 @@ class ExportTeams extends GLScreen {
         json = new Json();
         json.setOutputType(JsonWriter.OutputType.json);
 
-        exportFolder = Gdx.files.local("data/export");
-        kitStyles = json.fromJson(KitStyle[].class, Gdx.files.local("data/config/kit_styles.json").readString("UTF-8"));
-        playerCountries = json.fromJson(PlayerCountry[].class, Gdx.files.local("data/config/player_countries.json").readString("UTF-8"));
+        exportFolder = FileUtils.local("data/export");
+        kitStyles = json.fromJson(KitStyle[].class, FileUtils.local("data/config/kit_styles.json").readString("UTF-8"));
+        playerCountries = json.fromJson(PlayerCountry[].class, FileUtils.local("data/config/player_countries.json").readString("UTF-8"));
 
         Widget w;
 
@@ -106,7 +107,7 @@ class ExportTeams extends GLScreen {
         private FileHandle configFile;
 
         FolderButton(FileHandle folder) {
-            configFile = Gdx.files.local("data/config/export_" + folder.name() + ".json");
+            configFile = FileUtils.local("data/config/export_" + folder.name() + ".json");
             setSize(340, 32);
             if (configFile.exists()) {
                 setColors(0x568200, 0x77B400, 0x243E00);

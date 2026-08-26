@@ -5,6 +5,7 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.kryonet.Server;
+import com.ygames.ysoccer.framework.InputDevice;
 import com.ygames.ysoccer.framework.NetworkInputDevice;
 import com.ygames.ysoccer.framework.Settings;
 import com.ygames.ysoccer.match.Match;
@@ -15,13 +16,18 @@ import com.ygames.ysoccer.network.mappers.InputDeviceMapper;
 import com.ygames.ysoccer.network.mappers.MatchMapper;
 
 import java.io.IOException;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
+import static com.ygames.ysoccer.match.Match.AWAY;
+import static com.ygames.ysoccer.match.Match.HOME;
 
 public class ServerScreen extends ScreenAdapter {
 
     private final Server server;
+    private final Map<Connection, InputDevice> connections = new ConcurrentHashMap<>();
     private final Match match;
     private boolean matchStarted;
-    private boolean connected;
     private boolean matchEnded;
 
     public ServerScreen(Server server, Match match) {
@@ -38,16 +44,26 @@ public class ServerScreen extends ScreenAdapter {
             public void connected(Connection connection) {
                 MatchSetupDto matchSetupDto = MatchSetupDto.toDto(match);
                 server.sendToTCP(connection.getID(), matchSetupDto);
-                connected = true;
+
+                Gdx.app.postRunnable(() -> {
+                    addConnection(connection, match);
+                });
             }
 
             public void received(Connection connection, Object object) {
                 if (object instanceof InputDeviceDto) {
-                    NetworkInputDevice inputDevice = (NetworkInputDevice) match.team[0].inputDevice;
-                    inputDevice.update();
-
-                    InputDeviceMapper.updateFromDto(inputDevice, (InputDeviceDto) object);
+                    NetworkInputDevice inputDevice = (NetworkInputDevice) connections.get(connection);
+                    if (inputDevice != null) {
+                        inputDevice.update();
+                        InputDeviceMapper.updateFromDto(inputDevice, (InputDeviceDto) object);
+                    }
                 }
+            }
+
+            public void disconnected(Connection connection) {
+                Gdx.app.postRunnable(() -> {
+                    connections.remove(connection);
+                });
             }
         });
 
@@ -59,16 +75,32 @@ public class ServerScreen extends ScreenAdapter {
         server.start();
     }
 
+    private void addConnection(Connection connection, Match match) {
+        switch (connections.size()) {
+            case 0:
+                connections.put(connection, match.team[HOME].inputDevice);
+                break;
+            case 1:
+                if (connections.containsValue(match.team[HOME].inputDevice)) {
+                    connections.put(connection, match.team[AWAY].inputDevice);
+                } else {
+                    connections.put(connection, match.team[HOME].inputDevice);
+                }
+                break;
+            default:
+                // do nothing
+        }
+    }
+
     @Override
     public void render(float deltaTime) {
-        if (!matchStarted && connected) {
+        if (!matchStarted && connections.size() == 2) {
             match.start();
             matchStarted = true;
-            Gdx.app.log("Server", "Match started");
+            Gdx.app.debug("Server", "Match started");
         }
 
         if (matchStarted && !matchEnded) {
-//            match.team[HOME].inputDevice.update();
             match.update(deltaTime);
             match.updateCurrentData();
             MatchUpdateDto matchUpdateDto = MatchMapper.toUpdateDto(match);
@@ -78,6 +110,6 @@ public class ServerScreen extends ScreenAdapter {
 
     private void quit(boolean matchCompleted) {
         matchEnded = true;
-        Gdx.app.log("Server", "Match ended");
+        Gdx.app.debug("Server", "Match ended");
     }
 }

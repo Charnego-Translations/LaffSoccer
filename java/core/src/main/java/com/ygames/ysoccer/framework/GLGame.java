@@ -159,7 +159,7 @@ public class GLGame extends Game {
         } catch (Exception e) {
             e.printStackTrace();
 
-            FileHandle file = Gdx.files.local("error.log");
+            FileHandle file = FileUtils.local("error.log");
             file.writeString("Exception in thread \"" + Thread.currentThread().getName() + "\" " + e.toString() + "\n", false);
             for (StackTraceElement s : e.getStackTrace()) {
                 file.writeString("\tat " + s.toString() + "\n", true);

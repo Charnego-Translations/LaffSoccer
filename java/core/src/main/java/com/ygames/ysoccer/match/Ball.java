@@ -60,7 +60,7 @@ public class Ball {
     public int ownerIndex;
     public int ownerTeamIndex;
     Player ownerLast;
-    Player goalOwner;
+    public Player goalOwner;
     Player holder;
 
     private final SceneSettings sceneSettings;

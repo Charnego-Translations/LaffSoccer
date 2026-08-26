@@ -17,8 +17,6 @@ import static java.lang.Math.min;
 
 class MatchStateBenchSubstitutions extends MatchState {
 
-    MatchFsm.BenchStatus benchStatus;
-
     MatchStateBenchSubstitutions(MatchFsm fsm) {
         super(BENCH_SUBSTITUTIONS, fsm);
 
@@ -34,13 +32,6 @@ class MatchStateBenchSubstitutions extends MatchState {
         scene.displayTime = true;
         scene.displayWindVane = true;
         scene.displayBenchPlayers = true;
-    }
-
-    @Override
-    void entryActions() {
-        super.entryActions();
-
-        benchStatus = fsm.benchStatus;
     }
 
     @Override
@@ -67,28 +58,28 @@ class MatchStateBenchSubstitutions extends MatchState {
         }
 
         // move selection
-        if (benchStatus.inputDevice.yMoved()) {
-            int substitutes = min(scene.getSettings().benchSize, benchStatus.team.lineup.size() - TEAM_SIZE);
+        if (fsm.benchInputDevice.yMoved()) {
+            int substitutes = min(scene.getSettings().benchSize, scene.benchTeam.lineup.size() - TEAM_SIZE);
 
             // if remaining substitutions
-            if (benchStatus.team.substitutionsCount < scene.getSettings().substitutions) {
-                benchStatus.selectedPosition = EMath.rotate(benchStatus.selectedPosition, -1, substitutes - 1, benchStatus.inputDevice.y1);
+            if (scene.benchTeam.substitutionsCount < scene.getSettings().substitutions) {
+                scene.benchSelectedPosition = EMath.rotate(scene.benchSelectedPosition, -1, substitutes - 1, fsm.benchInputDevice.y1);
             }
 
             // reset positions
             for (int i = 0; i < substitutes; i++) {
-                Player player = benchStatus.team.lineup.get(TEAM_SIZE + i);
+                Player player = scene.benchTeam.lineup.get(TEAM_SIZE + i);
                 if (!player.getState().checkId(STATE_SUBSTITUTED)) {
                     player.setState(STATE_BENCH_SITTING);
                 }
             }
 
             // move selected player
-            if (benchStatus.selectedPosition != -1) {
-                Player player = benchStatus.team.lineup.get(TEAM_SIZE + benchStatus.selectedPosition);
+            if (scene.benchSelectedPosition != -1) {
+                Player player = scene.benchTeam.lineup.get(TEAM_SIZE + scene.benchSelectedPosition);
                 if (!player.getState().checkId(STATE_SUBSTITUTED)) {
                     // coach calls player
-                    Coach coach = benchStatus.team.coach;
+                    Coach coach = scene.benchTeam.coach;
                     coach.status = LOOK_BENCH;
                     coach.timer = 250;
 
@@ -101,22 +92,22 @@ class MatchStateBenchSubstitutions extends MatchState {
     @Override
     SceneFsm.Action[] checkConditions() {
 
-        if (benchStatus.inputDevice.fire1Down()) {
-            if (benchStatus.selectedPosition == -1) {
+        if (fsm.benchInputDevice.fire1Down()) {
+            if (scene.benchSelectedPosition == -1) {
                 return newAction(NEW_FOREGROUND, BENCH_FORMATION);
             } else {
                 // if no previous selection
-                if (benchStatus.substPosition == -1) {
+                if (scene.benchSubstPosition == -1) {
 
                     // out the player for substitution
-                    Player player = benchStatus.team.lineup.get(TEAM_SIZE + benchStatus.selectedPosition);
+                    Player player = scene.benchTeam.lineup.get(TEAM_SIZE + scene.benchSelectedPosition);
 
                     if (!player.getState().checkId(STATE_SUBSTITUTED)) {
 
                         player.setState(STATE_BENCH_OUT);
 
-                        benchStatus.substPosition = TEAM_SIZE + benchStatus.selectedPosition;
-                        benchStatus.selectedPosition = benchStatus.team.nearestBenchPlayerByRole(player.role);
+                        scene.benchSubstPosition = TEAM_SIZE + scene.benchSelectedPosition;
+                        scene.benchSelectedPosition = scene.benchTeam.nearestBenchPlayerByRole(player.role);
 
                         return newAction(NEW_FOREGROUND, BENCH_FORMATION);
                     }
@@ -124,7 +115,7 @@ class MatchStateBenchSubstitutions extends MatchState {
             }
         }
 
-        if (benchStatus.inputDevice.xReleased()) {
+        if (fsm.benchInputDevice.xReleased()) {
             return newAction(NEW_FOREGROUND, BENCH_EXIT);
         }
 
